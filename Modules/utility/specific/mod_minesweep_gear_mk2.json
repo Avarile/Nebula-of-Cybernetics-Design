@@ -28,5 +28,11 @@
     "minelayer_sweeper",
     "sloop_patrol_escort",
     "corvette"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.39,
+    "energy": 0.84,
+    "ordnance": 0.0,
+    "precision": 1.8
+  }
 }

@@ -28,5 +28,11 @@
     "repair_ship_tender",
     "seaplane_tender",
     "fleet_oiler"
-  ]
+  ],
+  "buildCost": {
+    "structural": 7.87,
+    "energy": 1.12,
+    "ordnance": 0.0,
+    "precision": 0.0
+  }
 }

@@ -79,7 +79,8 @@ for name, marks in by_arch.items():
         for stat, va in ea.items():
             if stat in eb and eb[stat] < va - 1e-9:
                 bad_ladder.append(f'{name} Mk.{lo}->Mk.{hi} {stat}: {va} -> {eb[stat]}')
-        if b['powerCost'] < a['powerCost'] or b['crewRequired'] < a['crewRequired']:
+        if b['powerCost'] < a['powerCost'] or b['crewRequired'] < a['crewRequired'] \
+           or sum(b['buildCost'].values()) < sum(a['buildCost'].values()):
             bad_cost.append(f'{name} Mk.{lo}->Mk.{hi} cost went down')
 check('mark ladder: benefits non-decreasing', bad_ladder)
 check('mark ladder: effect set grows', bad_super)

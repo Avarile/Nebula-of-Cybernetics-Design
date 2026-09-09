@@ -22,5 +22,11 @@
   "hullAffinity": [
     "attack_transport",
     "landing_ship_tank"
-  ]
+  ],
+  "buildCost": {
+    "structural": 5.25,
+    "energy": 0.3,
+    "ordnance": 0.0,
+    "precision": 0.0
+  }
 }

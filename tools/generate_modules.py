@@ -17,6 +17,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FLEET = os.path.join(ROOT, 'fleet_and_weapons.json')
 MODULES_DIR = os.path.join(ROOT, 'Modules')
 IFACE = os.path.join(ROOT, 'Data-Templates', 'module.interface')
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+from resource_costs import module_build_cost
 
 MARKS = [1, 2, 3]
 SLOT_TYPES = ['engine', 'utility', 'defensive', 'sensor', 'cargo', 'command', 'hangar']
@@ -290,6 +292,9 @@ def main():
                 m['moduleId'] = f'mod_{slug(a["name"])}_mk{mk}'
                 m['name'] = f'{a["name"]} Mk.{mk}'
             modules.append(m)
+
+    for m in modules:
+        m['buildCost'] = module_build_cost(m)
 
     print(f'archetypes    : {len(ARCHETYPES)}')
     print(f'modules       : {len(modules)}')

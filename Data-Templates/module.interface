@@ -178,7 +178,13 @@
   "crewRequired": "[+] number, drawn from the hull's crew complement",
   "hullAffinity": [
     "[+] array of shipClass values; non-empty for functionClass 'specific', empty otherwise"
-  ]
+  ],
+  "buildCost": {
+    "structural": "number, manufactured-tier Structural Component units",
+    "energy": "number, manufactured-tier Power Core Unit units",
+    "ordnance": "number, manufactured-tier Ordnance Charge units",
+    "precision": "number, manufactured-tier Guidance Assembly units"
+  }
 }
 
 # ---- EXAMPLE INSTANCE (Modules/command/major/mod_cic_tower_mk2.json) ----

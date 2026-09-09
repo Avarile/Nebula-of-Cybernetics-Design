@@ -23,5 +23,11 @@
     "attack_transport",
     "repair_ship_tender",
     "fleet_aircraft_carrier"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.92,
+    "energy": 0.51,
+    "ordnance": 0.0,
+    "precision": 0.0
+  }
 }

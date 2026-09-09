@@ -31,5 +31,11 @@
     "torpedo_boat_fleet",
     "motor_torpedo_boat",
     "sloop_patrol_escort"
-  ]
+  ],
+  "buildCost": {
+    "structural": 0.56,
+    "energy": 0.38,
+    "ordnance": 0.0,
+    "precision": 1.29
+  }
 }

@@ -30,5 +30,11 @@
     "heavy_cruiser",
     "battlecruiser",
     "battleship"
-  ]
+  ],
+  "buildCost": {
+    "structural": 5.5,
+    "energy": 1.05,
+    "ordnance": 0.0,
+    "precision": 3.75
+  }
 }
