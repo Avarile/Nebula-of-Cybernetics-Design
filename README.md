@@ -142,13 +142,9 @@ draw plus one full weapon volley, and `maxCrew` covers the fitted modules' `crew
 
 ### Resources — `lane × tier`
 
-```
-cost = baseYield  ×  tier multiplier  ×  lane characterization
-```
+Resources are organized by 4 **lanes** (structural, energy, ordnance, precision) and 3 **tiers** (raw, refined, manufactured). Raw→refined yield is lane-specific — 0.90/0.80/0.75/0.50 for structural/energy/ordnance/precision respectively — while refined→manufactured yield is uniform at 0.85 across all lanes. The low precision-lane yield is deliberate: rare isotopes refine poorly, making precision electronics the most raw-material-intensive lane per finished unit. `unitMass` is currently a uniform 1.0 ton/unit placeholder across all 12 resources (see `Resources/resource_tiers_specification.md` §7 for calibration notes).
 
-Resources are organized by 4 **lanes** (structural, energy, ordnance, precision) and 3 **tiers** (raw, refined, manufactured). Each resource has a base yield; tier-to-tier progression follows a consistent multiplier (x1.333 raw → refined, x1.5 refined → manufactured), and the yield per unit mass is characterized by lane — structural resources yield more mass per unit, precision resources less.
-
-Every weapon, module, and ship carries a `buildCost` field that is a pure formula over the resource costs (the tier-1 baseline) and the item's stats. See `Resources/resource_tiers_specification.md` for the full derivation.
+Every weapon, module, and ship carries a `buildCost` field — the cost to manufacture it, expressed in manufactured-resource units, derived from the item's own stats (mass, power, damage, size, etc.) via cost-scaling formulas. See `Resources/resource_tiers_specification.md` for the full derivation.
 
 ### Fitting files
 
