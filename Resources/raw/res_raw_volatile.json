@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_raw_volatile",
+  "name": "Volatile Compound",
+  "tier": "raw",
+  "lane": "ordnance",
+  "refinesFrom": null,
+  "refinesInto": "res_refined_warhead_compound",
+  "conversionYield": null,
+  "unitMass": 1.0,
+  "description": "Reactive chemical feedstock for propellant and warhead fill -- unstable in raw form."
+}

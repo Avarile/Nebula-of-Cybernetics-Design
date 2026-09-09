@@ -1,0 +1,89 @@
+{
+  "count": 12,
+  "resources": [
+    {
+      "resourceId": "res_raw_ferrite",
+      "name": "Ferrite Ore",
+      "tier": "raw",
+      "lane": "structural",
+      "path": "Resources/raw/res_raw_ferrite.json"
+    },
+    {
+      "resourceId": "res_refined_structural_alloy",
+      "name": "Structural Alloy",
+      "tier": "refined",
+      "lane": "structural",
+      "path": "Resources/refined/res_refined_structural_alloy.json"
+    },
+    {
+      "resourceId": "res_mfg_structural_component",
+      "name": "Structural Component",
+      "tier": "manufactured",
+      "lane": "structural",
+      "path": "Resources/manufactured/res_mfg_structural_component.json"
+    },
+    {
+      "resourceId": "res_raw_conductive",
+      "name": "Conductive Crystal",
+      "tier": "raw",
+      "lane": "energy",
+      "path": "Resources/raw/res_raw_conductive.json"
+    },
+    {
+      "resourceId": "res_refined_energy_matrix",
+      "name": "Energy Cell Matrix",
+      "tier": "refined",
+      "lane": "energy",
+      "path": "Resources/refined/res_refined_energy_matrix.json"
+    },
+    {
+      "resourceId": "res_mfg_power_core",
+      "name": "Power Core Unit",
+      "tier": "manufactured",
+      "lane": "energy",
+      "path": "Resources/manufactured/res_mfg_power_core.json"
+    },
+    {
+      "resourceId": "res_raw_volatile",
+      "name": "Volatile Compound",
+      "tier": "raw",
+      "lane": "ordnance",
+      "path": "Resources/raw/res_raw_volatile.json"
+    },
+    {
+      "resourceId": "res_refined_warhead_compound",
+      "name": "Warhead Compound",
+      "tier": "refined",
+      "lane": "ordnance",
+      "path": "Resources/refined/res_refined_warhead_compound.json"
+    },
+    {
+      "resourceId": "res_mfg_ordnance_charge",
+      "name": "Ordnance Charge",
+      "tier": "manufactured",
+      "lane": "ordnance",
+      "path": "Resources/manufactured/res_mfg_ordnance_charge.json"
+    },
+    {
+      "resourceId": "res_raw_isotopes",
+      "name": "Rare Isotopes",
+      "tier": "raw",
+      "lane": "precision",
+      "path": "Resources/raw/res_raw_isotopes.json"
+    },
+    {
+      "resourceId": "res_refined_precision_circuitry",
+      "name": "Precision Circuitry",
+      "tier": "refined",
+      "lane": "precision",
+      "path": "Resources/refined/res_refined_precision_circuitry.json"
+    },
+    {
+      "resourceId": "res_mfg_guidance_assembly",
+      "name": "Guidance Assembly",
+      "tier": "manufactured",
+      "lane": "precision",
+      "path": "Resources/manufactured/res_mfg_guidance_assembly.json"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_mfg_structural_component",
+  "name": "Structural Component",
+  "tier": "manufactured",
+  "lane": "structural",
+  "refinesFrom": "res_refined_structural_alloy",
+  "refinesInto": null,
+  "conversionYield": 0.85,
+  "unitMass": 1.0,
+  "description": "Finished structural part -- hull sections, weapon mounts, module housings."
+}

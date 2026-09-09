@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_refined_precision_circuitry",
+  "name": "Precision Circuitry",
+  "tier": "refined",
+  "lane": "precision",
+  "refinesFrom": "res_raw_isotopes",
+  "refinesInto": "res_mfg_guidance_assembly",
+  "conversionYield": 0.5,
+  "unitMass": 1.0,
+  "description": "Etched isotopic substrate used in guidance, targeting, and sensor electronics."
+}

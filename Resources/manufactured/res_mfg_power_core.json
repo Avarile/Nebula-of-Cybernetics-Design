@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_mfg_power_core",
+  "name": "Power Core Unit",
+  "tier": "manufactured",
+  "lane": "energy",
+  "refinesFrom": "res_refined_energy_matrix",
+  "refinesInto": null,
+  "conversionYield": 0.85,
+  "unitMass": 1.0,
+  "description": "Finished power-delivery unit -- reactor cells, capacitor banks, drive cores."
+}

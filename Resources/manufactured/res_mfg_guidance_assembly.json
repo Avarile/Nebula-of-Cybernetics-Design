@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_mfg_guidance_assembly",
+  "name": "Guidance Assembly",
+  "tier": "manufactured",
+  "lane": "precision",
+  "refinesFrom": "res_refined_precision_circuitry",
+  "refinesInto": null,
+  "conversionYield": 0.85,
+  "unitMass": 1.0,
+  "description": "Finished precision electronics package -- targeting, guidance, sensor subassemblies."
+}

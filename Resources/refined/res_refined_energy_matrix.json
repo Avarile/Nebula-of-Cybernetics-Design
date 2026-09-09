@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_refined_energy_matrix",
+  "name": "Energy Cell Matrix",
+  "tier": "refined",
+  "lane": "energy",
+  "refinesFrom": "res_raw_conductive",
+  "refinesInto": "res_mfg_power_core",
+  "conversionYield": 0.8,
+  "unitMass": 1.0,
+  "description": "Processed conductive crystal formed into a stable charge-storage lattice."
+}

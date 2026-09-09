@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_raw_ferrite",
+  "name": "Ferrite Ore",
+  "tier": "raw",
+  "lane": "structural",
+  "refinesFrom": null,
+  "refinesInto": "res_refined_structural_alloy",
+  "conversionYield": null,
+  "unitMass": 1.0,
+  "description": "Bulk ferrous/silicate ore -- the base structural feedstock for hull plating and weapon housings."
+}

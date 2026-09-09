@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_raw_isotopes",
+  "name": "Rare Isotopes",
+  "tier": "raw",
+  "lane": "precision",
+  "refinesFrom": null,
+  "refinesInto": "res_refined_precision_circuitry",
+  "conversionYield": null,
+  "unitMass": 1.0,
+  "description": "Scarce isotopic ore, the feedstock for precision electronics -- refines poorly, which is the point."
+}

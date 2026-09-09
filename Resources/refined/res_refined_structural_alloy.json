@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_refined_structural_alloy",
+  "name": "Structural Alloy",
+  "tier": "refined",
+  "lane": "structural",
+  "refinesFrom": "res_raw_ferrite",
+  "refinesInto": "res_mfg_structural_component",
+  "conversionYield": 0.9,
+  "unitMass": 1.0,
+  "description": "Smelted and tempered ferrite, ready for fabrication into hull sections and weapon housings."
+}

@@ -62,7 +62,14 @@
       "command",
       "hangar"
     ],
-    "namedShipCount": 20
+    "namedShipCount": 20,
+    "resourceCount": 12,
+    "resourceLanes": [
+      "structural",
+      "energy",
+      "ordnance",
+      "precision"
+    ]
   },
   "modules": [
     {
@@ -42999,6 +43006,140 @@
         "medical": 90,
         "repairRate": 0
       }
+    }
+  ],
+  "resources": [
+    {
+      "resourceId": "res_raw_ferrite",
+      "name": "Ferrite Ore",
+      "tier": "raw",
+      "lane": "structural",
+      "refinesFrom": null,
+      "refinesInto": "res_refined_structural_alloy",
+      "conversionYield": null,
+      "unitMass": 1.0,
+      "description": "Bulk ferrous/silicate ore -- the base structural feedstock for hull plating and weapon housings."
+    },
+    {
+      "resourceId": "res_refined_structural_alloy",
+      "name": "Structural Alloy",
+      "tier": "refined",
+      "lane": "structural",
+      "refinesFrom": "res_raw_ferrite",
+      "refinesInto": "res_mfg_structural_component",
+      "conversionYield": 0.9,
+      "unitMass": 1.0,
+      "description": "Smelted and tempered ferrite, ready for fabrication into hull sections and weapon housings."
+    },
+    {
+      "resourceId": "res_mfg_structural_component",
+      "name": "Structural Component",
+      "tier": "manufactured",
+      "lane": "structural",
+      "refinesFrom": "res_refined_structural_alloy",
+      "refinesInto": null,
+      "conversionYield": 0.85,
+      "unitMass": 1.0,
+      "description": "Finished structural part -- hull sections, weapon mounts, module housings."
+    },
+    {
+      "resourceId": "res_raw_conductive",
+      "name": "Conductive Crystal",
+      "tier": "raw",
+      "lane": "energy",
+      "refinesFrom": null,
+      "refinesInto": "res_refined_energy_matrix",
+      "conversionYield": null,
+      "unitMass": 1.0,
+      "description": "Naturally-grown crystal lattice with high charge capacity -- the base feedstock for power systems."
+    },
+    {
+      "resourceId": "res_refined_energy_matrix",
+      "name": "Energy Cell Matrix",
+      "tier": "refined",
+      "lane": "energy",
+      "refinesFrom": "res_raw_conductive",
+      "refinesInto": "res_mfg_power_core",
+      "conversionYield": 0.8,
+      "unitMass": 1.0,
+      "description": "Processed conductive crystal formed into a stable charge-storage lattice."
+    },
+    {
+      "resourceId": "res_mfg_power_core",
+      "name": "Power Core Unit",
+      "tier": "manufactured",
+      "lane": "energy",
+      "refinesFrom": "res_refined_energy_matrix",
+      "refinesInto": null,
+      "conversionYield": 0.85,
+      "unitMass": 1.0,
+      "description": "Finished power-delivery unit -- reactor cells, capacitor banks, drive cores."
+    },
+    {
+      "resourceId": "res_raw_volatile",
+      "name": "Volatile Compound",
+      "tier": "raw",
+      "lane": "ordnance",
+      "refinesFrom": null,
+      "refinesInto": "res_refined_warhead_compound",
+      "conversionYield": null,
+      "unitMass": 1.0,
+      "description": "Reactive chemical feedstock for propellant and warhead fill -- unstable in raw form."
+    },
+    {
+      "resourceId": "res_refined_warhead_compound",
+      "name": "Warhead Compound",
+      "tier": "refined",
+      "lane": "ordnance",
+      "refinesFrom": "res_raw_volatile",
+      "refinesInto": "res_mfg_ordnance_charge",
+      "conversionYield": 0.75,
+      "unitMass": 1.0,
+      "description": "Stabilised volatile compound, safe to fabricate into ordnance and propellant charges."
+    },
+    {
+      "resourceId": "res_mfg_ordnance_charge",
+      "name": "Ordnance Charge",
+      "tier": "manufactured",
+      "lane": "ordnance",
+      "refinesFrom": "res_refined_warhead_compound",
+      "refinesInto": null,
+      "conversionYield": 0.85,
+      "unitMass": 1.0,
+      "description": "Finished warhead/propellant charge, ready to load."
+    },
+    {
+      "resourceId": "res_raw_isotopes",
+      "name": "Rare Isotopes",
+      "tier": "raw",
+      "lane": "precision",
+      "refinesFrom": null,
+      "refinesInto": "res_refined_precision_circuitry",
+      "conversionYield": null,
+      "unitMass": 1.0,
+      "description": "Scarce isotopic ore, the feedstock for precision electronics -- refines poorly, which is the point."
+    },
+    {
+      "resourceId": "res_refined_precision_circuitry",
+      "name": "Precision Circuitry",
+      "tier": "refined",
+      "lane": "precision",
+      "refinesFrom": "res_raw_isotopes",
+      "refinesInto": "res_mfg_guidance_assembly",
+      "conversionYield": 0.5,
+      "unitMass": 1.0,
+      "description": "Etched isotopic substrate used in guidance, targeting, and sensor electronics."
+    },
+    {
+      "resourceId": "res_mfg_guidance_assembly",
+      "name": "Guidance Assembly",
+      "tier": "manufactured",
+      "lane": "precision",
+      "refinesFrom": "res_refined_precision_circuitry",
+      "refinesInto": null,
+      "conversionYield": 0.85,
+      "unitMass": 1.0,
+      "description": "Finished precision electronics package -- targeting, guidance, sensor subassemblies."
     }
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_raw_conductive",
+  "name": "Conductive Crystal",
+  "tier": "raw",
+  "lane": "energy",
+  "refinesFrom": null,
+  "refinesInto": "res_refined_energy_matrix",
+  "conversionYield": null,
+  "unitMass": 1.0,
+  "description": "Naturally-grown crystal lattice with high charge capacity -- the base feedstock for power systems."
+}

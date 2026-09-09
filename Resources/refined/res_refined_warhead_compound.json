@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_refined_warhead_compound",
+  "name": "Warhead Compound",
+  "tier": "refined",
+  "lane": "ordnance",
+  "refinesFrom": "res_raw_volatile",
+  "refinesInto": "res_mfg_ordnance_charge",
+  "conversionYield": 0.75,
+  "unitMass": 1.0,
+  "description": "Stabilised volatile compound, safe to fabricate into ordnance and propellant charges."
+}

@@ -1,0 +1,11 @@
+{
+  "resourceId": "res_mfg_ordnance_charge",
+  "name": "Ordnance Charge",
+  "tier": "manufactured",
+  "lane": "ordnance",
+  "refinesFrom": "res_refined_warhead_compound",
+  "refinesInto": null,
+  "conversionYield": 0.85,
+  "unitMass": 1.0,
+  "description": "Finished warhead/propellant charge, ready to load."
+}
