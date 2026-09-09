@@ -353,8 +353,17 @@ def main():
     with open(FLEET, 'w') as f:
         json.dump(fleet, f, indent=2); f.write('\n')
 
-    if os.path.isdir(RESOURCES_DIR):
-        shutil.rmtree(RESOURCES_DIR)
+    # Unlike Weapons/ or Modules/, Resources/ also holds this feature's hand-written
+    # spec and plan docs (resource_tiers_specification.md, resource_tiers_implementation_plan.md)
+    # -- it is not a purely-generated directory. Clear only the generated subtrees,
+    # never the whole directory, so a re-run can't silently delete those docs.
+    for tier in ('raw', 'refined', 'manufactured'):
+        d = os.path.join(RESOURCES_DIR, tier)
+        if os.path.isdir(d):
+            shutil.rmtree(d)
+    old_index = os.path.join(RESOURCES_DIR, 'index.json')
+    if os.path.exists(old_index):
+        os.remove(old_index)
     index = []
     for r in RESOURCES:
         d = os.path.join(RESOURCES_DIR, r['tier'])
@@ -377,7 +386,7 @@ if __name__ == '__main__':
 - [ ] **Step 3: Run it and inspect output**
 
 Run: `python3 tools/generate_resources.py --dry-run`
-Expected: `resources     : 12`, `by tier       : {'raw': 4, 'refined': 4, 'manufactured': 4}`, `by lane       : {'structural': 4, 'energy': 4, 'ordnance': 4, 'precision': 4}`.
+Expected: `resources     : 12`, `by tier       : {'raw': 4, 'refined': 4, 'manufactured': 4}`, `by lane       : {'structural': 3, 'energy': 3, 'ordnance': 3, 'precision': 3}` (3 per lane: one row per tier).
 
 Run: `python3 tools/generate_resources.py`
 Expected: `wrote 12 resource files + Resources/index.json`.
