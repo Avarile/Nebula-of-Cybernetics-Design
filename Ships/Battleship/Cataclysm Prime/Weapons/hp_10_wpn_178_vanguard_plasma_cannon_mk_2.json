@@ -29,5 +29,11 @@
   "criticalChance": 0.16,
   "specialEffects": [
     "armor_melt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 10.83,
+    "ordnance": 0.73,
+    "precision": 1.55
+  }
 }

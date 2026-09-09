@@ -29,5 +29,11 @@
   "criticalChance": 0.07,
   "specialEffects": [
     "high_tracking"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 0.73,
+    "ordnance": 0.04,
+    "precision": 3.05
+  }
 }

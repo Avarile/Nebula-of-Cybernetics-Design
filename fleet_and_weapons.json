@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "title": "Generated Fleet Data - 78 Ships & 798 Weapons",
+    "title": "Generated Fleet Data - 78 tier hulls, 20 named ships, 798 weapons, 135 modules",
     "version": "1.0",
     "shipCategories": [
       "motor_torpedo_boat",
@@ -34168,6 +34168,12 @@
         "currentPower": 31,
         "regenPerTurn": 5
       },
+      "buildCost": {
+        "structural": 4.48,
+        "energy": 5.61,
+        "ordnance": 1.3,
+        "precision": 7.0
+      },
       "sensors": {
         "detectionRange": 260,
         "initiative": 13
@@ -34298,6 +34304,12 @@
         "maxPower": 45,
         "currentPower": 45,
         "regenPerTurn": 7
+      },
+      "buildCost": {
+        "structural": 7.48,
+        "energy": 8.52,
+        "ordnance": 1.92,
+        "precision": 13.38
       },
       "sensors": {
         "detectionRange": 299,
@@ -34442,6 +34454,12 @@
         "currentPower": 60,
         "regenPerTurn": 9
       },
+      "buildCost": {
+        "structural": 11.16,
+        "energy": 12.25,
+        "ordnance": 2.68,
+        "precision": 27.57
+      },
       "sensors": {
         "detectionRange": 338,
         "initiative": 15
@@ -34566,6 +34584,12 @@
         "maxPower": 54,
         "currentPower": 54,
         "regenPerTurn": 8
+      },
+      "buildCost": {
+        "structural": 8.55,
+        "energy": 8.12,
+        "ordnance": 1.5,
+        "precision": 6.65
       },
       "sensors": {
         "detectionRange": 420,
@@ -34703,6 +34727,12 @@
         "maxPower": 81,
         "currentPower": 81,
         "regenPerTurn": 12
+      },
+      "buildCost": {
+        "structural": 14.95,
+        "energy": 12.08,
+        "ordnance": 2.55,
+        "precision": 9.78
       },
       "sensors": {
         "detectionRange": 483,
@@ -34853,6 +34883,12 @@
         "currentPower": 110,
         "regenPerTurn": 16
       },
+      "buildCost": {
+        "structural": 22.76,
+        "energy": 17.39,
+        "ordnance": 3.84,
+        "precision": 17.32
+      },
       "sensors": {
         "detectionRange": 546,
         "initiative": 14
@@ -34983,6 +35019,12 @@
         "maxPower": 131,
         "currentPower": 131,
         "regenPerTurn": 20
+      },
+      "buildCost": {
+        "structural": 37.65,
+        "energy": 18.59,
+        "ordnance": 1.0,
+        "precision": 16.65
       },
       "sensors": {
         "detectionRange": 480,
@@ -35126,6 +35168,12 @@
         "maxPower": 151,
         "currentPower": 151,
         "regenPerTurn": 23
+      },
+      "buildCost": {
+        "structural": 45.08,
+        "energy": 22.86,
+        "ordnance": 1.4,
+        "precision": 23.7
       },
       "sensors": {
         "detectionRange": 552,
@@ -35282,6 +35330,12 @@
         "currentPower": 210,
         "regenPerTurn": 32
       },
+      "buildCost": {
+        "structural": 60.78,
+        "energy": 31.65,
+        "ordnance": 2.24,
+        "precision": 30.58
+      },
       "sensors": {
         "detectionRange": 624,
         "initiative": 13
@@ -35406,6 +35460,12 @@
         "maxPower": 115,
         "currentPower": 115,
         "regenPerTurn": 17
+      },
+      "buildCost": {
+        "structural": 29.99,
+        "energy": 17.4,
+        "ordnance": 3.85,
+        "precision": 13.2
       },
       "sensors": {
         "detectionRange": 440,
@@ -35543,6 +35603,12 @@
         "maxPower": 157,
         "currentPower": 157,
         "regenPerTurn": 24
+      },
+      "buildCost": {
+        "structural": 44.91,
+        "energy": 23.49,
+        "ordnance": 4.9,
+        "precision": 22.08
       },
       "sensors": {
         "detectionRange": 506,
@@ -35693,6 +35759,12 @@
         "currentPower": 202,
         "regenPerTurn": 30
       },
+      "buildCost": {
+        "structural": 71.98,
+        "energy": 31.96,
+        "ordnance": 9.52,
+        "precision": 31.51
+      },
       "sensors": {
         "detectionRange": 572,
         "initiative": 15
@@ -35823,6 +35895,12 @@
         "maxPower": 145,
         "currentPower": 145,
         "regenPerTurn": 22
+      },
+      "buildCost": {
+        "structural": 46.6,
+        "energy": 19.62,
+        "ordnance": 3.15,
+        "precision": 14.8
       },
       "sensors": {
         "detectionRange": 620,
@@ -35966,6 +36044,12 @@
         "maxPower": 178,
         "currentPower": 178,
         "regenPerTurn": 27
+      },
+      "buildCost": {
+        "structural": 59.63,
+        "energy": 24.56,
+        "ordnance": 4.41,
+        "precision": 20.83
       },
       "sensors": {
         "detectionRange": 713,
@@ -36122,6 +36206,12 @@
         "currentPower": 216,
         "regenPerTurn": 32
       },
+      "buildCost": {
+        "structural": 84.6,
+        "energy": 30.93,
+        "ordnance": 7.1,
+        "precision": 27.71
+      },
       "sensors": {
         "detectionRange": 806,
         "initiative": 14
@@ -36246,6 +36336,12 @@
         "maxPower": 152,
         "currentPower": 152,
         "regenPerTurn": 23
+      },
+      "buildCost": {
+        "structural": 49.53,
+        "energy": 19.56,
+        "ordnance": 0.47,
+        "precision": 19.2
       },
       "sensors": {
         "detectionRange": 640,
@@ -36383,6 +36479,12 @@
         "maxPower": 197,
         "currentPower": 197,
         "regenPerTurn": 30
+      },
+      "buildCost": {
+        "structural": 62.98,
+        "energy": 26.15,
+        "ordnance": 0.7,
+        "precision": 28.65
       },
       "sensors": {
         "detectionRange": 736,
@@ -36533,6 +36635,12 @@
         "currentPower": 261,
         "regenPerTurn": 39
       },
+      "buildCost": {
+        "structural": 77.22,
+        "energy": 34.45,
+        "ordnance": 0.98,
+        "precision": 40.12
+      },
       "sensors": {
         "detectionRange": 832,
         "initiative": 13
@@ -36663,6 +36771,12 @@
         "maxPower": 163,
         "currentPower": 163,
         "regenPerTurn": 24
+      },
+      "buildCost": {
+        "structural": 57.92,
+        "energy": 24.85,
+        "ordnance": 6.55,
+        "precision": 19.15
       },
       "sensors": {
         "detectionRange": 700,
@@ -36806,6 +36920,12 @@
         "maxPower": 220,
         "currentPower": 220,
         "regenPerTurn": 33
+      },
+      "buildCost": {
+        "structural": 94.15,
+        "energy": 32.13,
+        "ordnance": 7.58,
+        "precision": 29.35
       },
       "sensors": {
         "detectionRange": 805,
@@ -36962,6 +37082,12 @@
         "currentPower": 283,
         "regenPerTurn": 42
       },
+      "buildCost": {
+        "structural": 131.94,
+        "energy": 43.98,
+        "ordnance": 12.65,
+        "precision": 42.67
+      },
       "sensors": {
         "detectionRange": 910,
         "initiative": 16
@@ -37086,6 +37212,12 @@
         "maxPower": 246,
         "currentPower": 246,
         "regenPerTurn": 37
+      },
+      "buildCost": {
+        "structural": 114.41,
+        "energy": 27.32,
+        "ordnance": 0.3,
+        "precision": 20.8
       },
       "sensors": {
         "detectionRange": 380,
@@ -37223,6 +37355,12 @@
         "maxPower": 279,
         "currentPower": 279,
         "regenPerTurn": 42
+      },
+      "buildCost": {
+        "structural": 130.31,
+        "energy": 31.71,
+        "ordnance": 0.51,
+        "precision": 28.0
       },
       "sensors": {
         "detectionRange": 437,
@@ -37373,6 +37511,12 @@
         "currentPower": 313,
         "regenPerTurn": 47
       },
+      "buildCost": {
+        "structural": 149.24,
+        "energy": 37.78,
+        "ordnance": 0.98,
+        "precision": 36.3
+      },
       "sensors": {
         "detectionRange": 494,
         "initiative": 9
@@ -37497,6 +37641,12 @@
         "maxPower": 132,
         "currentPower": 132,
         "regenPerTurn": 20
+      },
+      "buildCost": {
+        "structural": 38.64,
+        "energy": 20.01,
+        "ordnance": 4.58,
+        "precision": 12.45
       },
       "sensors": {
         "detectionRange": 520,
@@ -37634,6 +37784,12 @@
         "maxPower": 232,
         "currentPower": 232,
         "regenPerTurn": 35
+      },
+      "buildCost": {
+        "structural": 91.44,
+        "energy": 31.69,
+        "ordnance": 5.82,
+        "precision": 24.45
       },
       "sensors": {
         "detectionRange": 598,
@@ -37784,6 +37940,12 @@
         "currentPower": 328,
         "regenPerTurn": 49
       },
+      "buildCost": {
+        "structural": 155.57,
+        "energy": 44.99,
+        "ordnance": 10.61,
+        "precision": 38.42
+      },
       "sensors": {
         "detectionRange": 676,
         "initiative": 17
@@ -37908,6 +38070,12 @@
         "maxPower": 148,
         "currentPower": 148,
         "regenPerTurn": 22
+      },
+      "buildCost": {
+        "structural": 45.85,
+        "energy": 19.21,
+        "ordnance": 1.84,
+        "precision": 13.0
       },
       "sensors": {
         "detectionRange": 560,
@@ -38045,6 +38213,12 @@
         "maxPower": 264,
         "currentPower": 264,
         "regenPerTurn": 40
+      },
+      "buildCost": {
+        "structural": 115.12,
+        "energy": 32.2,
+        "ordnance": 3.18,
+        "precision": 26.95
       },
       "sensors": {
         "detectionRange": 644,
@@ -38195,6 +38369,12 @@
         "currentPower": 374,
         "regenPerTurn": 56
       },
+      "buildCost": {
+        "structural": 195.9,
+        "energy": 47.74,
+        "ordnance": 5.83,
+        "precision": 48.18
+      },
       "sensors": {
         "detectionRange": 728,
         "initiative": 12
@@ -38325,6 +38505,12 @@
         "maxPower": 252,
         "currentPower": 252,
         "regenPerTurn": 38
+      },
+      "buildCost": {
+        "structural": 156.93,
+        "energy": 33.87,
+        "ordnance": 3.43,
+        "precision": 26.85
       },
       "sensors": {
         "detectionRange": 600,
@@ -38468,6 +38654,12 @@
         "maxPower": 326,
         "currentPower": 326,
         "regenPerTurn": 49
+      },
+      "buildCost": {
+        "structural": 218.21,
+        "energy": 45.3,
+        "ordnance": 4.65,
+        "precision": 42.63
       },
       "sensors": {
         "detectionRange": 690,
@@ -38624,6 +38816,12 @@
         "currentPower": 408,
         "regenPerTurn": 61
       },
+      "buildCost": {
+        "structural": 291.88,
+        "energy": 62.61,
+        "ordnance": 8.5,
+        "precision": 66.0
+      },
       "sensors": {
         "detectionRange": 780,
         "initiative": 12
@@ -38760,6 +38958,12 @@
         "maxPower": 293,
         "currentPower": 293,
         "regenPerTurn": 44
+      },
+      "buildCost": {
+        "structural": 170.08,
+        "energy": 36.07,
+        "ordnance": 0.88,
+        "precision": 41.95
       },
       "sensors": {
         "detectionRange": 900,
@@ -38909,6 +39113,12 @@
         "maxPower": 351,
         "currentPower": 351,
         "regenPerTurn": 53
+      },
+      "buildCost": {
+        "structural": 225.41,
+        "energy": 43.31,
+        "ordnance": 1.13,
+        "precision": 55.1
       },
       "sensors": {
         "detectionRange": 1035,
@@ -39071,6 +39281,12 @@
         "currentPower": 457,
         "regenPerTurn": 69
       },
+      "buildCost": {
+        "structural": 274.28,
+        "energy": 58.45,
+        "ordnance": 1.65,
+        "precision": 76.35
+      },
       "sensors": {
         "detectionRange": 1170,
         "initiative": 18
@@ -39201,6 +39417,12 @@
         "maxPower": 331,
         "currentPower": 331,
         "regenPerTurn": 50
+      },
+      "buildCost": {
+        "structural": 251.76,
+        "energy": 47.3,
+        "ordnance": 7.46,
+        "precision": 37.8
       },
       "sensors": {
         "detectionRange": 560,
@@ -39344,6 +39566,12 @@
         "maxPower": 386,
         "currentPower": 386,
         "regenPerTurn": 58
+      },
+      "buildCost": {
+        "structural": 292.19,
+        "energy": 59.0,
+        "ordnance": 10.3,
+        "precision": 51.53
       },
       "sensors": {
         "detectionRange": 644,
@@ -39500,6 +39728,12 @@
         "currentPower": 445,
         "regenPerTurn": 67
       },
+      "buildCost": {
+        "structural": 340.33,
+        "energy": 75.4,
+        "ordnance": 16.33,
+        "precision": 71.95
+      },
       "sensors": {
         "detectionRange": 728,
         "initiative": 11
@@ -39636,6 +39870,12 @@
         "maxPower": 299,
         "currentPower": 299,
         "regenPerTurn": 45
+      },
+      "buildCost": {
+        "structural": 180.04,
+        "energy": 42.08,
+        "ordnance": 3.6,
+        "precision": 34.5
       },
       "sensors": {
         "detectionRange": 950,
@@ -39785,6 +40025,12 @@
         "maxPower": 405,
         "currentPower": 405,
         "regenPerTurn": 61
+      },
+      "buildCost": {
+        "structural": 295.89,
+        "energy": 56.22,
+        "ordnance": 5.02,
+        "precision": 50.75
       },
       "sensors": {
         "detectionRange": 1092,
@@ -39947,6 +40193,12 @@
         "currentPower": 522,
         "regenPerTurn": 78
       },
+      "buildCost": {
+        "structural": 418.43,
+        "energy": 76.56,
+        "ordnance": 7.98,
+        "precision": 77.15
+      },
       "sensors": {
         "detectionRange": 1235,
         "initiative": 17
@@ -40071,6 +40323,12 @@
         "maxPower": 354,
         "currentPower": 354,
         "regenPerTurn": 53
+      },
+      "buildCost": {
+        "structural": 233.54,
+        "energy": 38.12,
+        "ordnance": 0.3,
+        "precision": 31.5
       },
       "sensors": {
         "detectionRange": 520,
@@ -40208,6 +40466,12 @@
         "maxPower": 437,
         "currentPower": 437,
         "regenPerTurn": 66
+      },
+      "buildCost": {
+        "structural": 301.5,
+        "energy": 48.98,
+        "ordnance": 0.7,
+        "precision": 45.1
       },
       "sensors": {
         "detectionRange": 598,
@@ -40358,6 +40622,12 @@
         "currentPower": 530,
         "regenPerTurn": 80
       },
+      "buildCost": {
+        "structural": 384.63,
+        "energy": 60.05,
+        "ordnance": 0.98,
+        "precision": 62.5
+      },
       "sensors": {
         "detectionRange": 676,
         "initiative": 10
@@ -40488,6 +40758,12 @@
         "maxPower": 402,
         "currentPower": 402,
         "regenPerTurn": 60
+      },
+      "buildCost": {
+        "structural": 322.97,
+        "energy": 45.62,
+        "ordnance": 0.62,
+        "precision": 45.85
       },
       "sensors": {
         "detectionRange": 1300,
@@ -40631,6 +40907,12 @@
         "maxPower": 474,
         "currentPower": 474,
         "regenPerTurn": 71
+      },
+      "buildCost": {
+        "structural": 376.19,
+        "energy": 55.51,
+        "ordnance": 0.87,
+        "precision": 65.75
       },
       "sensors": {
         "detectionRange": 1495,
@@ -40787,6 +41069,12 @@
         "currentPower": 553,
         "regenPerTurn": 83
       },
+      "buildCost": {
+        "structural": 445.08,
+        "energy": 68.01,
+        "ordnance": 1.39,
+        "precision": 90.2
+      },
       "sensors": {
         "detectionRange": 1690,
         "initiative": 16
@@ -40923,6 +41211,12 @@
         "maxPower": 417,
         "currentPower": 417,
         "regenPerTurn": 63
+      },
+      "buildCost": {
+        "structural": 385.91,
+        "energy": 55.98,
+        "ordnance": 5.84,
+        "precision": 54.45
       },
       "sensors": {
         "detectionRange": 880,
@@ -41072,6 +41366,12 @@
         "maxPower": 490,
         "currentPower": 490,
         "regenPerTurn": 74
+      },
+      "buildCost": {
+        "structural": 450.21,
+        "energy": 67.69,
+        "ordnance": 7.4,
+        "precision": 73.03
       },
       "sensors": {
         "detectionRange": 1012,
@@ -41234,6 +41534,12 @@
         "currentPower": 570,
         "regenPerTurn": 86
       },
+      "buildCost": {
+        "structural": 527.49,
+        "energy": 85.2,
+        "ordnance": 11.57,
+        "precision": 99.85
+      },
       "sensors": {
         "detectionRange": 1144,
         "initiative": 15
@@ -41364,6 +41670,12 @@
         "maxPower": 342,
         "currentPower": 342,
         "regenPerTurn": 51
+      },
+      "buildCost": {
+        "structural": 220.11,
+        "energy": 41.66,
+        "ordnance": 1.78,
+        "precision": 34.25
       },
       "sensors": {
         "detectionRange": 780,
@@ -41507,6 +41819,12 @@
         "maxPower": 452,
         "currentPower": 452,
         "regenPerTurn": 68
+      },
+      "buildCost": {
+        "structural": 322.9,
+        "energy": 56.18,
+        "ordnance": 2.97,
+        "precision": 49.5
       },
       "sensors": {
         "detectionRange": 897,
@@ -41663,6 +41981,12 @@
         "currentPower": 572,
         "regenPerTurn": 86
       },
+      "buildCost": {
+        "structural": 447.93,
+        "energy": 70.07,
+        "ordnance": 3.47,
+        "precision": 72.72
+      },
       "sensors": {
         "detectionRange": 1014,
         "initiative": 14
@@ -41793,6 +42117,12 @@
         "maxPower": 359,
         "currentPower": 359,
         "regenPerTurn": 54
+      },
+      "buildCost": {
+        "structural": 246.09,
+        "energy": 41.02,
+        "ordnance": 0.62,
+        "precision": 38.8
       },
       "sensors": {
         "detectionRange": 1100,
@@ -41936,6 +42266,12 @@
         "maxPower": 461,
         "currentPower": 461,
         "regenPerTurn": 69
+      },
+      "buildCost": {
+        "structural": 343.84,
+        "energy": 53.53,
+        "ordnance": 0.87,
+        "precision": 55.65
       },
       "sensors": {
         "detectionRange": 1265,
@@ -42092,6 +42428,12 @@
         "currentPower": 574,
         "regenPerTurn": 86
       },
+      "buildCost": {
+        "structural": 455.57,
+        "energy": 68.97,
+        "ordnance": 1.39,
+        "precision": 84.34
+      },
       "sensors": {
         "detectionRange": 1430,
         "initiative": 13
@@ -42216,6 +42558,12 @@
         "maxPower": 359,
         "currentPower": 359,
         "regenPerTurn": 54
+      },
+      "buildCost": {
+        "structural": 240.14,
+        "energy": 38.62,
+        "ordnance": 0.3,
+        "precision": 32.15
       },
       "sensors": {
         "detectionRange": 640,
@@ -42353,6 +42701,12 @@
         "maxPower": 461,
         "currentPower": 461,
         "regenPerTurn": 69
+      },
+      "buildCost": {
+        "structural": 333.96,
+        "energy": 50.42,
+        "ordnance": 0.51,
+        "precision": 48.15
       },
       "sensors": {
         "detectionRange": 736,
@@ -42503,6 +42857,12 @@
         "currentPower": 574,
         "regenPerTurn": 86
       },
+      "buildCost": {
+        "structural": 451.52,
+        "energy": 65.19,
+        "ordnance": 0.98,
+        "precision": 68.75
+      },
       "sensors": {
         "detectionRange": 832,
         "initiative": 11
@@ -42639,6 +42999,12 @@
         "maxPower": 375,
         "currentPower": 375,
         "regenPerTurn": 56
+      },
+      "buildCost": {
+        "structural": 296.71,
+        "energy": 46.26,
+        "ordnance": 3.1,
+        "precision": 51.95
       },
       "sensors": {
         "detectionRange": 1000,
@@ -42788,6 +43154,12 @@
         "maxPower": 470,
         "currentPower": 470,
         "regenPerTurn": 70
+      },
+      "buildCost": {
+        "structural": 412.34,
+        "energy": 58.15,
+        "ordnance": 4.31,
+        "precision": 71.25
       },
       "sensors": {
         "detectionRange": 1150,
@@ -42950,6 +43322,12 @@
         "currentPower": 577,
         "regenPerTurn": 87
       },
+      "buildCost": {
+        "structural": 536.06,
+        "energy": 75.11,
+        "ordnance": 6.87,
+        "precision": 101.7
+      },
       "sensors": {
         "detectionRange": 1300,
         "initiative": 17
@@ -43074,6 +43452,12 @@
         "maxPower": 369,
         "currentPower": 369,
         "regenPerTurn": 55
+      },
+      "buildCost": {
+        "structural": 261.1,
+        "energy": 40.67,
+        "ordnance": 0.28,
+        "precision": 34.05
       },
       "sensors": {
         "detectionRange": 1200,
@@ -43211,6 +43595,12 @@
         "maxPower": 510,
         "currentPower": 510,
         "regenPerTurn": 76
+      },
+      "buildCost": {
+        "structural": 415.5,
+        "energy": 57.33,
+        "ordnance": 0.45,
+        "precision": 61.45
       },
       "sensors": {
         "detectionRange": 1380,
@@ -43361,6 +43751,12 @@
         "currentPower": 663,
         "regenPerTurn": 99
       },
+      "buildCost": {
+        "structural": 605.82,
+        "energy": 75.21,
+        "ordnance": 0.89,
+        "precision": 91.62
+      },
       "sensors": {
         "detectionRange": 1560,
         "initiative": 15
@@ -43485,6 +43881,12 @@
         "maxPower": 479,
         "currentPower": 479,
         "regenPerTurn": 72
+      },
+      "buildCost": {
+        "structural": 433.23,
+        "energy": 50.62,
+        "ordnance": 0.3,
+        "precision": 46.65
       },
       "sensors": {
         "detectionRange": 560,
@@ -43622,6 +44024,12 @@
         "maxPower": 580,
         "currentPower": 580,
         "regenPerTurn": 87
+      },
+      "buildCost": {
+        "structural": 531.9,
+        "energy": 62.48,
+        "ordnance": 0.51,
+        "precision": 64.25
       },
       "sensors": {
         "detectionRange": 644,
@@ -43772,6 +44180,12 @@
         "currentPower": 692,
         "regenPerTurn": 104
       },
+      "buildCost": {
+        "structural": 653.91,
+        "energy": 77.17,
+        "ordnance": 0.98,
+        "precision": 86.8
+      },
       "sensors": {
         "detectionRange": 728,
         "initiative": 9
@@ -43908,6 +44322,12 @@
         "maxPower": 470,
         "currentPower": 470,
         "regenPerTurn": 70
+      },
+      "buildCost": {
+        "structural": 443.49,
+        "energy": 54.07,
+        "ordnance": 0.94,
+        "precision": 59.5
       },
       "sensors": {
         "detectionRange": 1600,
@@ -44057,6 +44477,12 @@
         "maxPower": 667,
         "currentPower": 667,
         "regenPerTurn": 100
+      },
+      "buildCost": {
+        "structural": 745.97,
+        "energy": 76.92,
+        "ordnance": 1.23,
+        "precision": 100.68
       },
       "sensors": {
         "detectionRange": 1840,
@@ -44219,6 +44645,12 @@
         "currentPower": 878,
         "regenPerTurn": 132
       },
+      "buildCost": {
+        "structural": 1103.8,
+        "energy": 102.43,
+        "ordnance": 1.8,
+        "precision": 157.6
+      },
       "sensors": {
         "detectionRange": 2080,
         "initiative": 19
@@ -44355,6 +44787,12 @@
         "maxPower": 652,
         "currentPower": 652,
         "regenPerTurn": 98
+      },
+      "buildCost": {
+        "structural": 904.52,
+        "energy": 86.58,
+        "ordnance": 8.46,
+        "precision": 106.0
       },
       "sensors": {
         "detectionRange": 1250,
@@ -44504,6 +44942,12 @@
         "maxPower": 780,
         "currentPower": 780,
         "regenPerTurn": 117
+      },
+      "buildCost": {
+        "structural": 1101.23,
+        "energy": 107.12,
+        "ordnance": 12.4,
+        "precision": 138.03
       },
       "sensors": {
         "detectionRange": 1438,
@@ -44666,6 +45110,12 @@
         "currentPower": 921,
         "regenPerTurn": 138
       },
+      "buildCost": {
+        "structural": 1321.21,
+        "energy": 137.04,
+        "ordnance": 20.4,
+        "precision": 187.35
+      },
       "sensors": {
         "detectionRange": 1625,
         "initiative": 18
@@ -44808,6 +45258,12 @@
         "maxPower": 626,
         "currentPower": 626,
         "regenPerTurn": 94
+      },
+      "buildCost": {
+        "structural": 842.73,
+        "energy": 93.73,
+        "ordnance": 12.86,
+        "precision": 103.7
       },
       "sensors": {
         "detectionRange": 1150,
@@ -44963,6 +45419,12 @@
         "maxPower": 848,
         "currentPower": 848,
         "regenPerTurn": 127
+      },
+      "buildCost": {
+        "structural": 1309.42,
+        "energy": 124.41,
+        "ordnance": 17.38,
+        "precision": 159.83
       },
       "sensors": {
         "detectionRange": 1322,
@@ -45131,6 +45593,12 @@
         "currentPower": 1091,
         "regenPerTurn": 164
       },
+      "buildCost": {
+        "structural": 1850.21,
+        "energy": 165.31,
+        "ordnance": 26.02,
+        "precision": 242.15
+      },
       "sensors": {
         "detectionRange": 1495,
         "initiative": 17
@@ -45271,6 +45739,12 @@
         "currentPower": 78,
         "regenPerTurn": 14
       },
+      "buildCost": {
+        "structural": 37.06,
+        "energy": 16.64,
+        "ordnance": 3.36,
+        "precision": 12.95
+      },
       "sensors": {
         "detectionRange": 700,
         "initiative": 14
@@ -45402,6 +45876,12 @@
         "maxPower": 87,
         "currentPower": 87,
         "regenPerTurn": 18
+      },
+      "buildCost": {
+        "structural": 29.48,
+        "energy": 15.32,
+        "ordnance": 1.55,
+        "precision": 12.25
       },
       "sensors": {
         "detectionRange": 700,
@@ -45541,6 +46021,12 @@
         "currentPower": 88,
         "regenPerTurn": 14
       },
+      "buildCost": {
+        "structural": 33.53,
+        "energy": 16.95,
+        "ordnance": 0.93,
+        "precision": 14.5
+      },
       "sensors": {
         "detectionRange": 700,
         "initiative": 14
@@ -45678,6 +46164,12 @@
         "maxPower": 95,
         "currentPower": 95,
         "regenPerTurn": 17
+      },
+      "buildCost": {
+        "structural": 40.47,
+        "energy": 18.21,
+        "ordnance": 2.23,
+        "precision": 14.95
       },
       "sensors": {
         "detectionRange": 700,
@@ -45828,6 +46320,12 @@
         "maxPower": 132,
         "currentPower": 132,
         "regenPerTurn": 20
+      },
+      "buildCost": {
+        "structural": 77.91,
+        "energy": 28.45,
+        "ordnance": 2.44,
+        "precision": 19.15
       },
       "sensors": {
         "detectionRange": 950,
@@ -45985,6 +46483,12 @@
         "currentPower": 136,
         "regenPerTurn": 20
       },
+      "buildCost": {
+        "structural": 66.99,
+        "energy": 30.89,
+        "ordnance": 1.53,
+        "precision": 23.85
+      },
       "sensors": {
         "detectionRange": 950,
         "initiative": 15
@@ -46141,6 +46645,12 @@
         "currentPower": 149,
         "regenPerTurn": 18
       },
+      "buildCost": {
+        "structural": 77.13,
+        "energy": 32.49,
+        "ordnance": 3.97,
+        "precision": 21.4
+      },
       "sensors": {
         "detectionRange": 950,
         "initiative": 15
@@ -46290,6 +46800,12 @@
         "maxPower": 128,
         "currentPower": 128,
         "regenPerTurn": 16
+      },
+      "buildCost": {
+        "structural": 69.05,
+        "energy": 29.54,
+        "ordnance": 9.76,
+        "precision": 17.3
       },
       "sensors": {
         "detectionRange": 950,
@@ -46465,6 +46981,12 @@
         "currentPower": 175,
         "regenPerTurn": 26
       },
+      "buildCost": {
+        "structural": 139.73,
+        "energy": 47.49,
+        "ordnance": 6.14,
+        "precision": 29.2
+      },
       "sensors": {
         "detectionRange": 1000,
         "initiative": 15
@@ -46632,6 +47154,12 @@
         "maxPower": 172,
         "currentPower": 172,
         "regenPerTurn": 24
+      },
+      "buildCost": {
+        "structural": 135.36,
+        "energy": 44.67,
+        "ordnance": 13.91,
+        "precision": 31.2
       },
       "sensors": {
         "detectionRange": 1000,
@@ -46807,6 +47335,12 @@
         "currentPower": 177,
         "regenPerTurn": 24
       },
+      "buildCost": {
+        "structural": 125.16,
+        "energy": 47.52,
+        "ordnance": 6.82,
+        "precision": 34.8
+      },
       "sensors": {
         "detectionRange": 1000,
         "initiative": 15
@@ -46974,6 +47508,12 @@
         "maxPower": 182,
         "currentPower": 182,
         "regenPerTurn": 20
+      },
+      "buildCost": {
+        "structural": 144.71,
+        "energy": 41.44,
+        "ordnance": 3.39,
+        "precision": 30.7
       },
       "sensors": {
         "detectionRange": 1000,
@@ -47160,6 +47700,12 @@
         "maxPower": 225,
         "currentPower": 225,
         "regenPerTurn": 28
+      },
+      "buildCost": {
+        "structural": 189.63,
+        "energy": 58.76,
+        "ordnance": 18.65,
+        "precision": 40.0
       },
       "sensors": {
         "detectionRange": 1250,
@@ -47353,6 +47899,12 @@
         "currentPower": 263,
         "regenPerTurn": 30
       },
+      "buildCost": {
+        "structural": 212.32,
+        "energy": 74.14,
+        "ordnance": 26.96,
+        "precision": 36.9
+      },
       "sensors": {
         "detectionRange": 1250,
         "initiative": 16
@@ -47545,6 +48097,12 @@
         "currentPower": 266,
         "regenPerTurn": 24
       },
+      "buildCost": {
+        "structural": 204.53,
+        "energy": 73.46,
+        "ordnance": 26.72,
+        "precision": 39.1
+      },
       "sensors": {
         "detectionRange": 1250,
         "initiative": 16
@@ -47730,6 +48288,12 @@
         "maxPower": 279,
         "currentPower": 279,
         "regenPerTurn": 32
+      },
+      "buildCost": {
+        "structural": 193.9,
+        "energy": 68.44,
+        "ordnance": 9.21,
+        "precision": 37.9
       },
       "sensors": {
         "detectionRange": 1250,
@@ -47940,6 +48504,12 @@
         "maxPower": 417,
         "currentPower": 417,
         "regenPerTurn": 31
+      },
+      "buildCost": {
+        "structural": 345.8,
+        "energy": 114.92,
+        "ordnance": 43.45,
+        "precision": 51.8
       },
       "sensors": {
         "detectionRange": 1150,
@@ -48157,6 +48727,12 @@
         "currentPower": 325,
         "regenPerTurn": 33
       },
+      "buildCost": {
+        "structural": 343.14,
+        "energy": 106.33,
+        "ordnance": 35.57,
+        "precision": 51.85
+      },
       "sensors": {
         "detectionRange": 1150,
         "initiative": 15
@@ -48373,6 +48949,12 @@
         "currentPower": 345,
         "regenPerTurn": 33
       },
+      "buildCost": {
+        "structural": 356.89,
+        "energy": 110.84,
+        "ordnance": 13.19,
+        "precision": 49.55
+      },
       "sensors": {
         "detectionRange": 1150,
         "initiative": 15
@@ -48588,6 +49170,12 @@
         "maxPower": 390,
         "currentPower": 390,
         "regenPerTurn": 39
+      },
+      "buildCost": {
+        "structural": 336.18,
+        "energy": 115.77,
+        "ordnance": 17.65,
+        "precision": 54.9
       },
       "sensors": {
         "detectionRange": 1150,

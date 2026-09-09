@@ -15,6 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 from ship_tables import CATEGORIES, BY_KEY
 from generate_weapons import split_name
+from resource_costs import ship_hull_build_cost, add_costs
 
 FLEET = os.path.join(ROOT, 'fleet_and_weapons.json')
 SHIPS_DIR = os.path.join(ROOT, 'Ships')
@@ -194,6 +195,12 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
     power = round(6.0 * mass ** 0.45 * (1 + 0.12 * t))
     power = max(power, math.ceil((volley + passive) * 1.25))
 
+    component_hp = {name: max(1, round(hull_hp * share)) for name, (share, eff) in COMPONENT_SHARE.items()}
+    hull_cost = ship_hull_build_cost(mass, hull_hp, power, component_hp['bridge'], component_hp['sensorArray'])
+    total_cost = add_costs(hull_cost,
+                            *[by_id[h['weaponEquipped']]['buildCost'] for h in hardpoints if h['weaponEquipped']],
+                            *[m['buildCost'] for m in fitted_modules])
+
     return {
         'shipId': f'ship_{cat["key"]}_t{tier}',
         'name': f'{cat["key"].replace("_", " ").title()} Tier {tier}',
@@ -206,8 +213,7 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
         'hardpoints': {'list': hardpoints},
         'moduleSlots': {'list': slots},
         'componentHitpoints': {
-            name: {'maxHP': max(1, round(hull_hp * share)),
-                   'currentHP': max(1, round(hull_hp * share)), 'criticalEffect': eff}
+            name: {'maxHP': component_hp[name], 'currentHP': component_hp[name], 'criticalEffect': eff}
             for name, (share, eff) in COMPONENT_SHARE.items()},
         'mobility': {'topSpeed': round(cat['speed'] * (1 + 0.06 * t)),
                      'acceleration': round(cat['accel'] * (1 + 0.07 * t)),
@@ -218,6 +224,7 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
                  'engineeringSkill': 42 + 16 * t},
         'power': {'maxPower': power, 'currentPower': power,
                   'regenPerTurn': max(1, round(power * 0.15))},
+        'buildCost': total_cost,
         'sensors': {'detectionRange': round(cat['det'] * (1 + 0.15 * t)),
                     'initiative': cat['init'] + tier},
         'capacities': {k: round(cat['cap'].get(k, 0) * (1 + 0.28 * t)) for k in CAPACITY_KEYS},
@@ -278,6 +285,8 @@ def main():
 
     fleet = json.load(open(FLEET))
     weapons, modules = fleet['weapons'], fleet['modules']
+    weapons_by_id = {w['weaponId']: w for w in weapons}
+    modules_by_id = {m['moduleId']: m for m in modules}
     sys.path.insert(0, os.path.join(ROOT, 'tools'))
     from generate_modules import LEGACY as MOD_LEGACY
     legacy_arch = {mid: arch for mid, (arch, _) in MOD_LEGACY.items()}
@@ -300,9 +309,19 @@ def main():
         base['templateId'] = tmpl['shipId']
         base.setdefault('sensors', dict(tmpl['sensors']))
         base.setdefault('capacities', dict(tmpl['capacities']))
+        chp = base['componentHitpoints']
+        hull_cost = ship_hull_build_cost(base['mass']['value'], base['hull']['maxHP'],
+                                          base['power']['maxPower'],
+                                          chp['bridge']['maxHP'], chp['sensorArray']['maxHP'])
+        base['buildCost'] = add_costs(
+            hull_cost,
+            *[weapons_by_id[h['weaponEquipped']]['buildCost']
+              for h in base['hardpoints']['list'] if h['weaponEquipped']],
+            *[modules_by_id[m['moduleEquipped']]['buildCost']
+              for m in base['moduleSlots']['list'] if m['moduleEquipped']])
         order = ['shipId', 'name', 'tier', 'shipClass', 'templateId', 'mass', 'hull', 'shields',
                  'hardpoints', 'moduleSlots', 'componentHitpoints', 'mobility', 'crew',
-                 'power', 'sensors', 'capacities']
+                 'power', 'buildCost', 'sensors', 'capacities']
         named.append({k: base[k] for k in order if k in base})
 
     print(f'categories   : {len(CATEGORIES)}')
@@ -330,8 +349,6 @@ def main():
     with open(FLEET, 'w') as f:
         json.dump(fleet, f, indent=2); f.write('\n')
 
-    weapons_by_id = {w['weaponId']: w for w in weapons}
-    modules_by_id = {m['moduleId']: m for m in modules}
     index, tot_w, tot_m = [], 0, 0
     for h in hulls:
         folder = BY_KEY[h['shipClass']]['folder']

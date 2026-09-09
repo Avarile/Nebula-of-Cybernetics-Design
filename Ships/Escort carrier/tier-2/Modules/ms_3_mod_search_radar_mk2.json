@@ -21,5 +21,11 @@
   ],
   "powerCost": 9.0,
   "crewRequired": 6,
-  "hullAffinity": []
+  "hullAffinity": [],
+  "buildCost": {
+    "structural": 1.49,
+    "energy": 1.35,
+    "ordnance": 0.0,
+    "precision": 5.4
+  }
 }

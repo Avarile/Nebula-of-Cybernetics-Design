@@ -53,7 +53,8 @@ for c in CATEGORIES:
                           ('shields.maxHP', lambda x: x['shields']['maxHP']),
                           ('power.maxPower', lambda x: x['power']['maxPower']),
                           ('crew.gunnerySkill', lambda x: x['crew']['gunnerySkill']),
-                          ('detectionRange', lambda x: x['sensors']['detectionRange'])):
+                          ('detectionRange', lambda x: x['sensors']['detectionRange']),
+                          ('buildCost', lambda x: sum(x['buildCost'].values()))):
             if get(b) < get(a):
                 bad.append(f'{c["key"]} t{a["tier"]}->t{b["tier"]} {path}: {get(a)} -> {get(b)}')
         if len(b['hardpoints']['list']) < len(a['hardpoints']['list']):

@@ -30,5 +30,11 @@
   "specialEffects": [
     "ignores_shields_partial",
     "can_be_intercepted"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.62,
+    "ordnance": 2.59,
+    "precision": 1.55
+  }
 }

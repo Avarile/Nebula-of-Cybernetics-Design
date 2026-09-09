@@ -31,5 +31,11 @@
     "destroyer_escort",
     "sloop_patrol_escort",
     "seaplane_tender"
-  ]
+  ],
+  "buildCost": {
+    "structural": 6.89,
+    "energy": 1.35,
+    "ordnance": 0.0,
+    "precision": 3.6
+  }
 }

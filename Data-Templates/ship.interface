@@ -175,6 +175,12 @@
     "regenPerTurn": "number",
     "note": "Weapons/shields/engines draw power; allocation can be shifted between them each turn"
   },
+  "buildCost": {
+    "structural": "number, manufactured-tier Structural Component units -- hull + every fitted weapon/module",
+    "energy": "number, manufactured-tier Power Core Unit units",
+    "ordnance": "number, manufactured-tier Ordnance Charge units",
+    "precision": "number, manufactured-tier Guidance Assembly units"
+  },
   "sensors": {
     "detectionRange": "[+] number, units",
     "initiative": "[+] number, added to the initiative roll"

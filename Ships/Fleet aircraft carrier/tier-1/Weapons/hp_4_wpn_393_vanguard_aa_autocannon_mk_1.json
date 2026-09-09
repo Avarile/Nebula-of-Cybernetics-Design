@@ -30,5 +30,11 @@
   "specialEffects": [
     "anti_air",
     "point_defense"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 0.76,
+    "ordnance": 0.15,
+    "precision": 3.65
+  }
 }

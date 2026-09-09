@@ -26,5 +26,11 @@
     "destroyer",
     "submarine",
     "torpedo_boat_fleet"
-  ]
+  ],
+  "buildCost": {
+    "structural": 3.45,
+    "energy": 0.17,
+    "ordnance": 0.96,
+    "precision": 0.0
+  }
 }

@@ -26,5 +26,11 @@
     "fleet_oiler",
     "repair_ship_tender",
     "landing_ship_tank"
-  ]
+  ],
+  "buildCost": {
+    "structural": 3.5,
+    "energy": 0.45,
+    "ordnance": 0.0,
+    "precision": 0.0
+  }
 }

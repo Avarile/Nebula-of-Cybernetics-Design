@@ -31,5 +31,11 @@
     "anti_air",
     "point_defense",
     "anti_missile"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 0.93,
+    "ordnance": 0.13,
+    "precision": 4.35
+  }
 }

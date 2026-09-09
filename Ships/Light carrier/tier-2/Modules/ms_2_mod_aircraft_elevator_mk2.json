@@ -25,5 +25,11 @@
     "fleet_aircraft_carrier",
     "light_carrier",
     "escort_carrier"
-  ]
+  ],
+  "buildCost": {
+    "structural": 11.66,
+    "energy": 1.68,
+    "ordnance": 0.0,
+    "precision": 0.0
+  }
 }

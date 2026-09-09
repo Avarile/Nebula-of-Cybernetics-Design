@@ -101,6 +101,12 @@
     "currentPower": 31,
     "regenPerTurn": 5
   },
+  "buildCost": {
+    "structural": 4.48,
+    "energy": 5.61,
+    "ordnance": 1.3,
+    "precision": 7.0
+  },
   "sensors": {
     "detectionRange": 260,
     "initiative": 13

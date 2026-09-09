@@ -30,5 +30,11 @@
     "attack_transport",
     "landing_ship_tank",
     "merchant_raider"
-  ]
+  ],
+  "buildCost": {
+    "structural": 3.37,
+    "energy": 0.38,
+    "ordnance": 0.0,
+    "precision": 0.0
+  }
 }
