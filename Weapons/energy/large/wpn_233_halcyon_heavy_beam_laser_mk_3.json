@@ -27,5 +27,11 @@
   "specialEffects": [
     "armor_melt",
     "shield_disrupt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 4.75,
+    "energy": 5.87,
+    "ordnance": 0.26,
+    "precision": 2.7
+  }
 }

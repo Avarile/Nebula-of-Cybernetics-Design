@@ -26,5 +26,11 @@
   "criticalChance": 0.14,
   "specialEffects": [
     "proximity_trigger"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.02,
+    "ordnance": 1.22,
+    "precision": 2.0
+  }
 }

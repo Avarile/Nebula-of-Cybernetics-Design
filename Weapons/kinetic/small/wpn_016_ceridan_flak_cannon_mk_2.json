@@ -27,5 +27,11 @@
   "specialEffects": [
     "anti_air",
     "proximity_trigger"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 0.91,
+    "ordnance": 0.2,
+    "precision": 3.45
+  }
 }

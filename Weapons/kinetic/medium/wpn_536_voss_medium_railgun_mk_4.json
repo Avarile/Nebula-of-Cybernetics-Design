@@ -27,5 +27,11 @@
   "specialEffects": [
     "armor_piercing",
     "ignores_shields_partial"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.92,
+    "ordnance": 1.21,
+    "precision": 1.8
+  }
 }

@@ -27,5 +27,11 @@
   "specialEffects": [
     "armor_melt",
     "area_denial"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 14.13,
+    "ordnance": 0.76,
+    "precision": 1.85
+  }
 }

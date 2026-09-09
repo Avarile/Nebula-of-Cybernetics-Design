@@ -27,5 +27,11 @@
   "specialEffects": [
     "armor_piercing",
     "shield_disrupt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 13.84,
+    "ordnance": 8.18,
+    "precision": 1.75
+  }
 }

@@ -28,5 +28,11 @@
     "can_be_intercepted",
     "area_denial",
     "armor_melt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 13.88,
+    "ordnance": 15.16,
+    "precision": 1.95
+  }
 }

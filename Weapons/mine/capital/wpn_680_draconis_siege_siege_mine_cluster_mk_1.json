@@ -27,5 +27,11 @@
   "specialEffects": [
     "area_denial",
     "multi_hit"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 10.36,
+    "ordnance": 13.71,
+    "precision": 1.3
+  }
 }

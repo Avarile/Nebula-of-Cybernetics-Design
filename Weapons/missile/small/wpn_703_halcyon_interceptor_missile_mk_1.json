@@ -27,5 +27,11 @@
   "specialEffects": [
     "anti_missile",
     "anti_air"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 0.81,
+    "ordnance": 0.23,
+    "precision": 5.45
+  }
 }

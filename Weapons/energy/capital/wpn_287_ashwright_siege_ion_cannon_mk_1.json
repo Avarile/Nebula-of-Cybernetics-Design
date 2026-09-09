@@ -26,5 +26,11 @@
   "criticalChance": 0.16,
   "specialEffects": [
     "emp_disable"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 10.35,
+    "ordnance": 0.44,
+    "precision": 1.9
+  }
 }

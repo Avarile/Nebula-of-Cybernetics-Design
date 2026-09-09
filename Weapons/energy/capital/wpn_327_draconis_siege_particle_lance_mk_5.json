@@ -28,5 +28,11 @@
     "ignores_shields_partial",
     "armor_piercing",
     "armor_melt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 18.46,
+    "ordnance": 2.09,
+    "precision": 1.7
+  }
 }

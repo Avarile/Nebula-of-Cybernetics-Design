@@ -28,5 +28,11 @@
     "can_be_intercepted",
     "high_tracking",
     "armor_piercing"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 1.09,
+    "ordnance": 0.67,
+    "precision": 5.1
+  }
 }

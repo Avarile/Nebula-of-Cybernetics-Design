@@ -28,5 +28,11 @@
     "anti_air",
     "proximity_trigger",
     "area_denial"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.29,
+    "ordnance": 0.57,
+    "precision": 3.95
+  }
 }

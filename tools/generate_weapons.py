@@ -17,6 +17,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FLEET = os.path.join(ROOT, 'fleet_and_weapons.json')
 WEAPONS_DIR = os.path.join(ROOT, 'Weapons')
 IFACE = os.path.join(ROOT, 'Data-Templates', 'weapon.interface')
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+from resource_costs import weapon_build_cost
 
 SIZES = ['small', 'medium', 'large', 'capital']
 SIZE_WORD = {'small': 'Light', 'medium': 'Medium', 'large': 'Heavy', 'capital': 'Siege'}
@@ -400,6 +402,8 @@ def main():
             if cur['powerCost'] <= prev['powerCost']:
                 cur['powerCost'] = round(prev['powerCost'] + 0.1, 1)
 
+    for w in weapons:
+        w['buildCost'] = weapon_build_cost(w)
 
     print(f'archetypes      : {len(ARCHETYPES)}  ({len(set(a["cls"] for a in ARCHETYPES))} classes)')
     print(f'curated cells   : {len(cells) - extra}')

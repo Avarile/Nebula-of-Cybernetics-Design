@@ -28,5 +28,11 @@
     "ignores_shields_partial",
     "can_be_intercepted",
     "armor_piercing"
-  ]
+  ],
+  "buildCost": {
+    "structural": 4.75,
+    "energy": 7.81,
+    "ordnance": 11.28,
+    "precision": 1.75
+  }
 }

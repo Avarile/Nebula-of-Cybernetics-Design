@@ -28,5 +28,11 @@
     "anti_missile",
     "anti_air",
     "high_tracking"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.17,
+    "ordnance": 0.73,
+    "precision": 6.6
+  }
 }

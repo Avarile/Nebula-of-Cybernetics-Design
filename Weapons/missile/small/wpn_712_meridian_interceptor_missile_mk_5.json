@@ -29,5 +29,11 @@
     "anti_air",
     "high_tracking",
     "multi_hit"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 1.08,
+    "ordnance": 0.41,
+    "precision": 6.2
+  }
 }

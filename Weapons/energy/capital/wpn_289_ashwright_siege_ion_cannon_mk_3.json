@@ -27,5 +27,11 @@
   "specialEffects": [
     "emp_disable",
     "shield_disrupt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 11.96,
+    "ordnance": 0.56,
+    "precision": 2.15
+  }
 }

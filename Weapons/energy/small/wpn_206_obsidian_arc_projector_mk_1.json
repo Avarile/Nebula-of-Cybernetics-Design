@@ -26,5 +26,11 @@
   "criticalChance": 0.14,
   "specialEffects": [
     "multi_hit"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 0.97,
+    "ordnance": 0.02,
+    "precision": 2.8
+  }
 }

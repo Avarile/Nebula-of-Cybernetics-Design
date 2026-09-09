@@ -27,5 +27,11 @@
   "specialEffects": [
     "proximity_trigger",
     "area_denial"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.13,
+    "ordnance": 1.72,
+    "precision": 2.4
+  }
 }

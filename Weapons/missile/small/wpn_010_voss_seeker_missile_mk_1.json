@@ -27,5 +27,11 @@
   "specialEffects": [
     "can_be_intercepted",
     "high_tracking"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 1.03,
+    "ordnance": 0.65,
+    "precision": 3.25
+  }
 }

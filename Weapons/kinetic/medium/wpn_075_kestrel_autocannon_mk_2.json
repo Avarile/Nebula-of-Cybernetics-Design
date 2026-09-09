@@ -24,5 +24,11 @@
   "powerCost": 13.9,
   "ammo": "infinite",
   "criticalChance": 0.06,
-  "specialEffects": []
+  "specialEffects": [],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.08,
+    "ordnance": 0.43,
+    "precision": 2.65
+  }
 }

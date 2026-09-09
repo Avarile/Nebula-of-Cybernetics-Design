@@ -27,5 +27,11 @@
   "specialEffects": [
     "can_be_intercepted",
     "area_denial"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 11.49,
+    "ordnance": 12.85,
+    "precision": 1.5
+  }
 }

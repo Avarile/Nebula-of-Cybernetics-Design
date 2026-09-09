@@ -27,5 +27,11 @@
   "specialEffects": [
     "multi_hit",
     "emp_disable"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.67,
+    "ordnance": 0.08,
+    "precision": 3.55
+  }
 }

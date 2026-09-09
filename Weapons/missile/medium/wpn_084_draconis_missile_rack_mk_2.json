@@ -26,5 +26,11 @@
   "criticalChance": 0.09,
   "specialEffects": [
     "can_be_intercepted"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.38,
+    "ordnance": 1.36,
+    "precision": 2.25
+  }
 }

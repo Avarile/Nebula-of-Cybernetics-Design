@@ -132,7 +132,13 @@
   "criticalChance": "number 0-1, chance to roll on component-critical table",
   "specialEffects": [
     "array of strings, e.g. 'ignores_shields', 'emp_disable', 'armor_piercing'"
-  ]
+  ],
+  "buildCost": {
+    "structural": "number, manufactured-tier Structural Component units",
+    "energy": "number, manufactured-tier Power Core Unit units",
+    "ordnance": "number, manufactured-tier Ordnance Charge units",
+    "precision": "number, manufactured-tier Guidance Assembly units"
+  }
 }
 
 # ---- EXAMPLE INSTANCES (data-template.json -> "exampleWeapons") ----

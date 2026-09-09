@@ -45,6 +45,8 @@ for key, items in lines.items():
         if pb <= pa or b['accuracy']['baseHitChance'] < a['accuracy']['baseHitChance'] \
            or not set(a['specialEffects']) <= set(b['specialEffects']):
             bad.append(f'{key} Mk.{m1}->Mk.{m2}  dpt {pa:.1f}->{pb:.1f}')
+        if sum(b['buildCost'].values()) < sum(a['buildCost'].values()):
+            bad.append(f'{key} Mk.{m1}->Mk.{m2}  buildCost went down')
 check('mark ladder monotonic (dpt, hit, effects)', bad)
 
 # 4 -- no two identical stat blocks

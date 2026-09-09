@@ -27,5 +27,11 @@
   "specialEffects": [
     "armor_piercing",
     "armor_melt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 1.62,
+    "ordnance": 0.93,
+    "precision": 1.7
+  }
 }

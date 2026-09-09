@@ -26,5 +26,11 @@
   "criticalChance": 0.29,
   "specialEffects": [
     "armor_piercing"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 1.51,
+    "ordnance": 0.83,
+    "precision": 1.65
+  }
 }

@@ -26,5 +26,11 @@
   "criticalChance": 0.11,
   "specialEffects": [
     "shield_disrupt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 2.87,
+    "ordnance": 0.1,
+    "precision": 2.8
+  }
 }

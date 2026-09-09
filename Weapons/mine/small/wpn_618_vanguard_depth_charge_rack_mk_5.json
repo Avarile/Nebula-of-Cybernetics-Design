@@ -28,5 +28,11 @@
     "area_denial",
     "proximity_trigger",
     "armor_melt"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 1.02,
+    "ordnance": 1.22,
+    "precision": 1.5
+  }
 }

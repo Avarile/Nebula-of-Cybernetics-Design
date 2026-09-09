@@ -27,5 +27,11 @@
   "specialEffects": [
     "emp_disable",
     "armor_piercing"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 1.7,
+    "ordnance": 0.13,
+    "precision": 2.4
+  }
 }

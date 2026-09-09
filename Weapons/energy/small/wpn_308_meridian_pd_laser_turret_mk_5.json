@@ -28,5 +28,11 @@
     "point_defense",
     "anti_missile",
     "high_tracking"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 1.02,
+    "ordnance": 0.02,
+    "precision": 6.0
+  }
 }

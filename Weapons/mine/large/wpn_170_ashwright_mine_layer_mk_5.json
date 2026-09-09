@@ -28,5 +28,11 @@
     "area_denial",
     "proximity_trigger",
     "armor_piercing"
-  ]
+  ],
+  "buildCost": {
+    "structural": 4.75,
+    "energy": 6.28,
+    "ordnance": 6.31,
+    "precision": 2.1
+  }
 }

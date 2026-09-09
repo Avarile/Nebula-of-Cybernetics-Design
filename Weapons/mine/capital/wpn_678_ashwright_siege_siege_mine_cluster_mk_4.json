@@ -28,5 +28,11 @@
     "area_denial",
     "multi_hit",
     "proximity_trigger"
-  ]
+  ],
+  "buildCost": {
+    "structural": 9.5,
+    "energy": 12.34,
+    "ordnance": 14.76,
+    "precision": 1.8
+  }
 }

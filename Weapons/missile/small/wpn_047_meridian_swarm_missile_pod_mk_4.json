@@ -28,5 +28,11 @@
     "multi_hit",
     "can_be_intercepted",
     "high_tracking"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 1.12,
+    "ordnance": 0.41,
+    "precision": 3.8
+  }
 }

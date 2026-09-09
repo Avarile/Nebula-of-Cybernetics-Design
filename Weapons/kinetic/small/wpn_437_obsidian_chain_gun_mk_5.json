@@ -27,5 +27,11 @@
   "specialEffects": [
     "high_tracking",
     "multi_hit"
-  ]
+  ],
+  "buildCost": {
+    "structural": 1.0,
+    "energy": 0.94,
+    "ordnance": 0.19,
+    "precision": 3.9
+  }
 }

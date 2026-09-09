@@ -27,5 +27,11 @@
   "specialEffects": [
     "multi_hit",
     "can_be_intercepted"
-  ]
+  ],
+  "buildCost": {
+    "structural": 2.2,
+    "energy": 1.9,
+    "ordnance": 0.64,
+    "precision": 2.9
+  }
 }
