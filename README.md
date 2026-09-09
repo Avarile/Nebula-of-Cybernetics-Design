@@ -17,7 +17,8 @@ reproduces the whole tree byte-for-byte. Edit the tables in `tools/`, never the 
 | Named ships | 20 | instances of a class, each with its own loadout |
 | Weapons | 798 | 31 archetypes × 4 sizes × 10 manufacturers × Mk.1–5 |
 | Modules | 135 | 45 archetypes × Mk.1–3, across 7 slot types |
-| Files on disk | 1,804 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/` |
+| Resources | 12 | 4 lanes (structural/energy/ordnance/precision) × 3 tiers (raw/refined/manufactured) |
+| Files on disk | 1,840 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 36 under `Resources/` |
 
 ## Layout
 
@@ -29,6 +30,7 @@ Data-Templates/              the schema each generated file conforms to
   ship.interface
   weapon.interface
   module.interface
+  resource.interface
 
 Ships/<Category>/            one folder per ship category, prose-named
   tier-1/  tier-2/  tier-3/  a hull is a DIRECTORY, not a file
@@ -43,6 +45,9 @@ Weapons/<class>/<size>/      wpn_###_<name>.json    (kinetic/energy/missile/mine
 
 Modules/<slotType>/<functionClass>/   mod_<archetype>_mk<n>.json
   index.json
+
+Resources/<tier>/            one file per resource (12 across 3 tiers)
+  resource.json
 
 tools/                       generators, verifiers, and the tables that drive them
 ```
@@ -60,7 +65,7 @@ lines and the remainder parses as JSON.
 | `weapons` | all 798 |
 | `modules` | all 135 |
 
-## The three catalogues
+## The four catalogues
 
 ### Weapons — `archetype × mark × family`
 
@@ -135,6 +140,16 @@ Motor Torpedo Boat T1     38 t  light       37 hp  speed 620  crew 7
 Two hull budgets are enforced rather than assumed: `power.maxPower` covers passive module
 draw plus one full weapon volley, and `maxCrew` covers the fitted modules' `crewRequired`.
 
+### Resources — `lane × tier`
+
+```
+cost = baseYield  ×  tier multiplier  ×  lane characterization
+```
+
+Resources are organized by 4 **lanes** (structural, energy, ordnance, precision) and 3 **tiers** (raw, refined, manufactured). Each resource has a base yield; tier-to-tier progression follows a consistent multiplier (x1.333 raw → refined, x1.5 refined → manufactured), and the yield per unit mass is characterized by lane — structural resources yield more mass per unit, precision resources less.
+
+Every weapon, module, and ship carries a `buildCost` field that is a pure formula over the resource costs (the tier-1 baseline) and the item's stats. See `Resources/resource_tiers_specification.md` for the full derivation.
+
 ### Fitting files
 
 A file in a ship's `Weapons/` or `Modules/` folder is the **full catalogue entry** with the
@@ -170,9 +185,10 @@ no troops — which is exactly what makes a `specific` module specific.
 
 ## Regenerating
 
-Order matters: ships fit from the weapon and module catalogues, so those come first.
+Order matters: resources must run first since weapon, module, and ship cost formulas depend on resource tier constants. Then ships fit from the weapon and module catalogues.
 
 ```sh
+python3 tools/generate_resources.py   # 12 resources → Resources/, fleet json (cost constants)
 python3 tools/generate_weapons.py     # 798 weapons  → Weapons/, fleet json
 python3 tools/generate_modules.py     # 135 modules  → Modules/, fleet json, ship slot sync
 python3 tools/generate_ships.py       # 98 hulls     → Ships/, fleet json
@@ -185,6 +201,7 @@ files or directories behind.
 ## Verification
 
 ```sh
+python3 tools/verify_resources.py     # resource tier consistency checks
 python3 tools/verify_weapons.py       # 12 checks
 python3 tools/verify_modules.py       # 23 checks
 python3 tools/verify_ships.py         # 38 checks
@@ -207,6 +224,7 @@ Vanguard.
 
 | to change | edit |
 |---|---|
+| resource lanes, yields, buildCost formulas | `tools/resource_costs.py` |
 | weapon archetypes, family biases, mark ladder | `tools/generate_weapons.py` |
 | module archetypes, effects, stat vocabulary | `tools/generate_modules.py` |
 | ship categories: mass, armour, mounts, slots, capacities, doctrine | `tools/ship_tables.py` |
