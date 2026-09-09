@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_573",
+  "name": "Kestrel Grapple Harpoon Mk.5",
+  "weaponClass": "melee",
+  "size": "small",
+  "damage": {
+    "base": 14.1,
+    "variance": 1.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 60,
+    "maximum": 72,
+    "falloffPenalty": 0.45
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.3,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "emp_disable",
+    "armor_piercing"
+  ]
+}

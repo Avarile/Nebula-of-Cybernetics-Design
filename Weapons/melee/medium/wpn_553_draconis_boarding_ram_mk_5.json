@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_553",
+  "name": "Draconis Boarding Ram Mk.5",
+  "weaponClass": "melee",
+  "size": "medium",
+  "damage": {
+    "base": 298.4,
+    "variance": 37.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 41,
+    "maximum": 45,
+    "falloffPenalty": 0.6
+  },
+  "accuracy": {
+    "baseHitChance": 0.54,
+    "tracking": 4
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 12.5,
+  "ammo": "infinite",
+  "criticalChance": 0.32,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

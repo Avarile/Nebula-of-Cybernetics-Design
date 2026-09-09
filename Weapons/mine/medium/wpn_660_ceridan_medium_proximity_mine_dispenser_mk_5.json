@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_660",
+  "name": "Ceridan Medium Proximity Mine Dispenser Mk.5",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 62.7,
+    "variance": 6.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 665,
+    "maximum": 1130,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 33
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 16.4,
+  "ammo": 33,
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_targeting_computer_mk3",
+  "name": "Targeting Computer Mk.3",
+  "moduleType": "targetingComputer",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "small",
+  "mark": 3,
+  "mass": {
+    "value": 11.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 7.2,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "criticalChanceBonus",
+      "modifier": 0.029,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 7.5,
+  "crewRequired": 2,
+  "hullAffinity": []
+}

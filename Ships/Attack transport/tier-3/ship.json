@@ -1,0 +1,149 @@
+{
+  "shipId": "ship_attack_transport_t3",
+  "name": "Attack Transport Tier 3",
+  "tier": 3,
+  "shipClass": "attack_transport",
+  "mass": {
+    "value": 13100.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 3399,
+    "currentHP": 3399,
+    "armorRating": 29,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 1761,
+    "currentHP": 1761,
+    "rechargeRatePerTurn": 169,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.34,
+      "energy": 0.14,
+      "explosive": 0.09
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_410"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_mk3"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_cargo_derrick_mk3"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_hospital_bay_mk3"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_landing_craft_davits_mk3"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 510,
+      "currentHP": 510,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 850,
+      "currentHP": 850,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 680,
+      "currentHP": 680,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 612,
+      "currentHP": 612,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 408,
+      "currentHP": 408,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 340,
+      "currentHP": 340,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 280,
+    "acceleration": 25,
+    "turnRate": 37,
+    "evasionRating": 0.11
+  },
+  "crew": {
+    "maxCrew": 300,
+    "currentCrew": 300,
+    "pilotSkill": 75,
+    "gunnerySkill": 76,
+    "engineeringSkill": 74
+  },
+  "power": {
+    "maxPower": 530,
+    "currentPower": 530,
+    "regenPerTurn": 80
+  },
+  "sensors": {
+    "detectionRange": 676,
+    "initiative": 10
+  },
+  "capacities": {
+    "cargo": 9672,
+    "ammo": 624,
+    "fuel": 7176,
+    "troops": 2184,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 187,
+    "repairRate": 0
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_677",
+  "name": "Ashwright Siege Siege Mine Cluster Mk.3",
+  "weaponClass": "mine",
+  "size": "capital",
+  "damage": {
+    "base": 435.4,
+    "variance": 65.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 2485,
+    "maximum": 4722,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 9
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 76.5,
+  "ammo": 6,
+  "criticalChance": 0.25,
+  "specialEffects": [
+    "area_denial",
+    "multi_hit",
+    "proximity_trigger"
+  ]
+}

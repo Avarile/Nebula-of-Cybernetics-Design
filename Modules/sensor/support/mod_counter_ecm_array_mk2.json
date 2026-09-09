@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_counter_ecm_array_mk2",
+  "name": "Counter-ECM Array Mk.2",
+  "moduleType": "ecCounterElectronics",
+  "functionClass": "support",
+  "slotType": "sensor",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 21.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "sensorArray.effectiveness",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 7.8,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

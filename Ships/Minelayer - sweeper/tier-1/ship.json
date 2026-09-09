@@ -1,0 +1,125 @@
+{
+  "shipId": "ship_minelayer_sweeper_t1",
+  "name": "Minelayer Sweeper Tier 1",
+  "tier": 1,
+  "shipClass": "minelayer_sweeper",
+  "mass": {
+    "value": 1240.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 445,
+    "currentHP": 445,
+    "armorRating": 12,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 178,
+    "currentHP": 178,
+    "rechargeRatePerTurn": 14,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.3,
+      "energy": 0.1,
+      "explosive": 0.05
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_629"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_388"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_minesweep_gear_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 67,
+      "currentHP": 67,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 111,
+      "currentHP": 111,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 89,
+      "currentHP": 89,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 80,
+      "currentHP": 80,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 53,
+      "currentHP": 53,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 44,
+      "currentHP": 44,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 320,
+    "acceleration": 36,
+    "turnRate": 58,
+    "evasionRating": 0.2
+  },
+  "crew": {
+    "maxCrew": 41,
+    "currentCrew": 41,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 148,
+    "currentPower": 148,
+    "regenPerTurn": 22
+  },
+  "sensors": {
+    "detectionRange": 560,
+    "initiative": 10
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 200,
+    "fuel": 1800,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 220,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

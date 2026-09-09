@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_4",
+  "mountType": "turret",
+  "catalogue": "Weapons/missile/medium/wpn_084_draconis_missile_rack_mk_2.json",
+  "weaponId": "wpn_084",
+  "name": "Draconis Missile Rack Mk.2",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 48.5,
+    "variance": 9.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1147,
+    "maximum": 2122,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 15.9,
+  "ammo": 14,
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "can_be_intercepted"
+  ]
+}

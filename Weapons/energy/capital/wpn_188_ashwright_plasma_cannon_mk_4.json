@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_188",
+  "name": "Ashwright Plasma Cannon Mk.4",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 452.1,
+    "variance": 61.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2917,
+    "maximum": 4667,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 17
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 96.0,
+  "ammo": "infinite",
+  "criticalChance": 0.23,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

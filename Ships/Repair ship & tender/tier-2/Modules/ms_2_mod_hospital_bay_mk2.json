@@ -1,0 +1,29 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/utility/specific/mod_hospital_bay_mk2.json",
+  "moduleId": "mod_hospital_bay_mk2",
+  "name": "Hospital Bay Mk.2",
+  "moduleType": "hospitalBay",
+  "functionClass": "specific",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 58.3,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "medicalCapacity",
+      "modifier": 36.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 3.4,
+  "crewRequired": 18,
+  "hullAffinity": [
+    "attack_transport",
+    "repair_ship_tender",
+    "fleet_aircraft_carrier"
+  ]
+}

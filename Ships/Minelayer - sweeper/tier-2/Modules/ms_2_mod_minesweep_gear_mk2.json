@@ -1,0 +1,34 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/utility/specific/mod_minesweep_gear_mk2.json",
+  "moduleId": "mod_minesweep_gear_mk2",
+  "name": "Minesweep Gear Mk.2",
+  "moduleType": "minesweep",
+  "functionClass": "specific",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 47.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "minesweepRate",
+      "modifier": 36.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 12.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 5.6,
+  "crewRequired": 13,
+  "hullAffinity": [
+    "minelayer_sweeper",
+    "sloop_patrol_escort",
+    "corvette"
+  ]
+}

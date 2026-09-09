@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_295",
+  "name": "Draconis Siege Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 483.3,
+    "variance": 61.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3650,
+    "maximum": 6752,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.75,
+    "tracking": 24
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 96.2,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

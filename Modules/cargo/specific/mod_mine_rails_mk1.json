@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_mine_rails_mk1",
+  "name": "Mine Rails Mk.1",
+  "moduleType": "mineRails",
+  "functionClass": "specific",
+  "slotType": "cargo",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 65.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "mineCapacity",
+      "modifier": 40.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 1.0,
+  "crewRequired": 8,
+  "hullAffinity": [
+    "minelayer_sweeper",
+    "destroyer",
+    "submarine",
+    "torpedo_boat_fleet"
+  ]
+}

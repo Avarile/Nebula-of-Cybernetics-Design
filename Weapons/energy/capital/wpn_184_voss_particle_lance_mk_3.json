@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_184",
+  "name": "Voss Particle Lance Mk.3",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 662.3,
+    "variance": 99.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 6027,
+    "maximum": 9040,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.63,
+    "tracking": 6
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 97.6,
+  "ammo": "infinite",
+  "criticalChance": 0.25,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

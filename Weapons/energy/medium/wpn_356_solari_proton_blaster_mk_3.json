@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_356",
+  "name": "Solari Proton Blaster Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 50.6,
+    "variance": 7.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 776,
+    "maximum": 1358,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 11.0,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

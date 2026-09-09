@@ -1,0 +1,30 @@
+{
+  "moduleId": "mod_smoke_generator_mk1",
+  "name": "Smoke Generator Mk.1",
+  "moduleType": "smokeGenerator",
+  "functionClass": "specific",
+  "slotType": "utility",
+  "size": "small",
+  "mark": 1,
+  "mass": {
+    "value": 10.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "enemyHitChance",
+      "modifier": -6.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 2.0,
+  "crewRequired": 2,
+  "hullAffinity": [
+    "destroyer",
+    "destroyer_escort",
+    "corvette",
+    "torpedo_boat_fleet",
+    "motor_torpedo_boat",
+    "sloop_patrol_escort"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_auxiliary_power_core_mk2",
+  "name": "Auxiliary Power Core Mk.2",
+  "moduleType": "powerCore",
+  "functionClass": "major",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 58.3,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "power.maxPower",
+      "modifier": 24.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 7,
+  "hullAffinity": []
+}

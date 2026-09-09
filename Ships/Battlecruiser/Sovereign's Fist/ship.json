@@ -1,0 +1,186 @@
+{
+  "shipId": "ship_battlecruiser_sovereigns_fist",
+  "name": "Sovereign's Fist",
+  "tier": 1,
+  "shipClass": "battlecruiser",
+  "templateId": "ship_battlecruiser_t1",
+  "mass": {
+    "value": 5184,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1510,
+    "currentHP": 1510,
+    "armorRating": 35,
+    "armorType": "heavy"
+  },
+  "shields": {
+    "maxHP": 834,
+    "currentHP": 834,
+    "rechargeRatePerTurn": 36,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "hybrid",
+    "damageTypeResistance": {
+      "kinetic": 0.27,
+      "energy": 0.17,
+      "explosive": 0.12
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_154"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_160"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_089"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_107"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "capital",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_191"
+      },
+      {
+        "hardpointId": "hp_6",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_059"
+      },
+      {
+        "hardpointId": "hp_7",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_160"
+      },
+      {
+        "hardpointId": "hp_8",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_116"
+      },
+      {
+        "hardpointId": "hp_9",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_006"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_shield_booster_1"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_repair_drone_std"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_ecounter_std"
+      },
+      {
+        "slotId": "ms_5",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_cargo_expander"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 163,
+      "currentHP": 163,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 272,
+      "currentHP": 272,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 217,
+      "currentHP": 217,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 181,
+      "currentHP": 181,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 127,
+      "currentHP": 127,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 109,
+      "currentHP": 109,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 161,
+    "acceleration": 19,
+    "turnRate": 25,
+    "evasionRating": 0.08
+  },
+  "crew": {
+    "maxCrew": 217,
+    "currentCrew": 217,
+    "pilotSkill": 63,
+    "gunnerySkill": 60,
+    "engineeringSkill": 63
+  },
+  "power": {
+    "maxPower": 225,
+    "currentPower": 225,
+    "regenPerTurn": 28
+  },
+  "sensors": {
+    "detectionRange": 1250,
+    "initiative": 16
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 4200,
+    "fuel": 16000,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

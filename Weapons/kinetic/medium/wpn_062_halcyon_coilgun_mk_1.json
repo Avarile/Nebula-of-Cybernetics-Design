@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_062",
+  "name": "Halcyon Coilgun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 43.0,
+    "variance": 7.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 920,
+    "maximum": 1702,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 14.3,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

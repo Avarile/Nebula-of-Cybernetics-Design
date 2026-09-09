@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_349",
+  "name": "Kestrel Proton Blaster Mk.1",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 31.7,
+    "variance": 5.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 648,
+    "maximum": 1134,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 14.3,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": []
+}

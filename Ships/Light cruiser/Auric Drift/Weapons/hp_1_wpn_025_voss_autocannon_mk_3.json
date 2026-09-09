@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_025_voss_autocannon_mk_3.json",
+  "weaponId": "wpn_025",
+  "name": "Voss Autocannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 22.8,
+    "variance": 3.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 561,
+    "maximum": 982,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 42
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.2,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_077",
+  "name": "Ashwright Railgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 62.7,
+    "variance": 10.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1200,
+    "maximum": 2340,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 17.7,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

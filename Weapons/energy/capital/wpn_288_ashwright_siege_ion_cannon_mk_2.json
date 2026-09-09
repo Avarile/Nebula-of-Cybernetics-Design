@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_288",
+  "name": "Ashwright Siege Ion Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 249.9,
+    "variance": 41.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3063,
+    "maximum": 5667,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 74.2,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

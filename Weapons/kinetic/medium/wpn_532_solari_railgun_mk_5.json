@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_532",
+  "name": "Solari Railgun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 83.9,
+    "variance": 9.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1361,
+    "maximum": 2654,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 25
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.4,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

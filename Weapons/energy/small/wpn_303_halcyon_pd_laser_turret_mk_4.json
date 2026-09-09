@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_303",
+  "name": "Halcyon PD Laser Turret Mk.4",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 9.3,
+    "variance": 1.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 302,
+    "maximum": 453,
+    "falloffPenalty": 0.14
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 121
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.3,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

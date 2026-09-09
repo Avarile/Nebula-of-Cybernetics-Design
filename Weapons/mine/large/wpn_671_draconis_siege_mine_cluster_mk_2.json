@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_671",
+  "name": "Draconis Siege Mine Cluster Mk.2",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 258.2,
+    "variance": 49.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1406,
+    "maximum": 2671,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.65,
+    "tracking": 7
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 40.2,
+  "ammo": 6,
+  "criticalChance": 0.2,
+  "specialEffects": [
+    "area_denial",
+    "multi_hit"
+  ]
+}

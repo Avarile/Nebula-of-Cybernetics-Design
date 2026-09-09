@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_634",
+  "name": "Meridian Mine Layer Mk.3",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 73.2,
+    "variance": 4.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 838,
+    "maximum": 1634,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 15.8,
+  "ammo": 15,
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

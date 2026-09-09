@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_278",
+  "name": "Draconis Heavy Ion Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 167.5,
+    "variance": 31.8,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1819,
+    "maximum": 3365,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 20
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 41.9,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

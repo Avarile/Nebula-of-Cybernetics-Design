@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_424",
+  "name": "Kestrel Medium Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 38.9,
+    "variance": 5.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 665,
+    "maximum": 1164,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 0
+  },
+  "powerCost": 16.1,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

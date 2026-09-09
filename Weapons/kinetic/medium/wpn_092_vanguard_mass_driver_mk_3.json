@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_092",
+  "name": "Vanguard Mass Driver Mk.3",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 118.0,
+    "variance": 17.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1147,
+    "maximum": 2294,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.65,
+    "tracking": 10
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 20.3,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

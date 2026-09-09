@@ -1,0 +1,25 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/defensive/support/mod_shield_booster_1.json",
+  "moduleId": "mod_shield_booster_1",
+  "name": "Shield Capacitor Booster I",
+  "moduleType": "shieldBooster",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 26.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "rechargeRatePerTurn",
+      "modifier": 25.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 8.0,
+  "crewRequired": 3,
+  "hullAffinity": []
+}

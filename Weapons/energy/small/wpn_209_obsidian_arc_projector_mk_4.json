@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_209",
+  "name": "Obsidian Arc Projector Mk.4",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 17.8,
+    "variance": 4.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 255,
+    "maximum": 357,
+    "falloffPenalty": 0.16
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 50
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.0,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "multi_hit",
+    "emp_disable"
+  ]
+}

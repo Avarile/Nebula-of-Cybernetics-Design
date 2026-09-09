@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_735",
+  "name": "Kestrel Medium Missile Rack Mk.1",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 23.8,
+    "variance": 4.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 957,
+    "maximum": 1770,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 42
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.0,
+  "ammo": 19,
+  "criticalChance": 0.06,
+  "specialEffects": [
+    "can_be_intercepted"
+  ]
+}

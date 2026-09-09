@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_481",
+  "name": "Solari Gauss Cannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 124.0,
+    "variance": 22.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1800,
+    "maximum": 3420,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.7,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 21.8,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

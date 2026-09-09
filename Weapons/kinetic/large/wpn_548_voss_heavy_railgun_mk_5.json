@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_548",
+  "name": "Voss Heavy Railgun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 211.4,
+    "variance": 23.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3701,
+    "maximum": 7217,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 42.0,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_365",
+  "name": "Solari Heavy Proton Blaster Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 109.2,
+    "variance": 16.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1455,
+    "maximum": 2546,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 22.1,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_506",
+  "name": "Draconis Heavy Mass Driver Mk.1",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 259.4,
+    "variance": 53.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2048,
+    "maximum": 4096,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.55,
+    "tracking": 8
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 42.1,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

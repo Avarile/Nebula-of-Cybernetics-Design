@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_629",
+  "name": "Ceridan Mine Layer Mk.1",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 56.7,
+    "variance": 10.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 722,
+    "maximum": 1408,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 14.3,
+  "ammo": 21,
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger"
+  ]
+}

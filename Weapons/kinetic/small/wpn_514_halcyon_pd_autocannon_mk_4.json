@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_514",
+  "name": "Halcyon PD Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 9.8,
+    "variance": 1.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 287,
+    "maximum": 430,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 111
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.8,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

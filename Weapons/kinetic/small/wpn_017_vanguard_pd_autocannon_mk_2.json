@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_017",
+  "name": "Vanguard PD Autocannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 9.0,
+    "variance": 1.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 260,
+    "maximum": 390,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.92,
+    "tracking": 76
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.0,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile"
+  ]
+}

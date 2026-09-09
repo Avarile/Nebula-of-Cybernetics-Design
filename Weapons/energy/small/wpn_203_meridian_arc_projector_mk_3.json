@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_203",
+  "name": "Meridian Arc Projector Mk.3",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 15.4,
+    "variance": 1.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 248,
+    "maximum": 347,
+    "falloffPenalty": 0.16
+  },
+  "accuracy": {
+    "baseHitChance": 0.89,
+    "tracking": 57
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.6,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "multi_hit",
+    "emp_disable"
+  ]
+}

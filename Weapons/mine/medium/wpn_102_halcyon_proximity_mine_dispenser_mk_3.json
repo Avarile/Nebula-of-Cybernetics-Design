@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_102",
+  "name": "Halcyon Proximity Mine Dispenser Mk.3",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 45.4,
+    "variance": 6.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 635,
+    "maximum": 1080,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.9,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.5,
+  "ammo": 18,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

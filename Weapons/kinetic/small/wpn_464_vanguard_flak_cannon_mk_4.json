@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_464",
+  "name": "Vanguard Flak Cannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 20.2,
+    "variance": 2.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 365,
+    "maximum": 602,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 69
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.7,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

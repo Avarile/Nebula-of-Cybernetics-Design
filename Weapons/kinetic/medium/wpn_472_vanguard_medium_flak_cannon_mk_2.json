@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_472",
+  "name": "Vanguard Medium Flak Cannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 34.8,
+    "variance": 5.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 588,
+    "maximum": 970,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 61
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 12.6,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger"
+  ]
+}

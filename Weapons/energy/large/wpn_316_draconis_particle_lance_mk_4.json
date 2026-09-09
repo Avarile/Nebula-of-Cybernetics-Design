@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_316",
+  "name": "Draconis Particle Lance Mk.4",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 463.3,
+    "variance": 71.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2644,
+    "maximum": 3966,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.57,
+    "tracking": 6
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 62.0,
+  "ammo": "infinite",
+  "criticalChance": 0.27,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

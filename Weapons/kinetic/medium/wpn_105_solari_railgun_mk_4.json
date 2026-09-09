@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_105",
+  "name": "Solari Railgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 74.3,
+    "variance": 10.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1297,
+    "maximum": 2529,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 24
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 12.4,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

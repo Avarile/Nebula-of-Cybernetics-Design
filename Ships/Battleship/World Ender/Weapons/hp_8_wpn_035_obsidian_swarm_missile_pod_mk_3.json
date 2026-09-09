@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_8",
+  "mountType": "fixed",
+  "catalogue": "Weapons/missile/small/wpn_035_obsidian_swarm_missile_pod_mk_3.json",
+  "weaponId": "wpn_035",
+  "name": "Obsidian Swarm Missile Pod Mk.3",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 13.3,
+    "variance": 3.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 583,
+    "maximum": 1049,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 2
+  },
+  "powerCost": 6.8,
+  "ammo": 31,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

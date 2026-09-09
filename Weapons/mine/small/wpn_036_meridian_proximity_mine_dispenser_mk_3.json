@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_036",
+  "name": "Meridian Proximity Mine Dispenser Mk.3",
+  "weaponClass": "mine",
+  "size": "small",
+  "damage": {
+    "base": 22.6,
+    "variance": 1.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 357,
+    "maximum": 607,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.2,
+  "ammo": 24,
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

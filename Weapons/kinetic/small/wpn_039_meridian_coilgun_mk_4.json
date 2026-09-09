@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_039",
+  "name": "Meridian Coilgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 30.9,
+    "variance": 1.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 599,
+    "maximum": 1108,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.2,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_006",
+  "name": "Halcyon Pulse Laser Mk.1",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 13.6,
+    "variance": 2.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 382,
+    "maximum": 688,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 62
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.0,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": []
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_585",
+  "name": "Meridian Medium Grapple Harpoon Mk.2",
+  "weaponClass": "melee",
+  "size": "medium",
+  "damage": {
+    "base": 27.7,
+    "variance": 2.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 101,
+    "maximum": 121,
+    "falloffPenalty": 0.45
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 37
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 10.5,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

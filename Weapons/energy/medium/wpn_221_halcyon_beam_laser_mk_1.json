@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_221",
+  "name": "Halcyon Beam Laser Mk.1",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 46.8,
+    "variance": 7.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1000,
+    "maximum": 1700,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 39
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 16.9,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

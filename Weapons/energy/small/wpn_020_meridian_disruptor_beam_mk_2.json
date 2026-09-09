@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_020",
+  "name": "Meridian Disruptor Beam Mk.2",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 18.9,
+    "variance": 1.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 425,
+    "maximum": 722,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 44
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.4,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

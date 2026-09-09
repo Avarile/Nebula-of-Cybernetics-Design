@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_112",
+  "name": "Ashwright Missile Rack Mk.4",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 46.2,
+    "variance": 6.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1228,
+    "maximum": 2272,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 48
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 17.6,
+  "ammo": 18,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "can_be_intercepted",
+    "multi_hit"
+  ]
+}

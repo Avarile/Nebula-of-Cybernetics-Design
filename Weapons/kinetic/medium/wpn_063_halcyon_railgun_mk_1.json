@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_063",
+  "name": "Halcyon Railgun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 48.6,
+    "variance": 7.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1120,
+    "maximum": 2184,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 14.3,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

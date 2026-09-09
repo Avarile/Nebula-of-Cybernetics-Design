@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_708",
+  "name": "Meridian Interceptor Missile Mk.1",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 8.9,
+    "variance": 0.7,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 495,
+    "maximum": 842,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 92
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 5.4,
+  "ammo": 25,
+  "criticalChance": 0.04,
+  "specialEffects": [
+    "anti_missile",
+    "anti_air"
+  ]
+}

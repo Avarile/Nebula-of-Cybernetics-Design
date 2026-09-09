@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_505",
+  "name": "Ashwright Heavy Mass Driver Mk.5",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 315.5,
+    "variance": 34.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2418,
+    "maximum": 4836,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.68,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 53.9,
+  "ammo": "infinite",
+  "criticalChance": 0.26,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

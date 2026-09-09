@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_274",
+  "name": "Ashwright Heavy Ion Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 141.2,
+    "variance": 21.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1856,
+    "maximum": 3434,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 25
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 43.2,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

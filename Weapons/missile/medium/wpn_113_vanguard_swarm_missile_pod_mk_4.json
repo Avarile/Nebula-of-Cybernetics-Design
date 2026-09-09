@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_113",
+  "name": "Vanguard Swarm Missile Pod Mk.4",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 34.9,
+    "variance": 4.7,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1111,
+    "maximum": 2000,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 60
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 2
+  },
+  "powerCost": 16.1,
+  "ammo": 26,
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

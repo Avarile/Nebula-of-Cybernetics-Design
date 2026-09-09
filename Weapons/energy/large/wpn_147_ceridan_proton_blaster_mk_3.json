@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_147",
+  "name": "Ceridan Proton Blaster Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 111.6,
+    "variance": 16.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1383,
+    "maximum": 2420,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 33.1,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_639",
+  "name": "Ceridan Heavy Mine Layer Mk.3",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 156.2,
+    "variance": 23.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1493,
+    "maximum": 2911,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 20
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 33.1,
+  "ammo": 17,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

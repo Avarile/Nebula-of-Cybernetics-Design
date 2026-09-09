@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_drone_bay_mk2",
+  "name": "Drone Bay Mk.2",
+  "moduleType": "droneBay",
+  "functionClass": "major",
+  "slotType": "hangar",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 100.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "droneCapacity",
+      "modifier": 9.6,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 6.7,
+  "crewRequired": 13,
+  "hullAffinity": []
+}

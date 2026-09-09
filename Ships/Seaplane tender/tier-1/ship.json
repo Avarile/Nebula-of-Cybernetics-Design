@@ -1,0 +1,131 @@
+{
+  "shipId": "ship_seaplane_tender_t1",
+  "name": "Seaplane Tender Tier 1",
+  "tier": 1,
+  "shipClass": "seaplane_tender",
+  "mass": {
+    "value": 8900.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1838,
+    "currentHP": 1838,
+    "armorRating": 20,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 735,
+    "currentHP": 735,
+    "rechargeRatePerTurn": 59,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.3,
+      "energy": 0.1,
+      "explosive": 0.05
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_408"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_393"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_393"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "hangar",
+        "size": "large",
+        "moduleEquipped": "mod_asw_aircraft_bay_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 276,
+      "currentHP": 276,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 460,
+      "currentHP": 460,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 368,
+      "currentHP": 368,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 331,
+      "currentHP": 331,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 221,
+      "currentHP": 221,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 184,
+      "currentHP": 184,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 280,
+    "acceleration": 24,
+    "turnRate": 36,
+    "evasionRating": 0.12
+  },
+  "crew": {
+    "maxCrew": 183,
+    "currentCrew": 183,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 359,
+    "currentPower": 359,
+    "regenPerTurn": 54
+  },
+  "sensors": {
+    "detectionRange": 1100,
+    "initiative": 11
+  },
+  "capacities": {
+    "cargo": 1800,
+    "ammo": 0,
+    "fuel": 6400,
+    "troops": 0,
+    "aircraft": 12,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 30
+  }
+}

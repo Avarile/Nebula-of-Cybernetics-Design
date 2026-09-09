@@ -1,0 +1,137 @@
+{
+  "shipId": "ship_minelayer_sweeper_t2",
+  "name": "Minelayer Sweeper Tier 2",
+  "tier": 2,
+  "shipClass": "minelayer_sweeper",
+  "mass": {
+    "value": 3480.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1103,
+    "currentHP": 1103,
+    "armorRating": 18,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 538,
+    "currentHP": 538,
+    "rechargeRatePerTurn": 47,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.32,
+      "energy": 0.12,
+      "explosive": 0.07
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_630"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_389"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_389"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_hp"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_minesweep_gear_mk2"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "cargo",
+        "size": "medium",
+        "moduleEquipped": "mod_mine_rails_mk2"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 165,
+      "currentHP": 165,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 276,
+      "currentHP": 276,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 221,
+      "currentHP": 221,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 199,
+      "currentHP": 199,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 132,
+      "currentHP": 132,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 110,
+      "currentHP": 110,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 339,
+    "acceleration": 39,
+    "turnRate": 61,
+    "evasionRating": 0.21
+  },
+  "crew": {
+    "maxCrew": 79,
+    "currentCrew": 79,
+    "pilotSkill": 60,
+    "gunnerySkill": 60,
+    "engineeringSkill": 58
+  },
+  "power": {
+    "maxPower": 264,
+    "currentPower": 264,
+    "regenPerTurn": 40
+  },
+  "sensors": {
+    "detectionRange": 644,
+    "initiative": 11
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 256,
+    "fuel": 2304,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 282,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

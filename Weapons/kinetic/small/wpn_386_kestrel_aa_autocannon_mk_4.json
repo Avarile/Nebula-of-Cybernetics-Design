@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_386",
+  "name": "Kestrel AA Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 10.8,
+    "variance": 1.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 288,
+    "maximum": 446,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 85
+  },
+  "fireRate": {
+    "shotsPerTurn": 9,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.7,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile"
+  ]
+}

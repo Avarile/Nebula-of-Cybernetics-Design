@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_305",
+  "name": "Meridian PD Laser Turret Mk.1",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 7.1,
+    "variance": 0.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 261,
+    "maximum": 392,
+    "falloffPenalty": 0.14
+  },
+  "accuracy": {
+    "baseHitChance": 0.94,
+    "tracking": 90
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.1,
+  "ammo": "infinite",
+  "criticalChance": 0.03,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_4",
+  "mountType": "missile_bay",
+  "catalogue": "Weapons/kinetic/large/wpn_161_obsidian_railgun_mk_5.json",
+  "weaponId": "wpn_161",
+  "name": "Obsidian Railgun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 191.3,
+    "variance": 35.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2502,
+    "maximum": 4879,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 24
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 37.4,
+  "ammo": "infinite",
+  "criticalChance": 0.22,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

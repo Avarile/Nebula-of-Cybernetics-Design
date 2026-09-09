@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_decoy_launcher_mk1",
+  "name": "Decoy Launcher Mk.1",
+  "moduleType": "decoy",
+  "functionClass": "support",
+  "slotType": "sensor",
+  "size": "small",
+  "mark": 1,
+  "mass": {
+    "value": 13.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "evasionRating",
+      "modifier": 0.04,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 3.0,
+  "crewRequired": 2,
+  "hullAffinity": []
+}

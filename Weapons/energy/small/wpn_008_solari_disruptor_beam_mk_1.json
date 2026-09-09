@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_008",
+  "name": "Solari Disruptor Beam Mk.1",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 16.2,
+    "variance": 2.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 405,
+    "maximum": 688,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 4.8,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

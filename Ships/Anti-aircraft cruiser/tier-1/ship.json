@@ -1,0 +1,137 @@
+{
+  "shipId": "ship_anti_aircraft_cruiser_t1",
+  "name": "Anti Aircraft Cruiser Tier 1",
+  "tier": 1,
+  "shipClass": "anti_aircraft_cruiser",
+  "mass": {
+    "value": 5660.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1561,
+    "currentHP": 1561,
+    "armorRating": 26,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 937,
+    "currentHP": 937,
+    "rechargeRatePerTurn": 75,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "energy",
+    "damageTypeResistance": {
+      "kinetic": 0.1,
+      "energy": 0.3,
+      "explosive": 0.08
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_403"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_403"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_388"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_388"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 234,
+      "currentHP": 234,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 390,
+      "currentHP": 390,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 312,
+      "currentHP": 312,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 281,
+      "currentHP": 281,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 187,
+      "currentHP": 187,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 156,
+      "currentHP": 156,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 380,
+    "acceleration": 44,
+    "turnRate": 66,
+    "evasionRating": 0.22
+  },
+  "crew": {
+    "maxCrew": 122,
+    "currentCrew": 122,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 293,
+    "currentPower": 293,
+    "regenPerTurn": 44
+  },
+  "sensors": {
+    "detectionRange": 900,
+    "initiative": 16
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 1400,
+    "fuel": 3200,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_599",
+  "name": "Ashwright Siege Siege Drill Mk.1",
+  "weaponClass": "melee",
+  "size": "capital",
+  "damage": {
+    "base": 516.0,
+    "variance": 92.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 159,
+    "maximum": 183,
+    "falloffPenalty": 0.55
+  },
+  "accuracy": {
+    "baseHitChance": 0.58,
+    "tracking": 5
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 60.7,
+  "ammo": "infinite",
+  "criticalChance": 0.27,
+  "specialEffects": [
+    "armor_melt",
+    "armor_piercing"
+  ]
+}

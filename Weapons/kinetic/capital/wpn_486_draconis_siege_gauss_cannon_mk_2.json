@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_486",
+  "name": "Draconis Siege Gauss Cannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "capital",
+  "damage": {
+    "base": 404.7,
+    "variance": 76.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3440,
+    "maximum": 6536,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.65,
+    "tracking": 14
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 74.3,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

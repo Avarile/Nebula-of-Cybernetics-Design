@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_158",
+  "name": "Draconis Torpedo Launcher Mk.4",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 356.4,
+    "variance": 55.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 2461,
+    "maximum": 4553,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.64,
+    "tracking": 15
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 48.4,
+  "ammo": 6,
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

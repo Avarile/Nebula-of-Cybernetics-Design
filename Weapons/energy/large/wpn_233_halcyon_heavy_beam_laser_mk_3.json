@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_233",
+  "name": "Halcyon Heavy Beam Laser Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 128.9,
+    "variance": 17.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2067,
+    "maximum": 3514,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.94,
+    "tracking": 44
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 39.1,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_melt",
+    "shield_disrupt"
+  ]
+}

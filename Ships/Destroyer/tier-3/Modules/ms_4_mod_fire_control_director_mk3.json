@@ -1,0 +1,30 @@
+{
+  "slotId": "ms_4",
+  "catalogue": "Modules/command/major/mod_fire_control_director_mk3.json",
+  "moduleId": "mod_fire_control_director_mk3",
+  "name": "Fire Control Director Mk.3",
+  "moduleType": "fireControl",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 33.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 11.5,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "crew.gunnerySkill",
+      "modifier": 7.2,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 8.8,
+  "crewRequired": 10,
+  "hullAffinity": []
+}

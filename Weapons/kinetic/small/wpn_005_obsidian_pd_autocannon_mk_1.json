@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_005",
+  "name": "Obsidian PD Autocannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 7.6,
+    "variance": 2.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 243,
+    "maximum": 364,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 68
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 4.6,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile"
+  ]
+}

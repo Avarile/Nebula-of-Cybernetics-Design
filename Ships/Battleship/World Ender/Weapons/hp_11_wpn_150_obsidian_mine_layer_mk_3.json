@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_11",
+  "mountType": "missile_bay",
+  "catalogue": "Weapons/mine/large/wpn_150_obsidian_mine_layer_mk_3.json",
+  "weaponId": "wpn_150",
+  "name": "Obsidian Mine Layer Mk.3",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 161.3,
+    "variance": 41.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1540,
+    "maximum": 3003,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 30.9,
+  "ammo": 11,
+  "criticalChance": 0.2,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

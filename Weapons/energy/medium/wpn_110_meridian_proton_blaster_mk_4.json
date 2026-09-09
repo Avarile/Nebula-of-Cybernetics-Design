@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_110",
+  "name": "Meridian Proton Blaster Mk.4",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 59.0,
+    "variance": 3.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 815,
+    "maximum": 1426,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.87,
+    "tracking": 47
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 17.0,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

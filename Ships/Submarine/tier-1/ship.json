@@ -1,0 +1,125 @@
+{
+  "shipId": "ship_submarine_t1",
+  "name": "Submarine Tier 1",
+  "tier": 1,
+  "shipClass": "submarine",
+  "mass": {
+    "value": 970.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 373,
+    "currentHP": 373,
+    "armorRating": 11,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 0,
+    "currentHP": 0,
+    "rechargeRatePerTurn": 0,
+    "rechargeDelayAfterHit": 0,
+    "shieldType": "none",
+    "damageTypeResistance": {
+      "kinetic": 0.0,
+      "energy": 0.0,
+      "explosive": 0.0
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_780"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_780"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 56,
+      "currentHP": 56,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 93,
+      "currentHP": 93,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 75,
+      "currentHP": 75,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 67,
+      "currentHP": 67,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 45,
+      "currentHP": 45,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 37,
+      "currentHP": 37,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 240,
+    "acceleration": 26,
+    "turnRate": 44,
+    "evasionRating": 0.38
+  },
+  "crew": {
+    "maxCrew": 31,
+    "currentCrew": 31,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 132,
+    "currentPower": 132,
+    "regenPerTurn": 20
+  },
+  "sensors": {
+    "detectionRange": 520,
+    "initiative": 15
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 240,
+    "fuel": 2600,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 40,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_3",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_004_vanguard_flak_cannon_mk_1.json",
+  "weaponId": "wpn_004",
+  "name": "Vanguard Flak Cannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 14.0,
+    "variance": 2.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 315,
+    "maximum": 520,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 58
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 5.4,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger"
+  ]
+}

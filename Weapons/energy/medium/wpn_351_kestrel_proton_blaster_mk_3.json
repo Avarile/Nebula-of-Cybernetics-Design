@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_351",
+  "name": "Kestrel Proton Blaster Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 40.5,
+    "variance": 6.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 714,
+    "maximum": 1250,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 16.6,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

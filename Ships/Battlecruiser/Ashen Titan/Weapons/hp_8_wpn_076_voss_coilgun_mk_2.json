@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_8",
+  "mountType": "fixed",
+  "catalogue": "Weapons/kinetic/medium/wpn_076_voss_coilgun_mk_2.json",
+  "weaponId": "wpn_076",
+  "name": "Voss Coilgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 60.0,
+    "variance": 9.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1401,
+    "maximum": 2592,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 27
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 16.9,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

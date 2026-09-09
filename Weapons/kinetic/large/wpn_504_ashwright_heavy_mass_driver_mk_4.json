@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_504",
+  "name": "Ashwright Heavy Mass Driver Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 279.2,
+    "variance": 37.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2303,
+    "maximum": 4606,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 50.1,
+  "ammo": "infinite",
+  "criticalChance": 0.25,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

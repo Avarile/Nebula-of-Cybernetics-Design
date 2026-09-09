@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_583",
+  "name": "Kestrel Medium Grapple Harpoon Mk.5",
+  "weaponClass": "melee",
+  "size": "medium",
+  "damage": {
+    "base": 31.0,
+    "variance": 3.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 107,
+    "maximum": 128,
+    "falloffPenalty": 0.45
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.7,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "emp_disable",
+    "armor_piercing"
+  ]
+}

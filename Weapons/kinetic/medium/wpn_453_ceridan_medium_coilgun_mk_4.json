@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_453",
+  "name": "Ceridan Medium Coilgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 67.2,
+    "variance": 9.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1012,
+    "maximum": 1872,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 33
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 18.7,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_546",
+  "name": "Voss Heavy Railgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 146.5,
+    "variance": 24.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3197,
+    "maximum": 6234,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 33.8,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_330",
+  "name": "Voss Siege Particle Lance Mk.5",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 845.7,
+    "variance": 93.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 6645,
+    "maximum": 9968,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.66,
+    "tracking": 7
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 112.8,
+  "ammo": "infinite",
+  "criticalChance": 0.27,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

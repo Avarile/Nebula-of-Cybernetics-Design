@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_075",
+  "name": "Kestrel Autocannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 30.4,
+    "variance": 5.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 603,
+    "maximum": 1055,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 47
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 0
+  },
+  "powerCost": 13.9,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": []
+}

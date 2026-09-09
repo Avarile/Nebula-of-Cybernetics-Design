@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_7",
+  "mountType": "turret",
+  "catalogue": "Weapons/mine/medium/wpn_088_obsidian_proximity_mine_dispenser_mk_2.json",
+  "weaponId": "wpn_088",
+  "name": "Obsidian Proximity Mine Dispenser Mk.2",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 44.9,
+    "variance": 12.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 593,
+    "maximum": 1008,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 12.3,
+  "ammo": 17,
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "proximity_trigger"
+  ]
+}

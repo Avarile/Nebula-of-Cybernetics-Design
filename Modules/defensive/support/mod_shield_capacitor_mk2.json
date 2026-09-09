@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_shield_capacitor_mk2",
+  "name": "Shield Capacitor Mk.2",
+  "moduleType": "shieldBooster",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 36.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "shields.maxHP",
+      "modifier": 18.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 13.4,
+  "crewRequired": 3,
+  "hullAffinity": []
+}

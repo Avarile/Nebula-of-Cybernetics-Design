@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_524",
+  "name": "Vanguard PD Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 13.0,
+    "variance": 1.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 301,
+    "maximum": 452,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 91
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.2,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

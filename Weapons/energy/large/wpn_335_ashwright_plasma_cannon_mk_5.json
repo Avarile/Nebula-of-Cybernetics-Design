@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_335",
+  "name": "Ashwright Plasma Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 255.4,
+    "variance": 28.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1767,
+    "maximum": 2827,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 55.9,
+  "ammo": "infinite",
+  "criticalChance": 0.24,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

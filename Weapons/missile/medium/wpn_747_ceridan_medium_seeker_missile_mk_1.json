@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_747",
+  "name": "Ceridan Medium Seeker Missile Mk.1",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 44.5,
+    "variance": 8.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1140,
+    "maximum": 2166,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 62
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 0
+  },
+  "powerCost": 14.3,
+  "ammo": 18,
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

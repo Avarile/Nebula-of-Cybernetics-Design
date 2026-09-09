@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_070",
+  "name": "Obsidian Missile Rack Mk.1",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 31.3,
+    "variance": 9.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1019,
+    "maximum": 1885,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.72,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 12.1,
+  "ammo": 15,
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "can_be_intercepted"
+  ]
+}

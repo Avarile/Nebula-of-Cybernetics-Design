@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_026",
+  "name": "Obsidian Chain Gun Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 10.9,
+    "variance": 2.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 301,
+    "maximum": 482,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.87,
+    "tracking": 59
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.4,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "high_tracking",
+    "multi_hit"
+  ]
+}

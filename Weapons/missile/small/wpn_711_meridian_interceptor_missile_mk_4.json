@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_711",
+  "name": "Meridian Interceptor Missile Mk.4",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 12.9,
+    "variance": 0.8,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 573,
+    "maximum": 974,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 110
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.7,
+  "ammo": 30,
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "anti_missile",
+    "anti_air",
+    "high_tracking"
+  ]
+}

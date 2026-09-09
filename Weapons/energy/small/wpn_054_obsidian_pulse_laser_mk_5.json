@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_054",
+  "name": "Obsidian Pulse Laser Mk.5",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 24.8,
+    "variance": 4.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 456,
+    "maximum": 821,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.9,
+    "tracking": 58
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 7.9,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

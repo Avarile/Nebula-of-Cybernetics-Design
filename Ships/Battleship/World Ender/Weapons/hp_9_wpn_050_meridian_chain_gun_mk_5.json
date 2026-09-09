@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_9",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_050_meridian_chain_gun_mk_5.json",
+  "weaponId": "wpn_050",
+  "name": "Meridian Chain Gun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 13.6,
+    "variance": 0.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 339,
+    "maximum": 542,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.94,
+    "tracking": 80
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.4,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "high_tracking",
+    "multi_hit"
+  ]
+}

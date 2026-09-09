@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_323",
+  "name": "Draconis Siege Particle Lance Mk.1",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 642.2,
+    "variance": 132.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3958,
+    "maximum": 5937,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.53,
+    "tracking": 5
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 92.2,
+  "ammo": "infinite",
+  "criticalChance": 0.24,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing"
+  ]
+}

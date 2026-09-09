@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_743",
+  "name": "Ceridan Seeker Missile Mk.5",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 33.0,
+    "variance": 3.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 779,
+    "maximum": 1480,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 78
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 0
+  },
+  "powerCost": 8.8,
+  "ammo": 28,
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "can_be_intercepted",
+    "high_tracking",
+    "armor_piercing"
+  ]
+}

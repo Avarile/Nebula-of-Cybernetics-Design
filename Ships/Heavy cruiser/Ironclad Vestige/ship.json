@@ -1,0 +1,174 @@
+{
+  "shipId": "ship_heavy_cruiser_ironclad_vestige",
+  "name": "Ironclad Vestige",
+  "tier": 1,
+  "shipClass": "heavy_cruiser",
+  "templateId": "ship_heavy_cruiser_t1",
+  "mass": {
+    "value": 3499,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1110,
+    "currentHP": 1110,
+    "armorRating": 24,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 515,
+    "currentHP": 515,
+    "rechargeRatePerTurn": 24,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "energy",
+    "damageTypeResistance": {
+      "kinetic": 0.24,
+      "energy": 0.12,
+      "explosive": 0.12
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_078"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_095"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_131"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_157"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_036"
+      },
+      {
+        "hardpointId": "hp_6",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_037"
+      },
+      {
+        "hardpointId": "hp_7",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_078"
+      },
+      {
+        "hardpointId": "hp_8",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_155"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_armor_plate_std"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_power_core_std"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_ecm_std"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 130,
+      "currentHP": 130,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 216,
+      "currentHP": 216,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 173,
+      "currentHP": 173,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 144,
+      "currentHP": 144,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 101,
+      "currentHP": 101,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 87,
+      "currentHP": 87,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 252,
+    "acceleration": 21,
+    "turnRate": 36,
+    "evasionRating": 0.11
+  },
+  "crew": {
+    "maxCrew": 129,
+    "currentCrew": 129,
+    "pilotSkill": 57,
+    "gunnerySkill": 69,
+    "engineeringSkill": 68
+  },
+  "power": {
+    "maxPower": 175,
+    "currentPower": 175,
+    "regenPerTurn": 26
+  },
+  "sensors": {
+    "detectionRange": 1000,
+    "initiative": 15
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 2200,
+    "fuel": 7600,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

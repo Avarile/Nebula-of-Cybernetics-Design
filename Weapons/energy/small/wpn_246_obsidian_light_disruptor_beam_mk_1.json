@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_246",
+  "name": "Obsidian Light Disruptor Beam Mk.1",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 17.1,
+    "variance": 5.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 397,
+    "maximum": 675,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.8,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

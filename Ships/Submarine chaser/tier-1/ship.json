@@ -1,0 +1,125 @@
+{
+  "shipId": "ship_submarine_chaser_t1",
+  "name": "Submarine Chaser Tier 1",
+  "tier": 1,
+  "shipClass": "submarine_chaser",
+  "mass": {
+    "value": 130.5,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 88,
+    "currentHP": 88,
+    "armorRating": 6,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 31,
+    "currentHP": 31,
+    "rechargeRatePerTurn": 2,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.3,
+      "energy": 0.1,
+      "explosive": 0.05
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_614"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_614"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "small",
+        "moduleEquipped": "mod_manoeuvring_thrusters_mk1"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "small",
+        "moduleEquipped": "mod_surface_radar_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 13,
+      "currentHP": 13,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 22,
+      "currentHP": 22,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 18,
+      "currentHP": 18,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 16,
+      "currentHP": 16,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 11,
+      "currentHP": 11,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 9,
+      "currentHP": 9,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 480,
+    "acceleration": 70,
+    "turnRate": 105,
+    "evasionRating": 0.36
+  },
+  "crew": {
+    "maxCrew": 12,
+    "currentCrew": 12,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 54,
+    "currentPower": 54,
+    "regenPerTurn": 8
+  },
+  "sensors": {
+    "detectionRange": 420,
+    "initiative": 12
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 90,
+    "fuel": 260,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

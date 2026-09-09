@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_466",
+  "name": "Ceridan Medium Flak Cannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 28.3,
+    "variance": 5.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 532,
+    "maximum": 878,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 58
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 12.3,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger"
+  ]
+}

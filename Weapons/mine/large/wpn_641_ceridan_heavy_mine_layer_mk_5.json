@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_641",
+  "name": "Ceridan Heavy Mine Layer Mk.5",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 199.5,
+    "variance": 21.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1645,
+    "maximum": 3208,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 38.3,
+  "ammo": 19,
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

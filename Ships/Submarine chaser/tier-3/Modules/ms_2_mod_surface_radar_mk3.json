@@ -1,0 +1,30 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/sensor/major/mod_surface_radar_mk3.json",
+  "moduleId": "mod_surface_radar_mk3",
+  "name": "Surface Radar Mk.3",
+  "moduleType": "radar",
+  "functionClass": "major",
+  "slotType": "sensor",
+  "size": "small",
+  "mark": 3,
+  "mass": {
+    "value": 15.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "detectionRange",
+      "modifier": 25.9,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 4.3,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 6.3,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

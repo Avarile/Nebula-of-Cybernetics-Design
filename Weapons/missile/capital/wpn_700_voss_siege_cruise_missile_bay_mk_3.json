@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_700",
+  "name": "Voss Siege Cruise Missile Bay Mk.3",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 585.9,
+    "variance": 87.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 8728,
+    "maximum": 18329,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 12
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 88.5,
+  "ammo": 4,
+  "criticalChance": 0.21,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

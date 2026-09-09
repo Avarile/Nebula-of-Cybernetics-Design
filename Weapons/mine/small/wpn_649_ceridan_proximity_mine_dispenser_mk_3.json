@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_649",
+  "name": "Ceridan Proximity Mine Dispenser Mk.3",
+  "weaponClass": "mine",
+  "size": "small",
+  "damage": {
+    "base": 22.3,
+    "variance": 3.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 339,
+    "maximum": 576,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 29
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.6,
+  "ammo": 38,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

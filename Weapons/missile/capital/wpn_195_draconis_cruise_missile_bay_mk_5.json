@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_195",
+  "name": "Draconis Cruise Missile Bay Mk.5",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 926.3,
+    "variance": 117.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 6968,
+    "maximum": 14633,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.63,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 111.5,
+  "ammo": 4,
+  "criticalChance": 0.24,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

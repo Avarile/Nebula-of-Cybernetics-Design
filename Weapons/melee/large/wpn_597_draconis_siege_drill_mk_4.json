@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_597",
+  "name": "Draconis Siege Drill Mk.4",
+  "weaponClass": "melee",
+  "size": "large",
+  "damage": {
+    "base": 499.0,
+    "variance": 77.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 109,
+    "maximum": 125,
+    "falloffPenalty": 0.55
+  },
+  "accuracy": {
+    "baseHitChance": 0.55,
+    "tracking": 5
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 42.6,
+  "ammo": "infinite",
+  "criticalChance": 0.25,
+  "specialEffects": [
+    "armor_melt",
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

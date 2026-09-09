@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_496",
+  "name": "Ashwright Mass Driver Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 129.3,
+    "variance": 17.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1228,
+    "maximum": 2456,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 25.1,
+  "ammo": "infinite",
+  "criticalChance": 0.25,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

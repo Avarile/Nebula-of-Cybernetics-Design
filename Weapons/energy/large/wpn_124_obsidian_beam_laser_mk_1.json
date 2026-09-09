@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_124",
+  "name": "Obsidian Beam Laser Mk.1",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 112.8,
+    "variance": 34.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1838,
+    "maximum": 3125,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 33.1,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

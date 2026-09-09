@@ -1,0 +1,34 @@
+{
+  "moduleId": "mod_seaplane_catapult_mk2",
+  "name": "Seaplane Catapult Mk.2",
+  "moduleType": "catapult",
+  "functionClass": "specific",
+  "slotType": "hangar",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 116.6,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "aircraftCapacity",
+      "modifier": 2.4,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 30.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 7.8,
+  "crewRequired": 15,
+  "hullAffinity": [
+    "seaplane_tender",
+    "light_cruiser",
+    "heavy_cruiser",
+    "battlecruiser",
+    "battleship"
+  ]
+}

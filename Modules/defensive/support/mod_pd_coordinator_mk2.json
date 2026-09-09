@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_pd_coordinator_mk2",
+  "name": "PD Coordinator Mk.2",
+  "moduleType": "pdCoordinator",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "small",
+  "mark": 2,
+  "mass": {
+    "value": 12.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "pointDefenseBonus",
+      "modifier": 18.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 6.7,
+  "crewRequired": 3,
+  "hullAffinity": []
+}

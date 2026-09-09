@@ -1,0 +1,150 @@
+{
+  "shipId": "ship_light_cruiser_halberds_edge",
+  "name": "Halberd's Edge",
+  "tier": 1,
+  "shipClass": "light_cruiser",
+  "templateId": "ship_light_cruiser_t1",
+  "mass": {
+    "value": 1678,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 592,
+    "currentHP": 592,
+    "armorRating": 15,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 316,
+    "currentHP": 316,
+    "rechargeRatePerTurn": 21,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "energy",
+    "damageTypeResistance": {
+      "kinetic": 0.22,
+      "energy": 0.05,
+      "explosive": 0.02
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_024"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_093"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_087"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_097"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_148"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_shield_booster_2"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_repair_drone_std"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 75,
+      "currentHP": 75,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 124,
+      "currentHP": 124,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 99,
+      "currentHP": 99,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 83,
+      "currentHP": 83,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 58,
+      "currentHP": 58,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 50,
+      "currentHP": 50,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 317,
+    "acceleration": 36,
+    "turnRate": 47,
+    "evasionRating": 0.2
+  },
+  "crew": {
+    "maxCrew": 54,
+    "currentCrew": 54,
+    "pilotSkill": 60,
+    "gunnerySkill": 53,
+    "engineeringSkill": 56
+  },
+  "power": {
+    "maxPower": 128,
+    "currentPower": 128,
+    "regenPerTurn": 16
+  },
+  "sensors": {
+    "detectionRange": 950,
+    "initiative": 15
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 1600,
+    "fuel": 4200,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

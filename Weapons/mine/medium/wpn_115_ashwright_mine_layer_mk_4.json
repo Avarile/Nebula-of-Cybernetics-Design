@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_115",
+  "name": "Ashwright Mine Layer Mk.4",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 86.2,
+    "variance": 11.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 897,
+    "maximum": 1749,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 19.5,
+  "ammo": 16,
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

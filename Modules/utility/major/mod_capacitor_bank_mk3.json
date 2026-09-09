@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_capacitor_bank_mk3",
+  "name": "Capacitor Bank Mk.3",
+  "moduleType": "powerCore",
+  "functionClass": "major",
+  "slotType": "utility",
+  "size": "small",
+  "mark": 3,
+  "mass": {
+    "value": 22.5,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "power.regenPerTurn",
+      "modifier": 4.3,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "rechargeRatePerTurn",
+      "modifier": 11.5,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 2,
+  "hullAffinity": []
+}

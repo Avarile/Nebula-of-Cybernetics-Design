@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_051",
+  "name": "Obsidian Coilgun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 35.6,
+    "variance": 6.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 616,
+    "maximum": 1140,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.6,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

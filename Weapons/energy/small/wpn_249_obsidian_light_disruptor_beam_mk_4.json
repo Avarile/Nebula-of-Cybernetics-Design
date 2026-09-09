@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_249",
+  "name": "Obsidian Light Disruptor Beam Mk.4",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 24.7,
+    "variance": 5.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 459,
+    "maximum": 780,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 41
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.4,
+  "ammo": "infinite",
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

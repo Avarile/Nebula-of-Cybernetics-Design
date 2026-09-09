@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_433",
+  "name": "Kestrel Chain Gun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 10.6,
+    "variance": 1.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 312,
+    "maximum": 499,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.92,
+    "tracking": 73
+  },
+  "fireRate": {
+    "shotsPerTurn": 8,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.7,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "high_tracking",
+    "multi_hit"
+  ]
+}

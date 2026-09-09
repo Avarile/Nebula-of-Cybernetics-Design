@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_272",
+  "name": "Ashwright Heavy Ion Cannon Mk.1",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 110.6,
+    "variance": 19.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1683,
+    "maximum": 3114,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 22
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 37.4,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

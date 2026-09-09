@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_782",
+  "name": "Meridian Torpedo Launcher Mk.4",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 118.1,
+    "variance": 7.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1250,
+    "maximum": 2312,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 20.2,
+  "ammo": 9,
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

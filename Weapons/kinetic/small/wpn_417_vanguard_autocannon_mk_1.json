@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_417",
+  "name": "Vanguard Autocannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 17.0,
+    "variance": 3.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 351,
+    "maximum": 614,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 42
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.7,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": []
+}

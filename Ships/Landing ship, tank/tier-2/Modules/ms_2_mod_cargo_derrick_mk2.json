@@ -1,0 +1,30 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/cargo/specific/mod_cargo_derrick_mk2.json",
+  "moduleId": "mod_cargo_derrick_mk2",
+  "name": "Cargo Derrick Mk.2",
+  "moduleType": "cargoDerrick",
+  "functionClass": "specific",
+  "slotType": "cargo",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 74.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "cargoCapacity",
+      "modifier": 30.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 3.4,
+  "crewRequired": 11,
+  "hullAffinity": [
+    "attack_transport",
+    "fleet_oiler",
+    "repair_ship_tender",
+    "landing_ship_tank"
+  ]
+}

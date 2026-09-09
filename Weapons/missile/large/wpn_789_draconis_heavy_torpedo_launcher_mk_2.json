@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_789",
+  "name": "Draconis Heavy Torpedo Launcher Mk.2",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 279.1,
+    "variance": 53.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 2233,
+    "maximum": 4131,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.6,
+    "tracking": 14
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 41.9,
+  "ammo": 5,
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted"
+  ]
+}

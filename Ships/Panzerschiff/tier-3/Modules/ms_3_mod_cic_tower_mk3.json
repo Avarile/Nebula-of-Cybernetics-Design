@@ -1,0 +1,35 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/command/major/mod_cic_tower_mk3.json",
+  "moduleId": "mod_cic_tower_mk3",
+  "name": "CIC Tower Mk.3",
+  "moduleType": "cic",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 95.5,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 8.6,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "initiative",
+      "modifier": 7.2,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 12.5,
+  "crewRequired": 22,
+  "hullAffinity": []
+}

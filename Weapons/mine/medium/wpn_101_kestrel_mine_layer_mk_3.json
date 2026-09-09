@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_101",
+  "name": "Kestrel Mine Layer Mk.3",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 56.6,
+    "variance": 8.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 771,
+    "maximum": 1503,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 16.6,
+  "ammo": 18,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

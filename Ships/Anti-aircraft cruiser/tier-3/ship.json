@@ -1,0 +1,161 @@
+{
+  "shipId": "ship_anti_aircraft_cruiser_t3",
+  "name": "Anti Aircraft Cruiser Tier 3",
+  "tier": 3,
+  "shipClass": "anti_aircraft_cruiser",
+  "mass": {
+    "value": 7610.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 2704,
+    "currentHP": 2704,
+    "armorRating": 36,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 2401,
+    "currentHP": 2401,
+    "rechargeRatePerTurn": 230,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "energy",
+    "damageTypeResistance": {
+      "kinetic": 0.14,
+      "energy": 0.34,
+      "explosive": 0.12
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_405"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_405"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_405"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_390"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_390"
+      },
+      {
+        "hardpointId": "hp_6",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_390"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_mk3"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk3"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "defensive",
+        "size": "large",
+        "moduleEquipped": "mod_belt_armour_mk3"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "command",
+        "size": "large",
+        "moduleEquipped": "mod_cic_tower_mk3"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 406,
+      "currentHP": 406,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 676,
+      "currentHP": 676,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 541,
+      "currentHP": 541,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 487,
+      "currentHP": 487,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 324,
+      "currentHP": 324,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 270,
+      "currentHP": 270,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 426,
+    "acceleration": 50,
+    "turnRate": 73,
+    "evasionRating": 0.24
+  },
+  "crew": {
+    "maxCrew": 167,
+    "currentCrew": 167,
+    "pilotSkill": 75,
+    "gunnerySkill": 76,
+    "engineeringSkill": 74
+  },
+  "power": {
+    "maxPower": 457,
+    "currentPower": 457,
+    "regenPerTurn": 69
+  },
+  "sensors": {
+    "detectionRange": 1170,
+    "initiative": 18
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 2184,
+    "fuel": 4992,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

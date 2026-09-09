@@ -1,0 +1,162 @@
+{
+  "_meta": {
+    "title": "Advanced Combat Resolution System v2",
+    "version": "2.0",
+    "extends": "combatResolution from spaceship_combat_system.json",
+    "newConcepts": ["distance/range bands", "signature & detection/lock-on", "speed-based evasion", "missile flight + point-defense interception"],
+    "note": "Formulas are given as readable pseudocode, not code. 'signature' is a derived stat computed from existing ship fields (see signatureSystem.derivation) so it works with ships that don't have an explicit signature field."
+  },
+
+  "distanceSystem": {
+    "description": "Range is now the primary hit-chance driver. Each weapon still has optimal/maximum from its schema; this defines how hit chance decays between them.",
+    "bands": [
+      { "band": "pointBlank", "rangePct": "0-25% of optimal",   "hitMultiplier": 1.10, "note": "close-quarters bonus, but missiles risk not arming in time (see missileArmingRule)" },
+      { "band": "close",      "rangePct": "25-100% of optimal", "hitMultiplier": 1.00 },
+      { "band": "medium",     "rangePct": "100-150% of optimal","hitMultiplier": "linear interpolation 1.00 -> 0.65" },
+      { "band": "long",       "rangePct": "150% optimal to maximum", "hitMultiplier": "linear interpolation 0.65 -> 0.15" },
+      { "band": "extreme",    "rangePct": "beyond maximum",     "hitMultiplier": 0, "note": "cannot fire; must close distance or disengage" }
+    ],
+    "rangeMultiplierFormula": {
+      "ifDistance<=optimal": "1.10 if distance <= 0.25*optimal, else 1.00",
+      "ifOptimal<distance<=1.5*optimal": "1.00 - 0.35 * ((distance - optimal) / (0.5*optimal))",
+      "if1.5*optimal<distance<=maximum": "0.65 - 0.50 * ((distance - 1.5*optimal) / (maximum - 1.5*optimal))",
+      "ifDistance>maximum": "0, weapon cannot fire"
+    },
+    "missileArmingRule": "Missiles fired at pointBlank (<10% optimal) have a 50% chance to fail to arm (treated as a clean miss) - they need travel time to arm warheads. This is the tradeoff for their long-range guidance advantage."
+  },
+
+  "signatureSystem": {
+    "description": "Every ship emits a detectable 'signal' from mass, active systems, and power draw. Lower signature = harder to detect and lock, which suppresses incoming accuracy independent of raw evasion.",
+    "derivation": {
+      "baseSignature": "mass.value * 0.05 + power.maxPower * 0.1 + shields.maxHP * 0.02",
+      "note": "Bigger, higher-power, heavily-shielded ships are inherently loud. This is a starting point, not a fixed stat."
+    },
+    "activeStateModifiers": [
+      { "state": "weaponsFiredThisTurn", "effect": "+8% signature per weapon volley fired (heat/EM bloom)" },
+      { "state": "shieldsActive",        "effect": "+10% signature (shield emitters are detectable)" },
+      { "state": "afterburner/highAccel","effect": "+40% signature (engine flare)" },
+      { "state": "runningSilent",        "effect": "-50% signature, but -30% topSpeed and weapons cannot fire that turn (non-essential systems powered down)" },
+      { "state": "ecmModuleActive",      "effect": "-15% signature (mod_ecm_std or similar)" }
+    ],
+    "detectionAndLockOn": {
+      "attackerSensorStrength": "derived from sensorArray.maxHP (or currentHP if damaged) * (1 + sensorArray_bonus_modules)",
+      "effectiveDetectionRange": "attackerSensorStrength * (targetSignature / 100)",
+      "rule": "if distance <= effectiveDetectionRange: target is 'locked' and full accuracy formula applies. If distance > effectiveDetectionRange: target is 'unlocked' - attacker may still fire but suffers the blindFirePenalty below.",
+      "lockOnBuildUp": "A newly-locked target starts at lockQuality = 0.5 and gains +0.25/turn while continuously tracked (line of sight + in range), capping at 1.0 after 2 turns. Breaking range/LoS or target using runningSilent resets lockQuality to 0.",
+      "blindFirePenalty": "finalHitChance is multiplied by 0.25 and lockQuality is treated as 0.5 flat, representing firing at last-known position"
+    }
+  },
+
+  "speedEvasionSystem": {
+    "description": "Replaces the flat evasionRating lookup with a dynamic value driven by relative speed and the attacking weapon's tracking stat, so fast small ships dodge slow-tracking capital guns but get caught by high-tracking PD/energy weapons.",
+    "formula": {
+      "relativeSpeedFactor": "targetSpeed_or_topSpeed * (1 - target.mobility.turnRate_normalized_penalty_if_recently_turned)",
+      "trackingCounter": "attackerWeapon.accuracy.tracking",
+      "speedEvasionBonus": "clamp((relativeSpeedFactor - trackingCounter) / 250, 0, 0.35)",
+      "effectiveEvasion": "clamp(target.mobility.evasionRating + speedEvasionBonus, 0, 0.60)"
+    },
+    "designIntent": [
+      "High-tracking weapons (PD lasers, pulse lasers, small fast-firing guns) counter speed evasion well -> good vs corvettes/destroyers.",
+      "Low-tracking weapons (railguns, mass drivers, capital ion cannons) lose a lot of effective accuracy against fast targets -> capital ships want escorts or need the target to be locked/immobilized first.",
+      "This is why EMP disable (ion cannons) and engine-critical hits matter: strip the target's speed to strip its evasion."
+    ]
+  },
+
+  "weaponHitProfiles": {
+    "kinetic": {
+      "baseHitChanceModifier": 1.0,
+      "notes": "Straight-line ballistics; full range/signature/evasion formula applies with no adjustments. Reliable, no special interaction."
+    },
+    "energy": {
+      "baseHitChanceModifier": 1.0,
+      "notes": "Same as kinetic for hit resolution; differentiates on damage-vs-shield-resistance instead. Beam weapons (Beam Laser, Particle Lance) ignore speedEvasionBonus entirely (near-instant travel time) but keep full range falloff."
+    },
+    "missile": {
+      "baseHitChanceModifier": 1.25,
+      "evasionIgnoredFraction": 0.5,
+      "notes": "Missiles get +25% to base hit chance and only apply 50% of the target's effectiveEvasion (guided course correction). This is their core advantage. The cost is twofold: limited ammo (weaponSchema.ammo depletes and cannot be refilled outside dock) and a mandatory point-defense interception sub-phase (see missileResolutionPhase) that happens BEFORE the hit roll - a shot-down missile never rolls to hit at all."
+    },
+    "mine": {
+      "baseHitChanceModifier": "n/a - mines do not roll to hit directly",
+      "notes": "Deployed to an area; triggers on proximity (any ship, friend or foe, entering the deployment zone within proximityTrigger radius). Treat as a standing trap rather than a targeted weapon."
+    }
+  },
+
+  "missileResolutionPhase": {
+    "description": "Runs as its own sub-phase, after the normal fire-resolution phase's targeting step but before damage is applied, for every missile weapon fired this turn.",
+    "steps": [
+      "1. Volley size = min(weapon.fireRate.shotsPerTurn, weapon.ammo). Decrement ammo by volley size immediately (spent whether they hit or not).",
+      "2. Missile arming check: apply missileArmingRule if launched at pointBlank range.",
+      "3. Defender's available point-defense weapons (specialEffects contains 'point_defense' or 'anti_missile') each get shotsPerTurn interception attempts this turn, pooled across ALL incoming missiles at the defending ship this turn.",
+      "4. For each PD interception attempt, roll against an incoming missile (defender's PD system allocates shots to missiles until either PD shots or incoming missiles run out): interceptChance = clamp(pdWeapon.accuracy.baseHitChance + pdWeapon.accuracy.tracking/150 - missileEvasion, 0.05, 0.95).",
+      "5. missileEvasion base = 0.20. Modifiers: 'high_tracking' special effect on the missile -0.10 (harder to intercept), 'multi_hit' (swarm pods) +0.05 per missile but the SWARM launches more missiles than a single PD mount can realistically cover, so volume overwhelms defense even if per-missile intercept odds are normal.",
+      "6. Any missile successfully intercepted is destroyed and dealt with - no damage, no further rolls.",
+      "7. Any missile NOT intercepted (PD ran out of shots, or intercept roll failed) proceeds to the normal hit-chance formula using the missile weaponHitProfile (1.25x base, 50% evasion ignored).",
+      "8. If multiple missiles from the same volley hit, each rolls damage independently (they are separate warheads)."
+    ],
+    "designIntent": "This creates a rock-paper-scissors: missiles beat evasive/fast ships (ignore half their dodge), point-defense beats missiles (dedicated PD hardpoints shred small volleys), and swarm/saturation missile boats beat point-defense (more warheads than PD shots available). A ship with no PD hardpoints equipped is very vulnerable to any missile-armed opponent."
+  },
+
+  "masterHitChanceFormula": {
+    "pseudocode": [
+      "1. Determine distance between attacker and target this turn.",
+      "2. If distance > weapon.range.maximum: cannot fire, stop.",
+      "3. rangeMultiplier = distanceSystem.rangeMultiplierFormula(distance, weapon)",
+      "4. locked = distance <= effectiveDetectionRange(attacker, target)",
+      "5. lockQuality = locked ? currentLockQuality (0.5 to 1.0, builds over turns) : 0.5",
+      "6. effectiveEvasion = speedEvasionSystem.formula(target, weapon)",
+      "7. if weapon.weaponClass == 'missile': effectiveEvasion *= (1 - weaponHitProfiles.missile.evasionIgnoredFraction)",
+      "8. baseChance = weapon.accuracy.baseHitChance * weaponHitProfiles[weapon.weaponClass].baseHitChanceModifier",
+      "9. preLockChance = baseChance * rangeMultiplier * lockQuality",
+      "10. if not locked: preLockChance *= signatureSystem.detectionAndLockOn.blindFirePenalty (0.25)",
+      "11. finalHitChance = clamp(preLockChance - effectiveEvasion, 0.05, 0.95)",
+      "12. NOTE: for missile weapons, steps 1-11 only run on missiles that survive missileResolutionPhase's interception step."
+    ]
+  },
+
+  "updatedTurnStructure": [
+    "1. Initiative: sort by (pilotSkill + sensorArray effectiveness + random d20) descending.",
+    "2. Signature/state declaration: each ship declares this turn's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem.",
+    "3. Detection phase: for every attacker-target pair, compute effectiveDetectionRange and update lockQuality (build, hold, or reset).",
+    "4. Power allocation phase: assign power across weapons/shields/engines.",
+    "5. Movement phase: resolve positioning, update distance between all ship pairs.",
+    "6. Targeting phase: each ship selects target(s) and weapon(s) to fire, constrained by range.maximum and ammo remaining.",
+    "7. Missile resolution sub-phase: run missileResolutionPhase for all missile weapons fired this turn (ammo deduction + PD interception).",
+    "8. Direct-fire resolution phase: for all non-missile weapons and surviving missiles, run masterHitChanceFormula, then apply damageFormula (shields -> armor -> hull/component) from the base combat system.",
+    "9. Critical checks on confirmed hits per componentCriticalTable.",
+    "10. End of turn: shields recharge (if outside rechargeDelay window), signature bonuses from this turn's actions expire, repair modules apply, check destruction/retreat."
+  ],
+
+  "workedExample": {
+    "scenario": "Destroyer 'Whisperfang' (fast, evasionRating 0.24, no signature tricks active) is targeted by Battleship 'Leviathan Crown' at long range using a large Mass Driver (tracking 20), and separately by a Cruise Missile Bay.",
+    "massDriverShot": {
+      "distance": 2600,
+      "weaponOptimal": 1200,
+      "weaponMaximum": 2200,
+      "note": "distance EXCEEDS weapon.range.maximum (2200) -> cannot fire. Illustrates why battleships need to close range or out-range with capital weapons instead.",
+      "result": "shot not taken"
+    },
+    "capitalIonCannonShot": {
+      "distance": 1900,
+      "weaponOptimal": 1500,
+      "weaponMaximum": 2900,
+      "rangeMultiplier": "~0.75 (medium-long band)",
+      "locked": true,
+      "lockQuality": 1.0,
+      "speedEvasionBonus": "targetSpeed 350 vs tracking 12 -> (350-12)/250 = 1.35 -> capped at 0.35",
+      "effectiveEvasion": "0.24 + 0.35 capped to 0.60 -> 0.60",
+      "baseChance": 0.55,
+      "finalHitChance": "clamp(0.55 * 0.75 * 1.0 - 0.60, 0.05, 0.95) = clamp(0.0125, 0.05, 0.95) = 0.05",
+      "interpretation": "A fast destroyer at range is extremely hard for a low-tracking capital gun to hit - floor accuracy only. The battleship should use its ion cannon's EMP effect via a lucky hit or rely on missiles/PD-supported allies instead."
+    },
+    "cruiseMissileShot": {
+      "distance": 1900,
+      "baseChance": "0.61 * 1.25 = 0.7625",
+      "evasionApplied": "0.60 * (1 - 0.5) = 0.30",
+      "rangeMultiplier": "~0.85 (within medium band for missile's longer optimal)",
+      "finalHitChancePreIntercept": "clamp(0.7625*0.85*1.0 - 0.30, 0.05, 0.95) = ~0.35",
+      "interceptionStep": "Whisperfang has 2 PD Laser Turrets (small), each shotsPerTurn ~3-4, easily covering the 1-2 missiles in this volley -> high chance the missile(s) never reach the hit roll at all",
+      "interpretation": "Missiles are the battleship's actual answer to a fast, evasive target - but only if the destroyer's PD gets overwhelmed or destroyed first. This is why saturation (multiple missile bays firing together) is the standard doctrine against fast escorts."
+    }
+  }
+}

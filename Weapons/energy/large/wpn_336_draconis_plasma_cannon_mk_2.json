@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_336",
+  "name": "Draconis Plasma Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 237.2,
+    "variance": 45.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1571,
+    "maximum": 2514,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.62,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 47.0,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

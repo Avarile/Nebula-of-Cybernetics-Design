@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_266",
+  "name": "Draconis Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 111.9,
+    "variance": 14.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1123,
+    "maximum": 2078,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.75,
+    "tracking": 24
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 26.0,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

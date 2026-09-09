@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_5",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/large/wpn_131_kestrel_railgun_mk_2.json",
+  "weaponId": "wpn_131",
+  "name": "Kestrel Railgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 100.5,
+    "variance": 16.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2029,
+    "maximum": 3957,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 22
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 32.3,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

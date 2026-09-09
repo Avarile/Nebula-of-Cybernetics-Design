@@ -1,0 +1,25 @@
+{
+  "slotId": "ms_4",
+  "catalogue": "Modules/sensor/support/mod_ecm_std.json",
+  "moduleId": "mod_ecm_std",
+  "name": "Standard ECM Suite",
+  "moduleType": "ecm",
+  "functionClass": "support",
+  "slotType": "sensor",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 22.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "enemyHitChance",
+      "modifier": -8.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 10.0,
+  "crewRequired": 5,
+  "hullAffinity": []
+}

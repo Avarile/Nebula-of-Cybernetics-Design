@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_6",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/medium/wpn_400_kestrel_medium_aa_autocannon_mk_3.json",
+  "weaponId": "wpn_400",
+  "name": "Kestrel Medium AA Autocannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 21.0,
+    "variance": 3.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 487,
+    "maximum": 755,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 80
+  },
+  "fireRate": {
+    "shotsPerTurn": 9,
+    "cooldownTurns": 0
+  },
+  "powerCost": 13.4,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile"
+  ]
+}

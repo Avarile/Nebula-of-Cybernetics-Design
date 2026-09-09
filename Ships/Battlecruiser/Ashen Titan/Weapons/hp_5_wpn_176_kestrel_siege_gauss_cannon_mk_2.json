@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_5",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/capital/wpn_176_kestrel_siege_gauss_cannon_mk_2.json",
+  "weaponId": "wpn_176",
+  "name": "Kestrel Siege Gauss Cannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "capital",
+  "damage": {
+    "base": 224.1,
+    "variance": 37.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3014,
+    "maximum": 5727,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 65.0,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

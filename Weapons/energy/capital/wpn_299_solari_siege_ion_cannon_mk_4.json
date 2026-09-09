@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_299",
+  "name": "Solari Siege Ion Cannon Mk.4",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 296.1,
+    "variance": 40.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3311,
+    "maximum": 6125,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 52.2,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

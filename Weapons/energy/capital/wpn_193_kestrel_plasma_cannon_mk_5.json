@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_193",
+  "name": "Kestrel Plasma Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 379.2,
+    "variance": 41.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2762,
+    "maximum": 4419,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 94.2,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

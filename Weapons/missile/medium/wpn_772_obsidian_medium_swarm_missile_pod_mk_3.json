@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_772",
+  "name": "Obsidian Medium Swarm Missile Pod Mk.3",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 29.4,
+    "variance": 7.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1037,
+    "maximum": 1867,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 2
+  },
+  "powerCost": 14.7,
+  "ammo": 25,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

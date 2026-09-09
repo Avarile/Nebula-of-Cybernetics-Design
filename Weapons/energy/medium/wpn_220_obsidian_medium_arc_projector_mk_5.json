@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_220",
+  "name": "Obsidian Medium Arc Projector Mk.5",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 44.3,
+    "variance": 8.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 476,
+    "maximum": 666,
+    "falloffPenalty": 0.16
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 18.7,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "multi_hit",
+    "emp_disable"
+  ]
+}

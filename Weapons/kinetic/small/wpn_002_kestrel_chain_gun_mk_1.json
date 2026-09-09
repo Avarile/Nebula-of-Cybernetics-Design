@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_002",
+  "name": "Kestrel Chain Gun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 6.5,
+    "variance": 1.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 257,
+    "maximum": 411,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 58
+  },
+  "fireRate": {
+    "shotsPerTurn": 8,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.0,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

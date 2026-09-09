@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_013",
+  "name": "Voss Autocannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 20.2,
+    "variance": 3.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 534,
+    "maximum": 934,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.7,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": []
+}

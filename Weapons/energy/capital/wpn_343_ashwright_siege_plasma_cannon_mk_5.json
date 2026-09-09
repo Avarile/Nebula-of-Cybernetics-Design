@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_343",
+  "name": "Ashwright Siege Plasma Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 510.8,
+    "variance": 56.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3062,
+    "maximum": 4899,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 103.2,
+  "ammo": "infinite",
+  "criticalChance": 0.24,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

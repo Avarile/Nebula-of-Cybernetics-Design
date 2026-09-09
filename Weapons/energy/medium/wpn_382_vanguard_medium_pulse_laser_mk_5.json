@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_382",
+  "name": "Vanguard Medium Pulse Laser Mk.5",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 57.4,
+    "variance": 6.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 827,
+    "maximum": 1489,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.92,
+    "tracking": 61
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 17.4,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

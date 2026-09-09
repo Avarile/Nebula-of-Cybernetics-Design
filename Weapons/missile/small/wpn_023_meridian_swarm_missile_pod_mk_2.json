@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_023",
+  "name": "Meridian Swarm Missile Pod Mk.2",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 11.6,
+    "variance": 0.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 567,
+    "maximum": 1021,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 61
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 2
+  },
+  "powerCost": 6.4,
+  "ammo": 30,
+  "criticalChance": 0.06,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted"
+  ]
+}

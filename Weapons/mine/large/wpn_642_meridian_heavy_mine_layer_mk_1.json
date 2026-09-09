@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_642",
+  "name": "Meridian Heavy Mine Layer Mk.1",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 123.7,
+    "variance": 10.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1425,
+    "maximum": 2779,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 27.3,
+  "ammo": 10,
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger"
+  ]
+}

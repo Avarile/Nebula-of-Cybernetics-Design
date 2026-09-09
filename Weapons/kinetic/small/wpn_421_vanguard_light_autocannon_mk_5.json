@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_421",
+  "name": "Vanguard Light Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 27.7,
+    "variance": 3.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 427,
+    "maximum": 747,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 7.6,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

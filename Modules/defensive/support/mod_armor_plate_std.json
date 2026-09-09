@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_armor_plate_std",
+  "name": "Reinforced Armor Plating",
+  "moduleType": "armorPlating",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 150.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.armorRating",
+      "modifier": 20.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 0,
+  "hullAffinity": []
+}

@@ -1,0 +1,25 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/utility/major/mod_power_core_std.json",
+  "moduleId": "mod_power_core_std",
+  "name": "Auxiliary Power Core",
+  "moduleType": "powerCore",
+  "functionClass": "major",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 55.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "power.maxPower",
+      "modifier": 20.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 6,
+  "hullAffinity": []
+}

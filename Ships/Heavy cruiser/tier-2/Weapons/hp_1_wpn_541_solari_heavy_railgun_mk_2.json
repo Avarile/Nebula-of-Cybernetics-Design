@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/large/wpn_541_solari_heavy_railgun_mk_2.json",
+  "weaponId": "wpn_541",
+  "name": "Solari Heavy Railgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 125.6,
+    "variance": 20.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2205,
+    "maximum": 4300,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 21.5,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

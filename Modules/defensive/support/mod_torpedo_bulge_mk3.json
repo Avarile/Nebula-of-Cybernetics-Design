@@ -1,0 +1,33 @@
+{
+  "moduleId": "mod_torpedo_bulge_mk3",
+  "name": "Torpedo Bulge Mk.3",
+  "moduleType": "torpedoBulge",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 292.1,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.maxHP",
+      "modifier": 17.3,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "topSpeed",
+      "modifier": -3.2,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "hull.armorRating",
+      "modifier": 11.5,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 0,
+  "hullAffinity": []
+}

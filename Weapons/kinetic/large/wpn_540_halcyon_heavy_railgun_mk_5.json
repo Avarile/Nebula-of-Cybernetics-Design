@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_540",
+  "name": "Halcyon Heavy Railgun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 171.2,
+    "variance": 16.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2553,
+    "maximum": 4978,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.87,
+    "tracking": 33
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 38.2,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

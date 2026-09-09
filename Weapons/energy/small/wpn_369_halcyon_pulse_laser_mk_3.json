@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_369",
+  "name": "Halcyon Pulse Laser Mk.3",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 17.4,
+    "variance": 2.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 422,
+    "maximum": 760,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 70
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.9,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

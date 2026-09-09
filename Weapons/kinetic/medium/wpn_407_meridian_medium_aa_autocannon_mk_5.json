@@ -1,0 +1,33 @@
+{
+  "weaponId": "wpn_407",
+  "name": "Meridian Medium AA Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 34.7,
+    "variance": 1.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 583,
+    "maximum": 904,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 99
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 14.8,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

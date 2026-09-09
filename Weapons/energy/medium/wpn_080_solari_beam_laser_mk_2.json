@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_080",
+  "name": "Solari Beam Laser Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 55.9,
+    "variance": 9.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1050,
+    "maximum": 1785,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 32
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 12.7,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_171",
+  "name": "Halcyon Gauss Cannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "capital",
+  "damage": {
+    "base": 234.2,
+    "variance": 37.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3120,
+    "maximum": 5928,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 57.6,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

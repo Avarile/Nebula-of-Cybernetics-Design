@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_690",
+  "name": "Voss Heavy Cruise Missile Bay Mk.1",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 229.4,
+    "variance": 41.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 4568,
+    "maximum": 9593,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.64,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 41.5,
+  "ammo": 4,
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial"
+  ]
+}

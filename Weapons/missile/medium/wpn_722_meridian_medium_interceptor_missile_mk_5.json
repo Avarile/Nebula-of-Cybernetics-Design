@@ -1,0 +1,33 @@
+{
+  "weaponId": "wpn_722",
+  "name": "Meridian Medium Interceptor Missile Mk.5",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 32.0,
+    "variance": 1.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1070,
+    "maximum": 1819,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.94,
+    "tracking": 116
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 15.6,
+  "ammo": 25,
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_missile",
+    "anti_air",
+    "high_tracking",
+    "multi_hit"
+  ]
+}

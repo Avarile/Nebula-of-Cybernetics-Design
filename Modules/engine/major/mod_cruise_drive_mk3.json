@@ -1,0 +1,33 @@
+{
+  "moduleId": "mod_cruise_drive_mk3",
+  "name": "Cruise Drive Mk.3",
+  "moduleType": "engine",
+  "functionClass": "major",
+  "slotType": "engine",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 67.4,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "topSpeed",
+      "modifier": 8.6,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "fuelRange",
+      "modifier": 28.8,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "power.regenPerTurn",
+      "modifier": 2.9,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 5.0,
+  "crewRequired": 10,
+  "hullAffinity": []
+}

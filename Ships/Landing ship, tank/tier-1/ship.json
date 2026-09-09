@@ -1,0 +1,125 @@
+{
+  "shipId": "ship_landing_ship_tank_t1",
+  "name": "Landing Ship Tank Tier 1",
+  "tier": 1,
+  "shipClass": "landing_ship_tank",
+  "mass": {
+    "value": 3830.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1002,
+    "currentHP": 1002,
+    "armorRating": 16,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 301,
+    "currentHP": 301,
+    "rechargeRatePerTurn": 24,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.3,
+      "energy": 0.1,
+      "explosive": 0.05
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_393"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_393"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_cargo_derrick_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 150,
+      "currentHP": 150,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 250,
+      "currentHP": 250,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 200,
+      "currentHP": 200,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 180,
+      "currentHP": 180,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 120,
+      "currentHP": 120,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 100,
+      "currentHP": 100,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 190,
+    "acceleration": 22,
+    "turnRate": 34,
+    "evasionRating": 0.1
+  },
+  "crew": {
+    "maxCrew": 88,
+    "currentCrew": 88,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 246,
+    "currentPower": 246,
+    "regenPerTurn": 37
+  },
+  "sensors": {
+    "detectionRange": 380,
+    "initiative": 7
+  },
+  "capacities": {
+    "cargo": 2600,
+    "ammo": 200,
+    "fuel": 3000,
+    "troops": 400,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_027",
+  "name": "Kestrel Coilgun Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 21.1,
+    "variance": 3.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 525,
+    "maximum": 971,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 33
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.0,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

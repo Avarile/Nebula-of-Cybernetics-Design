@@ -1,0 +1,30 @@
+{
+  "slotId": "ms_1",
+  "catalogue": "Modules/engine/major/mod_manoeuvring_thrusters_mk1.json",
+  "moduleId": "mod_manoeuvring_thrusters_mk1",
+  "name": "Manoeuvring Thrusters Mk.1",
+  "moduleType": "engine",
+  "functionClass": "major",
+  "slotType": "engine",
+  "size": "small",
+  "mark": 1,
+  "mass": {
+    "value": 12.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "turnRate",
+      "modifier": 15.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "evasionRating",
+      "modifier": 0.02,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 3.0,
+  "crewRequired": 2,
+  "hullAffinity": []
+}

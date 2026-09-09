@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_556",
+  "name": "Vanguard Boarding Ram Mk.3",
+  "weaponClass": "melee",
+  "size": "medium",
+  "damage": {
+    "base": 179.8,
+    "variance": 27.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 35,
+    "maximum": 38,
+    "falloffPenalty": 0.6
+  },
+  "accuracy": {
+    "baseHitChance": 0.58,
+    "tracking": 4
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 9.0,
+  "ammo": "infinite",
+  "criticalChance": 0.27,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "moduleId": "mod_landing_craft_davits_mk3",
+  "name": "Landing Craft Davits Mk.3",
+  "moduleType": "davits",
+  "functionClass": "specific",
+  "slotType": "cargo",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 118.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "troopCapacity",
+      "modifier": 50.4,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 2.5,
+  "crewRequired": 22,
+  "hullAffinity": [
+    "attack_transport",
+    "landing_ship_tank"
+  ]
+}

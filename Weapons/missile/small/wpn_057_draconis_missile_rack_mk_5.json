@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_057",
+  "name": "Draconis Missile Rack Mk.5",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 31.8,
+    "variance": 4.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 747,
+    "maximum": 1382,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 9.1,
+  "ammo": 21,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "can_be_intercepted",
+    "multi_hit"
+  ]
+}

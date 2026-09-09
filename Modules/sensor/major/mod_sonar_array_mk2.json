@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_sonar_array_mk2",
+  "name": "Sonar Array Mk.2",
+  "moduleType": "sonar",
+  "functionClass": "major",
+  "slotType": "sensor",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 33.9,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "detectionRange",
+      "modifier": 24.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "sensorArray.effectiveness",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 7.8,
+  "crewRequired": 7,
+  "hullAffinity": []
+}

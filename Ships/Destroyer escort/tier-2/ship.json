@@ -1,0 +1,143 @@
+{
+  "shipId": "ship_destroyer_escort_t2",
+  "name": "Destroyer Escort Tier 2",
+  "tier": 2,
+  "shipClass": "destroyer_escort",
+  "mass": {
+    "value": 1460.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 694,
+    "currentHP": 694,
+    "armorRating": 20,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 423,
+    "currentHP": 423,
+    "rechargeRatePerTurn": 37,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.32,
+      "energy": 0.12,
+      "explosive": 0.07
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_625"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_615"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_615"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_615"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_hp"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk2"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "small",
+        "moduleEquipped": "mod_smoke_generator_mk2"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 104,
+      "currentHP": 104,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 174,
+      "currentHP": 174,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 139,
+      "currentHP": 139,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 125,
+      "currentHP": 125,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 83,
+      "currentHP": 83,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 69,
+      "currentHP": 69,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 424,
+    "acceleration": 56,
+    "turnRate": 84,
+    "evasionRating": 0.28
+  },
+  "crew": {
+    "maxCrew": 45,
+    "currentCrew": 45,
+    "pilotSkill": 60,
+    "gunnerySkill": 60,
+    "engineeringSkill": 58
+  },
+  "power": {
+    "maxPower": 178,
+    "currentPower": 178,
+    "regenPerTurn": 27
+  },
+  "sensors": {
+    "detectionRange": 713,
+    "initiative": 13
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 384,
+    "fuel": 1792,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

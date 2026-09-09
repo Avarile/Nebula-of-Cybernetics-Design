@@ -1,0 +1,131 @@
+{
+  "shipId": "ship_merchant_raider_t1",
+  "name": "Merchant Raider Tier 1",
+  "tier": 1,
+  "shipClass": "merchant_raider",
+  "mass": {
+    "value": 8000.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1702,
+    "currentHP": 1702,
+    "armorRating": 20,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 749,
+    "currentHP": 749,
+    "rechargeRatePerTurn": 60,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.3,
+      "energy": 0.1,
+      "explosive": 0.05
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_533"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_533"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_383"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 255,
+      "currentHP": 255,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 426,
+      "currentHP": 426,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 340,
+      "currentHP": 340,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 306,
+      "currentHP": 306,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 204,
+      "currentHP": 204,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 170,
+      "currentHP": 170,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 300,
+    "acceleration": 26,
+    "turnRate": 40,
+    "evasionRating": 0.16
+  },
+  "crew": {
+    "maxCrew": 148,
+    "currentCrew": 148,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 342,
+    "currentPower": 342,
+    "regenPerTurn": 51
+  },
+  "sensors": {
+    "detectionRange": 780,
+    "initiative": 12
+  },
+  "capacities": {
+    "cargo": 3400,
+    "ammo": 900,
+    "fuel": 8800,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 60,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

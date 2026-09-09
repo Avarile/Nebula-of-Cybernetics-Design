@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_028",
+  "name": "Voss Flak Cannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 18.8,
+    "variance": 2.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 504,
+    "maximum": 832,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 59
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 6.9,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

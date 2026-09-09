@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_fusion_generator_mk1",
+  "name": "Fusion Generator Mk.1",
+  "moduleType": "powerCore",
+  "functionClass": "major",
+  "slotType": "utility",
+  "size": "large",
+  "mark": 1,
+  "mass": {
+    "value": 120.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "power.maxPower",
+      "modifier": 25.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "power.regenPerTurn",
+      "modifier": 4.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 12,
+  "hullAffinity": []
+}

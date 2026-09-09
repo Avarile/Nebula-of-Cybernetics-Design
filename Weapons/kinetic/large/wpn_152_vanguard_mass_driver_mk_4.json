@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_152",
+  "name": "Vanguard Mass Driver Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 287.9,
+    "variance": 38.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2257,
+    "maximum": 4514,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 43.6,
+  "ammo": "infinite",
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_406",
+  "name": "Meridian Medium AA Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 30.7,
+    "variance": 1.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 556,
+    "maximum": 862,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 93
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 13.7,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile"
+  ]
+}

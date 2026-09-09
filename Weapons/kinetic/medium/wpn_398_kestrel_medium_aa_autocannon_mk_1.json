@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_398",
+  "name": "Kestrel Medium AA Autocannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 16.5,
+    "variance": 3.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 442,
+    "maximum": 685,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 71
+  },
+  "fireRate": {
+    "shotsPerTurn": 9,
+    "cooldownTurns": 0
+  },
+  "powerCost": 11.6,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": [
+    "anti_air",
+    "point_defense"
+  ]
+}

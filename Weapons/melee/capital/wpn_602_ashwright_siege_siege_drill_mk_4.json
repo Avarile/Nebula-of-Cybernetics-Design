@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_602",
+  "name": "Ashwright Siege Siege Drill Mk.4",
+  "weaponClass": "melee",
+  "size": "capital",
+  "damage": {
+    "base": 744.6,
+    "variance": 100.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 184,
+    "maximum": 212,
+    "falloffPenalty": 0.55
+  },
+  "accuracy": {
+    "baseHitChance": 0.62,
+    "tracking": 6
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 75.4,
+  "ammo": "infinite",
+  "criticalChance": 0.3,
+  "specialEffects": [
+    "armor_melt",
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_745",
+  "name": "Halcyon Seeker Missile Mk.2",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 21.1,
+    "variance": 3.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 709,
+    "maximum": 1347,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 85
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.8,
+  "ammo": 15,
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

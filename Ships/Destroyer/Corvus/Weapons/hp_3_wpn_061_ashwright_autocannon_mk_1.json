@@ -1,0 +1,31 @@
+{
+  "hardpointId": "hp_3",
+  "mountType": "fixed",
+  "catalogue": "Weapons/kinetic/medium/wpn_061_ashwright_autocannon_mk_1.json",
+  "weaponId": "wpn_061",
+  "name": "Ashwright Autocannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 36.3,
+    "variance": 6.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 636,
+    "maximum": 1113,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 42
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 14.2,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": []
+}

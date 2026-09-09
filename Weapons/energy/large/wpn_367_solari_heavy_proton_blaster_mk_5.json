@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_367",
+  "name": "Solari Heavy Proton Blaster Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 139.4,
+    "variance": 15.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1604,
+    "maximum": 2807,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 25.5,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

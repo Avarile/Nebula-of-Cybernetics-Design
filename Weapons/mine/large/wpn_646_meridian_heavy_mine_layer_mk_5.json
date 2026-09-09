@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_646",
+  "name": "Meridian Heavy Mine Layer Mk.5",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 201.7,
+    "variance": 10.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1732,
+    "maximum": 3377,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 36.5,
+  "ammo": 12,
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

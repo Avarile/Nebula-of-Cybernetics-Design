@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_6",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/small/wpn_056_draconis_disruptor_beam_mk_5.json",
+  "weaponId": "wpn_056",
+  "name": "Draconis Disruptor Beam Mk.5",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 38.2,
+    "variance": 4.8,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 517,
+    "maximum": 879,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 39
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 11.1,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

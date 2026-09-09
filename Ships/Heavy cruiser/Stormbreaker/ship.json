@@ -1,0 +1,168 @@
+{
+  "shipId": "ship_heavy_cruiser_stormbreaker",
+  "name": "Stormbreaker",
+  "tier": 1,
+  "shipClass": "heavy_cruiser",
+  "templateId": "ship_heavy_cruiser_t1",
+  "mass": {
+    "value": 3885,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1072,
+    "currentHP": 1072,
+    "armorRating": 27,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 610,
+    "currentHP": 610,
+    "rechargeRatePerTurn": 28,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "energy",
+    "damageTypeResistance": {
+      "kinetic": 0.32,
+      "energy": 0.2,
+      "explosive": 0.1
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_112"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_097"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_155"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_159"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_021"
+      },
+      {
+        "hardpointId": "hp_6",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_019"
+      },
+      {
+        "hardpointId": "hp_7",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_115"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_shield_booster_1"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_power_core_std"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_ecm_std"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 125,
+      "currentHP": 125,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 209,
+      "currentHP": 209,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 167,
+      "currentHP": 167,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 139,
+      "currentHP": 139,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 98,
+      "currentHP": 98,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 84,
+      "currentHP": 84,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 209,
+    "acceleration": 26,
+    "turnRate": 34,
+    "evasionRating": 0.12
+  },
+  "crew": {
+    "maxCrew": 130,
+    "currentCrew": 130,
+    "pilotSkill": 70,
+    "gunnerySkill": 57,
+    "engineeringSkill": 70
+  },
+  "power": {
+    "maxPower": 172,
+    "currentPower": 172,
+    "regenPerTurn": 24
+  },
+  "sensors": {
+    "detectionRange": 1000,
+    "initiative": 15
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 2200,
+    "fuel": 7600,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

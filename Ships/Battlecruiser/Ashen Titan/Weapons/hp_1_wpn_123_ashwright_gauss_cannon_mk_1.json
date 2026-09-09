@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/large/wpn_123_ashwright_gauss_cannon_mk_1.json",
+  "weaponId": "wpn_123",
+  "name": "Ashwright Gauss Cannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 133.6,
+    "variance": 24.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1836,
+    "maximum": 3488,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.7,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 35.9,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_672",
+  "name": "Draconis Siege Mine Cluster Mk.3",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 291.7,
+    "variance": 50.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1476,
+    "maximum": 2804,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.66,
+    "tracking": 8
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 43.3,
+  "ammo": 7,
+  "criticalChance": 0.21,
+  "specialEffects": [
+    "area_denial",
+    "multi_hit",
+    "proximity_trigger"
+  ]
+}

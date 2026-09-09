@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_169",
+  "name": "Meridian Cruise Missile Bay Mk.5",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 331.3,
+    "variance": 16.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 3829,
+    "maximum": 8041,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.72,
+    "tracking": 17
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 50.3,
+  "ammo": 6,
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

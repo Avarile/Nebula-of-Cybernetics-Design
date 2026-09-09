@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_targeting_computer_mk2",
+  "name": "Targeting Computer Mk.2",
+  "moduleType": "targetingComputer",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "small",
+  "mark": 2,
+  "mass": {
+    "value": 10.6,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 6.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 6.7,
+  "crewRequired": 2,
+  "hullAffinity": []
+}

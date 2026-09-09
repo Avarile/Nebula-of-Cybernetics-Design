@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_366",
+  "name": "Solari Heavy Proton Blaster Mk.4",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 123.4,
+    "variance": 16.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1528,
+    "maximum": 2674,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 23.7,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

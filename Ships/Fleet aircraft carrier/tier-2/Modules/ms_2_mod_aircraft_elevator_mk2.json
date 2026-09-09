@@ -1,0 +1,29 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/hangar/specific/mod_aircraft_elevator_mk2.json",
+  "moduleId": "mod_aircraft_elevator_mk2",
+  "name": "Aircraft Elevator Mk.2",
+  "moduleType": "aircraftElevator",
+  "functionClass": "specific",
+  "slotType": "hangar",
+  "size": "capital",
+  "mark": 2,
+  "mass": {
+    "value": 233.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "aircraftCapacity",
+      "modifier": 7.2,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 11.2,
+  "crewRequired": 28,
+  "hullAffinity": [
+    "fleet_aircraft_carrier",
+    "light_carrier",
+    "escort_carrier"
+  ]
+}

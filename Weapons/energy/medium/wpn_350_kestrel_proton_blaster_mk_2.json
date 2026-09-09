@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_350",
+  "name": "Kestrel Proton Blaster Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 35.8,
+    "variance": 5.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 680,
+    "maximum": 1190,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 15.4,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": []
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_576",
+  "name": "Meridian Grapple Harpoon Mk.3",
+  "weaponClass": "melee",
+  "size": "small",
+  "damage": {
+    "base": 14.3,
+    "variance": 1.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 60,
+    "maximum": 72,
+    "falloffPenalty": 0.45
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 39
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 5.2,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "emp_disable",
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_325",
+  "name": "Draconis Siege Particle Lance Mk.3",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 820.0,
+    "variance": 141.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 4364,
+    "maximum": 6546,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.56,
+    "tracking": 6
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 106.5,
+  "ammo": "infinite",
+  "criticalChance": 0.26,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

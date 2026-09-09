@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_215",
+  "name": "Meridian Medium Arc Projector Mk.5",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 43.4,
+    "variance": 2.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 486,
+    "maximum": 680,
+    "falloffPenalty": 0.16
+  },
+  "accuracy": {
+    "baseHitChance": 0.92,
+    "tracking": 64
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 19.1,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "multi_hit",
+    "emp_disable"
+  ]
+}

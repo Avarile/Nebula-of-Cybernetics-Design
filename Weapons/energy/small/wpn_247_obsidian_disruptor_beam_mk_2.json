@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_247",
+  "name": "Obsidian Disruptor Beam Mk.2",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 19.3,
+    "variance": 5.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 417,
+    "maximum": 709,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.3,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

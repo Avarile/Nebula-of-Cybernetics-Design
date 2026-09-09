@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_269",
+  "name": "Solari Ion Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 60.7,
+    "variance": 9.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 970,
+    "maximum": 1794,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 25
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.1,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

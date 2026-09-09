@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_794",
+  "name": "Meridian Heavy Torpedo Launcher Mk.3",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 225.6,
+    "variance": 15.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 2233,
+    "maximum": 4131,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 37.6,
+  "ammo": 6,
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

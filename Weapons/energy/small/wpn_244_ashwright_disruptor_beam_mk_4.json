@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_244",
+  "name": "Ashwright Disruptor Beam Mk.4",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 25.2,
+    "variance": 3.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 478,
+    "maximum": 813,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 9.9,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

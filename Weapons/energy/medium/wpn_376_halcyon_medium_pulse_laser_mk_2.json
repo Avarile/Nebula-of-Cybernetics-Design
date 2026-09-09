@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_376",
+  "name": "Halcyon Medium Pulse Laser Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 33.8,
+    "variance": 5.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 714,
+    "maximum": 1285,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 66
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 14.0,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": []
+}

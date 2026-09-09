@@ -1,0 +1,31 @@
+{
+  "hardpointId": "hp_4",
+  "mountType": "fixed",
+  "catalogue": "Weapons/energy/medium/wpn_082_halcyon_proton_blaster_mk_2.json",
+  "weaponId": "wpn_082",
+  "name": "Halcyon Proton Blaster Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 42.3,
+    "variance": 6.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 739,
+    "maximum": 1293,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.89,
+    "tracking": 47
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 14.7,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": []
+}

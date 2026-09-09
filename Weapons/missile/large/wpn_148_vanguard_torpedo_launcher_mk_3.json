@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_148",
+  "name": "Vanguard Torpedo Launcher Mk.3",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 242.6,
+    "variance": 36.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 2233,
+    "maximum": 4131,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 17
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 37.6,
+  "ammo": 6,
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_072",
+  "name": "Halcyon Torpedo Launcher Mk.1",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 74.8,
+    "variance": 12.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1080,
+    "maximum": 1998,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 20
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 16.2,
+  "ammo": 8,
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted"
+  ]
+}

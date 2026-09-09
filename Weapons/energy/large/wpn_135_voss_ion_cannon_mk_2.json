@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_135",
+  "name": "Voss Ion Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 135.3,
+    "variance": 22.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2512,
+    "maximum": 4647,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 38.4,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

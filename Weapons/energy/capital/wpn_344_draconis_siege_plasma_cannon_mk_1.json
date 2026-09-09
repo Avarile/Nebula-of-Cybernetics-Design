@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_344",
+  "name": "Draconis Siege Plasma Cannon Mk.1",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 419.9,
+    "variance": 86.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2594,
+    "maximum": 4150,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.61,
+    "tracking": 12
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 80.6,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

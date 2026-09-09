@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_181",
+  "name": "Voss Gauss Cannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "capital",
+  "damage": {
+    "base": 369.4,
+    "variance": 55.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 4988,
+    "maximum": 9477,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 73.2,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

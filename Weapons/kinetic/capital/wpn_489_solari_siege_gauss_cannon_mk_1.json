@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_489",
+  "name": "Solari Siege Gauss Cannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "capital",
+  "damage": {
+    "base": 248.0,
+    "variance": 44.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3120,
+    "maximum": 5928,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.7,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 40.3,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

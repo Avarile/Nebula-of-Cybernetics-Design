@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/medium/wpn_097_vanguard_disruptor_beam_mk_3.json",
+  "weaponId": "wpn_097",
+  "name": "Vanguard Disruptor Beam Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 50.6,
+    "variance": 7.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 794,
+    "maximum": 1350,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 17.3,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

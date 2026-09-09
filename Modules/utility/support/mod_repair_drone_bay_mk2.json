@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_repair_drone_bay_mk2",
+  "name": "Repair Drone Bay Mk.2",
+  "moduleType": "repairDrone",
+  "functionClass": "support",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 37.1,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.regenPerTurn",
+      "modifier": 4.8,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 6.7,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

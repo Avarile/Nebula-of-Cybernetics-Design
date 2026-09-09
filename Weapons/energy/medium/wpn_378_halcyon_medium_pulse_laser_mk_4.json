@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_378",
+  "name": "Halcyon Medium Pulse Laser Mk.4",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 43.2,
+    "variance": 5.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 787,
+    "maximum": 1417,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 74
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 16.1,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/medium/wpn_106_meridian_mass_driver_mk_4.json",
+  "weaponId": "wpn_106",
+  "name": "Meridian Mass Driver Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 124.0,
+    "variance": 7.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1204,
+    "maximum": 2408,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 12
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 21.8,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

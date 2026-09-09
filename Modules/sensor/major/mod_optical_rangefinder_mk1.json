@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_optical_rangefinder_mk1",
+  "name": "Optical Rangefinder Mk.1",
+  "moduleType": "rangefinder",
+  "functionClass": "major",
+  "slotType": "sensor",
+  "size": "small",
+  "mark": 1,
+  "mass": {
+    "value": 9.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 4.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "crew.gunnerySkill",
+      "modifier": 4.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 1.0,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

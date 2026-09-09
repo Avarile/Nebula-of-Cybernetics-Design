@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_capacitor_bank_mk1",
+  "name": "Capacitor Bank Mk.1",
+  "moduleType": "powerCore",
+  "functionClass": "major",
+  "slotType": "utility",
+  "size": "small",
+  "mark": 1,
+  "mass": {
+    "value": 20.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "power.regenPerTurn",
+      "modifier": 3.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 2,
+  "hullAffinity": []
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_192",
+  "name": "Kestrel Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 267.7,
+    "variance": 29.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3198,
+    "maximum": 5916,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 29
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 84.1,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

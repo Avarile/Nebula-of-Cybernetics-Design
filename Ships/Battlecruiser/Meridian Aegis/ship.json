@@ -1,0 +1,192 @@
+{
+  "shipId": "ship_battlecruiser_meridian_aegis",
+  "name": "Meridian Aegis",
+  "tier": 1,
+  "shipClass": "battlecruiser",
+  "templateId": "ship_battlecruiser_t1",
+  "mass": {
+    "value": 5366,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1683,
+    "currentHP": 1683,
+    "armorRating": 31,
+    "armorType": "heavy"
+  },
+  "shields": {
+    "maxHP": 898,
+    "currentHP": 898,
+    "rechargeRatePerTurn": 34,
+    "rechargeDelayAfterHit": 3,
+    "shieldType": "hybrid",
+    "damageTypeResistance": {
+      "kinetic": 0.31,
+      "energy": 0.1,
+      "explosive": 0.01
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_167"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_124"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_066"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_068"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "capital",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_190"
+      },
+      {
+        "hardpointId": "hp_6",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_020"
+      },
+      {
+        "hardpointId": "hp_7",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_128"
+      },
+      {
+        "hardpointId": "hp_8",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_106"
+      },
+      {
+        "hardpointId": "hp_9",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_045"
+      },
+      {
+        "hardpointId": "hp_10",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_131"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_hp"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_shield_booster_2"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_power_core_std"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_ecm_std"
+      },
+      {
+        "slotId": "ms_5",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_cargo_expander"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 182,
+      "currentHP": 182,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 303,
+      "currentHP": 303,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 242,
+      "currentHP": 242,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 202,
+      "currentHP": 202,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 141,
+      "currentHP": 141,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 121,
+      "currentHP": 121,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 209,
+    "acceleration": 18,
+    "turnRate": 22,
+    "evasionRating": 0.1
+  },
+  "crew": {
+    "maxCrew": 159,
+    "currentCrew": 159,
+    "pilotSkill": 71,
+    "gunnerySkill": 63,
+    "engineeringSkill": 73
+  },
+  "power": {
+    "maxPower": 266,
+    "currentPower": 266,
+    "regenPerTurn": 24
+  },
+  "sensors": {
+    "detectionRange": 1250,
+    "initiative": 16
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 4200,
+    "fuel": 16000,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

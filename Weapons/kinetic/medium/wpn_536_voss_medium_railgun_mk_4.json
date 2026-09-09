@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_536",
+  "name": "Voss Medium Railgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 86.7,
+    "variance": 11.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1880,
+    "maximum": 3666,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 19.5,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

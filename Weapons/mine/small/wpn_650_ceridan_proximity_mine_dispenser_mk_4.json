@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_650",
+  "name": "Ceridan Proximity Mine Dispenser Mk.4",
+  "weaponClass": "mine",
+  "size": "small",
+  "damage": {
+    "base": 25.2,
+    "variance": 3.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 356,
+    "maximum": 605,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 31
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 7.0,
+  "ammo": 40,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

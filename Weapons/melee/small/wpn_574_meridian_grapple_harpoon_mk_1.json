@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_574",
+  "name": "Meridian Grapple Harpoon Mk.1",
+  "weaponClass": "melee",
+  "size": "small",
+  "damage": {
+    "base": 11.2,
+    "variance": 0.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 54,
+    "maximum": 65,
+    "falloffPenalty": 0.45
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 4.5,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

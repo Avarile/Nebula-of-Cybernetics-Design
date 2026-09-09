@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_5",
+  "mountType": "missile_bay",
+  "catalogue": "Weapons/missile/capital/wpn_190_obsidian_cruise_missile_bay_mk_4.json",
+  "weaponId": "wpn_190",
+  "name": "Obsidian Cruise Missile Bay Mk.4",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 599.0,
+    "variance": 137.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 6194,
+    "maximum": 13007,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 14
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 84.7,
+  "ammo": 4,
+  "criticalChance": 0.32,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "fixed",
+  "catalogue": "Weapons/kinetic/small/wpn_038_vanguard_chain_gun_mk_4.json",
+  "weaponId": "wpn_038",
+  "name": "Vanguard Chain Gun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 13.0,
+    "variance": 1.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 323,
+    "maximum": 517,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 66
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.0,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "high_tracking",
+    "multi_hit"
+  ]
+}

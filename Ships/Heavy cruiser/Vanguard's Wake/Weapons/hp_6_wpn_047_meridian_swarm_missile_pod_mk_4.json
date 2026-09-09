@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_6",
+  "mountType": "turret",
+  "catalogue": "Weapons/missile/small/wpn_047_meridian_swarm_missile_pod_mk_4.json",
+  "weaponId": "wpn_047",
+  "name": "Meridian Swarm Missile Pod Mk.4",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 14.8,
+    "variance": 0.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 625,
+    "maximum": 1125,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 68
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 2
+  },
+  "powerCost": 7.5,
+  "ammo": 33,
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

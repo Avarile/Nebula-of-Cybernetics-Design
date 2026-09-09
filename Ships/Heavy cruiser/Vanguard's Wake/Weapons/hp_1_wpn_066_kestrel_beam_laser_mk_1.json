@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "fixed",
+  "catalogue": "Weapons/energy/medium/wpn_066_kestrel_beam_laser_mk_1.json",
+  "weaponId": "wpn_066",
+  "name": "Kestrel Beam Laser Mk.1",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 39.6,
+    "variance": 7.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 920,
+    "maximum": 1564,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 32
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 17.7,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

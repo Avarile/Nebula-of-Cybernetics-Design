@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_318",
+  "name": "Voss Heavy Particle Lance Mk.1",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 259.4,
+    "variance": 46.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3154,
+    "maximum": 4731,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.6,
+    "tracking": 5
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 45.8,
+  "ammo": "infinite",
+  "criticalChance": 0.23,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing"
+  ]
+}

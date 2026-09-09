@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_108",
+  "name": "Vanguard Beam Laser Mk.4",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 79.4,
+    "variance": 10.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1158,
+    "maximum": 1969,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.89,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 21.0,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_melt",
+    "shield_disrupt"
+  ]
+}

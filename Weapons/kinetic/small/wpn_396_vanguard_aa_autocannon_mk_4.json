@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_396",
+  "name": "Vanguard AA Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 15.0,
+    "variance": 2.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 313,
+    "maximum": 485,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 81
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.3,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile"
+  ]
+}

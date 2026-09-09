@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_6",
+  "mountType": "fixed",
+  "catalogue": "Weapons/kinetic/medium/wpn_064_voss_mass_driver_mk_1.json",
+  "weaponId": "wpn_064",
+  "name": "Voss Mass Driver Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 97.0,
+    "variance": 17.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1508,
+    "maximum": 3016,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.62,
+    "tracking": 8
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 19.3,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

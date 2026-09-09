@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_029",
+  "name": "Draconis PD Autocannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 13.3,
+    "variance": 2.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 287,
+    "maximum": 430,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 69
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.5,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

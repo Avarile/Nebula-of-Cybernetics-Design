@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_drone_bay_mk3",
+  "name": "Drone Bay Mk.3",
+  "moduleType": "droneBay",
+  "functionClass": "major",
+  "slotType": "hangar",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 106.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "droneCapacity",
+      "modifier": 11.5,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "repairRatePerTurn",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 7.5,
+  "crewRequired": 15,
+  "hullAffinity": []
+}

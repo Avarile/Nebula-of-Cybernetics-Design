@@ -1,0 +1,138 @@
+{
+  "shipId": "ship_destroyer_whisperfang",
+  "name": "Whisperfang",
+  "tier": 1,
+  "shipClass": "destroyer",
+  "templateId": "ship_destroyer_t1",
+  "mass": {
+    "value": 831,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 345,
+    "currentHP": 345,
+    "armorRating": 10,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 204,
+    "currentHP": 204,
+    "rechargeRatePerTurn": 15,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "energy",
+    "damageTypeResistance": {
+      "kinetic": 0.31,
+      "energy": 0.08,
+      "explosive": 0.06
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_015"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_036"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_088"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_104"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_hp"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_shield_booster_1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 50,
+      "currentHP": 50,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 83,
+      "currentHP": 83,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 66,
+      "currentHP": 66,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 55,
+      "currentHP": 55,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 39,
+      "currentHP": 39,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 33,
+      "currentHP": 33,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 309,
+    "acceleration": 40,
+    "turnRate": 61,
+    "evasionRating": 0.23
+  },
+  "crew": {
+    "maxCrew": 25,
+    "currentCrew": 25,
+    "pilotSkill": 51,
+    "gunnerySkill": 50,
+    "engineeringSkill": 46
+  },
+  "power": {
+    "maxPower": 78,
+    "currentPower": 78,
+    "regenPerTurn": 14
+  },
+  "sensors": {
+    "detectionRange": 700,
+    "initiative": 14
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 420,
+    "fuel": 2200,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 30,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

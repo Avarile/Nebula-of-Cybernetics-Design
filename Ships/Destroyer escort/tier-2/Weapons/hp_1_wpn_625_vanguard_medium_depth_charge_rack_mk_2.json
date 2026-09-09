@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "fixed",
+  "catalogue": "Weapons/mine/medium/wpn_625_vanguard_medium_depth_charge_rack_mk_2.json",
+  "weaponId": "wpn_625",
+  "name": "Vanguard Medium Depth Charge Rack Mk.2",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 62.1,
+    "variance": 10.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 353,
+    "maximum": 477,
+    "falloffPenalty": 0.18
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 11.9,
+  "ammo": 15,
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger"
+  ]
+}

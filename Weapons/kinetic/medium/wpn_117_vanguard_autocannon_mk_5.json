@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_117",
+  "name": "Vanguard Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 61.0,
+    "variance": 6.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 758,
+    "maximum": 1326,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 16.5,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

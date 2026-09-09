@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_710",
+  "name": "Meridian Interceptor Missile Mk.3",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 11.4,
+    "variance": 0.8,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 546,
+    "maximum": 928,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 103
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.2,
+  "ammo": 28,
+  "criticalChance": 0.06,
+  "specialEffects": [
+    "anti_missile",
+    "anti_air",
+    "high_tracking"
+  ]
+}

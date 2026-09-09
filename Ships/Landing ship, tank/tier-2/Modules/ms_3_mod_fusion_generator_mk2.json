@@ -1,0 +1,30 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/utility/major/mod_fusion_generator_mk2.json",
+  "moduleId": "mod_fusion_generator_mk2",
+  "name": "Fusion Generator Mk.2",
+  "moduleType": "powerCore",
+  "functionClass": "major",
+  "slotType": "utility",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 127.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "power.maxPower",
+      "modifier": 30.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "power.regenPerTurn",
+      "modifier": 4.8,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 13,
+  "hullAffinity": []
+}

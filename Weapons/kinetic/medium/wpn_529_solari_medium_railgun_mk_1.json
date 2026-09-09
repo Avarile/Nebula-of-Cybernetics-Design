@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_529",
+  "name": "Solari Medium Railgun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 51.5,
+    "variance": 9.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1120,
+    "maximum": 2184,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 20
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 10.0,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

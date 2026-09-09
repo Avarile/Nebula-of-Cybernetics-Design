@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_394_vanguard_aa_autocannon_mk_2.json",
+  "weaponId": "wpn_394",
+  "name": "Vanguard AA Autocannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 11.8,
+    "variance": 1.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 284,
+    "maximum": 440,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.9,
+    "tracking": 72
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.5,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": [
+    "anti_air",
+    "point_defense"
+  ]
+}

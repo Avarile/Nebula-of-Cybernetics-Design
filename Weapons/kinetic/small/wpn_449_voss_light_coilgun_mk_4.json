@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_449",
+  "name": "Voss Light Coilgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 34.8,
+    "variance": 4.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 869,
+    "maximum": 1608,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 30
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 9.0,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

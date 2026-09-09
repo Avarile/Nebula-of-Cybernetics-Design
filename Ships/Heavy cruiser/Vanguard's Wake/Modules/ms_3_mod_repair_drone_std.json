@@ -1,0 +1,25 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/utility/support/mod_repair_drone_std.json",
+  "moduleId": "mod_repair_drone_std",
+  "name": "Autonomous Repair Drone Bay",
+  "moduleType": "repairDrone",
+  "functionClass": "support",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 35.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.regenPerTurn",
+      "modifier": 4.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 6.0,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

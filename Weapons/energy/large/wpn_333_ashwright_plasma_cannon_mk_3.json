@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_333",
+  "name": "Ashwright Plasma Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 200.0,
+    "variance": 30.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1602,
+    "maximum": 2563,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 48.4,
+  "ammo": "infinite",
+  "criticalChance": 0.22,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

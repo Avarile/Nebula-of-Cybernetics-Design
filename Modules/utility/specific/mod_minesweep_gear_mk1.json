@@ -1,0 +1,32 @@
+{
+  "moduleId": "mod_minesweep_gear_mk1",
+  "name": "Minesweep Gear Mk.1",
+  "moduleType": "minesweep",
+  "functionClass": "specific",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 45.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "minesweepRate",
+      "modifier": 30.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 10.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 5.0,
+  "crewRequired": 12,
+  "hullAffinity": [
+    "minelayer_sweeper",
+    "sloop_patrol_escort",
+    "corvette"
+  ]
+}

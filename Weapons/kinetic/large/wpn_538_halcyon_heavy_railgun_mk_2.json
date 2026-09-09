@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_538",
+  "name": "Halcyon Heavy Railgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 118.6,
+    "variance": 17.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2205,
+    "maximum": 4300,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 30.7,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

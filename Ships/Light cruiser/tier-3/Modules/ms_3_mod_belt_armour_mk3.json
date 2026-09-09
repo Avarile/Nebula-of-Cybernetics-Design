@@ -1,0 +1,35 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/defensive/support/mod_belt_armour_mk3.json",
+  "moduleId": "mod_belt_armour_mk3",
+  "name": "Belt Armour Mk.3",
+  "moduleType": "armorPlating",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 449.4,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.armorRating",
+      "modifier": 50.4,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "hull.maxHP",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "topSpeed",
+      "modifier": -4.1,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 0,
+  "hullAffinity": []
+}

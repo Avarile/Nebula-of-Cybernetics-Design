@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_118",
+  "name": "Obsidian Medium Coilgun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 78.4,
+    "variance": 14.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1096,
+    "maximum": 2028,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 18.7,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

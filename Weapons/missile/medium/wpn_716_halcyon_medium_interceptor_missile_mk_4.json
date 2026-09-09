@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_716",
+  "name": "Halcyon Medium Interceptor Missile Mk.4",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 25.9,
+    "variance": 3.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1019,
+    "maximum": 1732,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 124
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 14.5,
+  "ammo": 23,
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_missile",
+    "anti_air",
+    "high_tracking"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_3",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/medium/wpn_103_solari_autocannon_mk_4.json",
+  "weaponId": "wpn_103",
+  "name": "Solari Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 48.6,
+    "variance": 6.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 722,
+    "maximum": 1264,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 50
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 10.7,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

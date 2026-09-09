@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_151",
+  "name": "Voss Railgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 187.1,
+    "variance": 25.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3525,
+    "maximum": 6874,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 39.1,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

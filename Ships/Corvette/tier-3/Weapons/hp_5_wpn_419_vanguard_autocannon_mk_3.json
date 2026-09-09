@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_5",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_419_vanguard_autocannon_mk_3.json",
+  "weaponId": "wpn_419",
+  "name": "Vanguard Autocannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 21.7,
+    "variance": 3.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 387,
+    "maximum": 677,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 47
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.6,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

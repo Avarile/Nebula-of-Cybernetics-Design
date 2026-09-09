@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_281",
+  "name": "Draconis Heavy Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 241.6,
+    "variance": 30.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2106,
+    "maximum": 3896,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.75,
+    "tracking": 24
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 52.1,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_058",
+  "name": "Halcyon Seeker Missile Mk.5",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 30.5,
+    "variance": 3.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 820,
+    "maximum": 1558,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 102
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.4,
+  "ammo": 17,
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "can_be_intercepted",
+    "high_tracking",
+    "armor_piercing"
+  ]
+}

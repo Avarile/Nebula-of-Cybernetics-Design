@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_133",
+  "name": "Kestrel Gauss Cannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 112.1,
+    "variance": 18.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1739,
+    "maximum": 3304,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 35.2,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

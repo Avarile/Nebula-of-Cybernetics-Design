@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_783",
+  "name": "Meridian Torpedo Launcher Mk.5",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 133.4,
+    "variance": 6.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1313,
+    "maximum": 2429,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 22
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 21.7,
+  "ammo": 10,
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

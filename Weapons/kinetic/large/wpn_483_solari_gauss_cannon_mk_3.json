@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_483",
+  "name": "Solari Gauss Cannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 158.3,
+    "variance": 23.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1984,
+    "maximum": 3770,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 25.2,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

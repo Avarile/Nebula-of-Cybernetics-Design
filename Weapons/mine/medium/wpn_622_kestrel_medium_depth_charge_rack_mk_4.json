@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_622",
+  "name": "Kestrel Medium Depth Charge Rack Mk.4",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 57.1,
+    "variance": 7.7,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 358,
+    "maximum": 483,
+    "falloffPenalty": 0.18
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 2
+  },
+  "powerCost": 14.4,
+  "ammo": 21,
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_melt"
+  ]
+}

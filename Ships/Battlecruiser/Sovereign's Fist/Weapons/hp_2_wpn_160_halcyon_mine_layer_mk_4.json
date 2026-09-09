@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "turret",
+  "catalogue": "Weapons/mine/large/wpn_160_halcyon_mine_layer_mk_4.json",
+  "weaponId": "wpn_160",
+  "name": "Halcyon Mine Layer Mk.4",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 163.1,
+    "variance": 19.8,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1650,
+    "maximum": 3218,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 33.9,
+  "ammo": 11,
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

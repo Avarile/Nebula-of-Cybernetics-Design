@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_167",
+  "name": "Halcyon Proton Blaster Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 131.7,
+    "variance": 13.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1604,
+    "maximum": 2807,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 56
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 36.5,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

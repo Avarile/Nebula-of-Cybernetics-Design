@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/medium/wpn_533_voss_railgun_mk_1.json",
+  "weaponId": "wpn_533",
+  "name": "Voss Railgun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 60.1,
+    "variance": 10.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1624,
+    "maximum": 3167,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 15.7,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

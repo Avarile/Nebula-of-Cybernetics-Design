@@ -1,0 +1,32 @@
+{
+  "moduleId": "mod_troop_berthing_mk2",
+  "name": "Troop Berthing Mk.2",
+  "moduleType": "troopBerthing",
+  "functionClass": "specific",
+  "slotType": "cargo",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 63.6,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "troopCapacity",
+      "modifier": 54.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "topSpeed",
+      "modifier": -1.8,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 2.2,
+  "crewRequired": 7,
+  "hullAffinity": [
+    "attack_transport",
+    "landing_ship_tank",
+    "merchant_raider"
+  ]
+}

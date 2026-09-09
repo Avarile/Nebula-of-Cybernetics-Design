@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_10",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/capital/wpn_178_vanguard_plasma_cannon_mk_2.json",
+  "weaponId": "wpn_178",
+  "name": "Vanguard Plasma Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 365.0,
+    "variance": 60.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2594,
+    "maximum": 4150,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.7,
+    "tracking": 15
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 72.2,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

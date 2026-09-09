@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_ecm_suite_mk2",
+  "name": "ECM Suite Mk.2",
+  "moduleType": "ecm",
+  "functionClass": "support",
+  "slotType": "sensor",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 23.3,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "enemyHitChance",
+      "modifier": -9.6,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 11.2,
+  "crewRequired": 6,
+  "hullAffinity": []
+}

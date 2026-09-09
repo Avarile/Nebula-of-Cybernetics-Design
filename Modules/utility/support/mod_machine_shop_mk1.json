@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_machine_shop_mk1",
+  "name": "Machine Shop Mk.1",
+  "moduleType": "machineShop",
+  "functionClass": "support",
+  "slotType": "utility",
+  "size": "large",
+  "mark": 1,
+  "mass": {
+    "value": 90.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "repairRatePerTurn",
+      "modifier": 30.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "crew.engineeringSkill",
+      "modifier": 8.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 5.0,
+  "crewRequired": 20,
+  "hullAffinity": []
+}

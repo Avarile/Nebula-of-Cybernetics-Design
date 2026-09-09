@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_13",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/large/wpn_145_halcyon_heavy_ion_cannon_mk_3.json",
+  "weaponId": "wpn_145",
+  "name": "Halcyon Heavy Ion Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 123.7,
+    "variance": 16.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1819,
+    "maximum": 3365,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 32
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 37.6,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "shipId": "ship_landing_ship_tank_t3",
+  "name": "Landing Ship Tank Tier 3",
+  "tier": 3,
+  "shipClass": "landing_ship_tank",
+  "mass": {
+    "value": 4055.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 1461,
+    "currentHP": 1461,
+    "armorRating": 21,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 649,
+    "currentHP": 649,
+    "rechargeRatePerTurn": 62,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.34,
+      "energy": 0.14,
+      "explosive": 0.09
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_410"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_mk3"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_cargo_derrick_mk3"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "large",
+        "moduleEquipped": "mod_fusion_generator_mk3"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_landing_craft_davits_mk3"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 219,
+      "currentHP": 219,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 365,
+      "currentHP": 365,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 292,
+      "currentHP": 292,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 263,
+      "currentHP": 263,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 175,
+      "currentHP": 175,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 146,
+      "currentHP": 146,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 213,
+    "acceleration": 25,
+    "turnRate": 37,
+    "evasionRating": 0.11
+  },
+  "crew": {
+    "maxCrew": 105,
+    "currentCrew": 105,
+    "pilotSkill": 75,
+    "gunnerySkill": 76,
+    "engineeringSkill": 74
+  },
+  "power": {
+    "maxPower": 313,
+    "currentPower": 313,
+    "regenPerTurn": 47
+  },
+  "sensors": {
+    "detectionRange": 494,
+    "initiative": 9
+  },
+  "capacities": {
+    "cargo": 4056,
+    "ammo": 312,
+    "fuel": 4680,
+    "troops": 624,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "shipId": "ship_motor_torpedo_boat_t3",
+  "name": "Motor Torpedo Boat Tier 3",
+  "tier": 3,
+  "shipClass": "motor_torpedo_boat",
+  "mass": {
+    "value": 102.2,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 103,
+    "currentHP": 103,
+    "armorRating": 8,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 0,
+    "currentHP": 0,
+    "rechargeRatePerTurn": 0,
+    "rechargeDelayAfterHit": 0,
+    "shieldType": "none",
+    "damageTypeResistance": {
+      "kinetic": 0.0,
+      "energy": 0.0,
+      "explosive": 0.0
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_034"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_034"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_034"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_034"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "small",
+        "moduleEquipped": "mod_manoeuvring_thrusters_mk3"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "utility",
+        "size": "small",
+        "moduleEquipped": "mod_smoke_generator_mk3"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "sensor",
+        "size": "small",
+        "moduleEquipped": "mod_surface_radar_mk3"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 15,
+      "currentHP": 15,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 26,
+      "currentHP": 26,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 21,
+      "currentHP": 21,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 19,
+      "currentHP": 19,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 12,
+      "currentHP": 12,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 10,
+      "currentHP": 10,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 694,
+    "acceleration": 103,
+    "turnRate": 143,
+    "evasionRating": 0.46
+  },
+  "crew": {
+    "maxCrew": 16,
+    "currentCrew": 16,
+    "pilotSkill": 75,
+    "gunnerySkill": 76,
+    "engineeringSkill": 74
+  },
+  "power": {
+    "maxPower": 60,
+    "currentPower": 60,
+    "regenPerTurn": 9
+  },
+  "sensors": {
+    "detectionRange": 338,
+    "initiative": 15
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 62,
+    "fuel": 187,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

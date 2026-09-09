@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_413",
+  "name": "Kestrel Light Autocannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 13.8,
+    "variance": 2.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 339,
+    "maximum": 593,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 47
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.4,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": []
+}

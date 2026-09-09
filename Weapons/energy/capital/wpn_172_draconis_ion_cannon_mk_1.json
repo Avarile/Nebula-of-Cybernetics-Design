@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_172",
+  "name": "Draconis Ion Cannon Mk.1",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 296.4,
+    "variance": 61.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3003,
+    "maximum": 5556,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 72.0,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

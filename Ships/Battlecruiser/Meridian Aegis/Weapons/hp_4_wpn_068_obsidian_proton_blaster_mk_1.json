@@ -1,0 +1,31 @@
+{
+  "hardpointId": "hp_4",
+  "mountType": "fixed",
+  "catalogue": "Weapons/energy/medium/wpn_068_obsidian_proton_blaster_mk_1.json",
+  "weaponId": "wpn_068",
+  "name": "Obsidian Proton Blaster Mk.1",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 41.8,
+    "variance": 12.8,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 690,
+    "maximum": 1208,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 32
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 13.4,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": []
+}

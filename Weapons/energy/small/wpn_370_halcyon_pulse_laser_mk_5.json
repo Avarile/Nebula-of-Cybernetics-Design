@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_370",
+  "name": "Halcyon Pulse Laser Mk.5",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 22.2,
+    "variance": 2.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 465,
+    "maximum": 837,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 79
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 8.0,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_datalink_relay_mk1",
+  "name": "Datalink Relay Mk.1",
+  "moduleType": "datalink",
+  "functionClass": "support",
+  "slotType": "command",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 25.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "initiative",
+      "modifier": 4.0,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 15.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 5.0,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

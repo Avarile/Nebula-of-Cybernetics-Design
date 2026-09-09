@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_13",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/large/wpn_157_ceridan_proton_blaster_mk_4.json",
+  "weaponId": "wpn_157",
+  "name": "Ceridan Proton Blaster Mk.4",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 126.1,
+    "variance": 17.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1452,
+    "maximum": 2541,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 35.6,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

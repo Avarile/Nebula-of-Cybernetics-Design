@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_fire_control_director_mk2",
+  "name": "Fire Control Director Mk.2",
+  "moduleType": "fireControl",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 31.8,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 9.6,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "crew.gunnerySkill",
+      "modifier": 6.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 7.8,
+  "crewRequired": 9,
+  "hullAffinity": []
+}

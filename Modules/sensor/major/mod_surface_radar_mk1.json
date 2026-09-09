@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_surface_radar_mk1",
+  "name": "Surface Radar Mk.1",
+  "moduleType": "radar",
+  "functionClass": "major",
+  "slotType": "sensor",
+  "size": "small",
+  "mark": 1,
+  "mass": {
+    "value": 14.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "detectionRange",
+      "modifier": 18.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 3.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 5.0,
+  "crewRequired": 3,
+  "hullAffinity": []
+}

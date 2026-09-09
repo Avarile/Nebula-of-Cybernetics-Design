@@ -1,0 +1,149 @@
+{
+  "shipId": "ship_submarine_chaser_t3",
+  "name": "Submarine Chaser Tier 3",
+  "tier": 3,
+  "shipClass": "submarine_chaser",
+  "mass": {
+    "value": 396.8,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 274,
+    "currentHP": 274,
+    "armorRating": 11,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 142,
+    "currentHP": 142,
+    "rechargeRatePerTurn": 14,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.34,
+      "energy": 0.14,
+      "explosive": 0.09
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_616"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_616"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_616"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_616"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "small",
+        "moduleEquipped": "mod_manoeuvring_thrusters_mk3"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "small",
+        "moduleEquipped": "mod_surface_radar_mk3"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "small",
+        "moduleEquipped": "mod_damage_control_party_mk3"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "defensive",
+        "size": "small",
+        "moduleEquipped": "mod_pd_coordinator_mk3"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 41,
+      "currentHP": 41,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 68,
+      "currentHP": 68,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 55,
+      "currentHP": 55,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 49,
+      "currentHP": 49,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 33,
+      "currentHP": 33,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 27,
+      "currentHP": 27,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 538,
+    "acceleration": 80,
+    "turnRate": 116,
+    "evasionRating": 0.4
+  },
+  "crew": {
+    "maxCrew": 45,
+    "currentCrew": 45,
+    "pilotSkill": 75,
+    "gunnerySkill": 76,
+    "engineeringSkill": 74
+  },
+  "power": {
+    "maxPower": 110,
+    "currentPower": 110,
+    "regenPerTurn": 16
+  },
+  "sensors": {
+    "detectionRange": 546,
+    "initiative": 14
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 140,
+    "fuel": 406,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

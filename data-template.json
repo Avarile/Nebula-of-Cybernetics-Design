@@ -1,0 +1,413 @@
+{
+  "_meta": {
+    "title": "Spaceship Combat System - Data Design",
+    "version": "1.0",
+    "notes": "Schemas define structure/types. 'example*' objects show real instances following the schema."
+  },
+
+  "shipSchema": {
+    "shipId": "string",
+    "name": "string",
+    "shipClass": "enum: scout | frigate | cruiser | battleship | carrier | freighter",
+    "mass": {
+      "value": "number",
+      "unit": "tons",
+      "note": "Affects acceleration, turn rate, and weapon slot capacity limits"
+    },
+    "hull": {
+      "maxHP": "number",
+      "currentHP": "number",
+      "armorRating": "number, flat damage reduction applied after shields are down",
+      "armorType": "enum: light | medium | heavy | reactive"
+    },
+    "shields": {
+      "maxHP": "number",
+      "currentHP": "number",
+      "rechargeRatePerTurn": "number",
+      "rechargeDelayAfterHit": "number, turns before recharge resumes",
+      "shieldType": "enum: kinetic | energy | hybrid | none",
+      "damageTypeResistance": {
+        "kinetic": "number 0-1, percent reduction",
+        "energy": "number 0-1",
+        "explosive": "number 0-1"
+      }
+    },
+    "hardpoints": {
+      "description": "Weapon mounting slots. Count and size scale with shipClass/mass.",
+      "list": [
+        {
+          "hardpointId": "string",
+          "size": "enum: small | medium | large | capital",
+          "mountType": "enum: fixed | turret | missile_bay",
+          "weaponEquipped": "weaponId or null"
+        }
+      ]
+    },
+    "moduleSlots": {
+      "description": "Non-weapon systems: engines, shield boosters, ECM, repair drones, cargo, etc.",
+      "list": [
+        {
+          "slotId": "string",
+          "slotType": "enum: engine | utility | defensive | sensor | cargo",
+          "moduleEquipped": "moduleId or null"
+        }
+      ]
+    },
+    "componentHitpoints": {
+      "description": "Subsystems that can be targeted/critically hit independently of overall hull HP.",
+      "bridge": {
+        "maxHP": "number",
+        "currentHP": "number",
+        "criticalEffect": "disables targeting computer, -50% accuracy"
+      },
+      "engines": {
+        "maxHP": "number",
+        "currentHP": "number",
+        "criticalEffect": "-70% speed and turn rate"
+      },
+      "weaponSystems": {
+        "maxHP": "number",
+        "currentHP": "number",
+        "criticalEffect": "random hardpoint disabled"
+      },
+      "shieldGenerator": {
+        "maxHP": "number",
+        "currentHP": "number",
+        "criticalEffect": "shield recharge disabled"
+      },
+      "sensorArray": {
+        "maxHP": "number",
+        "currentHP": "number",
+        "criticalEffect": "-40% hit chance, reduced detection range"
+      },
+      "lifeSupport": {
+        "maxHP": "number",
+        "currentHP": "number",
+        "criticalEffect": "crew casualties over time"
+      }
+    },
+    "mobility": {
+      "topSpeed": "number, units/sec",
+      "acceleration": "number, units/sec^2",
+      "turnRate": "number, degrees/sec",
+      "evasionRating": "number 0-1, base chance to avoid being hit, scales inversely with mass"
+    },
+    "crew": {
+      "maxCrew": "number",
+      "currentCrew": "number",
+      "pilotSkill": "number 0-100, affects accuracy and evasion",
+      "gunnerySkill": "number 0-100, affects weapon accuracy and fire rate",
+      "engineeringSkill": "number 0-100, affects repair speed and power management"
+    },
+    "power": {
+      "maxPower": "number",
+      "currentPower": "number",
+      "regenPerTurn": "number",
+      "note": "Weapons/shields/engines draw power; allocation can be shifted between them each turn"
+    }
+  },
+
+  "weaponSchema": {
+    "weaponId": "string",
+    "name": "string",
+    "weaponClass": "enum: kinetic | energy | missile | mine | melee",
+    "size": "enum: small | medium | large | capital",
+    "damage": {
+      "base": "number",
+      "variance": "number, +/- random spread applied per shot",
+      "damageType": "enum: kinetic | energy | explosive"
+    },
+    "range": {
+      "optimal": "number",
+      "maximum": "number, beyond this 0 hit chance",
+      "falloffPenalty": "number 0-1 per unit beyond optimal"
+    },
+    "accuracy": {
+      "baseHitChance": "number 0-1",
+      "tracking": "number, ability to hit fast/small targets"
+    },
+    "fireRate": {
+      "shotsPerTurn": "number",
+      "cooldownTurns": "number after volley before it can fire again"
+    },
+    "powerCost": "number, drawn from ship power pool per shot",
+    "ammo": "number or 'infinite', for missiles/kinetics with physical rounds",
+    "criticalChance": "number 0-1, chance to roll on component-critical table",
+    "specialEffects": [
+      "array of strings, e.g. 'ignores_shields', 'emp_disable', 'armor_piercing'"
+    ]
+  },
+
+  "moduleSchema": {
+    "moduleId": "string",
+    "name": "string",
+    "moduleType": "enum: engine | shieldBooster | ecm | ecCounterElectronics | repairDrone | cargoExpander | armorPlating | powerCore",
+    "effect": {
+      "stat": "string, which ship stat this modifies",
+      "modifier": "number, flat or percentage per moduleSchema.modifierType",
+      "modifierType": "enum: flat | percent"
+    },
+    "powerCost": "number, passive power draw per turn"
+  },
+
+  "exampleWeapons": [
+    {
+      "weaponId": "wpn_railgun_mk2",
+      "name": "Mk.II Railgun",
+      "weaponClass": "kinetic",
+      "size": "medium",
+      "damage": { "base": 45, "variance": 8, "damageType": "kinetic" },
+      "range": { "optimal": 800, "maximum": 1500, "falloffPenalty": 0.05 },
+      "accuracy": { "baseHitChance": 0.75, "tracking": 20 },
+      "fireRate": { "shotsPerTurn": 1, "cooldownTurns": 0 },
+      "powerCost": 12,
+      "ammo": "infinite",
+      "criticalChance": 0.1,
+      "specialEffects": ["armor_piercing"]
+    },
+    {
+      "weaponId": "wpn_pulse_laser",
+      "name": "Pulse Laser Array",
+      "weaponClass": "energy",
+      "size": "small",
+      "damage": { "base": 18, "variance": 3, "damageType": "energy" },
+      "range": { "optimal": 400, "maximum": 700, "falloffPenalty": 0.08 },
+      "accuracy": { "baseHitChance": 0.9, "tracking": 45 },
+      "fireRate": { "shotsPerTurn": 3, "cooldownTurns": 0 },
+      "powerCost": 6,
+      "ammo": "infinite",
+      "criticalChance": 0.05,
+      "specialEffects": []
+    },
+    {
+      "weaponId": "wpn_torpedo_launcher",
+      "name": "Heavy Torpedo Launcher",
+      "weaponClass": "missile",
+      "size": "large",
+      "damage": { "base": 120, "variance": 15, "damageType": "explosive" },
+      "range": { "optimal": 2000, "maximum": 3500, "falloffPenalty": 0.02 },
+      "accuracy": { "baseHitChance": 0.6, "tracking": 10 },
+      "fireRate": { "shotsPerTurn": 1, "cooldownTurns": 3 },
+      "powerCost": 25,
+      "ammo": 12,
+      "criticalChance": 0.2,
+      "specialEffects": ["ignores_shields_partial", "can_be_intercepted"]
+    }
+  ],
+
+  "exampleShip": {
+    "shipId": "ship_frigate_venator",
+    "name": "Venator",
+    "shipClass": "frigate",
+    "mass": { "value": 850, "unit": "tons" },
+    "hull": {
+      "maxHP": 400,
+      "currentHP": 400,
+      "armorRating": 15,
+      "armorType": "medium"
+    },
+    "shields": {
+      "maxHP": 250,
+      "currentHP": 250,
+      "rechargeRatePerTurn": 20,
+      "rechargeDelayAfterHit": 2,
+      "shieldType": "kinetic",
+      "damageTypeResistance": {
+        "kinetic": 0.3,
+        "energy": 0.1,
+        "explosive": 0.0
+      }
+    },
+    "hardpoints": {
+      "list": [
+        {
+          "hardpointId": "hp_1",
+          "size": "medium",
+          "mountType": "turret",
+          "weaponEquipped": "wpn_railgun_mk2"
+        },
+        {
+          "hardpointId": "hp_2",
+          "size": "small",
+          "mountType": "fixed",
+          "weaponEquipped": "wpn_pulse_laser"
+        },
+        {
+          "hardpointId": "hp_3",
+          "size": "large",
+          "mountType": "missile_bay",
+          "weaponEquipped": "wpn_torpedo_launcher"
+        }
+      ]
+    },
+    "moduleSlots": {
+      "list": [
+        {
+          "slotId": "ms_1",
+          "slotType": "engine",
+          "moduleEquipped": "mod_ion_drive_std"
+        },
+        {
+          "slotId": "ms_2",
+          "slotType": "defensive",
+          "moduleEquipped": "mod_shield_booster_1"
+        }
+      ]
+    },
+    "componentHitpoints": {
+      "bridge": {
+        "maxHP": 60,
+        "currentHP": 60,
+        "criticalEffect": "disables targeting computer, -50% accuracy"
+      },
+      "engines": {
+        "maxHP": 100,
+        "currentHP": 100,
+        "criticalEffect": "-70% speed and turn rate"
+      },
+      "weaponSystems": {
+        "maxHP": 80,
+        "currentHP": 80,
+        "criticalEffect": "random hardpoint disabled"
+      },
+      "shieldGenerator": {
+        "maxHP": 70,
+        "currentHP": 70,
+        "criticalEffect": "shield recharge disabled"
+      },
+      "sensorArray": {
+        "maxHP": 50,
+        "currentHP": 50,
+        "criticalEffect": "-40% hit chance, reduced detection range"
+      },
+      "lifeSupport": {
+        "maxHP": 40,
+        "currentHP": 40,
+        "criticalEffect": "crew casualties over time"
+      }
+    },
+    "mobility": {
+      "topSpeed": 320,
+      "acceleration": 45,
+      "turnRate": 60,
+      "evasionRating": 0.22
+    },
+    "crew": {
+      "maxCrew": 24,
+      "currentCrew": 24,
+      "pilotSkill": 65,
+      "gunnerySkill": 60,
+      "engineeringSkill": 55
+    },
+    "power": { "maxPower": 100, "currentPower": 100, "regenPerTurn": 15 }
+  },
+
+  "combatResolution": {
+    "turnStructure": [
+      "1. Initiative: sort all ships by (pilotSkill + sensorArray_bonus + random d20) descending.",
+      "2. Power allocation phase: each ship (or AI) assigns currentPower budget across weapons/shields/engines for this turn.",
+      "3. Movement phase: ships resolve movement/positioning based on mobility stats; determines range bands to targets.",
+      "4. Targeting phase: each ship selects target ship and optionally a target component (bridge, engines, etc).",
+      "5. Fire resolution phase: process weapon fire in initiative order using hitChanceFormula and damageFormula.",
+      "6. Damage application: apply to shields first (if shieldType matches/absorbs), then hull, then component HP if targeted.",
+      "7. Critical check: if a hit's roll qualifies, roll on componentCriticalTable.",
+      "8. End of turn: shields recharge (if not in rechargeDelay window), repair modules apply, check destruction/retreat conditions.",
+      "9. Repeat until victory condition met."
+    ],
+
+    "hitChanceFormula": {
+      "formula": "finalHitChance = clamp(weapon.baseHitChance + (attacker.gunnerySkill/200) - (defender.evasionRating) - rangeFalloffPenalty - sensorDebuff, 0.05, 0.95)",
+      "rangeFalloffPenalty": "max(0, (actualRange - weapon.range.optimal) * weapon.range.falloffPenalty / 100)",
+      "note": "If actualRange > weapon.range.maximum, hitChance = 0 automatically."
+    },
+
+    "damageFormula": {
+      "rawDamage": "weapon.damage.base + random(-variance, +variance)",
+      "vsShields": "shieldDamage = rawDamage * (1 - shields.damageTypeResistance[weapon.damageType])",
+      "vsArmor": "hullDamage = max(1, rawDamage - hull.armorRating), applied only after shields.currentHP reaches 0",
+      "overkillCarryover": "any damage exceeding shields.currentHP in a single hit carries over to hull in the same hit, minus armorRating",
+      "specialEffectOverrides": {
+        "ignores_shields_partial": "50% of rawDamage bypasses shields directly to hull",
+        "armor_piercing": "armorRating reduction is halved when calculating vsArmor"
+      }
+    },
+
+    "componentTargetingRules": {
+      "description": "Attacker may choose to target a specific component instead of general hull.",
+      "accuracyPenalty": -0.2,
+      "note": "Component HP depletion triggers criticalEffect immediately; component damage does NOT subtract from hull HP pool separately, it is a parallel tracked pool representing subsystem integrity."
+    },
+
+    "componentCriticalTable": {
+      "trigger": "weapon.criticalChance check on any successful hit, roll d100",
+      "outcomes": [
+        {
+          "roll": "1-30",
+          "result": "minor system damage, -10% to a random stat for 2 turns"
+        },
+        {
+          "roll": "31-60",
+          "result": "targeted component takes 25% of its maxHP as bonus damage"
+        },
+        {
+          "roll": "61-85",
+          "result": "targeted component (or random if none chosen) disabled for 1 turn"
+        },
+        {
+          "roll": "86-100",
+          "result": "catastrophic critical: component destroyed, permanent effect until repaired in dock"
+        }
+      ]
+    },
+
+    "shieldRechargeRules": {
+      "condition": "shields.currentHP < shields.maxHP AND turnsSinceLastHit >= shields.rechargeDelayAfterHit",
+      "amountPerTurn": "shields.rechargeRatePerTurn, modified by any equipped shieldBooster module"
+    },
+
+    "destructionConditions": [
+      "hull.currentHP <= 0 -> ship destroyed, explosion may damage nearby ships",
+      "lifeSupport component destroyed AND currentCrew reaches 0 -> ship destroyed (crew loss)",
+      "optional surrender/retreat: hull.currentHP < 15% of maxHP AND no weapons operational -> AI may attempt retreat"
+    ],
+
+    "victoryConditions": [
+      "all enemy ships destroyed or retreated",
+      "objective-based: e.g. escort survives N turns, or capital ship reaches waypoint"
+    ]
+  },
+
+  "exampleCombatTurnLog": {
+    "turn": 3,
+    "events": [
+      {
+        "attacker": "ship_frigate_venator",
+        "target": "ship_enemy_corvette_01",
+        "weaponUsed": "wpn_railgun_mk2",
+        "targetedComponent": null,
+        "range": 650,
+        "hitChanceCalculated": 0.71,
+        "rollResult": 0.34,
+        "outcome": "hit",
+        "rawDamage": 48,
+        "damageToShields": 33.6,
+        "damageToHull": 0,
+        "criticalRolled": false
+      },
+      {
+        "attacker": "ship_enemy_corvette_01",
+        "target": "ship_frigate_venator",
+        "weaponUsed": "wpn_pulse_laser",
+        "targetedComponent": "engines",
+        "range": 650,
+        "hitChanceCalculated": 0.55,
+        "rollResult": 0.81,
+        "outcome": "miss",
+        "rawDamage": 0,
+        "damageToShields": 0,
+        "damageToHull": 0,
+        "criticalRolled": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_501",
+  "name": "Draconis Mass Driver Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 173.3,
+    "variance": 26.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1264,
+    "maximum": 2528,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.59,
+    "tracking": 9
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 26.2,
+  "ammo": "infinite",
+  "criticalChance": 0.21,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

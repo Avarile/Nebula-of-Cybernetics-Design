@@ -1,0 +1,25 @@
+{
+  "slotId": "ms_5",
+  "catalogue": "Modules/cargo/support/mod_cargo_expander.json",
+  "moduleId": "mod_cargo_expander",
+  "name": "Cargo Bay Expander",
+  "moduleType": "cargoExpander",
+  "functionClass": "support",
+  "slotType": "cargo",
+  "size": "large",
+  "mark": 1,
+  "mass": {
+    "value": 40.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "cargoCapacity",
+      "modifier": 30.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

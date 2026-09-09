@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_779",
+  "name": "Draconis Torpedo Launcher Mk.5",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 186.5,
+    "variance": 23.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1378,
+    "maximum": 2549,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.65,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 26.0,
+  "ammo": 8,
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

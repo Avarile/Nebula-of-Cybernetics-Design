@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "fixed",
+  "catalogue": "Weapons/missile/small/wpn_009_kestrel_missile_rack_mk_1.json",
+  "weaponId": "wpn_009",
+  "name": "Kestrel Missile Rack Mk.1",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 10.8,
+    "variance": 1.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 538,
+    "maximum": 995,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 42
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.0,
+  "ammo": 24,
+  "criticalChance": 0.06,
+  "specialEffects": [
+    "can_be_intercepted"
+  ]
+}

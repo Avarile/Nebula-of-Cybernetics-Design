@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_786",
+  "name": "Vanguard Medium Torpedo Launcher Mk.3",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 112.4,
+    "variance": 16.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1191,
+    "maximum": 2203,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 17
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 18.8,
+  "ammo": 9,
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

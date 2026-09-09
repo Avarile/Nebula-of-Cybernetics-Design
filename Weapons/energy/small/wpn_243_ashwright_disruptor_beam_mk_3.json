@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_243",
+  "name": "Ashwright Disruptor Beam Mk.3",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 22.3,
+    "variance": 3.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 455,
+    "maximum": 774,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 9.2,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

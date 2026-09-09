@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_111",
+  "name": "Obsidian Disruptor Beam Mk.4",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 54.3,
+    "variance": 12.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 817,
+    "maximum": 1389,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 41
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 18.2,
+  "ammo": "infinite",
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

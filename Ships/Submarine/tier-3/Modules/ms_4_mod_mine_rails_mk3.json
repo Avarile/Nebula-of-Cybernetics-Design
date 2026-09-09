@@ -1,0 +1,30 @@
+{
+  "slotId": "ms_4",
+  "catalogue": "Modules/cargo/specific/mod_mine_rails_mk3.json",
+  "moduleId": "mod_mine_rails_mk3",
+  "name": "Mine Rails Mk.3",
+  "moduleType": "mineRails",
+  "functionClass": "specific",
+  "slotType": "cargo",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 73.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "mineCapacity",
+      "modifier": 57.6,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 1.3,
+  "crewRequired": 10,
+  "hullAffinity": [
+    "minelayer_sweeper",
+    "destroyer",
+    "submarine",
+    "torpedo_boat_fleet"
+  ]
+}

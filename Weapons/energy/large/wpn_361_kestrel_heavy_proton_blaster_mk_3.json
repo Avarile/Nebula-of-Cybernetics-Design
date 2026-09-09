@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_361",
+  "name": "Kestrel Heavy Proton Blaster Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 87.3,
+    "variance": 13.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1339,
+    "maximum": 2343,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 33.1,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

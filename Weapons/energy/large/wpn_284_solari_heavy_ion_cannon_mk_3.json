@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_284",
+  "name": "Solari Heavy Ion Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 131.0,
+    "variance": 19.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1819,
+    "maximum": 3365,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 25
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 26.3,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

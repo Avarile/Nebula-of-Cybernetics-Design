@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_search_radar_mk2",
+  "name": "Search Radar Mk.2",
+  "moduleType": "radar",
+  "functionClass": "major",
+  "slotType": "sensor",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 29.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "detectionRange",
+      "modifier": 36.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 9.0,
+  "crewRequired": 6,
+  "hullAffinity": []
+}

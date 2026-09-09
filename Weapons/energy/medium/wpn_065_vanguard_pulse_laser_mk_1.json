@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_065",
+  "name": "Vanguard Pulse Laser Mk.1",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 35.2,
+    "variance": 6.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 680,
+    "maximum": 1224,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 48
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 13.0,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": []
+}

@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_shield_capacitor_mk3",
+  "name": "Shield Capacitor Mk.3",
+  "moduleType": "shieldBooster",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 38.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "shields.maxHP",
+      "modifier": 21.6,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "rechargeRatePerTurn",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 15.1,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

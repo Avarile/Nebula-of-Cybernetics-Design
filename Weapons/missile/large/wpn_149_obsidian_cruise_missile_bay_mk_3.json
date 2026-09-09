@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_149",
+  "name": "Obsidian Cruise Missile Bay Mk.3",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 265.1,
+    "variance": 67.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 3403,
+    "maximum": 7146,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.65,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 42.7,
+  "ammo": 5,
+  "criticalChance": 0.31,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

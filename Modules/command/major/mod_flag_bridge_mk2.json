@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_flag_bridge_mk2",
+  "name": "Flag Bridge Mk.2",
+  "moduleType": "flagBridge",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "capital",
+  "mark": 2,
+  "mass": {
+    "value": 148.4,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "initiative",
+      "modifier": 9.6,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "crew.gunnerySkill",
+      "modifier": 7.2,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 9.0,
+  "crewRequired": 33,
+  "hullAffinity": []
+}

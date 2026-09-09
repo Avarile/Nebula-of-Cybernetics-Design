@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_450",
+  "name": "Voss Coilgun Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 39.4,
+    "variance": 4.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 912,
+    "maximum": 1687,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 32
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 9.7,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

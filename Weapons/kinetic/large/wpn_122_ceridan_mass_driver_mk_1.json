@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_122",
+  "name": "Ceridan Mass Driver Mk.1",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 183.5,
+    "variance": 33.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1852,
+    "maximum": 3704,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.62,
+    "tracking": 9
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 36.9,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

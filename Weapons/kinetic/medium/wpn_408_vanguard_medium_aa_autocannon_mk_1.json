@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_408",
+  "name": "Vanguard Medium AA Autocannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 22.9,
+    "variance": 4.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 480,
+    "maximum": 744,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 68
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 11.0,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": [
+    "anti_air",
+    "point_defense"
+  ]
+}

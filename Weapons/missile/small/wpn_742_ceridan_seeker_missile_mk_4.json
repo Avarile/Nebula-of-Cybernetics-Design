@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_742",
+  "name": "Ceridan Seeker Missile Mk.4",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 29.2,
+    "variance": 3.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 742,
+    "maximum": 1410,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 74
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 0
+  },
+  "powerCost": 8.2,
+  "ammo": 26,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "can_be_intercepted",
+    "high_tracking",
+    "armor_piercing"
+  ]
+}

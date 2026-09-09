@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_723",
+  "name": "Ceridan Missile Rack Mk.1",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 13.8,
+    "variance": 2.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 556,
+    "maximum": 1029,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.0,
+  "ammo": 31,
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "can_be_intercepted"
+  ]
+}

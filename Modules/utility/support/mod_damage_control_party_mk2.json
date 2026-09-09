@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_damage_control_party_mk2",
+  "name": "Damage Control Party Mk.2",
+  "moduleType": "damageControl",
+  "functionClass": "support",
+  "slotType": "utility",
+  "size": "small",
+  "mark": 2,
+  "mass": {
+    "value": 8.5,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "repairRatePerTurn",
+      "modifier": 24.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "crew.engineeringSkill",
+      "modifier": 6.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 1.1,
+  "crewRequired": 15,
+  "hullAffinity": []
+}

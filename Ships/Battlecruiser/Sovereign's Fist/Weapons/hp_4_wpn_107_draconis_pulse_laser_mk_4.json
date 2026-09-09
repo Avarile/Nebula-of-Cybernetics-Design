@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_4",
+  "mountType": "fixed",
+  "catalogue": "Weapons/energy/medium/wpn_107_draconis_pulse_laser_mk_4.json",
+  "weaponId": "wpn_107",
+  "name": "Draconis Pulse Laser Mk.4",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 66.0,
+    "variance": 10.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 827,
+    "maximum": 1489,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 49
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 19.4,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_165",
+  "name": "Obsidian Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 176.6,
+    "variance": 33.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1965,
+    "maximum": 3635,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 42.5,
+  "ammo": "infinite",
+  "criticalChance": 0.23,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

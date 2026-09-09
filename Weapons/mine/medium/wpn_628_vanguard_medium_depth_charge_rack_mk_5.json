@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_628",
+  "name": "Vanguard Medium Depth Charge Rack Mk.5",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 89.7,
+    "variance": 9.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 408,
+    "maximum": 551,
+    "falloffPenalty": 0.18
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 14.8,
+  "ammo": 18,
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_melt"
+  ]
+}

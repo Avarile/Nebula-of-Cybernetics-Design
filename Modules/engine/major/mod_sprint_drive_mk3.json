@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_sprint_drive_mk3",
+  "name": "Sprint Drive Mk.3",
+  "moduleType": "engine",
+  "functionClass": "major",
+  "slotType": "engine",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 42.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "acceleration",
+      "modifier": 25.9,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "topSpeed",
+      "modifier": 7.2,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 11.3,
+  "crewRequired": 6,
+  "hullAffinity": []
+}

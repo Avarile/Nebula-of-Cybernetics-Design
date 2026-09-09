@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/medium/wpn_067_ashwright_ion_cannon_mk_1.json",
+  "weaponId": "wpn_067",
+  "name": "Ashwright Ion Cannon Mk.1",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 51.2,
+    "variance": 9.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 898,
+    "maximum": 1661,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 22
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 18.7,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

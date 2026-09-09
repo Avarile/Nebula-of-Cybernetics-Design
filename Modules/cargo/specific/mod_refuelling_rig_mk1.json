@@ -1,0 +1,27 @@
+{
+  "moduleId": "mod_refuelling_rig_mk1",
+  "name": "Refuelling Rig Mk.1",
+  "moduleType": "refuelRig",
+  "functionClass": "specific",
+  "slotType": "cargo",
+  "size": "large",
+  "mark": 1,
+  "mass": {
+    "value": 95.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "fuelTransferRate",
+      "modifier": 40.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 4.0,
+  "crewRequired": 14,
+  "hullAffinity": [
+    "fleet_oiler",
+    "repair_ship_tender",
+    "seaplane_tender"
+  ]
+}

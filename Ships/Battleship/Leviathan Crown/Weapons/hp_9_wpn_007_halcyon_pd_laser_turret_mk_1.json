@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_9",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/small/wpn_007_halcyon_pd_laser_turret_mk_1.json",
+  "weaponId": "wpn_007",
+  "name": "Halcyon PD Laser Turret Mk.1",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 6.5,
+    "variance": 1.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 261,
+    "maximum": 392,
+    "falloffPenalty": 0.14
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 101
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.1,
+  "ammo": "infinite",
+  "criticalChance": 0.04,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile"
+  ]
+}

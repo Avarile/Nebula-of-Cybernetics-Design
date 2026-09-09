@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_7",
+  "mountType": "fixed",
+  "catalogue": "Weapons/mine/medium/wpn_074_ashwright_proximity_mine_dispenser_mk_1.json",
+  "weaponId": "wpn_074",
+  "name": "Ashwright Proximity Mine Dispenser Mk.1",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 40.5,
+    "variance": 7.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 588,
+    "maximum": 1000,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.5,
+  "ammo": 16,
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "proximity_trigger"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_497",
+  "name": "Ashwright Mass Driver Mk.5",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 146.1,
+    "variance": 16.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1289,
+    "maximum": 2578,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.68,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 27.0,
+  "ammo": "infinite",
+  "criticalChance": 0.26,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

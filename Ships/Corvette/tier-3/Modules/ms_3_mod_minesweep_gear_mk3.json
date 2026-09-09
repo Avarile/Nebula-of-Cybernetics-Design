@@ -1,0 +1,34 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/utility/specific/mod_minesweep_gear_mk3.json",
+  "moduleId": "mod_minesweep_gear_mk3",
+  "name": "Minesweep Gear Mk.3",
+  "moduleType": "minesweep",
+  "functionClass": "specific",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 50.6,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "minesweepRate",
+      "modifier": 43.2,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 6.3,
+  "crewRequired": 15,
+  "hullAffinity": [
+    "minelayer_sweeper",
+    "sloop_patrol_escort",
+    "corvette"
+  ]
+}

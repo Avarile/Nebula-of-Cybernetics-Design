@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_465",
+  "name": "Vanguard Flak Cannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 22.8,
+    "variance": 2.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 383,
+    "maximum": 632,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 73
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.2,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

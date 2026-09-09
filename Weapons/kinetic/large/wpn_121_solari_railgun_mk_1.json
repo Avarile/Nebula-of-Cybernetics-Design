@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_121",
+  "name": "Solari Railgun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 111.2,
+    "variance": 20.0,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2100,
+    "maximum": 4095,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 20
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 20.0,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

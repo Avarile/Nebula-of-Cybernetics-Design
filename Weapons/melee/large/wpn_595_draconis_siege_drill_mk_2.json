@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_595",
+  "name": "Draconis Siege Drill Mk.2",
+  "weaponClass": "melee",
+  "size": "large",
+  "damage": {
+    "base": 390.8,
+    "variance": 74.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 99,
+    "maximum": 114,
+    "falloffPenalty": 0.55
+  },
+  "accuracy": {
+    "baseHitChance": 0.52,
+    "tracking": 5
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 36.9,
+  "ammo": "infinite",
+  "criticalChance": 0.23,
+  "specialEffects": [
+    "armor_melt",
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_663",
+  "name": "Obsidian Medium Proximity Mine Dispenser Mk.4",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 57.3,
+    "variance": 13.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 653,
+    "maximum": 1110,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 29
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 14.2,
+  "ammo": 19,
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

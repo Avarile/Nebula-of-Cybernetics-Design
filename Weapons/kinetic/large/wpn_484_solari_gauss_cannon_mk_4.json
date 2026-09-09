@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_484",
+  "name": "Solari Gauss Cannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 178.9,
+    "variance": 24.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2084,
+    "maximum": 3960,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 27.1,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/medium/wpn_095_halcyon_ion_cannon_mk_3.json",
+  "weaponId": "wpn_095",
+  "name": "Halcyon Ion Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 57.3,
+    "variance": 7.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 970,
+    "maximum": 1794,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 32
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 18.8,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_252",
+  "name": "Ashwright Medium Disruptor Beam Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 43.4,
+    "variance": 7.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 771,
+    "maximum": 1311,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 18.5,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

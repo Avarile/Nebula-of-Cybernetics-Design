@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_314",
+  "name": "Draconis Particle Lance Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 362.8,
+    "variance": 68.8,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2398,
+    "maximum": 3597,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.54,
+    "tracking": 5
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 53.7,
+  "ammo": "infinite",
+  "criticalChance": 0.25,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing"
+  ]
+}

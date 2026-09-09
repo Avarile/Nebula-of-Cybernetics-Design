@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_fire_suppression_mk3",
+  "name": "Fire Suppression Mk.3",
+  "moduleType": "fireSuppression",
+  "functionClass": "support",
+  "slotType": "utility",
+  "size": "small",
+  "mark": 3,
+  "mass": {
+    "value": 15.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "crewRecoveryRate",
+      "modifier": 21.6,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "hull.regenPerTurn",
+      "modifier": 2.9,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 2.5,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_434",
+  "name": "Obsidian Chain Gun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 8.5,
+    "variance": 2.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 273,
+    "maximum": 437,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 52
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 0
+  },
+  "powerCost": 4.7,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

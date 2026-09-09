@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_478",
+  "name": "Draconis Gauss Cannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 228.7,
+    "variance": 39.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2084,
+    "maximum": 3960,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.66,
+    "tracking": 15
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 43.3,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

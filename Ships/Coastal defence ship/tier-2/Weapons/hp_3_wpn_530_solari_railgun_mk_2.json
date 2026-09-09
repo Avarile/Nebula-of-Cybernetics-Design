@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_3",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/medium/wpn_530_solari_railgun_mk_2.json",
+  "weaponId": "wpn_530",
+  "name": "Solari Railgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 58.2,
+    "variance": 9.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1176,
+    "maximum": 2293,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 10.8,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

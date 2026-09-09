@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_339",
+  "name": "Draconis Plasma Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 342.3,
+    "variance": 43.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1819,
+    "maximum": 2910,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 15
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 58.3,
+  "ammo": "infinite",
+  "criticalChance": 0.21,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

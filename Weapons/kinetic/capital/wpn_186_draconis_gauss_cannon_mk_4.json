@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_186",
+  "name": "Draconis Gauss Cannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "capital",
+  "damage": {
+    "base": 516.8,
+    "variance": 80.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 3792,
+    "maximum": 7205,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.68,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 85.9,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

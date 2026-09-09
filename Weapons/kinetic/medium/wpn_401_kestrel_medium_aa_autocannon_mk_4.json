@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_401",
+  "name": "Kestrel Medium AA Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 23.8,
+    "variance": 3.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 511,
+    "maximum": 792,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 85
+  },
+  "fireRate": {
+    "shotsPerTurn": 9,
+    "cooldownTurns": 0
+  },
+  "powerCost": 14.4,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile"
+  ]
+}

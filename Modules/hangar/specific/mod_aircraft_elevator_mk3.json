@@ -1,0 +1,27 @@
+{
+  "moduleId": "mod_aircraft_elevator_mk3",
+  "name": "Aircraft Elevator Mk.3",
+  "moduleType": "aircraftElevator",
+  "functionClass": "specific",
+  "slotType": "hangar",
+  "size": "capital",
+  "mark": 3,
+  "mass": {
+    "value": 247.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "aircraftCapacity",
+      "modifier": 8.6,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 12.5,
+  "crewRequired": 30,
+  "hullAffinity": [
+    "fleet_aircraft_carrier",
+    "light_carrier",
+    "escort_carrier"
+  ]
+}

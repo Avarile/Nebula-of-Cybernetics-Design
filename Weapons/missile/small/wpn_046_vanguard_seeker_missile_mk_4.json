@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_046",
+  "name": "Vanguard Seeker Missile Mk.4",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 31.7,
+    "variance": 4.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 781,
+    "maximum": 1484,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 74
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.8,
+  "ammo": 17,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "can_be_intercepted",
+    "high_tracking",
+    "armor_piercing"
+  ]
+}

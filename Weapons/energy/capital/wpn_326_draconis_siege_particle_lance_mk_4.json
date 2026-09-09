@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_326",
+  "name": "Draconis Siege Particle Lance Mk.4",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 926.6,
+    "variance": 143.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 4582,
+    "maximum": 6873,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.57,
+    "tracking": 6
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 114.5,
+  "ammo": "infinite",
+  "criticalChance": 0.27,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

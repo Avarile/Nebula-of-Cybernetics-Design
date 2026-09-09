@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "fixed",
+  "catalogue": "Weapons/mine/small/wpn_024_draconis_proximity_mine_dispenser_mk_2.json",
+  "weaponId": "wpn_024",
+  "name": "Draconis Proximity Mine Dispenser Mk.2",
+  "weaponClass": "mine",
+  "size": "small",
+  "damage": {
+    "base": 27.9,
+    "variance": 5.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 357,
+    "maximum": 607,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.75,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.0,
+  "ammo": 19,
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "proximity_trigger"
+  ]
+}

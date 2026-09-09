@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_079",
+  "name": "Solari Pulse Laser Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 35.8,
+    "variance": 5.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 714,
+    "maximum": 1285,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 51
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 9.8,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": []
+}

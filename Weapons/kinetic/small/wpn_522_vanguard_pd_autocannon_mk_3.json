@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_522",
+  "name": "Vanguard PD Autocannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 10.2,
+    "variance": 1.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 273,
+    "maximum": 410,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 81
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.4,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

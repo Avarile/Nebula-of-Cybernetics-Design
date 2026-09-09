@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_130",
+  "name": "Kestrel Mine Layer Mk.1",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 95.8,
+    "variance": 17.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1311,
+    "maximum": 2556,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 28.7,
+  "ammo": 12,
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger"
+  ]
+}

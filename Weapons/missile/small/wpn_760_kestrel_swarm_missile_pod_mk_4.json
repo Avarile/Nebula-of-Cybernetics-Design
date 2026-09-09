@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_760",
+  "name": "Kestrel Swarm Missile Pod Mk.4",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 11.4,
+    "variance": 1.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 575,
+    "maximum": 1035,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 63
+  },
+  "fireRate": {
+    "shotsPerTurn": 8,
+    "cooldownTurns": 2
+  },
+  "powerCost": 7.8,
+  "ammo": 41,
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

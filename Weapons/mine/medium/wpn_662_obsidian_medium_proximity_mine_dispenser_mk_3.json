@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_662",
+  "name": "Obsidian Medium Proximity Mine Dispenser Mk.3",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 50.7,
+    "variance": 12.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 622,
+    "maximum": 1057,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.3,
+  "ammo": 18,
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

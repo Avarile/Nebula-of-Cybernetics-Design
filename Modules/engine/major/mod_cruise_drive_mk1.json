@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_cruise_drive_mk1",
+  "name": "Cruise Drive Mk.1",
+  "moduleType": "engine",
+  "functionClass": "major",
+  "slotType": "engine",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 60.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "topSpeed",
+      "modifier": 6.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "fuelRange",
+      "modifier": 20.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 4.0,
+  "crewRequired": 8,
+  "hullAffinity": []
+}

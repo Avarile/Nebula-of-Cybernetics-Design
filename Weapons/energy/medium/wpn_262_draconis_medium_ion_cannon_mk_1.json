@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_262",
+  "name": "Draconis Medium Ion Cannon Mk.1",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 68.6,
+    "variance": 14.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 924,
+    "maximum": 1709,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 19.5,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

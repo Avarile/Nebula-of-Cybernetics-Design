@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_6",
+  "mountType": "fixed",
+  "catalogue": "Weapons/kinetic/small/wpn_052_solari_flak_cannon_mk_5.json",
+  "weaponId": "wpn_052",
+  "name": "Solari Flak Cannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 20.5,
+    "variance": 2.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 383,
+    "maximum": 632,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 73
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 5.0,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

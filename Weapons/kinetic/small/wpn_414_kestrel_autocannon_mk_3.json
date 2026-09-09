@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_414",
+  "name": "Kestrel Autocannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 15.6,
+    "variance": 2.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 356,
+    "maximum": 623,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 50
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.9,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

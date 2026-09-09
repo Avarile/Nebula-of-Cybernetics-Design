@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_231",
+  "name": "Halcyon Heavy Beam Laser Mk.1",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 100.9,
+    "variance": 16.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1875,
+    "maximum": 3188,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 39
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 33.8,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

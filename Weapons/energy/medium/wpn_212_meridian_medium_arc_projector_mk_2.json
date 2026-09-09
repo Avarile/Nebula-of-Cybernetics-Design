@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_212",
+  "name": "Meridian Medium Arc Projector Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 30.1,
+    "variance": 2.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 420,
+    "maximum": 588,
+    "falloffPenalty": 0.16
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 54
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 15.4,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "multi_hit"
+  ]
+}

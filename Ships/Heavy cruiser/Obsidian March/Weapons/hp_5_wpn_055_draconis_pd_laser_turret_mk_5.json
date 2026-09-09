@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_5",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/small/wpn_055_draconis_pd_laser_turret_mk_5.json",
+  "weaponId": "wpn_055",
+  "name": "Draconis PD Laser Turret Mk.5",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 16.1,
+    "variance": 2.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 333,
+    "maximum": 500,
+    "falloffPenalty": 0.14
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 84
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 8.2,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

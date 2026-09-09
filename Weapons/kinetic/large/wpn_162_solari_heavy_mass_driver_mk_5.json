@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_162",
+  "name": "Solari Heavy Mass Driver Mk.5",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 292.8,
+    "variance": 32.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2370,
+    "maximum": 4740,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.68,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 32.8,
+  "ammo": "infinite",
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

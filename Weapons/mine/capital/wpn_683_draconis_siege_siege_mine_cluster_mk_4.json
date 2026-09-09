@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_683",
+  "name": "Draconis Siege Siege Mine Cluster Mk.4",
+  "weaponClass": "mine",
+  "size": "capital",
+  "damage": {
+    "base": 659.3,
+    "variance": 102.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 2686,
+    "maximum": 5103,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.68,
+    "tracking": 8
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 85.9,
+  "ammo": 5,
+  "criticalChance": 0.22,
+  "specialEffects": [
+    "area_denial",
+    "multi_hit",
+    "proximity_trigger"
+  ]
+}

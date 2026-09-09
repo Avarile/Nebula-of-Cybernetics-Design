@@ -1,0 +1,210 @@
+{
+  "shipId": "ship_battleship_leviathan_crown",
+  "name": "Leviathan Crown",
+  "tier": 1,
+  "shipClass": "battleship",
+  "templateId": "ship_battleship_t1",
+  "mass": {
+    "value": 9973,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 2413,
+    "currentHP": 2413,
+    "armorRating": 41,
+    "armorType": "reactive"
+  },
+  "shields": {
+    "maxHP": 1362,
+    "currentHP": 1362,
+    "rechargeRatePerTurn": 39,
+    "rechargeDelayAfterHit": 5,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.17,
+      "energy": 0.08,
+      "explosive": 0.12
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "capital",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_175"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "capital",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_200"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_122"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_155"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_161"
+      },
+      {
+        "hardpointId": "hp_6",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_082"
+      },
+      {
+        "hardpointId": "hp_7",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_109"
+      },
+      {
+        "hardpointId": "hp_8",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_055"
+      },
+      {
+        "hardpointId": "hp_9",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_007"
+      },
+      {
+        "hardpointId": "hp_10",
+        "size": "capital",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_187"
+      },
+      {
+        "hardpointId": "hp_11",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_147"
+      },
+      {
+        "hardpointId": "hp_12",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_064"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_armor_plate_std"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_power_core_std"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_ecm_std"
+      },
+      {
+        "slotId": "ms_5",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_cargo_expander"
+      },
+      {
+        "slotId": "ms_6",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_std"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 239,
+      "currentHP": 239,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 398,
+      "currentHP": 398,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 319,
+      "currentHP": 319,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 265,
+      "currentHP": 265,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 186,
+      "currentHP": 186,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 159,
+      "currentHP": 159,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 140,
+    "acceleration": 8,
+    "turnRate": 14,
+    "evasionRating": 0.04
+  },
+  "crew": {
+    "maxCrew": 444,
+    "currentCrew": 444,
+    "pilotSkill": 70,
+    "gunnerySkill": 74,
+    "engineeringSkill": 67
+  },
+  "power": {
+    "maxPower": 417,
+    "currentPower": 417,
+    "regenPerTurn": 31
+  },
+  "sensors": {
+    "detectionRange": 1150,
+    "initiative": 15
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 6400,
+    "fuel": 20000,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 90,
+    "repairRate": 0
+  }
+}

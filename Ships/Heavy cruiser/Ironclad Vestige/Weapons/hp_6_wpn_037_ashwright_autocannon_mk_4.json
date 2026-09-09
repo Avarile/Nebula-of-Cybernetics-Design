@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_6",
+  "mountType": "fixed",
+  "catalogue": "Weapons/kinetic/small/wpn_037_ashwright_autocannon_mk_4.json",
+  "weaponId": "wpn_037",
+  "name": "Ashwright Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 23.8,
+    "variance": 3.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 414,
+    "maximum": 724,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 50
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 8.1,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_032",
+  "name": "Draconis Disruptor Beam Mk.3",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 29.9,
+    "variance": 5.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 469,
+    "maximum": 797,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 9.6,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

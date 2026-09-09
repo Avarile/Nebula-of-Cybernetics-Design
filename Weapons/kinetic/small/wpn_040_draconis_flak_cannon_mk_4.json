@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_040",
+  "name": "Draconis Flak Cannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 26.3,
+    "variance": 4.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 383,
+    "maximum": 632,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 59
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.1,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

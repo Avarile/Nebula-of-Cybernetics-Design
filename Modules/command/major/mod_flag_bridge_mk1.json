@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_flag_bridge_mk1",
+  "name": "Flag Bridge Mk.1",
+  "moduleType": "flagBridge",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "capital",
+  "mark": 1,
+  "mass": {
+    "value": 140.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "initiative",
+      "modifier": 8.0,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "crew.gunnerySkill",
+      "modifier": 6.0,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 8.0,
+  "crewRequired": 30,
+  "hullAffinity": []
+}

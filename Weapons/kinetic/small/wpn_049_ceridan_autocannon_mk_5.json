@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_049",
+  "name": "Ceridan Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 25.5,
+    "variance": 2.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 405,
+    "maximum": 709,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 0
+  },
+  "powerCost": 8.0,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/sensor/major/mod_search_radar_mk1.json",
+  "moduleId": "mod_search_radar_mk1",
+  "name": "Search Radar Mk.1",
+  "moduleType": "radar",
+  "functionClass": "major",
+  "slotType": "sensor",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 28.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "detectionRange",
+      "modifier": 30.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 8.0,
+  "crewRequired": 5,
+  "hullAffinity": []
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_085",
+  "name": "Ceridan Swarm Missile Pod Mk.2",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 25.2,
+    "variance": 4.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 958,
+    "maximum": 1724,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 53
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 1
+  },
+  "powerCost": 14.7,
+  "ammo": 37,
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted"
+  ]
+}

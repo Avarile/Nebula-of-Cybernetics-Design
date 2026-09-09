@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/medium/wpn_078_voss_mass_driver_mk_2.json",
+  "weaponId": "wpn_078",
+  "name": "Voss Mass Driver Mk.2",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 109.6,
+    "variance": 18.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1583,
+    "maximum": 3166,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.64,
+    "tracking": 9
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 20.8,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

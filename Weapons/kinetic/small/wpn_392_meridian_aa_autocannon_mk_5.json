@@ -1,0 +1,33 @@
+{
+  "weaponId": "wpn_392",
+  "name": "Meridian AA Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 15.8,
+    "variance": 0.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 328,
+    "maximum": 508,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 99
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.8,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_shield_booster_mk3",
+  "name": "Shield Booster Mk.3",
+  "moduleType": "shieldBooster",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 29.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "rechargeRatePerTurn",
+      "modifier": 36.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "shields.rechargeDelayAfterHit",
+      "modifier": -1.4,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 10.0,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

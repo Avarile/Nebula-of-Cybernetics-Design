@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_7",
+  "mountType": "fixed",
+  "catalogue": "Weapons/energy/medium/wpn_094_solari_beam_laser_mk_3.json",
+  "weaponId": "wpn_094",
+  "name": "Solari Beam Laser Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 63.2,
+    "variance": 9.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1102,
+    "maximum": 1873,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.87,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.7,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "armor_melt",
+    "shield_disrupt"
+  ]
+}

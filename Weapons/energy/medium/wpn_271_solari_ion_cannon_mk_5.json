@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_271",
+  "name": "Solari Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 77.5,
+    "variance": 8.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1070,
+    "maximum": 1980,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 15.2,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

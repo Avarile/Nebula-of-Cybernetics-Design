@@ -1,0 +1,137 @@
+{
+  "shipId": "ship_fleet_oiler_t2",
+  "name": "Fleet Oiler Tier 2",
+  "tier": 2,
+  "shipClass": "fleet_oiler",
+  "mass": {
+    "value": 20050.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 3892,
+    "currentHP": 3892,
+    "armorRating": 29,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 1519,
+    "currentHP": 1519,
+    "rechargeRatePerTurn": 134,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.32,
+      "energy": 0.12,
+      "explosive": 0.07
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_394"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_394"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_394"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_hp"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_cargo_derrick_mk2"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "cargo",
+        "size": "large",
+        "moduleEquipped": "mod_refuelling_rig_mk2"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 584,
+      "currentHP": 584,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 973,
+      "currentHP": 973,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 778,
+      "currentHP": 778,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 701,
+      "currentHP": 701,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 467,
+      "currentHP": 467,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 389,
+      "currentHP": 389,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 244,
+    "acceleration": 19,
+    "turnRate": 29,
+    "evasionRating": 0.08
+  },
+  "crew": {
+    "maxCrew": 324,
+    "currentCrew": 324,
+    "pilotSkill": 60,
+    "gunnerySkill": 60,
+    "engineeringSkill": 58
+  },
+  "power": {
+    "maxPower": 580,
+    "currentPower": 580,
+    "regenPerTurn": 87
+  },
+  "sensors": {
+    "detectionRange": 644,
+    "initiative": 8
+  },
+  "capacities": {
+    "cargo": 6656,
+    "ammo": 333,
+    "fuel": 58880,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

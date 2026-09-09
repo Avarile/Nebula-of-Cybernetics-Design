@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_048",
+  "name": "Draconis Proximity Mine Dispenser Mk.4",
+  "weaponClass": "mine",
+  "size": "small",
+  "damage": {
+    "base": 35.6,
+    "variance": 5.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 394,
+    "maximum": 670,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.1,
+  "ammo": 21,
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

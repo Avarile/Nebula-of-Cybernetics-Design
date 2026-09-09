@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_543",
+  "name": "Solari Heavy Railgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 160.4,
+    "variance": 21.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2431,
+    "maximum": 4740,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 24
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 24.9,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

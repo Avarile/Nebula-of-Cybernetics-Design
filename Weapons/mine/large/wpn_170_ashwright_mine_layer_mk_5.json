@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_170",
+  "name": "Ashwright Mine Layer Mk.5",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 210.3,
+    "variance": 23.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1767,
+    "maximum": 3446,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 41.9,
+  "ammo": 12,
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

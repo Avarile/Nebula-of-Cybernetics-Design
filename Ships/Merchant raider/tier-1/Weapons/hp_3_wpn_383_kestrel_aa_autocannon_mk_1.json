@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_3",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_383_kestrel_aa_autocannon_mk_1.json",
+  "weaponId": "wpn_383",
+  "name": "Kestrel AA Autocannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 7.5,
+    "variance": 1.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 248,
+    "maximum": 384,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 71
+  },
+  "fireRate": {
+    "shotsPerTurn": 9,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.4,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": [
+    "anti_air",
+    "point_defense"
+  ]
+}

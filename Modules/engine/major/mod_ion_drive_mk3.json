@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_ion_drive_mk3",
+  "name": "Ion Drive Mk.3",
+  "moduleType": "engine",
+  "functionClass": "major",
+  "slotType": "engine",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 50.6,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "topSpeed",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "acceleration",
+      "modifier": 11.5,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 6.3,
+  "crewRequired": 7,
+  "hullAffinity": []
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_473",
+  "name": "Vanguard Medium Flak Cannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 39.3,
+    "variance": 5.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 617,
+    "maximum": 1018,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 65
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 13.5,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

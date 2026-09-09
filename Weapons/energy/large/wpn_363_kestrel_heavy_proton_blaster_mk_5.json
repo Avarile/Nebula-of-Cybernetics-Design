@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_363",
+  "name": "Kestrel Heavy Proton Blaster Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 111.5,
+    "variance": 12.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1476,
+    "maximum": 2583,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 45
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 38.3,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

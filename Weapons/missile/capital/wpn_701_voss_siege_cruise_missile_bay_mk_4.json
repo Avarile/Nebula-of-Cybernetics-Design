@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_701",
+  "name": "Voss Siege Cruise Missile Bay Mk.4",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 662.1,
+    "variance": 89.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 9165,
+    "maximum": 19246,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 95.1,
+  "ammo": 4,
+  "criticalChance": 0.22,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_562",
+  "name": "Draconis Heavy Boarding Ram Mk.4",
+  "weaponClass": "melee",
+  "size": "large",
+  "damage": {
+    "base": 570.2,
+    "variance": 88.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 73,
+    "maximum": 80,
+    "falloffPenalty": 0.6
+  },
+  "accuracy": {
+    "baseHitChance": 0.53,
+    "tracking": 4
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 23.3,
+  "ammo": "infinite",
+  "criticalChance": 0.31,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

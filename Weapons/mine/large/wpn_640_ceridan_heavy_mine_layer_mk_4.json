@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_640",
+  "name": "Ceridan Heavy Mine Layer Mk.4",
+  "weaponClass": "mine",
+  "size": "large",
+  "damage": {
+    "base": 176.6,
+    "variance": 23.8,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1567,
+    "maximum": 3056,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.81,
+    "tracking": 21
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 35.6,
+  "ammo": 18,
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_piercing"
+  ]
+}

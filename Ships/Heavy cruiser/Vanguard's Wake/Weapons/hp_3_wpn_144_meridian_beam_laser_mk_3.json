@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_3",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/large/wpn_144_meridian_beam_laser_mk_3.json",
+  "weaponId": "wpn_144",
+  "name": "Meridian Beam Laser Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 141.0,
+    "variance": 9.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2067,
+    "maximum": 3514,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.89,
+    "tracking": 39
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 39.1,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_melt",
+    "shield_disrupt"
+  ]
+}

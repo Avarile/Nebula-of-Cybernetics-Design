@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_258",
+  "name": "Obsidian Medium Disruptor Beam Mk.5",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 61.3,
+    "variance": 11.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 858,
+    "maximum": 1459,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 19.6,
+  "ammo": "infinite",
+  "criticalChance": 0.2,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

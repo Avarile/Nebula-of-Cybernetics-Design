@@ -1,0 +1,35 @@
+{
+  "slotId": "ms_2",
+  "catalogue": "Modules/hangar/specific/mod_asw_aircraft_bay_mk3.json",
+  "moduleId": "mod_asw_aircraft_bay_mk3",
+  "name": "ASW Aircraft Bay Mk.3",
+  "moduleType": "aswBay",
+  "functionClass": "specific",
+  "slotType": "hangar",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 146.1,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "aircraftCapacity",
+      "modifier": 4.3,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 28.8,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 10.0,
+  "crewRequired": 19,
+  "hullAffinity": [
+    "escort_carrier",
+    "destroyer_escort",
+    "sloop_patrol_escort",
+    "seaplane_tender"
+  ]
+}

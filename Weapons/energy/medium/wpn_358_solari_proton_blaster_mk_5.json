@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_358",
+  "name": "Solari Proton Blaster Mk.5",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 64.6,
+    "variance": 7.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 856,
+    "maximum": 1498,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 12.8,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

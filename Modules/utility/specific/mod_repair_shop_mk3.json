@@ -1,0 +1,32 @@
+{
+  "moduleId": "mod_repair_shop_mk3",
+  "name": "Repair Shop Mk.3",
+  "moduleType": "repairShop",
+  "functionClass": "specific",
+  "slotType": "utility",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 157.3,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "repairRatePerTurn",
+      "modifier": 50.4,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "crew.engineeringSkill",
+      "modifier": 14.4,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 7.5,
+  "crewRequired": 34,
+  "hullAffinity": [
+    "repair_ship_tender",
+    "seaplane_tender",
+    "fleet_oiler"
+  ]
+}

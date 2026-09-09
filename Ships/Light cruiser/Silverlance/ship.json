@@ -1,0 +1,156 @@
+{
+  "shipId": "ship_light_cruiser_silverlance",
+  "name": "Silverlance",
+  "tier": 1,
+  "shipClass": "light_cruiser",
+  "templateId": "ship_light_cruiser_t1",
+  "mass": {
+    "value": 1563,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 562,
+    "currentHP": 562,
+    "armorRating": 20,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 314,
+    "currentHP": 314,
+    "rechargeRatePerTurn": 29,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.18,
+      "energy": 0.25,
+      "explosive": 0.04
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_022"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_111"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_094"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "medium",
+        "mountType": "fixed",
+        "weaponEquipped": "wpn_083"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "large",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_127"
+      },
+      {
+        "hardpointId": "hp_6",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_047"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_hp"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "defensive",
+        "size": "medium",
+        "moduleEquipped": "mod_shield_booster_2"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_repair_drone_std"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 71,
+      "currentHP": 71,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 118,
+      "currentHP": 118,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 94,
+      "currentHP": 94,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 79,
+      "currentHP": 79,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 55,
+      "currentHP": 55,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 47,
+      "currentHP": 47,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 289,
+    "acceleration": 34,
+    "turnRate": 46,
+    "evasionRating": 0.18
+  },
+  "crew": {
+    "maxCrew": 48,
+    "currentCrew": 48,
+    "pilotSkill": 66,
+    "gunnerySkill": 52,
+    "engineeringSkill": 67
+  },
+  "power": {
+    "maxPower": 136,
+    "currentPower": 136,
+    "regenPerTurn": 20
+  },
+  "sensors": {
+    "detectionRange": 950,
+    "initiative": 15
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 1600,
+    "fuel": 4200,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

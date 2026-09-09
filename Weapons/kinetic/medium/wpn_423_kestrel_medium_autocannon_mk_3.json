@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_423",
+  "name": "Kestrel Medium Autocannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 34.4,
+    "variance": 5.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 633,
+    "maximum": 1108,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 50
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 0
+  },
+  "powerCost": 15.0,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

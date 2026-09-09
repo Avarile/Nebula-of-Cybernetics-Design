@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_torpedo_bulge_mk2",
+  "name": "Torpedo Bulge Mk.2",
+  "moduleType": "torpedoBulge",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 275.6,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.maxHP",
+      "modifier": 14.4,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "topSpeed",
+      "modifier": -3.6,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 0,
+  "hullAffinity": []
+}

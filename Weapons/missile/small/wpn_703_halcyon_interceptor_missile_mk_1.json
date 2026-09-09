@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_703",
+  "name": "Halcyon Interceptor Missile Mk.1",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 8.2,
+    "variance": 1.3,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 495,
+    "maximum": 842,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.93,
+    "tracking": 104
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 1
+  },
+  "powerCost": 5.4,
+  "ammo": 25,
+  "criticalChance": 0.05,
+  "specialEffects": [
+    "anti_missile",
+    "anti_air"
+  ]
+}

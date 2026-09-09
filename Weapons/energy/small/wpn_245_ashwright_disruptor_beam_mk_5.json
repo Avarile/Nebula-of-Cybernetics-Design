@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_245",
+  "name": "Ashwright Disruptor Beam Mk.5",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 28.5,
+    "variance": 3.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 502,
+    "maximum": 853,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 45
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 10.6,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

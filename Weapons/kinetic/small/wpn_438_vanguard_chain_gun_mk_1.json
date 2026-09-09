@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_438",
+  "name": "Vanguard Chain Gun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 9.0,
+    "variance": 1.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 279,
+    "maximum": 446,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 55
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 0
+  },
+  "powerCost": 4.8,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

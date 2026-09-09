@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_250",
+  "name": "Obsidian Disruptor Beam Mk.5",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 27.9,
+    "variance": 5.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 482,
+    "maximum": 819,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 9.0,
+  "ammo": "infinite",
+  "criticalChance": 0.2,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

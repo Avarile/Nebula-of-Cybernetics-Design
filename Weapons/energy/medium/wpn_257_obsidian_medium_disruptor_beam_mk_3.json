@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_257",
+  "name": "Obsidian Medium Disruptor Beam Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 48.0,
+    "variance": 12.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 778,
+    "maximum": 1323,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 16.9,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

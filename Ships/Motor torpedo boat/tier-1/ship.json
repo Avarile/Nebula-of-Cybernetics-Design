@@ -1,0 +1,119 @@
+{
+  "shipId": "ship_motor_torpedo_boat_t1",
+  "name": "Motor Torpedo Boat Tier 1",
+  "tier": 1,
+  "shipClass": "motor_torpedo_boat",
+  "mass": {
+    "value": 38.5,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 37,
+    "currentHP": 37,
+    "armorRating": 4,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 0,
+    "currentHP": 0,
+    "rechargeRatePerTurn": 0,
+    "rechargeDelayAfterHit": 0,
+    "shieldType": "none",
+    "damageTypeResistance": {
+      "kinetic": 0.0,
+      "energy": 0.0,
+      "explosive": 0.0
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "small",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_010"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "missile_bay",
+        "weaponEquipped": "wpn_010"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "small",
+        "moduleEquipped": "mod_manoeuvring_thrusters_mk1"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 6,
+      "currentHP": 6,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 9,
+      "currentHP": 9,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 7,
+      "currentHP": 7,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 7,
+      "currentHP": 7,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 4,
+      "currentHP": 4,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 4,
+      "currentHP": 4,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 620,
+    "acceleration": 90,
+    "turnRate": 130,
+    "evasionRating": 0.42
+  },
+  "crew": {
+    "maxCrew": 7,
+    "currentCrew": 7,
+    "pilotSkill": 45,
+    "gunnerySkill": 44,
+    "engineeringSkill": 42
+  },
+  "power": {
+    "maxPower": 31,
+    "currentPower": 31,
+    "regenPerTurn": 5
+  },
+  "sensors": {
+    "detectionRange": 260,
+    "initiative": 13
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 40,
+    "fuel": 120,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

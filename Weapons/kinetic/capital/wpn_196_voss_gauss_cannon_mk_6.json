@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_196",
+  "name": "Voss Gauss Cannon Mk.6",
+  "weaponClass": "kinetic",
+  "size": "capital",
+  "damage": {
+    "base": 533.0,
+    "variance": 50.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 5774,
+    "maximum": 10971,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 91.0,
+  "ammo": "infinite",
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

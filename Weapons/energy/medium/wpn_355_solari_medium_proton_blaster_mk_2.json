@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_355",
+  "name": "Solari Medium Proton Blaster Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 44.7,
+    "variance": 7.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 739,
+    "maximum": 1293,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 10.3,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": []
+}

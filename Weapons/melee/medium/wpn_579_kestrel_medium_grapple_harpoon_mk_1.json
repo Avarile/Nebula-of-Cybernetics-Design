@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_579",
+  "name": "Kestrel Medium Grapple Harpoon Mk.1",
+  "weaponClass": "melee",
+  "size": "medium",
+  "damage": {
+    "base": 19.0,
+    "variance": 3.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 88,
+    "maximum": 106,
+    "falloffPenalty": 0.45
+  },
+  "accuracy": {
+    "baseHitChance": 0.72,
+    "tracking": 32
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 10.2,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

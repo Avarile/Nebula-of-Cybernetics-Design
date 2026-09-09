@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_627",
+  "name": "Vanguard Medium Depth Charge Rack Mk.4",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 79.4,
+    "variance": 10.7,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 389,
+    "maximum": 525,
+    "falloffPenalty": 0.18
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 12
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 13.7,
+  "ammo": 17,
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger",
+    "armor_melt"
+  ]
+}

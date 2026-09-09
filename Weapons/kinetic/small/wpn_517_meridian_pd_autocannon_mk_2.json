@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_517",
+  "name": "Meridian PD Autocannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 8.4,
+    "variance": 0.6,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 260,
+    "maximum": 390,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.94,
+    "tracking": 88
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.0,
+  "ammo": "infinite",
+  "criticalChance": 0.05,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile"
+  ]
+}

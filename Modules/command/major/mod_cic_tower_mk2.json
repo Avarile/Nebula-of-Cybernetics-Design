@@ -1,0 +1,33 @@
+{
+  "moduleId": "mod_cic_tower_mk2",
+  "name": "CIC Tower Mk.2",
+  "moduleType": "cic",
+  "functionClass": "major",
+  "slotType": "command",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 90.1,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 7.2,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "initiative",
+      "modifier": 6.0,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "detectionRange",
+      "modifier": 12.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 11.2,
+  "crewRequired": 20,
+  "hullAffinity": []
+}

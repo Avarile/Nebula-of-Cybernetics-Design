@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_362",
+  "name": "Kestrel Heavy Proton Blaster Mk.4",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 98.7,
+    "variance": 13.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1406,
+    "maximum": 2460,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 35.6,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_012",
+  "name": "Vanguard Proximity Mine Dispenser Mk.1",
+  "weaponClass": "mine",
+  "size": "small",
+  "damage": {
+    "base": 19.0,
+    "variance": 3.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 324,
+    "maximum": 551,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 5.4,
+  "ammo": 21,
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "proximity_trigger"
+  ]
+}

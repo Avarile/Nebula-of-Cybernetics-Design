@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_bulk_hold_mk2",
+  "name": "Bulk Hold Mk.2",
+  "moduleType": "cargoExpander",
+  "functionClass": "support",
+  "slotType": "cargo",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 42.4,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "cargoCapacity",
+      "modifier": 36.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 4,
+  "hullAffinity": []
+}

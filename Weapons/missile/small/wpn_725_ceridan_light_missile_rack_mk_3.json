@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_725",
+  "name": "Ceridan Light Missile Rack Mk.3",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 17.6,
+    "variance": 2.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 613,
+    "maximum": 1134,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 45
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.9,
+  "ammo": 35,
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "can_be_intercepted",
+    "multi_hit"
+  ]
+}

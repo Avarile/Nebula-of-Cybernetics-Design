@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_503",
+  "name": "Ashwright Heavy Mass Driver Mk.1",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 193.5,
+    "variance": 34.8,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1989,
+    "maximum": 3978,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.62,
+    "tracking": 9
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 40.4,
+  "ammo": "infinite",
+  "criticalChance": 0.22,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

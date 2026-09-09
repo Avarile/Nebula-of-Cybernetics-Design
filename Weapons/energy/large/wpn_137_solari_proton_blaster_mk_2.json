@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_137",
+  "name": "Solari Proton Blaster Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 96.6,
+    "variance": 15.9,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1386,
+    "maximum": 2426,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 36
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 20.5,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": []
+}

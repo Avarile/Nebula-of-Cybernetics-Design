@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_counter_ecm_array_mk3",
+  "name": "Counter-ECM Array Mk.3",
+  "moduleType": "ecCounterElectronics",
+  "functionClass": "support",
+  "slotType": "sensor",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 22.5,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "sensorArray.effectiveness",
+      "modifier": 17.3,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "weaponAccuracy",
+      "modifier": 4.3,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 8.8,
+  "crewRequired": 5,
+  "hullAffinity": []
+}

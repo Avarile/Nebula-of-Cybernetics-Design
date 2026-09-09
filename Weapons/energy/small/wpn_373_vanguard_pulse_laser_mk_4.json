@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_373",
+  "name": "Vanguard Pulse Laser Mk.4",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 23.1,
+    "variance": 3.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 443,
+    "maximum": 797,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 57
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 7.5,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

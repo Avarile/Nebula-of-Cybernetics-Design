@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_081",
+  "name": "Ashwright Ion Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 57.9,
+    "variance": 9.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 942,
+    "maximum": 1743,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 20.1,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

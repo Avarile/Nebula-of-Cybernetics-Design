@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_4",
+  "mountType": "fixed",
+  "catalogue": "Weapons/energy/medium/wpn_083_kestrel_disruptor_beam_mk_2.json",
+  "weaponId": "wpn_083",
+  "name": "Kestrel Disruptor Beam Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 32.2,
+    "variance": 5.3,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 696,
+    "maximum": 1183,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 16.9,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

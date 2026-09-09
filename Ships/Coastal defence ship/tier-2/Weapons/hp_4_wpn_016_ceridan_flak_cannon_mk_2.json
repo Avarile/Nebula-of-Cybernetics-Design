@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_4",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_016_ceridan_flak_cannon_mk_2.json",
+  "weaponId": "wpn_016",
+  "name": "Ceridan Flak Cannon Mk.2",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 14.6,
+    "variance": 2.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 314,
+    "maximum": 518,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 61
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.1,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger"
+  ]
+}

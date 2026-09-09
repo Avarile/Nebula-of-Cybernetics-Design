@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_480",
+  "name": "Draconis Gauss Cannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 292.0,
+    "variance": 36.9,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2297,
+    "maximum": 4364,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 17
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 50.0,
+  "ammo": "infinite",
+  "criticalChance": 0.18,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

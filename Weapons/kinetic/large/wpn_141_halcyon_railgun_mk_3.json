@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_141",
+  "name": "Halcyon Railgun Mk.3",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 134.0,
+    "variance": 18.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2315,
+    "maximum": 4514,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 29
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 33.1,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

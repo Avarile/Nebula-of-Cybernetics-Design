@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/capital/wpn_189_obsidian_particle_lance_mk_4.json",
+  "weaponId": "wpn_189",
+  "name": "Obsidian Particle Lance Mk.4",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 677.2,
+    "variance": 155.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 4277,
+    "maximum": 6416,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.62,
+    "tracking": 7
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 93.5,
+  "ammo": "infinite",
+  "criticalChance": 0.38,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

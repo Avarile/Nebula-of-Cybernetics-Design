@@ -1,0 +1,29 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/cargo/specific/mod_refuelling_rig_mk3.json",
+  "moduleId": "mod_refuelling_rig_mk3",
+  "name": "Refuelling Rig Mk.3",
+  "moduleType": "refuelRig",
+  "functionClass": "specific",
+  "slotType": "cargo",
+  "size": "large",
+  "mark": 3,
+  "mass": {
+    "value": 106.7,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "fuelTransferRate",
+      "modifier": 57.6,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 5.0,
+  "crewRequired": 17,
+  "hullAffinity": [
+    "fleet_oiler",
+    "repair_ship_tender",
+    "seaplane_tender"
+  ]
+}

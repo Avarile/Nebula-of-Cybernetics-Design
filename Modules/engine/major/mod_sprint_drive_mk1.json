@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_sprint_drive_mk1",
+  "name": "Sprint Drive Mk.1",
+  "moduleType": "engine",
+  "functionClass": "major",
+  "slotType": "engine",
+  "size": "medium",
+  "mark": 1,
+  "mass": {
+    "value": 38.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "acceleration",
+      "modifier": 18.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 9.0,
+  "crewRequired": 5,
+  "hullAffinity": []
+}

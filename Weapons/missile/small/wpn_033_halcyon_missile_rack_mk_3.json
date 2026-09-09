@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_033",
+  "name": "Halcyon Missile Rack Mk.3",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 16.3,
+    "variance": 2.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 645,
+    "maximum": 1193,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.84,
+    "tracking": 58
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 6.6,
+  "ammo": 22,
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "can_be_intercepted",
+    "multi_hit"
+  ]
+}

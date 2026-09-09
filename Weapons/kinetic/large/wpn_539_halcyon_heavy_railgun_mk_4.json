@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_539",
+  "name": "Halcyon Heavy Railgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 151.5,
+    "variance": 18.4,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2431,
+    "maximum": 4740,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 31
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 35.5,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

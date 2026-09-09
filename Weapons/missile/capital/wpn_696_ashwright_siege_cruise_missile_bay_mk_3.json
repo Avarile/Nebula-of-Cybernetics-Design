@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_696",
+  "name": "Ashwright Siege Cruise Missile Bay Mk.3",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 541.3,
+    "variance": 81.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 6140,
+    "maximum": 12894,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 92.5,
+  "ammo": 4,
+  "criticalChance": 0.26,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

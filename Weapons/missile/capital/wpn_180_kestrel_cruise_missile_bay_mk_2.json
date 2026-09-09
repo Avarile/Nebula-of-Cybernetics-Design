@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_180",
+  "name": "Kestrel Cruise Missile Bay Mk.2",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 355.5,
+    "variance": 58.7,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 5274,
+    "maximum": 11075,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.66,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 3
+  },
+  "powerCost": 78.6,
+  "ammo": 5,
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial"
+  ]
+}

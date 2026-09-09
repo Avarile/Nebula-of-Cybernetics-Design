@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_309",
+  "name": "Solari PD Laser Turret Mk.1",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 6.8,
+    "variance": 1.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 261,
+    "maximum": 392,
+    "falloffPenalty": 0.14
+  },
+  "accuracy": {
+    "baseHitChance": 0.92,
+    "tracking": 78
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 3.6,
+  "ammo": "infinite",
+  "criticalChance": 0.04,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile"
+  ]
+}

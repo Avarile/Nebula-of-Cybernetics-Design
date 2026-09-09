@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "turret",
+  "catalogue": "Weapons/kinetic/small/wpn_015_kestrel_coilgun_mk_2.json",
+  "weaponId": "wpn_015",
+  "name": "Kestrel Coilgun Mk.2",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 18.7,
+    "variance": 3.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 500,
+    "maximum": 925,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 31
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.4,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

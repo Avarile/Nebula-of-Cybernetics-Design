@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_431",
+  "name": "Kestrel Chain Gun Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 8.3,
+    "variance": 1.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 283,
+    "maximum": 453,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.89,
+    "tracking": 65
+  },
+  "fireRate": {
+    "shotsPerTurn": 8,
+    "cooldownTurns": 0
+  },
+  "powerCost": 5.8,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "high_tracking",
+    "multi_hit"
+  ]
+}

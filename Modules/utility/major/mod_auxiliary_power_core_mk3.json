@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_auxiliary_power_core_mk3",
+  "name": "Auxiliary Power Core Mk.3",
+  "moduleType": "powerCore",
+  "functionClass": "major",
+  "slotType": "utility",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 61.8,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "power.maxPower",
+      "modifier": 28.8,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "power.regenPerTurn",
+      "modifier": 2.9,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 7,
+  "hullAffinity": []
+}

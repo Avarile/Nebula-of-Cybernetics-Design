@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_5",
+  "mountType": "missile_bay",
+  "catalogue": "Weapons/missile/capital/wpn_175_voss_cruise_missile_bay_mk_1.json",
+  "weaponId": "wpn_175",
+  "name": "Voss Cruise Missile Bay Mk.1",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 458.8,
+    "variance": 82.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 7917,
+    "maximum": 16626,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.64,
+    "tracking": 11
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 76.6,
+  "ammo": 3,
+  "criticalChance": 0.19,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_263",
+  "name": "Draconis Ion Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 77.6,
+    "variance": 14.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 970,
+    "maximum": 1794,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 20
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 21.0,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

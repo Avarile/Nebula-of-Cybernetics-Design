@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_208",
+  "name": "Obsidian Arc Projector Mk.3",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 15.8,
+    "variance": 4.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 243,
+    "maximum": 340,
+    "falloffPenalty": 0.16
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 47
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.5,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "multi_hit",
+    "emp_disable"
+  ]
+}

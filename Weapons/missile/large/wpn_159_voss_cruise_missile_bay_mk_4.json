@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_159",
+  "name": "Voss Cruise Missile Bay Mk.4",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 331.0,
+    "variance": 44.7,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 5287,
+    "maximum": 11103,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 13
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 51.5,
+  "ammo": 5,
+  "criticalChance": 0.22,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

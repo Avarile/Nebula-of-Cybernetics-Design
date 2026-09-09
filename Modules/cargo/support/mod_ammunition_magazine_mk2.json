@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_ammunition_magazine_mk2",
+  "name": "Ammunition Magazine Mk.2",
+  "moduleType": "magazine",
+  "functionClass": "support",
+  "slotType": "cargo",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 90.1,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "ammoCapacity",
+      "modifier": 48.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "hull.maxHP",
+      "modifier": -2.7,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 2.2,
+  "crewRequired": 9,
+  "hullAffinity": []
+}

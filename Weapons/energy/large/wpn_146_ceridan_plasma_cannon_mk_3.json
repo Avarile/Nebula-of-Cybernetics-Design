@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_146",
+  "name": "Ceridan Plasma Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 189.7,
+    "variance": 28.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1493,
+    "maximum": 2389,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 44.2,
+  "ammo": "infinite",
+  "criticalChance": 0.16,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

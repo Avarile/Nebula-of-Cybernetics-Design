@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_429",
+  "name": "Vanguard Medium Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 54.0,
+    "variance": 7.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 722,
+    "maximum": 1264,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 50
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 15.3,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

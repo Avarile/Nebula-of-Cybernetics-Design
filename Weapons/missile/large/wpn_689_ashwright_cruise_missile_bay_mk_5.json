@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_689",
+  "name": "Ashwright Cruise Missile Bay Mk.5",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 345.6,
+    "variance": 38.0,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 3905,
+    "maximum": 8200,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.7,
+    "tracking": 15
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 57.9,
+  "ammo": 6,
+  "criticalChance": 0.28,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_432",
+  "name": "Kestrel Chain Gun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 9.3,
+    "variance": 1.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 297,
+    "maximum": 475,
+    "falloffPenalty": 0.1
+  },
+  "accuracy": {
+    "baseHitChance": 0.91,
+    "tracking": 69
+  },
+  "fireRate": {
+    "shotsPerTurn": 8,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.3,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": [
+    "high_tracking",
+    "multi_hit"
+  ]
+}

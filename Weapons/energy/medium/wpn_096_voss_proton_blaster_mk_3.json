@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_096",
+  "name": "Voss Proton Blaster Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 59.0,
+    "variance": 8.8,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1125,
+    "maximum": 1969,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 17.4,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

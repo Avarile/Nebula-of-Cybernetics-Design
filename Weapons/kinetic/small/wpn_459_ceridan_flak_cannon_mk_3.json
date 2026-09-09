@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_459",
+  "name": "Ceridan Flak Cannon Mk.3",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 16.4,
+    "variance": 2.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 330,
+    "maximum": 544,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.83,
+    "tracking": 65
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.6,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "anti_air",
+    "proximity_trigger",
+    "area_denial"
+  ]
+}

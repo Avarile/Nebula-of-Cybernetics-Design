@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_357",
+  "name": "Solari Proton Blaster Mk.4",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 57.1,
+    "variance": 7.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 815,
+    "maximum": 1426,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 40
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 11.9,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "shield_disrupt"
+  ]
+}

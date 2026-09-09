@@ -1,0 +1,35 @@
+{
+  "hardpointId": "hp_9",
+  "mountType": "turret",
+  "catalogue": "Weapons/missile/small/wpn_059_kestrel_swarm_missile_pod_mk_5.json",
+  "weaponId": "wpn_059",
+  "name": "Kestrel Swarm Missile Pod Mk.5",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 12.9,
+    "variance": 1.4,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 604,
+    "maximum": 1087,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 66
+  },
+  "fireRate": {
+    "shotsPerTurn": 8,
+    "cooldownTurns": 1
+  },
+  "powerCost": 8.4,
+  "ammo": 43,
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

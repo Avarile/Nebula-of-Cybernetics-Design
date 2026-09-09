@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_764",
+  "name": "Obsidian Swarm Missile Pod Mk.5",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 17.0,
+    "variance": 3.2,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 643,
+    "maximum": 1157,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.74,
+    "tracking": 60
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 1
+  },
+  "powerCost": 7.9,
+  "ammo": 35,
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

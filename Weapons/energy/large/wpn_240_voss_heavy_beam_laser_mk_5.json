@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_240",
+  "name": "Voss Heavy Beam Laser Mk.5",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 203.3,
+    "variance": 22.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3305,
+    "maximum": 5618,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.9,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 49.7,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "armor_melt",
+    "shield_disrupt"
+  ]
+}

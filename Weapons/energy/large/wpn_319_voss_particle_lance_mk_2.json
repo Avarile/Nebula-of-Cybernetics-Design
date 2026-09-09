@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_319",
+  "name": "Voss Particle Lance Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 293.1,
+    "variance": 48.4,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3311,
+    "maximum": 4966,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.61,
+    "tracking": 6
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 49.2,
+  "ammo": "infinite",
+  "criticalChance": 0.24,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "armor_piercing"
+  ]
+}

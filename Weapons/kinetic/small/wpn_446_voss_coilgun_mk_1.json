@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_446",
+  "name": "Voss Coilgun Mk.1",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 24.2,
+    "variance": 4.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 750,
+    "maximum": 1388,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.76,
+    "tracking": 25
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 7.3,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

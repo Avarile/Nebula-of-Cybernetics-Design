@@ -1,0 +1,33 @@
+{
+  "moduleId": "mod_belt_armour_mk2",
+  "name": "Belt Armour Mk.2",
+  "moduleType": "armorPlating",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "large",
+  "mark": 2,
+  "mass": {
+    "value": 424.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.armorRating",
+      "modifier": 42.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "hull.maxHP",
+      "modifier": 12.0,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "topSpeed",
+      "modifier": -4.5,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 0,
+  "hullAffinity": []
+}

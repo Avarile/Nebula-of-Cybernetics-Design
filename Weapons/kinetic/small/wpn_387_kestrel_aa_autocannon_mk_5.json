@@ -1,0 +1,33 @@
+{
+  "weaponId": "wpn_387",
+  "name": "Kestrel AA Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 12.2,
+    "variance": 1.3,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 302,
+    "maximum": 468,
+    "falloffPenalty": 0.11
+  },
+  "accuracy": {
+    "baseHitChance": 0.94,
+    "tracking": 90
+  },
+  "fireRate": {
+    "shotsPerTurn": 9,
+    "cooldownTurns": 0
+  },
+  "powerCost": 7.2,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "anti_air",
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_114",
+  "name": "Vanguard Torpedo Launcher Mk.4",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 127.0,
+    "variance": 17.1,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1250,
+    "maximum": 2312,
+    "falloffPenalty": 0.03
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 18
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 20.2,
+  "ammo": 9,
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "ignores_shields_partial",
+    "can_be_intercepted",
+    "armor_piercing"
+  ]
+}

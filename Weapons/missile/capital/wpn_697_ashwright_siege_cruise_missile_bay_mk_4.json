@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_697",
+  "name": "Ashwright Siege Cruise Missile Bay Mk.4",
+  "weaponClass": "missile",
+  "size": "capital",
+  "damage": {
+    "base": 611.6,
+    "variance": 82.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 6447,
+    "maximum": 13539,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.69,
+    "tracking": 14
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 99.4,
+  "ammo": 4,
+  "criticalChance": 0.27,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

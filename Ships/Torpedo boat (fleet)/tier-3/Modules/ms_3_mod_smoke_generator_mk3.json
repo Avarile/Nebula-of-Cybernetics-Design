@@ -1,0 +1,37 @@
+{
+  "slotId": "ms_3",
+  "catalogue": "Modules/utility/specific/mod_smoke_generator_mk3.json",
+  "moduleId": "mod_smoke_generator_mk3",
+  "name": "Smoke Generator Mk.3",
+  "moduleType": "smokeGenerator",
+  "functionClass": "specific",
+  "slotType": "utility",
+  "size": "small",
+  "mark": 3,
+  "mass": {
+    "value": 11.2,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "enemyHitChance",
+      "modifier": -8.6,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "evasionRating",
+      "modifier": 0.029,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 2.5,
+  "crewRequired": 2,
+  "hullAffinity": [
+    "destroyer",
+    "destroyer_escort",
+    "corvette",
+    "torpedo_boat_fleet",
+    "motor_torpedo_boat",
+    "sloop_patrol_escort"
+  ]
+}

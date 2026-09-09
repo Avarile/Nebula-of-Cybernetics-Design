@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_044",
+  "name": "Ceridan Disruptor Beam Mk.4",
+  "weaponClass": "energy",
+  "size": "small",
+  "damage": {
+    "base": 23.9,
+    "variance": 3.2,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 445,
+    "maximum": 756,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.86,
+    "tracking": 43
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 9.0,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "shield_disrupt",
+    "emp_disable"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_426",
+  "name": "Vanguard Medium Autocannon Mk.1",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 37.4,
+    "variance": 6.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 624,
+    "maximum": 1092,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 42
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 12.3,
+  "ammo": "infinite",
+  "criticalChance": 0.06,
+  "specialEffects": []
+}

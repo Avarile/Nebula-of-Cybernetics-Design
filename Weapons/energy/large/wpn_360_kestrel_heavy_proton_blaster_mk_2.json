@@ -1,0 +1,28 @@
+{
+  "weaponId": "wpn_360",
+  "name": "Kestrel Heavy Proton Blaster Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 77.3,
+    "variance": 12.8,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1275,
+    "maximum": 2231,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 38
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 30.8,
+  "ammo": "infinite",
+  "criticalChance": 0.08,
+  "specialEffects": []
+}

@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_692",
+  "name": "Voss Cruise Missile Bay Mk.3",
+  "weaponClass": "missile",
+  "size": "large",
+  "damage": {
+    "base": 293.0,
+    "variance": 43.9,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 5036,
+    "maximum": 10576,
+    "falloffPenalty": 0.02
+  },
+  "accuracy": {
+    "baseHitChance": 0.67,
+    "tracking": 12
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 4
+  },
+  "powerCost": 47.9,
+  "ammo": 5,
+  "criticalChance": 0.21,
+  "specialEffects": [
+    "can_be_intercepted",
+    "area_denial",
+    "armor_melt"
+  ]
+}

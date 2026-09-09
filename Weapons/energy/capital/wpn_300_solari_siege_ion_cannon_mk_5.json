@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_300",
+  "name": "Solari Siege Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 334.6,
+    "variance": 36.8,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3476,
+    "maximum": 6431,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 56.1,
+  "ammo": "infinite",
+  "criticalChance": 0.15,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

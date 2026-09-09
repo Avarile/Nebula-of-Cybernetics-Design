@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_342",
+  "name": "Ashwright Siege Plasma Cannon Mk.3",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 400.1,
+    "variance": 60.0,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2778,
+    "maximum": 4445,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.71,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 89.3,
+  "ammo": "infinite",
+  "criticalChance": 0.22,
+  "specialEffects": [
+    "armor_melt",
+    "area_denial"
+  ]
+}

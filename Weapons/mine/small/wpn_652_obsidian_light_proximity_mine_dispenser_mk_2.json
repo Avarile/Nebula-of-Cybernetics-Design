@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_652",
+  "name": "Obsidian Light Proximity Mine Dispenser Mk.2",
+  "weaponClass": "mine",
+  "size": "small",
+  "damage": {
+    "base": 20.4,
+    "variance": 5.7,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 333,
+    "maximum": 566,
+    "falloffPenalty": 0.07
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 26
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 1
+  },
+  "powerCost": 5.7,
+  "ammo": 22,
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "proximity_trigger"
+  ]
+}

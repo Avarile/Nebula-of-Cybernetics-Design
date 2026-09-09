@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_2",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/capital/wpn_173_ceridan_plasma_cannon_mk_1.json",
+  "weaponId": "wpn_173",
+  "name": "Ceridan Plasma Cannon Mk.1",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 297.2,
+    "variance": 53.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 2346,
+    "maximum": 3754,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.68,
+    "tracking": 14
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 70.6,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

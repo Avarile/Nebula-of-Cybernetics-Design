@@ -1,0 +1,31 @@
+{
+  "hardpointId": "hp_5",
+  "mountType": "missile_bay",
+  "catalogue": "Weapons/energy/large/wpn_127_ashwright_proton_blaster_mk_1.json",
+  "weaponId": "wpn_127",
+  "name": "Ashwright Proton Blaster Mk.1",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 92.1,
+    "variance": 16.6,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1346,
+    "maximum": 2356,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.8,
+    "tracking": 34
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 0
+  },
+  "powerCost": 31.4,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": []
+}

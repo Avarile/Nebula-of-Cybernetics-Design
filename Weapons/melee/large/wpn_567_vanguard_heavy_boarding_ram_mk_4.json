@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_567",
+  "name": "Vanguard Heavy Boarding Ram Mk.4",
+  "weaponClass": "melee",
+  "size": "large",
+  "damage": {
+    "base": 438.6,
+    "variance": 59.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 69,
+    "maximum": 76,
+    "falloffPenalty": 0.6
+  },
+  "accuracy": {
+    "baseHitChance": 0.6,
+    "tracking": 5
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 3
+  },
+  "powerCost": 19.4,
+  "ammo": "infinite",
+  "criticalChance": 0.28,
+  "specialEffects": [
+    "armor_piercing",
+    "armor_melt"
+  ]
+}

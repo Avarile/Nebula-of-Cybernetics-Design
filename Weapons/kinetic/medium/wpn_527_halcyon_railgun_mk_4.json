@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_527",
+  "name": "Halcyon Railgun Mk.4",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 70.2,
+    "variance": 8.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1297,
+    "maximum": 2529,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.85,
+    "tracking": 31
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 17.8,
+  "ammo": "infinite",
+  "criticalChance": 0.13,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}

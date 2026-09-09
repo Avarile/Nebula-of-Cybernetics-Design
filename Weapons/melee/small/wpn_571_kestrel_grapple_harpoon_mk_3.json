@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_571",
+  "name": "Kestrel Grapple Harpoon Mk.3",
+  "weaponClass": "melee",
+  "size": "small",
+  "damage": {
+    "base": 11.0,
+    "variance": 1.7,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 55,
+    "maximum": 66,
+    "falloffPenalty": 0.45
+  },
+  "accuracy": {
+    "baseHitChance": 0.75,
+    "tracking": 35
+  },
+  "fireRate": {
+    "shotsPerTurn": 2,
+    "cooldownTurns": 2
+  },
+  "powerCost": 5.5,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "emp_disable",
+    "armor_piercing"
+  ]
+}

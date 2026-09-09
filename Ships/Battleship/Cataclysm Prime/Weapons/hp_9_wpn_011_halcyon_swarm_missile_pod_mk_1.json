@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_9",
+  "mountType": "fixed",
+  "catalogue": "Weapons/missile/small/wpn_011_halcyon_swarm_missile_pod_mk_1.json",
+  "weaponId": "wpn_011",
+  "name": "Halcyon Swarm Missile Pod Mk.1",
+  "weaponClass": "missile",
+  "size": "small",
+  "damage": {
+    "base": 9.3,
+    "variance": 1.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 540,
+    "maximum": 972,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 65
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 2
+  },
+  "powerCost": 6.0,
+  "ammo": 28,
+  "criticalChance": 0.06,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted"
+  ]
+}

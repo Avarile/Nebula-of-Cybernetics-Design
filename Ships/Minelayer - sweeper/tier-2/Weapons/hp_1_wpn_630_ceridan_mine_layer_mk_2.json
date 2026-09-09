@@ -1,0 +1,34 @@
+{
+  "hardpointId": "hp_1",
+  "mountType": "fixed",
+  "catalogue": "Weapons/mine/medium/wpn_630_ceridan_mine_layer_mk_2.json",
+  "weaponId": "wpn_630",
+  "name": "Ceridan Mine Layer Mk.2",
+  "weaponClass": "mine",
+  "size": "medium",
+  "damage": {
+    "base": 64.0,
+    "variance": 10.6,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 758,
+    "maximum": 1478,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 19
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 15.4,
+  "ammo": 22,
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "area_denial",
+    "proximity_trigger"
+  ]
+}

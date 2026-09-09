@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_283",
+  "name": "Solari Heavy Ion Cannon Mk.2",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 115.9,
+    "variance": 19.1,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1733,
+    "maximum": 3206,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.78,
+    "tracking": 23
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 24.5,
+  "ammo": "infinite",
+  "criticalChance": 0.12,
+  "specialEffects": [
+    "emp_disable"
+  ]
+}

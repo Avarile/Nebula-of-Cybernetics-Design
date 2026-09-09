@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_456",
+  "name": "Voss Medium Coilgun Mk.3",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 67.8,
+    "variance": 10.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1471,
+    "maximum": 2721,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.79,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 18.2,
+  "ammo": "infinite",
+  "criticalChance": 0.11,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

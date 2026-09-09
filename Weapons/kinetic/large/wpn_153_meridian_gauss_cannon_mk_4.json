@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_153",
+  "name": "Meridian Gauss Cannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 184.8,
+    "variance": 11.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2084,
+    "maximum": 3960,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 22
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 38.8,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

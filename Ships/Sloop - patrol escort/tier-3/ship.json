@@ -1,0 +1,149 @@
+{
+  "shipId": "ship_sloop_patrol_escort_t3",
+  "name": "Sloop Patrol Escort Tier 3",
+  "tier": 3,
+  "shipClass": "sloop_patrol_escort",
+  "mass": {
+    "value": 1802.5,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 959,
+    "currentHP": 959,
+    "armorRating": 24,
+    "armorType": "medium"
+  },
+  "shields": {
+    "maxHP": 681,
+    "currentHP": 681,
+    "rechargeRatePerTurn": 65,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.34,
+      "energy": 0.14,
+      "explosive": 0.09
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_410"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_mk3"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk3"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "medium",
+        "moduleEquipped": "mod_minesweep_gear_mk3"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "utility",
+        "size": "small",
+        "moduleEquipped": "mod_smoke_generator_mk3"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 144,
+      "currentHP": 144,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 240,
+      "currentHP": 240,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 192,
+      "currentHP": 192,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 173,
+      "currentHP": 173,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 115,
+      "currentHP": 115,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 96,
+      "currentHP": 96,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 426,
+    "acceleration": 55,
+    "turnRate": 84,
+    "evasionRating": 0.29
+  },
+  "crew": {
+    "maxCrew": 55,
+    "currentCrew": 55,
+    "pilotSkill": 75,
+    "gunnerySkill": 76,
+    "engineeringSkill": 74
+  },
+  "power": {
+    "maxPower": 261,
+    "currentPower": 261,
+    "regenPerTurn": 39
+  },
+  "sensors": {
+    "detectionRange": 832,
+    "initiative": 13
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 437,
+    "fuel": 2496,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_291",
+  "name": "Ashwright Siege Ion Cannon Mk.5",
+  "weaponClass": "energy",
+  "size": "capital",
+  "damage": {
+    "base": 360.6,
+    "variance": 39.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 3546,
+    "maximum": 6560,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.82,
+    "tracking": 28
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 92.1,
+  "ammo": "infinite",
+  "criticalChance": 0.2,
+  "specialEffects": [
+    "emp_disable",
+    "shield_disrupt"
+  ]
+}

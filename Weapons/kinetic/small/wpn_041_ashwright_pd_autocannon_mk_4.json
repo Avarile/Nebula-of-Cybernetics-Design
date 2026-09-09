@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_041",
+  "name": "Ashwright PD Autocannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 11.2,
+    "variance": 1.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 292,
+    "maximum": 438,
+    "falloffPenalty": 0.13
+  },
+  "accuracy": {
+    "baseHitChance": 0.95,
+    "tracking": 86
+  },
+  "fireRate": {
+    "shotsPerTurn": 6,
+    "cooldownTurns": 0
+  },
+  "powerCost": 6.7,
+  "ammo": "infinite",
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "point_defense",
+    "anti_missile",
+    "high_tracking"
+  ]
+}

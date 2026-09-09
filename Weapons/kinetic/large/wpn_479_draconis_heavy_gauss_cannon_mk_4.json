@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_479",
+  "name": "Draconis Heavy Gauss Cannon Mk.4",
+  "weaponClass": "kinetic",
+  "size": "large",
+  "damage": {
+    "base": 258.4,
+    "variance": 40.1,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 2188,
+    "maximum": 4157,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.68,
+    "tracking": 16
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 1
+  },
+  "powerCost": 46.5,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "armor_piercing",
+    "shield_disrupt"
+  ]
+}

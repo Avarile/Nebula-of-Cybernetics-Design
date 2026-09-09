@@ -1,0 +1,149 @@
+{
+  "shipId": "ship_heavy_cruiser_t2",
+  "name": "Heavy Cruiser Tier 2",
+  "tier": 2,
+  "shipClass": "heavy_cruiser",
+  "mass": {
+    "value": 12600.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 4097,
+    "currentHP": 4097,
+    "armorRating": 50,
+    "armorType": "heavy"
+  },
+  "shields": {
+    "maxHP": 3199,
+    "currentHP": 3199,
+    "rechargeRatePerTurn": 282,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "hybrid",
+    "damageTypeResistance": {
+      "kinetic": 0.22,
+      "energy": 0.22,
+      "explosive": 0.14
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "large",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_541"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_530"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_530"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_530"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_384"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_hp"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk2"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "defensive",
+        "size": "large",
+        "moduleEquipped": "mod_belt_armour_mk2"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 615,
+      "currentHP": 615,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 1024,
+      "currentHP": 1024,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 819,
+      "currentHP": 819,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 737,
+      "currentHP": 737,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 492,
+      "currentHP": 492,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 410,
+      "currentHP": 410,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 392,
+    "acceleration": 39,
+    "turnRate": 55,
+    "evasionRating": 0.18
+  },
+  "crew": {
+    "maxCrew": 228,
+    "currentCrew": 228,
+    "pilotSkill": 60,
+    "gunnerySkill": 60,
+    "engineeringSkill": 58
+  },
+  "power": {
+    "maxPower": 470,
+    "currentPower": 470,
+    "regenPerTurn": 70
+  },
+  "sensors": {
+    "detectionRange": 1150,
+    "initiative": 16
+  },
+  "capacities": {
+    "cargo": 0,
+    "ammo": 2816,
+    "fuel": 9728,
+    "troops": 0,
+    "aircraft": 0,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 0
+  }
+}

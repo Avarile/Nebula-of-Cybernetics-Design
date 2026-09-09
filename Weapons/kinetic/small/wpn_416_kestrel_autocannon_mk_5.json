@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_416",
+  "name": "Kestrel Autocannon Mk.5",
+  "weaponClass": "kinetic",
+  "size": "small",
+  "damage": {
+    "base": 20.0,
+    "variance": 2.2,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 393,
+    "maximum": 688,
+    "falloffPenalty": 0.06
+  },
+  "accuracy": {
+    "baseHitChance": 0.88,
+    "tracking": 56
+  },
+  "fireRate": {
+    "shotsPerTurn": 4,
+    "cooldownTurns": 0
+  },
+  "powerCost": 8.0,
+  "ammo": "infinite",
+  "criticalChance": 0.09,
+  "specialEffects": [
+    "armor_piercing"
+  ]
+}

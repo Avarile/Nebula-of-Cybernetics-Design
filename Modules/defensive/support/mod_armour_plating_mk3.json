@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_armour_plating_mk3",
+  "name": "Armour Plating Mk.3",
+  "moduleType": "armorPlating",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "medium",
+  "mark": 3,
+  "mass": {
+    "value": 168.5,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.armorRating",
+      "modifier": 28.8,
+      "modifierType": "percent"
+    },
+    {
+      "stat": "hull.maxHP",
+      "modifier": 7.2,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 0,
+  "hullAffinity": []
+}

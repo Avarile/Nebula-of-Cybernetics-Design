@@ -1,0 +1,28 @@
+{
+  "moduleId": "mod_drone_controller_mk2",
+  "name": "Drone Controller Mk.2",
+  "moduleType": "droneController",
+  "functionClass": "major",
+  "slotType": "hangar",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 42.4,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "droneCapacity",
+      "modifier": 4.8,
+      "modifierType": "flat"
+    },
+    {
+      "stat": "initiative",
+      "modifier": 2.4,
+      "modifierType": "flat"
+    }
+  ],
+  "powerCost": 10.1,
+  "crewRequired": 9,
+  "hullAffinity": []
+}

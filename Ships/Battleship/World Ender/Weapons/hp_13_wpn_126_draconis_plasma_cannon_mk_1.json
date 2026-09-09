@@ -1,0 +1,33 @@
+{
+  "hardpointId": "hp_13",
+  "mountType": "turret",
+  "catalogue": "Weapons/energy/large/wpn_126_draconis_plasma_cannon_mk_1.json",
+  "weaponId": "wpn_126",
+  "name": "Draconis Plasma Cannon Mk.1",
+  "weaponClass": "energy",
+  "size": "large",
+  "damage": {
+    "base": 210.0,
+    "variance": 43.5,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 1496,
+    "maximum": 2394,
+    "falloffPenalty": 0.09
+  },
+  "accuracy": {
+    "baseHitChance": 0.61,
+    "tracking": 12
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 43.7,
+  "ammo": "infinite",
+  "criticalChance": 0.17,
+  "specialEffects": [
+    "armor_melt"
+  ]
+}

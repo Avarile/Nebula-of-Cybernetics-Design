@@ -1,0 +1,23 @@
+{
+  "moduleId": "mod_armour_plating_mk2",
+  "name": "Armour Plating Mk.2",
+  "moduleType": "armorPlating",
+  "functionClass": "support",
+  "slotType": "defensive",
+  "size": "medium",
+  "mark": 2,
+  "mass": {
+    "value": 159.0,
+    "unit": "tons"
+  },
+  "effects": [
+    {
+      "stat": "hull.armorRating",
+      "modifier": 24.0,
+      "modifierType": "percent"
+    }
+  ],
+  "powerCost": 0.0,
+  "crewRequired": 0,
+  "hullAffinity": []
+}

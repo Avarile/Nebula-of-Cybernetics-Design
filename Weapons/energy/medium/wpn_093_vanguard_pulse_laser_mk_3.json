@@ -1,0 +1,30 @@
+{
+  "weaponId": "wpn_093",
+  "name": "Vanguard Pulse Laser Mk.3",
+  "weaponClass": "energy",
+  "size": "medium",
+  "damage": {
+    "base": 44.9,
+    "variance": 6.7,
+    "damageType": "energy"
+  },
+  "range": {
+    "optimal": 750,
+    "maximum": 1350,
+    "falloffPenalty": 0.08
+  },
+  "accuracy": {
+    "baseHitChance": 0.89,
+    "tracking": 54
+  },
+  "fireRate": {
+    "shotsPerTurn": 3,
+    "cooldownTurns": 0
+  },
+  "powerCost": 15.0,
+  "ammo": "infinite",
+  "criticalChance": 0.07,
+  "specialEffects": [
+    "high_tracking"
+  ]
+}

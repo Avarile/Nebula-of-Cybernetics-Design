@@ -1,0 +1,32 @@
+{
+  "weaponId": "wpn_099",
+  "name": "Ashwright Swarm Missile Pod Mk.3",
+  "weaponClass": "missile",
+  "size": "medium",
+  "damage": {
+    "base": 30.0,
+    "variance": 4.5,
+    "damageType": "explosive"
+  },
+  "range": {
+    "optimal": 1080,
+    "maximum": 1944,
+    "falloffPenalty": 0.05
+  },
+  "accuracy": {
+    "baseHitChance": 0.73,
+    "tracking": 56
+  },
+  "fireRate": {
+    "shotsPerTurn": 5,
+    "cooldownTurns": 2
+  },
+  "powerCost": 17.3,
+  "ammo": 25,
+  "criticalChance": 0.1,
+  "specialEffects": [
+    "multi_hit",
+    "can_be_intercepted",
+    "high_tracking"
+  ]
+}

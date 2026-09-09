@@ -1,0 +1,155 @@
+{
+  "shipId": "ship_seaplane_tender_t3",
+  "name": "Seaplane Tender Tier 3",
+  "tier": 3,
+  "shipClass": "seaplane_tender",
+  "mass": {
+    "value": 15650.0,
+    "unit": "tons"
+  },
+  "hull": {
+    "maxHP": 3863,
+    "currentHP": 3863,
+    "armorRating": 31,
+    "armorType": "light"
+  },
+  "shields": {
+    "maxHP": 2287,
+    "currentHP": 2287,
+    "rechargeRatePerTurn": 220,
+    "rechargeDelayAfterHit": 2,
+    "shieldType": "kinetic",
+    "damageTypeResistance": {
+      "kinetic": 0.34,
+      "energy": 0.14,
+      "explosive": 0.09
+    }
+  },
+  "hardpoints": {
+    "list": [
+      {
+        "hardpointId": "hp_1",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_410"
+      },
+      {
+        "hardpointId": "hp_2",
+        "size": "medium",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_410"
+      },
+      {
+        "hardpointId": "hp_3",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_4",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      },
+      {
+        "hardpointId": "hp_5",
+        "size": "small",
+        "mountType": "turret",
+        "weaponEquipped": "wpn_395"
+      }
+    ]
+  },
+  "moduleSlots": {
+    "list": [
+      {
+        "slotId": "ms_1",
+        "slotType": "engine",
+        "size": "medium",
+        "moduleEquipped": "mod_ion_drive_mk3"
+      },
+      {
+        "slotId": "ms_2",
+        "slotType": "hangar",
+        "size": "large",
+        "moduleEquipped": "mod_asw_aircraft_bay_mk3"
+      },
+      {
+        "slotId": "ms_3",
+        "slotType": "utility",
+        "size": "large",
+        "moduleEquipped": "mod_repair_shop_mk3"
+      },
+      {
+        "slotId": "ms_4",
+        "slotType": "sensor",
+        "size": "medium",
+        "moduleEquipped": "mod_search_radar_mk3"
+      }
+    ]
+  },
+  "componentHitpoints": {
+    "bridge": {
+      "maxHP": 579,
+      "currentHP": 579,
+      "criticalEffect": "disables targeting computer, -50% accuracy"
+    },
+    "engines": {
+      "maxHP": 966,
+      "currentHP": 966,
+      "criticalEffect": "-70% speed and turn rate"
+    },
+    "weaponSystems": {
+      "maxHP": 773,
+      "currentHP": 773,
+      "criticalEffect": "random hardpoint disabled"
+    },
+    "shieldGenerator": {
+      "maxHP": 695,
+      "currentHP": 695,
+      "criticalEffect": "shield recharge disabled"
+    },
+    "sensorArray": {
+      "maxHP": 464,
+      "currentHP": 464,
+      "criticalEffect": "-40% hit chance, reduced detection range"
+    },
+    "lifeSupport": {
+      "maxHP": 386,
+      "currentHP": 386,
+      "criticalEffect": "crew casualties over time"
+    }
+  },
+  "mobility": {
+    "topSpeed": 314,
+    "acceleration": 27,
+    "turnRate": 40,
+    "evasionRating": 0.13
+  },
+  "crew": {
+    "maxCrew": 290,
+    "currentCrew": 290,
+    "pilotSkill": 75,
+    "gunnerySkill": 76,
+    "engineeringSkill": 74
+  },
+  "power": {
+    "maxPower": 574,
+    "currentPower": 574,
+    "regenPerTurn": 86
+  },
+  "sensors": {
+    "detectionRange": 1430,
+    "initiative": 13
+  },
+  "capacities": {
+    "cargo": 2808,
+    "ammo": 0,
+    "fuel": 9984,
+    "troops": 0,
+    "aircraft": 19,
+    "drones": 0,
+    "mines": 0,
+    "medical": 0,
+    "repairRate": 47
+  }
+}

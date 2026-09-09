@@ -1,0 +1,31 @@
+{
+  "weaponId": "wpn_535",
+  "name": "Voss Railgun Mk.3",
+  "weaponClass": "kinetic",
+  "size": "medium",
+  "damage": {
+    "base": 76.7,
+    "variance": 11.5,
+    "damageType": "kinetic"
+  },
+  "range": {
+    "optimal": 1790,
+    "maximum": 3490,
+    "falloffPenalty": 0.04
+  },
+  "accuracy": {
+    "baseHitChance": 0.77,
+    "tracking": 20
+  },
+  "fireRate": {
+    "shotsPerTurn": 1,
+    "cooldownTurns": 2
+  },
+  "powerCost": 18.2,
+  "ammo": "infinite",
+  "criticalChance": 0.14,
+  "specialEffects": [
+    "armor_piercing",
+    "ignores_shields_partial"
+  ]
+}
