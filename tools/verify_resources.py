@@ -5,7 +5,7 @@ from collections import Counter
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
-from resource_costs import LANES, TIERS
+from resource_costs import LANES, TIERS, expand_to_raw
 
 FLEET = json.load(open(os.path.join(ROOT, 'fleet_and_weapons.json')))
 R = FLEET['resources']
@@ -78,6 +78,30 @@ for dp, _, fns in os.walk(os.path.join(ROOT, 'Resources')):
 check('one file per resource', [f'{len(disk)} files vs {len(R)} resources'] if len(disk) != len(R) else [])
 check('file content == json', [r['resourceId'] for r in R if disk.get(r['resourceId'], ({},))[0] != r])
 check('filed under tier', [rid for rid, (o, rel) in disk.items() if rel.split(os.sep)[1] != o['tier']])
+
+check('every weapon has a buildCost with all 4 lanes',
+      [w['weaponId'] for w in FLEET['weapons'] if set(w.get('buildCost', {})) != set(LANES)])
+check('every module has a buildCost with all 4 lanes',
+      [m['moduleId'] for m in FLEET['modules'] if set(m.get('buildCost', {})) != set(LANES)])
+check('every ship (template + named) has a buildCost with all 4 lanes',
+      [s['shipId'] for s in FLEET['ships'] + FLEET['namedShips']
+       if set(s.get('buildCost', {})) != set(LANES)])
+
+# chain round-trip: expanding a sample weapon's buildCost to raw units and back
+# down through the same yields should reproduce numbers consistent with the
+# yields stored in the resource catalogue itself (not just the constants) --
+# catches the catalogue and the formula module drifting apart.
+sample = FLEET['weapons'][0]
+raw_equiv = expand_to_raw(sample['buildCost'])
+by_lane_yield = {r['lane']: r['conversionYield'] for r in R if r['tier'] == 'refined'}
+bad = []
+for lane in LANES:
+    if sample['buildCost'][lane] == 0:
+        continue
+    reconstructed = round(raw_equiv[lane] * by_lane_yield[lane] * 0.85, 2)
+    if abs(reconstructed - sample['buildCost'][lane]) > 0.02:
+        bad.append(f'{lane}: {sample["buildCost"][lane]} -> raw {raw_equiv[lane]} -> back {reconstructed}')
+check('sample buildCost round-trips through the stored catalogue yields', bad)
 
 print('\n' + ('ALL CHECKS PASSED' if not fails else f'{len(fails)} CHECK(S) FAILED'))
 sys.exit(1 if fails else 0)
