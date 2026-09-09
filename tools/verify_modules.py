@@ -84,7 +84,7 @@ for name, marks in by_arch.items():
             bad_cost.append(f'{name} Mk.{lo}->Mk.{hi} cost went down')
 check('mark ladder: benefits non-decreasing', bad_ladder)
 check('mark ladder: effect set grows', bad_super)
-check('mark ladder: power/crew non-decreasing', bad_cost)
+check('mark ladder: power/crew/buildCost non-decreasing', bad_cost)
 check('every archetype built at all 3 marks',
       [n for n, mk in by_arch.items() if sorted(mk) != MARKS])
 

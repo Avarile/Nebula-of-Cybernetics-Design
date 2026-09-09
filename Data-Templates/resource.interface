@@ -47,7 +47,7 @@
 #   - each of the 4 lanes forms an unbroken raw -> refined -> manufactured chain
 
 {
-  "resourceId": "string, unique, format: res_<tier>_<slug>",
+  "resourceId": "string, unique, format: res_<tier>_<slug> (manufactured tier abbreviates to mfg, e.g. res_mfg_structural_component)",
   "name": "string",
   "tier": "enum: raw | refined | manufactured",
   "lane": "enum: structural | energy | ordnance | precision",

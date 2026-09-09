@@ -87,21 +87,22 @@ check('every ship (template + named) has a buildCost with all 4 lanes',
       [s['shipId'] for s in FLEET['ships'] + FLEET['namedShips']
        if set(s.get('buildCost', {})) != set(LANES)])
 
-# chain round-trip: expanding a sample weapon's buildCost to raw units and back
+# chain round-trip: expanding every weapon's buildCost to raw units and back
 # down through the same yields should reproduce numbers consistent with the
 # yields stored in the resource catalogue itself (not just the constants) --
 # catches the catalogue and the formula module drifting apart.
-sample = FLEET['weapons'][0]
-raw_equiv = expand_to_raw(sample['buildCost'])
 by_lane_yield = {r['lane']: r['conversionYield'] for r in R if r['tier'] == 'refined'}
+by_lane_fab = {r['lane']: r['conversionYield'] for r in R if r['tier'] == 'manufactured'}
 bad = []
-for lane in LANES:
-    if sample['buildCost'][lane] == 0:
-        continue
-    reconstructed = round(raw_equiv[lane] * by_lane_yield[lane] * 0.85, 2)
-    if abs(reconstructed - sample['buildCost'][lane]) > 0.02:
-        bad.append(f'{lane}: {sample["buildCost"][lane]} -> raw {raw_equiv[lane]} -> back {reconstructed}')
-check('sample buildCost round-trips through the stored catalogue yields', bad)
+for w in FLEET['weapons']:
+    raw_equiv = expand_to_raw(w['buildCost'])
+    for lane in LANES:
+        if w['buildCost'][lane] == 0:
+            continue
+        reconstructed = round(raw_equiv[lane] * by_lane_yield[lane] * by_lane_fab[lane], 2)
+        if abs(reconstructed - w['buildCost'][lane]) > 0.02:
+            bad.append(f'{w["weaponId"]} {lane}: {w["buildCost"][lane]} -> raw {raw_equiv[lane]} -> back {reconstructed}')
+check('buildCost round-trips through the stored catalogue yields', bad)
 
 print('\n' + ('ALL CHECKS PASSED' if not fails else f'{len(fails)} CHECK(S) FAILED'))
 sys.exit(1 if fails else 0)

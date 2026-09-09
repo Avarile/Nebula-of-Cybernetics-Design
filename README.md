@@ -18,7 +18,7 @@ reproduces the whole tree byte-for-byte. Edit the tables in `tools/`, never the 
 | Weapons | 798 | 31 archetypes × 4 sizes × 10 manufacturers × Mk.1–5 |
 | Modules | 135 | 45 archetypes × Mk.1–3, across 7 slot types |
 | Resources | 12 | 4 lanes (structural/energy/ordnance/precision) × 3 tiers (raw/refined/manufactured) |
-| Files on disk | 1,840 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 36 under `Resources/` |
+| Files on disk | 1,819 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 15 under `Resources/` |
 
 ## Layout
 
@@ -46,8 +46,8 @@ Weapons/<class>/<size>/      wpn_###_<name>.json    (kinetic/energy/missile/mine
 Modules/<slotType>/<functionClass>/   mod_<archetype>_mk<n>.json
   index.json
 
-Resources/<tier>/            one file per resource (12 across 3 tiers)
-  resource.json
+Resources/<tier>/            res_<tier>_<slug>.json   (raw/refined/manufactured)
+  index.json
 
 tools/                       generators, verifiers, and the tables that drive them
 ```
@@ -64,6 +64,7 @@ lines and the remainder parses as JSON.
 | `namedShips` | the 20 named ships; each carries `templateId` naming its class hull |
 | `weapons` | all 798 |
 | `modules` | all 135 |
+| `resources` | all 12 |
 
 ## The four catalogues
 
@@ -181,7 +182,7 @@ no troops — which is exactly what makes a `specific` module specific.
 
 ## Regenerating
 
-Order matters: resources must run first since weapon, module, and ship cost formulas depend on resource tier constants. Then ships fit from the weapon and module catalogues.
+Order matters: weapons and modules before ships, since ships sum the `buildCost` those catalogues carry. `generate_resources.py` is independent and only needs to run before `verify_resources.py`.
 
 ```sh
 python3 tools/generate_resources.py   # 12 resources → Resources/, fleet json (cost constants)
@@ -197,7 +198,7 @@ files or directories behind.
 ## Verification
 
 ```sh
-python3 tools/verify_resources.py     # resource tier consistency checks
+python3 tools/verify_resources.py     # 16 checks
 python3 tools/verify_weapons.py       # 12 checks
 python3 tools/verify_modules.py       # 23 checks
 python3 tools/verify_ships.py         # 38 checks
@@ -229,8 +230,10 @@ Vanguard.
 Then re-run the pipeline. The archetype and family tables inside `weapon.interface` and
 `module.interface` are emitted by the generators, so documentation and data cannot drift.
 
-Never hand-edit files under `Ships/`, `Weapons/` or `Modules/` — the next run overwrites
-them.
+Never hand-edit files under `Ships/`, `Weapons/`, `Modules/` or `Resources/` — the next run
+overwrites them. `Resources/` is a partial exception: only its `raw/`, `refined/`,
+`manufactured/` subdirectories and `index.json` are regenerated; the two hand-written
+`.md` docs in `Resources/` survive a run.
 
 ## Notes
 

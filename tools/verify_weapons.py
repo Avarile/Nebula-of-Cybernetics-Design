@@ -47,7 +47,7 @@ for key, items in lines.items():
             bad.append(f'{key} Mk.{m1}->Mk.{m2}  dpt {pa:.1f}->{pb:.1f}')
         if sum(b['buildCost'].values()) < sum(a['buildCost'].values()):
             bad.append(f'{key} Mk.{m1}->Mk.{m2}  buildCost went down')
-check('mark ladder monotonic (dpt, hit, effects)', bad)
+check('mark ladder monotonic (dpt, hit, effects, buildCost)', bad)
 
 # 4 -- no two identical stat blocks
 sig = defaultdict(list)
