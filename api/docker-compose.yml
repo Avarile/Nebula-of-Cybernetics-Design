@@ -1,0 +1,78 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: cybernetics-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: cybernetics
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d cybernetics']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    container_name: cybernetics-redis
+    restart: unless-stopped
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    container_name: cybernetics-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+      # Allow the app origin to perform browser presigned POST uploads.
+      MINIO_API_CORS_ALLOW_ORIGIN: 'http://localhost:3000'
+    ports:
+      - '9000:9000' # S3 API
+      - '9001:9001' # web console
+    volumes:
+      - minio-data:/data
+    healthcheck:
+      test: ['CMD', 'mc', 'ready', 'local']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    container_name: cybernetics-meilisearch
+    restart: unless-stopped
+    environment:
+      # development mode runs keyless and serves the bundled web UI; set
+      # MEILI_MASTER_KEY (and MEILISEARCH_MASTER_KEY in .env) for anything else.
+      MEILI_ENV: development
+      MEILI_NO_ANALYTICS: 'true'
+    ports:
+      - '7700:7700'
+    volumes:
+      - meili-data:/meili_data
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -qO - http://localhost:7700/health || exit 1']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:
+  redis-data:
+  minio-data:
+  meili-data:

@@ -1,0 +1,6 @@
+ALTER TABLE "email_messages" ALTER COLUMN "uid" SET DATA TYPE bigint;--> statement-breakpoint
+ALTER TABLE "email_attachments" ADD CONSTRAINT "email_attachments_email_id_email_messages_id_fk" FOREIGN KEY ("email_id") REFERENCES "public"."email_messages"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "email_attachments" ADD CONSTRAINT "email_attachments_file_id_files_id_fk" FOREIGN KEY ("file_id") REFERENCES "public"."files"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "email_messages" ADD CONSTRAINT "email_messages_account_id_imap_configs_id_fk" FOREIGN KEY ("account_id") REFERENCES "public"."imap_configs"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "email_messages" ADD CONSTRAINT "email_messages_raw_file_id_files_id_fk" FOREIGN KEY ("raw_file_id") REFERENCES "public"."files"("id") ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "email_sync_state" ADD CONSTRAINT "email_sync_state_account_id_imap_configs_id_fk" FOREIGN KEY ("account_id") REFERENCES "public"."imap_configs"("id") ON DELETE no action ON UPDATE no action;

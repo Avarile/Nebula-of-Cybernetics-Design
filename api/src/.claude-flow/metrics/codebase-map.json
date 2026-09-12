@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-07-16T19:31:45.711Z",
+  "projectRoot": "/home/avarile/Documents/codeRepo/ai/Cybernetics/api/src",
+  "structure": {
+    "hasPackageJson": false,
+    "hasTsConfig": false,
+    "hasClaudeConfig": false,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1784230305711
+}

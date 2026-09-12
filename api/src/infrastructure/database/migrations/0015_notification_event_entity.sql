@@ -1,0 +1,1 @@
+ALTER TYPE "public"."notification_entity_type" ADD VALUE 'event';

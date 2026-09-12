@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-09-06T01:11:47.208Z",
+  "baseUrl": "http://localhost:3000",
+  "stamp": "1788655243934",
+  "adminUserId": "3e8b779d-3c5b-443e-b4a4-f94cde801d33",
+  "mockUserId": "57930ca8-b882-4f57-b9a6-9d5896bc0e47",
+  "mockUserEmail": "datagen.mock.1788655243934@cybernetics.test",
+  "volume": {
+    "tags": 40,
+    "contactTypes": 10,
+    "contactCategories": 12,
+    "knowledgeTypes": 10,
+    "knowledgeCategories": 12,
+    "files": 30,
+    "extraUsers": 12,
+    "permissionOverrides": 10,
+    "preferences": 10,
+    "companies": {
+      "admin": 35,
+      "user": 25
+    },
+    "contacts": {
+      "admin": 120,
+      "user": 100
+    },
+    "channels": 120,
+    "interactions": 180,
+    "relationships": 80,
+    "knowledge": {
+      "admin": 80,
+      "user": 60
+    },
+    "knowledgeGrants": 60,
+    "knowledgeContactLinks": 60,
+    "projects": 30,
+    "projectMembers": 60,
+    "milestones": 60,
+    "goals": 60,
+    "tasks": {
+      "admin": 130,
+      "user": 130
+    },
+    "taskDependencies": 60,
+    "taskWatchers": 60,
+    "timeEntries": 180,
+    "projectContactLinks": 40,
+    "projectKnowledgeLinks": 40,
+    "accounts": 20,
+    "transactions": 220,
+    "budgets": 25,
+    "recurring": 25,
+    "fxRates": 40,
+    "invoices": 35,
+    "invoiceLines": 90,
+    "payments": 45,
+    "settings": 20,
+    "featureFlags": 20,
+    "smtpConfigs": 8,
+    "imapConfigs": 8,
+    "integrations": 12,
+    "suppressions": 15,
+    "templates": 8,
+    "collections": 8,
+    "searchRecords": 150,
+    "comments": 140,
+    "attachments": 60
+  },
+  "totalCreated": 3054,
+  "totalFailed": 0,
+  "failures": []
+}
