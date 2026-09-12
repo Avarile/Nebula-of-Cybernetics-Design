@@ -50,6 +50,9 @@ Resources/<tier>/            res_<tier>_<slug>.json   (raw/refined/manufactured)
   index.json
 
 tools/                       generators, verifiers, and the tables that drive them
+
+Reference/                   TypeScript interface for all of the above, plus Combat-logic
+  common.ts resources.ts weapons.ts modules.ts ships.ts combat.ts dataset.ts constants.ts
 ```
 
 `.interface` files are `#`-commented headers followed by a JSON body — strip the comment
@@ -202,6 +205,7 @@ python3 tools/verify_resources.py     # 16 checks
 python3 tools/verify_weapons.py       # 12 checks
 python3 tools/verify_modules.py       # 23 checks
 python3 tools/verify_ships.py         # 38 checks
+python3 Reference/verify_reference.py # 26 checks -- TypeScript interface vs. the data
 ```
 
 All exit non-zero on failure. Between them they enforce: unique ids and names; field sets
