@@ -220,6 +220,31 @@ check('FleetMeta fields', fields('dataset.ts', 'FleetMeta'), set(FLEET['_meta'])
 
 check('FleetDataset fields', fields('dataset.ts', 'FleetDataset'), set(FLEET))
 
+# ---------------------------------------------------------------- systems & planets
+SYSTEMS_DATA, PLANETS_DATA = FLEET['systems'], FLEET['planets']
+
+check('SecurityTier union matches the data',
+      union('systems.ts', 'SecurityTier'),
+      {s['securityTier'] for s in SYSTEMS_DATA})
+check('RegionName union matches the data',
+      union('systems.ts', 'RegionName'),
+      {s['region'] for s in SYSTEMS_DATA})
+check('PlanetArchetype union matches the data',
+      union('systems.ts', 'PlanetArchetype'),
+      {p['archetype'] for p in PLANETS_DATA})
+check('SpectralClass union matches the data',
+      union('systems.ts', 'SpectralClass'),
+      {s['star']['spectralClass'] for s in SYSTEMS_DATA})
+check('System interface declares the right fields',
+      fields('systems.ts', 'System'), set(SYSTEMS_DATA[0]))
+check('Planet interface declares the right fields',
+      fields('systems.ts', 'Planet'), set(PLANETS_DATA[0]))
+check('AsteroidBelt interface declares the right fields',
+      fields('systems.ts', 'AsteroidBelt'),
+      set(next(b for s in SYSTEMS_DATA for b in s['asteroidBelts'])))
+check('SystemConnection interface declares the right fields',
+      fields('systems.ts', 'SystemConnection'), set(SYSTEMS_DATA[0]['connections'][0]))
+
 print()
 if failures:
     print(f'{len(failures)} check(s) FAILED: {", ".join(failures)}')

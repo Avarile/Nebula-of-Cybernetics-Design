@@ -10,8 +10,12 @@
  *   weapons.ts    798 weapons: archetype x size x mark x family
  *   modules.ts    135 modules: archetype x mark, classed major/support/specific
  *   ships.ts      26 classes, 78 tier hulls, 20 named ships
- *   skills.ts     80 skills across 4 domains, 10 levels each
- *   combat.ts     turn structure, hit and damage resolution, logging, open rulings
+ *   skills.ts     81 skills across 4 domains, 10 levels each
+ *   systems.ts    60 systems, 180 planets, and the jump-gate graph
+ *   combat.ts     round structure, hit and damage resolution, logging, open rulings
+ *   gameplay.ts   the 24h turn, orders, the player, the fleet, progression, conflict
+ *   economy.ts    reference prices, NPC and player orders, contracts, unions
+ *   facilities.ts leasable industrial slots and the leases on them
  *   dataset.ts    on-disk shapes: the one-file dataset, indexes, fitted hulls
  *   constants.ts  the tuning tables behind all of the above
  *
@@ -29,5 +33,9 @@ export * from './weapons';
 export * from './modules';
 export * from './ships';
 export * from './skills';
+export * from './systems';
 export * from './combat';
+export * from './gameplay';
+export * from './economy';
+export * from './facilities';
 export * from './dataset';
