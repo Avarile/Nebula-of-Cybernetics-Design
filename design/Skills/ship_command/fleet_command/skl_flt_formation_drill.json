@@ -1,0 +1,39 @@
+{
+  "skillId": "skl_flt_formation_drill",
+  "name": "Formation Drill",
+  "domain": "ship_command",
+  "category": "fleet_command",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "fleet",
+  "effects": [],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 5,
+      "type": "fleet_slot",
+      "target": "2",
+      "description": "Second ship in the fleet."
+    },
+    {
+      "level": 7,
+      "type": "fleet_slot",
+      "target": "3",
+      "description": "Third ship in the fleet."
+    },
+    {
+      "level": 8,
+      "type": "fleet_slot",
+      "target": "4",
+      "description": "Fourth ship in the fleet."
+    },
+    {
+      "level": 10,
+      "type": "fleet_slot",
+      "target": "5",
+      "description": "Fifth ship in the fleet -- the maximum."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Working more than one hull as a unit. Each gate adds a ship to the fleet; the first ship needs no drill at all."
+}

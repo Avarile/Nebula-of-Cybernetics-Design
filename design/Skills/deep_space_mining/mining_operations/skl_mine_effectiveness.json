@@ -1,0 +1,27 @@
+{
+  "skillId": "skl_mine_effectiveness",
+  "name": "Mining Effectiveness",
+  "domain": "deep_space_mining",
+  "category": "mining_operations",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "miningYield",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_mine_equipment_operation",
+      "level": 3
+    }
+  ],
+  "description": "Getting more out of each cycle. Each level adds 3% to mining yield."
+}

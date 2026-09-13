@@ -1,0 +1,34 @@
+{
+  "skillId": "skl_mine_equipment_operation",
+  "name": "Mining Equipment Operation",
+  "domain": "deep_space_mining",
+  "category": "mining_operations",
+  "maxLevel": 10,
+  "rank": 2,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "miningCycleSpeed",
+      "modifierPerLevel": 2.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 1,
+      "type": "capability",
+      "target": "standard_mining_equipment",
+      "description": "Fit and run standard mining equipment."
+    }
+  ],
+  "prerequisites": [
+    {
+      "skillId": "skl_sta_science",
+      "level": 3
+    }
+  ],
+  "description": "Operating standard mining gear. Each level cuts cycle time by 2%."
+}

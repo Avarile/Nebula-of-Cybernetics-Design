@@ -1,0 +1,29 @@
+{
+  "skillId": "skl_sta_resource_production",
+  "name": "Planetary Resource Production",
+  "domain": "station_management",
+  "category": "facility_management",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "station",
+  "effects": [
+    {
+      "stat": "planetaryProductionRate",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {
+        "resourceTier": "raw"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_sta_science",
+      "level": 3
+    }
+  ],
+  "description": "Running extraction on a planet. Each level adds 3% to planetary production rate."
+}

@@ -1,8 +1,8 @@
 # Reference — TypeScript interface
 
-A typed description of the data that already exists in this repo: the four
-catalogues (`Resources`, `Ships`, `Weapons`, `Modules`) and the combat logic that
-consumes them. Nothing here proposes a change to the data — every literal union
+A typed description of the data that already exists in this repo: the five
+catalogues (`Resources`, `Ships`, `Weapons`, `Modules`, `Skills`) and the combat
+logic that consumes them. Nothing here proposes a change to the data — every literal union
 was extracted from `fleet_and_weapons.json` and the generator tables in `tools/`,
 then cross-checked against the `.interface` schemas in `Data-Templates/`.
 
@@ -15,9 +15,10 @@ then cross-checked against the `.interface` schemas in `Data-Templates/`.
 | `weapons.ts` | the 798 weapons, plus the four generator axes behind every stat block |
 | `modules.ts` | the 135 modules, the 34-stat effect vocabulary, and the `functionClass` split |
 | `ships.ts` | the 26 classes, 78 tier hulls and 20 named ships, plus the per-category signature table |
+| `skills.ts` | the 80 skills across 4 domains, the 18 skill-only stats, and the gates for hulls, fleet slots and industry |
 | `combat.ts` | turn structure, hit and damage resolution, missiles/point-defense, criticals, both logging tiers, and the open rulings |
-| `dataset.ts` | on-disk shapes: `fleet_and_weapons.json`, the four `index.json` files, a fitted hull directory |
-| `constants.ts` | the tuning tables the types describe — family bias, mass bands, yields, cost coefficients, range bands, critical table |
+| `dataset.ts` | on-disk shapes: `fleet_and_weapons.json`, the five `index.json` files, a fitted hull directory |
+| `constants.ts` | the tuning tables the types describe — family bias, mass bands, yields, cost coefficients, range bands, critical table, skill gates and the effect formula |
 | `index.ts` | barrel re-export |
 | `verify_reference.py` | checks the unions and field sets against the live data |
 
@@ -47,6 +48,20 @@ type:
   `hullAffinity`, the others empty".
 - **`Ship` is discriminated on `templateId`.** A tier hull cannot carry one; a
   named ship must.
+- **`Skill` is discriminated on `domain`, and `SkillUnlock` on `type`.** Narrowing a
+  skill to `ship_command` settles which six categories are legal for it, which is
+  the verifier's "category belongs to its domain" rule as a type. Narrowing an
+  unlock settles what `target` means — a `ShipClass`, a fleet position `'2'`–`'5'`,
+  a capability key or a skill group — and `ShipOperationUnlock.level` is the
+  literal `5`, so the pair rule cannot be written down at the wrong level.
+- **Skill ids are fully typed, including the derived ones.** The 52 hull skills are
+  the template literals `skl_ship_${ShipClass}_control` / `_systems` and the other
+  28 are a literal union, so `skl_ship_frigate_control` is a compile error rather
+  than a lookup returning `undefined`.
+- **The stat vocabulary is split, not duplicated.** `SkillEffectStat` is
+  `ModuleEffectStat | SkillOnlyStat`. The 18 skill-only stats have no field on the
+  hull, so `ModuleEffect` cannot target one — a module that tries to modify
+  `miningYield` does not compile.
 - **Component critical effects are literal strings.** `componentHitpoints.bridge`
   is typed to the one string it ever holds, so a typo in a hand-built fixture is
   a compile error.
@@ -90,11 +105,22 @@ not generate it.
    retreat threshold, and the undefined `sensorDebuff` term. They are modelled as
    `OPEN_RULINGS` in `combat.ts` rather than silently resolved — an implementer
    gets the conflict and the recommendation, not a guess presented as a rule.
+7. **`drone` is a weapon-skill class with no weapon catalogue behind it.**
+   `Skills/Design` lists Drones beside Ballistic, Energy and Missiles, but drones
+   are hangar-launched craft (`droneCapacity`, hangar slots) and there is no
+   `weaponClass: 'drone'` in `Weapons/`. `SkillWeaponClass` is therefore
+   `WeaponClass | 'drone'`, and `tools/verify_skills.py` asserts the difference
+   from the catalogue is exactly that one value.
+8. **`mine` and `melee` have no weapon skill.** Four Weaponry skills cover
+   kinetic, energy, missile and drone; the mine and melee classes in the weapon
+   catalogue are trained by nothing. Declared in `SkillWeaponClass` because the
+   type is built from `WeaponClass`, and whitelisted as schema-only in the
+   verifier.
 
 ## Verification
 
 ```sh
-python3 Reference/verify_reference.py     # 26 checks
+python3 Reference/verify_reference.py     # 52 checks
 ```
 
 Every string-literal union must declare exactly the values present in the data —
@@ -102,5 +128,19 @@ no missing member, no invented one — and every entity interface must declare
 exactly the field set the data carries. The script exits non-zero on failure, in
 the style of `tools/verify_*.py`.
 
-Re-run it after any generator change: if a new archetype, effect or ship class
-lands in the data, it fails until the union here is updated.
+Re-run it after any generator change: if a new archetype, effect, ship class or
+skill lands in the data, it fails until the union here is updated.
+
+Two unions cannot be read from the source by the script's regex and are checked
+structurally instead: the 52 hull skill ids (template literals over `ShipClass`)
+and `SkillWeaponClass` (`WeaponClass | 'drone'`).
+
+Type-checked with:
+
+```sh
+tsc --noEmit --strict Reference/*.ts
+```
+
+All 80 live skills, `Skills/index.json` and `_meta` were additionally checked to be
+assignable to `Skill[]`, `SkillIndex` and `FleetMeta` as literals — the whole
+catalogue, not a sample.

@@ -1,0 +1,40 @@
+{
+  "skillId": "skl_ship_merchant_raider_systems",
+  "name": "Merchant Raider System Management",
+  "domain": "ship_command",
+  "category": "ship_system_control",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "power.regenPerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "merchant_raider"
+      }
+    },
+    {
+      "stat": "repairRatePerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "merchant_raider"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 5,
+      "type": "ship_operation",
+      "target": "merchant_raider",
+      "description": "Operate a Merchant Raider; requires the paired system-management skill at level 5 as well."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Running a Merchant Raider's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+}

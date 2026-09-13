@@ -1,0 +1,27 @@
+{
+  "skillId": "skl_trd_union_management",
+  "name": "Union Management",
+  "domain": "interaction_trade",
+  "category": "commerce",
+  "maxLevel": 10,
+  "rank": 5,
+  "scope": "player",
+  "effects": [
+    {
+      "stat": "unionMemberCapacity",
+      "modifierPerLevel": 5.0,
+      "modifierType": "flat",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_trd_trade",
+      "level": 5
+    }
+  ],
+  "description": "Running a union -- a league of many players. Each level raises the member cap by 5."
+}

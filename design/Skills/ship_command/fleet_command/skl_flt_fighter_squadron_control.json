@@ -1,0 +1,41 @@
+{
+  "skillId": "skl_flt_fighter_squadron_control",
+  "name": "Fighter Squadron Control",
+  "domain": "ship_command",
+  "category": "fleet_command",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "fleet",
+  "effects": [
+    {
+      "stat": "squadronSpeed",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    },
+    {
+      "stat": "squadronAccuracy",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    },
+    {
+      "stat": "squadronEvasion",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_flt_formation_drill",
+      "level": 5
+    }
+  ],
+  "description": "Directing fighter and bomber squadrons. Each level adds 1% to squadron speed, accuracy and evasion."
+}

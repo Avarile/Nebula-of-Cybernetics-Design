@@ -1,0 +1,33 @@
+{
+  "skillId": "skl_sta_science",
+  "name": "Science",
+  "domain": "station_management",
+  "category": "science",
+  "maxLevel": 10,
+  "rank": 5,
+  "scope": "player",
+  "effects": [],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 3,
+      "type": "skill_group",
+      "target": "raw_operations",
+      "description": "Mining and raw-resource production skills become trainable."
+    },
+    {
+      "level": 5,
+      "type": "skill_group",
+      "target": "refined_operations",
+      "description": "Material refinement skills become trainable."
+    },
+    {
+      "level": 7,
+      "type": "skill_group",
+      "target": "manufactured_operations",
+      "description": "Manufactory and ship-construction skills become trainable."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Theory before practice. Nothing in mining, production or refining can be trained until Science reaches the level that opens it -- raw operations first, then refining, then fabrication."
+}

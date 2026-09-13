@@ -1,0 +1,22 @@
+{
+  "skillId": "skl_eng_damage_control",
+  "name": "Damage Control",
+  "domain": "ship_command",
+  "category": "engineering",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "criticalEventResistance",
+      "modifierPerLevel": 4.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [],
+  "description": "Handling critical damage: hull breach, reactor fire, reactor failure, bridge failure, computer system failure. Higher levels improve the chance of containing each of them."
+}

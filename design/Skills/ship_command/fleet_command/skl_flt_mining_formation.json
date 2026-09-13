@@ -1,0 +1,27 @@
+{
+  "skillId": "skl_flt_mining_formation",
+  "name": "Mining Operation Formation",
+  "domain": "ship_command",
+  "category": "fleet_command",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "fleet",
+  "effects": [
+    {
+      "stat": "miningYield",
+      "modifierPerLevel": 2.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_flt_formation_drill",
+      "level": 5
+    }
+  ],
+  "description": "Running a fleet as a mining detail. Each level adds 2% to the mining output of every ship in the fleet."
+}

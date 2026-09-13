@@ -1,0 +1,27 @@
+{
+  "skillId": "skl_sta_production_management",
+  "name": "Planetary Production Management",
+  "domain": "station_management",
+  "category": "facility_management",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "station",
+  "effects": [
+    {
+      "stat": "warehouseCapacity",
+      "modifierPerLevel": 10.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_sta_science",
+      "level": 3
+    }
+  ],
+  "description": "Warehousing and throughput. Each level adds 10% to how much resource a site can hold."
+}

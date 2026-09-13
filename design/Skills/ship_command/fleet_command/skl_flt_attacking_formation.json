@@ -1,0 +1,48 @@
+{
+  "skillId": "skl_flt_attacking_formation",
+  "name": "Attacking Formation",
+  "domain": "ship_command",
+  "category": "fleet_command",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "fleet",
+  "effects": [
+    {
+      "stat": "weaponAccuracy",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    },
+    {
+      "stat": "weaponDamage",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    },
+    {
+      "stat": "topSpeed",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    },
+    {
+      "stat": "weaponTracking",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_flt_formation_drill",
+      "level": 5
+    }
+  ],
+  "description": "Offensive station-keeping. Each level adds 1% to accuracy, damage, navigation and weapon tracking across every ship in the fleet."
+}

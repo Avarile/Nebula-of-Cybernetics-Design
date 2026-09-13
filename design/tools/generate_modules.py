@@ -35,20 +35,9 @@ SHIP_CLASSES = [
 ]
 
 # Ship stats a module may modify. Anything outside this list is a typo, not a new stat.
-STATS = [
-    'topSpeed', 'acceleration', 'turnRate', 'evasionRating', 'fuelRange',
-    'hull.maxHP', 'hull.armorRating', 'hull.regenPerTurn',
-    'shields.maxHP', 'rechargeRatePerTurn', 'shields.rechargeDelayAfterHit',
-    'power.maxPower', 'power.regenPerTurn',
-    'sensorArray.effectiveness', 'detectionRange', 'initiative', 'weaponAccuracy',
-    'criticalChanceBonus', 'pointDefenseBonus', 'enemyHitChance',
-    'crew.gunnerySkill', 'crew.engineeringSkill', 'crew.pilotSkill', 'crewRecoveryRate',
-    'repairRatePerTurn', 'cargoCapacity', 'ammoCapacity', 'mineCapacity', 'minesweepRate',
-    'troopCapacity', 'aircraftCapacity', 'droneCapacity', 'medicalCapacity',
-    'fuelTransferRate',
-]
-# Stats where a NEGATIVE modifier is the benefit (suppressing enemy accuracy, cutting a delay).
-BENEFICIAL_NEGATIVE = {'enemyHitChance', 'shields.rechargeDelayAfterHit'}
+# Lives in tools/stat_vocabulary.py so the skill catalogue shares the same vocabulary;
+# re-exported here because verify_modules.py imports it from this module.
+from stat_vocabulary import SHIP_STATS as STATS, BENEFICIAL_NEGATIVE
 
 # ------------------------------------------------------------------- mark ladder
 def mark_effect(m): return 1.20 ** (m - 1)   # benefits grow

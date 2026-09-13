@@ -1,0 +1,40 @@
+{
+  "skillId": "skl_ship_light_carrier_systems",
+  "name": "Light Carrier System Management",
+  "domain": "ship_command",
+  "category": "ship_system_control",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "power.regenPerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "light_carrier"
+      }
+    },
+    {
+      "stat": "repairRatePerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "light_carrier"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 5,
+      "type": "ship_operation",
+      "target": "light_carrier",
+      "description": "Operate a Light Carrier; requires the paired system-management skill at level 5 as well."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Running a Light Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+}

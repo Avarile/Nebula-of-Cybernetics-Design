@@ -1,0 +1,38 @@
+{
+  "skillId": "skl_mine_advanced_equipment",
+  "name": "Advanced Mining Equipment Operation",
+  "domain": "deep_space_mining",
+  "category": "mining_operations",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "miningCycleSpeed",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 1,
+      "type": "capability",
+      "target": "advanced_mining_equipment",
+      "description": "Fit and run advanced mining equipment."
+    }
+  ],
+  "prerequisites": [
+    {
+      "skillId": "skl_mine_equipment_operation",
+      "level": 5
+    },
+    {
+      "skillId": "skl_sta_science",
+      "level": 5
+    }
+  ],
+  "description": "Operating advanced mining gear. Each level cuts cycle time by a further 3%."
+}

@@ -1,0 +1,52 @@
+{
+  "skillId": "skl_wpn_ballistic",
+  "name": "Ballistic Weapon",
+  "domain": "ship_command",
+  "category": "weaponry",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "weaponDamage",
+      "modifierPerLevel": 5.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "weaponClass": "kinetic"
+      }
+    },
+    {
+      "stat": "weaponAccuracy",
+      "modifierPerLevel": 5.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "weaponClass": "kinetic"
+      }
+    }
+  ],
+  "penalties": [
+    {
+      "stat": "weaponDamage",
+      "modifier": -50.0,
+      "modifierType": "percent",
+      "appliesBelowLevel": 5,
+      "appliesTo": {
+        "weaponClass": "kinetic"
+      }
+    },
+    {
+      "stat": "weaponAccuracy",
+      "modifier": -50.0,
+      "modifierType": "percent",
+      "appliesBelowLevel": 5,
+      "appliesTo": {
+        "weaponClass": "kinetic"
+      }
+    }
+  ],
+  "unlocks": [],
+  "prerequisites": [],
+  "description": "Autocannons, railguns and gauss -- anything that throws mass. Below level 5 the weapon suffers a 50% damage and accuracy debuff; level 5 clears it, and each level after that adds 5% effectiveness."
+}

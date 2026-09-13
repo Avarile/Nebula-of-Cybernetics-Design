@@ -1,0 +1,22 @@
+{
+  "skillId": "skl_eng_maintenance",
+  "name": "Maintenance",
+  "domain": "ship_command",
+  "category": "engineering",
+  "maxLevel": 10,
+  "rank": 2,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "repairRatePerTurn",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [],
+  "description": "Standing repair work under way. The higher the skill, the better the repair rate."
+}

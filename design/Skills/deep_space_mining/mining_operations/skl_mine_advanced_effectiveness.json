@@ -1,0 +1,31 @@
+{
+  "skillId": "skl_mine_advanced_effectiveness",
+  "name": "Advanced Mining Effectiveness",
+  "domain": "deep_space_mining",
+  "category": "mining_operations",
+  "maxLevel": 10,
+  "rank": 5,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "miningYield",
+      "modifierPerLevel": 4.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_mine_effectiveness",
+      "level": 5
+    },
+    {
+      "skillId": "skl_mine_advanced_equipment",
+      "level": 5
+    }
+  ],
+  "description": "Yield optimisation on advanced gear. Each level adds a further 4% to mining yield."
+}

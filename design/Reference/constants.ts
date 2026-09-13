@@ -32,6 +32,7 @@ import type {
   SignificanceRule,
 } from './combat';
 import type { ConversionYields, ResourceTier } from './resources';
+import type { OperateLevel, SkillCategory, SkillDomain } from './skills';
 import type { MassBand } from './common';
 
 // ================================================================
@@ -581,6 +582,105 @@ export const CHATTER_TRIGGERS = [
 ] as const;
 
 // ================================================================
+// SKILLS — the level ladder, the gates, and the domain shape
+// ================================================================
+
+export const SKILL_DOMAINS = [
+  'ship_command',
+  'station_management',
+  'deep_space_mining',
+  'interaction_trade',
+] as const satisfies readonly SkillDomain[];
+
+/** Uniform across all 80 skills — there is no short skill and no long one. */
+export const SKILL_MAX_LEVEL = 10 as const;
+
+/**
+ * The effect formula, as code. `appliesFromLevel` lets a ladder start late
+ * without a separate "bonus begins at" field.
+ */
+export const skillEffectTotal = (
+  effect: { modifierPerLevel: number; appliesFromLevel: number },
+  level: number,
+): number => effect.modifierPerLevel * Math.max(0, level - effect.appliesFromLevel + 1);
+
+/** A penalty is on or off, never per-level. */
+export const skillPenaltyActive = (
+  penalty: { appliesBelowLevel: number },
+  level: number,
+): boolean => level < penalty.appliesBelowLevel;
+
+/**
+ * Both of a hull's skills must reach this level before it can be flown. From
+ * Skills/Design: "reaching level 5 will enable a player to operate that kind of
+ * ship (both control and system management is required)".
+ */
+export const SKILL_OPERATE_LEVEL = 5 as const satisfies OperateLevel;
+
+/** Formation Drill's gates. Ship 1 needs no skill, so the table starts at 2. */
+export const FLEET_SLOT_GATES = [
+  { level: 5, ships: 2 },
+  { level: 7, ships: 3 },
+  { level: 8, ships: 4 },
+  { level: 10, ships: 5 },
+] as const;
+
+/** Science gates every station and mining skill; nothing in either trains before it. */
+export const SCIENCE_GATES = [
+  { level: 3, group: 'raw_operations' },
+  { level: 5, group: 'refined_operations' },
+  { level: 7, group: 'manufactured_operations' },
+] as const;
+
+/**
+ * The Weaponry ladder, identical across all four weapon skills. Level 5 is the
+ * clean baseline: the debuff has cleared and the bonus has not started.
+ *
+ *   levels 1-4   -50% damage and accuracy
+ *   level 5       0
+ *   levels 6-10  +5% per level, reaching +25% at level 10
+ */
+export const WEAPONRY_LADDER = {
+  debuffPercent: -50.0,
+  debuffBelowLevel: 5,
+  bonusPercentPerLevel: 5.0,
+  bonusFromLevel: 6,
+  maxBonusPercent: 25,
+} as const;
+
+/**
+ * Material Refinement Management is only +1%/level because `refineryYield`
+ * multiplies a resource lane's `conversionYield`, which must stay strictly below
+ * 1. Structural is the highest lane at 0.90, and 0.90 x 1.10 = 0.990.
+ * tools/verify_skills.py recomputes this against the live resource catalogue.
+ */
+export const REFINERY_YIELD_CEILING = {
+  percentPerLevel: 1.0,
+  maxBoostPercent: 10,
+  maxLaneYield: 0.9,
+} as const;
+
+export const SKILL_DOMAIN_COUNTS = {
+  ship_command: 68,
+  station_management: 6,
+  deep_space_mining: 4,
+  interaction_trade: 2,
+} as const satisfies Record<SkillDomain, number>;
+
+export const SKILL_CATEGORY_COUNTS = {
+  ship_system_control: 52,
+  navigation: 1,
+  scanning: 1,
+  engineering: 4,
+  weaponry: 4,
+  fleet_command: 6,
+  science: 1,
+  facility_management: 5,
+  mining_operations: 4,
+  commerce: 2,
+} as const satisfies Record<SkillCategory, number>;
+
+// ================================================================
 // DATASET COUNTS  (as of the current generated state)
 // ================================================================
 
@@ -594,4 +694,6 @@ export const CATALOGUE_COUNTS = {
   modules: 135,
   moduleArchetypes: 45,
   resources: 12,
+  skills: 80,
+  skillsPerHull: 2,
 } as const;

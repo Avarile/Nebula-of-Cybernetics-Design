@@ -1,0 +1,40 @@
+{
+  "skillId": "skl_ship_sloop_patrol_escort_systems",
+  "name": "Sloop / Patrol Escort System Management",
+  "domain": "ship_command",
+  "category": "ship_system_control",
+  "maxLevel": 10,
+  "rank": 1,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "power.regenPerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "sloop_patrol_escort"
+      }
+    },
+    {
+      "stat": "repairRatePerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "sloop_patrol_escort"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 5,
+      "type": "ship_operation",
+      "target": "sloop_patrol_escort",
+      "description": "Operate a Sloop / Patrol Escort; requires the paired system-management skill at level 5 as well."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Running a Sloop / Patrol Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+}

@@ -7,6 +7,8 @@ script exits non-zero if any check fails. What it enforces:
   - every string-literal union declares exactly the values present in
     fleet_and_weapons.json (no missing member, no invented one)
   - every entity interface declares exactly the field set the data carries
+  - the skill catalogue's domains, categories, scopes, unlock types, capability and
+    skill-group keys, and the skill-only half of the stat vocabulary
 
 Run from anywhere:  python3 Reference/verify_reference.py
 """
@@ -22,6 +24,8 @@ sys.path.insert(0, os.path.join(ROOT, 'tools'))
 FLEET = json.load(open(os.path.join(ROOT, 'fleet_and_weapons.json')))
 SHIPS = FLEET['ships'] + FLEET['namedShips']
 WEAPONS, MODULES, RESOURCES = FLEET['weapons'], FLEET['modules'], FLEET['resources']
+SKILLS = FLEET['skills']
+SKILL_INDEX = json.load(open(os.path.join(ROOT, 'Skills', 'index.json')))
 
 failures = []
 
@@ -101,6 +105,77 @@ check('Resource fields',
       {k for r in RESOURCES for k in r})
 check('NamedShip fields', fields('ships.ts', 'ShipBase') | {'templateId'},
       {k for s in FLEET['namedShips'] for k in s})
+
+# ---------------------------------------------------------------- skills
+# 52 of the 80 skill ids are template-literal types (`skl_ship_${ShipClass}_control`),
+# which union() cannot read -- they are checked structurally below instead.
+
+check('SkillDomain', union('skills.ts', 'SkillDomain'), {s['domain'] for s in SKILLS})
+check('SkillScope', union('skills.ts', 'SkillScope'), {s['scope'] for s in SKILLS})
+for domain, name in [('ship_command', 'ShipCommandCategory'),
+                     ('station_management', 'StationManagementCategory'),
+                     ('deep_space_mining', 'DeepSpaceMiningCategory'),
+                     ('interaction_trade', 'InteractionTradeCategory')]:
+    check(name, union('skills.ts', name),
+          {s['category'] for s in SKILLS if s['domain'] == domain})
+
+UNLOCKS = [u for s in SKILLS for u in s['unlocks']]
+check('SkillUnlockType', union('skills.ts', 'SkillUnlockType'), {u['type'] for u in UNLOCKS})
+for utype, name in [('fleet_slot', 'FleetSlotTarget'), ('capability', 'SkillCapability'),
+                    ('skill_group', 'SkillGroup')]:
+    check(name, union('skills.ts', name), {u['target'] for u in UNLOCKS if u['type'] == utype})
+
+# SkillEffectStat = ModuleEffectStat | SkillOnlyStat, so the skill-only half must be
+# exactly the stats the skill data uses that no module stat covers.
+MODULE_STATS = union('modules.ts', 'ModuleEffectStat')
+SKILL_USED = {e['stat'] for s in SKILLS for e in s['effects'] + s['penalties']}
+check('SkillOnlyStat', union('skills.ts', 'SkillOnlyStat'), SKILL_USED - MODULE_STATS)
+
+# SkillWeaponClass = WeaponClass | 'drone'; 'drone' is hangar-launched and has no
+# entry in Weapons/, so it is declared here rather than in WeaponClass.
+check('SkillWeaponClass', union('weapons.ts', 'WeaponClass') | {'drone'},
+      {e['appliesTo']['weaponClass'] for s in SKILLS
+       for e in s['effects'] + s['penalties'] if 'weaponClass' in e['appliesTo']},
+      schema_only=['kinetic', 'energy', 'missile', 'mine', 'melee'])
+
+# The 28 non-hull ids are literal unions; the 52 hull ids are template literals.
+declared_ids = set()
+for name in ('ShipCommandSkillId', 'StationManagementSkillId',
+             'DeepSpaceMiningSkillId', 'InteractionTradeSkillId'):
+    declared_ids |= union('skills.ts', name)
+hull_ids = {s['skillId'] for s in SKILLS if s['category'] == 'ship_system_control'}
+check('SkillId (28 non-hull literals)', declared_ids,
+      {s['skillId'] for s in SKILLS} - hull_ids)
+
+ship_classes = {s['shipClass'] for s in SHIPS}
+expected_hull_ids = {f'skl_ship_{c}_{suffix}' for c in ship_classes
+                     for suffix in ('control', 'systems')}
+check('SkillId (52 hull template literals)', expected_hull_ids, hull_ids)
+
+# ---------------------------------------------------------------- skill field sets
+check('Skill fields', fields('skills.ts', 'SkillBase') | {'domain', 'category'},
+      {k for s in SKILLS for k in s})
+check('SkillEffect fields', fields('skills.ts', 'SkillEffect'),
+      {k for s in SKILLS for e in s['effects'] for k in e})
+check('SkillPenalty fields', fields('skills.ts', 'SkillPenalty'),
+      {k for s in SKILLS for p in s['penalties'] for k in p})
+check('SkillUnlock fields', fields('skills.ts', 'SkillUnlockBase') | {'type', 'target'},
+      {k for u in UNLOCKS for k in u})
+check('SkillPrerequisite fields', fields('skills.ts', 'SkillPrerequisite'),
+      {k for s in SKILLS for r in s['prerequisites'] for k in r})
+check('SkillAppliesTo fields', fields('skills.ts', 'SkillAppliesTo'),
+      {k for s in SKILLS for e in s['effects'] + s['penalties'] for k in e['appliesTo']})
+
+check('SkillIndexEntry fields', fields('skills.ts', 'SkillIndexEntry'),
+      {k for e in SKILL_INDEX['skills'] for k in e})
+check('SkillDomainSummary fields', fields('skills.ts', 'SkillDomainSummary'),
+      {k for d in SKILL_INDEX['domains'] for k in d})
+check('SkillIndex fields', fields('skills.ts', 'SkillIndex'), set(SKILL_INDEX))
+
+# _meta grew three skill keys; check the whole thing, not just those.
+check('FleetMeta fields', fields('dataset.ts', 'FleetMeta'), set(FLEET['_meta']))
+
+check('FleetDataset fields', fields('dataset.ts', 'FleetDataset'), set(FLEET))
 
 print()
 if failures:

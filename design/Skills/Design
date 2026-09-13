@@ -1,0 +1,54 @@
+# 4 major Domains
+
+## Spaceship command
+
+- Ship System Control
+   1. Destroyer Control
+   2. Destroyer System Management
+   3. Light Cruiser Control
+   4. Light Cruiser System Management
+   5. Heavy Cruiser Control
+   6. Heavy Cruiser System Management
+   ... All other level of ships
+- Navigation: 10 levels, each level increase 1% of the ship speed
+- Scanning: 10 levels, enable user to scan the universe and scout enemy, enable user to lock on enemy ship.
+- Engineering
+   1. Maintanence: 10 levels, the higher the skill, the better repairments rate.
+   2. Energy Shields: 10 levels, the higher the skill, the faster recharge rate.
+   3. Damage Control: 10 levels, higher level improve higher chance of deal with critical damages like: hull breach, reactor fire, reactor failure, bridge failure, computer system failure ... 
+   4. Electronics: 10 levels, increase the effectiveness of the electronic systems of a ship
+- Weaponry
+   1. Ballistic Weapon: 10 levels, below level 5, the weapon will suffer 50% of damage and accuracy debuff, after level 5, each level will increase 5% of effectiveness.
+   2. Energy Weapon: 10 levels, below level 5, the weapon will suffer 50% of damage and accuracy debuff, after level 5, each level will increase 5% of effectiveness.
+   3. Missiles: 10 levels, below level 5, the weapon will suffer 50% of damage and accuracy debuff, after level 5, each level will increase 5% of effectiveness.
+   4. Drones: 10 levels, below level 5, the weapon will suffer 50% of damage and accuracy debuff, after level 5, each level will increase 5% of effectiveness.
+- Fleet Command
+   1. Formation drill: 10 levels, reach level 5 will enable second ship, 7 enable third ship, 8 enable fourth, 10 enable all five ships in the fleet
+   2. Attacking Formation: 10 levels, each level increase 1% overall effectiveness of accuracy, damage, navigation, weapon tracking of all ships in the fleet
+   3. Defensive Formation: 10 levels, each level increase 1% overall effectiveness of Mainanence, Energy Shield, Damage Control, Damage Reduction, Damage Evision of all ships in the fleet
+   4. Mining Operation Formation: 10 levels, each level increase 2% overall effectiveness of mining operations of all ship
+   5. Regroup and hold: 10 levels, each level will help bring all remainning ship in a fleet to regroup(fleet may be disrupted when heavy damage has been implicted, in disruption, ships will lose bouns of fleet related)
+   6. Fighter squadron control: 10 levels, each level will increase effectiveness of Fighter / Boomer Squadron, increase speed, accuracy, evision of fighter squadrons
+
+## Planetory and Space Station Management
+
+- Planetory Resource production.
+- Planetory Production management: Increase the amount of warehousing of the resource.
+- Planntory & Space Station Material Refinement Management
+- Planetory & Space Station Manufactory Management
+- Planetory & Space Station Ship Construction Management
+- Science: Restrict all Mining, Production and Refining Operation, with this skill reached certain level, other operations will be unlocked for learning.
+
+## Deep Space Mining
+
+- Mining Equipments Operation
+- Advanced Mining Equipments Operation
+- Mining Effectiveness
+- Advanced Mining Effectiveness
+
+## Interaction & Trade
+
+- Trade
+- Union(league of many player) Management
+
+// Skills are required to operate ships normally, each skill have 10 levels, reaching level 5 will enable a player to operate that kind of ship(both control and system management is required)

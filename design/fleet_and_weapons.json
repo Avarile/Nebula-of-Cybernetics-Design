@@ -69,7 +69,15 @@
       "energy",
       "ordnance",
       "precision"
-    ]
+    ],
+    "skillCount": 80,
+    "skillDomains": [
+      "ship_command",
+      "station_management",
+      "deep_space_mining",
+      "interaction_trade"
+    ],
+    "skillMaxLevel": 10
   },
   "modules": [
     {
@@ -49326,6 +49334,3048 @@
       "conversionYield": 0.85,
       "unitMass": 1.0,
       "description": "Finished precision electronics package -- targeting, guidance, sensor subassemblies."
+    }
+  ],
+  "skills": [
+    {
+      "skillId": "skl_ship_motor_torpedo_boat_control",
+      "name": "Motor Torpedo Boat Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "motor_torpedo_boat"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "motor_torpedo_boat"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "motor_torpedo_boat",
+          "description": "Operate a Motor Torpedo Boat; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Motor Torpedo Boat: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_motor_torpedo_boat_systems",
+      "name": "Motor Torpedo Boat System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "motor_torpedo_boat"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "motor_torpedo_boat"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "motor_torpedo_boat",
+          "description": "Operate a Motor Torpedo Boat; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Motor Torpedo Boat's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_submarine_chaser_control",
+      "name": "Submarine Chaser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine_chaser"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine_chaser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "submarine_chaser",
+          "description": "Operate a Submarine Chaser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Submarine Chaser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_submarine_chaser_systems",
+      "name": "Submarine Chaser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine_chaser"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine_chaser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "submarine_chaser",
+          "description": "Operate a Submarine Chaser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Submarine Chaser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_corvette_control",
+      "name": "Corvette Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "corvette"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "corvette"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "corvette",
+          "description": "Operate a Corvette; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Corvette: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_corvette_systems",
+      "name": "Corvette System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "corvette"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "corvette"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "corvette",
+          "description": "Operate a Corvette; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Corvette's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_torpedo_boat_fleet_control",
+      "name": "Fleet Torpedo Boat Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "torpedo_boat_fleet"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "torpedo_boat_fleet"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "torpedo_boat_fleet",
+          "description": "Operate a Fleet Torpedo Boat; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Fleet Torpedo Boat: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_torpedo_boat_fleet_systems",
+      "name": "Fleet Torpedo Boat System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "torpedo_boat_fleet"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "torpedo_boat_fleet"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "torpedo_boat_fleet",
+          "description": "Operate a Fleet Torpedo Boat; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Fleet Torpedo Boat's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_destroyer_escort_control",
+      "name": "Destroyer Escort Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer_escort"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer_escort"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "destroyer_escort",
+          "description": "Operate a Destroyer Escort; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Destroyer Escort: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_destroyer_escort_systems",
+      "name": "Destroyer Escort System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer_escort"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer_escort"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "destroyer_escort",
+          "description": "Operate a Destroyer Escort; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Destroyer Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_sloop_patrol_escort_control",
+      "name": "Sloop / Patrol Escort Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "sloop_patrol_escort"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "sloop_patrol_escort"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "sloop_patrol_escort",
+          "description": "Operate a Sloop / Patrol Escort; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Sloop / Patrol Escort: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_sloop_patrol_escort_systems",
+      "name": "Sloop / Patrol Escort System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 1,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "sloop_patrol_escort"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "sloop_patrol_escort"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "sloop_patrol_escort",
+          "description": "Operate a Sloop / Patrol Escort; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Sloop / Patrol Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_destroyer_control",
+      "name": "Destroyer Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "destroyer",
+          "description": "Operate a Destroyer; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Destroyer: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_destroyer_systems",
+      "name": "Destroyer System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "destroyer"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "destroyer",
+          "description": "Operate a Destroyer; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Destroyer's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_landing_ship_tank_control",
+      "name": "Landing Ship Tank Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "landing_ship_tank"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "landing_ship_tank"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "landing_ship_tank",
+          "description": "Operate a Landing Ship Tank; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Landing Ship Tank: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_landing_ship_tank_systems",
+      "name": "Landing Ship Tank System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "landing_ship_tank"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "landing_ship_tank"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "landing_ship_tank",
+          "description": "Operate a Landing Ship Tank; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Landing Ship Tank's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_submarine_control",
+      "name": "Submarine Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "submarine",
+          "description": "Operate a Submarine; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Submarine: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_submarine_systems",
+      "name": "Submarine System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "submarine"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "submarine",
+          "description": "Operate a Submarine; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Submarine's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_minelayer_sweeper_control",
+      "name": "Minelayer / Sweeper Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "minelayer_sweeper"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "minelayer_sweeper"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "minelayer_sweeper",
+          "description": "Operate a Minelayer / Sweeper; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Minelayer / Sweeper: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_minelayer_sweeper_systems",
+      "name": "Minelayer / Sweeper System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "minelayer_sweeper"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "minelayer_sweeper"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "minelayer_sweeper",
+          "description": "Operate a Minelayer / Sweeper; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Minelayer / Sweeper's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_coastal_defence_ship_control",
+      "name": "Coastal Defence Ship Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "coastal_defence_ship"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "coastal_defence_ship"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "coastal_defence_ship",
+          "description": "Operate a Coastal Defence Ship; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Coastal Defence Ship: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_coastal_defence_ship_systems",
+      "name": "Coastal Defence Ship System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "coastal_defence_ship"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "coastal_defence_ship"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "coastal_defence_ship",
+          "description": "Operate a Coastal Defence Ship; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Coastal Defence Ship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_anti_aircraft_cruiser_control",
+      "name": "Anti-Aircraft Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "anti_aircraft_cruiser"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "anti_aircraft_cruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "anti_aircraft_cruiser",
+          "description": "Operate a Anti-Aircraft Cruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Anti-Aircraft Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_anti_aircraft_cruiser_systems",
+      "name": "Anti-Aircraft Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "anti_aircraft_cruiser"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "anti_aircraft_cruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "anti_aircraft_cruiser",
+          "description": "Operate a Anti-Aircraft Cruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Anti-Aircraft Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_monitor_control",
+      "name": "Monitor Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "monitor"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "monitor"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "monitor",
+          "description": "Operate a Monitor; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Monitor: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_monitor_systems",
+      "name": "Monitor System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "monitor"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "monitor"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "monitor",
+          "description": "Operate a Monitor; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Monitor's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_light_cruiser_control",
+      "name": "Light Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_cruiser"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_cruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "light_cruiser",
+          "description": "Operate a Light Cruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Light Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_light_cruiser_systems",
+      "name": "Light Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_cruiser"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_cruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "light_cruiser",
+          "description": "Operate a Light Cruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Light Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_attack_transport_control",
+      "name": "Attack Transport Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "attack_transport"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "attack_transport"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "attack_transport",
+          "description": "Operate a Attack Transport; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Attack Transport: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_attack_transport_systems",
+      "name": "Attack Transport System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "attack_transport"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "attack_transport"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "attack_transport",
+          "description": "Operate a Attack Transport; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Attack Transport's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_light_carrier_control",
+      "name": "Light Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_carrier"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_carrier"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "light_carrier",
+          "description": "Operate a Light Carrier; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Light Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_light_carrier_systems",
+      "name": "Light Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_carrier"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "light_carrier"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "light_carrier",
+          "description": "Operate a Light Carrier; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Light Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_panzerschiff_control",
+      "name": "Panzerschiff Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "panzerschiff"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "panzerschiff"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "panzerschiff",
+          "description": "Operate a Panzerschiff; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Panzerschiff: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_panzerschiff_systems",
+      "name": "Panzerschiff System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "panzerschiff"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "panzerschiff"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "panzerschiff",
+          "description": "Operate a Panzerschiff; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Panzerschiff's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_merchant_raider_control",
+      "name": "Merchant Raider Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "merchant_raider"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "merchant_raider"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "merchant_raider",
+          "description": "Operate a Merchant Raider; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Merchant Raider: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_merchant_raider_systems",
+      "name": "Merchant Raider System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "merchant_raider"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "merchant_raider"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "merchant_raider",
+          "description": "Operate a Merchant Raider; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Merchant Raider's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_seaplane_tender_control",
+      "name": "Seaplane Tender Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "seaplane_tender"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "seaplane_tender"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "seaplane_tender",
+          "description": "Operate a Seaplane Tender; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Seaplane Tender: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_seaplane_tender_systems",
+      "name": "Seaplane Tender System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "seaplane_tender"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "seaplane_tender"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "seaplane_tender",
+          "description": "Operate a Seaplane Tender; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Seaplane Tender's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_repair_ship_tender_control",
+      "name": "Repair Ship / Tender Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "repair_ship_tender"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "repair_ship_tender"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "repair_ship_tender",
+          "description": "Operate a Repair Ship / Tender; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Repair Ship / Tender: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_repair_ship_tender_systems",
+      "name": "Repair Ship / Tender System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "repair_ship_tender"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "repair_ship_tender"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "repair_ship_tender",
+          "description": "Operate a Repair Ship / Tender; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Repair Ship / Tender's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_heavy_cruiser_control",
+      "name": "Heavy Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "heavy_cruiser"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "heavy_cruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "heavy_cruiser",
+          "description": "Operate a Heavy Cruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Heavy Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_heavy_cruiser_systems",
+      "name": "Heavy Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "heavy_cruiser"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "heavy_cruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "heavy_cruiser",
+          "description": "Operate a Heavy Cruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Heavy Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_escort_carrier_control",
+      "name": "Escort Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "escort_carrier"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "escort_carrier"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "escort_carrier",
+          "description": "Operate a Escort Carrier; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Escort Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_escort_carrier_systems",
+      "name": "Escort Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "escort_carrier"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "escort_carrier"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "escort_carrier",
+          "description": "Operate a Escort Carrier; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Escort Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_fleet_oiler_control",
+      "name": "Fleet Oiler Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_oiler"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_oiler"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "fleet_oiler",
+          "description": "Operate a Fleet Oiler; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Fleet Oiler: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_fleet_oiler_systems",
+      "name": "Fleet Oiler System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_oiler"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_oiler"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "fleet_oiler",
+          "description": "Operate a Fleet Oiler; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Fleet Oiler's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_fleet_aircraft_carrier_control",
+      "name": "Fleet Aircraft Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_aircraft_carrier"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_aircraft_carrier"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "fleet_aircraft_carrier",
+          "description": "Operate a Fleet Aircraft Carrier; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Fleet Aircraft Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_fleet_aircraft_carrier_systems",
+      "name": "Fleet Aircraft Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_aircraft_carrier"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "fleet_aircraft_carrier"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "fleet_aircraft_carrier",
+          "description": "Operate a Fleet Aircraft Carrier; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Fleet Aircraft Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_battlecruiser_control",
+      "name": "Battlecruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battlecruiser"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battlecruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "battlecruiser",
+          "description": "Operate a Battlecruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Battlecruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_battlecruiser_systems",
+      "name": "Battlecruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battlecruiser"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battlecruiser"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "battlecruiser",
+          "description": "Operate a Battlecruiser; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Battlecruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_ship_battleship_control",
+      "name": "Battleship Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 5,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battleship"
+          }
+        },
+        {
+          "stat": "initiative",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battleship"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "battleship",
+          "description": "Operate a Battleship; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Conning a Battleship: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+    },
+    {
+      "skillId": "skl_ship_battleship_systems",
+      "name": "Battleship System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "maxLevel": 10,
+      "rank": 5,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "power.regenPerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battleship"
+          }
+        },
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "shipCategory": "battleship"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "ship_operation",
+          "target": "battleship",
+          "description": "Operate a Battleship; requires the paired system-management skill at level 5 as well."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Running a Battleship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+    },
+    {
+      "skillId": "skl_nav_navigation",
+      "name": "Navigation",
+      "domain": "ship_command",
+      "category": "navigation",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "topSpeed",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Course plotting and throttle discipline. Each level adds 1% to ship speed."
+    },
+    {
+      "skillId": "skl_scan_scanning",
+      "name": "Scanning",
+      "domain": "ship_command",
+      "category": "scanning",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "detectionRange",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "sensorArray.effectiveness",
+          "modifierPerLevel": 2.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 1,
+          "type": "capability",
+          "target": "system_scan",
+          "description": "Scan the current system for contacts and sites."
+        },
+        {
+          "level": 3,
+          "type": "capability",
+          "target": "enemy_scout",
+          "description": "Resolve an enemy contact into a hull and loadout."
+        },
+        {
+          "level": 5,
+          "type": "capability",
+          "target": "target_lock",
+          "description": "Hold a weapons lock on an enemy ship."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Survey and targeting sensors. Opens up scanning the universe, scouting enemy contacts, and holding a lock on an enemy ship."
+    },
+    {
+      "skillId": "skl_eng_maintenance",
+      "name": "Maintenance",
+      "domain": "ship_command",
+      "category": "engineering",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Standing repair work under way. The higher the skill, the better the repair rate."
+    },
+    {
+      "skillId": "skl_eng_energy_shields",
+      "name": "Energy Shields",
+      "domain": "ship_command",
+      "category": "engineering",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "rechargeRatePerTurn",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Shield generator tuning. The higher the skill, the faster the recharge rate."
+    },
+    {
+      "skillId": "skl_eng_damage_control",
+      "name": "Damage Control",
+      "domain": "ship_command",
+      "category": "engineering",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "criticalEventResistance",
+          "modifierPerLevel": 4.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Handling critical damage: hull breach, reactor fire, reactor failure, bridge failure, computer system failure. Higher levels improve the chance of containing each of them."
+    },
+    {
+      "skillId": "skl_eng_electronics",
+      "name": "Electronics",
+      "domain": "ship_command",
+      "category": "engineering",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "electronicSystemsEffectiveness",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Fire-control computers, ECM sets and sensor processing -- the effectiveness of a ship's electronic systems."
+    },
+    {
+      "skillId": "skl_wpn_ballistic",
+      "name": "Ballistic Weapon",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "weaponDamage",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "kinetic"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "kinetic"
+          }
+        }
+      ],
+      "penalties": [
+        {
+          "stat": "weaponDamage",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "kinetic"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "kinetic"
+          }
+        }
+      ],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Autocannons, railguns and gauss -- anything that throws mass. Below level 5 the weapon suffers a 50% damage and accuracy debuff; level 5 clears it, and each level after that adds 5% effectiveness."
+    },
+    {
+      "skillId": "skl_wpn_energy",
+      "name": "Energy Weapon",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "weaponDamage",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "energy"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "energy"
+          }
+        }
+      ],
+      "penalties": [
+        {
+          "stat": "weaponDamage",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "energy"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "energy"
+          }
+        }
+      ],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Lasers, plasma and particle weapons. Below level 5 the weapon suffers a 50% damage and accuracy debuff; level 5 clears it, and each level after that adds 5% effectiveness."
+    },
+    {
+      "skillId": "skl_wpn_missiles",
+      "name": "Missiles",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "weaponDamage",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "missile"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "missile"
+          }
+        }
+      ],
+      "penalties": [
+        {
+          "stat": "weaponDamage",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "missile"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "missile"
+          }
+        }
+      ],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Missile racks, torpedo tubes and seeker ordnance. Below level 5 the weapon suffers a 50% damage and accuracy debuff; level 5 clears it, and each level after that adds 5% effectiveness."
+    },
+    {
+      "skillId": "skl_wpn_drones",
+      "name": "Drones",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "weaponDamage",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "drone"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 6,
+          "appliesTo": {
+            "weaponClass": "drone"
+          }
+        }
+      ],
+      "penalties": [
+        {
+          "stat": "weaponDamage",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "drone"
+          }
+        },
+        {
+          "stat": "weaponAccuracy",
+          "modifier": -50.0,
+          "modifierType": "percent",
+          "appliesBelowLevel": 5,
+          "appliesTo": {
+            "weaponClass": "drone"
+          }
+        }
+      ],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Combat drones flown from a hangar bay rather than fired from a mount. Below level 5 the weapon suffers a 50% damage and accuracy debuff; level 5 clears it, and each level after that adds 5% effectiveness."
+    },
+    {
+      "skillId": "skl_flt_formation_drill",
+      "name": "Formation Drill",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "fleet",
+      "effects": [],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 5,
+          "type": "fleet_slot",
+          "target": "2",
+          "description": "Second ship in the fleet."
+        },
+        {
+          "level": 7,
+          "type": "fleet_slot",
+          "target": "3",
+          "description": "Third ship in the fleet."
+        },
+        {
+          "level": 8,
+          "type": "fleet_slot",
+          "target": "4",
+          "description": "Fourth ship in the fleet."
+        },
+        {
+          "level": 10,
+          "type": "fleet_slot",
+          "target": "5",
+          "description": "Fifth ship in the fleet -- the maximum."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Working more than one hull as a unit. Each gate adds a ship to the fleet; the first ship needs no drill at all."
+    },
+    {
+      "skillId": "skl_flt_attacking_formation",
+      "name": "Attacking Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "fleet",
+      "effects": [
+        {
+          "stat": "weaponAccuracy",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "weaponDamage",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "topSpeed",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "weaponTracking",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_flt_formation_drill",
+          "level": 5
+        }
+      ],
+      "description": "Offensive station-keeping. Each level adds 1% to accuracy, damage, navigation and weapon tracking across every ship in the fleet."
+    },
+    {
+      "skillId": "skl_flt_defensive_formation",
+      "name": "Defensive Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "fleet",
+      "effects": [
+        {
+          "stat": "repairRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "rechargeRatePerTurn",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "criticalEventResistance",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "damageReduction",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "evasionRating",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_flt_formation_drill",
+          "level": 5
+        }
+      ],
+      "description": "Defensive station-keeping. Each level adds 1% to maintenance, energy shields, damage control, damage reduction and evasion across every ship in the fleet."
+    },
+    {
+      "skillId": "skl_flt_mining_formation",
+      "name": "Mining Operation Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "fleet",
+      "effects": [
+        {
+          "stat": "miningYield",
+          "modifierPerLevel": 2.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_flt_formation_drill",
+          "level": 5
+        }
+      ],
+      "description": "Running a fleet as a mining detail. Each level adds 2% to the mining output of every ship in the fleet."
+    },
+    {
+      "skillId": "skl_flt_regroup_and_hold",
+      "name": "Regroup and Hold",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "fleet",
+      "effects": [
+        {
+          "stat": "fleetRegroupRate",
+          "modifierPerLevel": 5.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_flt_formation_drill",
+          "level": 5
+        }
+      ],
+      "description": "Re-forming after disruption. Heavy damage scatters a fleet, and a scattered fleet loses every fleet bonus until it re-forms; each level brings the survivors back into formation faster."
+    },
+    {
+      "skillId": "skl_flt_fighter_squadron_control",
+      "name": "Fighter Squadron Control",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "fleet",
+      "effects": [
+        {
+          "stat": "squadronSpeed",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "squadronAccuracy",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        },
+        {
+          "stat": "squadronEvasion",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_flt_formation_drill",
+          "level": 5
+        }
+      ],
+      "description": "Directing fighter and bomber squadrons. Each level adds 1% to squadron speed, accuracy and evasion."
+    },
+    {
+      "skillId": "skl_sta_science",
+      "name": "Science",
+      "domain": "station_management",
+      "category": "science",
+      "maxLevel": 10,
+      "rank": 5,
+      "scope": "player",
+      "effects": [],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 3,
+          "type": "skill_group",
+          "target": "raw_operations",
+          "description": "Mining and raw-resource production skills become trainable."
+        },
+        {
+          "level": 5,
+          "type": "skill_group",
+          "target": "refined_operations",
+          "description": "Material refinement skills become trainable."
+        },
+        {
+          "level": 7,
+          "type": "skill_group",
+          "target": "manufactured_operations",
+          "description": "Manufactory and ship-construction skills become trainable."
+        }
+      ],
+      "prerequisites": [],
+      "description": "Theory before practice. Nothing in mining, production or refining can be trained until Science reaches the level that opens it -- raw operations first, then refining, then fabrication."
+    },
+    {
+      "skillId": "skl_sta_resource_production",
+      "name": "Planetary Resource Production",
+      "domain": "station_management",
+      "category": "facility_management",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "station",
+      "effects": [
+        {
+          "stat": "planetaryProductionRate",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {
+            "resourceTier": "raw"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_sta_science",
+          "level": 3
+        }
+      ],
+      "description": "Running extraction on a planet. Each level adds 3% to planetary production rate."
+    },
+    {
+      "skillId": "skl_sta_production_management",
+      "name": "Planetary Production Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "station",
+      "effects": [
+        {
+          "stat": "warehouseCapacity",
+          "modifierPerLevel": 10.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_sta_science",
+          "level": 3
+        }
+      ],
+      "description": "Warehousing and throughput. Each level adds 10% to how much resource a site can hold."
+    },
+    {
+      "skillId": "skl_sta_refinement",
+      "name": "Material Refinement Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "station",
+      "effects": [
+        {
+          "stat": "refineryYield",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {
+            "resourceTier": "refined"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_sta_science",
+          "level": 5
+        }
+      ],
+      "description": "Planetary and station refineries. Each level recovers 1% more material from the raw feedstock, against a lane yield that can never reach 1."
+    },
+    {
+      "skillId": "skl_sta_manufactory",
+      "name": "Manufactory Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "station",
+      "effects": [
+        {
+          "stat": "manufacturingRate",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {
+            "resourceTier": "manufactured"
+          }
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_sta_science",
+          "level": 7
+        }
+      ],
+      "description": "Fabricating finished components from refined material. Each level adds 3% to manufacturing rate."
+    },
+    {
+      "skillId": "skl_sta_ship_construction",
+      "name": "Ship Construction Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "maxLevel": 10,
+      "rank": 5,
+      "scope": "station",
+      "effects": [
+        {
+          "stat": "shipConstructionRate",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_sta_science",
+          "level": 7
+        },
+        {
+          "skillId": "skl_sta_manufactory",
+          "level": 5
+        }
+      ],
+      "description": "Laying down hulls in a yard. Each level adds 3% to construction rate."
+    },
+    {
+      "skillId": "skl_mine_equipment_operation",
+      "name": "Mining Equipment Operation",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "miningCycleSpeed",
+          "modifierPerLevel": 2.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 1,
+          "type": "capability",
+          "target": "standard_mining_equipment",
+          "description": "Fit and run standard mining equipment."
+        }
+      ],
+      "prerequisites": [
+        {
+          "skillId": "skl_sta_science",
+          "level": 3
+        }
+      ],
+      "description": "Operating standard mining gear. Each level cuts cycle time by 2%."
+    },
+    {
+      "skillId": "skl_mine_advanced_equipment",
+      "name": "Advanced Mining Equipment Operation",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "maxLevel": 10,
+      "rank": 4,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "miningCycleSpeed",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [
+        {
+          "level": 1,
+          "type": "capability",
+          "target": "advanced_mining_equipment",
+          "description": "Fit and run advanced mining equipment."
+        }
+      ],
+      "prerequisites": [
+        {
+          "skillId": "skl_mine_equipment_operation",
+          "level": 5
+        },
+        {
+          "skillId": "skl_sta_science",
+          "level": 5
+        }
+      ],
+      "description": "Operating advanced mining gear. Each level cuts cycle time by a further 3%."
+    },
+    {
+      "skillId": "skl_mine_effectiveness",
+      "name": "Mining Effectiveness",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "maxLevel": 10,
+      "rank": 3,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "miningYield",
+          "modifierPerLevel": 3.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_mine_equipment_operation",
+          "level": 3
+        }
+      ],
+      "description": "Getting more out of each cycle. Each level adds 3% to mining yield."
+    },
+    {
+      "skillId": "skl_mine_advanced_effectiveness",
+      "name": "Advanced Mining Effectiveness",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "maxLevel": 10,
+      "rank": 5,
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "miningYield",
+          "modifierPerLevel": 4.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_mine_effectiveness",
+          "level": 5
+        },
+        {
+          "skillId": "skl_mine_advanced_equipment",
+          "level": 5
+        }
+      ],
+      "description": "Yield optimisation on advanced gear. Each level adds a further 4% to mining yield."
+    },
+    {
+      "skillId": "skl_trd_trade",
+      "name": "Trade",
+      "domain": "interaction_trade",
+      "category": "commerce",
+      "maxLevel": 10,
+      "rank": 2,
+      "scope": "player",
+      "effects": [
+        {
+          "stat": "tradePriceMargin",
+          "modifierPerLevel": 2.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "Buying and selling. Each level improves the margin a player trades at by 2%."
+    },
+    {
+      "skillId": "skl_trd_union_management",
+      "name": "Union Management",
+      "domain": "interaction_trade",
+      "category": "commerce",
+      "maxLevel": 10,
+      "rank": 5,
+      "scope": "player",
+      "effects": [
+        {
+          "stat": "unionMemberCapacity",
+          "modifierPerLevel": 5.0,
+          "modifierType": "flat",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [
+        {
+          "skillId": "skl_trd_trade",
+          "level": 5
+        }
+      ],
+      "description": "Running a union -- a league of many players. Each level raises the member cap by 5."
     }
   ]
 }

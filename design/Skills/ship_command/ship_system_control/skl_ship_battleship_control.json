@@ -1,0 +1,40 @@
+{
+  "skillId": "skl_ship_battleship_control",
+  "name": "Battleship Control",
+  "domain": "ship_command",
+  "category": "ship_system_control",
+  "maxLevel": 10,
+  "rank": 5,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "evasionRating",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "battleship"
+      }
+    },
+    {
+      "stat": "initiative",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "battleship"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 5,
+      "type": "ship_operation",
+      "target": "battleship",
+      "description": "Operate a Battleship; requires the paired system-management skill at level 5 as well."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Conning a Battleship: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+}

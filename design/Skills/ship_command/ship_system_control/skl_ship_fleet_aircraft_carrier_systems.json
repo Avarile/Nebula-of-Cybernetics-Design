@@ -1,0 +1,40 @@
+{
+  "skillId": "skl_ship_fleet_aircraft_carrier_systems",
+  "name": "Fleet Aircraft Carrier System Management",
+  "domain": "ship_command",
+  "category": "ship_system_control",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "power.regenPerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "fleet_aircraft_carrier"
+      }
+    },
+    {
+      "stat": "repairRatePerTurn",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "fleet_aircraft_carrier"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 5,
+      "type": "ship_operation",
+      "target": "fleet_aircraft_carrier",
+      "description": "Operate a Fleet Aircraft Carrier; requires the paired system-management skill at level 5 as well."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Running a Fleet Aircraft Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+}

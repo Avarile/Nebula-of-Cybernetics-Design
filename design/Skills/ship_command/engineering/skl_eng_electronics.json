@@ -1,0 +1,22 @@
+{
+  "skillId": "skl_eng_electronics",
+  "name": "Electronics",
+  "domain": "ship_command",
+  "category": "engineering",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "electronicSystemsEffectiveness",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [],
+  "description": "Fire-control computers, ECM sets and sensor processing -- the effectiveness of a ship's electronic systems."
+}

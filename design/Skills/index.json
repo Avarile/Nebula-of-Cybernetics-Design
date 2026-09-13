@@ -1,0 +1,682 @@
+{
+  "count": 80,
+  "maxLevel": 10,
+  "domains": [
+    {
+      "domain": "ship_command",
+      "count": 68,
+      "categories": [
+        "ship_system_control",
+        "navigation",
+        "scanning",
+        "engineering",
+        "weaponry",
+        "fleet_command"
+      ]
+    },
+    {
+      "domain": "station_management",
+      "count": 6,
+      "categories": [
+        "science",
+        "facility_management"
+      ]
+    },
+    {
+      "domain": "deep_space_mining",
+      "count": 4,
+      "categories": [
+        "mining_operations"
+      ]
+    },
+    {
+      "domain": "interaction_trade",
+      "count": 2,
+      "categories": [
+        "commerce"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "skillId": "skl_ship_motor_torpedo_boat_control",
+      "name": "Motor Torpedo Boat Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_motor_torpedo_boat_control.json"
+    },
+    {
+      "skillId": "skl_ship_motor_torpedo_boat_systems",
+      "name": "Motor Torpedo Boat System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_motor_torpedo_boat_systems.json"
+    },
+    {
+      "skillId": "skl_ship_submarine_chaser_control",
+      "name": "Submarine Chaser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_submarine_chaser_control.json"
+    },
+    {
+      "skillId": "skl_ship_submarine_chaser_systems",
+      "name": "Submarine Chaser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_submarine_chaser_systems.json"
+    },
+    {
+      "skillId": "skl_ship_corvette_control",
+      "name": "Corvette Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_corvette_control.json"
+    },
+    {
+      "skillId": "skl_ship_corvette_systems",
+      "name": "Corvette System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_corvette_systems.json"
+    },
+    {
+      "skillId": "skl_ship_torpedo_boat_fleet_control",
+      "name": "Fleet Torpedo Boat Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_torpedo_boat_fleet_control.json"
+    },
+    {
+      "skillId": "skl_ship_torpedo_boat_fleet_systems",
+      "name": "Fleet Torpedo Boat System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_torpedo_boat_fleet_systems.json"
+    },
+    {
+      "skillId": "skl_ship_destroyer_escort_control",
+      "name": "Destroyer Escort Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_destroyer_escort_control.json"
+    },
+    {
+      "skillId": "skl_ship_destroyer_escort_systems",
+      "name": "Destroyer Escort System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_destroyer_escort_systems.json"
+    },
+    {
+      "skillId": "skl_ship_sloop_patrol_escort_control",
+      "name": "Sloop / Patrol Escort Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_sloop_patrol_escort_control.json"
+    },
+    {
+      "skillId": "skl_ship_sloop_patrol_escort_systems",
+      "name": "Sloop / Patrol Escort System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_sloop_patrol_escort_systems.json"
+    },
+    {
+      "skillId": "skl_ship_destroyer_control",
+      "name": "Destroyer Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_destroyer_control.json"
+    },
+    {
+      "skillId": "skl_ship_destroyer_systems",
+      "name": "Destroyer System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_destroyer_systems.json"
+    },
+    {
+      "skillId": "skl_ship_landing_ship_tank_control",
+      "name": "Landing Ship Tank Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_landing_ship_tank_control.json"
+    },
+    {
+      "skillId": "skl_ship_landing_ship_tank_systems",
+      "name": "Landing Ship Tank System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_landing_ship_tank_systems.json"
+    },
+    {
+      "skillId": "skl_ship_submarine_control",
+      "name": "Submarine Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_submarine_control.json"
+    },
+    {
+      "skillId": "skl_ship_submarine_systems",
+      "name": "Submarine System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_submarine_systems.json"
+    },
+    {
+      "skillId": "skl_ship_minelayer_sweeper_control",
+      "name": "Minelayer / Sweeper Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_minelayer_sweeper_control.json"
+    },
+    {
+      "skillId": "skl_ship_minelayer_sweeper_systems",
+      "name": "Minelayer / Sweeper System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_minelayer_sweeper_systems.json"
+    },
+    {
+      "skillId": "skl_ship_coastal_defence_ship_control",
+      "name": "Coastal Defence Ship Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_coastal_defence_ship_control.json"
+    },
+    {
+      "skillId": "skl_ship_coastal_defence_ship_systems",
+      "name": "Coastal Defence Ship System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_coastal_defence_ship_systems.json"
+    },
+    {
+      "skillId": "skl_ship_anti_aircraft_cruiser_control",
+      "name": "Anti-Aircraft Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_anti_aircraft_cruiser_control.json"
+    },
+    {
+      "skillId": "skl_ship_anti_aircraft_cruiser_systems",
+      "name": "Anti-Aircraft Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_anti_aircraft_cruiser_systems.json"
+    },
+    {
+      "skillId": "skl_ship_monitor_control",
+      "name": "Monitor Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_monitor_control.json"
+    },
+    {
+      "skillId": "skl_ship_monitor_systems",
+      "name": "Monitor System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_monitor_systems.json"
+    },
+    {
+      "skillId": "skl_ship_light_cruiser_control",
+      "name": "Light Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_light_cruiser_control.json"
+    },
+    {
+      "skillId": "skl_ship_light_cruiser_systems",
+      "name": "Light Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_light_cruiser_systems.json"
+    },
+    {
+      "skillId": "skl_ship_attack_transport_control",
+      "name": "Attack Transport Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_attack_transport_control.json"
+    },
+    {
+      "skillId": "skl_ship_attack_transport_systems",
+      "name": "Attack Transport System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_attack_transport_systems.json"
+    },
+    {
+      "skillId": "skl_ship_light_carrier_control",
+      "name": "Light Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_light_carrier_control.json"
+    },
+    {
+      "skillId": "skl_ship_light_carrier_systems",
+      "name": "Light Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_light_carrier_systems.json"
+    },
+    {
+      "skillId": "skl_ship_panzerschiff_control",
+      "name": "Panzerschiff Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_panzerschiff_control.json"
+    },
+    {
+      "skillId": "skl_ship_panzerschiff_systems",
+      "name": "Panzerschiff System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_panzerschiff_systems.json"
+    },
+    {
+      "skillId": "skl_ship_merchant_raider_control",
+      "name": "Merchant Raider Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_merchant_raider_control.json"
+    },
+    {
+      "skillId": "skl_ship_merchant_raider_systems",
+      "name": "Merchant Raider System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_merchant_raider_systems.json"
+    },
+    {
+      "skillId": "skl_ship_seaplane_tender_control",
+      "name": "Seaplane Tender Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_seaplane_tender_control.json"
+    },
+    {
+      "skillId": "skl_ship_seaplane_tender_systems",
+      "name": "Seaplane Tender System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_seaplane_tender_systems.json"
+    },
+    {
+      "skillId": "skl_ship_repair_ship_tender_control",
+      "name": "Repair Ship / Tender Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_repair_ship_tender_control.json"
+    },
+    {
+      "skillId": "skl_ship_repair_ship_tender_systems",
+      "name": "Repair Ship / Tender System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_repair_ship_tender_systems.json"
+    },
+    {
+      "skillId": "skl_ship_heavy_cruiser_control",
+      "name": "Heavy Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_heavy_cruiser_control.json"
+    },
+    {
+      "skillId": "skl_ship_heavy_cruiser_systems",
+      "name": "Heavy Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_heavy_cruiser_systems.json"
+    },
+    {
+      "skillId": "skl_ship_escort_carrier_control",
+      "name": "Escort Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_escort_carrier_control.json"
+    },
+    {
+      "skillId": "skl_ship_escort_carrier_systems",
+      "name": "Escort Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_escort_carrier_systems.json"
+    },
+    {
+      "skillId": "skl_ship_fleet_oiler_control",
+      "name": "Fleet Oiler Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_fleet_oiler_control.json"
+    },
+    {
+      "skillId": "skl_ship_fleet_oiler_systems",
+      "name": "Fleet Oiler System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_fleet_oiler_systems.json"
+    },
+    {
+      "skillId": "skl_ship_fleet_aircraft_carrier_control",
+      "name": "Fleet Aircraft Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_fleet_aircraft_carrier_control.json"
+    },
+    {
+      "skillId": "skl_ship_fleet_aircraft_carrier_systems",
+      "name": "Fleet Aircraft Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_fleet_aircraft_carrier_systems.json"
+    },
+    {
+      "skillId": "skl_ship_battlecruiser_control",
+      "name": "Battlecruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_battlecruiser_control.json"
+    },
+    {
+      "skillId": "skl_ship_battlecruiser_systems",
+      "name": "Battlecruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_battlecruiser_systems.json"
+    },
+    {
+      "skillId": "skl_ship_battleship_control",
+      "name": "Battleship Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 5,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_battleship_control.json"
+    },
+    {
+      "skillId": "skl_ship_battleship_systems",
+      "name": "Battleship System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 5,
+      "path": "Skills/ship_command/ship_system_control/skl_ship_battleship_systems.json"
+    },
+    {
+      "skillId": "skl_nav_navigation",
+      "name": "Navigation",
+      "domain": "ship_command",
+      "category": "navigation",
+      "rank": 2,
+      "path": "Skills/ship_command/navigation/skl_nav_navigation.json"
+    },
+    {
+      "skillId": "skl_scan_scanning",
+      "name": "Scanning",
+      "domain": "ship_command",
+      "category": "scanning",
+      "rank": 3,
+      "path": "Skills/ship_command/scanning/skl_scan_scanning.json"
+    },
+    {
+      "skillId": "skl_eng_maintenance",
+      "name": "Maintenance",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 2,
+      "path": "Skills/ship_command/engineering/skl_eng_maintenance.json"
+    },
+    {
+      "skillId": "skl_eng_energy_shields",
+      "name": "Energy Shields",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 3,
+      "path": "Skills/ship_command/engineering/skl_eng_energy_shields.json"
+    },
+    {
+      "skillId": "skl_eng_damage_control",
+      "name": "Damage Control",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 4,
+      "path": "Skills/ship_command/engineering/skl_eng_damage_control.json"
+    },
+    {
+      "skillId": "skl_eng_electronics",
+      "name": "Electronics",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 3,
+      "path": "Skills/ship_command/engineering/skl_eng_electronics.json"
+    },
+    {
+      "skillId": "skl_wpn_ballistic",
+      "name": "Ballistic Weapon",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "path": "Skills/ship_command/weaponry/skl_wpn_ballistic.json"
+    },
+    {
+      "skillId": "skl_wpn_energy",
+      "name": "Energy Weapon",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "path": "Skills/ship_command/weaponry/skl_wpn_energy.json"
+    },
+    {
+      "skillId": "skl_wpn_missiles",
+      "name": "Missiles",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "path": "Skills/ship_command/weaponry/skl_wpn_missiles.json"
+    },
+    {
+      "skillId": "skl_wpn_drones",
+      "name": "Drones",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "path": "Skills/ship_command/weaponry/skl_wpn_drones.json"
+    },
+    {
+      "skillId": "skl_flt_formation_drill",
+      "name": "Formation Drill",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "path": "Skills/ship_command/fleet_command/skl_flt_formation_drill.json"
+    },
+    {
+      "skillId": "skl_flt_attacking_formation",
+      "name": "Attacking Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "path": "Skills/ship_command/fleet_command/skl_flt_attacking_formation.json"
+    },
+    {
+      "skillId": "skl_flt_defensive_formation",
+      "name": "Defensive Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "path": "Skills/ship_command/fleet_command/skl_flt_defensive_formation.json"
+    },
+    {
+      "skillId": "skl_flt_mining_formation",
+      "name": "Mining Operation Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 3,
+      "path": "Skills/ship_command/fleet_command/skl_flt_mining_formation.json"
+    },
+    {
+      "skillId": "skl_flt_regroup_and_hold",
+      "name": "Regroup and Hold",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "path": "Skills/ship_command/fleet_command/skl_flt_regroup_and_hold.json"
+    },
+    {
+      "skillId": "skl_flt_fighter_squadron_control",
+      "name": "Fighter Squadron Control",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "path": "Skills/ship_command/fleet_command/skl_flt_fighter_squadron_control.json"
+    },
+    {
+      "skillId": "skl_sta_science",
+      "name": "Science",
+      "domain": "station_management",
+      "category": "science",
+      "rank": 5,
+      "path": "Skills/station_management/science/skl_sta_science.json"
+    },
+    {
+      "skillId": "skl_sta_resource_production",
+      "name": "Planetary Resource Production",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 3,
+      "path": "Skills/station_management/facility_management/skl_sta_resource_production.json"
+    },
+    {
+      "skillId": "skl_sta_production_management",
+      "name": "Planetary Production Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 3,
+      "path": "Skills/station_management/facility_management/skl_sta_production_management.json"
+    },
+    {
+      "skillId": "skl_sta_refinement",
+      "name": "Material Refinement Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 4,
+      "path": "Skills/station_management/facility_management/skl_sta_refinement.json"
+    },
+    {
+      "skillId": "skl_sta_manufactory",
+      "name": "Manufactory Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 4,
+      "path": "Skills/station_management/facility_management/skl_sta_manufactory.json"
+    },
+    {
+      "skillId": "skl_sta_ship_construction",
+      "name": "Ship Construction Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 5,
+      "path": "Skills/station_management/facility_management/skl_sta_ship_construction.json"
+    },
+    {
+      "skillId": "skl_mine_equipment_operation",
+      "name": "Mining Equipment Operation",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 2,
+      "path": "Skills/deep_space_mining/mining_operations/skl_mine_equipment_operation.json"
+    },
+    {
+      "skillId": "skl_mine_advanced_equipment",
+      "name": "Advanced Mining Equipment Operation",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 4,
+      "path": "Skills/deep_space_mining/mining_operations/skl_mine_advanced_equipment.json"
+    },
+    {
+      "skillId": "skl_mine_effectiveness",
+      "name": "Mining Effectiveness",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 3,
+      "path": "Skills/deep_space_mining/mining_operations/skl_mine_effectiveness.json"
+    },
+    {
+      "skillId": "skl_mine_advanced_effectiveness",
+      "name": "Advanced Mining Effectiveness",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 5,
+      "path": "Skills/deep_space_mining/mining_operations/skl_mine_advanced_effectiveness.json"
+    },
+    {
+      "skillId": "skl_trd_trade",
+      "name": "Trade",
+      "domain": "interaction_trade",
+      "category": "commerce",
+      "rank": 2,
+      "path": "Skills/interaction_trade/commerce/skl_trd_trade.json"
+    },
+    {
+      "skillId": "skl_trd_union_management",
+      "name": "Union Management",
+      "domain": "interaction_trade",
+      "category": "commerce",
+      "rank": 5,
+      "path": "Skills/interaction_trade/commerce/skl_trd_union_management.json"
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 # Nebula of Cybernetics — Fleet Data
 
-Design data for a turn-based ship combat system: hulls, weapons and modules, plus the
+Design data for a turn-based ship combat system: hulls, weapons and modules, the
+resources they are built from and the skills a player trains to use them, plus the
 schemas they conform to and the generators that produce them.
 
-Everything under `Ships/`, `Weapons/` and `Modules/`, and the `ships` / `weapons` /
-`modules` / `namedShips` arrays in `fleet_and_weapons.json`, is **generated**. No RNG is
+Everything under `Ships/`, `Weapons/`, `Modules/`, `Resources/` and `Skills/`, and the
+`ships` / `weapons` / `modules` / `namedShips` / `resources` / `skills` arrays in
+`fleet_and_weapons.json`, is **generated**. No RNG is
 involved — every value is a pure function of a table entry, so re-running the pipeline
 reproduces the whole tree byte-for-byte. Edit the tables in `tools/`, never the output.
 
@@ -18,7 +20,8 @@ reproduces the whole tree byte-for-byte. Edit the tables in `tools/`, never the 
 | Weapons | 798 | 31 archetypes × 4 sizes × 10 manufacturers × Mk.1–5 |
 | Modules | 135 | 45 archetypes × Mk.1–3, across 7 slot types |
 | Resources | 12 | 4 lanes (structural/energy/ordnance/precision) × 3 tiers (raw/refined/manufactured) |
-| Files on disk | 1,819 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 15 under `Resources/` |
+| Skills | 80 | 4 domains, 10 levels each; 52 of them are the 26 hulls × control/systems |
+| Files on disk | 1,901 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 15 under `Resources/`, 82 under `Skills/` |
 
 ## Layout
 
@@ -31,6 +34,7 @@ Data-Templates/              the schema each generated file conforms to
   weapon.interface
   module.interface
   resource.interface
+  skill.interface
 
 Ships/<Category>/            one folder per ship category, prose-named
   tier-1/  tier-2/  tier-3/  a hull is a DIRECTORY, not a file
@@ -49,10 +53,15 @@ Modules/<slotType>/<functionClass>/   mod_<archetype>_mk<n>.json
 Resources/<tier>/            res_<tier>_<slug>.json   (raw/refined/manufactured)
   index.json
 
+Skills/<domain>/<category>/  skl_<group>_<slug>.json
+  Design                     the hand-written spec the catalogue is derived from
+  index.json
+
 tools/                       generators, verifiers, and the tables that drive them
 
 Reference/                   TypeScript interface for all of the above, plus Combat-logic
-  common.ts resources.ts weapons.ts modules.ts ships.ts combat.ts dataset.ts constants.ts
+  common.ts resources.ts weapons.ts modules.ts ships.ts skills.ts combat.ts
+  dataset.ts constants.ts
 ```
 
 `.interface` files are `#`-commented headers followed by a JSON body — strip the comment
@@ -68,8 +77,9 @@ lines and the remainder parses as JSON.
 | `weapons` | all 798 |
 | `modules` | all 135 |
 | `resources` | all 12 |
+| `skills` | all 80 |
 
-## The four catalogues
+## The five catalogues
 
 ### Weapons — `archetype × mark × family`
 
@@ -150,6 +160,60 @@ Resources are organized by 4 **lanes** (structural, energy, ordnance, precision)
 
 Every weapon, module, and ship carries a `buildCost` field — the cost to manufacture it, expressed in manufactured-resource units, derived from the item's own stats (mass, power, damage, size, etc.) via cost-scaling formulas. See `Resources/resource_tiers_specification.md` for the full derivation.
 
+### Skills — `domain × category`, gates and ladders
+
+Skills are what lets a player do anything: fly a hull, fire a weapon class, run a
+refinery, hold a fleet together. `Skills/Design` is the hand-written spec; the catalogue
+is derived from it and every number traces back to a line there, or is marked `PROPOSED`
+in `tools/skill_tables.py` where the spec names a skill without giving its figures.
+
+Every skill has 10 levels and works through four lists, any of which may be empty:
+`effects[]` (a per-level modifier on a stat), `penalties[]` (a flat malus below a level),
+`unlocks[]` (a hull, fleet slot, capability or skill group), `prerequisites[]` (another
+skill that must reach a level first). One rule covers every effect in the catalogue:
+
+```
+total = modifierPerLevel × max(0, level − appliesFromLevel + 1)
+```
+
+That is the whole arithmetic. Navigation (`appliesFromLevel 1`, +1%/level) reaches +10% at
+level 10. The four Weaponry skills instead start at level 6 and pair that with a −50%
+penalty below level 5, so level 5 is a clean baseline — debuff gone, bonus not yet
+started, which is the spec's "below level 5 … 50% debuff, after level 5 each level +5%".
+
+| domain | categories | n |
+|---|---|---|
+| `ship_command` | ship_system_control · navigation · scanning · engineering · weaponry · fleet_command | 68 |
+| `station_management` | science · facility_management | 6 |
+| `deep_space_mining` | mining_operations | 4 |
+| `interaction_trade` | commerce | 2 |
+
+Effects reuse the module stat vocabulary wherever a ship field already exists —
+`topSpeed`, `repairRatePerTurn`, `detectionRange`, `evasionRating`. The 18 stats a skill
+needs and no module has (`weaponDamage`, `miningYield`, `refineryYield`, `squadronSpeed`,
+`tradePriceMargin` …) live alongside them in `tools/stat_vocabulary.py`, which both
+generators now import so the two catalogues cannot drift apart.
+
+Three gating rules are carried as data rather than prose:
+
+* **Operating a hull.** A category is operable when *every* skill carrying an
+  `unlocks[].type == "ship_operation"` for it has reached the stated level. Each of the 26
+  categories has exactly two — Control and System Management, both at level 5 — so the
+  spec's "both control and system management is required" is a property the verifier
+  checks rather than a convention a reader has to honour.
+* **Science gates industry.** `skl_sta_science` appears in `prerequisites` on every
+  station and mining skill: level 3 opens raw operations, 5 refining, 7 fabrication.
+* **Formation Drill gates fleet size.** Four `fleet_slot` unlocks at levels 5/7/8/10 for
+  ships 2–5. The first ship needs no skill.
+
+One cross-catalogue constraint is worth calling out, because it is the kind of thing that
+only breaks from the outside: `refineryYield` multiplies a resource lane's
+`conversionYield`, which `resource.interface` requires to stay strictly below 1. Material
+Refinement Management is +1%/level for exactly that reason — structural is the highest
+lane at 0.90, and 0.90 × 1.10 = 0.99. `verify_skills.py` recomputes this against the live
+resource catalogue, so raising the per-level figure fails the build instead of quietly
+producing a lane that refines without loss.
+
 ### Fitting files
 
 A file in a ship's `Weapons/` or `Modules/` folder is the **full catalogue entry** with the
@@ -178,6 +242,7 @@ The substantive deviations:
 | ship | `tier`, `sensors`, `capacities` added; `moduleSlots.list[]` gained `size`, and its `slotType` gained `command` and `hangar` |
 | weapon | none — the schema is `weaponSchema` verbatim |
 | module | single `effect` → `effects[]`; plus `functionClass`, `slotType`, `size`, `mark`, `mass`, `crewRequired`, `hullAffinity` |
+| skill | no upstream counterpart — `data-template.json` has no skill schema, so `skill.interface` is new in full |
 
 `sensors` and `capacities` exist because module effects target 34 ship stats and roughly
 half of them had no hull field to apply to. Most capacities read 0 — a battleship carries
@@ -185,13 +250,14 @@ no troops — which is exactly what makes a `specific` module specific.
 
 ## Regenerating
 
-Order matters: weapons and modules before ships, since ships sum the `buildCost` those catalogues carry. `generate_resources.py` is independent and only needs to run before `verify_resources.py`.
+Order matters: weapons and modules before ships, since ships sum the `buildCost` those catalogues carry. `generate_resources.py` is independent and only needs to run before `verify_resources.py`. `generate_skills.py` is independent of all of them, but `verify_skills.py` reads the weapon and resource catalogues to check its cross-references, so run it last.
 
 ```sh
 python3 tools/generate_resources.py   # 12 resources → Resources/, fleet json (cost constants)
 python3 tools/generate_weapons.py     # 798 weapons  → Weapons/, fleet json
 python3 tools/generate_modules.py     # 135 modules  → Modules/, fleet json, ship slot sync
 python3 tools/generate_ships.py       # 98 hulls     → Ships/, fleet json
+python3 tools/generate_skills.py      # 80 skills    → Skills/, fleet json
 ```
 
 Each accepts `--dry-run` to print the shape it would produce without writing. Stale output
@@ -205,7 +271,8 @@ python3 tools/verify_resources.py     # 16 checks
 python3 tools/verify_weapons.py       # 12 checks
 python3 tools/verify_modules.py       # 23 checks
 python3 tools/verify_ships.py         # 38 checks
-python3 Reference/verify_reference.py # 26 checks -- TypeScript interface vs. the data
+python3 tools/verify_skills.py        # 32 checks
+python3 Reference/verify_reference.py # 52 checks -- TypeScript interface vs. the data
 ```
 
 All exit non-zero on failure. Between them they enforce: unique ids and names; field sets
@@ -213,8 +280,10 @@ matching the `.interface` schemas; monotonic mark and tier ladders; no duplicate
 blocks; no weapon strictly dominated by a same-mark rival at equal-or-lower cost; module
 effects restricted to a fixed stat vocabulary; `specific` modules only where
 `hullAffinity` allows; every cross-reference resolving; hardpoint and slot sizes matching
-what is fitted; power and crew budgets covering the fit; and every file on disk matching
-its entry in the JSON.
+what is fitted; power and crew budgets covering the fit; skill effects restricted to the
+shared stat vocabulary, with an acyclic prerequisite graph, exactly two `ship_operation`
+claimants per hull category and no penalty on a stat the same skill cannot buff back; and
+every file on disk matching its entry in the JSON.
 
 Two of these were written after the checks caught real bugs — whole-point rounding was
 making higher weapon marks free upgrades, and Ceridan's sustain bias was inert on
@@ -230,14 +299,19 @@ Vanguard.
 | module archetypes, effects, stat vocabulary | `tools/generate_modules.py` |
 | ship categories: mass, armour, mounts, slots, capacities, doctrine | `tools/ship_tables.py` |
 | how hulls are derived and fitted | `tools/generate_ships.py` |
+| skills: levels, effects, unlocks, prerequisites | `tools/skill_tables.py` |
+| the stat vocabulary modules and skills share | `tools/stat_vocabulary.py` |
 
 Then re-run the pipeline. The archetype and family tables inside `weapon.interface` and
 `module.interface` are emitted by the generators, so documentation and data cannot drift.
 
-Never hand-edit files under `Ships/`, `Weapons/`, `Modules/` or `Resources/` — the next run
-overwrites them. `Resources/` is a partial exception: only its `raw/`, `refined/`,
-`manufactured/` subdirectories and `index.json` are regenerated; the two hand-written
-`.md` docs in `Resources/` survive a run.
+Never hand-edit files under `Ships/`, `Weapons/`, `Modules/`, `Resources/` or `Skills/` —
+the next run overwrites them. Two directories are partial exceptions, and their generators
+clear only their own subtrees rather than the whole directory: `Resources/` regenerates
+`raw/`, `refined/`, `manufactured/` and `index.json`, leaving its two hand-written `.md`
+docs alone, and `Skills/` regenerates the four domain directories and `index.json`,
+leaving the hand-written `Skills/Design` spec alone. Both verifiers assert those
+hand-written files are still there after a run.
 
 ## Notes
 

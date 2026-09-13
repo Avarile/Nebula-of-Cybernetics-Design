@@ -3,9 +3,9 @@
  * the fitted-ship directory.
  *
  * Derived from: fleet_and_weapons.json, Ships/index.json, Weapons/index.json,
- *               Modules/index.json, Resources/index.json, README.md
+ *               Modules/index.json, Resources/index.json, Skills/index.json, README.md
  *
- * Everything under Ships/, Weapons/, Modules/ and Resources/ is GENERATED, with
+ * Everything under Ships/, Weapons/, Modules/, Resources/ and Skills/ is GENERATED, with
  * no RNG: every value is a pure function of a table in tools/, so re-running the
  * pipeline reproduces the whole tree byte-for-byte. These types describe the
  * output, not a hand-maintained source.
@@ -16,6 +16,7 @@ import type { ShipBase, ShipClass, ShipTemplate, NamedShip } from './ships';
 import type { Weapon, WeaponClass, WeaponFamily, WeaponIndexEntry, FittedWeapon } from './weapons';
 import type { Module, ModuleFunctionClass, ModuleIndexEntry, FittedModule } from './modules';
 import type { Resource, ResourceIndexEntry, ResourceLane } from './resources';
+import type { Skill, SkillDomain, SkillIndexEntry, SkillMaxLevel } from './skills';
 
 // ---------------------------------------------------------------- fleet_and_weapons.json
 
@@ -34,6 +35,10 @@ export interface FleetMeta {
   namedShipCount: number;
   resourceCount: number;
   resourceLanes: ResourceLane[];
+  skillCount: number;
+  skillDomains: SkillDomain[];
+  /** Uniform across the catalogue — every skill has the same 10-level ladder. */
+  skillMaxLevel: SkillMaxLevel;
 }
 
 /**
@@ -50,6 +55,8 @@ export interface FleetDataset {
   /** The 20 named ships; each carries `templateId` naming its class hull. */
   namedShips: NamedShip[];
   resources: Resource[];
+  /** 80 skills; 52 of them are the 26 ship categories x control/systems. */
+  skills: Skill[];
 }
 
 // ---------------------------------------------------------------- Ships/index.json
@@ -129,6 +136,12 @@ export type ModulePath = `Modules/${ModuleSlotType}/${ModuleFunctionClass}/${str
 export type ResourcePath = `Resources/${'raw' | 'refined' | 'manufactured'}/${string}.json`;
 
 /**
+ * `Skills/<domain>/<category>/<skillId>.json`. `Skills/Design` is the hand-written
+ * spec the catalogue derives from and is NOT generated — a run leaves it alone.
+ */
+export type SkillPath = `Skills/${SkillDomain}/${string}/${string}.json`;
+
+/**
  * `Ships/<Category folder>/<tier-1|tier-2|tier-3|Named ship>/ship.json`.
  * Category folders are prose, not enum values — two differ because `/` cannot
  * appear in a directory name (`Sloop - patrol escort`, `Minelayer - sweeper`).
@@ -137,10 +150,11 @@ export type ShipPath = `Ships/${string}/${string}/ship.json`;
 
 // ---------------------------------------------------------------- re-exports
 
-export type { WeaponIndexEntry, ModuleIndexEntry, ResourceIndexEntry };
+export type { WeaponIndexEntry, ModuleIndexEntry, ResourceIndexEntry, SkillIndexEntry };
 export type { WeaponIndex } from './weapons';
 export type { ModuleIndex } from './modules';
 export type { ResourceIndex } from './resources';
+export type { SkillIndex } from './skills';
 
 /** Every index file in the repo, keyed by the catalogue it indexes. */
 export interface CatalogueIndexes {
@@ -148,4 +162,5 @@ export interface CatalogueIndexes {
   weapons: import('./weapons').WeaponIndex;
   modules: import('./modules').ModuleIndex;
   resources: import('./resources').ResourceIndex;
+  skills: import('./skills').SkillIndex;
 }

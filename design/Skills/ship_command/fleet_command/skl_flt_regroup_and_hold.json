@@ -1,0 +1,27 @@
+{
+  "skillId": "skl_flt_regroup_and_hold",
+  "name": "Regroup and Hold",
+  "domain": "ship_command",
+  "category": "fleet_command",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "fleet",
+  "effects": [
+    {
+      "stat": "fleetRegroupRate",
+      "modifierPerLevel": 5.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_flt_formation_drill",
+      "level": 5
+    }
+  ],
+  "description": "Re-forming after disruption. Heavy damage scatters a fleet, and a scattered fleet loses every fleet bonus until it re-forms; each level brings the survivors back into formation faster."
+}

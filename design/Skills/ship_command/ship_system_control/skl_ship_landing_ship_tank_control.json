@@ -1,0 +1,40 @@
+{
+  "skillId": "skl_ship_landing_ship_tank_control",
+  "name": "Landing Ship Tank Control",
+  "domain": "ship_command",
+  "category": "ship_system_control",
+  "maxLevel": 10,
+  "rank": 2,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "evasionRating",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "landing_ship_tank"
+      }
+    },
+    {
+      "stat": "initiative",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 6,
+      "appliesTo": {
+        "shipCategory": "landing_ship_tank"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 5,
+      "type": "ship_operation",
+      "target": "landing_ship_tank",
+      "description": "Operate a Landing Ship Tank; requires the paired system-management skill at level 5 as well."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Conning a Landing Ship Tank: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+}

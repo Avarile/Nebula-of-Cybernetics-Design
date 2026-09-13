@@ -1,0 +1,48 @@
+{
+  "skillId": "skl_scan_scanning",
+  "name": "Scanning",
+  "domain": "ship_command",
+  "category": "scanning",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "detectionRange",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    },
+    {
+      "stat": "sensorArray.effectiveness",
+      "modifierPerLevel": 2.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [
+    {
+      "level": 1,
+      "type": "capability",
+      "target": "system_scan",
+      "description": "Scan the current system for contacts and sites."
+    },
+    {
+      "level": 3,
+      "type": "capability",
+      "target": "enemy_scout",
+      "description": "Resolve an enemy contact into a hull and loadout."
+    },
+    {
+      "level": 5,
+      "type": "capability",
+      "target": "target_lock",
+      "description": "Hold a weapons lock on an enemy ship."
+    }
+  ],
+  "prerequisites": [],
+  "description": "Survey and targeting sensors. Opens up scanning the universe, scouting enemy contacts, and holding a lock on an enemy ship."
+}

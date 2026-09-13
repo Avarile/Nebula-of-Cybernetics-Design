@@ -1,0 +1,31 @@
+{
+  "skillId": "skl_sta_ship_construction",
+  "name": "Ship Construction Management",
+  "domain": "station_management",
+  "category": "facility_management",
+  "maxLevel": 10,
+  "rank": 5,
+  "scope": "station",
+  "effects": [
+    {
+      "stat": "shipConstructionRate",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_sta_science",
+      "level": 7
+    },
+    {
+      "skillId": "skl_sta_manufactory",
+      "level": 5
+    }
+  ],
+  "description": "Laying down hulls in a yard. Each level adds 3% to construction rate."
+}

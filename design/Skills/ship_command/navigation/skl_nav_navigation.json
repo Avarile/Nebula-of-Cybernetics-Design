@@ -1,0 +1,22 @@
+{
+  "skillId": "skl_nav_navigation",
+  "name": "Navigation",
+  "domain": "ship_command",
+  "category": "navigation",
+  "maxLevel": 10,
+  "rank": 2,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "topSpeed",
+      "modifierPerLevel": 1.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [],
+  "description": "Course plotting and throttle discipline. Each level adds 1% to ship speed."
+}

@@ -1,0 +1,22 @@
+{
+  "skillId": "skl_trd_trade",
+  "name": "Trade",
+  "domain": "interaction_trade",
+  "category": "commerce",
+  "maxLevel": 10,
+  "rank": 2,
+  "scope": "player",
+  "effects": [
+    {
+      "stat": "tradePriceMargin",
+      "modifierPerLevel": 2.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [],
+  "description": "Buying and selling. Each level improves the margin a player trades at by 2%."
+}

@@ -1,0 +1,29 @@
+{
+  "skillId": "skl_sta_manufactory",
+  "name": "Manufactory Management",
+  "domain": "station_management",
+  "category": "facility_management",
+  "maxLevel": 10,
+  "rank": 4,
+  "scope": "station",
+  "effects": [
+    {
+      "stat": "manufacturingRate",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {
+        "resourceTier": "manufactured"
+      }
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [
+    {
+      "skillId": "skl_sta_science",
+      "level": 7
+    }
+  ],
+  "description": "Fabricating finished components from refined material. Each level adds 3% to manufacturing rate."
+}

@@ -1,0 +1,22 @@
+{
+  "skillId": "skl_eng_energy_shields",
+  "name": "Energy Shields",
+  "domain": "ship_command",
+  "category": "engineering",
+  "maxLevel": 10,
+  "rank": 3,
+  "scope": "ship",
+  "effects": [
+    {
+      "stat": "rechargeRatePerTurn",
+      "modifierPerLevel": 3.0,
+      "modifierType": "percent",
+      "appliesFromLevel": 1,
+      "appliesTo": {}
+    }
+  ],
+  "penalties": [],
+  "unlocks": [],
+  "prerequisites": [],
+  "description": "Shield generator tuning. The higher the skill, the faster the recharge rate."
+}
