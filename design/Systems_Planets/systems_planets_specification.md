@@ -160,8 +160,8 @@ give every system in a tier the same planets. A `PLANET_OVERRIDES` table in `sys
 planets where the map wants a landmark — the named forge worlds of the Aurelian Core, for
 instance — and the override is applied after the rotation.
 
-**Naming.** `<System Name> <Roman numeral>` by orbital position: Aurelia I, Aurelia II,
-Aurelia III. Ids are `pln_001` … `pln_180`, assigned in system-then-orbit order.
+**Naming.** `<System Name> <Roman numeral>` by orbital position: Cantoris I, Cantoris II,
+Cantoris III. Ids are `pln_001` … `pln_180`, assigned in system-then-orbit order.
 
 ## 5. Systems
 
@@ -173,9 +173,11 @@ Aurelia III. Ids are `pln_001` … `pln_180`, assigned in system-then-orbit orde
   "constellation": "Aurelian Core",
   "securityTier": "core",
   "securityRating": 1.0,
-  "star": { "spectralClass": "G", "luminosity": 1.0 },
-  "coordinates": { "x": 0.0, "y": 0.0, "z": 0.0 },
-  "planets": ["pln_001", "pln_002", "pln_003"],
+  "star": { "spectralClass": "O", "luminosity": 8.0 },
+  "coordinates": { "x": 0.0, "y": -2.0, "z": -2.0 },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": ["pln_001", "pln_002"],
   "asteroidBelts": [ /* see 5.2 */ ],
   "connections": [ /* see 5.3 */ ]
 }
@@ -194,8 +196,8 @@ Belts are the **Deep Space Mining** domain's target — the thing `miningYield` 
 `miningCycleSpeed` multiply — and they are a system-level feature, not a planet one.
 
 ```jsonc
-{ "beltId": "bel_004", "name": "Aurelia Belt I", "dominantLane": "structural",
-  "richnessTier": 2, "yieldPerCycle": 28.8, "cycleTurns": 3 }
+{ "beltId": "bel_016", "name": "Greyreach Belt II", "dominantLane": "structural",
+  "richnessTier": 2, "yieldPerCycle": 28.8, "cycleTurns": 2 }
 ```
 
 Belt count runs opposite to security, like everything else here: `core` 0–1, `mid` 1–2,
@@ -223,8 +225,8 @@ The edge set is built by three rules plus one authored list, then canonicalised:
 4. **`EXTRA_GATES`.** A short authored list of shortcut edges for texture, so the map is
    not a pure tree.
 
-Rules 1–3 together guarantee connectivity by construction; §6.3 proves it by BFS anyway,
-because a guarantee that is not checked is a comment.
+Rules 1–3 together guarantee connectivity by construction; §6.3 proves it by graph
+traversal anyway, because a guarantee that is not checked is a comment.
 
 Edges are canonicalised before writing: ordered by `(min(id), max(id))`, deduplicated, and
 self-loops dropped. `gateId` is always `gate_<lowerId>_<higherId>` regardless of which
@@ -370,8 +372,9 @@ not chosen for feel.
   world** — a 1:1 ratio that gives the logistics layer a legible target.
 * Precision is the deliberate bottleneck: one manufactured guidance assembly needs
   `1 / 0.85 / 0.50 = 2.35` raw isotopes, so a battleship's 242 precision units cost 570
-  raw. A richness-3 `irradiated` world yields 309/turn — **two rim-or-deadspace worlds per
-  battleship every two turns**, against one safe mining world for the structural lane.
+  raw. A richness-3 `irradiated` world yields 309/turn — **roughly 1.8 world-turns of a
+  rim-or-deadspace world per battleship** (570 ÷ 309), against the 1:1 ratio one safe
+  mining world gives the structural lane.
 
 The scarce lane is the one you have to go somewhere dangerous to get. That is §3 restated
 in units per turn.
@@ -403,7 +406,7 @@ point. `verify_systems.py` reads the resource, skill and ship catalogues for §6
 
 ```sh
 python3 tools/generate_systems.py     # 60 systems + 180 planets -> Systems_Planets/, fleet json
-python3 tools/verify_systems.py       # ~30 checks, last in the sequence
+python3 tools/verify_systems.py       # 54 checks, last in the sequence
 ```
 
 ## 10. Out of scope

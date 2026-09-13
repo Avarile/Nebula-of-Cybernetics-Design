@@ -31,7 +31,7 @@
 #   - 60 systems, ids and names unique; field set identical to the schema below
 #   - securityRating inside its tier's band; richness/development consistent with it
 #   - every connection symmetric, no self-loops, no duplicates, every toSystemId real
-#   - BFS from sys_001 reaches all 60 -- the map has no unreachable region
+#   - graph traversal from sys_001 reaches all 60 -- the map has no unreachable region
 #   - links.json and the union of all connections[] are the same edge set
 
 {

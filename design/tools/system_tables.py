@@ -550,7 +550,7 @@ for _sid, _conns in CONNECTIONS_BY_SYSTEM.items():
         assert _back[0]['gateId'] == _c['gateId'], 'gateId disagrees between endpoints'
         assert _back[0]['jumpDistanceLy'] == _c['jumpDistanceLy'], 'distance disagrees'
 
-# spec 6.3: every system reachable from sys_001 by BFS
+# spec 6.3: every system reachable from sys_001 by graph traversal
 _seen, _queue = {'sys_001'}, ['sys_001']
 while _queue:
     _cur = _queue.pop()

@@ -6,7 +6,7 @@ from collections import Counter
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 from system_tables import (ARCHETYPES, ARCHETYPE_NAMES, PLACEMENT, SECURITY_BANDS,
-                           SECURITY_TIERS, LANES, tiers_for)
+                           SECURITY_TIERS, LANES, tiers_for, REGIONS, CONSTELLATIONS)
 
 FLEET = json.load(open(os.path.join(ROOT, 'fleet_and_weapons.json')))
 S, P = FLEET['systems'], FLEET['planets']
@@ -47,6 +47,14 @@ pl_schema = schema('planet.interface')
 check('field set matches planet.interface', [p['planetId'] for p in P if set(p) != pl_schema])
 
 # ---- enums and bands
+REGION_NAMES = {name for name, _ in REGIONS}
+CONSTELLATION_REGION = {name: region for region, name, _ in CONSTELLATIONS}
+check('region legal', [s['systemId'] for s in S if s['region'] not in REGION_NAMES])
+check('constellation legal and belongs to its system\'s region',
+      ['%s: constellation %s belongs to %s, not %s'
+       % (s['systemId'], s['constellation'],
+          CONSTELLATION_REGION.get(s['constellation'], '<unknown>'), s['region'])
+       for s in S if CONSTELLATION_REGION.get(s['constellation']) != s['region']])
 check('securityTier legal', [s['systemId'] for s in S if s['securityTier'] not in SECURITY_TIERS])
 check('archetype legal', [p['planetId'] for p in P if p['archetype'] not in ARCHETYPE_NAMES])
 check('securityRating inside its band',
@@ -152,7 +160,7 @@ while queue:
     for c in conn[cur]:
         if c['toSystemId'] not in seen:
             seen.add(c['toSystemId']); queue.append(c['toSystemId'])
-check('BFS from sys_001 reaches all 60 systems',
+check('graph traversal from sys_001 reaches all 60 systems',
       [] if len(seen) == 60 else ['%d unreachable: %s' % (60 - len(seen),
                                   sorted({s['systemId'] for s in S} - seen)[:5])])
 
@@ -169,6 +177,34 @@ check('one file per system', [] if len(disk_sys) == 60 else ['%d system files' %
 check('one file per planet', [] if len(disk_pl) == 180 else ['%d planet files' % len(disk_pl)])
 check('system file content == fleet json', [s['systemId'] for s in S if disk_sys.get(s['systemId']) != s])
 check('planet file content == fleet json', [p['planetId'] for p in P if disk_pl.get(p['planetId']) != p])
+
+# ---- index.json (spec 8): 240 denormalised entries, previously never verified
+INDEX = json.load(open(os.path.join(MAP_DIR, 'index.json')))
+planet_ids = {p['planetId'] for p in P}
+check('index.json systemCount/planetCount match the live catalogue',
+      [] if (INDEX['systemCount'], INDEX['planetCount']) == (len(S), len(P))
+      else ['index says %d/%d, catalogue has %d/%d'
+            % (INDEX['systemCount'], INDEX['planetCount'], len(S), len(P))])
+check('index.json system entries resolve and their path/dir exist on disk',
+      [e['systemId'] for e in INDEX['systems']
+       if e['systemId'] not in by_sys
+       or not os.path.exists(os.path.join(ROOT, e['path']))
+       or not os.path.isdir(os.path.join(ROOT, e['dir']))])
+check('index.json planet entries resolve and their path exists on disk',
+      [e['planetId'] for e in INDEX['planets']
+       if e['planetId'] not in planet_ids
+       or not os.path.exists(os.path.join(ROOT, e['path']))])
+bad = []
+for e in INDEX['systems']:
+    s = by_sys.get(e['systemId'])
+    if s is None:
+        continue
+    live = (len(s['planets']), len(s['asteroidBelts']), len(s['connections']))
+    denorm = (e['planets'], e['belts'], e['connections'])
+    if denorm != live:
+        bad.append('%s: index says (planets,belts,connections)=%s, live is %s'
+                   % (e['systemId'], denorm, live))
+check('index.json system entries: denormalised planets/belts/connections counts match live', bad)
 
 check('hand-written spec survived the run',
       [] if os.path.exists(os.path.join(MAP_DIR, 'systems_planets_specification.md'))
@@ -228,8 +264,12 @@ check('some yard can build the heaviest hull in the game',
 
 # Per-category yard availability. Comparing every category against one global
 # best_yard was a tautology: no category can need more than the heaviest hull, so
-# it could never fail once the check above passed. Count the yards that can take
-# each category instead and assert the property that CAN fail: coverage.
+# it could never fail once the check above passed. Counting yards per category
+# instead is not independent catching power either -- yards_for[cls] == 0 is the
+# same predicate as best_yard < need_by_class[cls], so this still fires only in
+# lockstep with the heaviest-hull check above. It is kept, but demoted: it earns
+# its place on diagnostics (naming the offending category) and on counting named
+# ships, not on catching anything the check above would miss (spec 6.2).
 need_by_class = {}
 for s in FLEET['ships'] + FLEET['namedShips']:
     cls = s['shipClass']
