@@ -858,7 +858,7 @@ Expected: `FileNotFoundError: ... Data-Templates/system.interface`
 #   "asteroidBelts": [],
 #   "connections": [
 #     { "toSystemId": "sys_002", "gateId": "gate_sys_001_sys_002",
-#       "gateName": "Aurelia - Cantoris", "jumpDistanceLy": 4.3,
+#       "gateName": "Aurelia — Cantoris", "jumpDistanceLy": 4.4,
 #       "crossesConstellation": false, "crossesRegion": false }
 #   ]
 # }
@@ -966,7 +966,7 @@ git commit -m "feat(systems): system and planet schemas"
 
 **Files:**
 - Create: `tools/generate_systems.py`
-- Modify: `fleet_and_weapons.json` (adds `systems`, `planets`, and four `_meta` keys — written by the script, not by hand)
+- Modify: `fleet_and_weapons.json` (adds `systems`, `planets`, and five `_meta` keys — written by the script, not by hand)
 - Modify: `Data-Templates/planet.interface` (the generator fills its `<<< generated >>>` block)
 
 **Interfaces:**
@@ -1512,9 +1512,14 @@ Expected: `FAIL refining stays lossy...` listing the structural-lane combination
 
 - [ ] **Step 3: Restore the skill catalogue**
 
+Restore from the byte-exact backup you took before the corruption — do NOT run
+`generate_skills.py`. That generator belongs to a different work stream, and running it
+would add a second read-modify-write cycle on a 1.1 MB file a concurrent session is
+actively writing. The backup restores the same bytes with none of that risk.
+
 ```bash
-python3 tools/generate_skills.py
-python3 tools/generate_systems.py
+cp /tmp/fleet_backup_task7.json fleet_and_weapons.json
+git diff --stat fleet_and_weapons.json    # must report NO changes
 ```
 
 - [ ] **Step 4: Run it to make sure it passes**
@@ -1958,7 +1963,7 @@ Two invariants are enforced against other catalogues rather than assumed:
   trusted.
 
 The graph is proved navigable, not assumed: symmetric, loop-free, duplicate-free, and
-fully connected by BFS from `sys_001`.
+fully connected — every system reachable from `sys_001`.
 ````
 
 6. **Regenerate / Verification / Where to make changes** — add:

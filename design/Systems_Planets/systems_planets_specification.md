@@ -208,7 +208,7 @@ A connection as stored on a system:
 
 ```jsonc
 { "toSystemId": "sys_002", "gateId": "gate_sys_001_sys_002", "gateName": "Aurelia — Cantoris",
-  "jumpDistanceLy": 4.2, "crossesConstellation": false, "crossesRegion": false }
+  "jumpDistanceLy": 4.4, "crossesConstellation": false, "crossesRegion": false }
 ```
 
 The edge set is built by three rules plus one authored list, then canonicalised:
@@ -274,10 +274,48 @@ quietly producing a lane that refines without loss.
 `maxHullTonnage` is meaningless unless it is checked against hulls that actually exist.
 The verifier reads every ship in `fleet_and_weapons.json` and asserts:
 
-* for each of the 26 categories, at least one planet has `maxHullTonnage ≥` that
-  category's heaviest tier-3 hull;
 * the single heaviest hull in the game — Battleship Tier 3 at **65,100 t** — has at least
-  one yard that can take it.
+  one yard that can take it;
+* every category has at least one yard, counted over templates **and** named ships. This
+  one earns its place on diagnostics rather than catching power: because the max of the
+  per-category maxima *is* the global heaviest, it fires exactly when the bullet above
+  fires, never independently. What it adds is naming the offending category, and counting
+  named ships — the earlier version read only the templates, so a named ship heavier than
+  every template in its class could slip past it;
+* **every region has at least one shipyard.**
+
+The last is the tightest constraint on the map. Only three archetypes carry berths
+(`oceanic`, `hive_world`, `forge_world`) and **none of them may exist in deadspace**, so
+deadspace cannot build hulls at all — you extract there and carry the material home. That
+falls straight out of §3's inversion rather than being a rule of its own.
+
+It also leaves one region on a knife edge. Yards by region:
+
+| region | yards | | region | yards |
+|---|---:|---|---|---:|
+| Kestrel Span | 15 | | Cindral Verge | 8 |
+| Aurelian Reach | 11 | | Obsidian Marches | 3 |
+| Tannhau Drift | 8 | | **The Pale Hollow** | **1** |
+
+The Pale Hollow holds ten systems of which eight are deadspace; its single yard sits in
+one of the two `rim` systems. Any shift in the archetype rotation could take it to zero
+and strand a whole region with no way to lay down a hull locally — which is exactly what
+this check exists to catch.
+
+A note on what was tried and rejected, since the reasoning is easy to re-derive wrongly:
+
+* **Rejected and removed.** Counting the yards that can take each category and asserting
+  the count falls as hulls get heavier. That is a tautology — threshold counts are nested
+  subsets by construction (`{y : t ≥ b}` ⊆ `{y : t ≥ a}` whenever `a < b`), so it can
+  never fail for any data at all. It was written, caught, and deleted.
+* **Kept, but demoted.** The per-category existence check in the second bullet above. It
+  *can* fail, so it is not a tautology — but only ever in lockstep with the heaviest-hull
+  check, never independently. It survives for its diagnostics (naming the offending
+  category) and for counting named ships, not for catching power.
+
+A check that cannot fail is worse than no check: it prints `ok` and buys false confidence.
+A check that can fail but only alongside another is merely redundant — worth keeping when
+it says something useful when it does fire.
 
 A forge world at developmentTier 3 reaches `34,000 × 2.40 = 81,600 t`, which clears it.
 Nothing else does: a hive world tops out at 38,400 t and an oceanic yard at 9,600 t. That
@@ -291,7 +329,7 @@ and this check is what keeps it true after someone edits the table.
 * `jumpDistanceLy` agrees from both ends
 * `gateId` matches `gate_<lowerId>_<higherId>` canonical form
 * every `toSystemId` resolves to a real system
-* **BFS from `sys_001` reaches all 60 systems** — no region reachable only through a gate
+* **every system is reachable from `sys_001`** by graph traversal — no region reachable only through a gate
   nobody wrote
 * every system has at least one connection
 * `links.json` and the union of all `connections[]` are the same edge set
