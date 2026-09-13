@@ -6,6 +6,7 @@ imports from the generators -- generate_systems.py and verify_systems.py import
 FROM this module, never the reverse.
 """
 
+import math
 from collections import Counter
 
 RICHNESS = {1: 1.00, 2: 1.60, 3: 2.50}
@@ -339,6 +340,143 @@ PLANETS_BY_SYSTEM = {}
 for _p in PLANETS:
     PLANETS_BY_SYSTEM.setdefault(_p['systemId'], []).append(_p['planetId'])
 
+
+BELT_BASE = {'structural': 18, 'energy': 14, 'ordnance': 12, 'precision': 9}
+BELT_CYCLE = {'structural': 2, 'energy': 2, 'ordnance': 3, 'precision': 4}
+BELT_FLOOR = {'core': 0, 'mid': 1, 'rim': 2, 'deadspace': 3}
+
+
+def _build_belts():
+    out, belt_no = {}, 0
+    for ordinal, system in enumerate(SYSTEMS):
+        count = BELT_FLOOR[system['securityTier']] + (ordinal % 2)
+        belts = []
+        for i in range(count):
+            belt_no += 1
+            lane = LANES[(ordinal * 3 + i) % len(LANES)]
+            belts.append({
+                'beltId': 'bel_%03d' % belt_no,
+                'name': '%s Belt %s' % (system['name'], ROMAN[i]),
+                'dominantLane': lane,
+                'richnessTier': system['richnessTier'],
+                'yieldPerCycle': round(BELT_BASE[lane] * RICHNESS[system['richnessTier']], 2),
+                'cycleTurns': BELT_CYCLE[lane],
+            })
+        out[system['systemId']] = belts
+    return out
+
+
+BELTS_BY_SYSTEM = _build_belts()
+
+# spec 5.3 rule 3: the named chokepoints that join the six regions.
+# (gate name, system A, system B)
+REGION_BRIDGES = [
+    ('The Meridian Gate',      'Coriolan',   'Kestrel'),
+    ('Cindral Approach',       'Astra Vale', 'Cindral'),
+    ('Tannhau Narrows',        'Pinnacle',   'Tannhau'),
+    ('Scoria Crossing',        'Scoria',     'Halcyon Rest'),
+    ('Obsidian Threshold',     'Wanderfall', 'Obsidian'),
+    ('Cold Harbour Approach',  'Ossuary',    'Cold Harbour'),
+    ('The Long Dark',          'Nightfell',  'Pale Hollow'),
+]
+
+# spec 5.3 rule 4: shortcuts, so the map is not a pure tree.
+EXTRA_GATES = [
+    ('Solane', 'Highmark'),
+    ('Tessera', 'Lumen'),
+    ('Corvid', 'Talonspire'),
+    ('Corvid', 'Sablewing'),
+    ('Vantablack', 'Orrery'),
+    ('Kiln', 'Redline'),
+    ('Driftmoor', 'Longwake'),
+    ('Mistral', 'Threnody'),
+    ('Blackmarch', 'Nightfell'),
+    ('Shrike', 'The Maw'),
+    ('Ghostlight', 'Veil'),
+]
+
+
+def _distance(a, b):
+    pa, pb = a['coordinates'], b['coordinates']
+    return round(math.sqrt((pa['x'] - pb['x']) ** 2 +
+                           (pa['y'] - pb['y']) ** 2 +
+                           (pa['z'] - pb['z']) ** 2), 1)
+
+
+def _build_gates():
+    """Rules 1-4 of spec 5.3, then canonicalise: order, dedupe, drop self-loops."""
+    raw = {}          # (lowerId, higherId) -> gate name or None
+
+    def add(name_a, name_b, gate_name=None):
+        a, b = SYSTEM_BY_NAME[name_a]['systemId'], SYSTEM_BY_NAME[name_b]['systemId']
+        if a == b:
+            return
+        key = (a, b) if a < b else (b, a)
+        if raw.get(key) is None:
+            raw[key] = gate_name
+
+    # rule 1: chain the systems inside each constellation
+    by_constellation = {}
+    for s in SYSTEMS:
+        by_constellation.setdefault(s['constellation'], []).append(s['name'])
+    for names in by_constellation.values():
+        for i in range(len(names) - 1):
+            add(names[i], names[i + 1])
+
+    # rule 2: link constellation hubs (the first system of each) inside a region
+    by_region = {}
+    for _, constellation, _ in CONSTELLATIONS:
+        region = _region_of(constellation)
+        by_region.setdefault(region, []).append(by_constellation[constellation][0])
+    for hubs in by_region.values():
+        for i in range(len(hubs) - 1):
+            add(hubs[i], hubs[i + 1])
+
+    # rule 3: named region bridges
+    for gate_name, a, b in REGION_BRIDGES:
+        add(a, b, gate_name)
+
+    # rule 4: authored shortcuts
+    for a, b in EXTRA_GATES:
+        add(a, b)
+
+    gates = []
+    for (a, b) in sorted(raw):
+        sa, sb = SYSTEM_BY_ID[a], SYSTEM_BY_ID[b]
+        gates.append({
+            'gateId': 'gate_%s_%s' % (a, b),
+            'gateName': raw[(a, b)] or '%s — %s' % (sa['name'], sb['name']),
+            'a': a,
+            'b': b,
+            'jumpDistanceLy': _distance(sa, sb),
+            'crossesConstellation': sa['constellation'] != sb['constellation'],
+            'crossesRegion': sa['region'] != sb['region'],
+        })
+    return gates
+
+
+GATES = _build_gates()
+
+
+def _build_connections():
+    out = {s['systemId']: [] for s in SYSTEMS}
+    for g in GATES:
+        for near, far in ((g['a'], g['b']), (g['b'], g['a'])):
+            out[near].append({
+                'toSystemId': far,
+                'gateId': g['gateId'],
+                'gateName': g['gateName'],
+                'jumpDistanceLy': g['jumpDistanceLy'],
+                'crossesConstellation': g['crossesConstellation'],
+                'crossesRegion': g['crossesRegion'],
+            })
+    for conns in out.values():
+        conns.sort(key=lambda c: c['toSystemId'])
+    return out
+
+
+CONNECTIONS_BY_SYSTEM = _build_connections()
+
 assert len(ARCHETYPE_NAMES) == 10, 'spec 4: ten archetypes'
 assert len(PLANETS) == 180, f'spec 4: 180 planets, got {len(PLANETS)}'
 assert len({p['planetId'] for p in PLANETS}) == 180, 'planetIds unique'
@@ -389,3 +527,35 @@ for _arch in ARCHETYPE_NAMES:
             if _a < _b:
                 assert max(_by_dev[_a]) <= min(_by_dev[_b]), \
                     f'{_arch}: development {_a} out-manufactures {_b}'
+
+# spec 5.2: belt count runs opposite to security
+_want_belts = {'core': (0, 1), 'mid': (1, 2), 'rim': (2, 3), 'deadspace': (3, 4)}
+for _s in SYSTEMS:
+    _n = len(BELTS_BY_SYSTEM[_s['systemId']])
+    _lo, _hi = _want_belts[_s['securityTier']]
+    assert _lo <= _n <= _hi, f"{_s['name']}: {_n} belts outside {_s['securityTier']} range"
+
+# spec 5.3: the edge set is canonical
+assert len({(g['a'], g['b']) for g in GATES}) == len(GATES), 'duplicate gate'
+for _g in GATES:
+    assert _g['a'] < _g['b'], f"{_g['gateId']}: not in canonical (lower, higher) order"
+    assert _g['a'] != _g['b'], f"{_g['gateId']}: self-loop"
+    assert _g['gateId'] == 'gate_%s_%s' % (_g['a'], _g['b']), f"{_g['gateId']}: bad id"
+
+# spec 5.3: symmetry -- both endpoints list the same gate
+for _sid, _conns in CONNECTIONS_BY_SYSTEM.items():
+    for _c in _conns:
+        _back = [x for x in CONNECTIONS_BY_SYSTEM[_c['toSystemId']] if x['toSystemId'] == _sid]
+        assert len(_back) == 1, f"{_sid} -> {_c['toSystemId']} has no single return edge"
+        assert _back[0]['gateId'] == _c['gateId'], 'gateId disagrees between endpoints'
+        assert _back[0]['jumpDistanceLy'] == _c['jumpDistanceLy'], 'distance disagrees'
+
+# spec 6.3: every system reachable from sys_001 by BFS
+_seen, _queue = {'sys_001'}, ['sys_001']
+while _queue:
+    _cur = _queue.pop()
+    for _c in CONNECTIONS_BY_SYSTEM[_cur]:
+        if _c['toSystemId'] not in _seen:
+            _seen.add(_c['toSystemId']); _queue.append(_c['toSystemId'])
+assert len(_seen) == 60, f'graph not connected: {60 - len(_seen)} systems unreachable'
+assert all(CONNECTIONS_BY_SYSTEM[s['systemId']] for s in SYSTEMS), 'isolated system'
