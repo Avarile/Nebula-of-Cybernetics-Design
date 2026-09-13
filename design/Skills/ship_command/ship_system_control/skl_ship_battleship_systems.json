@@ -5,6 +5,33 @@
   "category": "ship_system_control",
   "maxLevel": 10,
   "rank": 5,
+  "training": {
+    "spPerLevel": [
+      1250,
+      2700,
+      5833,
+      12599,
+      27216,
+      58789,
+      126992,
+      274318,
+      592560,
+      1280000
+    ],
+    "spCumulative": [
+      1250,
+      3950,
+      9783,
+      22382,
+      49598,
+      108387,
+      235379,
+      509697,
+      1102257,
+      2382257
+    ],
+    "spTotal": 2382257
+  },
   "scope": "ship",
   "effects": [
     {
@@ -35,6 +62,11 @@
       "description": "Operate a Battleship; requires the paired system-management skill at level 5 as well."
     }
   ],
-  "prerequisites": [],
-  "description": "Running a Battleship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+  "prerequisites": [
+    {
+      "skillId": "skl_ship_battlecruiser_systems",
+      "level": 5
+    }
+  ],
+  "description": "Running a Battleship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Battlecruiser in the hull tree."
 }

@@ -15,7 +15,7 @@ then cross-checked against the `.interface` schemas in `Data-Templates/`.
 | `weapons.ts` | the 798 weapons, plus the four generator axes behind every stat block |
 | `modules.ts` | the 135 modules, the 34-stat effect vocabulary, and the `functionClass` split |
 | `ships.ts` | the 26 classes, 78 tier hulls and 20 named ships, plus the per-category signature table |
-| `skills.ts` | the 80 skills across 4 domains, the 18 skill-only stats, and the gates for hulls, fleet slots and industry |
+| `skills.ts` | the 81 skills across 4 domains, the 18 skill-only stats, the EVE-style SP model, and the gates for hulls, fleet slots and industry |
 | `combat.ts` | turn structure, hit and damage resolution, missiles/point-defense, criticals, both logging tiers, and the open rulings |
 | `dataset.ts` | on-disk shapes: `fleet_and_weapons.json`, the five `index.json` files, a fitted hull directory |
 | `constants.ts` | the tuning tables the types describe — family bias, mass bands, yields, cost coefficients, range bands, critical table, skill gates and the effect formula |
@@ -62,6 +62,11 @@ type:
   `ModuleEffectStat | SkillOnlyStat`. The 18 skill-only stats have no field on the
   hull, so `ModuleEffect` cannot target one — a module that tries to modify
   `miningYield` does not compile.
+- **`HullPrerequisite` encodes which rung you are on.** It is a three-arm union:
+  the root at level `1`, a Control skill at level `5`, or a System Management skill
+  at level `5`. Narrowing on `skillId` settles the level, so a hull rung written at
+  level 3 — or the root written at level 5 — is a compile error, not a verifier
+  finding. The "ladders never cross" rule falls out of the arms being separate.
 - **Component critical effects are literal strings.** `componentHitpoints.bridge`
   is typed to the one string it ever holds, so a typo in a hand-built fixture is
   a compile error.
@@ -120,7 +125,7 @@ not generate it.
 ## Verification
 
 ```sh
-python3 Reference/verify_reference.py     # 52 checks
+python3 Reference/verify_reference.py     # 59 checks
 ```
 
 Every string-literal union must declare exactly the values present in the data —
@@ -141,6 +146,7 @@ Type-checked with:
 tsc --noEmit --strict Reference/*.ts
 ```
 
-All 80 live skills, `Skills/index.json` and `_meta` were additionally checked to be
+All 81 live skills, `Skills/index.json` and `_meta` were additionally checked to be
 assignable to `Skill[]`, `SkillIndex` and `FleetMeta` as literals — the whole
-catalogue, not a sample.
+catalogue, not a sample — along with eight `@ts-expect-error` negative cases covering
+the id namespace, the level ladder and both `HullPrerequisite` arms.

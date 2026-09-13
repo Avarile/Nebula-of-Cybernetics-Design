@@ -6,7 +6,8 @@ from collections import Counter, defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 from skill_tables import (DOMAINS, CATEGORY_ORDER, SCOPES, UNLOCK_TYPES, WEAPON_CLASSES,
-                          APPLIES_TO_KEYS, MAX_LEVEL, OPERATE_LEVEL)
+                          APPLIES_TO_KEYS, MAX_LEVEL, OPERATE_LEVEL, HULL_TREE, ROOT_SKILL,
+                          SP_BASE, SP_K, hull_rank)
 from stat_vocabulary import ALL_STATS
 from ship_tables import BY_KEY
 
@@ -23,7 +24,7 @@ def check(label, bad, show=6):
         print(f'ok   {label}')
 
 
-check('80 skills across 4 domains', [] if len(S) == 80 else [f'{len(S)} skills'])
+check('81 skills across 4 domains', [] if len(S) == 81 else [f'{len(S)} skills'])
 check('unique skillIds', [k for k, v in Counter(s['skillId'] for s in S).items() if v > 1])
 check('unique names',    [k for k, v in Counter(s['name'] for s in S).items() if v > 1])
 
@@ -187,6 +188,116 @@ bad = [f'{r["resourceId"]}: {r["conversionYield"]} x {1 + boost / 100:.2f} = '
        for r in FLEET['resources']
        if r['conversionYield'] is not None and r['conversionYield'] * (1 + boost / 100) >= 1.0]
 check(f'max refineryYield boost (+{boost:.0f}%) keeps every lane yield below 1', bad)
+
+# ------------------------------------------------------------------ training / SP
+#
+# The published SP figures must be the closed form, not a table someone edited by hand.
+bad = []
+for s in S:
+    t = s['training']
+    if len(t['spPerLevel']) != s['maxLevel'] or len(t['spCumulative']) != s['maxLevel']:
+        bad.append(f'{s["skillId"]}: {len(t["spPerLevel"])}/{len(t["spCumulative"])} entries')
+check('training arrays have maxLevel entries', bad)
+
+check('spPerLevel strictly increasing',
+      [s['skillId'] for s in S
+       if any(a >= b for a, b in zip(s['training']['spPerLevel'],
+                                     s['training']['spPerLevel'][1:]))])
+
+bad = []
+for s in S:
+    want = [round(s['rank'] * SP_BASE * SP_K ** (lvl - 1)) for lvl in range(1, s['maxLevel'] + 1)]
+    if s['training']['spPerLevel'] != want:
+        bad.append(f'{s["skillId"]} rank {s["rank"]}: {s["training"]["spPerLevel"][:3]}... '
+                   f'!= {want[:3]}...')
+check('spPerLevel == rank * 250 * k ** (level - 1)', bad)
+
+bad = []
+for s in S:
+    t, running, want = s['training'], 0, []
+    for step in t['spPerLevel']:
+        running += step
+        want.append(running)
+    if t['spCumulative'] != want:
+        bad.append(f'{s["skillId"]}: spCumulative is not the running sum')
+    elif t['spTotal'] != want[-1]:
+        bad.append(f'{s["skillId"]}: spTotal {t["spTotal"]} != {want[-1]}')
+check('spCumulative is the running sum; spTotal is its last entry', bad)
+
+# The whole point of k = 2 ** (10/9): a rank-1 skill starts and ends exactly where an
+# EVE skill does, over ten levels instead of five.
+rank1 = next((s for s in S if s['rank'] == 1), None)
+bad = []
+if rank1 is None:
+    bad.append('no rank-1 skill to check the curve against')
+else:
+    per = rank1['training']['spPerLevel']
+    if per[0] != 250:
+        bad.append(f'level 1 is {per[0]}, EVE is 250')
+    if per[-1] != 256_000:
+        bad.append(f'level {rank1["maxLevel"]} is {per[-1]:,}, EVE level V is 256,000')
+check("rank-1 curve hits EVE's endpoints (250 -> 256,000)", bad)
+
+# ------------------------------------------------------------------- the hull tree
+hull_skills = [s for s in S if s['category'] == 'ship_system_control']
+check('52 hull skills', [] if len(hull_skills) == 52 else [f'{len(hull_skills)} hull skills'])
+check(f'root skill {ROOT_SKILL} exists',
+      [] if ROOT_SKILL in by_id else [f'{ROOT_SKILL} missing'])
+
+bad = []
+for s in hull_skills:
+    if len(s['prerequisites']) != 1:
+        bad.append(f'{s["skillId"]}: {len(s["prerequisites"])} prerequisites')
+check('every hull skill has exactly one prerequisite', bad)
+
+# Control sits on Control, System Management on System Management -- the ladders never
+# cross, so "can fly it" and "can train up from it" stay one threshold apart from each
+# other rather than four.
+bad = []
+for s in hull_skills:
+    suffix = s['skillId'].rsplit('_', 1)[1]
+    key = s['skillId'][len('skl_ship_'):-len(suffix) - 1]
+    req = s['prerequisites'][0]
+    pred = HULL_TREE.get(key, 'MISSING')
+    if pred is None:
+        if req['skillId'] != ROOT_SKILL or req['level'] != 1:
+            bad.append(f'{s["skillId"]}: entry hull should require {ROOT_SKILL} 1, '
+                       f'got {req["skillId"]} {req["level"]}')
+    elif pred == 'MISSING':
+        bad.append(f'{s["skillId"]}: {key} is not in HULL_TREE')
+    else:
+        want = f'skl_ship_{pred}_{suffix}'
+        if req['skillId'] != want:
+            bad.append(f'{s["skillId"]} requires {req["skillId"]}, expected {want}')
+        elif req['level'] != OPERATE_LEVEL:
+            bad.append(f'{s["skillId"]} requires level {req["level"]}, expected {OPERATE_LEVEL}')
+check('hull prerequisites follow HULL_TREE, ladders never cross', bad)
+
+check('no hull predecessor outranks its successor',
+      [f'{k}: rank {hull_rank(k)} <- {p} rank {hull_rank(p)}'
+       for k, p in HULL_TREE.items() if p is not None and hull_rank(p) > hull_rank(k)])
+
+# Every hull must reach the root, and the walk must terminate.
+bad, depths = [], {}
+for key in HULL_TREE:
+    seen, cur, steps = set(), key, 0
+    while cur is not None:
+        if cur in seen:
+            bad.append(f'{key}: cycle through {cur}'); break
+        seen.add(cur); steps += 1
+        nxt = HULL_TREE.get(cur, 'MISSING')
+        if nxt == 'MISSING':
+            bad.append(f'{key}: predecessor {cur} is not a hull'); break
+        cur = nxt
+    else:
+        depths[key] = steps
+check('hull tree is acyclic and every hull reaches the root', bad)
+check('all 26 hull categories are in the tree',
+      sorted(set(BY_KEY) - set(HULL_TREE)) or [])
+check('hull tree depth stays within 8 (root included)',
+      [f'{k}: depth {v + 1}' for k, v in depths.items() if v + 1 > 8])
+check('at least one entry hull requires only the root',
+      [] if any(v is None for v in HULL_TREE.values()) else ['no entry hull'])
 
 # ---------------------------------------------------------------------- files on disk
 disk = {}

@@ -32,7 +32,13 @@ import type {
   SignificanceRule,
 } from './combat';
 import type { ConversionYields, ResourceTier } from './resources';
-import type { OperateLevel, SkillCategory, SkillDomain } from './skills';
+import type {
+  HullTree,
+  OperateLevel,
+  RootSkillId,
+  SkillCategory,
+  SkillDomain,
+} from './skills';
 import type { MassBand } from './common';
 
 // ================================================================
@@ -592,7 +598,7 @@ export const SKILL_DOMAINS = [
   'interaction_trade',
 ] as const satisfies readonly SkillDomain[];
 
-/** Uniform across all 80 skills — there is no short skill and no long one. */
+/** Uniform across all 81 skills — there is no short skill and no long one. */
 export const SKILL_MAX_LEVEL = 10 as const;
 
 /**
@@ -660,14 +666,115 @@ export const REFINERY_YIELD_CEILING = {
   maxLaneYield: 0.9,
 } as const;
 
+/**
+ * The SP curve. `SP(level) = rank * SP_BASE * SP_K ** (level - 1)`.
+ *
+ * EVE runs 250 SP at level I to 256,000 at level V — a x5.657 step over five levels.
+ * This catalogue has ten, so the step is re-derived to land on the SAME two endpoints
+ * rather than inventing a curve: `SP_K ** 9 === 1024`, so level 10 is exactly
+ * `250 * 1024 = 256,000`. Same start, same finish, twice the rungs.
+ */
+export const SP_BASE = 250 as const;
+export const SP_K = 2 ** (10 / 9);
+
+/**
+ * EVE's ~30 SP/minute at good attributes. Used for SIZING only — the catalogue
+ * publishes SP, never hours, so a rate change never means regenerating it.
+ */
+export const SP_PER_HOUR_REFERENCE = 1800 as const;
+
+/** The rank-1 ladder. Multiply by `rank` for any other skill. */
+export const SP_PER_LEVEL_RANK1 = [
+  250, 540, 1_167, 2_520, 5_443, 11_758, 25_398, 54_864, 118_512, 256_000,
+] as const;
+
+export const SP_CUMULATIVE_RANK1 = [
+  250, 790, 1_957, 4_477, 9_920, 21_678, 47_076, 101_940, 220_452, 476_452,
+] as const;
+
+/** SP to buy one level of a skill. The closed form, not a table lookup. */
+export const skillSp = (rank: number, level: number): number =>
+  Math.round(rank * SP_BASE * SP_K ** (level - 1));
+
+/** SP to have REACHED a level from untrained. */
+export const skillSpCumulative = (rank: number, level: number): number => {
+  let total = 0;
+  for (let l = 1; l <= level; l++) total += skillSp(rank, l);
+  return total;
+};
+
+/** Hours at the reference rate. Sizing only — see `SP_PER_HOUR_REFERENCE`. */
+export const skillTrainingHours = (sp: number): number => sp / SP_PER_HOUR_REFERENCE;
+
+/**
+ * The root of the hull tree. Not in the `skl_ship_*` namespace — that prefix belongs
+ * to the 52 hull skills.
+ */
+export const ROOT_SKILL_ID = 'skl_fund_spaceship_command' as const satisfies RootSkillId;
+
+/** The level of the root that the three entry hulls require. */
+export const ROOT_SKILL_GATE = 1 as const;
+
+/**
+ * The hull tree: each ship category mapped to the one it sits above, `null` for an
+ * entry hull. Acyclic, no predecessor outranks its successor, and every hull reaches
+ * the root in at most seven steps — all enforced by tools/verify_skills.py.
+ *
+ *   Spaceship Command -+- Motor Torpedo Boat -- Fleet Torpedo Boat
+ *                      +- Submarine Chaser ---- Submarine
+ *                      +- Corvette -+- Landing Ship Tank -+- Attack Transport -- Fleet Oiler
+ *                                   |                     +- Seaplane Tender
+ *                                   |                     +- Repair Ship / Tender
+ *                                   +- Sloop / Patrol Escort -- Minelayer / Sweeper
+ *                                   +- Destroyer Escort -+- Anti-Aircraft Cruiser
+ *                                                        +- Coastal Defence -- Monitor -- Panzerschiff
+ *                                                        +- Destroyer -+- Merchant Raider
+ *                                                                      +- Light Cruiser -+- Light Carrier -- Escort Carrier -- Fleet Aircraft Carrier
+ *                                                                                        +- Heavy Cruiser -- Battlecruiser -- Battleship
+ */
+export const HULL_TREE = {
+  motor_torpedo_boat: null,
+  submarine_chaser: null,
+  corvette: null,
+  torpedo_boat_fleet: 'motor_torpedo_boat',
+  destroyer_escort: 'corvette',
+  sloop_patrol_escort: 'corvette',
+  destroyer: 'destroyer_escort',
+  landing_ship_tank: 'corvette',
+  submarine: 'submarine_chaser',
+  minelayer_sweeper: 'sloop_patrol_escort',
+  coastal_defence_ship: 'destroyer_escort',
+  anti_aircraft_cruiser: 'destroyer_escort',
+  monitor: 'coastal_defence_ship',
+  light_cruiser: 'destroyer',
+  attack_transport: 'landing_ship_tank',
+  light_carrier: 'light_cruiser',
+  panzerschiff: 'monitor',
+  merchant_raider: 'destroyer',
+  seaplane_tender: 'landing_ship_tank',
+  repair_ship_tender: 'landing_ship_tank',
+  heavy_cruiser: 'light_cruiser',
+  escort_carrier: 'light_carrier',
+  fleet_oiler: 'attack_transport',
+  fleet_aircraft_carrier: 'escort_carrier',
+  battlecruiser: 'heavy_cruiser',
+  battleship: 'battlecruiser',
+} as const satisfies HullTree;
+
+/** The three hulls that require only the root. */
+export const ENTRY_HULLS = [
+  'motor_torpedo_boat', 'submarine_chaser', 'corvette',
+] as const satisfies readonly ShipClass[];
+
 export const SKILL_DOMAIN_COUNTS = {
-  ship_command: 68,
+  ship_command: 69,
   station_management: 6,
   deep_space_mining: 4,
   interaction_trade: 2,
 } as const satisfies Record<SkillDomain, number>;
 
 export const SKILL_CATEGORY_COUNTS = {
+  fundamentals: 1,
   ship_system_control: 52,
   navigation: 1,
   scanning: 1,
@@ -694,6 +801,7 @@ export const CATALOGUE_COUNTS = {
   modules: 135,
   moduleArchetypes: 45,
   resources: 12,
-  skills: 80,
+  skills: 81,
   skillsPerHull: 2,
+  hullTreeDepth: 8,
 } as const;

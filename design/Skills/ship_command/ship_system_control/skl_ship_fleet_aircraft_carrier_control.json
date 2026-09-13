@@ -5,6 +5,33 @@
   "category": "ship_system_control",
   "maxLevel": 10,
   "rank": 4,
+  "training": {
+    "spPerLevel": [
+      1000,
+      2160,
+      4666,
+      10079,
+      21773,
+      47032,
+      101594,
+      219454,
+      474048,
+      1024000
+    ],
+    "spCumulative": [
+      1000,
+      3160,
+      7826,
+      17905,
+      39678,
+      86710,
+      188304,
+      407758,
+      881806,
+      1905806
+    ],
+    "spTotal": 1905806
+  },
   "scope": "ship",
   "effects": [
     {
@@ -35,6 +62,11 @@
       "description": "Operate a Fleet Aircraft Carrier; requires the paired system-management skill at level 5 as well."
     }
   ],
-  "prerequisites": [],
-  "description": "Conning a Fleet Aircraft Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+  "prerequisites": [
+    {
+      "skillId": "skl_ship_escort_carrier_control",
+      "level": 5
+    }
+  ],
+  "description": "Conning a Fleet Aircraft Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Escort Carrier in the hull tree."
 }

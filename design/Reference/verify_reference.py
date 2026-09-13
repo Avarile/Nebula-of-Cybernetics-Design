@@ -140,11 +140,11 @@ check('SkillWeaponClass', union('weapons.ts', 'WeaponClass') | {'drone'},
 
 # The 28 non-hull ids are literal unions; the 52 hull ids are template literals.
 declared_ids = set()
-for name in ('ShipCommandSkillId', 'StationManagementSkillId',
+for name in ('RootSkillId', 'ShipCommandSkillId', 'StationManagementSkillId',
              'DeepSpaceMiningSkillId', 'InteractionTradeSkillId'):
     declared_ids |= union('skills.ts', name)
 hull_ids = {s['skillId'] for s in SKILLS if s['category'] == 'ship_system_control'}
-check('SkillId (28 non-hull literals)', declared_ids,
+check('SkillId (29 non-hull literals)', declared_ids,
       {s['skillId'] for s in SKILLS} - hull_ids)
 
 ship_classes = {s['shipClass'] for s in SHIPS}
@@ -152,9 +152,52 @@ expected_hull_ids = {f'skl_ship_{c}_{suffix}' for c in ship_classes
                      for suffix in ('control', 'systems')}
 check('SkillId (52 hull template literals)', expected_hull_ids, hull_ids)
 
+# ---------------------------------------------------------------- hull tree
+# HULL_TREE and ROOT_SKILL_ID are declared in constants.ts, not as a union, so they are
+# checked against the live prerequisites rather than through union().
+import skill_tables as st  # noqa: E402
+
+const_src = open(os.path.join(REF, 'constants.ts')).read()
+m = re.search(r'export const HULL_TREE = \{(.*?)\n\} as const', const_src, re.S)
+if not m:
+    sys.exit('HULL_TREE not found in Reference/constants.ts')
+declared_tree = {}
+for key, val in re.findall(r"^\s{2}(\w+):\s*(null|'\w+'),", m.group(1), re.M):
+    declared_tree[key] = None if val == 'null' else val.strip("'")
+check('HULL_TREE covers every ship category', set(declared_tree), ship_classes)
+check('HULL_TREE matches tools/skill_tables.py',
+      set(declared_tree) | set(st.HULL_TREE),
+      {k for k in set(declared_tree) | set(st.HULL_TREE)
+       if declared_tree.get(k, '?') == st.HULL_TREE.get(k, '??')})
+
+m = re.search(r"export const ROOT_SKILL_ID = '([\w]+)'", const_src)
+declared_root = {m.group(1)} if m else set()
+check('ROOT_SKILL_ID matches the catalogue', declared_root,
+      {s['skillId'] for s in SKILLS if s['category'] == 'fundamentals'})
+check('RootSkillId union matches', union('skills.ts', 'RootSkillId'),
+      {s['skillId'] for s in SKILLS if s['category'] == 'fundamentals'})
+
+m = re.search(r'export const ENTRY_HULLS = \[(.*?)\n\] as const', const_src, re.S)
+declared_entry = set(re.findall(r"'([\w]+)'", m.group(1))) if m else set()
+check('ENTRY_HULLS matches the tree', declared_entry,
+      {k for k, v in st.HULL_TREE.items() if v is None})
+
+# The published SP ladder in constants.ts must equal the one the catalogue carries.
+def ts_numbers(name):
+    mm = re.search(r'export const %s = \[(.*?)\n\] as const' % name, const_src, re.S)
+    return [int(x.replace('_', '')) for x in re.findall(r'[\d_]+', mm.group(1))] if mm else []
+
+rank1 = next(s for s in SKILLS if s['rank'] == 1)
+check('SP_PER_LEVEL_RANK1 matches the catalogue',
+      set(ts_numbers('SP_PER_LEVEL_RANK1')), set(rank1['training']['spPerLevel']))
+check('SP_CUMULATIVE_RANK1 matches the catalogue',
+      set(ts_numbers('SP_CUMULATIVE_RANK1')), set(rank1['training']['spCumulative']))
+
 # ---------------------------------------------------------------- skill field sets
 check('Skill fields', fields('skills.ts', 'SkillBase') | {'domain', 'category'},
       {k for s in SKILLS for k in s})
+check('SkillTraining fields', fields('skills.ts', 'SkillTraining'),
+      {k for s in SKILLS for k in s['training']})
 check('SkillEffect fields', fields('skills.ts', 'SkillEffect'),
       {k for s in SKILLS for e in s['effects'] for k in e})
 check('SkillPenalty fields', fields('skills.ts', 'SkillPenalty'),

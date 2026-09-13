@@ -13,7 +13,9 @@ from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
-from skill_tables import SKILLS, DOMAINS, CATEGORY_ORDER, MAX_LEVEL, OPERATE_LEVEL
+from skill_tables import (SKILLS, DOMAINS, CATEGORY_ORDER, MAX_LEVEL, OPERATE_LEVEL,
+                          HULL_TREE, HULL_DISPLAY, ROOT_SKILL, SP_BASE, SP_K,
+                          SP_PER_HOUR_REFERENCE, sp_per_level, sp_cumulative, hull_rank)
 
 FLEET = os.path.join(ROOT, 'fleet_and_weapons.json')
 SKILLS_DIR = os.path.join(ROOT, 'Skills')
@@ -38,7 +40,29 @@ def write_interface_table():
     lines += ['#\n',
               '# STAT VOCABULARY -- an effect or penalty may only target a stat from\n',
               '# tools/stat_vocabulary.py ALL_STATS (SHIP_STATS, shared with modules, plus\n',
-              '# SKILL_STATS, which have no hull field and so are skill-only).\n']
+              '# SKILL_STATS, which have no hull field and so are skill-only).\n',
+              '#\n',
+              f'# SP LADDER -- rank 1, SP_K = {SP_K:.5f}. Multiply by rank for any other skill.\n',
+              '#\n',
+              f'#   {"level":>7}{"per level":>12}{"cumulative":>13}{"hours @ " + str(SP_PER_HOUR_REFERENCE):>16}\n']
+    per, cum = sp_per_level(1), sp_cumulative(1)
+    for i, (p_, c_) in enumerate(zip(per, cum), 1):
+        mark = '   <- operate gate' if i == OPERATE_LEVEL else ''
+        lines.append(f'#   {i:>7}{p_:>12,}{c_:>13,}{c_ / SP_PER_HOUR_REFERENCE:>16.1f}{mark}\n')
+
+    lines += ['#\n',
+              f'# HULL TREE -- rooted at {ROOT_SKILL}; each hull names one predecessor.\n',
+              '#\n']
+    kids = {}
+    for key, pred in HULL_TREE.items():
+        kids.setdefault(pred, []).append(key)
+
+    def walk(parent, depth):
+        for key in sorted(kids.get(parent, []), key=lambda k: (hull_rank(k), k)):
+            lines.append(f'#   {"  " * depth}{HULL_DISPLAY[key]}  (rank {hull_rank(key)})\n')
+            walk(key, depth + 1)
+
+    walk(None, 1)
     text = open(IFACE).read()
     a, b = text.index(MARK_BEGIN), text.index(MARK_END)
     open(IFACE, 'w').write(text[:a] + MARK_BEGIN + ''.join(lines) + text[b:])
@@ -56,6 +80,18 @@ def report():
     print('with prereqs  :', sum(1 for s in SKILLS if s['prerequisites']))
     hulls = {u['target'] for s in SKILLS for u in s['unlocks'] if u['type'] == 'ship_operation'}
     print(f'hulls unlocked: {len(hulls)} categories at level {OPERATE_LEVEL} (control + systems)')
+    entry = [k for k, v in HULL_TREE.items() if v is None]
+    depth = {}
+
+    def d(k):
+        if k not in depth:
+            depth[k] = 1 if HULL_TREE[k] is None else 1 + d(HULL_TREE[k])
+        return depth[k]
+
+    print(f'hull tree     : root {ROOT_SKILL}, {len(entry)} entry hulls, '
+          f'max depth {max(d(k) for k in HULL_TREE) + 1}')
+    print(f'sp curve      : base {SP_BASE}, k {SP_K:.5f}, '
+          f'rank-1 total {sp_cumulative(1)[-1]:,} SP')
 
 
 def main():

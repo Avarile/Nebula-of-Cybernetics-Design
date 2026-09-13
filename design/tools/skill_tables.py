@@ -12,6 +12,14 @@ Everything a skill does is one of four things:
   unlocks[]        a capability/hull/fleet-slot that opens at a level
   prerequisites[]  another skill that must reach a level first
 
+Two more systems, both modelled on EVE Online:
+
+  training         skill points. SP(L) = rank * 250 * k^(L-1), with k chosen so the
+                   ladder starts and ends exactly where EVE's does (see SP_K below).
+  HULL_TREE        a prerequisite DAG over the 26 hulls. Each hull names ONE
+                   predecessor and cannot be trained until that predecessor reaches
+                   OPERATE_LEVEL, so flying a battleship means climbing a line.
+
 The effect arithmetic, defined once and enforced by verify_skills.py:
 
     total = modifierPerLevel * max(0, level - appliesFromLevel + 1)
@@ -31,8 +39,8 @@ MAX_LEVEL = 10
 DOMAINS = ['ship_command', 'station_management', 'deep_space_mining', 'interaction_trade']
 
 CATEGORY_ORDER = {
-    'ship_command': ['ship_system_control', 'navigation', 'scanning', 'engineering',
-                     'weaponry', 'fleet_command'],
+    'ship_command': ['fundamentals', 'ship_system_control', 'navigation', 'scanning',
+                     'engineering', 'weaponry', 'fleet_command'],
     'station_management': ['science', 'facility_management'],
     'deep_space_mining': ['mining_operations'],
     'interaction_trade': ['commerce'],
@@ -88,6 +96,92 @@ HULL_DISPLAY = {
 # lets a player operate that hull. Straight from the Design spec's closing note.
 OPERATE_LEVEL = 5
 
+# ---------------------------------------------------------------- skill points
+#
+#     SP(level) = rank * SP_BASE * SP_K ** (level - 1)
+#
+# EVE spreads 250 SP at level I to 256,000 at level V over FIVE levels, a x5.657 step.
+# This catalogue has TEN, so the step is re-derived to land on the same two endpoints
+# rather than inventing a curve: SP_K = 2 ** (10/9) gives SP_K ** 9 == 1024, so level 10
+# is exactly 250 * 1024 = 256,000. Same start, same finish, twice the rungs.
+#
+# At the EVE-reference 1,800 SP/hour this puts a first hull about 11 hours out and a
+# battleship-by-way-of-the-spine about 9 days out, which is where EVE puts them too.
+SP_BASE = 250
+SP_K = 2 ** (10 / 9)
+SP_PER_HOUR_REFERENCE = 1800
+
+
+def sp_per_level(rank):
+    """Rank-multiplied SP for each of the 10 levels. Published, so a client does no math."""
+    return [round(rank * SP_BASE * SP_K ** (level - 1)) for level in range(1, MAX_LEVEL + 1)]
+
+
+def sp_cumulative(rank):
+    """Running total of sp_per_level -- SP spent to have REACHED each level."""
+    per, total, out = sp_per_level(rank), 0, []
+    for step in per:
+        total += step
+        out.append(total)
+    return out
+
+
+def training(rank):
+    per = sp_per_level(rank)
+    cum = sp_cumulative(rank)
+    return {'spPerLevel': per, 'spCumulative': cum, 'spTotal': cum[-1]}
+
+
+# ---------------------------------------------------------------- the hull tree
+#
+# EVE's ship progression: one root skill, then lines of hulls where each requires the
+# one below it. Reaching a battleship means climbing the combat spine, not training
+# every hull in the game -- and the auxiliary line is deliberately short, so a tanker
+# pilot never touches the spine at all.
+#
+# Each hull names exactly ONE predecessor, or None for the three entry hulls, which
+# require the root skill instead. verify_skills.py enforces that the graph is acyclic,
+# that no predecessor outranks its successor, and that every hull reaches the root.
+ROOT_SKILL = 'skl_fund_spaceship_command'
+
+HULL_TREE = {
+    # entry hulls -- root only
+    'motor_torpedo_boat': None,
+    'submarine_chaser': None,
+    'corvette': None,
+    # light attack
+    'torpedo_boat_fleet': 'motor_torpedo_boat',
+    # the combat spine: corvette -> ... -> battleship
+    'destroyer_escort': 'corvette',
+    'destroyer': 'destroyer_escort',
+    'light_cruiser': 'destroyer',
+    'heavy_cruiser': 'light_cruiser',
+    'battlecruiser': 'heavy_cruiser',
+    'battleship': 'battlecruiser',
+    # escort / mine warfare
+    'sloop_patrol_escort': 'corvette',
+    'minelayer_sweeper': 'sloop_patrol_escort',
+    # coastal / armoured
+    'coastal_defence_ship': 'destroyer_escort',
+    'monitor': 'coastal_defence_ship',
+    'panzerschiff': 'monitor',
+    # air defence and commerce raiding branch off the spine
+    'anti_aircraft_cruiser': 'destroyer_escort',
+    'merchant_raider': 'destroyer',
+    # carriers branch at the light cruiser
+    'light_carrier': 'light_cruiser',
+    'escort_carrier': 'light_carrier',
+    'fleet_aircraft_carrier': 'escort_carrier',
+    # auxiliary -- short line, never touches the spine
+    'landing_ship_tank': 'corvette',
+    'attack_transport': 'landing_ship_tank',
+    'fleet_oiler': 'attack_transport',
+    'seaplane_tender': 'landing_ship_tank',
+    'repair_ship_tender': 'landing_ship_tank',
+    # submarines
+    'submarine': 'submarine_chaser',
+}
+
 
 # --------------------------------------------------------------------- constructors
 def E(stat, per_level, kind='percent', from_level=1, **applies_to):
@@ -119,6 +213,7 @@ def S(skill_id, name, domain, category, rank, scope, description,
         'category': category,
         'maxLevel': MAX_LEVEL,
         'rank': rank,
+        'training': training(rank),
         'scope': scope,
         'effects': list(effects),
         'penalties': list(penalties),
@@ -138,6 +233,19 @@ def hull_rank(key):
 
 
 # ============================================================== SPACESHIP COMMAND
+# The root of the hull tree. EVE's Spaceship Command sits under every ship skill and
+# gives a flat agility bonus; this is the same idea against `turnRate`. The three entry
+# hulls require it at level 1, and everything above them inherits it transitively
+# through its own predecessor -- so it is a real prerequisite for all 26 hulls without
+# being restated on 52 skills.
+FUNDAMENTALS = [
+    S(ROOT_SKILL, 'Spaceship Command', 'ship_command', 'fundamentals', 1, 'ship',
+      'The basics of holding a hull steady and answering the helm. Required before any '
+      'ship can be trained, and each level tightens how sharply every hull comes about.',
+      effects=[E('turnRate', 1.0)]),
+]
+
+
 # Ship System Control -- 26 categories x {Control, System Management}.
 #
 # The spec fixes the gate: "reaching level 5 will enable a player to operate that kind
@@ -146,11 +254,27 @@ def hull_rank(key):
 # level adds 1% to the two things that skill is about -- handling for Control, system
 # upkeep for System Management -- on that hull category only. Delete the effects= lines
 # below to make these pure gates with no ladder.
+def hull_prerequisite(key, suffix):
+    """The one skill this hull's `suffix` ladder sits on top of.
+
+    Control requires the predecessor's Control; System Management requires the
+    predecessor's System Management. Two parallel ladders that never cross. The three
+    entry hulls have no predecessor and sit directly on the root instead.
+    """
+    pred = HULL_TREE[key]
+    if pred is None:
+        return R(ROOT_SKILL, 1)
+    return R(f'skl_ship_{pred}_{suffix}', OPERATE_LEVEL)
+
+
 def ship_skills():
     out = []
     for c in CATEGORIES:
         key, disp = c['key'], HULL_DISPLAY[c['key']]
         rank = hull_rank(key)
+        pred = HULL_TREE[key]
+        climb = (f' Sits above {HULL_DISPLAY[pred]} in the hull tree.' if pred
+                 else ' An entry hull: nothing but Spaceship Command comes before it.')
         gate = U(OPERATE_LEVEL, 'ship_operation', key,
                  f'Operate a {disp}; requires the paired system-management skill at '
                  f'level {OPERATE_LEVEL} as well.')
@@ -159,19 +283,21 @@ def ship_skills():
             'ship_command', 'ship_system_control', rank, 'ship',
             f'Conning a {disp}: helm, throttle and evasive handling. Level '
             f'{OPERATE_LEVEL} is half the requirement to take one out; past that, each '
-            f'level sharpens how the hull handles.',
+            f'level sharpens how the hull handles.' + climb,
             effects=[E('evasionRating', 1.0, from_level=6, shipCategory=key),
                      E('initiative', 1.0, from_level=6, shipCategory=key)],
-            unlocks=[gate]))
+            unlocks=[gate],
+            prerequisites=[hull_prerequisite(key, 'control')]))
         out.append(S(
             f'skl_ship_{key}_systems', f'{disp} System Management',
             'ship_command', 'ship_system_control', rank, 'ship',
             f'Running a {disp}\'s internals: power routing, damage-control parties and '
             f'standing repairs. The other half of the level-{OPERATE_LEVEL} requirement '
-            f'to operate the hull.',
+            f'to operate the hull.' + climb,
             effects=[E('power.regenPerTurn', 1.0, from_level=6, shipCategory=key),
                      E('repairRatePerTurn', 1.0, from_level=6, shipCategory=key)],
-            unlocks=[gate]))
+            unlocks=[gate],
+            prerequisites=[hull_prerequisite(key, 'systems')]))
     return out
 
 
@@ -382,11 +508,14 @@ COMMERCE = [
       prerequisites=[R('skl_trd_trade', 5)]),
 ]
 
-SKILLS = (ship_skills() + NAVIGATION + SCANNING + ENGINEERING + WEAPONRY + FLEET_COMMAND
-          + SCIENCE + FACILITY_MANAGEMENT + MINING + COMMERCE)
+SKILLS = (FUNDAMENTALS + ship_skills() + NAVIGATION + SCANNING + ENGINEERING + WEAPONRY
+          + FLEET_COMMAND + SCIENCE + FACILITY_MANAGEMENT + MINING + COMMERCE)
 
 BY_ID = {s['skillId']: s for s in SKILLS}
 
 assert set(HULL_DISPLAY) == {c['key'] for c in CATEGORIES}, 'HULL_DISPLAY out of sync with CATEGORIES'
 assert len(BY_ID) == len(SKILLS), 'duplicate skillId'
-assert len(SKILLS) == 80, len(SKILLS)
+assert len(SKILLS) == 81, len(SKILLS)
+assert set(HULL_TREE) == {c['key'] for c in CATEGORIES}, 'HULL_TREE out of sync with CATEGORIES'
+assert all(p is None or hull_rank(p) <= hull_rank(k) for k, p in HULL_TREE.items()), \
+    'a hull predecessor outranks its successor'

@@ -8,7 +8,7 @@
 #                   ../tools/verify_skills.py checks the invariants below.
 #
 # Usage: one JSON file per skill under Skills/<domain>/<category>/; Skills/index.json
-# lists all 80 with their path. Skills/Design is the hand-written spec these are derived
+# lists all 81 with their path. Skills/Design is the hand-written spec these are derived
 # from and is NOT generated output -- a generator run leaves it alone.
 #
 # Skills are what lets a player do anything. Every skill has 10 levels. A skill does its
@@ -37,15 +37,46 @@
 # Management) at level 5, which is the Design spec's "reaching level 5 will enable a
 # player to operate that kind of ship (both control and system management is required)".
 #
-# TRAINING -- `rank` is a 1-5 difficulty multiplier, derived from hull mass for ship
-# skills and hand-set elsewhere. The training-time curve itself is a game-layer concern
-# and deliberately absent from this catalogue.
+# TRAINING -- skill points, on EVE Online's model:
+#
+#     SP(level) = rank * 250 * k ** (level - 1)        k = 2 ** (10/9) ~ 2.16012
+#
+# `rank` is a 1-5 difficulty multiplier, derived from hull mass for ship skills and
+# hand-set elsewhere. EVE runs 250 SP at level I to 256,000 at level V over FIVE levels;
+# this catalogue has TEN, so k is re-derived to land on the same two endpoints rather
+# than inventing a curve -- k ** 9 == 1024, so level 10 is exactly 250 * 1024 = 256,000.
+#
+# The `training` block publishes the numbers already multiplied by rank, so a consumer
+# never re-derives them. Training TIME is rate / SP and stays a game-layer concern; at
+# EVE's ~1,800 SP/hour reference a first hull is ~11 hours out and a battleship reached
+# along the spine ~9 days, which is where EVE puts them.
+#
+# THE HULL TREE -- the 26 hulls form a prerequisite DAG rooted at `skl_fund_spaceship_command`
+# (Spaceship Command). Each hull names exactly ONE predecessor and cannot be trained
+# until that predecessor reaches level 5; the three entry hulls (motor torpedo boat,
+# submarine chaser, corvette) sit on the root instead. Control requires the
+# predecessor's Control and System Management requires the predecessor's System
+# Management -- two parallel ladders that never cross, so a hull's pair rule and its
+# climb rule use the same level-5 threshold.
+#
+#   Spaceship Command -+- Motor Torpedo Boat -- Fleet Torpedo Boat
+#                      +- Submarine Chaser ---- Submarine
+#                      +- Corvette -+- Landing Ship Tank -+- Attack Transport -- Fleet Oiler
+#                                   |                     +- Seaplane Tender
+#                                   |                     +- Repair Ship / Tender
+#                                   +- Sloop / Patrol Escort -- Minelayer / Sweeper
+#                                   +- Destroyer Escort -+- Anti-Aircraft Cruiser
+#                                                        +- Coastal Defence -- Monitor -- Panzerschiff
+#                                                        +- Destroyer -+- Merchant Raider
+#                                                                      +- Light Cruiser -+- Light Carrier -- Escort Carrier -- Fleet Aircraft Carrier
+#                                                                                        +- Heavy Cruiser -- Battlecruiser -- Battleship
 #
 # <<< generated from tools/generate_skills.py -- do not edit by hand
 #
-# CATALOGUE -- 80 skills, 10 levels each.
+# CATALOGUE -- 81 skills, 10 levels each.
 #
-#   SHIP_COMMAND  (68)
+#   SHIP_COMMAND  (69)
+#     fundamentals               1   Spaceship Command
 #     ship_system_control       52   Motor Torpedo Boat Control, Motor Torpedo Boat System Management, Submarine Chaser Control, ...
 #     navigation                 1   Navigation
 #     scanning                   1   Scanning
@@ -63,6 +94,49 @@
 # STAT VOCABULARY -- an effect or penalty may only target a stat from
 # tools/stat_vocabulary.py ALL_STATS (SHIP_STATS, shared with modules, plus
 # SKILL_STATS, which have no hull field and so are skill-only).
+#
+# SP LADDER -- rank 1, SP_K = 2.16012. Multiply by rank for any other skill.
+#
+#     level   per level   cumulative    hours @ 1800
+#         1         250          250             0.1
+#         2         540          790             0.4
+#         3       1,167        1,957             1.1
+#         4       2,520        4,477             2.5
+#         5       5,443        9,920             5.5   <- operate gate
+#         6      11,758       21,678            12.0
+#         7      25,398       47,076            26.2
+#         8      54,864      101,940            56.6
+#         9     118,512      220,452           122.5
+#        10     256,000      476,452           264.7
+#
+# HULL TREE -- rooted at skl_fund_spaceship_command; each hull names one predecessor.
+#
+#     Corvette  (rank 1)
+#       Destroyer Escort  (rank 1)
+#         Anti-Aircraft Cruiser  (rank 2)
+#         Coastal Defence Ship  (rank 2)
+#           Monitor  (rank 2)
+#             Panzerschiff  (rank 3)
+#         Destroyer  (rank 2)
+#           Light Cruiser  (rank 3)
+#             Heavy Cruiser  (rank 3)
+#               Battlecruiser  (rank 4)
+#                 Battleship  (rank 5)
+#             Light Carrier  (rank 3)
+#               Escort Carrier  (rank 3)
+#                 Fleet Aircraft Carrier  (rank 4)
+#           Merchant Raider  (rank 3)
+#       Sloop / Patrol Escort  (rank 1)
+#         Minelayer / Sweeper  (rank 2)
+#       Landing Ship Tank  (rank 2)
+#         Attack Transport  (rank 3)
+#           Fleet Oiler  (rank 4)
+#         Repair Ship / Tender  (rank 3)
+#         Seaplane Tender  (rank 3)
+#     Motor Torpedo Boat  (rank 1)
+#       Fleet Torpedo Boat  (rank 1)
+#     Submarine Chaser  (rank 1)
+#       Submarine  (rank 2)
 # >>> end generated
 #
 # INVARIANTS (enforced by tools/verify_skills.py)
@@ -80,6 +154,16 @@
 #     appliesTo.resourceTier to a real resource tier
 #   - every prerequisite skillId resolves, names a different skill, requires a level in
 #     1..maxLevel, and the prerequisite graph is acyclic
+#   - training.spPerLevel has maxLevel entries, is strictly increasing, and matches the
+#     closed form rank * 250 * k ** (level - 1) exactly
+#   - training.spCumulative is the running sum of spPerLevel; spTotal is its last entry
+#   - the rank-1 curve hits EVE's own endpoints: 250 at level 1, 256,000 at level 10
+#   - every hull skill has exactly one hull-tree prerequisite, at OPERATE_LEVEL for a
+#     predecessor hull or level 1 for the root
+#   - no hull predecessor outranks its successor; the hull tree is acyclic and every
+#     one of the 26 categories reaches the root
+#   - the two ladders never cross: a Control skill's hull prerequisite is a Control
+#     skill, a System Management skill's is a System Management skill
 #   - unlock levels within 1..maxLevel and strictly increasing within a skill
 #   - exactly 2 ship_operation claimants per category, all 26 categories covered, both
 #     at the same level
@@ -89,12 +173,17 @@
 #     filed under <domain>/<category>/
 
 {
-  "skillId": "string, unique, format: skl_<group>_<slug> (group: ship|nav|scan|eng|wpn|flt|sta|mine|trd)",
+  "skillId": "string, unique, format: skl_<group>_<slug> (group: fund|ship|nav|scan|eng|wpn|flt|sta|mine|trd)",
   "name": "string, unique",
   "domain": "enum: ship_command | station_management | deep_space_mining | interaction_trade",
   "category": "string -- sub-group within the domain; see CATEGORY_ORDER in skill_tables.py",
   "maxLevel": "int, always 10",
-  "rank": "int 1-5 -- training-difficulty multiplier; the time curve lives in the game layer",
+  "rank": "int 1-5 -- training-difficulty multiplier; multiplies every SP figure below",
+  "training": {
+    "spPerLevel": "int[10] -- SP to buy each level, already multiplied by rank",
+    "spCumulative": "int[10] -- running sum; SP spent to have REACHED each level",
+    "spTotal": "int -- spCumulative[9], the cost of the skill at level 10"
+  },
   "scope": "enum: ship | fleet | station | player -- what the effects apply to",
   "effects": [
     {
@@ -137,6 +226,11 @@
 #   "category": "weaponry",
 #   "maxLevel": 10,
 #   "rank": 3,
+#   "training": {
+#     "spPerLevel": [750, 1620, 3500, 7560, 16329, 35274, 76195, 164591, 355536, 768000],
+#     "spCumulative": [750, 2370, 5870, 13430, 29759, 65033, 141228, 305819, 661355, 1429355],
+#     "spTotal": 1429355
+#   },
 #   "scope": "ship",
 #   "effects": [
 #     { "stat": "weaponDamage", "modifierPerLevel": 5.0, "modifierType": "percent",

@@ -5,6 +5,33 @@
   "category": "ship_system_control",
   "maxLevel": 10,
   "rank": 1,
+  "training": {
+    "spPerLevel": [
+      250,
+      540,
+      1167,
+      2520,
+      5443,
+      11758,
+      25398,
+      54864,
+      118512,
+      256000
+    ],
+    "spCumulative": [
+      250,
+      790,
+      1957,
+      4477,
+      9920,
+      21678,
+      47076,
+      101940,
+      220452,
+      476452
+    ],
+    "spTotal": 476452
+  },
   "scope": "ship",
   "effects": [
     {
@@ -35,6 +62,11 @@
       "description": "Operate a Sloop / Patrol Escort; requires the paired system-management skill at level 5 as well."
     }
   ],
-  "prerequisites": [],
-  "description": "Running a Sloop / Patrol Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+  "prerequisites": [
+    {
+      "skillId": "skl_ship_corvette_systems",
+      "level": 5
+    }
+  ],
+  "description": "Running a Sloop / Patrol Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Corvette in the hull tree."
 }

@@ -5,6 +5,33 @@
   "category": "ship_system_control",
   "maxLevel": 10,
   "rank": 3,
+  "training": {
+    "spPerLevel": [
+      750,
+      1620,
+      3500,
+      7560,
+      16329,
+      35274,
+      76195,
+      164591,
+      355536,
+      768000
+    ],
+    "spCumulative": [
+      750,
+      2370,
+      5870,
+      13430,
+      29759,
+      65033,
+      141228,
+      305819,
+      661355,
+      1429355
+    ],
+    "spTotal": 1429355
+  },
   "scope": "ship",
   "effects": [
     {
@@ -35,6 +62,11 @@
       "description": "Operate a Heavy Cruiser; requires the paired system-management skill at level 5 as well."
     }
   ],
-  "prerequisites": [],
-  "description": "Running a Heavy Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+  "prerequisites": [
+    {
+      "skillId": "skl_ship_light_cruiser_systems",
+      "level": 5
+    }
+  ],
+  "description": "Running a Heavy Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Light Cruiser in the hull tree."
 }

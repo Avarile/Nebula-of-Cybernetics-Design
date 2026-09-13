@@ -1,5 +1,5 @@
 /**
- * skills.ts — the 80-entry skill catalogue: 4 domains, 10 levels each.
+ * skills.ts — the 81-entry skill catalogue: 4 domains, 10 levels each.
  *
  * Derived from: Data-Templates/skill.interface, Skills/*, tools/skill_tables.py,
  *               tools/stat_vocabulary.py, Skills/Design (the hand-written spec),
@@ -20,8 +20,19 @@
  * yet started. That is the Design spec's "below level 5 ... 50% debuff, after
  * level 5 each level +5%" expressed as data rather than prose.
  *
- * 52 of the 80 are the 26 ship categories x {Control, System Management}. A hull
+ * 52 of the 81 are the 26 ship categories x {Control, System Management}. A hull
  * is operable only when BOTH of its skills reach level 5 — see `OperableHulls`.
+ *
+ * Two systems are modelled on EVE Online:
+ *
+ *   TRAINING   SP(level) = rank x 250 x k ** (level - 1), k = 2 ** (10/9). EVE runs
+ *              250 -> 256,000 over five levels; this catalogue has ten, so k is
+ *              re-derived to land on the same endpoints rather than inventing a curve.
+ *              See `SkillTraining`.
+ *
+ *   HULL TREE  the 26 hulls form a prerequisite DAG rooted at Spaceship Command. Each
+ *              hull requires ONE predecessor at level 5, and the Control and System
+ *              Management ladders never cross. See `HullPrerequisite`.
  */
 
 import type { PercentPoints } from './common';
@@ -40,17 +51,17 @@ export type { ModifierType } from './modules';
  */
 export type SkillLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-/** `maxLevel` as it appears on the entity. Always 10 across all 80 skills. */
+/** `maxLevel` as it appears on the entity. Always 10 across all 81 skills. */
 export type SkillMaxLevel = 10;
 
 /** A skill a player has not started is absent from their sheet, or level 0. */
 export type TrainedLevel = 0 | SkillLevel;
 
 /**
- * Training-difficulty multiplier. Derived from the hull's mass band for the 52
- * ship skills (a battleship is rank 5 work, a motor torpedo boat rank 1) and
- * hand-set for the other 28. The training-time CURVE is deliberately not in this
- * catalogue — it is a game-layer concern that this multiplier feeds.
+ * Training-difficulty multiplier, and the coefficient of the whole SP curve: every
+ * figure in `SkillTraining` is `rank x` the rank-1 ladder. Derived from the hull's
+ * mass band for the 52 ship skills (a battleship is rank 5 work, a motor torpedo
+ * boat rank 1) and hand-set for the other 29.
  */
 export type SkillRank = 1 | 2 | 3 | 4 | 5;
 
@@ -70,6 +81,8 @@ export type SkillDomain =
   | 'interaction_trade';
 
 export type ShipCommandCategory =
+  /** The root of the hull tree. Exactly one skill: Spaceship Command. */
+  | 'fundamentals'
   | 'ship_system_control'
   | 'navigation'
   | 'scanning'
@@ -95,7 +108,7 @@ export type SkillScope = 'ship' | 'fleet' | 'station' | 'player';
 // ---------------------------------------------------------------- identifiers
 //
 // Unlike weapon and module ids, skill ids are fully derivable: the 52 hull
-// skills are `skl_ship_<shipClass>_{control,systems}` and the other 28 are a
+// skills are `skl_ship_<shipClass>_{control,systems}` and the other 29 are a
 // fixed list. Both are typed exactly, so a typo in a hand-built fixture is a
 // compile error rather than a lookup that silently returns undefined.
 
@@ -107,8 +120,16 @@ export type ShipSystemsSkillId = `skl_ship_${ShipClass}_systems`;
 
 export type ShipSystemControlSkillId = ShipControlSkillId | ShipSystemsSkillId;
 
-/** The 16 non-hull skills of the Spaceship Command domain. */
+/**
+ * The root of the hull tree, and the only `fundamentals` skill. Deliberately NOT in
+ * the `skl_ship_*` namespace: that prefix belongs to the 52 hull skills, and a
+ * consumer matching on it should get 52, not 53.
+ */
+export type RootSkillId = 'skl_fund_spaceship_command';
+
+/** The 17 non-hull skills of the Spaceship Command domain. */
 export type ShipCommandSkillId =
+  | RootSkillId
   | ShipSystemControlSkillId
   | 'skl_nav_navigation'
   | 'skl_scan_scanning'
@@ -192,6 +213,31 @@ export type SkillOnlyStat =
  * vocabulary tools/verify_skills.py checks every effect and penalty against.
  */
 export type SkillEffectStat = ModuleEffectStat | SkillOnlyStat;
+
+// ---------------------------------------------------------------- training
+//
+// EVE's skill-point model, re-derived for a ten-level ladder.
+
+/**
+ * Skill points, already multiplied by `rank` — a consumer never re-derives them.
+ *
+ *     spPerLevel[L - 1] = round(rank * 250 * (2 ** (10/9)) ** (L - 1))
+ *
+ * The exponent base is chosen so a rank-1 skill starts at 250 SP and ends at 256,000:
+ * EVE's own level-I and level-V figures, spread over ten rungs instead of five.
+ *
+ * Training TIME is deliberately absent — it is `sp / rate`, and the rate belongs to
+ * the character system, not the catalogue. `SP_PER_HOUR_REFERENCE` in constants.ts
+ * carries EVE's ~1,800 SP/hour for sizing.
+ */
+export interface SkillTraining {
+  /** SP to buy each level. Strictly increasing; 10 entries. */
+  spPerLevel: number[];
+  /** Running sum: SP spent to have REACHED each level. 10 entries. */
+  spCumulative: number[];
+  /** `spCumulative[9]` — what the skill costs at level 10. */
+  spTotal: number;
+}
 
 // ---------------------------------------------------------------- qualifiers
 
@@ -330,6 +376,29 @@ export interface SkillPrerequisite {
   level: SkillLevel;
 }
 
+/**
+ * A hull skill's single prerequisite — the rung below it on the tree.
+ *
+ * Every one of the 52 hull skills carries exactly one, and the two ladders never
+ * cross: a Control skill requires the predecessor's Control at level 5, a System
+ * Management skill requires the predecessor's System Management at 5. The three
+ * entry hulls (motor torpedo boat, submarine chaser, corvette) have no predecessor
+ * and require the root at level 1 instead.
+ *
+ * Discriminated by which arm you get: narrowing on `skillId` settles whether you are
+ * looking at the root or at another hull of the same ladder.
+ */
+export type HullPrerequisite =
+  | { skillId: RootSkillId; level: 1 }
+  | { skillId: ShipControlSkillId; level: OperateLevel }
+  | { skillId: ShipSystemsSkillId; level: OperateLevel };
+
+/**
+ * The hull tree as data: every ship category mapped to the one below it, or `null`
+ * for an entry hull. `HULL_TREE` in constants.ts is this shape.
+ */
+export type HullTree = Record<ShipClass, ShipClass | null>;
+
 // ---------------------------------------------------------------- the entity
 
 interface SkillBase {
@@ -337,6 +406,8 @@ interface SkillBase {
   name: string;
   maxLevel: SkillMaxLevel;
   rank: SkillRank;
+  /** SP costs, rank-multiplied. Present on every skill. */
+  training: SkillTraining;
   scope: SkillScope;
   effects: SkillEffect[];
   /** Empty for 76 of the 80 skills; only Weaponry carries a below-level malus. */
@@ -394,6 +465,42 @@ export type OperableHulls = (sheet: SkillSheet) => ShipClass[];
 
 /** Fleet size a sheet permits: 1 with no Formation Drill, up to 5 at level 10. */
 export type FleetCapacity = (sheet: SkillSheet) => 1 | 2 | 3 | 4 | 5;
+
+/**
+ * Whether a skill can be STARTED: every entry in its `prerequisites` is satisfied by
+ * the sheet. Distinct from whether a hull can be flown, which needs both of its
+ * skills at `OperateLevel`.
+ */
+export type CanTrain = (skillId: SkillId, sheet: SkillSheet, catalogue: readonly Skill[]) => boolean;
+
+/**
+ * One rung of a training plan: a skill and the level to take it to, in an order that
+ * satisfies every prerequisite along the way.
+ */
+export interface TrainingStep {
+  skillId: SkillId;
+  /** The level this step ends at. */
+  toLevel: SkillLevel;
+  /** SP this step costs, from the skill's own `spCumulative`. */
+  sp: number;
+}
+
+/**
+ * The full path from a sheet to a goal — typically "fly this hull", which expands to
+ * the whole chain from the root down both ladders. Walking `HullTree` is what makes
+ * the plan finite: every hull reaches the root in at most seven steps.
+ */
+export interface TrainingPlan {
+  steps: TrainingStep[];
+  /** Sum of every step's `sp`. */
+  totalSp: number;
+}
+
+export type PlanForHull = (
+  hull: ShipClass,
+  sheet: SkillSheet,
+  catalogue: readonly Skill[],
+) => TrainingPlan;
 
 /**
  * One resolved modifier, after the level arithmetic. `total` already folds in

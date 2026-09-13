@@ -20,8 +20,8 @@ reproduces the whole tree byte-for-byte. Edit the tables in `tools/`, never the 
 | Weapons | 798 | 31 archetypes × 4 sizes × 10 manufacturers × Mk.1–5 |
 | Modules | 135 | 45 archetypes × Mk.1–3, across 7 slot types |
 | Resources | 12 | 4 lanes (structural/energy/ordnance/precision) × 3 tiers (raw/refined/manufactured) |
-| Skills | 80 | 4 domains, 10 levels each; 52 of them are the 26 hulls × control/systems |
-| Files on disk | 1,901 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 15 under `Resources/`, 82 under `Skills/` |
+| Skills | 81 | 4 domains, 10 levels each; 52 of them are the 26 hulls × control/systems |
+| Files on disk | 1,902 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 15 under `Resources/`, 83 under `Skills/` |
 
 ## Layout
 
@@ -77,7 +77,7 @@ lines and the remainder parses as JSON.
 | `weapons` | all 798 |
 | `modules` | all 135 |
 | `resources` | all 12 |
-| `skills` | all 80 |
+| `skills` | all 81 |
 
 ## The five catalogues
 
@@ -167,6 +167,9 @@ refinery, hold a fleet together. `Skills/Design` is the hand-written spec; the c
 is derived from it and every number traces back to a line there, or is marked `PROPOSED`
 in `tools/skill_tables.py` where the spec names a skill without giving its figures.
 
+Two of its systems are modelled on EVE Online: **skill points** with a rank multiplier,
+and a **hull tree** where a lower hull's skill gates the one above it.
+
 Every skill has 10 levels and works through four lists, any of which may be empty:
 `effects[]` (a per-level modifier on a stat), `penalties[]` (a flat malus below a level),
 `unlocks[]` (a hull, fleet slot, capability or skill group), `prerequisites[]` (another
@@ -183,7 +186,7 @@ started, which is the spec's "below level 5 … 50% debuff, after level 5 each l
 
 | domain | categories | n |
 |---|---|---|
-| `ship_command` | ship_system_control · navigation · scanning · engineering · weaponry · fleet_command | 68 |
+| `ship_command` | fundamentals · ship_system_control · navigation · scanning · engineering · weaponry · fleet_command | 69 |
 | `station_management` | science · facility_management | 6 |
 | `deep_space_mining` | mining_operations | 4 |
 | `interaction_trade` | commerce | 2 |
@@ -194,7 +197,55 @@ needs and no module has (`weaponDamage`, `miningYield`, `refineryYield`, `squadr
 `tradePriceMargin` …) live alongside them in `tools/stat_vocabulary.py`, which both
 generators now import so the two catalogues cannot drift apart.
 
-Three gating rules are carried as data rather than prose:
+#### Training — skill points
+
+```
+SP(level) = rank × 250 × k^(level − 1)        k = 2^(10/9) ≈ 2.16012
+```
+
+EVE runs 250 SP at level I to 256,000 at level V — a ×5.657 step over five levels. This
+catalogue has ten, so `k` is re-derived to land on the *same two endpoints* rather than
+inventing a curve: `k⁹ = 1024`, so level 10 is exactly `250 × 1024 = 256,000`. Same
+start, same finish, twice the rungs. Every skill publishes a `training` block with the
+figures already multiplied by `rank`, so a consumer never re-derives them:
+
+```json
+"training": { "spPerLevel": [...10], "spCumulative": [...10], "spTotal": 2382257 }
+```
+
+Training *time* stays out of the catalogue — it is `sp / rate`, and the rate belongs to
+whatever character system consumes this. Against EVE's ~1,800 SP/hour reference the
+shipped numbers land where EVE lands: a first hull ~11 hours out, a Battleship reached
+along the spine ~8.7 days, that same spine maxed to level 10 ~419 days.
+
+#### The hull tree
+
+The 26 hulls form a prerequisite DAG rooted at **Spaceship Command**
+(`skl_fund_spaceship_command` — deliberately outside the `skl_ship_*` namespace the 52
+hull skills own). Each hull names exactly one predecessor and cannot be trained until
+that predecessor reaches level 5. Three entry hulls sit on the root instead.
+
+```
+Spaceship Command ─┬─ Motor Torpedo Boat ── Fleet Torpedo Boat
+                   ├─ Submarine Chaser ──── Submarine
+                   └─ Corvette ─┬─ Landing Ship Tank ─┬─ Attack Transport ── Fleet Oiler
+                                │                     ├─ Seaplane Tender
+                                │                     └─ Repair Ship / Tender
+                                ├─ Sloop / Patrol Escort ── Minelayer / Sweeper
+                                └─ Destroyer Escort ─┬─ Anti-Aircraft Cruiser
+                                                     ├─ Coastal Defence ── Monitor ── Panzerschiff
+                                                     └─ Destroyer ─┬─ Merchant Raider
+                                                                   └─ Light Cruiser ─┬─ Light Carrier ── Escort Carrier ── Fleet Aircraft Carrier
+                                                                                     └─ Heavy Cruiser ── Battlecruiser ── Battleship
+```
+
+The auxiliary line is deliberately short — a tanker pilot never touches the combat
+spine, the same way EVE's Industrial line branches away early. **The two ladders never
+cross**: Control requires the predecessor's Control, System Management requires the
+predecessor's System Management, both at level 5. That reuses the operate gate, so
+"can fly it" and "can train up from it" are one threshold rather than four.
+
+Three more gating rules are carried as data rather than prose:
 
 * **Operating a hull.** A category is operable when *every* skill carrying an
   `unlocks[].type == "ship_operation"` for it has reached the stated level. Each of the 26
@@ -257,7 +308,7 @@ python3 tools/generate_resources.py   # 12 resources → Resources/, fleet json 
 python3 tools/generate_weapons.py     # 798 weapons  → Weapons/, fleet json
 python3 tools/generate_modules.py     # 135 modules  → Modules/, fleet json, ship slot sync
 python3 tools/generate_ships.py       # 98 hulls     → Ships/, fleet json
-python3 tools/generate_skills.py      # 80 skills    → Skills/, fleet json
+python3 tools/generate_skills.py      # 81 skills    → Skills/, fleet json
 ```
 
 Each accepts `--dry-run` to print the shape it would produce without writing. Stale output
@@ -271,8 +322,8 @@ python3 tools/verify_resources.py     # 16 checks
 python3 tools/verify_weapons.py       # 12 checks
 python3 tools/verify_modules.py       # 23 checks
 python3 tools/verify_ships.py         # 38 checks
-python3 tools/verify_skills.py        # 32 checks
-python3 Reference/verify_reference.py # 52 checks -- TypeScript interface vs. the data
+python3 tools/verify_skills.py        # 46 checks
+python3 Reference/verify_reference.py # 59 checks -- TypeScript interface vs. the data
 ```
 
 All exit non-zero on failure. Between them they enforce: unique ids and names; field sets
@@ -282,8 +333,10 @@ effects restricted to a fixed stat vocabulary; `specific` modules only where
 `hullAffinity` allows; every cross-reference resolving; hardpoint and slot sizes matching
 what is fitted; power and crew budgets covering the fit; skill effects restricted to the
 shared stat vocabulary, with an acyclic prerequisite graph, exactly two `ship_operation`
-claimants per hull category and no penalty on a stat the same skill cannot buff back; and
-every file on disk matching its entry in the JSON.
+claimants per hull category and no penalty on a stat the same skill cannot buff back;
+every published SP figure matching the closed-form curve, the hull tree acyclic with no
+predecessor outranking its successor and every hull reaching the root; and every file on
+disk matching its entry in the JSON.
 
 Two of these were written after the checks caught real bugs — whole-point rounding was
 making higher weapon marks free upgrades, and Ceridan's sustain bias was inert on
@@ -300,6 +353,8 @@ Vanguard.
 | ship categories: mass, armour, mounts, slots, capacities, doctrine | `tools/ship_tables.py` |
 | how hulls are derived and fitted | `tools/generate_ships.py` |
 | skills: levels, effects, unlocks, prerequisites | `tools/skill_tables.py` |
+| the hull progression tree | `HULL_TREE` in `tools/skill_tables.py` |
+| the SP curve and rank multiplier | `SP_BASE` / `SP_K` in `tools/skill_tables.py` |
 | the stat vocabulary modules and skills share | `tools/stat_vocabulary.py` |
 
 Then re-run the pipeline. The archetype and family tables inside `weapon.interface` and

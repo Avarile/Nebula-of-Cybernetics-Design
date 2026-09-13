@@ -5,6 +5,33 @@
   "category": "ship_system_control",
   "maxLevel": 10,
   "rank": 2,
+  "training": {
+    "spPerLevel": [
+      500,
+      1080,
+      2333,
+      5040,
+      10886,
+      23516,
+      50797,
+      109727,
+      237024,
+      512000
+    ],
+    "spCumulative": [
+      500,
+      1580,
+      3913,
+      8953,
+      19839,
+      43355,
+      94152,
+      203879,
+      440903,
+      952903
+    ],
+    "spTotal": 952903
+  },
   "scope": "ship",
   "effects": [
     {
@@ -35,6 +62,11 @@
       "description": "Operate a Minelayer / Sweeper; requires the paired system-management skill at level 5 as well."
     }
   ],
-  "prerequisites": [],
-  "description": "Conning a Minelayer / Sweeper: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+  "prerequisites": [
+    {
+      "skillId": "skl_ship_sloop_patrol_escort_control",
+      "level": 5
+    }
+  ],
+  "description": "Conning a Minelayer / Sweeper: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Sloop / Patrol Escort in the hull tree."
 }

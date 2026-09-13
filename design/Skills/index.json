@@ -1,11 +1,12 @@
 {
-  "count": 80,
+  "count": 81,
   "maxLevel": 10,
   "domains": [
     {
       "domain": "ship_command",
-      "count": 68,
+      "count": 69,
       "categories": [
+        "fundamentals",
         "ship_system_control",
         "navigation",
         "scanning",
@@ -38,6 +39,14 @@
     }
   ],
   "skills": [
+    {
+      "skillId": "skl_fund_spaceship_command",
+      "name": "Spaceship Command",
+      "domain": "ship_command",
+      "category": "fundamentals",
+      "rank": 1,
+      "path": "Skills/ship_command/fundamentals/skl_fund_spaceship_command.json"
+    },
     {
       "skillId": "skl_ship_motor_torpedo_boat_control",
       "name": "Motor Torpedo Boat Control",

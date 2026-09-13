@@ -70,7 +70,7 @@
       "ordnance",
       "precision"
     ],
-    "skillCount": 80,
+    "skillCount": 81,
     "skillDomains": [
       "ship_command",
       "station_management",
@@ -49338,12 +49338,88 @@
   ],
   "skills": [
     {
+      "skillId": "skl_fund_spaceship_command",
+      "name": "Spaceship Command",
+      "domain": "ship_command",
+      "category": "fundamentals",
+      "maxLevel": 10,
+      "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
+      "scope": "ship",
+      "effects": [
+        {
+          "stat": "turnRate",
+          "modifierPerLevel": 1.0,
+          "modifierType": "percent",
+          "appliesFromLevel": 1,
+          "appliesTo": {}
+        }
+      ],
+      "penalties": [],
+      "unlocks": [],
+      "prerequisites": [],
+      "description": "The basics of holding a hull steady and answering the helm. Required before any ship can be trained, and each level tightens how sharply every hull comes about."
+    },
+    {
       "skillId": "skl_ship_motor_torpedo_boat_control",
       "name": "Motor Torpedo Boat Control",
       "domain": "ship_command",
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49374,8 +49450,13 @@
           "description": "Operate a Motor Torpedo Boat; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Motor Torpedo Boat: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        }
+      ],
+      "description": "Conning a Motor Torpedo Boat: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. An entry hull: nothing but Spaceship Command comes before it."
     },
     {
       "skillId": "skl_ship_motor_torpedo_boat_systems",
@@ -49384,6 +49465,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49414,8 +49522,13 @@
           "description": "Operate a Motor Torpedo Boat; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Motor Torpedo Boat's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        }
+      ],
+      "description": "Running a Motor Torpedo Boat's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. An entry hull: nothing but Spaceship Command comes before it."
     },
     {
       "skillId": "skl_ship_submarine_chaser_control",
@@ -49424,6 +49537,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49454,8 +49594,13 @@
           "description": "Operate a Submarine Chaser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Submarine Chaser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        }
+      ],
+      "description": "Conning a Submarine Chaser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. An entry hull: nothing but Spaceship Command comes before it."
     },
     {
       "skillId": "skl_ship_submarine_chaser_systems",
@@ -49464,6 +49609,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49494,8 +49666,13 @@
           "description": "Operate a Submarine Chaser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Submarine Chaser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        }
+      ],
+      "description": "Running a Submarine Chaser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. An entry hull: nothing but Spaceship Command comes before it."
     },
     {
       "skillId": "skl_ship_corvette_control",
@@ -49504,6 +49681,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49534,8 +49738,13 @@
           "description": "Operate a Corvette; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Corvette: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        }
+      ],
+      "description": "Conning a Corvette: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. An entry hull: nothing but Spaceship Command comes before it."
     },
     {
       "skillId": "skl_ship_corvette_systems",
@@ -49544,6 +49753,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49574,8 +49810,13 @@
           "description": "Operate a Corvette; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Corvette's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        }
+      ],
+      "description": "Running a Corvette's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. An entry hull: nothing but Spaceship Command comes before it."
     },
     {
       "skillId": "skl_ship_torpedo_boat_fleet_control",
@@ -49584,6 +49825,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49614,8 +49882,13 @@
           "description": "Operate a Fleet Torpedo Boat; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Fleet Torpedo Boat: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Fleet Torpedo Boat: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Motor Torpedo Boat in the hull tree."
     },
     {
       "skillId": "skl_ship_torpedo_boat_fleet_systems",
@@ -49624,6 +49897,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49654,8 +49954,13 @@
           "description": "Operate a Fleet Torpedo Boat; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Fleet Torpedo Boat's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Fleet Torpedo Boat's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Motor Torpedo Boat in the hull tree."
     },
     {
       "skillId": "skl_ship_destroyer_escort_control",
@@ -49664,6 +49969,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49694,8 +50026,13 @@
           "description": "Operate a Destroyer Escort; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Destroyer Escort: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Destroyer Escort: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Corvette in the hull tree."
     },
     {
       "skillId": "skl_ship_destroyer_escort_systems",
@@ -49704,6 +50041,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49734,8 +50098,13 @@
           "description": "Operate a Destroyer Escort; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Destroyer Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Destroyer Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Corvette in the hull tree."
     },
     {
       "skillId": "skl_ship_sloop_patrol_escort_control",
@@ -49744,6 +50113,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49774,8 +50170,13 @@
           "description": "Operate a Sloop / Patrol Escort; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Sloop / Patrol Escort: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Sloop / Patrol Escort: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Corvette in the hull tree."
     },
     {
       "skillId": "skl_ship_sloop_patrol_escort_systems",
@@ -49784,6 +50185,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 1,
+      "training": {
+        "spPerLevel": [
+          250,
+          540,
+          1167,
+          2520,
+          5443,
+          11758,
+          25398,
+          54864,
+          118512,
+          256000
+        ],
+        "spCumulative": [
+          250,
+          790,
+          1957,
+          4477,
+          9920,
+          21678,
+          47076,
+          101940,
+          220452,
+          476452
+        ],
+        "spTotal": 476452
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49814,8 +50242,13 @@
           "description": "Operate a Sloop / Patrol Escort; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Sloop / Patrol Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Sloop / Patrol Escort's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Corvette in the hull tree."
     },
     {
       "skillId": "skl_ship_destroyer_control",
@@ -49824,6 +50257,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49854,8 +50314,13 @@
           "description": "Operate a Destroyer; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Destroyer: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Destroyer: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Destroyer Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_destroyer_systems",
@@ -49864,6 +50329,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49894,8 +50386,13 @@
           "description": "Operate a Destroyer; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Destroyer's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Destroyer's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Destroyer Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_landing_ship_tank_control",
@@ -49904,6 +50401,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49934,8 +50458,13 @@
           "description": "Operate a Landing Ship Tank; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Landing Ship Tank: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Landing Ship Tank: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Corvette in the hull tree."
     },
     {
       "skillId": "skl_ship_landing_ship_tank_systems",
@@ -49944,6 +50473,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -49974,8 +50530,13 @@
           "description": "Operate a Landing Ship Tank; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Landing Ship Tank's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Landing Ship Tank's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Corvette in the hull tree."
     },
     {
       "skillId": "skl_ship_submarine_control",
@@ -49984,6 +50545,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50014,8 +50602,13 @@
           "description": "Operate a Submarine; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Submarine: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_submarine_chaser_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Submarine: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Submarine Chaser in the hull tree."
     },
     {
       "skillId": "skl_ship_submarine_systems",
@@ -50024,6 +50617,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50054,8 +50674,13 @@
           "description": "Operate a Submarine; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Submarine's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_submarine_chaser_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Submarine's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Submarine Chaser in the hull tree."
     },
     {
       "skillId": "skl_ship_minelayer_sweeper_control",
@@ -50064,6 +50689,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50094,8 +50746,13 @@
           "description": "Operate a Minelayer / Sweeper; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Minelayer / Sweeper: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Minelayer / Sweeper: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Sloop / Patrol Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_minelayer_sweeper_systems",
@@ -50104,6 +50761,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50134,8 +50818,13 @@
           "description": "Operate a Minelayer / Sweeper; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Minelayer / Sweeper's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Minelayer / Sweeper's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Sloop / Patrol Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_coastal_defence_ship_control",
@@ -50144,6 +50833,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50174,8 +50890,13 @@
           "description": "Operate a Coastal Defence Ship; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Coastal Defence Ship: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Coastal Defence Ship: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Destroyer Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_coastal_defence_ship_systems",
@@ -50184,6 +50905,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50214,8 +50962,13 @@
           "description": "Operate a Coastal Defence Ship; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Coastal Defence Ship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Coastal Defence Ship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Destroyer Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_anti_aircraft_cruiser_control",
@@ -50224,6 +50977,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50254,8 +51034,13 @@
           "description": "Operate a Anti-Aircraft Cruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Anti-Aircraft Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Anti-Aircraft Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Destroyer Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_anti_aircraft_cruiser_systems",
@@ -50264,6 +51049,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50294,8 +51106,13 @@
           "description": "Operate a Anti-Aircraft Cruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Anti-Aircraft Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Anti-Aircraft Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Destroyer Escort in the hull tree."
     },
     {
       "skillId": "skl_ship_monitor_control",
@@ -50304,6 +51121,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50334,8 +51178,13 @@
           "description": "Operate a Monitor; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Monitor: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_coastal_defence_ship_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Monitor: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Coastal Defence Ship in the hull tree."
     },
     {
       "skillId": "skl_ship_monitor_systems",
@@ -50344,6 +51193,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50374,8 +51250,13 @@
           "description": "Operate a Monitor; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Monitor's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_coastal_defence_ship_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Monitor's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Coastal Defence Ship in the hull tree."
     },
     {
       "skillId": "skl_ship_light_cruiser_control",
@@ -50384,6 +51265,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50414,8 +51322,13 @@
           "description": "Operate a Light Cruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Light Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Light Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Destroyer in the hull tree."
     },
     {
       "skillId": "skl_ship_light_cruiser_systems",
@@ -50424,6 +51337,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50454,8 +51394,13 @@
           "description": "Operate a Light Cruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Light Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Light Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Destroyer in the hull tree."
     },
     {
       "skillId": "skl_ship_attack_transport_control",
@@ -50464,6 +51409,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50494,8 +51466,13 @@
           "description": "Operate a Attack Transport; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Attack Transport: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Attack Transport: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Landing Ship Tank in the hull tree."
     },
     {
       "skillId": "skl_ship_attack_transport_systems",
@@ -50504,6 +51481,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50534,8 +51538,13 @@
           "description": "Operate a Attack Transport; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Attack Transport's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Attack Transport's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Landing Ship Tank in the hull tree."
     },
     {
       "skillId": "skl_ship_light_carrier_control",
@@ -50544,6 +51553,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50574,8 +51610,13 @@
           "description": "Operate a Light Carrier; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Light Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Light Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Light Cruiser in the hull tree."
     },
     {
       "skillId": "skl_ship_light_carrier_systems",
@@ -50584,6 +51625,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50614,8 +51682,13 @@
           "description": "Operate a Light Carrier; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Light Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Light Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Light Cruiser in the hull tree."
     },
     {
       "skillId": "skl_ship_panzerschiff_control",
@@ -50624,6 +51697,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50654,8 +51754,13 @@
           "description": "Operate a Panzerschiff; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Panzerschiff: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_monitor_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Panzerschiff: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Monitor in the hull tree."
     },
     {
       "skillId": "skl_ship_panzerschiff_systems",
@@ -50664,6 +51769,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50694,8 +51826,13 @@
           "description": "Operate a Panzerschiff; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Panzerschiff's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_monitor_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Panzerschiff's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Monitor in the hull tree."
     },
     {
       "skillId": "skl_ship_merchant_raider_control",
@@ -50704,6 +51841,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50734,8 +51898,13 @@
           "description": "Operate a Merchant Raider; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Merchant Raider: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Merchant Raider: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Destroyer in the hull tree."
     },
     {
       "skillId": "skl_ship_merchant_raider_systems",
@@ -50744,6 +51913,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50774,8 +51970,13 @@
           "description": "Operate a Merchant Raider; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Merchant Raider's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Merchant Raider's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Destroyer in the hull tree."
     },
     {
       "skillId": "skl_ship_seaplane_tender_control",
@@ -50784,6 +51985,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50814,8 +52042,13 @@
           "description": "Operate a Seaplane Tender; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Seaplane Tender: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Seaplane Tender: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Landing Ship Tank in the hull tree."
     },
     {
       "skillId": "skl_ship_seaplane_tender_systems",
@@ -50824,6 +52057,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50854,8 +52114,13 @@
           "description": "Operate a Seaplane Tender; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Seaplane Tender's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Seaplane Tender's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Landing Ship Tank in the hull tree."
     },
     {
       "skillId": "skl_ship_repair_ship_tender_control",
@@ -50864,6 +52129,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50894,8 +52186,13 @@
           "description": "Operate a Repair Ship / Tender; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Repair Ship / Tender: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Repair Ship / Tender: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Landing Ship Tank in the hull tree."
     },
     {
       "skillId": "skl_ship_repair_ship_tender_systems",
@@ -50904,6 +52201,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50934,8 +52258,13 @@
           "description": "Operate a Repair Ship / Tender; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Repair Ship / Tender's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Repair Ship / Tender's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Landing Ship Tank in the hull tree."
     },
     {
       "skillId": "skl_ship_heavy_cruiser_control",
@@ -50944,6 +52273,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -50974,8 +52330,13 @@
           "description": "Operate a Heavy Cruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Heavy Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Heavy Cruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Light Cruiser in the hull tree."
     },
     {
       "skillId": "skl_ship_heavy_cruiser_systems",
@@ -50984,6 +52345,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51014,8 +52402,13 @@
           "description": "Operate a Heavy Cruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Heavy Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Heavy Cruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Light Cruiser in the hull tree."
     },
     {
       "skillId": "skl_ship_escort_carrier_control",
@@ -51024,6 +52417,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51054,8 +52474,13 @@
           "description": "Operate a Escort Carrier; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Escort Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_light_carrier_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Escort Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Light Carrier in the hull tree."
     },
     {
       "skillId": "skl_ship_escort_carrier_systems",
@@ -51064,6 +52489,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51094,8 +52546,13 @@
           "description": "Operate a Escort Carrier; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Escort Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_light_carrier_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Escort Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Light Carrier in the hull tree."
     },
     {
       "skillId": "skl_ship_fleet_oiler_control",
@@ -51104,6 +52561,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51134,8 +52618,13 @@
           "description": "Operate a Fleet Oiler; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Fleet Oiler: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_attack_transport_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Fleet Oiler: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Attack Transport in the hull tree."
     },
     {
       "skillId": "skl_ship_fleet_oiler_systems",
@@ -51144,6 +52633,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51174,8 +52690,13 @@
           "description": "Operate a Fleet Oiler; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Fleet Oiler's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_attack_transport_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Fleet Oiler's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Attack Transport in the hull tree."
     },
     {
       "skillId": "skl_ship_fleet_aircraft_carrier_control",
@@ -51184,6 +52705,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51214,8 +52762,13 @@
           "description": "Operate a Fleet Aircraft Carrier; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Fleet Aircraft Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_escort_carrier_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Fleet Aircraft Carrier: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Escort Carrier in the hull tree."
     },
     {
       "skillId": "skl_ship_fleet_aircraft_carrier_systems",
@@ -51224,6 +52777,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51254,8 +52834,13 @@
           "description": "Operate a Fleet Aircraft Carrier; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Fleet Aircraft Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_escort_carrier_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Fleet Aircraft Carrier's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Escort Carrier in the hull tree."
     },
     {
       "skillId": "skl_ship_battlecruiser_control",
@@ -51264,6 +52849,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51294,8 +52906,13 @@
           "description": "Operate a Battlecruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Battlecruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_heavy_cruiser_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Battlecruiser: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Heavy Cruiser in the hull tree."
     },
     {
       "skillId": "skl_ship_battlecruiser_systems",
@@ -51304,6 +52921,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51334,8 +52978,13 @@
           "description": "Operate a Battlecruiser; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Battlecruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_heavy_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Battlecruiser's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Heavy Cruiser in the hull tree."
     },
     {
       "skillId": "skl_ship_battleship_control",
@@ -51344,6 +52993,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 5,
+      "training": {
+        "spPerLevel": [
+          1250,
+          2700,
+          5833,
+          12599,
+          27216,
+          58789,
+          126992,
+          274318,
+          592560,
+          1280000
+        ],
+        "spCumulative": [
+          1250,
+          3950,
+          9783,
+          22382,
+          49598,
+          108387,
+          235379,
+          509697,
+          1102257,
+          2382257
+        ],
+        "spTotal": 2382257
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51374,8 +53050,13 @@
           "description": "Operate a Battleship; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Conning a Battleship: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_battlecruiser_control",
+          "level": 5
+        }
+      ],
+      "description": "Conning a Battleship: helm, throttle and evasive handling. Level 5 is half the requirement to take one out; past that, each level sharpens how the hull handles. Sits above Battlecruiser in the hull tree."
     },
     {
       "skillId": "skl_ship_battleship_systems",
@@ -51384,6 +53065,33 @@
       "category": "ship_system_control",
       "maxLevel": 10,
       "rank": 5,
+      "training": {
+        "spPerLevel": [
+          1250,
+          2700,
+          5833,
+          12599,
+          27216,
+          58789,
+          126992,
+          274318,
+          592560,
+          1280000
+        ],
+        "spCumulative": [
+          1250,
+          3950,
+          9783,
+          22382,
+          49598,
+          108387,
+          235379,
+          509697,
+          1102257,
+          2382257
+        ],
+        "spTotal": 2382257
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51414,8 +53122,13 @@
           "description": "Operate a Battleship; requires the paired system-management skill at level 5 as well."
         }
       ],
-      "prerequisites": [],
-      "description": "Running a Battleship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull."
+      "prerequisites": [
+        {
+          "skillId": "skl_ship_battlecruiser_systems",
+          "level": 5
+        }
+      ],
+      "description": "Running a Battleship's internals: power routing, damage-control parties and standing repairs. The other half of the level-5 requirement to operate the hull. Sits above Battlecruiser in the hull tree."
     },
     {
       "skillId": "skl_nav_navigation",
@@ -51424,6 +53137,33 @@
       "category": "navigation",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51446,6 +53186,33 @@
       "category": "scanning",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51494,6 +53261,33 @@
       "category": "engineering",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51516,6 +53310,33 @@
       "category": "engineering",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51538,6 +53359,33 @@
       "category": "engineering",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51560,6 +53408,33 @@
       "category": "engineering",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51582,6 +53457,33 @@
       "category": "weaponry",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51634,6 +53536,33 @@
       "category": "weaponry",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51686,6 +53615,33 @@
       "category": "weaponry",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51738,6 +53694,33 @@
       "category": "weaponry",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -51790,6 +53773,33 @@
       "category": "fleet_command",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "fleet",
       "effects": [],
       "penalties": [],
@@ -51829,6 +53839,33 @@
       "category": "fleet_command",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "fleet",
       "effects": [
         {
@@ -51877,6 +53914,33 @@
       "category": "fleet_command",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "fleet",
       "effects": [
         {
@@ -51932,6 +53996,33 @@
       "category": "fleet_command",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "fleet",
       "effects": [
         {
@@ -51959,6 +54050,33 @@
       "category": "fleet_command",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "fleet",
       "effects": [
         {
@@ -51986,6 +54104,33 @@
       "category": "fleet_command",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "fleet",
       "effects": [
         {
@@ -52027,6 +54172,33 @@
       "category": "science",
       "maxLevel": 10,
       "rank": 5,
+      "training": {
+        "spPerLevel": [
+          1250,
+          2700,
+          5833,
+          12599,
+          27216,
+          58789,
+          126992,
+          274318,
+          592560,
+          1280000
+        ],
+        "spCumulative": [
+          1250,
+          3950,
+          9783,
+          22382,
+          49598,
+          108387,
+          235379,
+          509697,
+          1102257,
+          2382257
+        ],
+        "spTotal": 2382257
+      },
       "scope": "player",
       "effects": [],
       "penalties": [],
@@ -52060,6 +54232,33 @@
       "category": "facility_management",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "station",
       "effects": [
         {
@@ -52089,6 +54288,33 @@
       "category": "facility_management",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "station",
       "effects": [
         {
@@ -52116,6 +54342,33 @@
       "category": "facility_management",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "station",
       "effects": [
         {
@@ -52145,6 +54398,33 @@
       "category": "facility_management",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "station",
       "effects": [
         {
@@ -52174,6 +54454,33 @@
       "category": "facility_management",
       "maxLevel": 10,
       "rank": 5,
+      "training": {
+        "spPerLevel": [
+          1250,
+          2700,
+          5833,
+          12599,
+          27216,
+          58789,
+          126992,
+          274318,
+          592560,
+          1280000
+        ],
+        "spCumulative": [
+          1250,
+          3950,
+          9783,
+          22382,
+          49598,
+          108387,
+          235379,
+          509697,
+          1102257,
+          2382257
+        ],
+        "spTotal": 2382257
+      },
       "scope": "station",
       "effects": [
         {
@@ -52205,6 +54512,33 @@
       "category": "mining_operations",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "ship",
       "effects": [
         {
@@ -52239,6 +54573,33 @@
       "category": "mining_operations",
       "maxLevel": 10,
       "rank": 4,
+      "training": {
+        "spPerLevel": [
+          1000,
+          2160,
+          4666,
+          10079,
+          21773,
+          47032,
+          101594,
+          219454,
+          474048,
+          1024000
+        ],
+        "spCumulative": [
+          1000,
+          3160,
+          7826,
+          17905,
+          39678,
+          86710,
+          188304,
+          407758,
+          881806,
+          1905806
+        ],
+        "spTotal": 1905806
+      },
       "scope": "ship",
       "effects": [
         {
@@ -52277,6 +54638,33 @@
       "category": "mining_operations",
       "maxLevel": 10,
       "rank": 3,
+      "training": {
+        "spPerLevel": [
+          750,
+          1620,
+          3500,
+          7560,
+          16329,
+          35274,
+          76195,
+          164591,
+          355536,
+          768000
+        ],
+        "spCumulative": [
+          750,
+          2370,
+          5870,
+          13430,
+          29759,
+          65033,
+          141228,
+          305819,
+          661355,
+          1429355
+        ],
+        "spTotal": 1429355
+      },
       "scope": "ship",
       "effects": [
         {
@@ -52304,6 +54692,33 @@
       "category": "mining_operations",
       "maxLevel": 10,
       "rank": 5,
+      "training": {
+        "spPerLevel": [
+          1250,
+          2700,
+          5833,
+          12599,
+          27216,
+          58789,
+          126992,
+          274318,
+          592560,
+          1280000
+        ],
+        "spCumulative": [
+          1250,
+          3950,
+          9783,
+          22382,
+          49598,
+          108387,
+          235379,
+          509697,
+          1102257,
+          2382257
+        ],
+        "spTotal": 2382257
+      },
       "scope": "ship",
       "effects": [
         {
@@ -52335,6 +54750,33 @@
       "category": "commerce",
       "maxLevel": 10,
       "rank": 2,
+      "training": {
+        "spPerLevel": [
+          500,
+          1080,
+          2333,
+          5040,
+          10886,
+          23516,
+          50797,
+          109727,
+          237024,
+          512000
+        ],
+        "spCumulative": [
+          500,
+          1580,
+          3913,
+          8953,
+          19839,
+          43355,
+          94152,
+          203879,
+          440903,
+          952903
+        ],
+        "spTotal": 952903
+      },
       "scope": "player",
       "effects": [
         {
@@ -52357,6 +54799,33 @@
       "category": "commerce",
       "maxLevel": 10,
       "rank": 5,
+      "training": {
+        "spPerLevel": [
+          1250,
+          2700,
+          5833,
+          12599,
+          27216,
+          58789,
+          126992,
+          274318,
+          592560,
+          1280000
+        ],
+        "spCumulative": [
+          1250,
+          3950,
+          9783,
+          22382,
+          49598,
+          108387,
+          235379,
+          509697,
+          1102257,
+          2382257
+        ],
+        "spTotal": 2382257
+      },
       "scope": "player",
       "effects": [
         {
