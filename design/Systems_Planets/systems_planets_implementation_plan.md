@@ -4,7 +4,7 @@
 
 **Goal:** Generate 60 star systems joined by a verified jump-gate graph, and the 180 planets inside them that extract, refine, manufacture and build ships.
 
-**Architecture:** One authored table module (`tools/system_tables.py`) holds every literal — regions, constellations, the 60 systems, planet archetypes, gate rules — and derives systems, planets and the canonical edge list from them with no RNG. A generator writes that to a directory tree, `links.json`, `index.json` and two new keys in `fleet_and_weapons.json`. A verifier re-reads the output plus the live resource, skill and ship catalogues and enforces ~30 invariants. Same shape as the four catalogues already in the repo.
+**Architecture:** One authored table module (`tools/system_tables.py`) holds every literal — regions, constellations, the 60 systems, planet archetypes, gate rules — and derives systems, planets and the canonical edge list from them with no RNG. A generator writes that to a directory tree, `links.json`, `index.json` and two new keys in `fleet_and_weapons.json`. A verifier re-reads the output plus the live resource, skill and ship catalogues and enforces 54 invariants. Same shape as the four catalogues already in the repo.
 
 **Tech Stack:** Python 3 standard library only (no third-party imports anywhere in `tools/`). TypeScript for `Reference/` interfaces, checked by `Reference/verify_reference.py`.
 
@@ -1339,7 +1339,7 @@ while queue:
     for c in conn[cur]:
         if c['toSystemId'] not in seen:
             seen.add(c['toSystemId']); queue.append(c['toSystemId'])
-check('every system reachable from sys_001',
+check('graph traversal from sys_001 reaches all 60 systems',
       [] if len(seen) == 60 else ['%d unreachable: %s' % (60 - len(seen),
                                   sorted({s['systemId'] for s in S} - seen)[:5])])
 
