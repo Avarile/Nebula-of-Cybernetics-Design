@@ -1,0 +1,33 @@
+{
+  "archetypes": 10,
+  "developmentTiers": 3,
+  "slotSizes": {
+    "refinery": 15.0,
+    "manufactory": 10.0,
+    "warehouse": 600.0,
+    "extractionSlotsPerLane": 1
+  },
+  "leaseRate": {
+    "extraction": 0.3,
+    "refinery": 0.3,
+    "manufactory": 0.3,
+    "shipyard": 0.1
+  },
+  "warehouseRentPerUnit": 0.02,
+  "richnessLadder": {
+    "1": 1.0,
+    "2": 1.6,
+    "3": 2.5
+  },
+  "developmentLadder": {
+    "1": 1.0,
+    "2": 1.55,
+    "3": 2.4
+  },
+  "refiningInvariant": {
+    "worstEffectiveYield": 0.99,
+    "worstCase": "structural x forge_world",
+    "refineryYieldMultiplier": 1.1,
+    "margin": 0.01
+  }
+}

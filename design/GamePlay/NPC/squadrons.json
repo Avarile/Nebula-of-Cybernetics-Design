@@ -1,0 +1,135 @@
+{
+  "count": 5,
+  "squadrons": [
+    {
+      "squadronId": "npc_mid_pirate_raiders",
+      "name": "Pirate Raiders",
+      "securityTier": "mid",
+      "hullCount": 4,
+      "hulls": [
+        {
+          "shipId": "ship_corvette_t1",
+          "name": "Corvette Tier 1",
+          "shipClass": "corvette",
+          "count": 3,
+          "unitReferencePrice": 3579.81
+        },
+        {
+          "shipId": "ship_submarine_chaser_t1",
+          "name": "Submarine Chaser Tier 1",
+          "shipClass": "submarine_chaser",
+          "count": 1,
+          "unitReferencePrice": 1357.37
+        }
+      ],
+      "referenceValue": 12096.8,
+      "bountyRate": 0.05,
+      "bounty": 604.84,
+      "expectedSalvage": 3380.29
+    },
+    {
+      "squadronId": "npc_rim_raider_pack",
+      "name": "Raider Pack",
+      "securityTier": "rim",
+      "hullCount": 4,
+      "hulls": [
+        {
+          "shipId": "ship_merchant_raider_t2",
+          "name": "Merchant Raider Tier 2",
+          "shipClass": "merchant_raider",
+          "count": 2,
+          "unitReferencePrice": 14681.76
+        },
+        {
+          "shipId": "ship_destroyer_t2",
+          "name": "Destroyer Tier 2",
+          "shipClass": "destroyer",
+          "count": 2,
+          "unitReferencePrice": 6978.81
+        }
+      ],
+      "referenceValue": 43321.13,
+      "bountyRate": 0.1,
+      "bounty": 4332.11,
+      "expectedSalvage": 5722.59
+    },
+    {
+      "squadronId": "npc_rim_pirate_wing",
+      "name": "Pirate Wing",
+      "securityTier": "rim",
+      "hullCount": 5,
+      "hulls": [
+        {
+          "shipId": "ship_destroyer_t2",
+          "name": "Destroyer Tier 2",
+          "shipClass": "destroyer",
+          "count": 3,
+          "unitReferencePrice": 6978.81
+        },
+        {
+          "shipId": "ship_light_cruiser_t2",
+          "name": "Light Cruiser Tier 2",
+          "shipClass": "light_cruiser",
+          "count": 2,
+          "unitReferencePrice": 14396.61
+        }
+      ],
+      "referenceValue": 49729.64,
+      "bountyRate": 0.1,
+      "bounty": 4972.96,
+      "expectedSalvage": 8110.62
+    },
+    {
+      "squadronId": "npc_dead_warband",
+      "name": "Deadspace Warband",
+      "securityTier": "deadspace",
+      "hullCount": 5,
+      "hulls": [
+        {
+          "shipId": "ship_heavy_cruiser_t3",
+          "name": "Heavy Cruiser Tier 3",
+          "shipClass": "heavy_cruiser",
+          "count": 4,
+          "unitReferencePrice": 26556.15
+        },
+        {
+          "shipId": "ship_battlecruiser_t3",
+          "name": "Battlecruiser Tier 3",
+          "shipClass": "battlecruiser",
+          "count": 1,
+          "unitReferencePrice": 55439.17
+        }
+      ],
+      "referenceValue": 161663.77,
+      "bountyRate": 0.18,
+      "bounty": 29099.48,
+      "expectedSalvage": 13159.22
+    },
+    {
+      "squadronId": "npc_dead_capital_threat",
+      "name": "Capital Threat",
+      "securityTier": "deadspace",
+      "hullCount": 5,
+      "hulls": [
+        {
+          "shipId": "ship_battleship_t3",
+          "name": "Battleship Tier 3",
+          "shipClass": "battleship",
+          "count": 1,
+          "unitReferencePrice": 74002.51
+        },
+        {
+          "shipId": "ship_heavy_cruiser_t3",
+          "name": "Heavy Cruiser Tier 3",
+          "shipClass": "heavy_cruiser",
+          "count": 4,
+          "unitReferencePrice": 26556.15
+        }
+      ],
+      "referenceValue": 180227.1,
+      "bountyRate": 0.18,
+      "bounty": 32440.88,
+      "expectedSalvage": 13782.79
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "count": 2,
+  "responseFleets": [
+    {
+      "securityTier": "core",
+      "entersAtRound": 1,
+      "hullCount": 12,
+      "hulls": [
+        {
+          "shipId": "ship_battleship_t3",
+          "name": "Battleship Tier 3",
+          "shipClass": "battleship",
+          "count": 8,
+          "unitReferencePrice": 74002.51
+        },
+        {
+          "shipId": "ship_battlecruiser_t3",
+          "name": "Battlecruiser Tier 3",
+          "shipClass": "battlecruiser",
+          "count": 4,
+          "unitReferencePrice": 55439.17
+        }
+      ],
+      "referenceValue": 813776.74
+    },
+    {
+      "securityTier": "mid",
+      "entersAtRound": 6,
+      "hullCount": 8,
+      "hulls": [
+        {
+          "shipId": "ship_battleship_t3",
+          "name": "Battleship Tier 3",
+          "shipClass": "battleship",
+          "count": 4,
+          "unitReferencePrice": 74002.51
+        },
+        {
+          "shipId": "ship_battlecruiser_t3",
+          "name": "Battlecruiser Tier 3",
+          "shipClass": "battlecruiser",
+          "count": 4,
+          "unitReferencePrice": 55439.17
+        }
+      ],
+      "referenceValue": 517766.71
+    }
+  ]
+}

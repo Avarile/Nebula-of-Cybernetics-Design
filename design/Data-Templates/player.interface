@@ -1,0 +1,53 @@
+# INTERFACE: Player
+# Source of truth : runtime state -- no generated instances exist
+# Spec            : ../GamePlay/progression_specification.md, gameplay_specification.md 5
+#
+# [+] No upstream counterpart; new in full.
+#
+# One account. Everything a player IS lives here; everything a player OWNS is
+# referenced by id. Trained levels are stored as levels, never as a derived
+# multiplier -- the multiplier is recomputed from the skill catalogue so a change to
+# a skill's effects reaches every player without a migration.
+#
+# SKILL POINTS -- sp accrues at SP_PER_TURN (43,200, = TURN_LENGTH_HOURS x
+# skill_tables.SP_PER_HOUR_REFERENCE) in phase 2, flat, online or not. The queue
+# head consumes it; overflow carries to the next entry with nothing lost.
+#
+# THE FLEET CAP is NOT stored. It is 1 + the count of fleet_slot unlocks the player
+# has reached on skl_flt_formation_drill. gameplay_specification.md 6.6 forbids any
+# schema, document or generator from stating the number 5 as a fleet limit.
+#
+# INVARIANTS (enforced by tools/verify_gameplay.py)
+#   - every skillId in trainedSkills and trainingQueue resolves in the skill catalogue
+#   - every level is 0-10 and spInvested is consistent with the published ladder
+#   - a queue entry whose prerequisites are unmet is HELD, not dropped
+#   - fleetIds length never exceeds the Formation Drill derivation above
+#   - credits may go to zero but never negative; unpaid rent ends a lease instead
+
+{
+  "playerId": "string, unique",
+  "name": "string",
+  "homeSystemId": "systemId -- a core system, chosen at creation",
+  "createdTurn": "integer",
+  "sp": { "accrued": "integer, lifetime", "unspent": "integer -- partial progress into the queue head" },
+  "trainedSkills": "array of { skillId, level (0-10), spInvested }",
+  "trainingQueue": "array of { skillId, targetLevel } -- ordered; head consumes SP; held entries stay in place",
+  "credits": "number >= 0",
+  "fleetIds": "array of fleetId -- a player commands one fleet at a time in the base design; the array admits more without a schema change",
+  "leaseIds": "array of leaseId -- see facility.interface",
+  "unionId": "unionId or null",
+  "standings": "object: regionName -> number -- moved by NPC-observed actions; no effect in rim or deadspace",
+  "flags": "array of { type: 'aggressor', securityTier, expiresTurn } -- mid-space aggression flag, 10 turns"
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# {
+#   "playerId": "ply_0031", "name": "Sable", "homeSystemId": "sys_001", "createdTurn": 1,
+#   "sp": { "accrued": 2030400, "unspent": 11840 },
+#   "trainedSkills": [ { "skillId": "skl_fund_spaceship_command", "level": 5, "spInvested": 9920 } ],
+#   "trainingQueue": [ { "skillId": "skl_sta_science", "targetLevel": 7 } ],
+#   "credits": 148320.5,
+#   "fleetIds": ["flt_0044"], "leaseIds": ["lse_0099", "lse_0100"],
+#   "unionId": "uni_0007", "standings": { "Aurelian Reach": 3.4 }, "flags": []
+# }

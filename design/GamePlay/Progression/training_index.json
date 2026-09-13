@@ -1,0 +1,6567 @@
+{
+  "count": 81,
+  "spPerTurn": 43200,
+  "skills": [
+    {
+      "skillId": "skl_fund_spaceship_command",
+      "name": "Spaceship Command",
+      "domain": "ship_command",
+      "category": "fundamentals",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_motor_torpedo_boat_control",
+      "name": "Motor Torpedo Boat Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_motor_torpedo_boat_systems",
+      "name": "Motor Torpedo Boat System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_submarine_chaser_control",
+      "name": "Submarine Chaser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_submarine_chaser_systems",
+      "name": "Submarine Chaser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_corvette_control",
+      "name": "Corvette Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_corvette_systems",
+      "name": "Corvette System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_torpedo_boat_fleet_control",
+      "name": "Fleet Torpedo Boat Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_torpedo_boat_fleet_systems",
+      "name": "Fleet Torpedo Boat System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_destroyer_escort_control",
+      "name": "Destroyer Escort Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_destroyer_escort_systems",
+      "name": "Destroyer Escort System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_sloop_patrol_escort_control",
+      "name": "Sloop / Patrol Escort Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_sloop_patrol_escort_systems",
+      "name": "Sloop / Patrol Escort System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 1,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 250,
+          "spCumulative": 250,
+          "turns": 0.0058,
+          "turnsCumulative": 0.0058
+        },
+        {
+          "level": 2,
+          "sp": 540,
+          "spCumulative": 790,
+          "turns": 0.0125,
+          "turnsCumulative": 0.0183
+        },
+        {
+          "level": 3,
+          "sp": 1167,
+          "spCumulative": 1957,
+          "turns": 0.027,
+          "turnsCumulative": 0.0453
+        },
+        {
+          "level": 4,
+          "sp": 2520,
+          "spCumulative": 4477,
+          "turns": 0.0583,
+          "turnsCumulative": 0.1036
+        },
+        {
+          "level": 5,
+          "sp": 5443,
+          "spCumulative": 9920,
+          "turns": 0.126,
+          "turnsCumulative": 0.2296
+        },
+        {
+          "level": 6,
+          "sp": 11758,
+          "spCumulative": 21678,
+          "turns": 0.2722,
+          "turnsCumulative": 0.5018
+        },
+        {
+          "level": 7,
+          "sp": 25398,
+          "spCumulative": 47076,
+          "turns": 0.5879,
+          "turnsCumulative": 1.0897
+        },
+        {
+          "level": 8,
+          "sp": 54864,
+          "spCumulative": 101940,
+          "turns": 1.27,
+          "turnsCumulative": 2.3597
+        },
+        {
+          "level": 9,
+          "sp": 118512,
+          "spCumulative": 220452,
+          "turns": 2.7433,
+          "turnsCumulative": 5.1031
+        },
+        {
+          "level": 10,
+          "sp": 256000,
+          "spCumulative": 476452,
+          "turns": 5.9259,
+          "turnsCumulative": 11.029
+        }
+      ],
+      "spTotal": 476452,
+      "turnsTotal": 11.03
+    },
+    {
+      "skillId": "skl_ship_destroyer_control",
+      "name": "Destroyer Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_destroyer_systems",
+      "name": "Destroyer System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_landing_ship_tank_control",
+      "name": "Landing Ship Tank Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_landing_ship_tank_systems",
+      "name": "Landing Ship Tank System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_submarine_control",
+      "name": "Submarine Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_submarine_systems",
+      "name": "Submarine System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_minelayer_sweeper_control",
+      "name": "Minelayer / Sweeper Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_minelayer_sweeper_systems",
+      "name": "Minelayer / Sweeper System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_coastal_defence_ship_control",
+      "name": "Coastal Defence Ship Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_coastal_defence_ship_systems",
+      "name": "Coastal Defence Ship System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_anti_aircraft_cruiser_control",
+      "name": "Anti-Aircraft Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_anti_aircraft_cruiser_systems",
+      "name": "Anti-Aircraft Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_monitor_control",
+      "name": "Monitor Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_monitor_systems",
+      "name": "Monitor System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_ship_light_cruiser_control",
+      "name": "Light Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_light_cruiser_systems",
+      "name": "Light Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_attack_transport_control",
+      "name": "Attack Transport Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_attack_transport_systems",
+      "name": "Attack Transport System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_light_carrier_control",
+      "name": "Light Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_light_carrier_systems",
+      "name": "Light Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_panzerschiff_control",
+      "name": "Panzerschiff Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_panzerschiff_systems",
+      "name": "Panzerschiff System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_merchant_raider_control",
+      "name": "Merchant Raider Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_merchant_raider_systems",
+      "name": "Merchant Raider System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_seaplane_tender_control",
+      "name": "Seaplane Tender Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_seaplane_tender_systems",
+      "name": "Seaplane Tender System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_repair_ship_tender_control",
+      "name": "Repair Ship / Tender Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_repair_ship_tender_systems",
+      "name": "Repair Ship / Tender System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_heavy_cruiser_control",
+      "name": "Heavy Cruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_heavy_cruiser_systems",
+      "name": "Heavy Cruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_escort_carrier_control",
+      "name": "Escort Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_escort_carrier_systems",
+      "name": "Escort Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_ship_fleet_oiler_control",
+      "name": "Fleet Oiler Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_ship_fleet_oiler_systems",
+      "name": "Fleet Oiler System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_ship_fleet_aircraft_carrier_control",
+      "name": "Fleet Aircraft Carrier Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_ship_fleet_aircraft_carrier_systems",
+      "name": "Fleet Aircraft Carrier System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_ship_battlecruiser_control",
+      "name": "Battlecruiser Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_ship_battlecruiser_systems",
+      "name": "Battlecruiser System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_ship_battleship_control",
+      "name": "Battleship Control",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 5,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1250,
+          "spCumulative": 1250,
+          "turns": 0.0289,
+          "turnsCumulative": 0.0289
+        },
+        {
+          "level": 2,
+          "sp": 2700,
+          "spCumulative": 3950,
+          "turns": 0.0625,
+          "turnsCumulative": 0.0914
+        },
+        {
+          "level": 3,
+          "sp": 5833,
+          "spCumulative": 9783,
+          "turns": 0.135,
+          "turnsCumulative": 0.2265
+        },
+        {
+          "level": 4,
+          "sp": 12599,
+          "spCumulative": 22382,
+          "turns": 0.2916,
+          "turnsCumulative": 0.5181
+        },
+        {
+          "level": 5,
+          "sp": 27216,
+          "spCumulative": 49598,
+          "turns": 0.63,
+          "turnsCumulative": 1.1481
+        },
+        {
+          "level": 6,
+          "sp": 58789,
+          "spCumulative": 108387,
+          "turns": 1.3609,
+          "turnsCumulative": 2.509
+        },
+        {
+          "level": 7,
+          "sp": 126992,
+          "spCumulative": 235379,
+          "turns": 2.9396,
+          "turnsCumulative": 5.4486
+        },
+        {
+          "level": 8,
+          "sp": 274318,
+          "spCumulative": 509697,
+          "turns": 6.35,
+          "turnsCumulative": 11.7985
+        },
+        {
+          "level": 9,
+          "sp": 592560,
+          "spCumulative": 1102257,
+          "turns": 13.7167,
+          "turnsCumulative": 25.5152
+        },
+        {
+          "level": 10,
+          "sp": 1280000,
+          "spCumulative": 2382257,
+          "turns": 29.6296,
+          "turnsCumulative": 55.1448
+        }
+      ],
+      "spTotal": 2382257,
+      "turnsTotal": 55.14
+    },
+    {
+      "skillId": "skl_ship_battleship_systems",
+      "name": "Battleship System Management",
+      "domain": "ship_command",
+      "category": "ship_system_control",
+      "rank": 5,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1250,
+          "spCumulative": 1250,
+          "turns": 0.0289,
+          "turnsCumulative": 0.0289
+        },
+        {
+          "level": 2,
+          "sp": 2700,
+          "spCumulative": 3950,
+          "turns": 0.0625,
+          "turnsCumulative": 0.0914
+        },
+        {
+          "level": 3,
+          "sp": 5833,
+          "spCumulative": 9783,
+          "turns": 0.135,
+          "turnsCumulative": 0.2265
+        },
+        {
+          "level": 4,
+          "sp": 12599,
+          "spCumulative": 22382,
+          "turns": 0.2916,
+          "turnsCumulative": 0.5181
+        },
+        {
+          "level": 5,
+          "sp": 27216,
+          "spCumulative": 49598,
+          "turns": 0.63,
+          "turnsCumulative": 1.1481
+        },
+        {
+          "level": 6,
+          "sp": 58789,
+          "spCumulative": 108387,
+          "turns": 1.3609,
+          "turnsCumulative": 2.509
+        },
+        {
+          "level": 7,
+          "sp": 126992,
+          "spCumulative": 235379,
+          "turns": 2.9396,
+          "turnsCumulative": 5.4486
+        },
+        {
+          "level": 8,
+          "sp": 274318,
+          "spCumulative": 509697,
+          "turns": 6.35,
+          "turnsCumulative": 11.7985
+        },
+        {
+          "level": 9,
+          "sp": 592560,
+          "spCumulative": 1102257,
+          "turns": 13.7167,
+          "turnsCumulative": 25.5152
+        },
+        {
+          "level": 10,
+          "sp": 1280000,
+          "spCumulative": 2382257,
+          "turns": 29.6296,
+          "turnsCumulative": 55.1448
+        }
+      ],
+      "spTotal": 2382257,
+      "turnsTotal": 55.14
+    },
+    {
+      "skillId": "skl_nav_navigation",
+      "name": "Navigation",
+      "domain": "ship_command",
+      "category": "navigation",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_scan_scanning",
+      "name": "Scanning",
+      "domain": "ship_command",
+      "category": "scanning",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_eng_maintenance",
+      "name": "Maintenance",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_eng_energy_shields",
+      "name": "Energy Shields",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_eng_damage_control",
+      "name": "Damage Control",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_eng_electronics",
+      "name": "Electronics",
+      "domain": "ship_command",
+      "category": "engineering",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_wpn_ballistic",
+      "name": "Ballistic Weapon",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_wpn_energy",
+      "name": "Energy Weapon",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_wpn_missiles",
+      "name": "Missiles",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_wpn_drones",
+      "name": "Drones",
+      "domain": "ship_command",
+      "category": "weaponry",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_flt_formation_drill",
+      "name": "Formation Drill",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_flt_attacking_formation",
+      "name": "Attacking Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_flt_defensive_formation",
+      "name": "Defensive Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_flt_mining_formation",
+      "name": "Mining Operation Formation",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_flt_regroup_and_hold",
+      "name": "Regroup and Hold",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_flt_fighter_squadron_control",
+      "name": "Fighter Squadron Control",
+      "domain": "ship_command",
+      "category": "fleet_command",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_sta_science",
+      "name": "Science",
+      "domain": "station_management",
+      "category": "science",
+      "rank": 5,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1250,
+          "spCumulative": 1250,
+          "turns": 0.0289,
+          "turnsCumulative": 0.0289
+        },
+        {
+          "level": 2,
+          "sp": 2700,
+          "spCumulative": 3950,
+          "turns": 0.0625,
+          "turnsCumulative": 0.0914
+        },
+        {
+          "level": 3,
+          "sp": 5833,
+          "spCumulative": 9783,
+          "turns": 0.135,
+          "turnsCumulative": 0.2265
+        },
+        {
+          "level": 4,
+          "sp": 12599,
+          "spCumulative": 22382,
+          "turns": 0.2916,
+          "turnsCumulative": 0.5181
+        },
+        {
+          "level": 5,
+          "sp": 27216,
+          "spCumulative": 49598,
+          "turns": 0.63,
+          "turnsCumulative": 1.1481
+        },
+        {
+          "level": 6,
+          "sp": 58789,
+          "spCumulative": 108387,
+          "turns": 1.3609,
+          "turnsCumulative": 2.509
+        },
+        {
+          "level": 7,
+          "sp": 126992,
+          "spCumulative": 235379,
+          "turns": 2.9396,
+          "turnsCumulative": 5.4486
+        },
+        {
+          "level": 8,
+          "sp": 274318,
+          "spCumulative": 509697,
+          "turns": 6.35,
+          "turnsCumulative": 11.7985
+        },
+        {
+          "level": 9,
+          "sp": 592560,
+          "spCumulative": 1102257,
+          "turns": 13.7167,
+          "turnsCumulative": 25.5152
+        },
+        {
+          "level": 10,
+          "sp": 1280000,
+          "spCumulative": 2382257,
+          "turns": 29.6296,
+          "turnsCumulative": 55.1448
+        }
+      ],
+      "spTotal": 2382257,
+      "turnsTotal": 55.14
+    },
+    {
+      "skillId": "skl_sta_resource_production",
+      "name": "Planetary Resource Production",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_sta_production_management",
+      "name": "Planetary Production Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_sta_refinement",
+      "name": "Material Refinement Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_sta_manufactory",
+      "name": "Manufactory Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_sta_ship_construction",
+      "name": "Ship Construction Management",
+      "domain": "station_management",
+      "category": "facility_management",
+      "rank": 5,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1250,
+          "spCumulative": 1250,
+          "turns": 0.0289,
+          "turnsCumulative": 0.0289
+        },
+        {
+          "level": 2,
+          "sp": 2700,
+          "spCumulative": 3950,
+          "turns": 0.0625,
+          "turnsCumulative": 0.0914
+        },
+        {
+          "level": 3,
+          "sp": 5833,
+          "spCumulative": 9783,
+          "turns": 0.135,
+          "turnsCumulative": 0.2265
+        },
+        {
+          "level": 4,
+          "sp": 12599,
+          "spCumulative": 22382,
+          "turns": 0.2916,
+          "turnsCumulative": 0.5181
+        },
+        {
+          "level": 5,
+          "sp": 27216,
+          "spCumulative": 49598,
+          "turns": 0.63,
+          "turnsCumulative": 1.1481
+        },
+        {
+          "level": 6,
+          "sp": 58789,
+          "spCumulative": 108387,
+          "turns": 1.3609,
+          "turnsCumulative": 2.509
+        },
+        {
+          "level": 7,
+          "sp": 126992,
+          "spCumulative": 235379,
+          "turns": 2.9396,
+          "turnsCumulative": 5.4486
+        },
+        {
+          "level": 8,
+          "sp": 274318,
+          "spCumulative": 509697,
+          "turns": 6.35,
+          "turnsCumulative": 11.7985
+        },
+        {
+          "level": 9,
+          "sp": 592560,
+          "spCumulative": 1102257,
+          "turns": 13.7167,
+          "turnsCumulative": 25.5152
+        },
+        {
+          "level": 10,
+          "sp": 1280000,
+          "spCumulative": 2382257,
+          "turns": 29.6296,
+          "turnsCumulative": 55.1448
+        }
+      ],
+      "spTotal": 2382257,
+      "turnsTotal": 55.14
+    },
+    {
+      "skillId": "skl_mine_equipment_operation",
+      "name": "Mining Equipment Operation",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_mine_advanced_equipment",
+      "name": "Advanced Mining Equipment Operation",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 4,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1000,
+          "spCumulative": 1000,
+          "turns": 0.0231,
+          "turnsCumulative": 0.0231
+        },
+        {
+          "level": 2,
+          "sp": 2160,
+          "spCumulative": 3160,
+          "turns": 0.05,
+          "turnsCumulative": 0.0731
+        },
+        {
+          "level": 3,
+          "sp": 4666,
+          "spCumulative": 7826,
+          "turns": 0.108,
+          "turnsCumulative": 0.1812
+        },
+        {
+          "level": 4,
+          "sp": 10079,
+          "spCumulative": 17905,
+          "turns": 0.2333,
+          "turnsCumulative": 0.4145
+        },
+        {
+          "level": 5,
+          "sp": 21773,
+          "spCumulative": 39678,
+          "turns": 0.504,
+          "turnsCumulative": 0.9185
+        },
+        {
+          "level": 6,
+          "sp": 47032,
+          "spCumulative": 86710,
+          "turns": 1.0887,
+          "turnsCumulative": 2.0072
+        },
+        {
+          "level": 7,
+          "sp": 101594,
+          "spCumulative": 188304,
+          "turns": 2.3517,
+          "turnsCumulative": 4.3589
+        },
+        {
+          "level": 8,
+          "sp": 219454,
+          "spCumulative": 407758,
+          "turns": 5.08,
+          "turnsCumulative": 9.4388
+        },
+        {
+          "level": 9,
+          "sp": 474048,
+          "spCumulative": 881806,
+          "turns": 10.9733,
+          "turnsCumulative": 20.4122
+        },
+        {
+          "level": 10,
+          "sp": 1024000,
+          "spCumulative": 1905806,
+          "turns": 23.7037,
+          "turnsCumulative": 44.1159
+        }
+      ],
+      "spTotal": 1905806,
+      "turnsTotal": 44.12
+    },
+    {
+      "skillId": "skl_mine_effectiveness",
+      "name": "Mining Effectiveness",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 3,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 750,
+          "spCumulative": 750,
+          "turns": 0.0174,
+          "turnsCumulative": 0.0174
+        },
+        {
+          "level": 2,
+          "sp": 1620,
+          "spCumulative": 2370,
+          "turns": 0.0375,
+          "turnsCumulative": 0.0549
+        },
+        {
+          "level": 3,
+          "sp": 3500,
+          "spCumulative": 5870,
+          "turns": 0.081,
+          "turnsCumulative": 0.1359
+        },
+        {
+          "level": 4,
+          "sp": 7560,
+          "spCumulative": 13430,
+          "turns": 0.175,
+          "turnsCumulative": 0.3109
+        },
+        {
+          "level": 5,
+          "sp": 16329,
+          "spCumulative": 29759,
+          "turns": 0.378,
+          "turnsCumulative": 0.6889
+        },
+        {
+          "level": 6,
+          "sp": 35274,
+          "spCumulative": 65033,
+          "turns": 0.8165,
+          "turnsCumulative": 1.5054
+        },
+        {
+          "level": 7,
+          "sp": 76195,
+          "spCumulative": 141228,
+          "turns": 1.7638,
+          "turnsCumulative": 3.2692
+        },
+        {
+          "level": 8,
+          "sp": 164591,
+          "spCumulative": 305819,
+          "turns": 3.81,
+          "turnsCumulative": 7.0791
+        },
+        {
+          "level": 9,
+          "sp": 355536,
+          "spCumulative": 661355,
+          "turns": 8.23,
+          "turnsCumulative": 15.3091
+        },
+        {
+          "level": 10,
+          "sp": 768000,
+          "spCumulative": 1429355,
+          "turns": 17.7778,
+          "turnsCumulative": 33.0869
+        }
+      ],
+      "spTotal": 1429355,
+      "turnsTotal": 33.09
+    },
+    {
+      "skillId": "skl_mine_advanced_effectiveness",
+      "name": "Advanced Mining Effectiveness",
+      "domain": "deep_space_mining",
+      "category": "mining_operations",
+      "rank": 5,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1250,
+          "spCumulative": 1250,
+          "turns": 0.0289,
+          "turnsCumulative": 0.0289
+        },
+        {
+          "level": 2,
+          "sp": 2700,
+          "spCumulative": 3950,
+          "turns": 0.0625,
+          "turnsCumulative": 0.0914
+        },
+        {
+          "level": 3,
+          "sp": 5833,
+          "spCumulative": 9783,
+          "turns": 0.135,
+          "turnsCumulative": 0.2265
+        },
+        {
+          "level": 4,
+          "sp": 12599,
+          "spCumulative": 22382,
+          "turns": 0.2916,
+          "turnsCumulative": 0.5181
+        },
+        {
+          "level": 5,
+          "sp": 27216,
+          "spCumulative": 49598,
+          "turns": 0.63,
+          "turnsCumulative": 1.1481
+        },
+        {
+          "level": 6,
+          "sp": 58789,
+          "spCumulative": 108387,
+          "turns": 1.3609,
+          "turnsCumulative": 2.509
+        },
+        {
+          "level": 7,
+          "sp": 126992,
+          "spCumulative": 235379,
+          "turns": 2.9396,
+          "turnsCumulative": 5.4486
+        },
+        {
+          "level": 8,
+          "sp": 274318,
+          "spCumulative": 509697,
+          "turns": 6.35,
+          "turnsCumulative": 11.7985
+        },
+        {
+          "level": 9,
+          "sp": 592560,
+          "spCumulative": 1102257,
+          "turns": 13.7167,
+          "turnsCumulative": 25.5152
+        },
+        {
+          "level": 10,
+          "sp": 1280000,
+          "spCumulative": 2382257,
+          "turns": 29.6296,
+          "turnsCumulative": 55.1448
+        }
+      ],
+      "spTotal": 2382257,
+      "turnsTotal": 55.14
+    },
+    {
+      "skillId": "skl_trd_trade",
+      "name": "Trade",
+      "domain": "interaction_trade",
+      "category": "commerce",
+      "rank": 2,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 500,
+          "spCumulative": 500,
+          "turns": 0.0116,
+          "turnsCumulative": 0.0116
+        },
+        {
+          "level": 2,
+          "sp": 1080,
+          "spCumulative": 1580,
+          "turns": 0.025,
+          "turnsCumulative": 0.0366
+        },
+        {
+          "level": 3,
+          "sp": 2333,
+          "spCumulative": 3913,
+          "turns": 0.054,
+          "turnsCumulative": 0.0906
+        },
+        {
+          "level": 4,
+          "sp": 5040,
+          "spCumulative": 8953,
+          "turns": 0.1167,
+          "turnsCumulative": 0.2072
+        },
+        {
+          "level": 5,
+          "sp": 10886,
+          "spCumulative": 19839,
+          "turns": 0.252,
+          "turnsCumulative": 0.4592
+        },
+        {
+          "level": 6,
+          "sp": 23516,
+          "spCumulative": 43355,
+          "turns": 0.5444,
+          "turnsCumulative": 1.0036
+        },
+        {
+          "level": 7,
+          "sp": 50797,
+          "spCumulative": 94152,
+          "turns": 1.1759,
+          "turnsCumulative": 2.1794
+        },
+        {
+          "level": 8,
+          "sp": 109727,
+          "spCumulative": 203879,
+          "turns": 2.54,
+          "turnsCumulative": 4.7194
+        },
+        {
+          "level": 9,
+          "sp": 237024,
+          "spCumulative": 440903,
+          "turns": 5.4867,
+          "turnsCumulative": 10.2061
+        },
+        {
+          "level": 10,
+          "sp": 512000,
+          "spCumulative": 952903,
+          "turns": 11.8519,
+          "turnsCumulative": 22.0579
+        }
+      ],
+      "spTotal": 952903,
+      "turnsTotal": 22.06
+    },
+    {
+      "skillId": "skl_trd_union_management",
+      "name": "Union Management",
+      "domain": "interaction_trade",
+      "category": "commerce",
+      "rank": 5,
+      "levels": [
+        {
+          "level": 1,
+          "sp": 1250,
+          "spCumulative": 1250,
+          "turns": 0.0289,
+          "turnsCumulative": 0.0289
+        },
+        {
+          "level": 2,
+          "sp": 2700,
+          "spCumulative": 3950,
+          "turns": 0.0625,
+          "turnsCumulative": 0.0914
+        },
+        {
+          "level": 3,
+          "sp": 5833,
+          "spCumulative": 9783,
+          "turns": 0.135,
+          "turnsCumulative": 0.2265
+        },
+        {
+          "level": 4,
+          "sp": 12599,
+          "spCumulative": 22382,
+          "turns": 0.2916,
+          "turnsCumulative": 0.5181
+        },
+        {
+          "level": 5,
+          "sp": 27216,
+          "spCumulative": 49598,
+          "turns": 0.63,
+          "turnsCumulative": 1.1481
+        },
+        {
+          "level": 6,
+          "sp": 58789,
+          "spCumulative": 108387,
+          "turns": 1.3609,
+          "turnsCumulative": 2.509
+        },
+        {
+          "level": 7,
+          "sp": 126992,
+          "spCumulative": 235379,
+          "turns": 2.9396,
+          "turnsCumulative": 5.4486
+        },
+        {
+          "level": 8,
+          "sp": 274318,
+          "spCumulative": 509697,
+          "turns": 6.35,
+          "turnsCumulative": 11.7985
+        },
+        {
+          "level": 9,
+          "sp": 592560,
+          "spCumulative": 1102257,
+          "turns": 13.7167,
+          "turnsCumulative": 25.5152
+        },
+        {
+          "level": 10,
+          "sp": 1280000,
+          "spCumulative": 2382257,
+          "turns": 29.6296,
+          "turnsCumulative": 55.1448
+        }
+      ],
+      "spTotal": 2382257,
+      "turnsTotal": 55.14
+    }
+  ]
+}

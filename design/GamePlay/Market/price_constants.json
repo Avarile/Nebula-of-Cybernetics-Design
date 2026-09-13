@@ -1,0 +1,87 @@
+{
+  "rawPrice": {
+    "structural": 10.0,
+    "energy": 14.0,
+    "ordnance": 12.0,
+    "precision": 40.0
+  },
+  "processMargin": 0.15,
+  "itemMargin": 1.1,
+  "priceIndex": {
+    "core": {
+      "raw": 1.25,
+      "refined": 1.1,
+      "manufactured": 0.95
+    },
+    "mid": {
+      "raw": 1.1,
+      "refined": 1.05,
+      "manufactured": 1.05
+    },
+    "rim": {
+      "raw": 0.9,
+      "refined": 0.95,
+      "manufactured": 1.25
+    },
+    "deadspace": {
+      "raw": 0.8,
+      "refined": 0.9,
+      "manufactured": 1.45
+    }
+  },
+  "npcSpread": 0.2,
+  "npcOrderTiers": [
+    "core",
+    "mid"
+  ],
+  "marketTax": {
+    "core": 0.02,
+    "mid": 0.015,
+    "rim": 0.005,
+    "deadspace": 0.0
+  },
+  "bountyRate": {
+    "core": 0.0,
+    "mid": 0.05,
+    "rim": 0.1,
+    "deadspace": 0.18
+  },
+  "riskIndex": {
+    "core": 1.0,
+    "mid": 1.15,
+    "rim": 1.45,
+    "deadspace": 1.9
+  },
+  "insurancePremium": 0.004,
+  "insurancePayout": {
+    "core": 0.8,
+    "mid": 0.7,
+    "rim": 0.5,
+    "deadspace": 0.0
+  },
+  "salvageDrop": 0.5,
+  "salvageCargo": 0.5,
+  "wreckLifetime": 2,
+  "lanePrices": {
+    "structural": {
+      "raw": 10.0,
+      "refined": 12.7778,
+      "manufactured": 17.2876
+    },
+    "energy": {
+      "raw": 14.0,
+      "refined": 20.125,
+      "manufactured": 27.2279
+    },
+    "ordnance": {
+      "raw": 12.0,
+      "refined": 18.4,
+      "manufactured": 24.8941
+    },
+    "precision": {
+      "raw": 40.0,
+      "refined": 92.0,
+      "manufactured": 124.4706
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "count": 4,
+  "contractArchetypes": [
+    {
+      "contractId": "ctr_haul",
+      "name": "Haul",
+      "job": "move N units of a good from system A to B",
+      "rewardFormula": "cargoReferenceValue * jumpDistanceLy * destinationRiskIndex",
+      "riskIndex": {
+        "core": 1.0,
+        "mid": 1.15,
+        "rim": 1.45,
+        "deadspace": 1.9
+      }
+    },
+    {
+      "contractId": "ctr_supply",
+      "name": "Supply",
+      "job": "deliver N manufactured units to a facility",
+      "rewardFormula": "referenceValue * shortfallUrgency",
+      "riskIndex": {
+        "core": 1.0,
+        "mid": 1.15,
+        "rim": 1.45,
+        "deadspace": 1.9
+      }
+    },
+    {
+      "contractId": "ctr_bounty",
+      "name": "Bounty",
+      "job": "destroy N NPC hulls of a tier in a system",
+      "rewardFormula": "squadronReferenceValue * bountyRate",
+      "riskIndex": {
+        "core": 1.0,
+        "mid": 1.15,
+        "rim": 1.45,
+        "deadspace": 1.9
+      }
+    },
+    {
+      "contractId": "ctr_escort",
+      "name": "Escort",
+      "job": "accompany a fleet across a route without it being destroyed",
+      "rewardFormula": "routeDistanceLy * escortedCargoValue",
+      "riskIndex": {
+        "core": 1.0,
+        "mid": 1.15,
+        "rim": 1.45,
+        "deadspace": 1.9
+      }
+    }
+  ]
+}

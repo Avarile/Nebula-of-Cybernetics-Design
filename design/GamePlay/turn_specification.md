@@ -209,8 +209,10 @@ engagement id and the digest quotes the narrative highlights.
 `tools/verify_gameplay.py` checks the turn rules that can be checked statically:
 
 * every order type in `turn_order.interface` names a phase that exists in §2
-* every phase in §2 is named by at least one order type or is a pure system phase
-  (8, 10, 13, 14 are the system phases)
+* every phase in §2 is named by at least one order type or is a pure system phase —
+  **1, 10 and 14** are the system phases (intake, salvage, log); every other phase is
+  driven by an order a player can submit, including 8 via `fleet.posture` and 13 via
+  the contract and union orders
 * `SP_PER_TURN == TURN_LENGTH_HOURS * SP_PER_HOUR_REFERENCE`, read from
   `tools/skill_tables.py` rather than restated
 * no contended resource named in §4 lacks a tie-break rule

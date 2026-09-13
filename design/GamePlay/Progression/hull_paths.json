@@ -1,0 +1,1332 @@
+{
+  "count": 26,
+  "operateLevel": 5,
+  "hullPaths": [
+    {
+      "shipClass": "motor_torpedo_boat",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 3,
+      "sp": 20090,
+      "turns": 0.47,
+      "heaviestHullTons": 102.2
+    },
+    {
+      "shipClass": "submarine_chaser",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_submarine_chaser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_submarine_chaser_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_submarine_chaser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_submarine_chaser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 3,
+      "sp": 20090,
+      "turns": 0.47,
+      "heaviestHullTons": 396.8
+    },
+    {
+      "shipClass": "corvette",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 3,
+      "sp": 20090,
+      "turns": 0.47,
+      "heaviestHullTons": 1073.8
+    },
+    {
+      "shipClass": "torpedo_boat_fleet",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_torpedo_boat_fleet_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_torpedo_boat_fleet_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_motor_torpedo_boat_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_torpedo_boat_fleet_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_torpedo_boat_fleet_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 5,
+      "sp": 39930,
+      "turns": 0.92,
+      "heaviestHullTons": 1535.0
+    },
+    {
+      "shipClass": "destroyer_escort",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 5,
+      "sp": 39930,
+      "turns": 0.92,
+      "heaviestHullTons": 1780.0
+    },
+    {
+      "shipClass": "sloop_patrol_escort",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 5,
+      "sp": 39930,
+      "turns": 0.92,
+      "heaviestHullTons": 1802.5
+    },
+    {
+      "shipClass": "landing_ship_tank",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 5,
+      "sp": 59768,
+      "turns": 1.38,
+      "heaviestHullTons": 4055.0
+    },
+    {
+      "shipClass": "submarine",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_submarine_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_submarine_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_submarine_chaser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_submarine_chaser_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_submarine_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_submarine_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 5,
+      "sp": 59768,
+      "turns": 1.38,
+      "heaviestHullTons": 4495.0
+    },
+    {
+      "shipClass": "destroyer",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 7,
+      "sp": 79608,
+      "turns": 1.84,
+      "heaviestHullTons": 3255.0
+    },
+    {
+      "shipClass": "minelayer_sweeper",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_minelayer_sweeper_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_minelayer_sweeper_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_minelayer_sweeper_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_minelayer_sweeper_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_sloop_patrol_escort_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 7,
+      "sp": 79608,
+      "turns": 1.84,
+      "heaviestHullTons": 6040.0
+    },
+    {
+      "shipClass": "coastal_defence_ship",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_coastal_defence_ship_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_coastal_defence_ship_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_coastal_defence_ship_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_coastal_defence_ship_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 7,
+      "sp": 79608,
+      "turns": 1.84,
+      "heaviestHullTons": 7340.0
+    },
+    {
+      "shipClass": "anti_aircraft_cruiser",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_anti_aircraft_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_anti_aircraft_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_anti_aircraft_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_anti_aircraft_cruiser_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 7,
+      "sp": 79608,
+      "turns": 1.84,
+      "heaviestHullTons": 7610.0
+    },
+    {
+      "shipClass": "monitor",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_monitor_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_monitor_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_coastal_defence_ship_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_coastal_defence_ship_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_monitor_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_monitor_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 9,
+      "sp": 119286,
+      "turns": 2.76,
+      "heaviestHullTons": 8900.0
+    },
+    {
+      "shipClass": "attack_transport",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_attack_transport_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_attack_transport_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_attack_transport_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_attack_transport_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 7,
+      "sp": 119286,
+      "turns": 2.76,
+      "heaviestHullTons": 13100.0
+    },
+    {
+      "shipClass": "seaplane_tender",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_seaplane_tender_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_seaplane_tender_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_seaplane_tender_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_seaplane_tender_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 7,
+      "sp": 119286,
+      "turns": 2.76,
+      "heaviestHullTons": 15650.0
+    },
+    {
+      "shipClass": "repair_ship_tender",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_repair_ship_tender_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_repair_ship_tender_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_repair_ship_tender_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_repair_ship_tender_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 7,
+      "sp": 119286,
+      "turns": 2.76,
+      "heaviestHullTons": 15650.0
+    },
+    {
+      "shipClass": "light_cruiser",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 9,
+      "sp": 139126,
+      "turns": 3.22,
+      "heaviestHullTons": 12650.0
+    },
+    {
+      "shipClass": "merchant_raider",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_merchant_raider_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_merchant_raider_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_merchant_raider_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_merchant_raider_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 9,
+      "sp": 139126,
+      "turns": 3.22,
+      "heaviestHullTons": 15500.0
+    },
+    {
+      "shipClass": "panzerschiff",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_panzerschiff_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_panzerschiff_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_coastal_defence_ship_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_coastal_defence_ship_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_monitor_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_monitor_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_panzerschiff_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_panzerschiff_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 11,
+      "sp": 178804,
+      "turns": 4.14,
+      "heaviestHullTons": 15400.0
+    },
+    {
+      "shipClass": "fleet_oiler",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_fleet_oiler_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_fleet_oiler_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_attack_transport_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_attack_transport_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_fleet_oiler_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_fleet_oiler_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_landing_ship_tank_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 9,
+      "sp": 198642,
+      "turns": 4.6,
+      "heaviestHullTons": 23650.0
+    },
+    {
+      "shipClass": "light_carrier",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_light_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_carrier_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_carrier_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 11,
+      "sp": 198644,
+      "turns": 4.6,
+      "heaviestHullTons": 14400.0
+    },
+    {
+      "shipClass": "heavy_cruiser",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_heavy_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_heavy_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_heavy_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_heavy_cruiser_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 11,
+      "sp": 198644,
+      "turns": 4.6,
+      "heaviestHullTons": 15800.0
+    },
+    {
+      "shipClass": "escort_carrier",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_escort_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_escort_carrier_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_escort_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_escort_carrier_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_carrier_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 13,
+      "sp": 258162,
+      "turns": 5.98,
+      "heaviestHullTons": 21570.0
+    },
+    {
+      "shipClass": "battlecruiser",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_battlecruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_battlecruiser_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_battlecruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_battlecruiser_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_heavy_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_heavy_cruiser_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 13,
+      "sp": 278000,
+      "turns": 6.44,
+      "heaviestHullTons": 44750.0
+    },
+    {
+      "shipClass": "fleet_aircraft_carrier",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_fleet_aircraft_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_fleet_aircraft_carrier_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_escort_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_escort_carrier_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_fleet_aircraft_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_fleet_aircraft_carrier_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_carrier_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_carrier_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 15,
+      "sp": 337518,
+      "turns": 7.81,
+      "heaviestHullTons": 40200.0
+    },
+    {
+      "shipClass": "battleship",
+      "gateSkills": [
+        {
+          "skillId": "skl_ship_battleship_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_battleship_systems",
+          "level": 5
+        }
+      ],
+      "closure": [
+        {
+          "skillId": "skl_fund_spaceship_command",
+          "level": 1
+        },
+        {
+          "skillId": "skl_ship_battlecruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_battlecruiser_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_battleship_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_battleship_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_corvette_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_escort_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_destroyer_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_heavy_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_heavy_cruiser_systems",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_control",
+          "level": 5
+        },
+        {
+          "skillId": "skl_ship_light_cruiser_systems",
+          "level": 5
+        }
+      ],
+      "closureSkillCount": 15,
+      "sp": 377196,
+      "turns": 8.73,
+      "heaviestHullTons": 65100.0
+    }
+  ]
+}

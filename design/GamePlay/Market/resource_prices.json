@@ -1,0 +1,161 @@
+{
+  "count": 12,
+  "resources": [
+    {
+      "resourceId": "res_raw_ferrite",
+      "name": "Ferrite Ore",
+      "lane": "structural",
+      "tier": "raw",
+      "referencePrice": 10.0,
+      "bySecurityTier": {
+        "core": 12.5,
+        "mid": 11.0,
+        "rim": 9.0,
+        "deadspace": 8.0
+      }
+    },
+    {
+      "resourceId": "res_refined_structural_alloy",
+      "name": "Structural Alloy",
+      "lane": "structural",
+      "tier": "refined",
+      "referencePrice": 12.7778,
+      "bySecurityTier": {
+        "core": 14.0556,
+        "mid": 13.4167,
+        "rim": 12.1389,
+        "deadspace": 11.5
+      }
+    },
+    {
+      "resourceId": "res_mfg_structural_component",
+      "name": "Structural Component",
+      "lane": "structural",
+      "tier": "manufactured",
+      "referencePrice": 17.2876,
+      "bySecurityTier": {
+        "core": 16.4232,
+        "mid": 18.152,
+        "rim": 21.6095,
+        "deadspace": 25.067
+      }
+    },
+    {
+      "resourceId": "res_raw_conductive",
+      "name": "Conductive Crystal",
+      "lane": "energy",
+      "tier": "raw",
+      "referencePrice": 14.0,
+      "bySecurityTier": {
+        "core": 17.5,
+        "mid": 15.4,
+        "rim": 12.6,
+        "deadspace": 11.2
+      }
+    },
+    {
+      "resourceId": "res_refined_energy_matrix",
+      "name": "Energy Cell Matrix",
+      "lane": "energy",
+      "tier": "refined",
+      "referencePrice": 20.125,
+      "bySecurityTier": {
+        "core": 22.1375,
+        "mid": 21.1313,
+        "rim": 19.1187,
+        "deadspace": 18.1125
+      }
+    },
+    {
+      "resourceId": "res_mfg_power_core",
+      "name": "Power Core Unit",
+      "lane": "energy",
+      "tier": "manufactured",
+      "referencePrice": 27.2279,
+      "bySecurityTier": {
+        "core": 25.8665,
+        "mid": 28.5893,
+        "rim": 34.0349,
+        "deadspace": 39.4805
+      }
+    },
+    {
+      "resourceId": "res_raw_volatile",
+      "name": "Volatile Compound",
+      "lane": "ordnance",
+      "tier": "raw",
+      "referencePrice": 12.0,
+      "bySecurityTier": {
+        "core": 15.0,
+        "mid": 13.2,
+        "rim": 10.8,
+        "deadspace": 9.6
+      }
+    },
+    {
+      "resourceId": "res_refined_warhead_compound",
+      "name": "Warhead Compound",
+      "lane": "ordnance",
+      "tier": "refined",
+      "referencePrice": 18.4,
+      "bySecurityTier": {
+        "core": 20.24,
+        "mid": 19.32,
+        "rim": 17.48,
+        "deadspace": 16.56
+      }
+    },
+    {
+      "resourceId": "res_mfg_ordnance_charge",
+      "name": "Ordnance Charge",
+      "lane": "ordnance",
+      "tier": "manufactured",
+      "referencePrice": 24.8941,
+      "bySecurityTier": {
+        "core": 23.6494,
+        "mid": 26.1388,
+        "rim": 31.1176,
+        "deadspace": 36.0965
+      }
+    },
+    {
+      "resourceId": "res_raw_isotopes",
+      "name": "Rare Isotopes",
+      "lane": "precision",
+      "tier": "raw",
+      "referencePrice": 40.0,
+      "bySecurityTier": {
+        "core": 50.0,
+        "mid": 44.0,
+        "rim": 36.0,
+        "deadspace": 32.0
+      }
+    },
+    {
+      "resourceId": "res_refined_precision_circuitry",
+      "name": "Precision Circuitry",
+      "lane": "precision",
+      "tier": "refined",
+      "referencePrice": 92.0,
+      "bySecurityTier": {
+        "core": 101.2,
+        "mid": 96.6,
+        "rim": 87.4,
+        "deadspace": 82.8
+      }
+    },
+    {
+      "resourceId": "res_mfg_guidance_assembly",
+      "name": "Guidance Assembly",
+      "lane": "precision",
+      "tier": "manufactured",
+      "referencePrice": 124.4706,
+      "bySecurityTier": {
+        "core": 118.2471,
+        "mid": 130.6941,
+        "rim": 155.5882,
+        "deadspace": 180.4824
+      }
+    }
+  ]
+}

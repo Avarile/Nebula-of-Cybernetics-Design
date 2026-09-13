@@ -1,0 +1,55 @@
+{
+  "count": 5,
+  "stages": [
+    {
+      "stage": "extract",
+      "phase": 3,
+      "facilityType": "extraction",
+      "input": null,
+      "output": "raw",
+      "skill": "skl_sta_resource_production",
+      "scienceLevel": 3,
+      "stat": "planetaryProductionRate"
+    },
+    {
+      "stage": "refine",
+      "phase": 4,
+      "facilityType": "refinery",
+      "input": "raw",
+      "output": "refined",
+      "skill": "skl_sta_refinement",
+      "scienceLevel": 5,
+      "stat": "refineryYield"
+    },
+    {
+      "stage": "manufacture",
+      "phase": 5,
+      "facilityType": "manufactory",
+      "input": "refined",
+      "output": "manufactured",
+      "skill": "skl_sta_manufactory",
+      "scienceLevel": 7,
+      "stat": "manufacturingRate"
+    },
+    {
+      "stage": "construct",
+      "phase": 6,
+      "facilityType": "shipyard",
+      "input": "manufactured",
+      "output": "hull",
+      "skill": "skl_sta_ship_construction",
+      "scienceLevel": 7,
+      "stat": "shipConstructionRate"
+    },
+    {
+      "stage": "store",
+      "phase": null,
+      "facilityType": "warehouse",
+      "input": null,
+      "output": null,
+      "skill": "skl_sta_production_management",
+      "scienceLevel": 3,
+      "stat": "warehouseCapacity"
+    }
+  ]
+}

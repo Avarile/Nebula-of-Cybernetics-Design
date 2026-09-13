@@ -1,0 +1,50 @@
+{
+  "squadronCount": 5,
+  "responseFleetCount": 2,
+  "contractArchetypeCount": 4,
+  "fleetSlots": 5,
+  "richestPlayerFleetReferenceValue": 370012.53,
+  "bountyRate": {
+    "core": 0.0,
+    "mid": 0.05,
+    "rim": 0.1,
+    "deadspace": 0.18
+  },
+  "riskIndex": {
+    "core": 1.0,
+    "mid": 1.15,
+    "rim": 1.45,
+    "deadspace": 1.9
+  },
+  "pvpAllowed": {
+    "core": false,
+    "mid": true,
+    "rim": true,
+    "deadspace": true
+  },
+  "aggressorFlagTurns": 10,
+  "retreatThreshold": 0.3,
+  "roundCap": 25,
+  "salvageDrop": 0.5,
+  "salvageCargo": 0.5,
+  "wreckLifetime": 2,
+  "insurancePremium": 0.004,
+  "insurancePayout": {
+    "core": 0.8,
+    "mid": 0.7,
+    "rim": 0.5,
+    "deadspace": 0.0
+  },
+  "raid": {
+    "troopsPerWarehouseUnit": 0.5,
+    "cooldownTurns": 4,
+    "allowedTiers": [
+      "rim",
+      "deadspace"
+    ],
+    "capableHulls": [
+      "attack_transport",
+      "landing_ship_tank"
+    ]
+  }
+}

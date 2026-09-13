@@ -102,8 +102,8 @@ Each is hand-written and survives regeneration. Four generated catalogues sit be
 
 ## 5. Authored rules vs. runtime state
 
-The distinction that keeps this layer tractable, and the reason nothing here blocks on
-`tools/generate_systems.py`, which does not exist yet:
+The distinction that keeps this layer tractable, and the reason none of it had to wait on
+the map generator:
 
 **Authored** — a pure function of a table, generated, verified, byte-reproducible:
 
@@ -122,8 +122,9 @@ The distinction that keeps this layer tractable, and the reason nothing here blo
 Facility rules key off planet *archetype and development tier*, both of which
 `systems_planets_specification.md` §4 tables in full. They never key off a planet instance.
 A lease is runtime state that names a planet id; the rate table it is priced from is
-authored. So the whole GamePlay pipeline generates and verifies today, and gains per-planet
-instantiation for free on the day the map generator lands.
+authored. That kept the whole GamePlay pipeline generating and verifying before
+`tools/generate_systems.py` existed — and now that it does, `verify_facilities.py` also
+checks the subdivision against all 180 real planets, with the rate table unchanged.
 
 ## 6. Cross-cutting invariants
 

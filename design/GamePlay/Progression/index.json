@@ -1,0 +1,20 @@
+{
+  "turnLengthHours": 24,
+  "spPerTurn": 43200,
+  "skillCount": 81,
+  "maxLevel": 10,
+  "spToMaxEverything": 107678057,
+  "turnsToMaxEverything": 2493,
+  "yearsToMaxEverything": 6.8,
+  "startingPackage": {
+    "hulls": [
+      "ship_motor_torpedo_boat_t1",
+      "ship_submarine_chaser_t1",
+      "ship_corvette_t1"
+    ],
+    "scienceLevel": 3,
+    "freeLeaseType": "refinery",
+    "freeLeaseTurns": 20,
+    "gateSkillsGranted": "both ship_operation claimants of the chosen hull, at level 5"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "tradeableGoodCount": 1043,
+  "resourceCount": 12,
+  "itemCount": 1031,
+  "arbitrage": {
+    "maxTradePriceMargin": 0.2,
+    "rows": [
+      {
+        "scope": "npc_order_tiers",
+        "traderSkill": "untrained",
+        "tradePriceMargin": 0.0,
+        "halfSpread": 0.1,
+        "threshold": 1.2222,
+        "worstIndexRatio": 1.1364,
+        "worstCase": "raw, mid -> core",
+        "safe": true,
+        "headroom": 0.0859
+      },
+      {
+        "scope": "npc_order_tiers",
+        "traderSkill": "trade_10",
+        "tradePriceMargin": 0.2,
+        "halfSpread": 0.08,
+        "threshold": 1.1739,
+        "worstIndexRatio": 1.1364,
+        "worstCase": "raw, mid -> core",
+        "safe": true,
+        "headroom": 0.0375
+      },
+      {
+        "scope": "all_tiers",
+        "traderSkill": "untrained",
+        "tradePriceMargin": 0.0,
+        "halfSpread": 0.1,
+        "threshold": 1.2222,
+        "worstIndexRatio": 1.5625,
+        "worstCase": "raw, deadspace -> core",
+        "safe": false,
+        "headroom": -0.3403
+      },
+      {
+        "scope": "all_tiers",
+        "traderSkill": "trade_10",
+        "tradePriceMargin": 0.2,
+        "halfSpread": 0.08,
+        "threshold": 1.1739,
+        "worstIndexRatio": 1.5625,
+        "worstCase": "raw, deadspace -> core",
+        "safe": false,
+        "headroom": -0.3886
+      }
+    ]
+  },
+  "contractArchetypes": [
+    {
+      "contractId": "ctr_haul",
+      "name": "Haul",
+      "job": "move N units of a good from system A to B",
+      "rewardFormula": "cargoReferenceValue * jumpDistanceLy * destinationRiskIndex"
+    },
+    {
+      "contractId": "ctr_supply",
+      "name": "Supply",
+      "job": "deliver N manufactured units to a facility",
+      "rewardFormula": "referenceValue * shortfallUrgency"
+    },
+    {
+      "contractId": "ctr_bounty",
+      "name": "Bounty",
+      "job": "destroy N NPC hulls of a tier in a system",
+      "rewardFormula": "squadronReferenceValue * bountyRate"
+    },
+    {
+      "contractId": "ctr_escort",
+      "name": "Escort",
+      "job": "accompany a fleet across a route without it being destroyed",
+      "rewardFormula": "routeDistanceLy * escortedCargoValue"
+    }
+  ]
+}

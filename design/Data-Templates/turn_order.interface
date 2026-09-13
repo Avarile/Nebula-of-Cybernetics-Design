@@ -1,0 +1,71 @@
+# INTERFACE: TurnOrder
+# Source of truth : ../tools/gameplay_tables.py -> ORDER_TYPES, PHASES
+# Spec            : ../GamePlay/turn_specification.md 3
+# Live reference  : runtime state -- no generated instances exist
+#
+# [+] No upstream counterpart. data-template.json has no concept of a turn, an
+# order, or a player, so this schema is new in full.
+#
+# An order is ONE instruction submitted against ONE turn. It names the phase it
+# resolves in, so intake can bucket orders without interpreting their payload.
+# Orders are validated twice -- at intake against the state at submission, and
+# again at execution against the state the phase actually finds. An order failing
+# the second check is dropped whole, never partially applied, and `rejection` says
+# why. Silent failure is not permitted: in a 24-hour turn a player who cannot see
+# why an order did nothing has lost a day with no way to learn from it.
+#
+# STANDING ORDERS -- an order with `standing: true` repeats until cancelled or
+# invalidated. Training queues, facility jobs, multi-system routes, fleet postures
+# and market orders all stand. An absent player keeps producing and keeps training.
+#
+# ORDER TYPES and the phases they may resolve in:
+#
+# <<< generated from tools/generate_progression.py -- do not edit by hand
+#   train.queue          phase 2
+#   mine.assign          phase 3
+#   facility.job         phases 3, 4, 5, 6
+#   fleet.move           phase 7
+#   fleet.posture        phase 8
+#   fleet.target         phase 9
+#   cargo.transfer       phases 7, 12
+#   market.order         phase 11
+#   facility.lease       phase 12
+#   contract.accept      phase 13
+#   contract.post        phase 13
+#   insurance.set        phase 12
+#   union.action         phase 13
+# >>> end generated
+#
+# INVARIANTS (enforced by tools/verify_gameplay.py)
+#   - every orderType names a phase that exists in PHASES
+#   - submissionSequence is unique within a turn and assigned in receipt order
+#   - the resolution rank (phaseOrdinal, submissionSequence, playerId) is a TOTAL
+#     order -- no two orders ever tie
+#   - a rejected order has a non-null rejection and produced no state change
+
+{
+  "orderId": "string, unique within a turn",
+  "turnNumber": "integer -- the turn this order resolves in",
+  "playerId": "string",
+  "orderType": "enum: one of the ORDER_TYPES keys above",
+  "phase": "integer 1-14 -- must be one of the phases the orderType permits",
+  "submissionSequence": "integer -- monotonic, assigned at intake in receipt order; the primary tie-break",
+  "standing": "boolean -- repeat until cancelled or invalidated",
+  "payload": "object -- shape determined by orderType; see GamePlay/turn_specification.md 3",
+  "rejection": "object or null -- { reason: string, phase: integer } when the execution-time check failed"
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# {
+#   "orderId": "ord_00417",
+#   "turnNumber": 47,
+#   "playerId": "ply_0031",
+#   "orderType": "facility.job",
+#   "phase": 4,
+#   "submissionSequence": 1182,
+#   "standing": true,
+#   "payload": { "leaseId": "lse_0099", "operation": "refine",
+#                "input": "res_raw_ferrite", "quantity": 500 },
+#   "rejection": null
+# }

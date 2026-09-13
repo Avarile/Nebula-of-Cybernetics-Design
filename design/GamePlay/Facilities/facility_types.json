@@ -1,0 +1,2144 @@
+{
+  "count": 30,
+  "facilityTypes": [
+    {
+      "archetype": "ferrous_barren",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 120.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 360.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 33.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 14.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 4.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 48.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 15.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.96,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 4.68
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 11.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 20.86
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      }
+    },
+    {
+      "archetype": "ferrous_barren",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 120.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 360.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 33.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 14.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 4.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 48.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 23.25,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.96,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 7.25
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 17.05,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 32.34
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      }
+    },
+    {
+      "archetype": "ferrous_barren",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 120.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 360.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 33.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 14.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 4.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 48.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 36.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.96,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 11.23
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 26.4,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 50.07
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      }
+    },
+    {
+      "archetype": "crystalline",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 36.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 105.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 441.0
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 28.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 22.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 264.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 16.6667,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.96,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 5.2
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 10.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.97
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 3,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      }
+    },
+    {
+      "archetype": "crystalline",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 36.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 105.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 441.0
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 28.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 22.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 264.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 25.8333,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.96,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 8.06
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 15.5,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 29.4
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 3,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      }
+    },
+    {
+      "archetype": "crystalline",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 36.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 105.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 441.0
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 28.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 22.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 264.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 40.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.96,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.48
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 24.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 45.52
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 3,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      }
+    },
+    {
+      "archetype": "gas_giant",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 4.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 12.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 38.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 159.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 125.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 450.0
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 96.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 13.75,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.94,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 3.34
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 15.17
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 5,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      }
+    },
+    {
+      "archetype": "gas_giant",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 4.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 12.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 38.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 159.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 125.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 450.0
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 96.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 21.3125,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.94,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 5.18
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 12.4,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 23.52
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 5,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      }
+    },
+    {
+      "archetype": "gas_giant",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 4.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 12.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 38.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 159.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 125.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 450.0
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 96.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 33.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.94,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 8.02
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 19.2,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 36.42
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 5,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      }
+    },
+    {
+      "archetype": "volcanic",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 68.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 204.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 75.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 92.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 331.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 108.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 16.25,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.95,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 4.51
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 14.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 26.55
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 3,
+          "capacity": 666.6667,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 13.33
+        }
+      }
+    },
+    {
+      "archetype": "volcanic",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 68.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 204.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 75.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 92.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 331.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 108.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 25.1875,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.95,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 6.99
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 21.7,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 41.16
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 3,
+          "capacity": 1033.3333,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 20.67
+        }
+      }
+    },
+    {
+      "archetype": "volcanic",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 68.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 204.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 75.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 92.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 331.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 108.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 4,
+          "throughputPerTurn": 39.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.95,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 10.82
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 33.6,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 63.73
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 3,
+          "capacity": 1600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 32.0
+        }
+      }
+    },
+    {
+      "archetype": "irradiated",
+      "developmentTier": 1,
+      "securityTiers": [
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 54.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 28.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 117.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 22.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 79.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 95.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 1140.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 15.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.92,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 2.61
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 17.07
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 700.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 14.0
+        }
+      }
+    },
+    {
+      "archetype": "irradiated",
+      "developmentTier": 2,
+      "securityTiers": [
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 54.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 28.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 117.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 22.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 79.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 95.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 1140.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 23.25,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.92,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 4.05
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 13.95,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 26.46
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 1085.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 21.7
+        }
+      }
+    },
+    {
+      "archetype": "irradiated",
+      "developmentTier": 3,
+      "securityTiers": [
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 54.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 28.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 117.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 22.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 79.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 95.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 1140.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 36.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.92,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 6.26
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 21.6,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 40.97
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 1680.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 33.6
+        }
+      }
+    },
+    {
+      "archetype": "ice",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 27.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 58.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 243.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 28.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 100.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 42.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 504.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 16.6667,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.95,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 4.62
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 17.07
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 550.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 11.0
+        }
+      }
+    },
+    {
+      "archetype": "ice",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 27.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 58.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 243.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 28.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 100.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 42.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 504.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 25.8333,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.95,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 7.17
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 13.95,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 26.46
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 852.5,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 17.05
+        }
+      }
+    },
+    {
+      "archetype": "ice",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 9.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 27.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 58.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 243.6
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 28.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 100.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 42.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 504.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 3,
+          "throughputPerTurn": 40.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.95,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 11.1
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 21.6,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 40.97
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 1320.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 26.4
+        }
+      }
+    },
+    {
+      "archetype": "oceanic",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 42.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 126.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 32.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 134.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 52.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 187.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 216.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 5,
+          "throughputPerTurn": 14.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.97,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 4.85
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 2,
+          "throughputPerTurn": 11.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 20.86
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 4000.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 87.25
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 650.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 13.0
+        }
+      }
+    },
+    {
+      "archetype": "oceanic",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 42.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 126.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 32.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 134.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 52.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 187.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 216.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 5,
+          "throughputPerTurn": 21.7,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.97,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 7.52
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 2,
+          "throughputPerTurn": 17.05,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 32.34
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 1,
+          "throughputPerTurn": 27.9,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 6200.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 135.23
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 1007.5,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 20.15
+        }
+      }
+    },
+    {
+      "archetype": "oceanic",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 42.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 126.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 32.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 134.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 52.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 187.2
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 216.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 5,
+          "throughputPerTurn": 33.6,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.97,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 11.64
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 2,
+          "throughputPerTurn": 26.4,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 50.07
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 1,
+          "throughputPerTurn": 43.2,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 9600.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 209.39
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 4,
+          "capacity": 1560.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 31.2
+        }
+      }
+    },
+    {
+      "archetype": "shattered",
+      "developmentTier": 1,
+      "securityTiers": [
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 82.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 246.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 64.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 58.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 696.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 2,
+          "throughputPerTurn": 17.5,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.93,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 3.65
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 6.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 11.38
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      }
+    },
+    {
+      "archetype": "shattered",
+      "developmentTier": 2,
+      "securityTiers": [
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 82.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 246.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 64.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 58.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 696.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 2,
+          "throughputPerTurn": 27.125,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.93,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 5.66
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 9.3,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 17.64
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      }
+    },
+    {
+      "archetype": "shattered",
+      "developmentTier": 3,
+      "securityTiers": [
+        "rim",
+        "deadspace"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 82.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 246.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 18.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 64.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 58.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 696.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 2,
+          "throughputPerTurn": 42.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.93,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 8.76
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 1,
+          "throughputPerTurn": 14.4,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 27.31
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      }
+    },
+    {
+      "archetype": "hive_world",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 24.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 28.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 16.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 192.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 6,
+          "throughputPerTurn": 15.8333,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.99,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 6.58
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 8,
+          "throughputPerTurn": 9.375,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 17.78
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 2,
+          "throughputPerTurn": 21.0,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 16000.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 101.79
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 15,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      }
+    },
+    {
+      "archetype": "hive_world",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 24.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 28.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 16.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 192.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 6,
+          "throughputPerTurn": 24.5417,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.99,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 10.2
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 8,
+          "throughputPerTurn": 14.5312,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 27.56
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 2,
+          "throughputPerTurn": 32.55,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 24800.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 157.77
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 15,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      }
+    },
+    {
+      "archetype": "hive_world",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "extraction.structural": {
+          "facilityType": "extraction",
+          "lane": "structural",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 24.0
+        },
+        "extraction.energy": {
+          "facilityType": "extraction",
+          "lane": "energy",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 50.4
+        },
+        "extraction.ordnance": {
+          "facilityType": "extraction",
+          "lane": "ordnance",
+          "slotCount": 1,
+          "throughputPerTurn": 8.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 28.8
+        },
+        "extraction.precision": {
+          "facilityType": "extraction",
+          "lane": "precision",
+          "slotCount": 1,
+          "throughputPerTurn": 16.0,
+          "unit": "raw units/turn at richnessTier 1",
+          "scalesWith": "richnessTier",
+          "rentPerTurn": 192.0
+        },
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 6,
+          "throughputPerTurn": 38.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.99,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 15.79
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 8,
+          "throughputPerTurn": 22.5,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 42.67
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 2,
+          "throughputPerTurn": 50.4,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 38400.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 244.29
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 15,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      }
+    },
+    {
+      "archetype": "forge_world",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid"
+      ],
+      "slots": {
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 9,
+          "throughputPerTurn": 14.4444,
+          "unit": "raw units/turn",
+          "yieldModifier": 1.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 6.5
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 11,
+          "throughputPerTurn": 10.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.97
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 4,
+          "throughputPerTurn": 18.75,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 34000.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 90.88
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 20,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      }
+    },
+    {
+      "archetype": "forge_world",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid"
+      ],
+      "slots": {
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 9,
+          "throughputPerTurn": 22.3889,
+          "unit": "raw units/turn",
+          "yieldModifier": 1.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 10.08
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 11,
+          "throughputPerTurn": 15.5,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 29.4
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 4,
+          "throughputPerTurn": 29.0625,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 52700.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 140.87
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 20,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      }
+    },
+    {
+      "archetype": "forge_world",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid"
+      ],
+      "slots": {
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 9,
+          "throughputPerTurn": 34.6667,
+          "unit": "raw units/turn",
+          "yieldModifier": 1.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 15.6
+        },
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 11,
+          "throughputPerTurn": 24.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 45.52
+        },
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 4,
+          "throughputPerTurn": 45.0,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 81600.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 218.12
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 20,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      }
+    }
+  ]
+}

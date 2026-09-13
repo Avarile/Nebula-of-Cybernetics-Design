@@ -1,0 +1,7367 @@
+{
+  "count": 1031,
+  "items": [
+    {
+      "goodId": "wpn_001",
+      "name": "Kestrel Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 386.08
+    },
+    {
+      "goodId": "wpn_002",
+      "name": "Kestrel Chain Gun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 475.23
+    },
+    {
+      "goodId": "wpn_003",
+      "name": "Ceridan Coilgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 311.38
+    },
+    {
+      "goodId": "wpn_004",
+      "name": "Vanguard Flak Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 493.74
+    },
+    {
+      "goodId": "wpn_005",
+      "name": "Obsidian PD Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 562.98
+    },
+    {
+      "goodId": "wpn_006",
+      "name": "Halcyon Pulse Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 505.47
+    },
+    {
+      "goodId": "wpn_007",
+      "name": "Halcyon PD Laser Turret Mk.1",
+      "kind": "weapon",
+      "referencePrice": 760.87
+    },
+    {
+      "goodId": "wpn_008",
+      "name": "Solari Disruptor Beam Mk.1",
+      "kind": "weapon",
+      "referencePrice": 356.31
+    },
+    {
+      "goodId": "wpn_009",
+      "name": "Kestrel Missile Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 382.79
+    },
+    {
+      "goodId": "wpn_010",
+      "name": "Voss Seeker Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 512.65
+    },
+    {
+      "goodId": "wpn_011",
+      "name": "Halcyon Swarm Missile Pod Mk.1",
+      "kind": "weapon",
+      "referencePrice": 539.15
+    },
+    {
+      "goodId": "wpn_012",
+      "name": "Vanguard Proximity Mine Dispenser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 305.34
+    },
+    {
+      "goodId": "wpn_013",
+      "name": "Voss Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 378.39
+    },
+    {
+      "goodId": "wpn_014",
+      "name": "Halcyon Chain Gun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 607.03
+    },
+    {
+      "goodId": "wpn_015",
+      "name": "Kestrel Coilgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 333.22
+    },
+    {
+      "goodId": "wpn_016",
+      "name": "Ceridan Flak Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 524.11
+    },
+    {
+      "goodId": "wpn_017",
+      "name": "Vanguard PD Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 606.4
+    },
+    {
+      "goodId": "wpn_018",
+      "name": "Vanguard Pulse Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 439.08
+    },
+    {
+      "goodId": "wpn_019",
+      "name": "Meridian PD Laser Turret Mk.2",
+      "kind": "weapon",
+      "referencePrice": 721.87
+    },
+    {
+      "goodId": "wpn_020",
+      "name": "Meridian Disruptor Beam Mk.2",
+      "kind": "weapon",
+      "referencePrice": 423.03
+    },
+    {
+      "goodId": "wpn_021",
+      "name": "Kestrel Missile Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 413.07
+    },
+    {
+      "goodId": "wpn_022",
+      "name": "Ceridan Seeker Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 588.58
+    },
+    {
+      "goodId": "wpn_023",
+      "name": "Meridian Swarm Missile Pod Mk.2",
+      "kind": "weapon",
+      "referencePrice": 515.21
+    },
+    {
+      "goodId": "wpn_024",
+      "name": "Draconis Proximity Mine Dispenser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 313.07
+    },
+    {
+      "goodId": "wpn_025",
+      "name": "Voss Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 402.42
+    },
+    {
+      "goodId": "wpn_026",
+      "name": "Obsidian Chain Gun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 519.75
+    },
+    {
+      "goodId": "wpn_027",
+      "name": "Kestrel Coilgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 357.55
+    },
+    {
+      "goodId": "wpn_028",
+      "name": "Voss Flak Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 522.51
+    },
+    {
+      "goodId": "wpn_029",
+      "name": "Draconis PD Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 580.4
+    },
+    {
+      "goodId": "wpn_030",
+      "name": "Solari Pulse Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 459.57
+    },
+    {
+      "goodId": "wpn_031",
+      "name": "Vanguard PD Laser Turret Mk.3",
+      "kind": "weapon",
+      "referencePrice": 689.73
+    },
+    {
+      "goodId": "wpn_032",
+      "name": "Draconis Disruptor Beam Mk.3",
+      "kind": "weapon",
+      "referencePrice": 385.54
+    },
+    {
+      "goodId": "wpn_033",
+      "name": "Halcyon Missile Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 519.94
+    },
+    {
+      "goodId": "wpn_034",
+      "name": "Halcyon Seeker Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 768.29
+    },
+    {
+      "goodId": "wpn_035",
+      "name": "Obsidian Swarm Missile Pod Mk.3",
+      "kind": "weapon",
+      "referencePrice": 504.68
+    },
+    {
+      "goodId": "wpn_036",
+      "name": "Meridian Proximity Mine Dispenser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 373.56
+    },
+    {
+      "goodId": "wpn_037",
+      "name": "Ashwright Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 481.89
+    },
+    {
+      "goodId": "wpn_038",
+      "name": "Vanguard Chain Gun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 557.5
+    },
+    {
+      "goodId": "wpn_039",
+      "name": "Meridian Coilgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 403.08
+    },
+    {
+      "goodId": "wpn_040",
+      "name": "Draconis Flak Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 544.6
+    },
+    {
+      "goodId": "wpn_041",
+      "name": "Ashwright PD Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 710.55
+    },
+    {
+      "goodId": "wpn_042",
+      "name": "Halcyon Pulse Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 615.02
+    },
+    {
+      "goodId": "wpn_043",
+      "name": "Solari PD Laser Turret Mk.4",
+      "kind": "weapon",
+      "referencePrice": 723.92
+    },
+    {
+      "goodId": "wpn_044",
+      "name": "Ceridan Disruptor Beam Mk.4",
+      "kind": "weapon",
+      "referencePrice": 437.34
+    },
+    {
+      "goodId": "wpn_045",
+      "name": "Draconis Missile Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 427.83
+    },
+    {
+      "goodId": "wpn_046",
+      "name": "Vanguard Seeker Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 667.18
+    },
+    {
+      "goodId": "wpn_047",
+      "name": "Meridian Swarm Missile Pod Mk.4",
+      "kind": "weapon",
+      "referencePrice": 584.08
+    },
+    {
+      "goodId": "wpn_048",
+      "name": "Draconis Proximity Mine Dispenser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 358.39
+    },
+    {
+      "goodId": "wpn_049",
+      "name": "Ceridan Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 496.11
+    },
+    {
+      "goodId": "wpn_050",
+      "name": "Meridian Chain Gun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 655.41
+    },
+    {
+      "goodId": "wpn_051",
+      "name": "Obsidian Coilgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 427.33
+    },
+    {
+      "goodId": "wpn_052",
+      "name": "Solari Flak Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 624.47
+    },
+    {
+      "goodId": "wpn_053",
+      "name": "Obsidian PD Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 721.82
+    },
+    {
+      "goodId": "wpn_054",
+      "name": "Obsidian Pulse Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 535.24
+    },
+    {
+      "goodId": "wpn_055",
+      "name": "Draconis PD Laser Turret Mk.5",
+      "kind": "weapon",
+      "referencePrice": 686.5
+    },
+    {
+      "goodId": "wpn_056",
+      "name": "Draconis Disruptor Beam Mk.5",
+      "kind": "weapon",
+      "referencePrice": 440.6
+    },
+    {
+      "goodId": "wpn_057",
+      "name": "Draconis Missile Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 460.64
+    },
+    {
+      "goodId": "wpn_058",
+      "name": "Halcyon Seeker Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 867.31
+    },
+    {
+      "goodId": "wpn_059",
+      "name": "Kestrel Swarm Missile Pod Mk.5",
+      "kind": "weapon",
+      "referencePrice": 580.05
+    },
+    {
+      "goodId": "wpn_060",
+      "name": "Ceridan Proximity Mine Dispenser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 398.19
+    },
+    {
+      "goodId": "wpn_061",
+      "name": "Ashwright Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 461.89
+    },
+    {
+      "goodId": "wpn_062",
+      "name": "Halcyon Coilgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 430.72
+    },
+    {
+      "goodId": "wpn_063",
+      "name": "Halcyon Railgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 371.3
+    },
+    {
+      "goodId": "wpn_064",
+      "name": "Voss Mass Driver Mk.1",
+      "kind": "weapon",
+      "referencePrice": 337.08
+    },
+    {
+      "goodId": "wpn_065",
+      "name": "Vanguard Pulse Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 464.99
+    },
+    {
+      "goodId": "wpn_066",
+      "name": "Kestrel Beam Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 390.39
+    },
+    {
+      "goodId": "wpn_067",
+      "name": "Ashwright Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 388.58
+    },
+    {
+      "goodId": "wpn_068",
+      "name": "Obsidian Proton Blaster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 412.29
+    },
+    {
+      "goodId": "wpn_069",
+      "name": "Obsidian Disruptor Beam Mk.1",
+      "kind": "weapon",
+      "referencePrice": 452.21
+    },
+    {
+      "goodId": "wpn_070",
+      "name": "Obsidian Missile Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 455.59
+    },
+    {
+      "goodId": "wpn_071",
+      "name": "Ceridan Swarm Missile Pod Mk.1",
+      "kind": "weapon",
+      "referencePrice": 503.58
+    },
+    {
+      "goodId": "wpn_072",
+      "name": "Halcyon Torpedo Launcher Mk.1",
+      "kind": "weapon",
+      "referencePrice": 397.76
+    },
+    {
+      "goodId": "wpn_073",
+      "name": "Meridian Mine Layer Mk.1",
+      "kind": "weapon",
+      "referencePrice": 355.71
+    },
+    {
+      "goodId": "wpn_074",
+      "name": "Ashwright Proximity Mine Dispenser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 409.58
+    },
+    {
+      "goodId": "wpn_075",
+      "name": "Kestrel Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 478.74
+    },
+    {
+      "goodId": "wpn_076",
+      "name": "Voss Coilgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 393.91
+    },
+    {
+      "goodId": "wpn_077",
+      "name": "Ashwright Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 398.6
+    },
+    {
+      "goodId": "wpn_078",
+      "name": "Voss Mass Driver Mk.2",
+      "kind": "weapon",
+      "referencePrice": 362.02
+    },
+    {
+      "goodId": "wpn_079",
+      "name": "Solari Pulse Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 478.0
+    },
+    {
+      "goodId": "wpn_080",
+      "name": "Solari Beam Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 382.44
+    },
+    {
+      "goodId": "wpn_081",
+      "name": "Ashwright Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 409.41
+    },
+    {
+      "goodId": "wpn_082",
+      "name": "Halcyon Proton Blaster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 493.29
+    },
+    {
+      "goodId": "wpn_083",
+      "name": "Kestrel Disruptor Beam Mk.2",
+      "kind": "weapon",
+      "referencePrice": 461.55
+    },
+    {
+      "goodId": "wpn_084",
+      "name": "Draconis Missile Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 458.43
+    },
+    {
+      "goodId": "wpn_085",
+      "name": "Ceridan Swarm Missile Pod Mk.2",
+      "kind": "weapon",
+      "referencePrice": 537.92
+    },
+    {
+      "goodId": "wpn_086",
+      "name": "Halcyon Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 424.81
+    },
+    {
+      "goodId": "wpn_087",
+      "name": "Meridian Mine Layer Mk.2",
+      "kind": "weapon",
+      "referencePrice": 379.92
+    },
+    {
+      "goodId": "wpn_088",
+      "name": "Obsidian Proximity Mine Dispenser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 428.29
+    },
+    {
+      "goodId": "wpn_089",
+      "name": "Meridian Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 540.81
+    },
+    {
+      "goodId": "wpn_090",
+      "name": "Ceridan Coilgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 430.26
+    },
+    {
+      "goodId": "wpn_091",
+      "name": "Ashwright Railgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 421.29
+    },
+    {
+      "goodId": "wpn_092",
+      "name": "Vanguard Mass Driver Mk.3",
+      "kind": "weapon",
+      "referencePrice": 369.75
+    },
+    {
+      "goodId": "wpn_093",
+      "name": "Vanguard Pulse Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 529.29
+    },
+    {
+      "goodId": "wpn_094",
+      "name": "Solari Beam Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 408.01
+    },
+    {
+      "goodId": "wpn_095",
+      "name": "Halcyon Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 437.37
+    },
+    {
+      "goodId": "wpn_096",
+      "name": "Voss Proton Blaster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 424.51
+    },
+    {
+      "goodId": "wpn_097",
+      "name": "Vanguard Disruptor Beam Mk.3",
+      "kind": "weapon",
+      "referencePrice": 478.43
+    },
+    {
+      "goodId": "wpn_098",
+      "name": "Ceridan Missile Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 508.75
+    },
+    {
+      "goodId": "wpn_099",
+      "name": "Ashwright Swarm Missile Pod Mk.3",
+      "kind": "weapon",
+      "referencePrice": 594.54
+    },
+    {
+      "goodId": "wpn_100",
+      "name": "Meridian Torpedo Launcher Mk.3",
+      "kind": "weapon",
+      "referencePrice": 432.44
+    },
+    {
+      "goodId": "wpn_101",
+      "name": "Kestrel Mine Layer Mk.3",
+      "kind": "weapon",
+      "referencePrice": 388.88
+    },
+    {
+      "goodId": "wpn_102",
+      "name": "Halcyon Proximity Mine Dispenser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 481.87
+    },
+    {
+      "goodId": "wpn_103",
+      "name": "Solari Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 512.28
+    },
+    {
+      "goodId": "wpn_104",
+      "name": "Voss Coilgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 446.12
+    },
+    {
+      "goodId": "wpn_105",
+      "name": "Solari Railgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 379.32
+    },
+    {
+      "goodId": "wpn_106",
+      "name": "Meridian Mass Driver Mk.4",
+      "kind": "weapon",
+      "referencePrice": 385.95
+    },
+    {
+      "goodId": "wpn_107",
+      "name": "Draconis Pulse Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 529.61
+    },
+    {
+      "goodId": "wpn_108",
+      "name": "Vanguard Beam Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 462.32
+    },
+    {
+      "goodId": "wpn_109",
+      "name": "Vanguard Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 417.38
+    },
+    {
+      "goodId": "wpn_110",
+      "name": "Meridian Proton Blaster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 511.71
+    },
+    {
+      "goodId": "wpn_111",
+      "name": "Obsidian Disruptor Beam Mk.4",
+      "kind": "weapon",
+      "referencePrice": 537.37
+    },
+    {
+      "goodId": "wpn_112",
+      "name": "Ashwright Missile Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 566.98
+    },
+    {
+      "goodId": "wpn_113",
+      "name": "Vanguard Swarm Missile Pod Mk.4",
+      "kind": "weapon",
+      "referencePrice": 613.52
+    },
+    {
+      "goodId": "wpn_114",
+      "name": "Vanguard Torpedo Launcher Mk.4",
+      "kind": "weapon",
+      "referencePrice": 469.68
+    },
+    {
+      "goodId": "wpn_115",
+      "name": "Ashwright Mine Layer Mk.4",
+      "kind": "weapon",
+      "referencePrice": 467.2
+    },
+    {
+      "goodId": "wpn_116",
+      "name": "Ashwright Proximity Mine Dispenser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 493.51
+    },
+    {
+      "goodId": "wpn_117",
+      "name": "Vanguard Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 570.68
+    },
+    {
+      "goodId": "wpn_118",
+      "name": "Obsidian Medium Coilgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 511.81
+    },
+    {
+      "goodId": "wpn_119",
+      "name": "Voss Railgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 440.69
+    },
+    {
+      "goodId": "wpn_120",
+      "name": "Solari Mass Driver Mk.5",
+      "kind": "weapon",
+      "referencePrice": 372.92
+    },
+    {
+      "goodId": "wpn_121",
+      "name": "Solari Railgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 428.27
+    },
+    {
+      "goodId": "wpn_122",
+      "name": "Ceridan Mass Driver Mk.1",
+      "kind": "weapon",
+      "referencePrice": 490.63
+    },
+    {
+      "goodId": "wpn_123",
+      "name": "Ashwright Gauss Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 535.43
+    },
+    {
+      "goodId": "wpn_124",
+      "name": "Obsidian Beam Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 525.86
+    },
+    {
+      "goodId": "wpn_125",
+      "name": "Vanguard Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 475.55
+    },
+    {
+      "goodId": "wpn_126",
+      "name": "Draconis Plasma Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 496.84
+    },
+    {
+      "goodId": "wpn_127",
+      "name": "Ashwright Proton Blaster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 544.39
+    },
+    {
+      "goodId": "wpn_128",
+      "name": "Vanguard Torpedo Launcher Mk.1",
+      "kind": "weapon",
+      "referencePrice": 580.7
+    },
+    {
+      "goodId": "wpn_129",
+      "name": "Halcyon Cruise Missile Bay Mk.1",
+      "kind": "weapon",
+      "referencePrice": 628.16
+    },
+    {
+      "goodId": "wpn_130",
+      "name": "Kestrel Mine Layer Mk.1",
+      "kind": "weapon",
+      "referencePrice": 496.24
+    },
+    {
+      "goodId": "wpn_131",
+      "name": "Kestrel Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 499.81
+    },
+    {
+      "goodId": "wpn_132",
+      "name": "Ashwright Mass Driver Mk.2",
+      "kind": "weapon",
+      "referencePrice": 595.01
+    },
+    {
+      "goodId": "wpn_133",
+      "name": "Kestrel Gauss Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 503.68
+    },
+    {
+      "goodId": "wpn_134",
+      "name": "Meridian Beam Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 568.17
+    },
+    {
+      "goodId": "wpn_135",
+      "name": "Voss Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 509.84
+    },
+    {
+      "goodId": "wpn_136",
+      "name": "Obsidian Plasma Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 538.82
+    },
+    {
+      "goodId": "wpn_137",
+      "name": "Solari Proton Blaster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 495.54
+    },
+    {
+      "goodId": "wpn_138",
+      "name": "Obsidian Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 660.48
+    },
+    {
+      "goodId": "wpn_139",
+      "name": "Meridian Cruise Missile Bay Mk.2",
+      "kind": "weapon",
+      "referencePrice": 660.73
+    },
+    {
+      "goodId": "wpn_140",
+      "name": "Vanguard Mine Layer Mk.2",
+      "kind": "weapon",
+      "referencePrice": 557.53
+    },
+    {
+      "goodId": "wpn_141",
+      "name": "Halcyon Railgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 571.05
+    },
+    {
+      "goodId": "wpn_142",
+      "name": "Ashwright Mass Driver Mk.3",
+      "kind": "weapon",
+      "referencePrice": 627.19
+    },
+    {
+      "goodId": "wpn_143",
+      "name": "Meridian Gauss Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 548.13
+    },
+    {
+      "goodId": "wpn_144",
+      "name": "Meridian Beam Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 602.41
+    },
+    {
+      "goodId": "wpn_145",
+      "name": "Halcyon Heavy Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 574.16
+    },
+    {
+      "goodId": "wpn_146",
+      "name": "Ceridan Plasma Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 518.37
+    },
+    {
+      "goodId": "wpn_147",
+      "name": "Ceridan Proton Blaster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 573.51
+    },
+    {
+      "goodId": "wpn_148",
+      "name": "Vanguard Torpedo Launcher Mk.3",
+      "kind": "weapon",
+      "referencePrice": 671.1
+    },
+    {
+      "goodId": "wpn_149",
+      "name": "Obsidian Cruise Missile Bay Mk.3",
+      "kind": "weapon",
+      "referencePrice": 786.72
+    },
+    {
+      "goodId": "wpn_150",
+      "name": "Obsidian Mine Layer Mk.3",
+      "kind": "weapon",
+      "referencePrice": 628.53
+    },
+    {
+      "goodId": "wpn_151",
+      "name": "Voss Railgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 584.34
+    },
+    {
+      "goodId": "wpn_152",
+      "name": "Vanguard Mass Driver Mk.4",
+      "kind": "weapon",
+      "referencePrice": 601.94
+    },
+    {
+      "goodId": "wpn_153",
+      "name": "Meridian Gauss Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 582.02
+    },
+    {
+      "goodId": "wpn_154",
+      "name": "Solari Beam Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 552.66
+    },
+    {
+      "goodId": "wpn_155",
+      "name": "Ceridan Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 562.86
+    },
+    {
+      "goodId": "wpn_156",
+      "name": "Kestrel Plasma Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 552.49
+    },
+    {
+      "goodId": "wpn_157",
+      "name": "Ceridan Proton Blaster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 606.25
+    },
+    {
+      "goodId": "wpn_158",
+      "name": "Draconis Torpedo Launcher Mk.4",
+      "kind": "weapon",
+      "referencePrice": 806.97
+    },
+    {
+      "goodId": "wpn_159",
+      "name": "Voss Cruise Missile Bay Mk.4",
+      "kind": "weapon",
+      "referencePrice": 815.0
+    },
+    {
+      "goodId": "wpn_160",
+      "name": "Halcyon Mine Layer Mk.4",
+      "kind": "weapon",
+      "referencePrice": 657.06
+    },
+    {
+      "goodId": "wpn_161",
+      "name": "Obsidian Railgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 646.65
+    },
+    {
+      "goodId": "wpn_162",
+      "name": "Solari Heavy Mass Driver Mk.5",
+      "kind": "weapon",
+      "referencePrice": 555.33
+    },
+    {
+      "goodId": "wpn_163",
+      "name": "Solari Gauss Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 545.46
+    },
+    {
+      "goodId": "wpn_164",
+      "name": "Vanguard Beam Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 645.77
+    },
+    {
+      "goodId": "wpn_165",
+      "name": "Obsidian Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 626.45
+    },
+    {
+      "goodId": "wpn_166",
+      "name": "Solari Plasma Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 502.4
+    },
+    {
+      "goodId": "wpn_167",
+      "name": "Halcyon Proton Blaster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 726.8
+    },
+    {
+      "goodId": "wpn_168",
+      "name": "Vanguard Torpedo Launcher Mk.5",
+      "kind": "weapon",
+      "referencePrice": 776.02
+    },
+    {
+      "goodId": "wpn_169",
+      "name": "Meridian Cruise Missile Bay Mk.5",
+      "kind": "weapon",
+      "referencePrice": 816.73
+    },
+    {
+      "goodId": "wpn_170",
+      "name": "Ashwright Mine Layer Mk.5",
+      "kind": "weapon",
+      "referencePrice": 738.74
+    },
+    {
+      "goodId": "wpn_171",
+      "name": "Halcyon Gauss Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 755.16
+    },
+    {
+      "goodId": "wpn_172",
+      "name": "Draconis Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 739.35
+    },
+    {
+      "goodId": "wpn_173",
+      "name": "Ceridan Plasma Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 705.67
+    },
+    {
+      "goodId": "wpn_174",
+      "name": "Voss Particle Lance Mk.1",
+      "kind": "weapon",
+      "referencePrice": 780.29
+    },
+    {
+      "goodId": "wpn_175",
+      "name": "Voss Cruise Missile Bay Mk.1",
+      "kind": "weapon",
+      "referencePrice": 1082.04
+    },
+    {
+      "goodId": "wpn_176",
+      "name": "Kestrel Siege Gauss Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 770.88
+    },
+    {
+      "goodId": "wpn_177",
+      "name": "Meridian Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 743.57
+    },
+    {
+      "goodId": "wpn_178",
+      "name": "Vanguard Plasma Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 737.23
+    },
+    {
+      "goodId": "wpn_179",
+      "name": "Meridian Particle Lance Mk.2",
+      "kind": "weapon",
+      "referencePrice": 765.06
+    },
+    {
+      "goodId": "wpn_180",
+      "name": "Kestrel Cruise Missile Bay Mk.2",
+      "kind": "weapon",
+      "referencePrice": 1011.62
+    },
+    {
+      "goodId": "wpn_181",
+      "name": "Voss Gauss Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 870.16
+    },
+    {
+      "goodId": "wpn_182",
+      "name": "Halcyon Siege Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 813.33
+    },
+    {
+      "goodId": "wpn_183",
+      "name": "Voss Plasma Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 807.22
+    },
+    {
+      "goodId": "wpn_184",
+      "name": "Voss Particle Lance Mk.3",
+      "kind": "weapon",
+      "referencePrice": 867.5
+    },
+    {
+      "goodId": "wpn_185",
+      "name": "Halcyon Cruise Missile Bay Mk.3",
+      "kind": "weapon",
+      "referencePrice": 1158.81
+    },
+    {
+      "goodId": "wpn_186",
+      "name": "Draconis Gauss Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 990.59
+    },
+    {
+      "goodId": "wpn_187",
+      "name": "Vanguard Siege Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 813.96
+    },
+    {
+      "goodId": "wpn_188",
+      "name": "Ashwright Plasma Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 910.43
+    },
+    {
+      "goodId": "wpn_189",
+      "name": "Obsidian Particle Lance Mk.4",
+      "kind": "weapon",
+      "referencePrice": 945.9
+    },
+    {
+      "goodId": "wpn_190",
+      "name": "Obsidian Cruise Missile Bay Mk.4",
+      "kind": "weapon",
+      "referencePrice": 1335.46
+    },
+    {
+      "goodId": "wpn_191",
+      "name": "Solari Siege Gauss Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 823.8
+    },
+    {
+      "goodId": "wpn_192",
+      "name": "Kestrel Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 874.34
+    },
+    {
+      "goodId": "wpn_193",
+      "name": "Kestrel Plasma Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 877.97
+    },
+    {
+      "goodId": "wpn_194",
+      "name": "Vanguard Particle Lance Mk.5",
+      "kind": "weapon",
+      "referencePrice": 918.44
+    },
+    {
+      "goodId": "wpn_195",
+      "name": "Draconis Cruise Missile Bay Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1645.06
+    },
+    {
+      "goodId": "wpn_196",
+      "name": "Voss Gauss Cannon Mk.6",
+      "kind": "weapon",
+      "referencePrice": 1053.91
+    },
+    {
+      "goodId": "wpn_197",
+      "name": "Draconis Ion Cannon Mk.6",
+      "kind": "weapon",
+      "referencePrice": 969.41
+    },
+    {
+      "goodId": "wpn_198",
+      "name": "Obsidian Plasma Cannon Mk.6",
+      "kind": "weapon",
+      "referencePrice": 957.76
+    },
+    {
+      "goodId": "wpn_199",
+      "name": "Voss Particle Lance Mk.6",
+      "kind": "weapon",
+      "referencePrice": 1017.67
+    },
+    {
+      "goodId": "wpn_200",
+      "name": "Vanguard Cruise Missile Bay Mk.6",
+      "kind": "weapon",
+      "referencePrice": 1513.53
+    },
+    {
+      "goodId": "wpn_201",
+      "name": "Meridian Arc Projector Mk.1",
+      "kind": "weapon",
+      "referencePrice": 453.12
+    },
+    {
+      "goodId": "wpn_202",
+      "name": "Meridian Arc Projector Mk.2",
+      "kind": "weapon",
+      "referencePrice": 482.88
+    },
+    {
+      "goodId": "wpn_203",
+      "name": "Meridian Arc Projector Mk.3",
+      "kind": "weapon",
+      "referencePrice": 512.66
+    },
+    {
+      "goodId": "wpn_204",
+      "name": "Meridian Arc Projector Mk.4",
+      "kind": "weapon",
+      "referencePrice": 542.73
+    },
+    {
+      "goodId": "wpn_205",
+      "name": "Meridian Arc Projector Mk.5",
+      "kind": "weapon",
+      "referencePrice": 579.93
+    },
+    {
+      "goodId": "wpn_206",
+      "name": "Obsidian Arc Projector Mk.1",
+      "kind": "weapon",
+      "referencePrice": 431.99
+    },
+    {
+      "goodId": "wpn_207",
+      "name": "Obsidian Arc Projector Mk.2",
+      "kind": "weapon",
+      "referencePrice": 455.19
+    },
+    {
+      "goodId": "wpn_208",
+      "name": "Obsidian Arc Projector Mk.3",
+      "kind": "weapon",
+      "referencePrice": 484.67
+    },
+    {
+      "goodId": "wpn_209",
+      "name": "Obsidian Arc Projector Mk.4",
+      "kind": "weapon",
+      "referencePrice": 514.73
+    },
+    {
+      "goodId": "wpn_210",
+      "name": "Obsidian Arc Projector Mk.5",
+      "kind": "weapon",
+      "referencePrice": 544.81
+    },
+    {
+      "goodId": "wpn_211",
+      "name": "Meridian Medium Arc Projector Mk.1",
+      "kind": "weapon",
+      "referencePrice": 511.51
+    },
+    {
+      "goodId": "wpn_212",
+      "name": "Meridian Medium Arc Projector Mk.2",
+      "kind": "weapon",
+      "referencePrice": 543.96
+    },
+    {
+      "goodId": "wpn_213",
+      "name": "Meridian Medium Arc Projector Mk.3",
+      "kind": "weapon",
+      "referencePrice": 576.7
+    },
+    {
+      "goodId": "wpn_214",
+      "name": "Meridian Medium Arc Projector Mk.4",
+      "kind": "weapon",
+      "referencePrice": 610.05
+    },
+    {
+      "goodId": "wpn_215",
+      "name": "Meridian Medium Arc Projector Mk.5",
+      "kind": "weapon",
+      "referencePrice": 650.55
+    },
+    {
+      "goodId": "wpn_216",
+      "name": "Obsidian Medium Arc Projector Mk.1",
+      "kind": "weapon",
+      "referencePrice": 489.47
+    },
+    {
+      "goodId": "wpn_217",
+      "name": "Obsidian Medium Arc Projector Mk.2",
+      "kind": "weapon",
+      "referencePrice": 515.07
+    },
+    {
+      "goodId": "wpn_218",
+      "name": "Obsidian Medium Arc Projector Mk.3",
+      "kind": "weapon",
+      "referencePrice": 547.82
+    },
+    {
+      "goodId": "wpn_219",
+      "name": "Obsidian Medium Arc Projector Mk.4",
+      "kind": "weapon",
+      "referencePrice": 580.87
+    },
+    {
+      "goodId": "wpn_220",
+      "name": "Obsidian Medium Arc Projector Mk.5",
+      "kind": "weapon",
+      "referencePrice": 614.22
+    },
+    {
+      "goodId": "wpn_221",
+      "name": "Halcyon Beam Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 441.83
+    },
+    {
+      "goodId": "wpn_222",
+      "name": "Halcyon Beam Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 468.91
+    },
+    {
+      "goodId": "wpn_223",
+      "name": "Halcyon Beam Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 502.26
+    },
+    {
+      "goodId": "wpn_224",
+      "name": "Halcyon Beam Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 530.23
+    },
+    {
+      "goodId": "wpn_225",
+      "name": "Halcyon Beam Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 565.08
+    },
+    {
+      "goodId": "wpn_226",
+      "name": "Voss Beam Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 368.29
+    },
+    {
+      "goodId": "wpn_227",
+      "name": "Voss Beam Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 395.39
+    },
+    {
+      "goodId": "wpn_228",
+      "name": "Voss Beam Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 416.52
+    },
+    {
+      "goodId": "wpn_229",
+      "name": "Voss Beam Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 444.79
+    },
+    {
+      "goodId": "wpn_230",
+      "name": "Voss Beam Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 473.37
+    },
+    {
+      "goodId": "wpn_231",
+      "name": "Halcyon Heavy Beam Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 569.41
+    },
+    {
+      "goodId": "wpn_232",
+      "name": "Halcyon Heavy Beam Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 601.85
+    },
+    {
+      "goodId": "wpn_233",
+      "name": "Halcyon Heavy Beam Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 642.94
+    },
+    {
+      "goodId": "wpn_234",
+      "name": "Halcyon Heavy Beam Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 677.17
+    },
+    {
+      "goodId": "wpn_235",
+      "name": "Halcyon Heavy Beam Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 719.43
+    },
+    {
+      "goodId": "wpn_236",
+      "name": "Voss Heavy Beam Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 503.9
+    },
+    {
+      "goodId": "wpn_237",
+      "name": "Voss Heavy Beam Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 537.84
+    },
+    {
+      "goodId": "wpn_238",
+      "name": "Voss Heavy Beam Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 566.11
+    },
+    {
+      "goodId": "wpn_239",
+      "name": "Voss Heavy Beam Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 602.12
+    },
+    {
+      "goodId": "wpn_240",
+      "name": "Voss Heavy Beam Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 639.9
+    },
+    {
+      "goodId": "wpn_241",
+      "name": "Ashwright Disruptor Beam Mk.1",
+      "kind": "weapon",
+      "referencePrice": 398.05
+    },
+    {
+      "goodId": "wpn_242",
+      "name": "Ashwright Disruptor Beam Mk.2",
+      "kind": "weapon",
+      "referencePrice": 420.98
+    },
+    {
+      "goodId": "wpn_243",
+      "name": "Ashwright Disruptor Beam Mk.3",
+      "kind": "weapon",
+      "referencePrice": 437.97
+    },
+    {
+      "goodId": "wpn_244",
+      "name": "Ashwright Disruptor Beam Mk.4",
+      "kind": "weapon",
+      "referencePrice": 475.77
+    },
+    {
+      "goodId": "wpn_245",
+      "name": "Ashwright Disruptor Beam Mk.5",
+      "kind": "weapon",
+      "referencePrice": 499.57
+    },
+    {
+      "goodId": "wpn_246",
+      "name": "Obsidian Light Disruptor Beam Mk.1",
+      "kind": "weapon",
+      "referencePrice": 392.68
+    },
+    {
+      "goodId": "wpn_247",
+      "name": "Obsidian Disruptor Beam Mk.2",
+      "kind": "weapon",
+      "referencePrice": 415.59
+    },
+    {
+      "goodId": "wpn_248",
+      "name": "Obsidian Disruptor Beam Mk.3",
+      "kind": "weapon",
+      "referencePrice": 438.52
+    },
+    {
+      "goodId": "wpn_249",
+      "name": "Obsidian Light Disruptor Beam Mk.4",
+      "kind": "weapon",
+      "referencePrice": 468.88
+    },
+    {
+      "goodId": "wpn_250",
+      "name": "Obsidian Disruptor Beam Mk.5",
+      "kind": "weapon",
+      "referencePrice": 492.38
+    },
+    {
+      "goodId": "wpn_251",
+      "name": "Ashwright Medium Disruptor Beam Mk.1",
+      "kind": "weapon",
+      "referencePrice": 463.59
+    },
+    {
+      "goodId": "wpn_252",
+      "name": "Ashwright Medium Disruptor Beam Mk.2",
+      "kind": "weapon",
+      "referencePrice": 490.1
+    },
+    {
+      "goodId": "wpn_253",
+      "name": "Ashwright Medium Disruptor Beam Mk.3",
+      "kind": "weapon",
+      "referencePrice": 510.35
+    },
+    {
+      "goodId": "wpn_254",
+      "name": "Ashwright Medium Disruptor Beam Mk.4",
+      "kind": "weapon",
+      "referencePrice": 551.74
+    },
+    {
+      "goodId": "wpn_255",
+      "name": "Ashwright Medium Disruptor Beam Mk.5",
+      "kind": "weapon",
+      "referencePrice": 580.02
+    },
+    {
+      "goodId": "wpn_256",
+      "name": "Obsidian Medium Disruptor Beam Mk.2",
+      "kind": "weapon",
+      "referencePrice": 477.52
+    },
+    {
+      "goodId": "wpn_257",
+      "name": "Obsidian Medium Disruptor Beam Mk.3",
+      "kind": "weapon",
+      "referencePrice": 503.72
+    },
+    {
+      "goodId": "wpn_258",
+      "name": "Obsidian Medium Disruptor Beam Mk.5",
+      "kind": "weapon",
+      "referencePrice": 564.47
+    },
+    {
+      "goodId": "wpn_259",
+      "name": "Ashwright Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 436.81
+    },
+    {
+      "goodId": "wpn_260",
+      "name": "Ashwright Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 458.24
+    },
+    {
+      "goodId": "wpn_261",
+      "name": "Ashwright Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 487.41
+    },
+    {
+      "goodId": "wpn_262",
+      "name": "Draconis Medium Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 352.19
+    },
+    {
+      "goodId": "wpn_263",
+      "name": "Draconis Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 373.32
+    },
+    {
+      "goodId": "wpn_264",
+      "name": "Draconis Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 394.45
+    },
+    {
+      "goodId": "wpn_265",
+      "name": "Draconis Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 416.18
+    },
+    {
+      "goodId": "wpn_266",
+      "name": "Draconis Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 445.35
+    },
+    {
+      "goodId": "wpn_267",
+      "name": "Solari Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 321.7
+    },
+    {
+      "goodId": "wpn_268",
+      "name": "Solari Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 339.26
+    },
+    {
+      "goodId": "wpn_269",
+      "name": "Solari Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 363.97
+    },
+    {
+      "goodId": "wpn_270",
+      "name": "Solari Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 382.7
+    },
+    {
+      "goodId": "wpn_271",
+      "name": "Solari Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 408.6
+    },
+    {
+      "goodId": "wpn_272",
+      "name": "Ashwright Heavy Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 524.52
+    },
+    {
+      "goodId": "wpn_273",
+      "name": "Ashwright Heavy Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 551.61
+    },
+    {
+      "goodId": "wpn_274",
+      "name": "Ashwright Heavy Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 586.45
+    },
+    {
+      "goodId": "wpn_275",
+      "name": "Ashwright Heavy Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 615.61
+    },
+    {
+      "goodId": "wpn_276",
+      "name": "Ashwright Heavy Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 652.82
+    },
+    {
+      "goodId": "wpn_277",
+      "name": "Draconis Heavy Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 492.82
+    },
+    {
+      "goodId": "wpn_278",
+      "name": "Draconis Heavy Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 520.49
+    },
+    {
+      "goodId": "wpn_279",
+      "name": "Draconis Heavy Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 549.65
+    },
+    {
+      "goodId": "wpn_280",
+      "name": "Draconis Heavy Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 579.69
+    },
+    {
+      "goodId": "wpn_281",
+      "name": "Draconis Heavy Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 618.07
+    },
+    {
+      "goodId": "wpn_282",
+      "name": "Solari Heavy Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 424.42
+    },
+    {
+      "goodId": "wpn_283",
+      "name": "Solari Heavy Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 446.15
+    },
+    {
+      "goodId": "wpn_284",
+      "name": "Solari Heavy Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 475.6
+    },
+    {
+      "goodId": "wpn_285",
+      "name": "Solari Heavy Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 499.67
+    },
+    {
+      "goodId": "wpn_286",
+      "name": "Solari Heavy Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 530.31
+    },
+    {
+      "goodId": "wpn_287",
+      "name": "Ashwright Siege Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 762.84
+    },
+    {
+      "goodId": "wpn_288",
+      "name": "Ashwright Siege Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 801.53
+    },
+    {
+      "goodId": "wpn_289",
+      "name": "Ashwright Siege Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 848.57
+    },
+    {
+      "goodId": "wpn_290",
+      "name": "Ashwright Siege Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 891.41
+    },
+    {
+      "goodId": "wpn_291",
+      "name": "Ashwright Siege Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 942.59
+    },
+    {
+      "goodId": "wpn_292",
+      "name": "Draconis Siege Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 779.49
+    },
+    {
+      "goodId": "wpn_293",
+      "name": "Draconis Siege Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 821.7
+    },
+    {
+      "goodId": "wpn_294",
+      "name": "Draconis Siege Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 865.99
+    },
+    {
+      "goodId": "wpn_295",
+      "name": "Draconis Siege Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 920.09
+    },
+    {
+      "goodId": "wpn_296",
+      "name": "Solari Siege Ion Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 606.49
+    },
+    {
+      "goodId": "wpn_297",
+      "name": "Solari Siege Ion Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 635.32
+    },
+    {
+      "goodId": "wpn_298",
+      "name": "Solari Siege Ion Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 672.78
+    },
+    {
+      "goodId": "wpn_299",
+      "name": "Solari Siege Ion Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 705.16
+    },
+    {
+      "goodId": "wpn_300",
+      "name": "Solari Siege Ion Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 745.26
+    },
+    {
+      "goodId": "wpn_301",
+      "name": "Halcyon PD Laser Turret Mk.2",
+      "kind": "weapon",
+      "referencePrice": 810.59
+    },
+    {
+      "goodId": "wpn_302",
+      "name": "Halcyon PD Laser Turret Mk.3",
+      "kind": "weapon",
+      "referencePrice": 867.73
+    },
+    {
+      "goodId": "wpn_303",
+      "name": "Halcyon PD Laser Turret Mk.4",
+      "kind": "weapon",
+      "referencePrice": 923.99
+    },
+    {
+      "goodId": "wpn_304",
+      "name": "Halcyon PD Laser Turret Mk.5",
+      "kind": "weapon",
+      "referencePrice": 981.15
+    },
+    {
+      "goodId": "wpn_305",
+      "name": "Meridian PD Laser Turret Mk.1",
+      "kind": "weapon",
+      "referencePrice": 678.72
+    },
+    {
+      "goodId": "wpn_306",
+      "name": "Meridian PD Laser Turret Mk.3",
+      "kind": "weapon",
+      "referencePrice": 771.88
+    },
+    {
+      "goodId": "wpn_307",
+      "name": "Meridian PD Laser Turret Mk.4",
+      "kind": "weapon",
+      "referencePrice": 821.3
+    },
+    {
+      "goodId": "wpn_308",
+      "name": "Meridian PD Laser Turret Mk.5",
+      "kind": "weapon",
+      "referencePrice": 871.62
+    },
+    {
+      "goodId": "wpn_309",
+      "name": "Solari PD Laser Turret Mk.1",
+      "kind": "weapon",
+      "referencePrice": 596.83
+    },
+    {
+      "goodId": "wpn_310",
+      "name": "Solari PD Laser Turret Mk.2",
+      "kind": "weapon",
+      "referencePrice": 639.07
+    },
+    {
+      "goodId": "wpn_311",
+      "name": "Solari PD Laser Turret Mk.3",
+      "kind": "weapon",
+      "referencePrice": 681.35
+    },
+    {
+      "goodId": "wpn_312",
+      "name": "Solari PD Laser Turret Mk.5",
+      "kind": "weapon",
+      "referencePrice": 766.79
+    },
+    {
+      "goodId": "wpn_313",
+      "name": "Draconis Particle Lance Mk.1",
+      "kind": "weapon",
+      "referencePrice": 530.42
+    },
+    {
+      "goodId": "wpn_314",
+      "name": "Draconis Particle Lance Mk.2",
+      "kind": "weapon",
+      "referencePrice": 556.8
+    },
+    {
+      "goodId": "wpn_315",
+      "name": "Draconis Particle Lance Mk.3",
+      "kind": "weapon",
+      "referencePrice": 590.92
+    },
+    {
+      "goodId": "wpn_316",
+      "name": "Draconis Particle Lance Mk.4",
+      "kind": "weapon",
+      "referencePrice": 620.25
+    },
+    {
+      "goodId": "wpn_317",
+      "name": "Draconis Particle Lance Mk.5",
+      "kind": "weapon",
+      "referencePrice": 651.65
+    },
+    {
+      "goodId": "wpn_318",
+      "name": "Voss Heavy Particle Lance Mk.1",
+      "kind": "weapon",
+      "referencePrice": 502.01
+    },
+    {
+      "goodId": "wpn_319",
+      "name": "Voss Particle Lance Mk.2",
+      "kind": "weapon",
+      "referencePrice": 532.9
+    },
+    {
+      "goodId": "wpn_320",
+      "name": "Voss Heavy Particle Lance Mk.3",
+      "kind": "weapon",
+      "referencePrice": 558.13
+    },
+    {
+      "goodId": "wpn_321",
+      "name": "Voss Particle Lance Mk.4",
+      "kind": "weapon",
+      "referencePrice": 585.11
+    },
+    {
+      "goodId": "wpn_322",
+      "name": "Voss Particle Lance Mk.5",
+      "kind": "weapon",
+      "referencePrice": 620.71
+    },
+    {
+      "goodId": "wpn_323",
+      "name": "Draconis Siege Particle Lance Mk.1",
+      "kind": "weapon",
+      "referencePrice": 828.46
+    },
+    {
+      "goodId": "wpn_324",
+      "name": "Draconis Siege Particle Lance Mk.2",
+      "kind": "weapon",
+      "referencePrice": 870.81
+    },
+    {
+      "goodId": "wpn_325",
+      "name": "Draconis Siege Particle Lance Mk.3",
+      "kind": "weapon",
+      "referencePrice": 922.95
+    },
+    {
+      "goodId": "wpn_326",
+      "name": "Draconis Siege Particle Lance Mk.4",
+      "kind": "weapon",
+      "referencePrice": 971.78
+    },
+    {
+      "goodId": "wpn_327",
+      "name": "Draconis Siege Particle Lance Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1023.54
+    },
+    {
+      "goodId": "wpn_328",
+      "name": "Voss Siege Particle Lance Mk.2",
+      "kind": "weapon",
+      "referencePrice": 826.0
+    },
+    {
+      "goodId": "wpn_329",
+      "name": "Voss Siege Particle Lance Mk.4",
+      "kind": "weapon",
+      "referencePrice": 911.92
+    },
+    {
+      "goodId": "wpn_330",
+      "name": "Voss Siege Particle Lance Mk.5",
+      "kind": "weapon",
+      "referencePrice": 966.46
+    },
+    {
+      "goodId": "wpn_331",
+      "name": "Ashwright Plasma Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 519.67
+    },
+    {
+      "goodId": "wpn_332",
+      "name": "Ashwright Plasma Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 548.53
+    },
+    {
+      "goodId": "wpn_333",
+      "name": "Ashwright Plasma Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 578.87
+    },
+    {
+      "goodId": "wpn_334",
+      "name": "Ashwright Heavy Plasma Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 610.1
+    },
+    {
+      "goodId": "wpn_335",
+      "name": "Ashwright Plasma Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 642.81
+    },
+    {
+      "goodId": "wpn_336",
+      "name": "Draconis Plasma Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 526.57
+    },
+    {
+      "goodId": "wpn_337",
+      "name": "Draconis Plasma Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 544.06
+    },
+    {
+      "goodId": "wpn_338",
+      "name": "Draconis Plasma Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 583.59
+    },
+    {
+      "goodId": "wpn_339",
+      "name": "Draconis Plasma Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 617.17
+    },
+    {
+      "goodId": "wpn_340",
+      "name": "Ashwright Siege Plasma Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 777.8
+    },
+    {
+      "goodId": "wpn_341",
+      "name": "Ashwright Siege Plasma Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 819.74
+    },
+    {
+      "goodId": "wpn_342",
+      "name": "Ashwright Siege Plasma Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 863.75
+    },
+    {
+      "goodId": "wpn_343",
+      "name": "Ashwright Siege Plasma Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 959.75
+    },
+    {
+      "goodId": "wpn_344",
+      "name": "Draconis Siege Plasma Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 764.29
+    },
+    {
+      "goodId": "wpn_345",
+      "name": "Draconis Siege Plasma Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 808.55
+    },
+    {
+      "goodId": "wpn_346",
+      "name": "Draconis Siege Plasma Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 840.89
+    },
+    {
+      "goodId": "wpn_347",
+      "name": "Draconis Siege Plasma Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 896.71
+    },
+    {
+      "goodId": "wpn_348",
+      "name": "Draconis Siege Plasma Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 948.63
+    },
+    {
+      "goodId": "wpn_349",
+      "name": "Kestrel Proton Blaster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 402.25
+    },
+    {
+      "goodId": "wpn_350",
+      "name": "Kestrel Proton Blaster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 427.85
+    },
+    {
+      "goodId": "wpn_351",
+      "name": "Kestrel Proton Blaster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 454.05
+    },
+    {
+      "goodId": "wpn_352",
+      "name": "Kestrel Proton Blaster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 487.1
+    },
+    {
+      "goodId": "wpn_353",
+      "name": "Kestrel Proton Blaster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 513.9
+    },
+    {
+      "goodId": "wpn_354",
+      "name": "Solari Proton Blaster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 374.68
+    },
+    {
+      "goodId": "wpn_355",
+      "name": "Solari Medium Proton Blaster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 398.79
+    },
+    {
+      "goodId": "wpn_356",
+      "name": "Solari Proton Blaster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 422.6
+    },
+    {
+      "goodId": "wpn_357",
+      "name": "Solari Proton Blaster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 447.3
+    },
+    {
+      "goodId": "wpn_358",
+      "name": "Solari Proton Blaster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 479.42
+    },
+    {
+      "goodId": "wpn_359",
+      "name": "Kestrel Heavy Proton Blaster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 517.32
+    },
+    {
+      "goodId": "wpn_360",
+      "name": "Kestrel Heavy Proton Blaster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 547.72
+    },
+    {
+      "goodId": "wpn_361",
+      "name": "Kestrel Heavy Proton Blaster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 578.99
+    },
+    {
+      "goodId": "wpn_362",
+      "name": "Kestrel Heavy Proton Blaster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 618.57
+    },
+    {
+      "goodId": "wpn_363",
+      "name": "Kestrel Heavy Proton Blaster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 651.64
+    },
+    {
+      "goodId": "wpn_364",
+      "name": "Solari Heavy Proton Blaster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 468.47
+    },
+    {
+      "goodId": "wpn_365",
+      "name": "Solari Heavy Proton Blaster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 524.09
+    },
+    {
+      "goodId": "wpn_366",
+      "name": "Solari Heavy Proton Blaster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 552.64
+    },
+    {
+      "goodId": "wpn_367",
+      "name": "Solari Heavy Proton Blaster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 588.93
+    },
+    {
+      "goodId": "wpn_368",
+      "name": "Halcyon Pulse Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 541.49
+    },
+    {
+      "goodId": "wpn_369",
+      "name": "Halcyon Pulse Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 577.82
+    },
+    {
+      "goodId": "wpn_370",
+      "name": "Halcyon Pulse Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 658.49
+    },
+    {
+      "goodId": "wpn_371",
+      "name": "Vanguard Light Pulse Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 409.63
+    },
+    {
+      "goodId": "wpn_372",
+      "name": "Vanguard Light Pulse Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 468.56
+    },
+    {
+      "goodId": "wpn_373",
+      "name": "Vanguard Pulse Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 498.91
+    },
+    {
+      "goodId": "wpn_374",
+      "name": "Vanguard Pulse Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 535.54
+    },
+    {
+      "goodId": "wpn_375",
+      "name": "Halcyon Medium Pulse Laser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 560.56
+    },
+    {
+      "goodId": "wpn_376",
+      "name": "Halcyon Medium Pulse Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 599.55
+    },
+    {
+      "goodId": "wpn_377",
+      "name": "Halcyon Medium Pulse Laser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 638.55
+    },
+    {
+      "goodId": "wpn_378",
+      "name": "Halcyon Medium Pulse Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 678.14
+    },
+    {
+      "goodId": "wpn_379",
+      "name": "Halcyon Medium Pulse Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 725.18
+    },
+    {
+      "goodId": "wpn_380",
+      "name": "Vanguard Medium Pulse Laser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 497.14
+    },
+    {
+      "goodId": "wpn_381",
+      "name": "Vanguard Medium Pulse Laser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 562.04
+    },
+    {
+      "goodId": "wpn_382",
+      "name": "Vanguard Medium Pulse Laser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 602.23
+    },
+    {
+      "goodId": "wpn_383",
+      "name": "Kestrel AA Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 566.3
+    },
+    {
+      "goodId": "wpn_384",
+      "name": "Kestrel AA Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 609.72
+    },
+    {
+      "goodId": "wpn_385",
+      "name": "Kestrel AA Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 646.02
+    },
+    {
+      "goodId": "wpn_386",
+      "name": "Kestrel AA Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 689.74
+    },
+    {
+      "goodId": "wpn_387",
+      "name": "Kestrel AA Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 733.76
+    },
+    {
+      "goodId": "wpn_388",
+      "name": "Meridian AA Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 606.97
+    },
+    {
+      "goodId": "wpn_389",
+      "name": "Meridian AA Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 650.12
+    },
+    {
+      "goodId": "wpn_390",
+      "name": "Meridian AA Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 693.84
+    },
+    {
+      "goodId": "wpn_391",
+      "name": "Meridian AA Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 737.23
+    },
+    {
+      "goodId": "wpn_392",
+      "name": "Meridian AA Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 788.1
+    },
+    {
+      "goodId": "wpn_393",
+      "name": "Vanguard AA Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 545.64
+    },
+    {
+      "goodId": "wpn_394",
+      "name": "Vanguard AA Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 582.21
+    },
+    {
+      "goodId": "wpn_395",
+      "name": "Vanguard AA Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 619.08
+    },
+    {
+      "goodId": "wpn_396",
+      "name": "Vanguard AA Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 662.2
+    },
+    {
+      "goodId": "wpn_397",
+      "name": "Vanguard AA Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 706.5
+    },
+    {
+      "goodId": "wpn_398",
+      "name": "Kestrel Medium AA Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 620.54
+    },
+    {
+      "goodId": "wpn_399",
+      "name": "Kestrel Medium AA Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 666.63
+    },
+    {
+      "goodId": "wpn_400",
+      "name": "Kestrel Medium AA Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 705.57
+    },
+    {
+      "goodId": "wpn_401",
+      "name": "Kestrel Medium AA Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 752.23
+    },
+    {
+      "goodId": "wpn_402",
+      "name": "Kestrel Medium AA Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 799.47
+    },
+    {
+      "goodId": "wpn_403",
+      "name": "Meridian Medium AA Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 660.83
+    },
+    {
+      "goodId": "wpn_404",
+      "name": "Meridian Medium AA Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 706.9
+    },
+    {
+      "goodId": "wpn_405",
+      "name": "Meridian Medium AA Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 753.26
+    },
+    {
+      "goodId": "wpn_406",
+      "name": "Meridian Medium AA Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 799.6
+    },
+    {
+      "goodId": "wpn_407",
+      "name": "Meridian Medium AA Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 854.25
+    },
+    {
+      "goodId": "wpn_408",
+      "name": "Vanguard Medium AA Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 599.77
+    },
+    {
+      "goodId": "wpn_409",
+      "name": "Vanguard Medium AA Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 638.99
+    },
+    {
+      "goodId": "wpn_410",
+      "name": "Vanguard Medium AA Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 678.78
+    },
+    {
+      "goodId": "wpn_411",
+      "name": "Vanguard Medium AA Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 725.11
+    },
+    {
+      "goodId": "wpn_412",
+      "name": "Vanguard Medium AA Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 772.92
+    },
+    {
+      "goodId": "wpn_413",
+      "name": "Kestrel Light Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 415.8
+    },
+    {
+      "goodId": "wpn_414",
+      "name": "Kestrel Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 446.11
+    },
+    {
+      "goodId": "wpn_415",
+      "name": "Kestrel Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 476.71
+    },
+    {
+      "goodId": "wpn_416",
+      "name": "Kestrel Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 507.61
+    },
+    {
+      "goodId": "wpn_417",
+      "name": "Vanguard Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 379.65
+    },
+    {
+      "goodId": "wpn_418",
+      "name": "Vanguard Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 409.65
+    },
+    {
+      "goodId": "wpn_419",
+      "name": "Vanguard Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 433.41
+    },
+    {
+      "goodId": "wpn_420",
+      "name": "Vanguard Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 463.98
+    },
+    {
+      "goodId": "wpn_421",
+      "name": "Vanguard Light Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 495.13
+    },
+    {
+      "goodId": "wpn_422",
+      "name": "Kestrel Medium Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 446.09
+    },
+    {
+      "goodId": "wpn_423",
+      "name": "Kestrel Medium Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 512.58
+    },
+    {
+      "goodId": "wpn_424",
+      "name": "Kestrel Medium Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 546.7
+    },
+    {
+      "goodId": "wpn_425",
+      "name": "Kestrel Medium Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 581.39
+    },
+    {
+      "goodId": "wpn_426",
+      "name": "Vanguard Medium Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 439.79
+    },
+    {
+      "goodId": "wpn_427",
+      "name": "Vanguard Medium Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 473.88
+    },
+    {
+      "goodId": "wpn_428",
+      "name": "Vanguard Medium Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 501.1
+    },
+    {
+      "goodId": "wpn_429",
+      "name": "Vanguard Medium Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 535.14
+    },
+    {
+      "goodId": "wpn_430",
+      "name": "Kestrel Chain Gun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 504.69
+    },
+    {
+      "goodId": "wpn_431",
+      "name": "Kestrel Chain Gun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 541.26
+    },
+    {
+      "goodId": "wpn_432",
+      "name": "Kestrel Chain Gun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 577.86
+    },
+    {
+      "goodId": "wpn_433",
+      "name": "Kestrel Chain Gun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 614.44
+    },
+    {
+      "goodId": "wpn_434",
+      "name": "Obsidian Chain Gun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 454.02
+    },
+    {
+      "goodId": "wpn_435",
+      "name": "Obsidian Chain Gun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 483.75
+    },
+    {
+      "goodId": "wpn_436",
+      "name": "Obsidian Chain Gun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 549.48
+    },
+    {
+      "goodId": "wpn_437",
+      "name": "Obsidian Chain Gun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 586.35
+    },
+    {
+      "goodId": "wpn_438",
+      "name": "Vanguard Chain Gun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 454.89
+    },
+    {
+      "goodId": "wpn_439",
+      "name": "Vanguard Chain Gun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 484.35
+    },
+    {
+      "goodId": "wpn_440",
+      "name": "Vanguard Chain Gun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 520.32
+    },
+    {
+      "goodId": "wpn_441",
+      "name": "Vanguard Chain Gun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 587.5
+    },
+    {
+      "goodId": "wpn_442",
+      "name": "Ceridan Coilgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 335.13
+    },
+    {
+      "goodId": "wpn_443",
+      "name": "Ceridan Light Coilgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 352.89
+    },
+    {
+      "goodId": "wpn_444",
+      "name": "Ceridan Coilgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 377.49
+    },
+    {
+      "goodId": "wpn_445",
+      "name": "Ceridan Coilgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 402.69
+    },
+    {
+      "goodId": "wpn_446",
+      "name": "Voss Coilgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 293.73
+    },
+    {
+      "goodId": "wpn_447",
+      "name": "Voss Light Coilgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 317.76
+    },
+    {
+      "goodId": "wpn_448",
+      "name": "Voss Coilgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 335.52
+    },
+    {
+      "goodId": "wpn_449",
+      "name": "Voss Light Coilgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 360.39
+    },
+    {
+      "goodId": "wpn_450",
+      "name": "Voss Coilgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 385.57
+    },
+    {
+      "goodId": "wpn_451",
+      "name": "Ceridan Medium Coilgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 380.32
+    },
+    {
+      "goodId": "wpn_452",
+      "name": "Ceridan Medium Coilgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 408.42
+    },
+    {
+      "goodId": "wpn_453",
+      "name": "Ceridan Medium Coilgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 459.5
+    },
+    {
+      "goodId": "wpn_454",
+      "name": "Ceridan Medium Coilgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 489.92
+    },
+    {
+      "goodId": "wpn_455",
+      "name": "Voss Medium Coilgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 365.24
+    },
+    {
+      "goodId": "wpn_456",
+      "name": "Voss Medium Coilgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 416.61
+    },
+    {
+      "goodId": "wpn_457",
+      "name": "Voss Medium Coilgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 477.38
+    },
+    {
+      "goodId": "wpn_458",
+      "name": "Ceridan Flak Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 494.39
+    },
+    {
+      "goodId": "wpn_459",
+      "name": "Ceridan Flak Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 561.56
+    },
+    {
+      "goodId": "wpn_460",
+      "name": "Ceridan Flak Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 598.41
+    },
+    {
+      "goodId": "wpn_461",
+      "name": "Ceridan Flak Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 636.16
+    },
+    {
+      "goodId": "wpn_462",
+      "name": "Vanguard Flak Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 523.46
+    },
+    {
+      "goodId": "wpn_463",
+      "name": "Vanguard Flak Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 560.31
+    },
+    {
+      "goodId": "wpn_464",
+      "name": "Vanguard Flak Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 597.46
+    },
+    {
+      "goodId": "wpn_465",
+      "name": "Vanguard Flak Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 635.18
+    },
+    {
+      "goodId": "wpn_466",
+      "name": "Ceridan Medium Flak Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 552.88
+    },
+    {
+      "goodId": "wpn_467",
+      "name": "Ceridan Medium Flak Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 585.83
+    },
+    {
+      "goodId": "wpn_468",
+      "name": "Ceridan Medium Flak Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 626.19
+    },
+    {
+      "goodId": "wpn_469",
+      "name": "Ceridan Medium Flak Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 666.86
+    },
+    {
+      "goodId": "wpn_470",
+      "name": "Ceridan Medium Flak Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 708.37
+    },
+    {
+      "goodId": "wpn_471",
+      "name": "Vanguard Medium Flak Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 551.01
+    },
+    {
+      "goodId": "wpn_472",
+      "name": "Vanguard Medium Flak Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 584.23
+    },
+    {
+      "goodId": "wpn_473",
+      "name": "Vanguard Medium Flak Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 623.99
+    },
+    {
+      "goodId": "wpn_474",
+      "name": "Vanguard Medium Flak Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 664.63
+    },
+    {
+      "goodId": "wpn_475",
+      "name": "Vanguard Medium Flak Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 706.14
+    },
+    {
+      "goodId": "wpn_476",
+      "name": "Draconis Gauss Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 518.77
+    },
+    {
+      "goodId": "wpn_477",
+      "name": "Draconis Gauss Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 546.96
+    },
+    {
+      "goodId": "wpn_478",
+      "name": "Draconis Gauss Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 584.56
+    },
+    {
+      "goodId": "wpn_479",
+      "name": "Draconis Heavy Gauss Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 624.13
+    },
+    {
+      "goodId": "wpn_480",
+      "name": "Draconis Gauss Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 666.56
+    },
+    {
+      "goodId": "wpn_481",
+      "name": "Solari Gauss Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 427.6
+    },
+    {
+      "goodId": "wpn_482",
+      "name": "Solari Gauss Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 454.8
+    },
+    {
+      "goodId": "wpn_483",
+      "name": "Solari Gauss Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 483.4
+    },
+    {
+      "goodId": "wpn_484",
+      "name": "Solari Gauss Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 513.45
+    },
+    {
+      "goodId": "wpn_485",
+      "name": "Draconis Siege Gauss Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 819.82
+    },
+    {
+      "goodId": "wpn_486",
+      "name": "Draconis Siege Gauss Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 868.1
+    },
+    {
+      "goodId": "wpn_487",
+      "name": "Draconis Siege Gauss Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 927.24
+    },
+    {
+      "goodId": "wpn_488",
+      "name": "Draconis Siege Gauss Cannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1058.78
+    },
+    {
+      "goodId": "wpn_489",
+      "name": "Solari Siege Gauss Cannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 648.26
+    },
+    {
+      "goodId": "wpn_490",
+      "name": "Solari Siege Gauss Cannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 687.76
+    },
+    {
+      "goodId": "wpn_491",
+      "name": "Solari Siege Gauss Cannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 730.39
+    },
+    {
+      "goodId": "wpn_492",
+      "name": "Solari Siege Gauss Cannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 775.54
+    },
+    {
+      "goodId": "wpn_493",
+      "name": "Ashwright Mass Driver Mk.1",
+      "kind": "weapon",
+      "referencePrice": 379.04
+    },
+    {
+      "goodId": "wpn_494",
+      "name": "Ashwright Medium Mass Driver Mk.2",
+      "kind": "weapon",
+      "referencePrice": 403.97
+    },
+    {
+      "goodId": "wpn_495",
+      "name": "Ashwright Medium Mass Driver Mk.3",
+      "kind": "weapon",
+      "referencePrice": 423.24
+    },
+    {
+      "goodId": "wpn_496",
+      "name": "Ashwright Mass Driver Mk.4",
+      "kind": "weapon",
+      "referencePrice": 450.77
+    },
+    {
+      "goodId": "wpn_497",
+      "name": "Ashwright Mass Driver Mk.5",
+      "kind": "weapon",
+      "referencePrice": 472.57
+    },
+    {
+      "goodId": "wpn_498",
+      "name": "Draconis Mass Driver Mk.1",
+      "kind": "weapon",
+      "referencePrice": 360.78
+    },
+    {
+      "goodId": "wpn_499",
+      "name": "Draconis Mass Driver Mk.2",
+      "kind": "weapon",
+      "referencePrice": 380.24
+    },
+    {
+      "goodId": "wpn_500",
+      "name": "Draconis Mass Driver Mk.3",
+      "kind": "weapon",
+      "referencePrice": 408.56
+    },
+    {
+      "goodId": "wpn_501",
+      "name": "Draconis Mass Driver Mk.4",
+      "kind": "weapon",
+      "referencePrice": 431.46
+    },
+    {
+      "goodId": "wpn_502",
+      "name": "Draconis Mass Driver Mk.5",
+      "kind": "weapon",
+      "referencePrice": 462.03
+    },
+    {
+      "goodId": "wpn_503",
+      "name": "Ashwright Heavy Mass Driver Mk.1",
+      "kind": "weapon",
+      "referencePrice": 558.26
+    },
+    {
+      "goodId": "wpn_504",
+      "name": "Ashwright Heavy Mass Driver Mk.4",
+      "kind": "weapon",
+      "referencePrice": 668.78
+    },
+    {
+      "goodId": "wpn_505",
+      "name": "Ashwright Heavy Mass Driver Mk.5",
+      "kind": "weapon",
+      "referencePrice": 706.66
+    },
+    {
+      "goodId": "wpn_506",
+      "name": "Draconis Heavy Mass Driver Mk.1",
+      "kind": "weapon",
+      "referencePrice": 557.01
+    },
+    {
+      "goodId": "wpn_507",
+      "name": "Draconis Heavy Mass Driver Mk.2",
+      "kind": "weapon",
+      "referencePrice": 590.8
+    },
+    {
+      "goodId": "wpn_508",
+      "name": "Draconis Heavy Mass Driver Mk.3",
+      "kind": "weapon",
+      "referencePrice": 634.56
+    },
+    {
+      "goodId": "wpn_509",
+      "name": "Draconis Heavy Mass Driver Mk.4",
+      "kind": "weapon",
+      "referencePrice": 674.01
+    },
+    {
+      "goodId": "wpn_510",
+      "name": "Draconis Heavy Mass Driver Mk.5",
+      "kind": "weapon",
+      "referencePrice": 723.99
+    },
+    {
+      "goodId": "wpn_511",
+      "name": "Halcyon PD Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 720.46
+    },
+    {
+      "goodId": "wpn_512",
+      "name": "Halcyon PD Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 763.31
+    },
+    {
+      "goodId": "wpn_513",
+      "name": "Halcyon PD Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 813.3
+    },
+    {
+      "goodId": "wpn_514",
+      "name": "Halcyon PD Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 863.57
+    },
+    {
+      "goodId": "wpn_515",
+      "name": "Halcyon PD Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 920.68
+    },
+    {
+      "goodId": "wpn_516",
+      "name": "Meridian PD Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 638.31
+    },
+    {
+      "goodId": "wpn_517",
+      "name": "Meridian PD Autocannon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 681.43
+    },
+    {
+      "goodId": "wpn_518",
+      "name": "Meridian PD Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 724.58
+    },
+    {
+      "goodId": "wpn_519",
+      "name": "Meridian PD Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 774.84
+    },
+    {
+      "goodId": "wpn_520",
+      "name": "Meridian PD Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 825.11
+    },
+    {
+      "goodId": "wpn_521",
+      "name": "Vanguard PD Autocannon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 570.13
+    },
+    {
+      "goodId": "wpn_522",
+      "name": "Vanguard PD Autocannon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 649.55
+    },
+    {
+      "goodId": "wpn_523",
+      "name": "Vanguard PD Autocannon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 692.97
+    },
+    {
+      "goodId": "wpn_524",
+      "name": "Vanguard PD Autocannon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 736.39
+    },
+    {
+      "goodId": "wpn_525",
+      "name": "Halcyon Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 399.1
+    },
+    {
+      "goodId": "wpn_526",
+      "name": "Halcyon Medium Railgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 420.62
+    },
+    {
+      "goodId": "wpn_527",
+      "name": "Halcyon Railgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 449.86
+    },
+    {
+      "goodId": "wpn_528",
+      "name": "Halcyon Railgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 479.95
+    },
+    {
+      "goodId": "wpn_529",
+      "name": "Solari Medium Railgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 311.85
+    },
+    {
+      "goodId": "wpn_530",
+      "name": "Solari Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 331.61
+    },
+    {
+      "goodId": "wpn_531",
+      "name": "Solari Railgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 351.9
+    },
+    {
+      "goodId": "wpn_532",
+      "name": "Solari Railgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 401.07
+    },
+    {
+      "goodId": "wpn_533",
+      "name": "Voss Railgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 340.6
+    },
+    {
+      "goodId": "wpn_534",
+      "name": "Voss Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 362.69
+    },
+    {
+      "goodId": "wpn_535",
+      "name": "Voss Railgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 385.66
+    },
+    {
+      "goodId": "wpn_536",
+      "name": "Voss Medium Railgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 408.88
+    },
+    {
+      "goodId": "wpn_537",
+      "name": "Halcyon Heavy Railgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 505.52
+    },
+    {
+      "goodId": "wpn_538",
+      "name": "Halcyon Heavy Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 540.55
+    },
+    {
+      "goodId": "wpn_539",
+      "name": "Halcyon Heavy Railgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 609.24
+    },
+    {
+      "goodId": "wpn_540",
+      "name": "Halcyon Heavy Railgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 649.42
+    },
+    {
+      "goodId": "wpn_541",
+      "name": "Solari Heavy Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 454.33
+    },
+    {
+      "goodId": "wpn_542",
+      "name": "Solari Heavy Railgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 481.51
+    },
+    {
+      "goodId": "wpn_543",
+      "name": "Solari Heavy Railgun Mk.4",
+      "kind": "weapon",
+      "referencePrice": 516.95
+    },
+    {
+      "goodId": "wpn_544",
+      "name": "Solari Heavy Railgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 546.67
+    },
+    {
+      "goodId": "wpn_545",
+      "name": "Voss Heavy Railgun Mk.1",
+      "kind": "weapon",
+      "referencePrice": 486.91
+    },
+    {
+      "goodId": "wpn_546",
+      "name": "Voss Heavy Railgun Mk.2",
+      "kind": "weapon",
+      "referencePrice": 517.38
+    },
+    {
+      "goodId": "wpn_547",
+      "name": "Voss Heavy Railgun Mk.3",
+      "kind": "weapon",
+      "referencePrice": 550.15
+    },
+    {
+      "goodId": "wpn_548",
+      "name": "Voss Heavy Railgun Mk.5",
+      "kind": "weapon",
+      "referencePrice": 627.06
+    },
+    {
+      "goodId": "wpn_549",
+      "name": "Draconis Boarding Ram Mk.1",
+      "kind": "weapon",
+      "referencePrice": 316.28
+    },
+    {
+      "goodId": "wpn_550",
+      "name": "Draconis Boarding Ram Mk.2",
+      "kind": "weapon",
+      "referencePrice": 335.7
+    },
+    {
+      "goodId": "wpn_551",
+      "name": "Draconis Boarding Ram Mk.3",
+      "kind": "weapon",
+      "referencePrice": 348.58
+    },
+    {
+      "goodId": "wpn_552",
+      "name": "Draconis Boarding Ram Mk.4",
+      "kind": "weapon",
+      "referencePrice": 362.58
+    },
+    {
+      "goodId": "wpn_553",
+      "name": "Draconis Boarding Ram Mk.5",
+      "kind": "weapon",
+      "referencePrice": 377.18
+    },
+    {
+      "goodId": "wpn_554",
+      "name": "Vanguard Boarding Ram Mk.1",
+      "kind": "weapon",
+      "referencePrice": 290.74
+    },
+    {
+      "goodId": "wpn_555",
+      "name": "Vanguard Boarding Ram Mk.2",
+      "kind": "weapon",
+      "referencePrice": 302.48
+    },
+    {
+      "goodId": "wpn_556",
+      "name": "Vanguard Boarding Ram Mk.3",
+      "kind": "weapon",
+      "referencePrice": 314.21
+    },
+    {
+      "goodId": "wpn_557",
+      "name": "Vanguard Boarding Ram Mk.4",
+      "kind": "weapon",
+      "referencePrice": 333.36
+    },
+    {
+      "goodId": "wpn_558",
+      "name": "Vanguard Boarding Ram Mk.5",
+      "kind": "weapon",
+      "referencePrice": 346.51
+    },
+    {
+      "goodId": "wpn_559",
+      "name": "Draconis Heavy Boarding Ram Mk.1",
+      "kind": "weapon",
+      "referencePrice": 429.68
+    },
+    {
+      "goodId": "wpn_560",
+      "name": "Draconis Heavy Boarding Ram Mk.2",
+      "kind": "weapon",
+      "referencePrice": 455.71
+    },
+    {
+      "goodId": "wpn_561",
+      "name": "Draconis Heavy Boarding Ram Mk.3",
+      "kind": "weapon",
+      "referencePrice": 475.44
+    },
+    {
+      "goodId": "wpn_562",
+      "name": "Draconis Heavy Boarding Ram Mk.4",
+      "kind": "weapon",
+      "referencePrice": 497.2
+    },
+    {
+      "goodId": "wpn_563",
+      "name": "Draconis Heavy Boarding Ram Mk.5",
+      "kind": "weapon",
+      "referencePrice": 519.74
+    },
+    {
+      "goodId": "wpn_564",
+      "name": "Vanguard Heavy Boarding Ram Mk.1",
+      "kind": "weapon",
+      "referencePrice": 392.35
+    },
+    {
+      "goodId": "wpn_565",
+      "name": "Vanguard Heavy Boarding Ram Mk.2",
+      "kind": "weapon",
+      "referencePrice": 408.7
+    },
+    {
+      "goodId": "wpn_566",
+      "name": "Vanguard Heavy Boarding Ram Mk.3",
+      "kind": "weapon",
+      "referencePrice": 425.86
+    },
+    {
+      "goodId": "wpn_567",
+      "name": "Vanguard Heavy Boarding Ram Mk.4",
+      "kind": "weapon",
+      "referencePrice": 451.32
+    },
+    {
+      "goodId": "wpn_568",
+      "name": "Vanguard Heavy Boarding Ram Mk.5",
+      "kind": "weapon",
+      "referencePrice": 470.75
+    },
+    {
+      "goodId": "wpn_569",
+      "name": "Kestrel Grapple Harpoon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 307.79
+    },
+    {
+      "goodId": "wpn_570",
+      "name": "Kestrel Grapple Harpoon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 323.56
+    },
+    {
+      "goodId": "wpn_571",
+      "name": "Kestrel Grapple Harpoon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 345.89
+    },
+    {
+      "goodId": "wpn_572",
+      "name": "Kestrel Grapple Harpoon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 375.64
+    },
+    {
+      "goodId": "wpn_573",
+      "name": "Kestrel Grapple Harpoon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 397.95
+    },
+    {
+      "goodId": "wpn_574",
+      "name": "Meridian Grapple Harpoon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 320.86
+    },
+    {
+      "goodId": "wpn_575",
+      "name": "Meridian Grapple Harpoon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 350.01
+    },
+    {
+      "goodId": "wpn_576",
+      "name": "Meridian Grapple Harpoon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 372.62
+    },
+    {
+      "goodId": "wpn_577",
+      "name": "Meridian Grapple Harpoon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 394.96
+    },
+    {
+      "goodId": "wpn_578",
+      "name": "Meridian Grapple Harpoon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 424.41
+    },
+    {
+      "goodId": "wpn_579",
+      "name": "Kestrel Medium Grapple Harpoon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 356.84
+    },
+    {
+      "goodId": "wpn_580",
+      "name": "Kestrel Medium Grapple Harpoon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 374.4
+    },
+    {
+      "goodId": "wpn_581",
+      "name": "Kestrel Medium Grapple Harpoon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 398.81
+    },
+    {
+      "goodId": "wpn_582",
+      "name": "Kestrel Medium Grapple Harpoon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 430.36
+    },
+    {
+      "goodId": "wpn_583",
+      "name": "Kestrel Medium Grapple Harpoon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 455.66
+    },
+    {
+      "goodId": "wpn_584",
+      "name": "Meridian Medium Grapple Harpoon Mk.1",
+      "kind": "weapon",
+      "referencePrice": 369.28
+    },
+    {
+      "goodId": "wpn_585",
+      "name": "Meridian Medium Grapple Harpoon Mk.2",
+      "kind": "weapon",
+      "referencePrice": 399.94
+    },
+    {
+      "goodId": "wpn_586",
+      "name": "Meridian Medium Grapple Harpoon Mk.3",
+      "kind": "weapon",
+      "referencePrice": 424.91
+    },
+    {
+      "goodId": "wpn_587",
+      "name": "Meridian Medium Grapple Harpoon Mk.4",
+      "kind": "weapon",
+      "referencePrice": 449.02
+    },
+    {
+      "goodId": "wpn_588",
+      "name": "Meridian Medium Grapple Harpoon Mk.5",
+      "kind": "weapon",
+      "referencePrice": 481.14
+    },
+    {
+      "goodId": "wpn_589",
+      "name": "Ashwright Siege Drill Mk.1",
+      "kind": "weapon",
+      "referencePrice": 485.26
+    },
+    {
+      "goodId": "wpn_590",
+      "name": "Ashwright Siege Drill Mk.2",
+      "kind": "weapon",
+      "referencePrice": 507.32
+    },
+    {
+      "goodId": "wpn_591",
+      "name": "Ashwright Siege Drill Mk.3",
+      "kind": "weapon",
+      "referencePrice": 536.8
+    },
+    {
+      "goodId": "wpn_592",
+      "name": "Ashwright Siege Drill Mk.4",
+      "kind": "weapon",
+      "referencePrice": 561.18
+    },
+    {
+      "goodId": "wpn_593",
+      "name": "Ashwright Siege Drill Mk.5",
+      "kind": "weapon",
+      "referencePrice": 586.71
+    },
+    {
+      "goodId": "wpn_594",
+      "name": "Draconis Siege Drill Mk.1",
+      "kind": "weapon",
+      "referencePrice": 460.06
+    },
+    {
+      "goodId": "wpn_595",
+      "name": "Draconis Siege Drill Mk.2",
+      "kind": "weapon",
+      "referencePrice": 490.36
+    },
+    {
+      "goodId": "wpn_596",
+      "name": "Draconis Siege Drill Mk.3",
+      "kind": "weapon",
+      "referencePrice": 515.83
+    },
+    {
+      "goodId": "wpn_597",
+      "name": "Draconis Siege Drill Mk.4",
+      "kind": "weapon",
+      "referencePrice": 541.86
+    },
+    {
+      "goodId": "wpn_598",
+      "name": "Draconis Siege Drill Mk.5",
+      "kind": "weapon",
+      "referencePrice": 570.2
+    },
+    {
+      "goodId": "wpn_599",
+      "name": "Ashwright Siege Siege Drill Mk.1",
+      "kind": "weapon",
+      "referencePrice": 728.98
+    },
+    {
+      "goodId": "wpn_600",
+      "name": "Ashwright Siege Siege Drill Mk.2",
+      "kind": "weapon",
+      "referencePrice": 763.59
+    },
+    {
+      "goodId": "wpn_601",
+      "name": "Ashwright Siege Siege Drill Mk.3",
+      "kind": "weapon",
+      "referencePrice": 807.93
+    },
+    {
+      "goodId": "wpn_602",
+      "name": "Ashwright Siege Siege Drill Mk.4",
+      "kind": "weapon",
+      "referencePrice": 847.45
+    },
+    {
+      "goodId": "wpn_603",
+      "name": "Ashwright Siege Siege Drill Mk.5",
+      "kind": "weapon",
+      "referencePrice": 890.44
+    },
+    {
+      "goodId": "wpn_604",
+      "name": "Draconis Siege Siege Drill Mk.1",
+      "kind": "weapon",
+      "referencePrice": 719.33
+    },
+    {
+      "goodId": "wpn_605",
+      "name": "Draconis Siege Siege Drill Mk.2",
+      "kind": "weapon",
+      "referencePrice": 763.85
+    },
+    {
+      "goodId": "wpn_606",
+      "name": "Draconis Siege Siege Drill Mk.3",
+      "kind": "weapon",
+      "referencePrice": 804.71
+    },
+    {
+      "goodId": "wpn_607",
+      "name": "Draconis Siege Siege Drill Mk.4",
+      "kind": "weapon",
+      "referencePrice": 848.71
+    },
+    {
+      "goodId": "wpn_608",
+      "name": "Draconis Siege Siege Drill Mk.5",
+      "kind": "weapon",
+      "referencePrice": 896.45
+    },
+    {
+      "goodId": "wpn_609",
+      "name": "Kestrel Depth Charge Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 208.67
+    },
+    {
+      "goodId": "wpn_610",
+      "name": "Kestrel Depth Charge Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 226.08
+    },
+    {
+      "goodId": "wpn_611",
+      "name": "Kestrel Depth Charge Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 243.76
+    },
+    {
+      "goodId": "wpn_612",
+      "name": "Kestrel Depth Charge Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 262.01
+    },
+    {
+      "goodId": "wpn_613",
+      "name": "Kestrel Depth Charge Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 273.99
+    },
+    {
+      "goodId": "wpn_614",
+      "name": "Vanguard Depth Charge Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 219.77
+    },
+    {
+      "goodId": "wpn_615",
+      "name": "Vanguard Depth Charge Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 238.0
+    },
+    {
+      "goodId": "wpn_616",
+      "name": "Vanguard Depth Charge Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 249.95
+    },
+    {
+      "goodId": "wpn_617",
+      "name": "Vanguard Depth Charge Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 268.43
+    },
+    {
+      "goodId": "wpn_618",
+      "name": "Vanguard Depth Charge Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 288.35
+    },
+    {
+      "goodId": "wpn_619",
+      "name": "Kestrel Medium Depth Charge Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 277.15
+    },
+    {
+      "goodId": "wpn_620",
+      "name": "Kestrel Medium Depth Charge Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 299.14
+    },
+    {
+      "goodId": "wpn_621",
+      "name": "Kestrel Medium Depth Charge Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 321.65
+    },
+    {
+      "goodId": "wpn_622",
+      "name": "Kestrel Medium Depth Charge Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 345.04
+    },
+    {
+      "goodId": "wpn_623",
+      "name": "Kestrel Medium Depth Charge Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 362.98
+    },
+    {
+      "goodId": "wpn_624",
+      "name": "Vanguard Medium Depth Charge Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 293.89
+    },
+    {
+      "goodId": "wpn_625",
+      "name": "Vanguard Medium Depth Charge Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 317.23
+    },
+    {
+      "goodId": "wpn_626",
+      "name": "Vanguard Medium Depth Charge Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 335.11
+    },
+    {
+      "goodId": "wpn_627",
+      "name": "Vanguard Medium Depth Charge Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 360.09
+    },
+    {
+      "goodId": "wpn_628",
+      "name": "Vanguard Medium Depth Charge Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 387.36
+    },
+    {
+      "goodId": "wpn_629",
+      "name": "Ceridan Mine Layer Mk.1",
+      "kind": "weapon",
+      "referencePrice": 344.47
+    },
+    {
+      "goodId": "wpn_630",
+      "name": "Ceridan Mine Layer Mk.2",
+      "kind": "weapon",
+      "referencePrice": 368.97
+    },
+    {
+      "goodId": "wpn_631",
+      "name": "Ceridan Mine Layer Mk.3",
+      "kind": "weapon",
+      "referencePrice": 394.9
+    },
+    {
+      "goodId": "wpn_632",
+      "name": "Ceridan Mine Layer Mk.4",
+      "kind": "weapon",
+      "referencePrice": 421.65
+    },
+    {
+      "goodId": "wpn_633",
+      "name": "Ceridan Mine Layer Mk.5",
+      "kind": "weapon",
+      "referencePrice": 456.94
+    },
+    {
+      "goodId": "wpn_634",
+      "name": "Meridian Mine Layer Mk.3",
+      "kind": "weapon",
+      "referencePrice": 405.82
+    },
+    {
+      "goodId": "wpn_635",
+      "name": "Meridian Mine Layer Mk.4",
+      "kind": "weapon",
+      "referencePrice": 439.42
+    },
+    {
+      "goodId": "wpn_636",
+      "name": "Meridian Mine Layer Mk.5",
+      "kind": "weapon",
+      "referencePrice": 467.26
+    },
+    {
+      "goodId": "wpn_637",
+      "name": "Ceridan Heavy Mine Layer Mk.1",
+      "kind": "weapon",
+      "referencePrice": 511.3
+    },
+    {
+      "goodId": "wpn_638",
+      "name": "Ceridan Heavy Mine Layer Mk.2",
+      "kind": "weapon",
+      "referencePrice": 547.72
+    },
+    {
+      "goodId": "wpn_639",
+      "name": "Ceridan Heavy Mine Layer Mk.3",
+      "kind": "weapon",
+      "referencePrice": 586.38
+    },
+    {
+      "goodId": "wpn_640",
+      "name": "Ceridan Heavy Mine Layer Mk.4",
+      "kind": "weapon",
+      "referencePrice": 628.16
+    },
+    {
+      "goodId": "wpn_641",
+      "name": "Ceridan Heavy Mine Layer Mk.5",
+      "kind": "weapon",
+      "referencePrice": 679.57
+    },
+    {
+      "goodId": "wpn_642",
+      "name": "Meridian Heavy Mine Layer Mk.1",
+      "kind": "weapon",
+      "referencePrice": 519.8
+    },
+    {
+      "goodId": "wpn_643",
+      "name": "Meridian Heavy Mine Layer Mk.2",
+      "kind": "weapon",
+      "referencePrice": 555.62
+    },
+    {
+      "goodId": "wpn_644",
+      "name": "Meridian Heavy Mine Layer Mk.3",
+      "kind": "weapon",
+      "referencePrice": 594.25
+    },
+    {
+      "goodId": "wpn_645",
+      "name": "Meridian Heavy Mine Layer Mk.4",
+      "kind": "weapon",
+      "referencePrice": 642.55
+    },
+    {
+      "goodId": "wpn_646",
+      "name": "Meridian Heavy Mine Layer Mk.5",
+      "kind": "weapon",
+      "referencePrice": 686.82
+    },
+    {
+      "goodId": "wpn_647",
+      "name": "Ceridan Proximity Mine Dispenser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 305.44
+    },
+    {
+      "goodId": "wpn_648",
+      "name": "Ceridan Proximity Mine Dispenser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 322.57
+    },
+    {
+      "goodId": "wpn_649",
+      "name": "Ceridan Proximity Mine Dispenser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 347.7
+    },
+    {
+      "goodId": "wpn_650",
+      "name": "Ceridan Proximity Mine Dispenser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 365.65
+    },
+    {
+      "goodId": "wpn_651",
+      "name": "Obsidian Proximity Mine Dispenser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 338.15
+    },
+    {
+      "goodId": "wpn_652",
+      "name": "Obsidian Light Proximity Mine Dispenser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 355.55
+    },
+    {
+      "goodId": "wpn_653",
+      "name": "Obsidian Proximity Mine Dispenser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 380.08
+    },
+    {
+      "goodId": "wpn_654",
+      "name": "Obsidian Proximity Mine Dispenser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 398.63
+    },
+    {
+      "goodId": "wpn_655",
+      "name": "Obsidian Proximity Mine Dispenser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 424.0
+    },
+    {
+      "goodId": "wpn_656",
+      "name": "Ceridan Medium Proximity Mine Dispenser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 375.16
+    },
+    {
+      "goodId": "wpn_657",
+      "name": "Ceridan Medium Proximity Mine Dispenser Mk.2",
+      "kind": "weapon",
+      "referencePrice": 396.88
+    },
+    {
+      "goodId": "wpn_658",
+      "name": "Ceridan Medium Proximity Mine Dispenser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 426.57
+    },
+    {
+      "goodId": "wpn_659",
+      "name": "Ceridan Medium Proximity Mine Dispenser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 450.53
+    },
+    {
+      "goodId": "wpn_660",
+      "name": "Ceridan Medium Proximity Mine Dispenser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 488.75
+    },
+    {
+      "goodId": "wpn_661",
+      "name": "Obsidian Medium Proximity Mine Dispenser Mk.1",
+      "kind": "weapon",
+      "referencePrice": 406.62
+    },
+    {
+      "goodId": "wpn_662",
+      "name": "Obsidian Medium Proximity Mine Dispenser Mk.3",
+      "kind": "weapon",
+      "referencePrice": 458.27
+    },
+    {
+      "goodId": "wpn_663",
+      "name": "Obsidian Medium Proximity Mine Dispenser Mk.4",
+      "kind": "weapon",
+      "referencePrice": 481.33
+    },
+    {
+      "goodId": "wpn_664",
+      "name": "Obsidian Medium Proximity Mine Dispenser Mk.5",
+      "kind": "weapon",
+      "referencePrice": 512.69
+    },
+    {
+      "goodId": "wpn_665",
+      "name": "Ashwright Siege Mine Cluster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 603.89
+    },
+    {
+      "goodId": "wpn_666",
+      "name": "Ashwright Siege Mine Cluster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 641.09
+    },
+    {
+      "goodId": "wpn_667",
+      "name": "Ashwright Siege Mine Cluster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 688.2
+    },
+    {
+      "goodId": "wpn_668",
+      "name": "Ashwright Siege Mine Cluster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 739.24
+    },
+    {
+      "goodId": "wpn_669",
+      "name": "Ashwright Siege Mine Cluster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 787.05
+    },
+    {
+      "goodId": "wpn_670",
+      "name": "Draconis Siege Mine Cluster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 624.2
+    },
+    {
+      "goodId": "wpn_671",
+      "name": "Draconis Siege Mine Cluster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 667.99
+    },
+    {
+      "goodId": "wpn_672",
+      "name": "Draconis Siege Mine Cluster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 722.84
+    },
+    {
+      "goodId": "wpn_673",
+      "name": "Draconis Siege Mine Cluster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 775.28
+    },
+    {
+      "goodId": "wpn_674",
+      "name": "Draconis Siege Mine Cluster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 840.17
+    },
+    {
+      "goodId": "wpn_675",
+      "name": "Ashwright Siege Siege Mine Cluster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 970.42
+    },
+    {
+      "goodId": "wpn_676",
+      "name": "Ashwright Siege Siege Mine Cluster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 1036.15
+    },
+    {
+      "goodId": "wpn_677",
+      "name": "Ashwright Siege Siege Mine Cluster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 1114.58
+    },
+    {
+      "goodId": "wpn_678",
+      "name": "Ashwright Siege Siege Mine Cluster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 1200.88
+    },
+    {
+      "goodId": "wpn_679",
+      "name": "Ashwright Siege Siege Mine Cluster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1288.46
+    },
+    {
+      "goodId": "wpn_680",
+      "name": "Draconis Siege Siege Mine Cluster Mk.1",
+      "kind": "weapon",
+      "referencePrice": 1044.37
+    },
+    {
+      "goodId": "wpn_681",
+      "name": "Draconis Siege Siege Mine Cluster Mk.2",
+      "kind": "weapon",
+      "referencePrice": 1123.32
+    },
+    {
+      "goodId": "wpn_682",
+      "name": "Draconis Siege Siege Mine Cluster Mk.3",
+      "kind": "weapon",
+      "referencePrice": 1217.51
+    },
+    {
+      "goodId": "wpn_683",
+      "name": "Draconis Siege Siege Mine Cluster Mk.4",
+      "kind": "weapon",
+      "referencePrice": 1313.44
+    },
+    {
+      "goodId": "wpn_684",
+      "name": "Draconis Siege Siege Mine Cluster Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1426.26
+    },
+    {
+      "goodId": "wpn_685",
+      "name": "Ashwright Cruise Missile Bay Mk.1",
+      "kind": "weapon",
+      "referencePrice": 694.14
+    },
+    {
+      "goodId": "wpn_686",
+      "name": "Ashwright Cruise Missile Bay Mk.2",
+      "kind": "weapon",
+      "referencePrice": 743.57
+    },
+    {
+      "goodId": "wpn_687",
+      "name": "Ashwright Cruise Missile Bay Mk.3",
+      "kind": "weapon",
+      "referencePrice": 789.81
+    },
+    {
+      "goodId": "wpn_688",
+      "name": "Ashwright Cruise Missile Bay Mk.4",
+      "kind": "weapon",
+      "referencePrice": 847.41
+    },
+    {
+      "goodId": "wpn_689",
+      "name": "Ashwright Cruise Missile Bay Mk.5",
+      "kind": "weapon",
+      "referencePrice": 909.75
+    },
+    {
+      "goodId": "wpn_690",
+      "name": "Voss Heavy Cruise Missile Bay Mk.1",
+      "kind": "weapon",
+      "referencePrice": 657.8
+    },
+    {
+      "goodId": "wpn_691",
+      "name": "Voss Cruise Missile Bay Mk.2",
+      "kind": "weapon",
+      "referencePrice": 701.72
+    },
+    {
+      "goodId": "wpn_692",
+      "name": "Voss Cruise Missile Bay Mk.3",
+      "kind": "weapon",
+      "referencePrice": 755.83
+    },
+    {
+      "goodId": "wpn_693",
+      "name": "Voss Cruise Missile Bay Mk.5",
+      "kind": "weapon",
+      "referencePrice": 879.22
+    },
+    {
+      "goodId": "wpn_694",
+      "name": "Ashwright Siege Cruise Missile Bay Mk.1",
+      "kind": "weapon",
+      "referencePrice": 1111.56
+    },
+    {
+      "goodId": "wpn_695",
+      "name": "Ashwright Siege Cruise Missile Bay Mk.2",
+      "kind": "weapon",
+      "referencePrice": 1194.38
+    },
+    {
+      "goodId": "wpn_696",
+      "name": "Ashwright Siege Cruise Missile Bay Mk.3",
+      "kind": "weapon",
+      "referencePrice": 1278.5
+    },
+    {
+      "goodId": "wpn_697",
+      "name": "Ashwright Siege Cruise Missile Bay Mk.4",
+      "kind": "weapon",
+      "referencePrice": 1376.71
+    },
+    {
+      "goodId": "wpn_698",
+      "name": "Ashwright Siege Cruise Missile Bay Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1485.31
+    },
+    {
+      "goodId": "wpn_699",
+      "name": "Voss Siege Cruise Missile Bay Mk.2",
+      "kind": "weapon",
+      "referencePrice": 1160.08
+    },
+    {
+      "goodId": "wpn_700",
+      "name": "Voss Siege Cruise Missile Bay Mk.3",
+      "kind": "weapon",
+      "referencePrice": 1253.68
+    },
+    {
+      "goodId": "wpn_701",
+      "name": "Voss Siege Cruise Missile Bay Mk.4",
+      "kind": "weapon",
+      "referencePrice": 1355.05
+    },
+    {
+      "goodId": "wpn_702",
+      "name": "Voss Siege Cruise Missile Bay Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1466.78
+    },
+    {
+      "goodId": "wpn_703",
+      "name": "Halcyon Interceptor Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 795.78
+    },
+    {
+      "goodId": "wpn_704",
+      "name": "Halcyon Interceptor Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 846.32
+    },
+    {
+      "goodId": "wpn_705",
+      "name": "Halcyon Interceptor Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 903.7
+    },
+    {
+      "goodId": "wpn_706",
+      "name": "Halcyon Interceptor Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 961.66
+    },
+    {
+      "goodId": "wpn_707",
+      "name": "Halcyon Interceptor Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1019.92
+    },
+    {
+      "goodId": "wpn_708",
+      "name": "Meridian Interceptor Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 707.33
+    },
+    {
+      "goodId": "wpn_709",
+      "name": "Meridian Interceptor Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 757.87
+    },
+    {
+      "goodId": "wpn_710",
+      "name": "Meridian Interceptor Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 801.83
+    },
+    {
+      "goodId": "wpn_711",
+      "name": "Meridian Interceptor Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 859.79
+    },
+    {
+      "goodId": "wpn_712",
+      "name": "Meridian Interceptor Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 911.48
+    },
+    {
+      "goodId": "wpn_713",
+      "name": "Halcyon Medium Interceptor Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 854.14
+    },
+    {
+      "goodId": "wpn_714",
+      "name": "Halcyon Medium Interceptor Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 908.17
+    },
+    {
+      "goodId": "wpn_715",
+      "name": "Halcyon Medium Interceptor Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 968.75
+    },
+    {
+      "goodId": "wpn_716",
+      "name": "Halcyon Medium Interceptor Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 1030.48
+    },
+    {
+      "goodId": "wpn_717",
+      "name": "Halcyon Medium Interceptor Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 1092.8
+    },
+    {
+      "goodId": "wpn_718",
+      "name": "Meridian Medium Interceptor Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 766.52
+    },
+    {
+      "goodId": "wpn_719",
+      "name": "Meridian Medium Interceptor Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 820.55
+    },
+    {
+      "goodId": "wpn_720",
+      "name": "Meridian Medium Interceptor Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 867.71
+    },
+    {
+      "goodId": "wpn_721",
+      "name": "Meridian Medium Interceptor Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 929.43
+    },
+    {
+      "goodId": "wpn_722",
+      "name": "Meridian Medium Interceptor Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 985.46
+    },
+    {
+      "goodId": "wpn_723",
+      "name": "Ceridan Missile Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 378.41
+    },
+    {
+      "goodId": "wpn_724",
+      "name": "Ceridan Missile Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 402.11
+    },
+    {
+      "goodId": "wpn_725",
+      "name": "Ceridan Light Missile Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 432.96
+    },
+    {
+      "goodId": "wpn_726",
+      "name": "Ceridan Missile Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 464.66
+    },
+    {
+      "goodId": "wpn_727",
+      "name": "Ceridan Missile Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 489.81
+    },
+    {
+      "goodId": "wpn_728",
+      "name": "Kestrel Missile Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 437.07
+    },
+    {
+      "goodId": "wpn_729",
+      "name": "Kestrel Missile Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 468.22
+    },
+    {
+      "goodId": "wpn_730",
+      "name": "Kestrel Missile Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 499.67
+    },
+    {
+      "goodId": "wpn_731",
+      "name": "Ceridan Medium Missile Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 445.27
+    },
+    {
+      "goodId": "wpn_732",
+      "name": "Ceridan Medium Missile Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 472.72
+    },
+    {
+      "goodId": "wpn_733",
+      "name": "Ceridan Medium Missile Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 545.06
+    },
+    {
+      "goodId": "wpn_734",
+      "name": "Ceridan Medium Missile Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 575.37
+    },
+    {
+      "goodId": "wpn_735",
+      "name": "Kestrel Medium Missile Rack Mk.1",
+      "kind": "weapon",
+      "referencePrice": 447.19
+    },
+    {
+      "goodId": "wpn_736",
+      "name": "Kestrel Medium Missile Rack Mk.2",
+      "kind": "weapon",
+      "referencePrice": 480.66
+    },
+    {
+      "goodId": "wpn_737",
+      "name": "Kestrel Medium Missile Rack Mk.3",
+      "kind": "weapon",
+      "referencePrice": 509.02
+    },
+    {
+      "goodId": "wpn_738",
+      "name": "Kestrel Medium Missile Rack Mk.4",
+      "kind": "weapon",
+      "referencePrice": 544.51
+    },
+    {
+      "goodId": "wpn_739",
+      "name": "Kestrel Medium Missile Rack Mk.5",
+      "kind": "weapon",
+      "referencePrice": 580.57
+    },
+    {
+      "goodId": "wpn_740",
+      "name": "Ceridan Seeker Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 550.33
+    },
+    {
+      "goodId": "wpn_741",
+      "name": "Ceridan Seeker Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 627.39
+    },
+    {
+      "goodId": "wpn_742",
+      "name": "Ceridan Seeker Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 667.06
+    },
+    {
+      "goodId": "wpn_743",
+      "name": "Ceridan Seeker Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 706.72
+    },
+    {
+      "goodId": "wpn_744",
+      "name": "Halcyon Seeker Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 677.54
+    },
+    {
+      "goodId": "wpn_745",
+      "name": "Halcyon Seeker Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 716.08
+    },
+    {
+      "goodId": "wpn_746",
+      "name": "Halcyon Seeker Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 814.23
+    },
+    {
+      "goodId": "wpn_747",
+      "name": "Ceridan Medium Seeker Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 626.52
+    },
+    {
+      "goodId": "wpn_748",
+      "name": "Ceridan Medium Seeker Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 669.92
+    },
+    {
+      "goodId": "wpn_749",
+      "name": "Ceridan Medium Seeker Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 714.47
+    },
+    {
+      "goodId": "wpn_750",
+      "name": "Ceridan Medium Seeker Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 759.84
+    },
+    {
+      "goodId": "wpn_751",
+      "name": "Ceridan Medium Seeker Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 806.36
+    },
+    {
+      "goodId": "wpn_752",
+      "name": "Halcyon Medium Seeker Missile Mk.1",
+      "kind": "weapon",
+      "referencePrice": 750.86
+    },
+    {
+      "goodId": "wpn_753",
+      "name": "Halcyon Medium Seeker Missile Mk.2",
+      "kind": "weapon",
+      "referencePrice": 793.68
+    },
+    {
+      "goodId": "wpn_754",
+      "name": "Halcyon Medium Seeker Missile Mk.3",
+      "kind": "weapon",
+      "referencePrice": 851.35
+    },
+    {
+      "goodId": "wpn_755",
+      "name": "Halcyon Medium Seeker Missile Mk.4",
+      "kind": "weapon",
+      "referencePrice": 903.02
+    },
+    {
+      "goodId": "wpn_756",
+      "name": "Halcyon Medium Seeker Missile Mk.5",
+      "kind": "weapon",
+      "referencePrice": 962.36
+    },
+    {
+      "goodId": "wpn_757",
+      "name": "Kestrel Swarm Missile Pod Mk.1",
+      "kind": "weapon",
+      "referencePrice": 443.41
+    },
+    {
+      "goodId": "wpn_758",
+      "name": "Kestrel Swarm Missile Pod Mk.2",
+      "kind": "weapon",
+      "referencePrice": 480.86
+    },
+    {
+      "goodId": "wpn_759",
+      "name": "Kestrel Swarm Missile Pod Mk.3",
+      "kind": "weapon",
+      "referencePrice": 511.16
+    },
+    {
+      "goodId": "wpn_760",
+      "name": "Kestrel Swarm Missile Pod Mk.4",
+      "kind": "weapon",
+      "referencePrice": 548.88
+    },
+    {
+      "goodId": "wpn_761",
+      "name": "Obsidian Swarm Missile Pod Mk.1",
+      "kind": "weapon",
+      "referencePrice": 450.67
+    },
+    {
+      "goodId": "wpn_762",
+      "name": "Obsidian Swarm Missile Pod Mk.2",
+      "kind": "weapon",
+      "referencePrice": 473.81
+    },
+    {
+      "goodId": "wpn_763",
+      "name": "Obsidian Swarm Missile Pod Mk.4",
+      "kind": "weapon",
+      "referencePrice": 542.38
+    },
+    {
+      "goodId": "wpn_764",
+      "name": "Obsidian Swarm Missile Pod Mk.5",
+      "kind": "weapon",
+      "referencePrice": 574.4
+    },
+    {
+      "goodId": "wpn_765",
+      "name": "Kestrel Medium Swarm Missile Pod Mk.1",
+      "kind": "weapon",
+      "referencePrice": 506.87
+    },
+    {
+      "goodId": "wpn_766",
+      "name": "Kestrel Medium Swarm Missile Pod Mk.2",
+      "kind": "weapon",
+      "referencePrice": 547.23
+    },
+    {
+      "goodId": "wpn_767",
+      "name": "Kestrel Medium Swarm Missile Pod Mk.3",
+      "kind": "weapon",
+      "referencePrice": 581.63
+    },
+    {
+      "goodId": "wpn_768",
+      "name": "Kestrel Medium Swarm Missile Pod Mk.4",
+      "kind": "weapon",
+      "referencePrice": 623.44
+    },
+    {
+      "goodId": "wpn_769",
+      "name": "Kestrel Medium Swarm Missile Pod Mk.5",
+      "kind": "weapon",
+      "referencePrice": 658.95
+    },
+    {
+      "goodId": "wpn_770",
+      "name": "Obsidian Medium Swarm Missile Pod Mk.1",
+      "kind": "weapon",
+      "referencePrice": 513.33
+    },
+    {
+      "goodId": "wpn_771",
+      "name": "Obsidian Medium Swarm Missile Pod Mk.2",
+      "kind": "weapon",
+      "referencePrice": 540.82
+    },
+    {
+      "goodId": "wpn_772",
+      "name": "Obsidian Medium Swarm Missile Pod Mk.3",
+      "kind": "weapon",
+      "referencePrice": 575.16
+    },
+    {
+      "goodId": "wpn_773",
+      "name": "Obsidian Medium Swarm Missile Pod Mk.4",
+      "kind": "weapon",
+      "referencePrice": 617.5
+    },
+    {
+      "goodId": "wpn_774",
+      "name": "Obsidian Medium Swarm Missile Pod Mk.5",
+      "kind": "weapon",
+      "referencePrice": 653.56
+    },
+    {
+      "goodId": "wpn_775",
+      "name": "Draconis Torpedo Launcher Mk.1",
+      "kind": "weapon",
+      "referencePrice": 408.6
+    },
+    {
+      "goodId": "wpn_776",
+      "name": "Draconis Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 440.69
+    },
+    {
+      "goodId": "wpn_777",
+      "name": "Draconis Torpedo Launcher Mk.3",
+      "kind": "weapon",
+      "referencePrice": 467.29
+    },
+    {
+      "goodId": "wpn_778",
+      "name": "Draconis Medium Torpedo Launcher Mk.4",
+      "kind": "weapon",
+      "referencePrice": 502.98
+    },
+    {
+      "goodId": "wpn_779",
+      "name": "Draconis Torpedo Launcher Mk.5",
+      "kind": "weapon",
+      "referencePrice": 541.19
+    },
+    {
+      "goodId": "wpn_780",
+      "name": "Meridian Torpedo Launcher Mk.1",
+      "kind": "weapon",
+      "referencePrice": 375.86
+    },
+    {
+      "goodId": "wpn_781",
+      "name": "Meridian Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 403.45
+    },
+    {
+      "goodId": "wpn_782",
+      "name": "Meridian Torpedo Launcher Mk.4",
+      "kind": "weapon",
+      "referencePrice": 469.68
+    },
+    {
+      "goodId": "wpn_783",
+      "name": "Meridian Torpedo Launcher Mk.5",
+      "kind": "weapon",
+      "referencePrice": 501.73
+    },
+    {
+      "goodId": "wpn_784",
+      "name": "Vanguard Medium Torpedo Launcher Mk.1",
+      "kind": "weapon",
+      "referencePrice": 380.51
+    },
+    {
+      "goodId": "wpn_785",
+      "name": "Vanguard Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 408.66
+    },
+    {
+      "goodId": "wpn_786",
+      "name": "Vanguard Medium Torpedo Launcher Mk.3",
+      "kind": "weapon",
+      "referencePrice": 438.47
+    },
+    {
+      "goodId": "wpn_787",
+      "name": "Vanguard Medium Torpedo Launcher Mk.5",
+      "kind": "weapon",
+      "referencePrice": 502.56
+    },
+    {
+      "goodId": "wpn_788",
+      "name": "Draconis Heavy Torpedo Launcher Mk.1",
+      "kind": "weapon",
+      "referencePrice": 646.72
+    },
+    {
+      "goodId": "wpn_789",
+      "name": "Draconis Heavy Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 697.66
+    },
+    {
+      "goodId": "wpn_790",
+      "name": "Draconis Heavy Torpedo Launcher Mk.3",
+      "kind": "weapon",
+      "referencePrice": 746.81
+    },
+    {
+      "goodId": "wpn_791",
+      "name": "Draconis Heavy Torpedo Launcher Mk.5",
+      "kind": "weapon",
+      "referencePrice": 872.73
+    },
+    {
+      "goodId": "wpn_792",
+      "name": "Meridian Heavy Torpedo Launcher Mk.1",
+      "kind": "weapon",
+      "referencePrice": 570.57
+    },
+    {
+      "goodId": "wpn_793",
+      "name": "Meridian Heavy Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 612.27
+    },
+    {
+      "goodId": "wpn_794",
+      "name": "Meridian Heavy Torpedo Launcher Mk.3",
+      "kind": "weapon",
+      "referencePrice": 658.23
+    },
+    {
+      "goodId": "wpn_795",
+      "name": "Meridian Heavy Torpedo Launcher Mk.4",
+      "kind": "weapon",
+      "referencePrice": 713.8
+    },
+    {
+      "goodId": "wpn_796",
+      "name": "Meridian Heavy Torpedo Launcher Mk.5",
+      "kind": "weapon",
+      "referencePrice": 766.44
+    },
+    {
+      "goodId": "wpn_797",
+      "name": "Vanguard Heavy Torpedo Launcher Mk.2",
+      "kind": "weapon",
+      "referencePrice": 623.77
+    },
+    {
+      "goodId": "wpn_798",
+      "name": "Vanguard Heavy Torpedo Launcher Mk.4",
+      "kind": "weapon",
+      "referencePrice": 721.74
+    },
+    {
+      "goodId": "mod_ion_drive_std",
+      "name": "Standard Ion Drive",
+      "kind": "module",
+      "referencePrice": 65.25
+    },
+    {
+      "goodId": "mod_ion_drive_hp",
+      "name": "High-Output Ion Drive",
+      "kind": "module",
+      "referencePrice": 70.61
+    },
+    {
+      "goodId": "mod_ion_drive_mk3",
+      "name": "Ion Drive Mk.3",
+      "kind": "module",
+      "referencePrice": 76.27
+    },
+    {
+      "goodId": "mod_cruise_drive_mk1",
+      "name": "Cruise Drive Mk.1",
+      "kind": "module",
+      "referencePrice": 75.02
+    },
+    {
+      "goodId": "mod_cruise_drive_mk2",
+      "name": "Cruise Drive Mk.2",
+      "kind": "module",
+      "referencePrice": 80.54
+    },
+    {
+      "goodId": "mod_cruise_drive_mk3",
+      "name": "Cruise Drive Mk.3",
+      "kind": "module",
+      "referencePrice": 86.55
+    },
+    {
+      "goodId": "mod_sprint_drive_mk1",
+      "name": "Sprint Drive Mk.1",
+      "kind": "module",
+      "referencePrice": 76.56
+    },
+    {
+      "goodId": "mod_sprint_drive_mk2",
+      "name": "Sprint Drive Mk.2",
+      "kind": "module",
+      "referencePrice": 83.64
+    },
+    {
+      "goodId": "mod_sprint_drive_mk3",
+      "name": "Sprint Drive Mk.3",
+      "kind": "module",
+      "referencePrice": 91.61
+    },
+    {
+      "goodId": "mod_manoeuvring_thrusters_mk1",
+      "name": "Manoeuvring Thrusters Mk.1",
+      "kind": "module",
+      "referencePrice": 24.89
+    },
+    {
+      "goodId": "mod_manoeuvring_thrusters_mk2",
+      "name": "Manoeuvring Thrusters Mk.2",
+      "kind": "module",
+      "referencePrice": 27.45
+    },
+    {
+      "goodId": "mod_manoeuvring_thrusters_mk3",
+      "name": "Manoeuvring Thrusters Mk.3",
+      "kind": "module",
+      "referencePrice": 30.0
+    },
+    {
+      "goodId": "mod_fusion_generator_mk1",
+      "name": "Fusion Generator Mk.1",
+      "kind": "module",
+      "referencePrice": 114.1
+    },
+    {
+      "goodId": "mod_fusion_generator_mk2",
+      "name": "Fusion Generator Mk.2",
+      "kind": "module",
+      "referencePrice": 120.94
+    },
+    {
+      "goodId": "mod_fusion_generator_mk3",
+      "name": "Fusion Generator Mk.3",
+      "kind": "module",
+      "referencePrice": 128.17
+    },
+    {
+      "goodId": "mod_power_core_std",
+      "name": "Auxiliary Power Core",
+      "kind": "module",
+      "referencePrice": 52.29
+    },
+    {
+      "goodId": "mod_auxiliary_power_core_mk2",
+      "name": "Auxiliary Power Core Mk.2",
+      "kind": "module",
+      "referencePrice": 55.53
+    },
+    {
+      "goodId": "mod_auxiliary_power_core_mk3",
+      "name": "Auxiliary Power Core Mk.3",
+      "kind": "module",
+      "referencePrice": 58.76
+    },
+    {
+      "goodId": "mod_capacitor_bank_mk1",
+      "name": "Capacitor Bank Mk.1",
+      "kind": "module",
+      "referencePrice": 19.02
+    },
+    {
+      "goodId": "mod_capacitor_bank_mk2",
+      "name": "Capacitor Bank Mk.2",
+      "kind": "module",
+      "referencePrice": 20.16
+    },
+    {
+      "goodId": "mod_capacitor_bank_mk3",
+      "name": "Capacitor Bank Mk.3",
+      "kind": "module",
+      "referencePrice": 21.3
+    },
+    {
+      "goodId": "mod_repair_drone_std",
+      "name": "Autonomous Repair Drone Bay",
+      "kind": "module",
+      "referencePrice": 60.23
+    },
+    {
+      "goodId": "mod_repair_drone_bay_mk2",
+      "name": "Repair Drone Bay Mk.2",
+      "kind": "module",
+      "referencePrice": 65.32
+    },
+    {
+      "goodId": "mod_repair_drone_bay_mk3",
+      "name": "Repair Drone Bay Mk.3",
+      "kind": "module",
+      "referencePrice": 70.82
+    },
+    {
+      "goodId": "mod_damage_control_party_mk1",
+      "name": "Damage Control Party Mk.1",
+      "kind": "module",
+      "referencePrice": 12.1
+    },
+    {
+      "goodId": "mod_damage_control_party_mk2",
+      "name": "Damage Control Party Mk.2",
+      "kind": "module",
+      "referencePrice": 13.27
+    },
+    {
+      "goodId": "mod_damage_control_party_mk3",
+      "name": "Damage Control Party Mk.3",
+      "kind": "module",
+      "referencePrice": 14.55
+    },
+    {
+      "goodId": "mod_fire_suppression_mk1",
+      "name": "Fire Suppression Mk.1",
+      "kind": "module",
+      "referencePrice": 22.3
+    },
+    {
+      "goodId": "mod_fire_suppression_mk2",
+      "name": "Fire Suppression Mk.2",
+      "kind": "module",
+      "referencePrice": 23.96
+    },
+    {
+      "goodId": "mod_fire_suppression_mk3",
+      "name": "Fire Suppression Mk.3",
+      "kind": "module",
+      "referencePrice": 26.4
+    },
+    {
+      "goodId": "mod_machine_shop_mk1",
+      "name": "Machine Shop Mk.1",
+      "kind": "module",
+      "referencePrice": 108.04
+    },
+    {
+      "goodId": "mod_machine_shop_mk2",
+      "name": "Machine Shop Mk.2",
+      "kind": "module",
+      "referencePrice": 115.87
+    },
+    {
+      "goodId": "mod_machine_shop_mk3",
+      "name": "Machine Shop Mk.3",
+      "kind": "module",
+      "referencePrice": 124.19
+    },
+    {
+      "goodId": "mod_smoke_generator_mk1",
+      "name": "Smoke Generator Mk.1",
+      "kind": "module",
+      "referencePrice": 141.72
+    },
+    {
+      "goodId": "mod_smoke_generator_mk2",
+      "name": "Smoke Generator Mk.2",
+      "kind": "module",
+      "referencePrice": 167.83
+    },
+    {
+      "goodId": "mod_smoke_generator_mk3",
+      "name": "Smoke Generator Mk.3",
+      "kind": "module",
+      "referencePrice": 198.65
+    },
+    {
+      "goodId": "mod_minesweep_gear_mk1",
+      "name": "Minesweep Gear Mk.1",
+      "kind": "module",
+      "referencePrice": 270.63
+    },
+    {
+      "goodId": "mod_minesweep_gear_mk2",
+      "name": "Minesweep Gear Mk.2",
+      "kind": "module",
+      "referencePrice": 317.06
+    },
+    {
+      "goodId": "mod_minesweep_gear_mk3",
+      "name": "Minesweep Gear Mk.3",
+      "kind": "module",
+      "referencePrice": 372.01
+    },
+    {
+      "goodId": "mod_repair_shop_mk1",
+      "name": "Repair Shop Mk.1",
+      "kind": "module",
+      "referencePrice": 160.07
+    },
+    {
+      "goodId": "mod_repair_shop_mk2",
+      "name": "Repair Shop Mk.2",
+      "kind": "module",
+      "referencePrice": 171.05
+    },
+    {
+      "goodId": "mod_repair_shop_mk3",
+      "name": "Repair Shop Mk.3",
+      "kind": "module",
+      "referencePrice": 183.2
+    },
+    {
+      "goodId": "mod_hospital_bay_mk1",
+      "name": "Hospital Bay Mk.1",
+      "kind": "module",
+      "referencePrice": 65.77
+    },
+    {
+      "goodId": "mod_hospital_bay_mk2",
+      "name": "Hospital Bay Mk.2",
+      "kind": "module",
+      "referencePrice": 70.8
+    },
+    {
+      "goodId": "mod_hospital_bay_mk3",
+      "name": "Hospital Bay Mk.3",
+      "kind": "module",
+      "referencePrice": 75.83
+    },
+    {
+      "goodId": "mod_cic_tower_mk1",
+      "name": "CIC Tower Mk.1",
+      "kind": "module",
+      "referencePrice": 557.04
+    },
+    {
+      "goodId": "mod_cic_tower_mk2",
+      "name": "CIC Tower Mk.2",
+      "kind": "module",
+      "referencePrice": 653.44
+    },
+    {
+      "goodId": "mod_cic_tower_mk3",
+      "name": "CIC Tower Mk.3",
+      "kind": "module",
+      "referencePrice": 767.44
+    },
+    {
+      "goodId": "mod_flag_bridge_mk1",
+      "name": "Flag Bridge Mk.1",
+      "kind": "module",
+      "referencePrice": 456.58
+    },
+    {
+      "goodId": "mod_flag_bridge_mk2",
+      "name": "Flag Bridge Mk.2",
+      "kind": "module",
+      "referencePrice": 526.57
+    },
+    {
+      "goodId": "mod_flag_bridge_mk3",
+      "name": "Flag Bridge Mk.3",
+      "kind": "module",
+      "referencePrice": 725.83
+    },
+    {
+      "goodId": "mod_fire_control_director_mk1",
+      "name": "Fire Control Director Mk.1",
+      "kind": "module",
+      "referencePrice": 326.96
+    },
+    {
+      "goodId": "mod_fire_control_director_mk2",
+      "name": "Fire Control Director Mk.2",
+      "kind": "module",
+      "referencePrice": 385.67
+    },
+    {
+      "goodId": "mod_fire_control_director_mk3",
+      "name": "Fire Control Director Mk.3",
+      "kind": "module",
+      "referencePrice": 455.04
+    },
+    {
+      "goodId": "mod_targeting_computer_mk1",
+      "name": "Targeting Computer Mk.1",
+      "kind": "module",
+      "referencePrice": 139.15
+    },
+    {
+      "goodId": "mod_targeting_computer_mk2",
+      "name": "Targeting Computer Mk.2",
+      "kind": "module",
+      "referencePrice": 163.26
+    },
+    {
+      "goodId": "mod_targeting_computer_mk3",
+      "name": "Targeting Computer Mk.3",
+      "kind": "module",
+      "referencePrice": 192.07
+    },
+    {
+      "goodId": "mod_datalink_relay_mk1",
+      "name": "Datalink Relay Mk.1",
+      "kind": "module",
+      "referencePrice": 436.45
+    },
+    {
+      "goodId": "mod_datalink_relay_mk2",
+      "name": "Datalink Relay Mk.2",
+      "kind": "module",
+      "referencePrice": 518.71
+    },
+    {
+      "goodId": "mod_datalink_relay_mk3",
+      "name": "Datalink Relay Mk.3",
+      "kind": "module",
+      "referencePrice": 617.7
+    },
+    {
+      "goodId": "mod_search_radar_mk1",
+      "name": "Search Radar Mk.1",
+      "kind": "module",
+      "referencePrice": 678.69
+    },
+    {
+      "goodId": "mod_search_radar_mk2",
+      "name": "Search Radar Mk.2",
+      "kind": "module",
+      "referencePrice": 808.12
+    },
+    {
+      "goodId": "mod_search_radar_mk3",
+      "name": "Search Radar Mk.3",
+      "kind": "module",
+      "referencePrice": 1049.83
+    },
+    {
+      "goodId": "mod_surface_radar_mk1",
+      "name": "Surface Radar Mk.1",
+      "kind": "module",
+      "referencePrice": 467.07
+    },
+    {
+      "goodId": "mod_surface_radar_mk2",
+      "name": "Surface Radar Mk.2",
+      "kind": "module",
+      "referencePrice": 556.78
+    },
+    {
+      "goodId": "mod_surface_radar_mk3",
+      "name": "Surface Radar Mk.3",
+      "kind": "module",
+      "referencePrice": 663.41
+    },
+    {
+      "goodId": "mod_sonar_array_mk1",
+      "name": "Sonar Array Mk.1",
+      "kind": "module",
+      "referencePrice": 719.08
+    },
+    {
+      "goodId": "mod_sonar_array_mk2",
+      "name": "Sonar Array Mk.2",
+      "kind": "module",
+      "referencePrice": 856.02
+    },
+    {
+      "goodId": "mod_sonar_array_mk3",
+      "name": "Sonar Array Mk.3",
+      "kind": "module",
+      "referencePrice": 1021.23
+    },
+    {
+      "goodId": "mod_optical_rangefinder_mk1",
+      "name": "Optical Rangefinder Mk.1",
+      "kind": "module",
+      "referencePrice": 177.35
+    },
+    {
+      "goodId": "mod_optical_rangefinder_mk2",
+      "name": "Optical Rangefinder Mk.2",
+      "kind": "module",
+      "referencePrice": 211.38
+    },
+    {
+      "goodId": "mod_optical_rangefinder_mk3",
+      "name": "Optical Rangefinder Mk.3",
+      "kind": "module",
+      "referencePrice": 253.93
+    },
+    {
+      "goodId": "mod_ecm_std",
+      "name": "Standard ECM Suite",
+      "kind": "module",
+      "referencePrice": 230.15
+    },
+    {
+      "goodId": "mod_ecm_suite_mk2",
+      "name": "ECM Suite Mk.2",
+      "kind": "module",
+      "referencePrice": 269.73
+    },
+    {
+      "goodId": "mod_ecm_suite_mk3",
+      "name": "ECM Suite Mk.3",
+      "kind": "module",
+      "referencePrice": 315.39
+    },
+    {
+      "goodId": "mod_ecounter_std",
+      "name": "Counter-ECM Array",
+      "kind": "module",
+      "referencePrice": 296.92
+    },
+    {
+      "goodId": "mod_counter_ecm_array_mk2",
+      "name": "Counter-ECM Array Mk.2",
+      "kind": "module",
+      "referencePrice": 350.94
+    },
+    {
+      "goodId": "mod_counter_ecm_array_mk3",
+      "name": "Counter-ECM Array Mk.3",
+      "kind": "module",
+      "referencePrice": 504.45
+    },
+    {
+      "goodId": "mod_decoy_launcher_mk1",
+      "name": "Decoy Launcher Mk.1",
+      "kind": "module",
+      "referencePrice": 25.84
+    },
+    {
+      "goodId": "mod_decoy_launcher_mk2",
+      "name": "Decoy Launcher Mk.2",
+      "kind": "module",
+      "referencePrice": 28.4
+    },
+    {
+      "goodId": "mod_decoy_launcher_mk3",
+      "name": "Decoy Launcher Mk.3",
+      "kind": "module",
+      "referencePrice": 150.07
+    },
+    {
+      "goodId": "mod_shield_booster_1",
+      "name": "Shield Capacitor Booster I",
+      "kind": "module",
+      "referencePrice": 60.66
+    },
+    {
+      "goodId": "mod_shield_booster_2",
+      "name": "Shield Capacitor Booster II",
+      "kind": "module",
+      "referencePrice": 66.68
+    },
+    {
+      "goodId": "mod_shield_booster_mk3",
+      "name": "Shield Booster Mk.3",
+      "kind": "module",
+      "referencePrice": 72.69
+    },
+    {
+      "goodId": "mod_shield_capacitor_mk1",
+      "name": "Shield Capacitor Mk.1",
+      "kind": "module",
+      "referencePrice": 86.24
+    },
+    {
+      "goodId": "mod_shield_capacitor_mk2",
+      "name": "Shield Capacitor Mk.2",
+      "kind": "module",
+      "referencePrice": 94.43
+    },
+    {
+      "goodId": "mod_shield_capacitor_mk3",
+      "name": "Shield Capacitor Mk.3",
+      "kind": "module",
+      "referencePrice": 104.01
+    },
+    {
+      "goodId": "mod_armor_plate_std",
+      "name": "Reinforced Armor Plating",
+      "kind": "module",
+      "referencePrice": 142.62
+    },
+    {
+      "goodId": "mod_armour_plating_mk2",
+      "name": "Armour Plating Mk.2",
+      "kind": "module",
+      "referencePrice": 151.18
+    },
+    {
+      "goodId": "mod_armour_plating_mk3",
+      "name": "Armour Plating Mk.3",
+      "kind": "module",
+      "referencePrice": 160.31
+    },
+    {
+      "goodId": "mod_belt_armour_mk1",
+      "name": "Belt Armour Mk.1",
+      "kind": "module",
+      "referencePrice": 380.33
+    },
+    {
+      "goodId": "mod_belt_armour_mk2",
+      "name": "Belt Armour Mk.2",
+      "kind": "module",
+      "referencePrice": 403.15
+    },
+    {
+      "goodId": "mod_belt_armour_mk3",
+      "name": "Belt Armour Mk.3",
+      "kind": "module",
+      "referencePrice": 427.3
+    },
+    {
+      "goodId": "mod_torpedo_bulge_mk1",
+      "name": "Torpedo Bulge Mk.1",
+      "kind": "module",
+      "referencePrice": 247.21
+    },
+    {
+      "goodId": "mod_torpedo_bulge_mk2",
+      "name": "Torpedo Bulge Mk.2",
+      "kind": "module",
+      "referencePrice": 262.05
+    },
+    {
+      "goodId": "mod_torpedo_bulge_mk3",
+      "name": "Torpedo Bulge Mk.3",
+      "kind": "module",
+      "referencePrice": 277.83
+    },
+    {
+      "goodId": "mod_pd_coordinator_mk1",
+      "name": "PD Coordinator Mk.1",
+      "kind": "module",
+      "referencePrice": 346.43
+    },
+    {
+      "goodId": "mod_pd_coordinator_mk2",
+      "name": "PD Coordinator Mk.2",
+      "kind": "module",
+      "referencePrice": 411.8
+    },
+    {
+      "goodId": "mod_pd_coordinator_mk3",
+      "name": "PD Coordinator Mk.3",
+      "kind": "module",
+      "referencePrice": 579.09
+    },
+    {
+      "goodId": "mod_drone_controller_mk1",
+      "name": "Drone Controller Mk.1",
+      "kind": "module",
+      "referencePrice": 119.54
+    },
+    {
+      "goodId": "mod_drone_controller_mk2",
+      "name": "Drone Controller Mk.2",
+      "kind": "module",
+      "referencePrice": 134.83
+    },
+    {
+      "goodId": "mod_drone_controller_mk3",
+      "name": "Drone Controller Mk.3",
+      "kind": "module",
+      "referencePrice": 152.58
+    },
+    {
+      "goodId": "mod_drone_bay_mk1",
+      "name": "Drone Bay Mk.1",
+      "kind": "module",
+      "referencePrice": 117.28
+    },
+    {
+      "goodId": "mod_drone_bay_mk2",
+      "name": "Drone Bay Mk.2",
+      "kind": "module",
+      "referencePrice": 125.79
+    },
+    {
+      "goodId": "mod_drone_bay_mk3",
+      "name": "Drone Bay Mk.3",
+      "kind": "module",
+      "referencePrice": 135.09
+    },
+    {
+      "goodId": "mod_seaplane_catapult_mk1",
+      "name": "Seaplane Catapult Mk.1",
+      "kind": "module",
+      "referencePrice": 649.48
+    },
+    {
+      "goodId": "mod_seaplane_catapult_mk2",
+      "name": "Seaplane Catapult Mk.2",
+      "kind": "module",
+      "referencePrice": 762.04
+    },
+    {
+      "goodId": "mod_seaplane_catapult_mk3",
+      "name": "Seaplane Catapult Mk.3",
+      "kind": "module",
+      "referencePrice": 896.41
+    },
+    {
+      "goodId": "mod_aircraft_elevator_mk1",
+      "name": "Aircraft Elevator Mk.1",
+      "kind": "module",
+      "referencePrice": 254.11
+    },
+    {
+      "goodId": "mod_aircraft_elevator_mk2",
+      "name": "Aircraft Elevator Mk.2",
+      "kind": "module",
+      "referencePrice": 272.05
+    },
+    {
+      "goodId": "mod_aircraft_elevator_mk3",
+      "name": "Aircraft Elevator Mk.3",
+      "kind": "module",
+      "referencePrice": 291.35
+    },
+    {
+      "goodId": "mod_asw_aircraft_bay_mk1",
+      "name": "ASW Aircraft Bay Mk.1",
+      "kind": "module",
+      "referencePrice": 570.3
+    },
+    {
+      "goodId": "mod_asw_aircraft_bay_mk2",
+      "name": "ASW Aircraft Bay Mk.2",
+      "kind": "module",
+      "referencePrice": 664.36
+    },
+    {
+      "goodId": "mod_asw_aircraft_bay_mk3",
+      "name": "ASW Aircraft Bay Mk.3",
+      "kind": "module",
+      "referencePrice": 775.23
+    },
+    {
+      "goodId": "mod_cargo_expander",
+      "name": "Cargo Bay Expander",
+      "kind": "module",
+      "referencePrice": 38.03
+    },
+    {
+      "goodId": "mod_bulk_hold_mk2",
+      "name": "Bulk Hold Mk.2",
+      "kind": "module",
+      "referencePrice": 40.31
+    },
+    {
+      "goodId": "mod_bulk_hold_mk3",
+      "name": "Bulk Hold Mk.3",
+      "kind": "module",
+      "referencePrice": 42.79
+    },
+    {
+      "goodId": "mod_ammunition_magazine_mk1",
+      "name": "Ammunition Magazine Mk.1",
+      "kind": "module",
+      "referencePrice": 111.71
+    },
+    {
+      "goodId": "mod_ammunition_magazine_mk2",
+      "name": "Ammunition Magazine Mk.2",
+      "kind": "module",
+      "referencePrice": 121.75
+    },
+    {
+      "goodId": "mod_ammunition_magazine_mk3",
+      "name": "Ammunition Magazine Mk.3",
+      "kind": "module",
+      "referencePrice": 133.77
+    },
+    {
+      "goodId": "mod_cargo_derrick_mk1",
+      "name": "Cargo Derrick Mk.1",
+      "kind": "module",
+      "referencePrice": 80.04
+    },
+    {
+      "goodId": "mod_cargo_derrick_mk2",
+      "name": "Cargo Derrick Mk.2",
+      "kind": "module",
+      "referencePrice": 85.83
+    },
+    {
+      "goodId": "mod_cargo_derrick_mk3",
+      "name": "Cargo Derrick Mk.3",
+      "kind": "module",
+      "referencePrice": 92.0
+    },
+    {
+      "goodId": "mod_mine_rails_mk1",
+      "name": "Mine Rails Mk.1",
+      "kind": "module",
+      "referencePrice": 88.2
+    },
+    {
+      "goodId": "mod_mine_rails_mk2",
+      "name": "Mine Rails Mk.2",
+      "kind": "module",
+      "referencePrice": 96.99
+    },
+    {
+      "goodId": "mod_mine_rails_mk3",
+      "name": "Mine Rails Mk.3",
+      "kind": "module",
+      "referencePrice": 106.89
+    },
+    {
+      "goodId": "mod_refuelling_rig_mk1",
+      "name": "Refuelling Rig Mk.1",
+      "kind": "module",
+      "referencePrice": 108.3
+    },
+    {
+      "goodId": "mod_refuelling_rig_mk2",
+      "name": "Refuelling Rig Mk.2",
+      "kind": "module",
+      "referencePrice": 115.91
+    },
+    {
+      "goodId": "mod_refuelling_rig_mk3",
+      "name": "Refuelling Rig Mk.3",
+      "kind": "module",
+      "referencePrice": 124.01
+    },
+    {
+      "goodId": "mod_landing_craft_davits_mk1",
+      "name": "Landing Craft Davits Mk.1",
+      "kind": "module",
+      "referencePrice": 108.82
+    },
+    {
+      "goodId": "mod_landing_craft_davits_mk2",
+      "name": "Landing Craft Davits Mk.2",
+      "kind": "module",
+      "referencePrice": 115.8
+    },
+    {
+      "goodId": "mod_landing_craft_davits_mk3",
+      "name": "Landing Craft Davits Mk.3",
+      "kind": "module",
+      "referencePrice": 123.58
+    },
+    {
+      "goodId": "mod_troop_berthing_mk1",
+      "name": "Troop Berthing Mk.1",
+      "kind": "module",
+      "referencePrice": 66.03
+    },
+    {
+      "goodId": "mod_troop_berthing_mk2",
+      "name": "Troop Berthing Mk.2",
+      "kind": "module",
+      "referencePrice": 70.36
+    },
+    {
+      "goodId": "mod_troop_berthing_mk3",
+      "name": "Troop Berthing Mk.3",
+      "kind": "module",
+      "referencePrice": 75.47
+    },
+    {
+      "goodId": "ship_motor_torpedo_boat_t1",
+      "name": "Motor Torpedo Boat Tier 1",
+      "kind": "hull",
+      "shipClass": "motor_torpedo_boat",
+      "referencePrice": 1247.24,
+      "bareHullPrice": 197.06,
+      "fitPrice": 1050.18,
+      "fitShare": 0.842,
+      "insurance": {
+        "core": 157.65,
+        "mid": 137.94,
+        "rim": 98.53,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 0.7882,
+      "expectedSalvage": 525.09
+    },
+    {
+      "goodId": "ship_motor_torpedo_boat_t2",
+      "name": "Motor Torpedo Boat Tier 2",
+      "kind": "hull",
+      "shipClass": "motor_torpedo_boat",
+      "referencePrice": 2281.96,
+      "bareHullPrice": 320.95,
+      "fitPrice": 1961.01,
+      "fitShare": 0.8594,
+      "insurance": {
+        "core": 256.76,
+        "mid": 224.66,
+        "rim": 160.47,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 1.2838,
+      "expectedSalvage": 980.5
+    },
+    {
+      "goodId": "ship_motor_torpedo_boat_t3",
+      "name": "Motor Torpedo Boat Tier 3",
+      "kind": "hull",
+      "shipClass": "motor_torpedo_boat",
+      "referencePrice": 4427.33,
+      "bareHullPrice": 462.1,
+      "fitPrice": 3965.23,
+      "fitShare": 0.8956,
+      "insurance": {
+        "core": 369.68,
+        "mid": 323.47,
+        "rim": 231.05,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 1.8484,
+      "expectedSalvage": 1982.61
+    },
+    {
+      "goodId": "ship_submarine_chaser_t1",
+      "name": "Submarine Chaser Tier 1",
+      "kind": "hull",
+      "shipClass": "submarine_chaser",
+      "referencePrice": 1357.37,
+      "bareHullPrice": 425.87,
+      "fitPrice": 931.5,
+      "fitShare": 0.6863,
+      "insurance": {
+        "core": 340.7,
+        "mid": 298.11,
+        "rim": 212.94,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 1.7035,
+      "expectedSalvage": 465.75
+    },
+    {
+      "goodId": "ship_submarine_chaser_t2",
+      "name": "Submarine Chaser Tier 2",
+      "kind": "hull",
+      "shipClass": "submarine_chaser",
+      "referencePrice": 2054.98,
+      "bareHullPrice": 743.49,
+      "fitPrice": 1311.49,
+      "fitShare": 0.6382,
+      "insurance": {
+        "core": 594.79,
+        "mid": 520.44,
+        "rim": 371.75,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 2.974,
+      "expectedSalvage": 655.75
+    },
+    {
+      "goodId": "ship_submarine_chaser_t3",
+      "name": "Submarine Chaser Tier 3",
+      "kind": "hull",
+      "shipClass": "submarine_chaser",
+      "referencePrice": 3430.22,
+      "bareHullPrice": 1143.36,
+      "fitPrice": 2286.86,
+      "fitShare": 0.6667,
+      "insurance": {
+        "core": 914.69,
+        "mid": 800.35,
+        "rim": 571.68,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 4.5734,
+      "expectedSalvage": 1143.43
+    },
+    {
+      "goodId": "ship_corvette_t1",
+      "name": "Corvette Tier 1",
+      "kind": "hull",
+      "shipClass": "corvette",
+      "referencePrice": 3579.81,
+      "bareHullPrice": 1636.78,
+      "fitPrice": 1943.03,
+      "fitShare": 0.5428,
+      "insurance": {
+        "core": 1309.43,
+        "mid": 1145.75,
+        "rim": 818.39,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 6.5471,
+      "expectedSalvage": 971.51
+    },
+    {
+      "goodId": "ship_corvette_t2",
+      "name": "Corvette Tier 2",
+      "kind": "hull",
+      "shipClass": "corvette",
+      "referencePrice": 4825.22,
+      "bareHullPrice": 1926.59,
+      "fitPrice": 2898.62,
+      "fitShare": 0.6007,
+      "insurance": {
+        "core": 1541.27,
+        "mid": 1348.62,
+        "rim": 963.3,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 7.7064,
+      "expectedSalvage": 1449.31
+    },
+    {
+      "goodId": "ship_corvette_t3",
+      "name": "Corvette Tier 3",
+      "kind": "hull",
+      "shipClass": "corvette",
+      "referencePrice": 6352.03,
+      "bareHullPrice": 2391.21,
+      "fitPrice": 3960.83,
+      "fitShare": 0.6236,
+      "insurance": {
+        "core": 1912.97,
+        "mid": 1673.85,
+        "rim": 1195.6,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 9.5648,
+      "expectedSalvage": 1980.41
+    },
+    {
+      "goodId": "ship_torpedo_boat_fleet_t1",
+      "name": "Torpedo Boat Fleet Tier 1",
+      "kind": "hull",
+      "shipClass": "torpedo_boat_fleet",
+      "referencePrice": 3004.18,
+      "bareHullPrice": 1338.99,
+      "fitPrice": 1665.19,
+      "fitShare": 0.5543,
+      "insurance": {
+        "core": 1071.19,
+        "mid": 937.29,
+        "rim": 669.49,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 5.356,
+      "expectedSalvage": 832.6
+    },
+    {
+      "goodId": "ship_torpedo_boat_fleet_t2",
+      "name": "Torpedo Boat Fleet Tier 2",
+      "kind": "hull",
+      "shipClass": "torpedo_boat_fleet",
+      "referencePrice": 4714.89,
+      "bareHullPrice": 2050.48,
+      "fitPrice": 2664.4,
+      "fitShare": 0.5651,
+      "insurance": {
+        "core": 1640.39,
+        "mid": 1435.34,
+        "rim": 1025.24,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 8.2019,
+      "expectedSalvage": 1332.2
+    },
+    {
+      "goodId": "ship_torpedo_boat_fleet_t3",
+      "name": "Torpedo Boat Fleet Tier 3",
+      "kind": "hull",
+      "shipClass": "torpedo_boat_fleet",
+      "referencePrice": 6900.99,
+      "bareHullPrice": 2944.78,
+      "fitPrice": 3956.21,
+      "fitShare": 0.5733,
+      "insurance": {
+        "core": 2355.82,
+        "mid": 2061.34,
+        "rim": 1472.39,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 11.7791,
+      "expectedSalvage": 1978.11
+    },
+    {
+      "goodId": "ship_destroyer_escort_t1",
+      "name": "Destroyer Escort Tier 1",
+      "kind": "hull",
+      "shipClass": "destroyer_escort",
+      "referencePrice": 3586.43,
+      "bareHullPrice": 2109.05,
+      "fitPrice": 1477.38,
+      "fitShare": 0.4119,
+      "insurance": {
+        "core": 1687.24,
+        "mid": 1476.34,
+        "rim": 1054.53,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 8.4362,
+      "expectedSalvage": 738.69
+    },
+    {
+      "goodId": "ship_destroyer_escort_t2",
+      "name": "Destroyer Escort Tier 2",
+      "kind": "hull",
+      "shipClass": "destroyer_escort",
+      "referencePrice": 4842.29,
+      "bareHullPrice": 2764.5,
+      "fitPrice": 2077.79,
+      "fitShare": 0.4291,
+      "insurance": {
+        "core": 2211.6,
+        "mid": 1935.15,
+        "rim": 1382.25,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 11.058,
+      "expectedSalvage": 1038.89
+    },
+    {
+      "goodId": "ship_destroyer_escort_t3",
+      "name": "Destroyer Escort Tier 3",
+      "kind": "hull",
+      "shipClass": "destroyer_escort",
+      "referencePrice": 6523.57,
+      "bareHullPrice": 3618.43,
+      "fitPrice": 2905.14,
+      "fitShare": 0.4453,
+      "insurance": {
+        "core": 2894.74,
+        "mid": 2532.9,
+        "rim": 1809.21,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 14.4737,
+      "expectedSalvage": 1452.57
+    },
+    {
+      "goodId": "ship_sloop_patrol_escort_t1",
+      "name": "Sloop Patrol Escort Tier 1",
+      "kind": "hull",
+      "shipClass": "sloop_patrol_escort",
+      "referencePrice": 4169.4,
+      "bareHullPrice": 2280.06,
+      "fitPrice": 1889.35,
+      "fitShare": 0.4531,
+      "insurance": {
+        "core": 1824.05,
+        "mid": 1596.04,
+        "rim": 1140.03,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 9.1202,
+      "expectedSalvage": 944.67
+    },
+    {
+      "goodId": "ship_sloop_patrol_escort_t2",
+      "name": "Sloop Patrol Escort Tier 2",
+      "kind": "hull",
+      "shipClass": "sloop_patrol_escort",
+      "referencePrice": 5922.72,
+      "bareHullPrice": 2923.52,
+      "fitPrice": 2999.2,
+      "fitShare": 0.5064,
+      "insurance": {
+        "core": 2338.82,
+        "mid": 2046.47,
+        "rim": 1461.76,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 11.6941,
+      "expectedSalvage": 1499.6
+    },
+    {
+      "goodId": "ship_sloop_patrol_escort_t3",
+      "name": "Sloop Patrol Escort Tier 3",
+      "kind": "hull",
+      "shipClass": "sloop_patrol_escort",
+      "referencePrice": 8020.22,
+      "bareHullPrice": 3787.44,
+      "fitPrice": 4232.78,
+      "fitShare": 0.5278,
+      "insurance": {
+        "core": 3029.95,
+        "mid": 2651.21,
+        "rim": 1893.72,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 15.1497,
+      "expectedSalvage": 2116.39
+    },
+    {
+      "goodId": "ship_destroyer_t1",
+      "name": "Destroyer Tier 1",
+      "kind": "hull",
+      "shipClass": "destroyer",
+      "referencePrice": 4647.04,
+      "bareHullPrice": 2540.25,
+      "fitPrice": 2106.79,
+      "fitShare": 0.4534,
+      "insurance": {
+        "core": 2032.2,
+        "mid": 1778.18,
+        "rim": 1270.13,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 10.161,
+      "expectedSalvage": 1053.39
+    },
+    {
+      "goodId": "ship_destroyer_t2",
+      "name": "Destroyer Tier 2",
+      "kind": "hull",
+      "shipClass": "destroyer",
+      "referencePrice": 6978.81,
+      "bareHullPrice": 3903.1,
+      "fitPrice": 3075.7,
+      "fitShare": 0.4407,
+      "insurance": {
+        "core": 3122.48,
+        "mid": 2732.17,
+        "rim": 1951.55,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 15.6124,
+      "expectedSalvage": 1537.85
+    },
+    {
+      "goodId": "ship_destroyer_t3",
+      "name": "Destroyer Tier 3",
+      "kind": "hull",
+      "shipClass": "destroyer",
+      "referencePrice": 10014.93,
+      "bareHullPrice": 5633.45,
+      "fitPrice": 4381.48,
+      "fitShare": 0.4375,
+      "insurance": {
+        "core": 4506.76,
+        "mid": 3943.41,
+        "rim": 2816.72,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 22.5338,
+      "expectedSalvage": 2190.74
+    },
+    {
+      "goodId": "ship_landing_ship_tank_t1",
+      "name": "Landing Ship Tank Tier 1",
+      "kind": "hull",
+      "shipClass": "landing_ship_tank",
+      "referencePrice": 5850.02,
+      "bareHullPrice": 4613.46,
+      "fitPrice": 1236.56,
+      "fitShare": 0.2114,
+      "insurance": {
+        "core": 3690.77,
+        "mid": 3229.42,
+        "rim": 2306.73,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 18.4538,
+      "expectedSalvage": 618.28
+    },
+    {
+      "goodId": "ship_landing_ship_tank_t2",
+      "name": "Landing Ship Tank Tier 2",
+      "kind": "hull",
+      "shipClass": "landing_ship_tank",
+      "referencePrice": 7275.42,
+      "bareHullPrice": 5251.41,
+      "fitPrice": 2024.01,
+      "fitShare": 0.2782,
+      "insurance": {
+        "core": 4201.13,
+        "mid": 3675.99,
+        "rim": 2625.7,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 21.0056,
+      "expectedSalvage": 1012.0
+    },
+    {
+      "goodId": "ship_landing_ship_tank_t3",
+      "name": "Landing Ship Tank Tier 3",
+      "kind": "hull",
+      "shipClass": "landing_ship_tank",
+      "referencePrice": 8966.48,
+      "bareHullPrice": 6010.45,
+      "fitPrice": 2956.04,
+      "fitShare": 0.3297,
+      "insurance": {
+        "core": 4808.36,
+        "mid": 4207.31,
+        "rim": 3005.22,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 24.0418,
+      "expectedSalvage": 1478.02
+    },
+    {
+      "goodId": "ship_submarine_t1",
+      "name": "Submarine Tier 1",
+      "kind": "hull",
+      "shipClass": "submarine",
+      "referencePrice": 3164.15,
+      "bareHullPrice": 1668.49,
+      "fitPrice": 1495.65,
+      "fitShare": 0.4727,
+      "insurance": {
+        "core": 1334.79,
+        "mid": 1167.95,
+        "rim": 834.25,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 6.674,
+      "expectedSalvage": 747.83
+    },
+    {
+      "goodId": "ship_submarine_t2",
+      "name": "Submarine Tier 2",
+      "kind": "hull",
+      "shipClass": "submarine",
+      "referencePrice": 6195.0,
+      "bareHullPrice": 3865.26,
+      "fitPrice": 2329.74,
+      "fitShare": 0.3761,
+      "insurance": {
+        "core": 3092.21,
+        "mid": 2705.68,
+        "rim": 1932.63,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 15.461,
+      "expectedSalvage": 1164.87
+    },
+    {
+      "goodId": "ship_submarine_t3",
+      "name": "Submarine Tier 3",
+      "kind": "hull",
+      "shipClass": "submarine",
+      "referencePrice": 9856.77,
+      "bareHullPrice": 6499.4,
+      "fitPrice": 3357.37,
+      "fitShare": 0.3406,
+      "insurance": {
+        "core": 5199.52,
+        "mid": 4549.58,
+        "rim": 3249.7,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 25.9976,
+      "expectedSalvage": 1678.68
+    },
+    {
+      "goodId": "ship_minelayer_sweeper_t1",
+      "name": "Minelayer Sweeper Tier 1",
+      "kind": "hull",
+      "shipClass": "minelayer_sweeper",
+      "referencePrice": 3277.57,
+      "bareHullPrice": 1990.25,
+      "fitPrice": 1287.32,
+      "fitShare": 0.3928,
+      "insurance": {
+        "core": 1592.2,
+        "mid": 1393.18,
+        "rim": 995.13,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 7.961,
+      "expectedSalvage": 643.66
+    },
+    {
+      "goodId": "ship_minelayer_sweeper_t2",
+      "name": "Minelayer Sweeper Tier 2",
+      "kind": "hull",
+      "shipClass": "minelayer_sweeper",
+      "referencePrice": 6930.58,
+      "bareHullPrice": 4776.71,
+      "fitPrice": 2153.87,
+      "fitShare": 0.3108,
+      "insurance": {
+        "core": 3821.37,
+        "mid": 3343.7,
+        "rim": 2388.36,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 19.1069,
+      "expectedSalvage": 1076.94
+    },
+    {
+      "goodId": "ship_minelayer_sweeper_t3",
+      "name": "Minelayer Sweeper Tier 3",
+      "kind": "hull",
+      "shipClass": "minelayer_sweeper",
+      "referencePrice": 11911.49,
+      "bareHullPrice": 8129.01,
+      "fitPrice": 3782.48,
+      "fitShare": 0.3175,
+      "insurance": {
+        "core": 6503.21,
+        "mid": 5690.31,
+        "rim": 4064.5,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 32.516,
+      "expectedSalvage": 1891.24
+    },
+    {
+      "goodId": "ship_coastal_defence_ship_t1",
+      "name": "Coastal Defence Ship Tier 1",
+      "kind": "hull",
+      "shipClass": "coastal_defence_ship",
+      "referencePrice": 7768.83,
+      "bareHullPrice": 5998.89,
+      "fitPrice": 1769.94,
+      "fitShare": 0.2278,
+      "insurance": {
+        "core": 4799.12,
+        "mid": 4199.23,
+        "rim": 2999.45,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 23.9956,
+      "expectedSalvage": 884.97
+    },
+    {
+      "goodId": "ship_coastal_defence_ship_t2",
+      "name": "Coastal Defence Ship Tier 2",
+      "kind": "hull",
+      "shipClass": "coastal_defence_ship",
+      "referencePrice": 11470.46,
+      "bareHullPrice": 8608.98,
+      "fitPrice": 2861.47,
+      "fitShare": 0.2495,
+      "insurance": {
+        "core": 6887.19,
+        "mid": 6026.29,
+        "rim": 4304.49,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 34.4359,
+      "expectedSalvage": 1430.74
+    },
+    {
+      "goodId": "ship_coastal_defence_ship_t3",
+      "name": "Coastal Defence Ship Tier 3",
+      "kind": "hull",
+      "shipClass": "coastal_defence_ship",
+      "referencePrice": 16695.03,
+      "bareHullPrice": 11978.77,
+      "fitPrice": 4716.26,
+      "fitShare": 0.2825,
+      "insurance": {
+        "core": 9583.02,
+        "mid": 8385.14,
+        "rim": 5989.39,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 47.9151,
+      "expectedSalvage": 2358.13
+    },
+    {
+      "goodId": "ship_anti_aircraft_cruiser_t1",
+      "name": "Anti Aircraft Cruiser Tier 1",
+      "kind": "hull",
+      "shipClass": "anti_aircraft_cruiser",
+      "referencePrice": 10082.41,
+      "bareHullPrice": 6802.86,
+      "fitPrice": 3279.56,
+      "fitShare": 0.3253,
+      "insurance": {
+        "core": 5442.29,
+        "mid": 4762.0,
+        "rim": 3401.43,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 27.2114,
+      "expectedSalvage": 1639.78
+    },
+    {
+      "goodId": "ship_anti_aircraft_cruiser_t2",
+      "name": "Anti Aircraft Cruiser Tier 2",
+      "kind": "hull",
+      "shipClass": "anti_aircraft_cruiser",
+      "referencePrice": 13158.75,
+      "bareHullPrice": 8512.71,
+      "fitPrice": 4646.03,
+      "fitShare": 0.3531,
+      "insurance": {
+        "core": 6810.17,
+        "mid": 5958.9,
+        "rim": 4256.36,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 34.0508,
+      "expectedSalvage": 2323.02
+    },
+    {
+      "goodId": "ship_anti_aircraft_cruiser_t3",
+      "name": "Anti Aircraft Cruiser Tier 3",
+      "kind": "hull",
+      "shipClass": "anti_aircraft_cruiser",
+      "referencePrice": 17465.27,
+      "bareHullPrice": 10803.14,
+      "fitPrice": 6662.13,
+      "fitShare": 0.3815,
+      "insurance": {
+        "core": 8642.51,
+        "mid": 7562.19,
+        "rim": 5401.57,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 43.2125,
+      "expectedSalvage": 3331.07
+    },
+    {
+      "goodId": "ship_monitor_t1",
+      "name": "Monitor Tier 1",
+      "kind": "hull",
+      "shipClass": "monitor",
+      "referencePrice": 11583.99,
+      "bareHullPrice": 9530.66,
+      "fitPrice": 2053.33,
+      "fitShare": 0.1773,
+      "insurance": {
+        "core": 7624.53,
+        "mid": 6671.46,
+        "rim": 4765.33,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 38.1226,
+      "expectedSalvage": 1026.67
+    },
+    {
+      "goodId": "ship_monitor_t2",
+      "name": "Monitor Tier 2",
+      "kind": "hull",
+      "shipClass": "monitor",
+      "referencePrice": 14660.89,
+      "bareHullPrice": 11447.74,
+      "fitPrice": 3213.15,
+      "fitShare": 0.2192,
+      "insurance": {
+        "core": 9158.19,
+        "mid": 8013.42,
+        "rim": 5723.87,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 45.791,
+      "expectedSalvage": 1606.58
+    },
+    {
+      "goodId": "ship_monitor_t3",
+      "name": "Monitor Tier 3",
+      "kind": "hull",
+      "shipClass": "monitor",
+      "referencePrice": 19028.51,
+      "bareHullPrice": 13872.94,
+      "fitPrice": 5155.57,
+      "fitShare": 0.2709,
+      "insurance": {
+        "core": 11098.35,
+        "mid": 9711.06,
+        "rim": 6936.47,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 55.4918,
+      "expectedSalvage": 2577.79
+    },
+    {
+      "goodId": "ship_light_cruiser_t1",
+      "name": "Light Cruiser Tier 1",
+      "kind": "hull",
+      "shipClass": "light_cruiser",
+      "referencePrice": 9506.27,
+      "bareHullPrice": 7027.92,
+      "fitPrice": 2478.35,
+      "fitShare": 0.2607,
+      "insurance": {
+        "core": 5622.33,
+        "mid": 4919.54,
+        "rim": 3513.96,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 28.1117,
+      "expectedSalvage": 1239.18
+    },
+    {
+      "goodId": "ship_light_cruiser_t2",
+      "name": "Light Cruiser Tier 2",
+      "kind": "hull",
+      "shipClass": "light_cruiser",
+      "referencePrice": 14396.61,
+      "bareHullPrice": 10899.55,
+      "fitPrice": 3497.06,
+      "fitShare": 0.2429,
+      "insurance": {
+        "core": 8719.64,
+        "mid": 7629.68,
+        "rim": 5449.77,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 43.5982,
+      "expectedSalvage": 1748.53
+    },
+    {
+      "goodId": "ship_light_cruiser_t3",
+      "name": "Light Cruiser Tier 3",
+      "kind": "hull",
+      "shipClass": "light_cruiser",
+      "referencePrice": 21031.75,
+      "bareHullPrice": 15807.62,
+      "fitPrice": 5224.13,
+      "fitShare": 0.2484,
+      "insurance": {
+        "core": 12646.09,
+        "mid": 11065.33,
+        "rim": 7903.81,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 63.2305,
+      "expectedSalvage": 2612.07
+    },
+    {
+      "goodId": "ship_attack_transport_t1",
+      "name": "Attack Transport Tier 1",
+      "kind": "hull",
+      "shipClass": "attack_transport",
+      "referencePrice": 9903.92,
+      "bareHullPrice": 8667.36,
+      "fitPrice": 1236.56,
+      "fitShare": 0.1249,
+      "insurance": {
+        "core": 6933.89,
+        "mid": 6067.15,
+        "rim": 4333.68,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 34.6694,
+      "expectedSalvage": 618.28
+    },
+    {
+      "goodId": "ship_attack_transport_t2",
+      "name": "Attack Transport Tier 2",
+      "kind": "hull",
+      "shipClass": "attack_transport",
+      "referencePrice": 13394.57,
+      "bareHullPrice": 11363.93,
+      "fitPrice": 2030.64,
+      "fitShare": 0.1516,
+      "insurance": {
+        "core": 9091.14,
+        "mid": 7954.75,
+        "rim": 5681.96,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 45.4557,
+      "expectedSalvage": 1015.32
+    },
+    {
+      "goodId": "ship_attack_transport_t3",
+      "name": "Attack Transport Tier 3",
+      "kind": "hull",
+      "shipClass": "attack_transport",
+      "referencePrice": 17696.99,
+      "bareHullPrice": 14793.29,
+      "fitPrice": 2903.7,
+      "fitShare": 0.1641,
+      "insurance": {
+        "core": 11834.63,
+        "mid": 10355.3,
+        "rim": 7396.64,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 59.1731,
+      "expectedSalvage": 1451.85
+    },
+    {
+      "goodId": "ship_light_carrier_t1",
+      "name": "Light Carrier Tier 1",
+      "kind": "hull",
+      "shipClass": "light_carrier",
+      "referencePrice": 13802.71,
+      "bareHullPrice": 11792.32,
+      "fitPrice": 2010.39,
+      "fitShare": 0.1457,
+      "insurance": {
+        "core": 9433.85,
+        "mid": 8254.62,
+        "rim": 5896.16,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 47.1693,
+      "expectedSalvage": 1005.2
+    },
+    {
+      "goodId": "ship_light_carrier_t2",
+      "name": "Light Carrier Tier 2",
+      "kind": "hull",
+      "shipClass": "light_carrier",
+      "referencePrice": 17842.48,
+      "bareHullPrice": 14306.09,
+      "fitPrice": 3536.39,
+      "fitShare": 0.1982,
+      "insurance": {
+        "core": 11444.87,
+        "mid": 10014.26,
+        "rim": 7153.04,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 57.2244,
+      "expectedSalvage": 1768.2
+    },
+    {
+      "goodId": "ship_light_carrier_t3",
+      "name": "Light Carrier Tier 3",
+      "kind": "hull",
+      "shipClass": "light_carrier",
+      "referencePrice": 22888.78,
+      "bareHullPrice": 17489.09,
+      "fitPrice": 5399.69,
+      "fitShare": 0.2359,
+      "insurance": {
+        "core": 13991.27,
+        "mid": 12242.36,
+        "rim": 8744.55,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 69.9564,
+      "expectedSalvage": 2699.84
+    },
+    {
+      "goodId": "ship_panzerschiff_t1",
+      "name": "Panzerschiff Tier 1",
+      "kind": "hull",
+      "shipClass": "panzerschiff",
+      "referencePrice": 16630.32,
+      "bareHullPrice": 14269.05,
+      "fitPrice": 2361.27,
+      "fitShare": 0.142,
+      "insurance": {
+        "core": 11415.24,
+        "mid": 9988.34,
+        "rim": 7134.53,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 57.0762,
+      "expectedSalvage": 1180.64
+    },
+    {
+      "goodId": "ship_panzerschiff_t2",
+      "name": "Panzerschiff Tier 2",
+      "kind": "hull",
+      "shipClass": "panzerschiff",
+      "referencePrice": 20790.45,
+      "bareHullPrice": 17296.41,
+      "fitPrice": 3494.04,
+      "fitShare": 0.1681,
+      "insurance": {
+        "core": 13837.13,
+        "mid": 12107.48,
+        "rim": 8648.2,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 69.1856,
+      "expectedSalvage": 1747.02
+    },
+    {
+      "goodId": "ship_panzerschiff_t3",
+      "name": "Panzerschiff Tier 3",
+      "kind": "hull",
+      "shipClass": "panzerschiff",
+      "referencePrice": 26570.79,
+      "bareHullPrice": 21146.46,
+      "fitPrice": 5424.33,
+      "fitShare": 0.2041,
+      "insurance": {
+        "core": 16917.16,
+        "mid": 14802.52,
+        "rim": 10573.23,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 84.5858,
+      "expectedSalvage": 2712.17
+    },
+    {
+      "goodId": "ship_merchant_raider_t1",
+      "name": "Merchant Raider Tier 1",
+      "kind": "hull",
+      "shipClass": "merchant_raider",
+      "referencePrice": 10171.61,
+      "bareHullPrice": 8180.16,
+      "fitPrice": 1991.44,
+      "fitShare": 0.1958,
+      "insurance": {
+        "core": 6544.13,
+        "mid": 5726.11,
+        "rim": 4090.08,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 32.7207,
+      "expectedSalvage": 995.72
+    },
+    {
+      "goodId": "ship_merchant_raider_t2",
+      "name": "Merchant Raider Tier 2",
+      "kind": "hull",
+      "shipClass": "merchant_raider",
+      "referencePrice": 14681.76,
+      "bareHullPrice": 12034.87,
+      "fitPrice": 2646.89,
+      "fitShare": 0.1803,
+      "insurance": {
+        "core": 9627.9,
+        "mid": 8424.41,
+        "rim": 6017.44,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 48.1395,
+      "expectedSalvage": 1323.45
+    },
+    {
+      "goodId": "ship_merchant_raider_t3",
+      "name": "Merchant Raider Tier 3",
+      "kind": "hull",
+      "shipClass": "merchant_raider",
+      "referencePrice": 20668.31,
+      "bareHullPrice": 16889.55,
+      "fitPrice": 3778.76,
+      "fitShare": 0.1828,
+      "insurance": {
+        "core": 13511.64,
+        "mid": 11822.69,
+        "rim": 8444.78,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 67.5582,
+      "expectedSalvage": 1889.38
+    },
+    {
+      "goodId": "ship_seaplane_tender_t1",
+      "name": "Seaplane Tender Tier 1",
+      "kind": "hull",
+      "shipClass": "seaplane_tender",
+      "referencePrice": 11237.69,
+      "bareHullPrice": 8911.1,
+      "fitPrice": 2326.59,
+      "fitShare": 0.207,
+      "insurance": {
+        "core": 7128.88,
+        "mid": 6237.77,
+        "rim": 4455.55,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 35.6444,
+      "expectedSalvage": 1163.29
+    },
+    {
+      "goodId": "ship_seaplane_tender_t2",
+      "name": "Seaplane Tender Tier 2",
+      "kind": "hull",
+      "shipClass": "seaplane_tender",
+      "referencePrice": 15785.13,
+      "bareHullPrice": 12493.5,
+      "fitPrice": 3291.63,
+      "fitShare": 0.2085,
+      "insurance": {
+        "core": 9994.8,
+        "mid": 8745.45,
+        "rim": 6246.75,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 49.974,
+      "expectedSalvage": 1645.82
+    },
+    {
+      "goodId": "ship_seaplane_tender_t3",
+      "name": "Seaplane Tender Tier 3",
+      "kind": "hull",
+      "shipClass": "seaplane_tender",
+      "referencePrice": 22314.67,
+      "bareHullPrice": 17015.35,
+      "fitPrice": 5299.33,
+      "fitShare": 0.2375,
+      "insurance": {
+        "core": 13612.28,
+        "mid": 11910.74,
+        "rim": 8507.67,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 68.0614,
+      "expectedSalvage": 2649.66
+    },
+    {
+      "goodId": "ship_repair_ship_tender_t1",
+      "name": "Repair Ship Tender Tier 1",
+      "kind": "hull",
+      "shipClass": "repair_ship_tender",
+      "referencePrice": 10133.4,
+      "bareHullPrice": 8911.1,
+      "fitPrice": 1222.29,
+      "fitShare": 0.1206,
+      "insurance": {
+        "core": 7128.88,
+        "mid": 6237.77,
+        "rim": 4455.55,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 35.6444,
+      "expectedSalvage": 611.15
+    },
+    {
+      "goodId": "ship_repair_ship_tender_t2",
+      "name": "Repair Ship Tender Tier 2",
+      "kind": "hull",
+      "shipClass": "repair_ship_tender",
+      "referencePrice": 14467.36,
+      "bareHullPrice": 12493.5,
+      "fitPrice": 1973.87,
+      "fitShare": 0.1364,
+      "insurance": {
+        "core": 9994.8,
+        "mid": 8745.45,
+        "rim": 6246.75,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 49.974,
+      "expectedSalvage": 986.93
+    },
+    {
+      "goodId": "ship_repair_ship_tender_t3",
+      "name": "Repair Ship Tender Tier 3",
+      "kind": "hull",
+      "shipClass": "repair_ship_tender",
+      "referencePrice": 19978.67,
+      "bareHullPrice": 17015.35,
+      "fitPrice": 2963.32,
+      "fitShare": 0.1483,
+      "insurance": {
+        "core": 13612.28,
+        "mid": 11910.74,
+        "rim": 8507.67,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 68.0614,
+      "expectedSalvage": 1481.66
+    },
+    {
+      "goodId": "ship_heavy_cruiser_t1",
+      "name": "Heavy Cruiser Tier 1",
+      "kind": "hull",
+      "shipClass": "heavy_cruiser",
+      "referencePrice": 14225.62,
+      "bareHullPrice": 11863.39,
+      "fitPrice": 2362.23,
+      "fitShare": 0.1661,
+      "insurance": {
+        "core": 9490.71,
+        "mid": 8304.37,
+        "rim": 5931.7,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 47.4536,
+      "expectedSalvage": 1181.11
+    },
+    {
+      "goodId": "ship_heavy_cruiser_t2",
+      "name": "Heavy Cruiser Tier 2",
+      "kind": "hull",
+      "shipClass": "heavy_cruiser",
+      "referencePrice": 19456.24,
+      "bareHullPrice": 16115.49,
+      "fitPrice": 3340.75,
+      "fitShare": 0.1717,
+      "insurance": {
+        "core": 12892.39,
+        "mid": 11280.84,
+        "rim": 8057.75,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 64.462,
+      "expectedSalvage": 1670.37
+    },
+    {
+      "goodId": "ship_heavy_cruiser_t3",
+      "name": "Heavy Cruiser Tier 3",
+      "kind": "hull",
+      "shipClass": "heavy_cruiser",
+      "referencePrice": 26556.15,
+      "bareHullPrice": 21570.57,
+      "fitPrice": 4985.58,
+      "fitShare": 0.1877,
+      "insurance": {
+        "core": 17256.45,
+        "mid": 15099.4,
+        "rim": 10785.28,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 86.2823,
+      "expectedSalvage": 2492.79
+    },
+    {
+      "goodId": "ship_escort_carrier_t1",
+      "name": "Escort Carrier Tier 1",
+      "kind": "hull",
+      "shipClass": "escort_carrier",
+      "referencePrice": 10852.98,
+      "bareHullPrice": 9319.67,
+      "fitPrice": 1533.31,
+      "fitShare": 0.1413,
+      "insurance": {
+        "core": 7455.74,
+        "mid": 6523.77,
+        "rim": 4659.84,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 37.2787,
+      "expectedSalvage": 766.65
+    },
+    {
+      "goodId": "ship_escort_carrier_t2",
+      "name": "Escort Carrier Tier 2",
+      "kind": "hull",
+      "shipClass": "escort_carrier",
+      "referencePrice": 18044.28,
+      "bareHullPrice": 14943.13,
+      "fitPrice": 3101.14,
+      "fitShare": 0.1719,
+      "insurance": {
+        "core": 11954.51,
+        "mid": 10460.19,
+        "rim": 7471.57,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 59.7725,
+      "expectedSalvage": 1550.57
+    },
+    {
+      "goodId": "ship_escort_carrier_t3",
+      "name": "Escort Carrier Tier 3",
+      "kind": "hull",
+      "shipClass": "escort_carrier",
+      "referencePrice": 26341.84,
+      "bareHullPrice": 21961.45,
+      "fitPrice": 4380.39,
+      "fitShare": 0.1663,
+      "insurance": {
+        "core": 17569.16,
+        "mid": 15373.01,
+        "rim": 10980.72,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 87.8458,
+      "expectedSalvage": 2190.2
+    },
+    {
+      "goodId": "ship_fleet_oiler_t1",
+      "name": "Fleet Oiler Tier 1",
+      "kind": "hull",
+      "shipClass": "fleet_oiler",
+      "referencePrice": 16149.98,
+      "bareHullPrice": 14913.42,
+      "fitPrice": 1236.56,
+      "fitShare": 0.0766,
+      "insurance": {
+        "core": 11930.74,
+        "mid": 10439.4,
+        "rim": 7456.71,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 59.6537,
+      "expectedSalvage": 618.28
+    },
+    {
+      "goodId": "ship_fleet_oiler_t2",
+      "name": "Fleet Oiler Tier 2",
+      "kind": "hull",
+      "shipClass": "fleet_oiler",
+      "referencePrice": 20797.04,
+      "bareHullPrice": 18778.07,
+      "fitPrice": 2018.97,
+      "fitShare": 0.0971,
+      "insurance": {
+        "core": 15022.45,
+        "mid": 13144.65,
+        "rim": 9389.03,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 75.1123,
+      "expectedSalvage": 1009.49
+    },
+    {
+      "goodId": "ship_fleet_oiler_t3",
+      "name": "Fleet Oiler Tier 3",
+      "kind": "hull",
+      "shipClass": "fleet_oiler",
+      "referencePrice": 26657.56,
+      "bareHullPrice": 23646.06,
+      "fitPrice": 3011.5,
+      "fitShare": 0.113,
+      "insurance": {
+        "core": 18916.85,
+        "mid": 16552.24,
+        "rim": 11823.03,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 94.5842,
+      "expectedSalvage": 1505.75
+    },
+    {
+      "goodId": "ship_fleet_aircraft_carrier_t1",
+      "name": "Fleet Aircraft Carrier Tier 1",
+      "kind": "hull",
+      "shipClass": "fleet_aircraft_carrier",
+      "referencePrice": 18225.33,
+      "bareHullPrice": 15615.17,
+      "fitPrice": 2610.16,
+      "fitShare": 0.1432,
+      "insurance": {
+        "core": 12492.14,
+        "mid": 10930.62,
+        "rim": 7807.59,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 62.4607,
+      "expectedSalvage": 1305.08
+    },
+    {
+      "goodId": "ship_fleet_aircraft_carrier_t2",
+      "name": "Fleet Aircraft Carrier Tier 2",
+      "kind": "hull",
+      "shipClass": "fleet_aircraft_carrier",
+      "referencePrice": 30307.98,
+      "bareHullPrice": 26287.28,
+      "fitPrice": 4020.7,
+      "fitShare": 0.1327,
+      "insurance": {
+        "core": 21029.83,
+        "mid": 18401.1,
+        "rim": 13143.64,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 105.1491,
+      "expectedSalvage": 2010.35
+    },
+    {
+      "goodId": "ship_fleet_aircraft_carrier_t3",
+      "name": "Fleet Aircraft Carrier Tier 3",
+      "kind": "hull",
+      "shipClass": "fleet_aircraft_carrier",
+      "referencePrice": 45685.6,
+      "bareHullPrice": 39607.14,
+      "fitPrice": 6078.46,
+      "fitShare": 0.133,
+      "insurance": {
+        "core": 31685.71,
+        "mid": 27725.0,
+        "rim": 19803.57,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 158.4286,
+      "expectedSalvage": 3039.23
+    },
+    {
+      "goodId": "ship_battlecruiser_t1",
+      "name": "Battlecruiser Tier 1",
+      "kind": "hull",
+      "shipClass": "battlecruiser",
+      "referencePrice": 34538.73,
+      "bareHullPrice": 31670.95,
+      "fitPrice": 2867.78,
+      "fitShare": 0.083,
+      "insurance": {
+        "core": 25336.76,
+        "mid": 22169.67,
+        "rim": 15835.48,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 126.6838,
+      "expectedSalvage": 1433.89
+    },
+    {
+      "goodId": "ship_battlecruiser_t2",
+      "name": "Battlecruiser Tier 2",
+      "kind": "hull",
+      "shipClass": "battlecruiser",
+      "referencePrice": 43387.99,
+      "bareHullPrice": 39326.36,
+      "fitPrice": 4061.62,
+      "fitShare": 0.0936,
+      "insurance": {
+        "core": 31461.09,
+        "mid": 27528.45,
+        "rim": 19663.18,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 157.3054,
+      "expectedSalvage": 2030.81
+    },
+    {
+      "goodId": "ship_battlecruiser_t3",
+      "name": "Battlecruiser Tier 3",
+      "kind": "hull",
+      "shipClass": "battlecruiser",
+      "referencePrice": 55439.17,
+      "bareHullPrice": 49063.06,
+      "fitPrice": 6376.11,
+      "fitShare": 0.115,
+      "insurance": {
+        "core": 39250.45,
+        "mid": 34344.14,
+        "rim": 24531.53,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 196.2522,
+      "expectedSalvage": 3188.06
+    },
+    {
+      "goodId": "ship_battleship_t1",
+      "name": "Battleship Tier 1",
+      "kind": "hull",
+      "shipClass": "battleship",
+      "referencePrice": 33383.43,
+      "bareHullPrice": 29415.9,
+      "fitPrice": 3967.53,
+      "fitShare": 0.1188,
+      "insurance": {
+        "core": 23532.72,
+        "mid": 20591.13,
+        "rim": 14707.95,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 117.6636,
+      "expectedSalvage": 1983.77
+    },
+    {
+      "goodId": "ship_battleship_t2",
+      "name": "Battleship Tier 2",
+      "kind": "hull",
+      "shipClass": "battleship",
+      "referencePrice": 50986.02,
+      "bareHullPrice": 45752.36,
+      "fitPrice": 5233.66,
+      "fitShare": 0.1026,
+      "insurance": {
+        "core": 36601.89,
+        "mid": 32026.65,
+        "rim": 22876.18,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 183.0095,
+      "expectedSalvage": 2616.83
+    },
+    {
+      "goodId": "ship_battleship_t3",
+      "name": "Battleship Tier 3",
+      "kind": "hull",
+      "shipClass": "battleship",
+      "referencePrice": 74002.51,
+      "bareHullPrice": 66379.24,
+      "fitPrice": 7623.26,
+      "fitShare": 0.103,
+      "insurance": {
+        "core": 53103.4,
+        "mid": 46465.47,
+        "rim": 33189.62,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 265.517,
+      "expectedSalvage": 3811.63
+    },
+    {
+      "goodId": "ship_destroyer_whisperfang",
+      "name": "Whisperfang",
+      "kind": "hull",
+      "shipClass": "destroyer",
+      "referencePrice": 3068.22,
+      "bareHullPrice": 1355.77,
+      "fitPrice": 1712.45,
+      "fitShare": 0.5581,
+      "insurance": {
+        "core": 1084.62,
+        "mid": 949.04,
+        "rim": 677.88,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 5.4231,
+      "expectedSalvage": 856.22
+    },
+    {
+      "goodId": "ship_destroyer_nightstrike",
+      "name": "Nightstrike",
+      "kind": "hull",
+      "shipClass": "destroyer",
+      "referencePrice": 2739.13,
+      "bareHullPrice": 1128.29,
+      "fitPrice": 1610.85,
+      "fitShare": 0.5881,
+      "insurance": {
+        "core": 902.63,
+        "mid": 789.8,
+        "rim": 564.14,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 4.5131,
+      "expectedSalvage": 805.42
+    },
+    {
+      "goodId": "ship_destroyer_corvus",
+      "name": "Corvus",
+      "kind": "hull",
+      "shipClass": "destroyer",
+      "referencePrice": 3156.06,
+      "bareHullPrice": 1221.23,
+      "fitPrice": 1934.83,
+      "fitShare": 0.6131,
+      "insurance": {
+        "core": 976.98,
+        "mid": 854.86,
+        "rim": 610.61,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 4.8849,
+      "expectedSalvage": 967.41
+    },
+    {
+      "goodId": "ship_destroyer_talon_reach",
+      "name": "Talon Reach",
+      "kind": "hull",
+      "shipClass": "destroyer",
+      "referencePrice": 3422.98,
+      "bareHullPrice": 1278.33,
+      "fitPrice": 2144.65,
+      "fitShare": 0.6265,
+      "insurance": {
+        "core": 1022.66,
+        "mid": 894.83,
+        "rim": 639.16,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 5.1133,
+      "expectedSalvage": 1072.33
+    },
+    {
+      "goodId": "ship_light_cruiser_wraithbolt",
+      "name": "Wraithbolt",
+      "kind": "hull",
+      "shipClass": "light_cruiser",
+      "referencePrice": 5022.45,
+      "bareHullPrice": 2394.35,
+      "fitPrice": 2628.1,
+      "fitShare": 0.5233,
+      "insurance": {
+        "core": 1915.48,
+        "mid": 1676.04,
+        "rim": 1197.17,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 9.5774,
+      "expectedSalvage": 1314.05
+    },
+    {
+      "goodId": "ship_light_cruiser_silverlance",
+      "name": "Silverlance",
+      "kind": "hull",
+      "shipClass": "light_cruiser",
+      "referencePrice": 5506.47,
+      "bareHullPrice": 2184.98,
+      "fitPrice": 3321.49,
+      "fitShare": 0.6032,
+      "insurance": {
+        "core": 1747.98,
+        "mid": 1529.48,
+        "rim": 1092.49,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 8.7399,
+      "expectedSalvage": 1660.74
+    },
+    {
+      "goodId": "ship_light_cruiser_auric_drift",
+      "name": "Auric Drift",
+      "kind": "hull",
+      "shipClass": "light_cruiser",
+      "referencePrice": 5478.58,
+      "bareHullPrice": 2448.31,
+      "fitPrice": 3030.27,
+      "fitShare": 0.5531,
+      "insurance": {
+        "core": 1958.64,
+        "mid": 1713.81,
+        "rim": 1224.15,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 9.7932,
+      "expectedSalvage": 1515.14
+    },
+    {
+      "goodId": "ship_light_cruiser_halberds_edge",
+      "name": "Halberd's Edge",
+      "kind": "hull",
+      "shipClass": "light_cruiser",
+      "referencePrice": 4833.76,
+      "bareHullPrice": 2269.79,
+      "fitPrice": 2563.97,
+      "fitShare": 0.5304,
+      "insurance": {
+        "core": 1815.83,
+        "mid": 1588.85,
+        "rim": 1134.9,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 9.0792,
+      "expectedSalvage": 1281.99
+    },
+    {
+      "goodId": "ship_heavy_cruiser_ironclad_vestige",
+      "name": "Ironclad Vestige",
+      "kind": "hull",
+      "shipClass": "heavy_cruiser",
+      "referencePrice": 8245.64,
+      "bareHullPrice": 4069.54,
+      "fitPrice": 4176.1,
+      "fitShare": 0.5065,
+      "insurance": {
+        "core": 3255.64,
+        "mid": 2848.68,
+        "rim": 2034.77,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 16.2782,
+      "expectedSalvage": 2088.05
+    },
+    {
+      "goodId": "ship_heavy_cruiser_stormbreaker",
+      "name": "Stormbreaker",
+      "kind": "hull",
+      "shipClass": "heavy_cruiser",
+      "referencePrice": 8564.69,
+      "bareHullPrice": 4130.92,
+      "fitPrice": 4433.77,
+      "fitShare": 0.5177,
+      "insurance": {
+        "core": 3304.74,
+        "mid": 2891.64,
+        "rim": 2065.46,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 16.5237,
+      "expectedSalvage": 2216.88
+    },
+    {
+      "goodId": "ship_heavy_cruiser_obsidian_march",
+      "name": "Obsidian March",
+      "kind": "hull",
+      "shipClass": "heavy_cruiser",
+      "referencePrice": 8754.83,
+      "bareHullPrice": 3900.39,
+      "fitPrice": 4854.44,
+      "fitShare": 0.5545,
+      "insurance": {
+        "core": 3120.32,
+        "mid": 2730.28,
+        "rim": 1950.2,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 15.6016,
+      "expectedSalvage": 2427.22
+    },
+    {
+      "goodId": "ship_heavy_cruiser_vanguards_wake",
+      "name": "Vanguard's Wake",
+      "kind": "hull",
+      "shipClass": "heavy_cruiser",
+      "referencePrice": 8289.21,
+      "bareHullPrice": 4150.79,
+      "fitPrice": 4138.42,
+      "fitShare": 0.4993,
+      "insurance": {
+        "core": 3320.63,
+        "mid": 2905.55,
+        "rim": 2075.4,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 16.6032,
+      "expectedSalvage": 2069.21
+    },
+    {
+      "goodId": "ship_battlecruiser_sovereigns_fist",
+      "name": "Sovereign's Fist",
+      "kind": "hull",
+      "shipClass": "battlecruiser",
+      "referencePrice": 11353.38,
+      "bareHullPrice": 5492.25,
+      "fitPrice": 5861.13,
+      "fitShare": 0.5162,
+      "insurance": {
+        "core": 4393.8,
+        "mid": 3844.58,
+        "rim": 2746.13,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 21.969,
+      "expectedSalvage": 2930.57
+    },
+    {
+      "goodId": "ship_battlecruiser_doomcrest",
+      "name": "Doomcrest",
+      "kind": "hull",
+      "shipClass": "battlecruiser",
+      "referencePrice": 12048.62,
+      "bareHullPrice": 5864.69,
+      "fitPrice": 6183.93,
+      "fitShare": 0.5132,
+      "insurance": {
+        "core": 4691.75,
+        "mid": 4105.28,
+        "rim": 2932.34,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 23.4587,
+      "expectedSalvage": 3091.97
+    },
+    {
+      "goodId": "ship_battlecruiser_meridian_aegis",
+      "name": "Meridian Aegis",
+      "kind": "hull",
+      "shipClass": "battlecruiser",
+      "referencePrice": 12174.76,
+      "bareHullPrice": 6008.88,
+      "fitPrice": 6165.88,
+      "fitShare": 0.5064,
+      "insurance": {
+        "core": 4807.1,
+        "mid": 4206.21,
+        "rim": 3004.44,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 24.0355,
+      "expectedSalvage": 3082.94
+    },
+    {
+      "goodId": "ship_battlecruiser_ashen_titan",
+      "name": "Ashen Titan",
+      "kind": "hull",
+      "shipClass": "battlecruiser",
+      "referencePrice": 11178.48,
+      "bareHullPrice": 5984.3,
+      "fitPrice": 5194.18,
+      "fitShare": 0.4647,
+      "insurance": {
+        "core": 4787.44,
+        "mid": 4189.01,
+        "rim": 2992.15,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 23.9372,
+      "expectedSalvage": 2597.09
+    },
+    {
+      "goodId": "ship_battleship_leviathan_crown",
+      "name": "Leviathan Crown",
+      "kind": "hull",
+      "shipClass": "battleship",
+      "referencePrice": 18299.94,
+      "bareHullPrice": 9328.04,
+      "fitPrice": 8971.9,
+      "fitShare": 0.4903,
+      "insurance": {
+        "core": 7462.43,
+        "mid": 6529.63,
+        "rim": 4664.02,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 37.3122,
+      "expectedSalvage": 4485.95
+    },
+    {
+      "goodId": "ship_battleship_world_ender",
+      "name": "World Ender",
+      "kind": "hull",
+      "shipClass": "battleship",
+      "referencePrice": 17783.14,
+      "bareHullPrice": 9367.59,
+      "fitPrice": 8415.55,
+      "fitShare": 0.4732,
+      "insurance": {
+        "core": 7494.07,
+        "mid": 6557.31,
+        "rim": 4683.8,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 37.4704,
+      "expectedSalvage": 4207.77
+    },
+    {
+      "goodId": "ship_battleship_emperors_bastion",
+      "name": "Emperor's Bastion",
+      "kind": "hull",
+      "shipClass": "battleship",
+      "referencePrice": 17251.94,
+      "bareHullPrice": 9188.08,
+      "fitPrice": 8063.86,
+      "fitShare": 0.4674,
+      "insurance": {
+        "core": 7350.46,
+        "mid": 6431.65,
+        "rim": 4594.04,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 36.7523,
+      "expectedSalvage": 4031.93
+    },
+    {
+      "goodId": "ship_battleship_cataclysm_prime",
+      "name": "Cataclysm Prime",
+      "kind": "hull",
+      "shipClass": "battleship",
+      "referencePrice": 17860.41,
+      "bareHullPrice": 9685.88,
+      "fitPrice": 8174.53,
+      "fitShare": 0.4577,
+      "insurance": {
+        "core": 7748.7,
+        "mid": 6780.11,
+        "rim": 4842.94,
+        "deadspace": 0.0
+      },
+      "premiumPerTurn": 38.7435,
+      "expectedSalvage": 4087.27
+    }
+  ]
+}

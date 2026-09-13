@@ -1,0 +1,40 @@
+{
+  "count": 5,
+  "careers": [
+    {
+      "careerId": "combat_competent",
+      "name": "Combat, competent",
+      "skillCount": 22,
+      "sp": 525991,
+      "turns": 12.2
+    },
+    {
+      "careerId": "trade",
+      "name": "Trade",
+      "skillCount": 12,
+      "sp": 4427189,
+      "turns": 102.5
+    },
+    {
+      "careerId": "mining",
+      "name": "Mining",
+      "skillCount": 14,
+      "sp": 8494019,
+      "turns": 196.6
+    },
+    {
+      "careerId": "industry",
+      "name": "Industry",
+      "skillCount": 6,
+      "sp": 11434836,
+      "turns": 264.7
+    },
+    {
+      "careerId": "combat_mastered",
+      "name": "Combat, mastered",
+      "skillCount": 31,
+      "sp": 25152678,
+      "turns": 582.2
+    }
+  ]
+}
