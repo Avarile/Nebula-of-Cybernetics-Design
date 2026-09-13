@@ -67,7 +67,7 @@
 #   "asteroidBelts": [],
 #   "connections": [
 #     { "toSystemId": "sys_002", "gateId": "gate_sys_001_sys_002",
-#       "gateName": "Aurelia - Cantoris", "jumpDistanceLy": 4.3,
+#       "gateName": "Aurelia — Cantoris", "jumpDistanceLy": 4.4,
 #       "crossesConstellation": false, "crossesRegion": false }
 #   ]
 # }
