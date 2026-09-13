@@ -42,12 +42,21 @@ export * from './dataset';
 
 /**
  * Disambiguation. `systems.ts` is the canonical definer of the map vocabulary:
- * `gameplay.ts` redeclares `SystemId`/`PlanetId` as bare `string` and
- * `SecurityTier` identically, and `facilities.ts` redeclares `PlanetArchetype`
- * identically. Two `export *` sources declaring the same name is ambiguous
- * (TS2308), so name the winner explicitly. Safe in every case: the two
- * `SecurityTier`/`PlanetArchetype` declarations are the same type, and the
- * branded `sys_`/`pln_` ids are strict subtypes of the bare `string` aliases,
- * so every consumer expecting the looser type still type-checks.
+ * `gameplay.ts` redeclares `SystemId`/`PlanetId` and `SecurityTier`, and
+ * `facilities.ts` redeclares `PlanetArchetype`. Two `export *` sources declaring
+ * one name is ambiguous (TS2308), so name the winner explicitly.
+ *
+ * `SecurityTier` and `PlanetArchetype` are declared identically in both places,
+ * so those two are interchangeable and this is purely cosmetic.
+ *
+ * `SystemId`/`PlanetId` are NOT equivalent: the branded `sys_`/`pln_` forms here
+ * are strict subtypes of the bare `string` aliases those modules declare. The
+ * assignability is one-way — a branded id satisfies a `string` parameter, but a
+ * value typed by `gameplay.ts`'s local alias (`Player.homeSystemId`,
+ * `Fleet.systemId`, `Fleet.route`, `Lease.planetId`) will NOT satisfy a branded
+ * one without a cast. Harmless while nothing outside Reference/ consumes the
+ * barrel. REQUIRED FOLLOW-UP: `gameplay.ts` and `facilities.ts` should import
+ * these four names from `./systems` rather than redeclaring them, at which point
+ * this whole block can be deleted.
  */
 export type { SystemId, PlanetId, SecurityTier, PlanetArchetype } from './systems';
