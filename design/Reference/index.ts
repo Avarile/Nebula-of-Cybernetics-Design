@@ -39,3 +39,15 @@ export * from './gameplay';
 export * from './economy';
 export * from './facilities';
 export * from './dataset';
+
+/**
+ * Disambiguation. `systems.ts` is the canonical definer of the map vocabulary:
+ * `gameplay.ts` redeclares `SystemId`/`PlanetId` as bare `string` and
+ * `SecurityTier` identically, and `facilities.ts` redeclares `PlanetArchetype`
+ * identically. Two `export *` sources declaring the same name is ambiguous
+ * (TS2308), so name the winner explicitly. Safe in every case: the two
+ * `SecurityTier`/`PlanetArchetype` declarations are the same type, and the
+ * branded `sys_`/`pln_` ids are strict subtypes of the bare `string` aliases,
+ * so every consumer expecting the looser type still type-checks.
+ */
+export type { SystemId, PlanetId, SecurityTier, PlanetArchetype } from './systems';
