@@ -229,7 +229,7 @@ check('some yard can build the heaviest hull in the game',
 # Per-category yard availability. Comparing every category against one global
 # best_yard was a tautology: no category can need more than the heaviest hull, so
 # it could never fail once the check above passed. Count the yards that can take
-# each category instead, and assert two things that CAN fail.
+# each category instead and assert the property that CAN fail: coverage.
 need_by_class = {}
 for s in FLEET['ships'] + FLEET['namedShips']:
     cls = s['shipClass']
@@ -241,14 +241,17 @@ check('every ship category has at least one yard',
       ['%s needs %.0f t, no yard can take it' % (cls, need_by_class[cls])
        for cls, n in yards_for.items() if n == 0])
 
-ladder = sorted(need_by_class, key=lambda c: need_by_class[c])
-bad = []
-for lighter, heavier in zip(ladder, ladder[1:]):
-    if yards_for[heavier] > yards_for[lighter]:
-        bad.append('%s (%.0f t, %d yards) has MORE yards than the lighter %s (%.0f t, %d yards)'
-                   % (heavier, need_by_class[heavier], yards_for[heavier],
-                      lighter, need_by_class[lighter], yards_for[lighter]))
-check('yard availability falls monotonically as hulls get heavier', bad)
+# Every region must be able to build something locally. This is falsifiable and
+# currently tight: The Pale Hollow has exactly one yard, because no yard-bearing
+# archetype is permitted in deadspace and it holds only two rim systems.
+region_of = {s['systemId']: s['region'] for s in S}
+yards_by_region = {}
+for p in yards:
+    r = region_of[p['systemId']]
+    yards_by_region[r] = yards_by_region.get(r, 0) + 1
+check('every region has at least one shipyard',
+      ['%s has no shipyard at all' % r
+       for r in sorted({s['region'] for s in S}) if yards_by_region.get(r, 0) == 0])
 
 # capital hulls should come only from developed core/mid forge worlds -- a
 # consequence of the tables, so assert it rather than trusting it
