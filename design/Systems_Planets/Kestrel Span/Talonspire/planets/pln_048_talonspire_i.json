@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_048",
+  "name": "Talonspire I",
+  "systemId": "sys_017",
+  "archetype": "ferrous_barren",
+  "orbitIndex": 1,
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 120.0,
+    "energy": 8.0,
+    "ordnance": 14.0,
+    "precision": 4.0
+  },
+  "refinery": {
+    "throughputPerTurn": 93.0,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 17.05
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 3720
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "systemId": "sys_058",
+  "name": "Anathema",
+  "region": "The Pale Hollow",
+  "constellation": "The Abyssal",
+  "securityTier": "deadspace",
+  "securityRating": 0.03,
+  "star": {
+    "spectralClass": "K",
+    "luminosity": 0.6
+  },
+  "coordinates": {
+    "x": 33.0,
+    "y": 108.0,
+    "z": -14.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_172",
+    "pln_173"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_111",
+      "name": "Anathema Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_112",
+      "name": "Anathema Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_113",
+      "name": "Anathema Belt III",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_114",
+      "name": "Anathema Belt IV",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_057",
+      "gateId": "gate_sys_057_sys_058",
+      "gateName": "Veil \u2014 Anathema",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_059",
+      "gateId": "gate_sys_058_sys_059",
+      "gateName": "Anathema \u2014 Last Light",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

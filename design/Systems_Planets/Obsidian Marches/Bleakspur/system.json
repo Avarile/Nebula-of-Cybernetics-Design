@@ -1,0 +1,67 @@
+{
+  "systemId": "sys_049",
+  "name": "Bleakspur",
+  "region": "Obsidian Marches",
+  "constellation": "Gravewatch Span",
+  "securityTier": "deadspace",
+  "securityRating": 0.05,
+  "star": {
+    "spectralClass": "A",
+    "luminosity": 2.2
+  },
+  "coordinates": {
+    "x": -74.5,
+    "y": 49.0,
+    "z": 9.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_145",
+    "pln_146"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_082",
+      "name": "Bleakspur Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_083",
+      "name": "Bleakspur Belt II",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_084",
+      "name": "Bleakspur Belt III",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_048",
+      "gateId": "gate_sys_048_sys_049",
+      "gateName": "Shrike \u2014 Bleakspur",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_050",
+      "gateId": "gate_sys_049_sys_050",
+      "gateName": "Bleakspur \u2014 Ossuary",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

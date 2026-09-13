@@ -1,0 +1,59 @@
+{
+  "systemId": "sys_043",
+  "name": "Ironwake",
+  "region": "Obsidian Marches",
+  "constellation": "Obsidian Gate",
+  "securityTier": "rim",
+  "securityRating": 0.3,
+  "star": {
+    "spectralClass": "O",
+    "luminosity": 8.0
+  },
+  "coordinates": {
+    "x": -63.0,
+    "y": 38.0,
+    "z": 23.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_127",
+    "pln_128"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_065",
+      "name": "Ironwake Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 2,
+      "yieldPerCycle": 19.2,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_066",
+      "name": "Ironwake Belt II",
+      "dominantLane": "precision",
+      "richnessTier": 2,
+      "yieldPerCycle": 14.4,
+      "cycleTurns": 4
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_042",
+      "gateId": "gate_sys_042_sys_043",
+      "gateName": "Blackmarch \u2014 Ironwake",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_044",
+      "gateId": "gate_sys_043_sys_044",
+      "gateName": "Ironwake \u2014 Gravewatch",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

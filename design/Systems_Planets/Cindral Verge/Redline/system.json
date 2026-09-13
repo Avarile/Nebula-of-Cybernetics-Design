@@ -1,0 +1,75 @@
+{
+  "systemId": "sys_028",
+  "name": "Redline",
+  "region": "Cindral Verge",
+  "constellation": "Scoria Deep",
+  "securityTier": "rim",
+  "securityRating": 0.38,
+  "star": {
+    "spectralClass": "A",
+    "luminosity": 2.2
+  },
+  "coordinates": {
+    "x": 24.0,
+    "y": -69.0,
+    "z": 17.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_082",
+    "pln_083"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_030",
+      "name": "Redline Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_031",
+      "name": "Redline Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 2,
+      "yieldPerCycle": 19.2,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_032",
+      "name": "Redline Belt III",
+      "dominantLane": "precision",
+      "richnessTier": 2,
+      "yieldPerCycle": 14.4,
+      "cycleTurns": 4
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_025",
+      "gateId": "gate_sys_025_sys_028",
+      "gateName": "Orrery \u2014 Redline",
+      "jumpDistanceLy": 26.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_026",
+      "gateId": "gate_sys_026_sys_028",
+      "gateName": "Kiln \u2014 Redline",
+      "jumpDistanceLy": 28.8,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_029",
+      "gateId": "gate_sys_028_sys_029",
+      "gateName": "Redline \u2014 Quarry Deep",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

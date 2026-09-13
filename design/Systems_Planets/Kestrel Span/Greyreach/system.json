@@ -1,0 +1,61 @@
+{
+  "systemId": "sys_018",
+  "name": "Greyreach",
+  "region": "Kestrel Span",
+  "constellation": "Sablewing Verge",
+  "securityTier": "mid",
+  "securityRating": 0.58,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": 53.0,
+    "y": 29.0,
+    "z": -14.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_051",
+    "pln_052",
+    "pln_053",
+    "pln_054"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_015",
+      "name": "Greyreach Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 2,
+      "yieldPerCycle": 14.4,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_016",
+      "name": "Greyreach Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 2,
+      "yieldPerCycle": 28.8,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_015",
+      "gateId": "gate_sys_015_sys_018",
+      "gateName": "Emberlight \u2014 Greyreach",
+      "jumpDistanceLy": 23.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_019",
+      "gateId": "gate_sys_018_sys_019",
+      "gateName": "Greyreach \u2014 Sablewing",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

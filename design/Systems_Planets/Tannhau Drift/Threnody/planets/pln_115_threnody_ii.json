@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_115",
+  "name": "Threnody II",
+  "systemId": "sys_039",
+  "archetype": "volcanic",
+  "orbitIndex": 2,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 170.0,
+    "energy": 45.0,
+    "ordnance": 230.0,
+    "precision": 22.5
+  },
+  "refinery": {
+    "throughputPerTurn": 65.0,
+    "yieldModifier": 0.95
+  },
+  "manufactory": {
+    "throughputPerTurn": 14.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 2000
+  }
+}

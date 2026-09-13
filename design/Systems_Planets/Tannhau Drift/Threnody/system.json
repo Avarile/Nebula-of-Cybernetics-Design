@@ -1,0 +1,69 @@
+{
+  "systemId": "sys_039",
+  "name": "Threnody",
+  "region": "Tannhau Drift",
+  "constellation": "Threnody Chain",
+  "securityTier": "rim",
+  "securityRating": 0.22,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": -35.5,
+    "y": -55.0,
+    "z": -20.5
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_114",
+    "pln_115",
+    "pln_116",
+    "pln_117"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_055",
+      "name": "Threnody Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_056",
+      "name": "Threnody Belt II",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_037",
+      "gateId": "gate_sys_037_sys_039",
+      "gateName": "Mistral \u2014 Threnody",
+      "jumpDistanceLy": 34.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_038",
+      "gateId": "gate_sys_038_sys_039",
+      "gateName": "Farrow \u2014 Threnody",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_040",
+      "gateId": "gate_sys_039_sys_040",
+      "gateName": "Threnody \u2014 Wanderfall",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

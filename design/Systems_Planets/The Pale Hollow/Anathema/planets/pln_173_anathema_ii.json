@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_173",
+  "name": "Anathema II",
+  "systemId": "sys_058",
+  "archetype": "gas_giant",
+  "orbitIndex": 2,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 10.0,
+    "energy": 95.0,
+    "ordnance": 312.5,
+    "precision": 20.0
+  },
+  "refinery": {
+    "throughputPerTurn": 55.0,
+    "yieldModifier": 0.94
+  },
+  "manufactory": {
+    "throughputPerTurn": 8.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 3000
+  }
+}

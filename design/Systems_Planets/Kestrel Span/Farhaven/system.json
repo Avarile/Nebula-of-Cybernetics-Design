@@ -1,0 +1,53 @@
+{
+  "systemId": "sys_012",
+  "name": "Farhaven",
+  "region": "Kestrel Span",
+  "constellation": "Kestrel Prime",
+  "securityTier": "core",
+  "securityRating": 0.86,
+  "star": {
+    "spectralClass": "M",
+    "luminosity": 0.3
+  },
+  "coordinates": {
+    "x": 65.5,
+    "y": 17.0,
+    "z": -5.5
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_033",
+    "pln_034",
+    "pln_035",
+    "pln_036"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_009",
+      "name": "Farhaven Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 1,
+      "yieldPerCycle": 14.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_011",
+      "gateId": "gate_sys_011_sys_012",
+      "gateName": "Kestrel \u2014 Farhaven",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_013",
+      "gateId": "gate_sys_012_sys_013",
+      "gateName": "Farhaven \u2014 Nyx Landing",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

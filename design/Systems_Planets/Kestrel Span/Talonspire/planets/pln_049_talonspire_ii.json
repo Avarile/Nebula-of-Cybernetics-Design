@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_049",
+  "name": "Talonspire II",
+  "systemId": "sys_017",
+  "archetype": "volcanic",
+  "orbitIndex": 2,
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 68.0,
+    "energy": 18.0,
+    "ordnance": 92.0,
+    "precision": 9.0
+  },
+  "refinery": {
+    "throughputPerTurn": 100.75,
+    "yieldModifier": 0.95
+  },
+  "manufactory": {
+    "throughputPerTurn": 21.7
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 3100
+  }
+}

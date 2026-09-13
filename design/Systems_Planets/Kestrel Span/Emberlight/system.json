@@ -1,0 +1,61 @@
+{
+  "systemId": "sys_015",
+  "name": "Emberlight",
+  "region": "Kestrel Span",
+  "constellation": "Windrow Cluster",
+  "securityTier": "mid",
+  "securityRating": 0.68,
+  "star": {
+    "spectralClass": "O",
+    "luminosity": 8.0
+  },
+  "coordinates": {
+    "x": 74.0,
+    "y": 26.0,
+    "z": -3.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "planets": [
+    "pln_042",
+    "pln_043",
+    "pln_044",
+    "pln_045"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_011",
+      "name": "Emberlight Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 1,
+      "yieldPerCycle": 12.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_011",
+      "gateId": "gate_sys_011_sys_015",
+      "gateName": "Kestrel \u2014 Emberlight",
+      "jumpDistanceLy": 16.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_016",
+      "gateId": "gate_sys_015_sys_016",
+      "gateName": "Emberlight \u2014 Windrow",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_018",
+      "gateId": "gate_sys_015_sys_018",
+      "gateName": "Emberlight \u2014 Greyreach",
+      "jumpDistanceLy": 23.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

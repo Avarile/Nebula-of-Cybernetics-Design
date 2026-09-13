@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_171",
+  "name": "Veil IV",
+  "systemId": "sys_057",
+  "archetype": "irradiated",
+  "orbitIndex": 4,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 45.0,
+    "energy": 70.0,
+    "ordnance": 55.0,
+    "precision": 237.5
+  },
+  "refinery": {
+    "throughputPerTurn": 45.0,
+    "yieldModifier": 0.92
+  },
+  "manufactory": {
+    "throughputPerTurn": 9.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 1400
+  }
+}

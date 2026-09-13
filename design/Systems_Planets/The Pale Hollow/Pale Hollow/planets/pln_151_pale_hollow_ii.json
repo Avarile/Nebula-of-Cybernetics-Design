@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_151",
+  "name": "Pale Hollow II",
+  "systemId": "sys_051",
+  "archetype": "ferrous_barren",
+  "orbitIndex": 2,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 300.0,
+    "energy": 20.0,
+    "ordnance": 35.0,
+    "precision": 10.0
+  },
+  "refinery": {
+    "throughputPerTurn": 60.0,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 11.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 2400
+  }
+}

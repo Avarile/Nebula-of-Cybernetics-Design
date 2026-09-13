@@ -1,0 +1,68 @@
+{
+  "systemId": "sys_032",
+  "name": "Driftmoor",
+  "region": "Tannhau Drift",
+  "constellation": "Tannhau Crossing",
+  "securityTier": "mid",
+  "securityRating": 0.53,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": -44.5,
+    "y": -41.0,
+    "z": -13.5
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_093",
+    "pln_094",
+    "pln_095"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_039",
+      "name": "Driftmoor Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_040",
+      "name": "Driftmoor Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 2,
+      "yieldPerCycle": 19.2,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_031",
+      "gateId": "gate_sys_031_sys_032",
+      "gateName": "Tannhau \u2014 Driftmoor",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_033",
+      "gateId": "gate_sys_032_sys_033",
+      "gateName": "Driftmoor \u2014 Sable Cross",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_035",
+      "gateId": "gate_sys_032_sys_035",
+      "gateName": "Driftmoor \u2014 Longwake",
+      "jumpDistanceLy": 18.1,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

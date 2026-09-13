@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_029",
+  "name": "Astra Vale II",
+  "systemId": "sys_010",
+  "archetype": "ferrous_barren",
+  "orbitIndex": 2,
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 120.0,
+    "energy": 8.0,
+    "ordnance": 14.0,
+    "precision": 4.0
+  },
+  "refinery": {
+    "throughputPerTurn": 93.0,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 17.05
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 3720
+  }
+}

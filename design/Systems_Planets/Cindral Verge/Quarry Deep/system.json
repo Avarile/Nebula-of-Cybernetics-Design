@@ -1,0 +1,60 @@
+{
+  "systemId": "sys_029",
+  "name": "Quarry Deep",
+  "region": "Cindral Verge",
+  "constellation": "Scoria Deep",
+  "securityTier": "rim",
+  "securityRating": 0.32,
+  "star": {
+    "spectralClass": "O",
+    "luminosity": 8.0
+  },
+  "coordinates": {
+    "x": 27.5,
+    "y": -68.0,
+    "z": 19.5
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_084",
+    "pln_085",
+    "pln_086"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_033",
+      "name": "Quarry Deep Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 2,
+      "yieldPerCycle": 28.8,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_034",
+      "name": "Quarry Deep Belt II",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_028",
+      "gateId": "gate_sys_028_sys_029",
+      "gateName": "Redline \u2014 Quarry Deep",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_030",
+      "gateId": "gate_sys_029_sys_030",
+      "gateName": "Quarry Deep \u2014 Scoria",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

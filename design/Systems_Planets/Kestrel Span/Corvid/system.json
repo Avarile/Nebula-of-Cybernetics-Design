@@ -1,0 +1,60 @@
+{
+  "systemId": "sys_014",
+  "name": "Corvid",
+  "region": "Kestrel Span",
+  "constellation": "Kestrel Prime",
+  "securityTier": "core",
+  "securityRating": 0.81,
+  "star": {
+    "spectralClass": "A",
+    "luminosity": 2.2
+  },
+  "coordinates": {
+    "x": 72.5,
+    "y": 20.0,
+    "z": -8.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_039",
+    "pln_040",
+    "pln_041"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_010",
+      "name": "Corvid Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 1,
+      "yieldPerCycle": 9.0,
+      "cycleTurns": 4
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_013",
+      "gateId": "gate_sys_013_sys_014",
+      "gateName": "Nyx Landing \u2014 Corvid",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_017",
+      "gateId": "gate_sys_014_sys_017",
+      "gateName": "Corvid \u2014 Talonspire",
+      "jumpDistanceLy": 16.5,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_019",
+      "gateId": "gate_sys_014_sys_019",
+      "gateName": "Corvid \u2014 Sablewing",
+      "jumpDistanceLy": 19.2,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

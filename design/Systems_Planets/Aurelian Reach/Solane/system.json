@@ -1,0 +1,51 @@
+{
+  "systemId": "sys_004",
+  "name": "Solane",
+  "region": "Aurelian Reach",
+  "constellation": "Aurelian Core",
+  "securityTier": "core",
+  "securityRating": 0.88,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": 10.5,
+    "y": 2.0,
+    "z": -2.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_010",
+    "pln_011"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_002",
+      "name": "Solane Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 1,
+      "yieldPerCycle": 14.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_003",
+      "gateId": "gate_sys_003_sys_004",
+      "gateName": "Verith Prime \u2014 Solane",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_005",
+      "gateId": "gate_sys_004_sys_005",
+      "gateName": "Solane \u2014 Highmark",
+      "jumpDistanceLy": 13.8,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

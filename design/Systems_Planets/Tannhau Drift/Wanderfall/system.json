@@ -1,0 +1,67 @@
+{
+  "systemId": "sys_040",
+  "name": "Wanderfall",
+  "region": "Tannhau Drift",
+  "constellation": "Threnody Chain",
+  "securityTier": "rim",
+  "securityRating": 0.2,
+  "star": {
+    "spectralClass": "M",
+    "luminosity": 0.3
+  },
+  "coordinates": {
+    "x": -32.0,
+    "y": -52.0,
+    "z": -18.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_118",
+    "pln_119"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_057",
+      "name": "Wanderfall Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_058",
+      "name": "Wanderfall Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_059",
+      "name": "Wanderfall Belt III",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_039",
+      "gateId": "gate_sys_039_sys_040",
+      "gateName": "Threnody \u2014 Wanderfall",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_041",
+      "gateId": "gate_sys_040_sys_041",
+      "gateName": "Obsidian Threshold",
+      "jumpDistanceLy": 100.7,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    }
+  ]
+}

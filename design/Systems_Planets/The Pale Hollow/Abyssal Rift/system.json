@@ -1,0 +1,69 @@
+{
+  "systemId": "sys_060",
+  "name": "Abyssal Rift",
+  "region": "The Pale Hollow",
+  "constellation": "The Abyssal",
+  "securityTier": "deadspace",
+  "securityRating": 0.0,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": 40.0,
+    "y": 105.0,
+    "z": -16.5
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_177",
+    "pln_178",
+    "pln_179",
+    "pln_180"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_118",
+      "name": "Abyssal Rift Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_119",
+      "name": "Abyssal Rift Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_120",
+      "name": "Abyssal Rift Belt III",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_121",
+      "name": "Abyssal Rift Belt IV",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_059",
+      "gateId": "gate_sys_059_sys_060",
+      "gateName": "Last Light \u2014 Abyssal Rift",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "systemId": "sys_021",
+  "name": "Cindral",
+  "region": "Cindral Verge",
+  "constellation": "Cindral Forge",
+  "securityTier": "mid",
+  "securityRating": 0.7,
+  "star": {
+    "spectralClass": "A",
+    "luminosity": 2.2
+  },
+  "coordinates": {
+    "x": 34.0,
+    "y": -57.0,
+    "z": 10.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "planets": [
+    "pln_060",
+    "pln_061",
+    "pln_062",
+    "pln_063"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_020",
+      "name": "Cindral Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 1,
+      "yieldPerCycle": 18.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_010",
+      "gateId": "gate_sys_010_sys_021",
+      "gateName": "Cindral Approach",
+      "jumpDistanceLy": 77.8,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_022",
+      "gateId": "gate_sys_021_sys_022",
+      "gateName": "Cindral \u2014 Ashfall",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_025",
+      "gateId": "gate_sys_021_sys_025",
+      "gateName": "Cindral \u2014 Orrery",
+      "jumpDistanceLy": 15.6,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

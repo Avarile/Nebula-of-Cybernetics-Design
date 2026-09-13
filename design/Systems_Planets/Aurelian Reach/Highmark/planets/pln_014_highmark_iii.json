@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_014",
+  "name": "Highmark III",
+  "systemId": "sys_005",
+  "archetype": "gas_giant",
+  "orbitIndex": 3,
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "extraction": {
+    "structural": 4.0,
+    "energy": 38.0,
+    "ordnance": 125.0,
+    "precision": 8.0
+  },
+  "refinery": {
+    "throughputPerTurn": 132.0,
+    "yieldModifier": 0.94
+  },
+  "manufactory": {
+    "throughputPerTurn": 19.2
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 7200
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_118",
+  "name": "Wanderfall I",
+  "systemId": "sys_040",
+  "archetype": "hive_world",
+  "orbitIndex": 1,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 20.0,
+    "energy": 30.0,
+    "ordnance": 20.0,
+    "precision": 40.0
+  },
+  "refinery": {
+    "throughputPerTurn": 95.0,
+    "yieldModifier": 0.99
+  },
+  "manufactory": {
+    "throughputPerTurn": 75.0
+  },
+  "shipyard": {
+    "berths": 2,
+    "maxHullTonnage": 16000,
+    "constructionRatePerTurn": 42.0
+  },
+  "warehouse": {
+    "capacity": 9000
+  }
+}

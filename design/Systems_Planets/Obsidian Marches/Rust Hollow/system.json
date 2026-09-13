@@ -1,0 +1,53 @@
+{
+  "systemId": "sys_045",
+  "name": "Rust Hollow",
+  "region": "Obsidian Marches",
+  "constellation": "Obsidian Gate",
+  "securityTier": "rim",
+  "securityRating": 0.21,
+  "star": {
+    "spectralClass": "F",
+    "luminosity": 1.4
+  },
+  "coordinates": {
+    "x": -56.0,
+    "y": 35.0,
+    "z": 20.5
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_132",
+    "pln_133",
+    "pln_134",
+    "pln_135"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_070",
+      "name": "Rust Hollow Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_071",
+      "name": "Rust Hollow Belt II",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_044",
+      "gateId": "gate_sys_044_sys_045",
+      "gateName": "Gravewatch \u2014 Rust Hollow",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

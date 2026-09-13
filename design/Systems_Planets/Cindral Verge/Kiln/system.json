@@ -1,0 +1,68 @@
+{
+  "systemId": "sys_026",
+  "name": "Kiln",
+  "region": "Cindral Verge",
+  "constellation": "Ashfall Basin",
+  "securityTier": "mid",
+  "securityRating": 0.51,
+  "star": {
+    "spectralClass": "M",
+    "luminosity": 0.3
+  },
+  "coordinates": {
+    "x": 50.5,
+    "y": -63.0,
+    "z": 7.5
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_075",
+    "pln_076",
+    "pln_077"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_027",
+      "name": "Kiln Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 2,
+      "yieldPerCycle": 14.4,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_028",
+      "name": "Kiln Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 2,
+      "yieldPerCycle": 28.8,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_025",
+      "gateId": "gate_sys_025_sys_026",
+      "gateName": "Orrery \u2014 Kiln",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_027",
+      "gateId": "gate_sys_026_sys_027",
+      "gateName": "Kiln \u2014 Smeltholm",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_028",
+      "gateId": "gate_sys_026_sys_028",
+      "gateName": "Kiln \u2014 Redline",
+      "jumpDistanceLy": 28.8,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

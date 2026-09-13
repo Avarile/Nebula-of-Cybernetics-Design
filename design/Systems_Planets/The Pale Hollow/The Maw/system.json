@@ -1,0 +1,76 @@
+{
+  "systemId": "sys_053",
+  "name": "The Maw",
+  "region": "The Pale Hollow",
+  "constellation": "Silent Quarter",
+  "securityTier": "deadspace",
+  "securityRating": 0.1,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": 17.0,
+    "y": 94.0,
+    "z": -25.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_156",
+    "pln_157",
+    "pln_158"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_094",
+      "name": "The Maw Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_095",
+      "name": "The Maw Belt II",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_096",
+      "name": "The Maw Belt III",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_048",
+      "gateId": "gate_sys_048_sys_053",
+      "gateName": "Shrike \u2014 The Maw",
+      "jumpDistanceLy": 112.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_052",
+      "gateId": "gate_sys_052_sys_053",
+      "gateName": "Silentreach \u2014 The Maw",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_054",
+      "gateId": "gate_sys_053_sys_054",
+      "gateName": "The Maw \u2014 Ghostlight",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

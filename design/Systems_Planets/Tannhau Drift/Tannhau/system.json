@@ -1,0 +1,59 @@
+{
+  "systemId": "sys_031",
+  "name": "Tannhau",
+  "region": "Tannhau Drift",
+  "constellation": "Tannhau Crossing",
+  "securityTier": "mid",
+  "securityRating": 0.56,
+  "star": {
+    "spectralClass": "F",
+    "luminosity": 1.4
+  },
+  "coordinates": {
+    "x": -48.0,
+    "y": -42.0,
+    "z": -16.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_091",
+    "pln_092"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_038",
+      "name": "Tannhau Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 2,
+      "yieldPerCycle": 19.2,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_020",
+      "gateId": "gate_sys_020_sys_031",
+      "gateName": "Tannhau Narrows",
+      "jumpDistanceLy": 131.7,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_032",
+      "gateId": "gate_sys_031_sys_032",
+      "gateName": "Tannhau \u2014 Driftmoor",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_035",
+      "gateId": "gate_sys_031_sys_035",
+      "gateName": "Tannhau \u2014 Longwake",
+      "jumpDistanceLy": 16.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

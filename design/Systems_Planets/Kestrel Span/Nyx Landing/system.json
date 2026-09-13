@@ -1,0 +1,42 @@
+{
+  "systemId": "sys_013",
+  "name": "Nyx Landing",
+  "region": "Kestrel Span",
+  "constellation": "Kestrel Prime",
+  "securityTier": "core",
+  "securityRating": 0.84,
+  "star": {
+    "spectralClass": "G",
+    "luminosity": 1.0
+  },
+  "coordinates": {
+    "x": 69.0,
+    "y": 20.0,
+    "z": -3.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_037",
+    "pln_038"
+  ],
+  "asteroidBelts": [],
+  "connections": [
+    {
+      "toSystemId": "sys_012",
+      "gateId": "gate_sys_012_sys_013",
+      "gateName": "Farhaven \u2014 Nyx Landing",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_014",
+      "gateId": "gate_sys_013_sys_014",
+      "gateName": "Nyx Landing \u2014 Corvid",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

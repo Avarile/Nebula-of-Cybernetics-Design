@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_061",
+  "name": "Cindral II",
+  "systemId": "sys_021",
+  "archetype": "forge_world",
+  "orbitIndex": 2,
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 0.0,
+    "energy": 0.0,
+    "ordnance": 0.0,
+    "precision": 0.0
+  },
+  "refinery": {
+    "throughputPerTurn": 201.5,
+    "yieldModifier": 1.0
+  },
+  "manufactory": {
+    "throughputPerTurn": 170.5
+  },
+  "shipyard": {
+    "berths": 4,
+    "maxHullTonnage": 52700,
+    "constructionRatePerTurn": 116.25
+  },
+  "warehouse": {
+    "capacity": 18600
+  }
+}

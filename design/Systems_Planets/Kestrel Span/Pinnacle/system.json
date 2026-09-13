@@ -1,0 +1,60 @@
+{
+  "systemId": "sys_020",
+  "name": "Pinnacle",
+  "region": "Kestrel Span",
+  "constellation": "Sablewing Verge",
+  "securityTier": "mid",
+  "securityRating": 0.52,
+  "star": {
+    "spectralClass": "G",
+    "luminosity": 1.0
+  },
+  "coordinates": {
+    "x": 60.0,
+    "y": 33.0,
+    "z": -9.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_057",
+    "pln_058",
+    "pln_059"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_018",
+      "name": "Pinnacle Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_019",
+      "name": "Pinnacle Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 2,
+      "yieldPerCycle": 19.2,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_019",
+      "gateId": "gate_sys_019_sys_020",
+      "gateName": "Sablewing \u2014 Pinnacle",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_031",
+      "gateId": "gate_sys_020_sys_031",
+      "gateName": "Tannhau Narrows",
+      "jumpDistanceLy": 131.7,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    }
+  ]
+}

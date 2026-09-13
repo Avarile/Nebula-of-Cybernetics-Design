@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_111",
+  "name": "Farrow I",
+  "systemId": "sys_038",
+  "archetype": "oceanic",
+  "orbitIndex": 1,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 105.0,
+    "energy": 80.0,
+    "ordnance": 130.0,
+    "precision": 45.0
+  },
+  "refinery": {
+    "throughputPerTurn": 70.0,
+    "yieldModifier": 0.97
+  },
+  "manufactory": {
+    "throughputPerTurn": 22.0
+  },
+  "shipyard": {
+    "berths": 1,
+    "maxHullTonnage": 4000,
+    "constructionRatePerTurn": 18.0
+  },
+  "warehouse": {
+    "capacity": 2600
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "systemId": "sys_042",
+  "name": "Blackmarch",
+  "region": "Obsidian Marches",
+  "constellation": "Obsidian Gate",
+  "securityTier": "rim",
+  "securityRating": 0.34,
+  "star": {
+    "spectralClass": "A",
+    "luminosity": 2.2
+  },
+  "coordinates": {
+    "x": -66.5,
+    "y": 35.0,
+    "z": 20.5
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_123",
+    "pln_124",
+    "pln_125",
+    "pln_126"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_062",
+      "name": "Blackmarch Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 2,
+      "yieldPerCycle": 14.4,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_063",
+      "name": "Blackmarch Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 2,
+      "yieldPerCycle": 28.8,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_064",
+      "name": "Blackmarch Belt III",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_041",
+      "gateId": "gate_sys_041_sys_042",
+      "gateName": "Obsidian \u2014 Blackmarch",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_043",
+      "gateId": "gate_sys_042_sys_043",
+      "gateName": "Blackmarch \u2014 Ironwake",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_046",
+      "gateId": "gate_sys_042_sys_046",
+      "gateName": "Blackmarch \u2014 Nightfell",
+      "jumpDistanceLy": 24.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

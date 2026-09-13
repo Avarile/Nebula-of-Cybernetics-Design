@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_054",
+  "name": "Greyreach IV",
+  "systemId": "sys_018",
+  "archetype": "hive_world",
+  "orbitIndex": 4,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 12.8,
+    "energy": 19.2,
+    "ordnance": 12.8,
+    "precision": 25.6
+  },
+  "refinery": {
+    "throughputPerTurn": 147.25,
+    "yieldModifier": 0.99
+  },
+  "manufactory": {
+    "throughputPerTurn": 116.25
+  },
+  "shipyard": {
+    "berths": 2,
+    "maxHullTonnage": 24800,
+    "constructionRatePerTurn": 65.1
+  },
+  "warehouse": {
+    "capacity": 13950
+  }
+}

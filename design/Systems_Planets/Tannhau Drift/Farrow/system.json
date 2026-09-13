@@ -1,0 +1,68 @@
+{
+  "systemId": "sys_038",
+  "name": "Farrow",
+  "region": "Tannhau Drift",
+  "constellation": "Threnody Chain",
+  "securityTier": "rim",
+  "securityRating": 0.24,
+  "star": {
+    "spectralClass": "F",
+    "luminosity": 1.4
+  },
+  "coordinates": {
+    "x": -39.0,
+    "y": -56.0,
+    "z": -23.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_111",
+    "pln_112",
+    "pln_113"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_052",
+      "name": "Farrow Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_053",
+      "name": "Farrow Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_054",
+      "name": "Farrow Belt III",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_035",
+      "gateId": "gate_sys_035_sys_038",
+      "gateName": "Longwake \u2014 Farrow",
+      "jumpDistanceLy": 33.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_039",
+      "gateId": "gate_sys_038_sys_039",
+      "gateName": "Farrow \u2014 Threnody",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

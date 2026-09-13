@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_123",
+  "name": "Blackmarch I",
+  "systemId": "sys_042",
+  "archetype": "irradiated",
+  "orbitIndex": 1,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 28.8,
+    "energy": 44.8,
+    "ordnance": 35.2,
+    "precision": 152.0
+  },
+  "refinery": {
+    "throughputPerTurn": 69.75,
+    "yieldModifier": 0.92
+  },
+  "manufactory": {
+    "throughputPerTurn": 13.95
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 2170
+  }
+}

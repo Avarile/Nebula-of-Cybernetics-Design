@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_149",
+  "name": "Ossuary III",
+  "systemId": "sys_050",
+  "archetype": "crystalline",
+  "orbitIndex": 3,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 30.0,
+    "energy": 262.5,
+    "ordnance": 20.0,
+    "precision": 55.0
+  },
+  "refinery": {
+    "throughputPerTurn": 50.0,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 10.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 1800
+  }
+}

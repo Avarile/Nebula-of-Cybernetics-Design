@@ -1,0 +1,83 @@
+{
+  "systemId": "sys_046",
+  "name": "Nightfell",
+  "region": "Obsidian Marches",
+  "constellation": "Gravewatch Span",
+  "securityTier": "rim",
+  "securityRating": 0.2,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": -85.0,
+    "y": 45.0,
+    "z": 9.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_136",
+    "pln_137"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_072",
+      "name": "Nightfell Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_073",
+      "name": "Nightfell Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_074",
+      "name": "Nightfell Belt III",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_041",
+      "gateId": "gate_sys_041_sys_046",
+      "gateName": "Obsidian \u2014 Nightfell",
+      "jumpDistanceLy": 20.7,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_042",
+      "gateId": "gate_sys_042_sys_046",
+      "gateName": "Blackmarch \u2014 Nightfell",
+      "jumpDistanceLy": 24.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_047",
+      "gateId": "gate_sys_046_sys_047",
+      "gateName": "Nightfell \u2014 Cairn",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_051",
+      "gateId": "gate_sys_046_sys_051",
+      "gateName": "The Long Dark",
+      "jumpDistanceLy": 112.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    }
+  ]
+}

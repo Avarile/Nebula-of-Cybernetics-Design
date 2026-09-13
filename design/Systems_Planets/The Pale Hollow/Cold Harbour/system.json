@@ -1,0 +1,84 @@
+{
+  "systemId": "sys_056",
+  "name": "Cold Harbour",
+  "region": "The Pale Hollow",
+  "constellation": "The Abyssal",
+  "securityTier": "deadspace",
+  "securityRating": 0.05,
+  "star": {
+    "spectralClass": "A",
+    "luminosity": 2.2
+  },
+  "coordinates": {
+    "x": 26.0,
+    "y": 104.0,
+    "z": -19.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_165",
+    "pln_166",
+    "pln_167"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_104",
+      "name": "Cold Harbour Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_105",
+      "name": "Cold Harbour Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_106",
+      "name": "Cold Harbour Belt III",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_107",
+      "name": "Cold Harbour Belt IV",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_050",
+      "gateId": "gate_sys_050_sys_056",
+      "gateName": "Cold Harbour Approach",
+      "jumpDistanceLy": 117.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_051",
+      "gateId": "gate_sys_051_sys_056",
+      "gateName": "Pale Hollow \u2014 Cold Harbour",
+      "jumpDistanceLy": 23.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_057",
+      "gateId": "gate_sys_056_sys_057",
+      "gateName": "Cold Harbour \u2014 Veil",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

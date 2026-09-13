@@ -1,0 +1,653 @@
+{
+  "count": 72,
+  "gates": [
+    {
+      "gateId": "gate_sys_001_sys_002",
+      "gateName": "Aurelia \u2014 Cantoris",
+      "a": "sys_001",
+      "b": "sys_002",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_001_sys_005",
+      "gateName": "Aurelia \u2014 Highmark",
+      "a": "sys_001",
+      "b": "sys_005",
+      "jumpDistanceLy": 16.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_002_sys_003",
+      "gateName": "Cantoris \u2014 Verith Prime",
+      "a": "sys_002",
+      "b": "sys_003",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_003_sys_004",
+      "gateName": "Verith Prime \u2014 Solane",
+      "a": "sys_003",
+      "b": "sys_004",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_004_sys_005",
+      "gateName": "Solane \u2014 Highmark",
+      "a": "sys_004",
+      "b": "sys_005",
+      "jumpDistanceLy": 13.8,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_005_sys_006",
+      "gateName": "Highmark \u2014 Tessera",
+      "a": "sys_005",
+      "b": "sys_006",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_005_sys_008",
+      "gateName": "Highmark \u2014 Meridian Gate",
+      "a": "sys_005",
+      "b": "sys_008",
+      "jumpDistanceLy": 31.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_006_sys_007",
+      "gateName": "Tessera \u2014 Coriolan",
+      "a": "sys_006",
+      "b": "sys_007",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_006_sys_009",
+      "gateName": "Tessera \u2014 Lumen",
+      "a": "sys_006",
+      "b": "sys_009",
+      "jumpDistanceLy": 31.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_007_sys_011",
+      "gateName": "The Meridian Gate",
+      "a": "sys_007",
+      "b": "sys_011",
+      "jumpDistanceLy": 49.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_008_sys_009",
+      "gateName": "Meridian Gate \u2014 Lumen",
+      "a": "sys_008",
+      "b": "sys_009",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_009_sys_010",
+      "gateName": "Lumen \u2014 Astra Vale",
+      "a": "sys_009",
+      "b": "sys_010",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_010_sys_021",
+      "gateName": "Cindral Approach",
+      "a": "sys_010",
+      "b": "sys_021",
+      "jumpDistanceLy": 77.8,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_011_sys_012",
+      "gateName": "Kestrel \u2014 Farhaven",
+      "a": "sys_011",
+      "b": "sys_012",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_011_sys_015",
+      "gateName": "Kestrel \u2014 Emberlight",
+      "a": "sys_011",
+      "b": "sys_015",
+      "jumpDistanceLy": 16.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_012_sys_013",
+      "gateName": "Farhaven \u2014 Nyx Landing",
+      "a": "sys_012",
+      "b": "sys_013",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_013_sys_014",
+      "gateName": "Nyx Landing \u2014 Corvid",
+      "a": "sys_013",
+      "b": "sys_014",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_014_sys_017",
+      "gateName": "Corvid \u2014 Talonspire",
+      "a": "sys_014",
+      "b": "sys_017",
+      "jumpDistanceLy": 16.5,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_014_sys_019",
+      "gateName": "Corvid \u2014 Sablewing",
+      "a": "sys_014",
+      "b": "sys_019",
+      "jumpDistanceLy": 19.2,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_015_sys_016",
+      "gateName": "Emberlight \u2014 Windrow",
+      "a": "sys_015",
+      "b": "sys_016",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_015_sys_018",
+      "gateName": "Emberlight \u2014 Greyreach",
+      "a": "sys_015",
+      "b": "sys_018",
+      "jumpDistanceLy": 23.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_016_sys_017",
+      "gateName": "Windrow \u2014 Talonspire",
+      "a": "sys_016",
+      "b": "sys_017",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_018_sys_019",
+      "gateName": "Greyreach \u2014 Sablewing",
+      "a": "sys_018",
+      "b": "sys_019",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_019_sys_020",
+      "gateName": "Sablewing \u2014 Pinnacle",
+      "a": "sys_019",
+      "b": "sys_020",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_020_sys_031",
+      "gateName": "Tannhau Narrows",
+      "a": "sys_020",
+      "b": "sys_031",
+      "jumpDistanceLy": 131.7,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_021_sys_022",
+      "gateName": "Cindral \u2014 Ashfall",
+      "a": "sys_021",
+      "b": "sys_022",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_021_sys_025",
+      "gateName": "Cindral \u2014 Orrery",
+      "a": "sys_021",
+      "b": "sys_025",
+      "jumpDistanceLy": 15.6,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_022_sys_023",
+      "gateName": "Ashfall \u2014 Ferrous Bay",
+      "a": "sys_022",
+      "b": "sys_023",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_023_sys_024",
+      "gateName": "Ferrous Bay \u2014 Vantablack",
+      "a": "sys_023",
+      "b": "sys_024",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_024_sys_025",
+      "gateName": "Vantablack \u2014 Orrery",
+      "a": "sys_024",
+      "b": "sys_025",
+      "jumpDistanceLy": 12.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_025_sys_026",
+      "gateName": "Orrery \u2014 Kiln",
+      "a": "sys_025",
+      "b": "sys_026",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_025_sys_028",
+      "gateName": "Orrery \u2014 Redline",
+      "a": "sys_025",
+      "b": "sys_028",
+      "jumpDistanceLy": 26.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_026_sys_027",
+      "gateName": "Kiln \u2014 Smeltholm",
+      "a": "sys_026",
+      "b": "sys_027",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_026_sys_028",
+      "gateName": "Kiln \u2014 Redline",
+      "a": "sys_026",
+      "b": "sys_028",
+      "jumpDistanceLy": 28.8,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_028_sys_029",
+      "gateName": "Redline \u2014 Quarry Deep",
+      "a": "sys_028",
+      "b": "sys_029",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_029_sys_030",
+      "gateName": "Quarry Deep \u2014 Scoria",
+      "a": "sys_029",
+      "b": "sys_030",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_030_sys_034",
+      "gateName": "Scoria Crossing",
+      "a": "sys_030",
+      "b": "sys_034",
+      "jumpDistanceLy": 82.9,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_031_sys_032",
+      "gateName": "Tannhau \u2014 Driftmoor",
+      "a": "sys_031",
+      "b": "sys_032",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_031_sys_035",
+      "gateName": "Tannhau \u2014 Longwake",
+      "a": "sys_031",
+      "b": "sys_035",
+      "jumpDistanceLy": 16.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_032_sys_033",
+      "gateName": "Driftmoor \u2014 Sable Cross",
+      "a": "sys_032",
+      "b": "sys_033",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_032_sys_035",
+      "gateName": "Driftmoor \u2014 Longwake",
+      "a": "sys_032",
+      "b": "sys_035",
+      "jumpDistanceLy": 18.1,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_033_sys_034",
+      "gateName": "Sable Cross \u2014 Halcyon Rest",
+      "a": "sys_033",
+      "b": "sys_034",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_035_sys_036",
+      "gateName": "Longwake \u2014 Sundered Arc",
+      "a": "sys_035",
+      "b": "sys_036",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_035_sys_038",
+      "gateName": "Longwake \u2014 Farrow",
+      "a": "sys_035",
+      "b": "sys_038",
+      "jumpDistanceLy": 33.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_036_sys_037",
+      "gateName": "Sundered Arc \u2014 Mistral",
+      "a": "sys_036",
+      "b": "sys_037",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_037_sys_039",
+      "gateName": "Mistral \u2014 Threnody",
+      "a": "sys_037",
+      "b": "sys_039",
+      "jumpDistanceLy": 34.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_038_sys_039",
+      "gateName": "Farrow \u2014 Threnody",
+      "a": "sys_038",
+      "b": "sys_039",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_039_sys_040",
+      "gateName": "Threnody \u2014 Wanderfall",
+      "a": "sys_039",
+      "b": "sys_040",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_040_sys_041",
+      "gateName": "Obsidian Threshold",
+      "a": "sys_040",
+      "b": "sys_041",
+      "jumpDistanceLy": 100.7,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_041_sys_042",
+      "gateName": "Obsidian \u2014 Blackmarch",
+      "a": "sys_041",
+      "b": "sys_042",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_041_sys_046",
+      "gateName": "Obsidian \u2014 Nightfell",
+      "a": "sys_041",
+      "b": "sys_046",
+      "jumpDistanceLy": 20.7,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_042_sys_043",
+      "gateName": "Blackmarch \u2014 Ironwake",
+      "a": "sys_042",
+      "b": "sys_043",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_042_sys_046",
+      "gateName": "Blackmarch \u2014 Nightfell",
+      "a": "sys_042",
+      "b": "sys_046",
+      "jumpDistanceLy": 24.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_043_sys_044",
+      "gateName": "Ironwake \u2014 Gravewatch",
+      "a": "sys_043",
+      "b": "sys_044",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_044_sys_045",
+      "gateName": "Gravewatch \u2014 Rust Hollow",
+      "a": "sys_044",
+      "b": "sys_045",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_046_sys_047",
+      "gateName": "Nightfell \u2014 Cairn",
+      "a": "sys_046",
+      "b": "sys_047",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_046_sys_051",
+      "gateName": "The Long Dark",
+      "a": "sys_046",
+      "b": "sys_051",
+      "jumpDistanceLy": 112.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_047_sys_048",
+      "gateName": "Cairn \u2014 Shrike",
+      "a": "sys_047",
+      "b": "sys_048",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_048_sys_049",
+      "gateName": "Shrike \u2014 Bleakspur",
+      "a": "sys_048",
+      "b": "sys_049",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_048_sys_053",
+      "gateName": "Shrike \u2014 The Maw",
+      "a": "sys_048",
+      "b": "sys_053",
+      "jumpDistanceLy": 112.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_049_sys_050",
+      "gateName": "Bleakspur \u2014 Ossuary",
+      "a": "sys_049",
+      "b": "sys_050",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_050_sys_056",
+      "gateName": "Cold Harbour Approach",
+      "a": "sys_050",
+      "b": "sys_056",
+      "jumpDistanceLy": 117.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "gateId": "gate_sys_051_sys_052",
+      "gateName": "Pale Hollow \u2014 Silentreach",
+      "a": "sys_051",
+      "b": "sys_052",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_051_sys_056",
+      "gateName": "Pale Hollow \u2014 Cold Harbour",
+      "a": "sys_051",
+      "b": "sys_056",
+      "jumpDistanceLy": 23.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_052_sys_053",
+      "gateName": "Silentreach \u2014 The Maw",
+      "a": "sys_052",
+      "b": "sys_053",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_053_sys_054",
+      "gateName": "The Maw \u2014 Ghostlight",
+      "a": "sys_053",
+      "b": "sys_054",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_054_sys_055",
+      "gateName": "Ghostlight \u2014 Null Anchor",
+      "a": "sys_054",
+      "b": "sys_055",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_054_sys_057",
+      "gateName": "Ghostlight \u2014 Veil",
+      "a": "sys_054",
+      "b": "sys_057",
+      "jumpDistanceLy": 19.6,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_056_sys_057",
+      "gateName": "Cold Harbour \u2014 Veil",
+      "a": "sys_056",
+      "b": "sys_057",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_057_sys_058",
+      "gateName": "Veil \u2014 Anathema",
+      "a": "sys_057",
+      "b": "sys_058",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_058_sys_059",
+      "gateName": "Anathema \u2014 Last Light",
+      "a": "sys_058",
+      "b": "sys_059",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "gateId": "gate_sys_059_sys_060",
+      "gateName": "Last Light \u2014 Abyssal Rift",
+      "a": "sys_059",
+      "b": "sys_060",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_004",
+  "name": "Cantoris II",
+  "systemId": "sys_002",
+  "archetype": "forge_world",
+  "orbitIndex": 2,
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "extraction": {
+    "structural": 0.0,
+    "energy": 0.0,
+    "ordnance": 0.0,
+    "precision": 0.0
+  },
+  "refinery": {
+    "throughputPerTurn": 312.0,
+    "yieldModifier": 1.0
+  },
+  "manufactory": {
+    "throughputPerTurn": 264.0
+  },
+  "shipyard": {
+    "berths": 4,
+    "maxHullTonnage": 81600,
+    "constructionRatePerTurn": 180.0
+  },
+  "warehouse": {
+    "capacity": 28800
+  }
+}

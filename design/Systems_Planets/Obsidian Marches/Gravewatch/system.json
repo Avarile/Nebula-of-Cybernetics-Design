@@ -1,0 +1,68 @@
+{
+  "systemId": "sys_044",
+  "name": "Gravewatch",
+  "region": "Obsidian Marches",
+  "constellation": "Obsidian Gate",
+  "securityTier": "rim",
+  "securityRating": 0.25,
+  "star": {
+    "spectralClass": "K",
+    "luminosity": 0.6
+  },
+  "coordinates": {
+    "x": -59.5,
+    "y": 38.0,
+    "z": 18.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_129",
+    "pln_130",
+    "pln_131"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_067",
+      "name": "Gravewatch Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_068",
+      "name": "Gravewatch Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_069",
+      "name": "Gravewatch Belt III",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_043",
+      "gateId": "gate_sys_043_sys_044",
+      "gateName": "Ironwake \u2014 Gravewatch",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_045",
+      "gateId": "gate_sys_044_sys_045",
+      "gateName": "Gravewatch \u2014 Rust Hollow",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "systemId": "sys_025",
+  "name": "Orrery",
+  "region": "Cindral Verge",
+  "constellation": "Ashfall Basin",
+  "securityTier": "mid",
+  "securityRating": 0.54,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": 47.0,
+    "y": -64.0,
+    "z": 5.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_073",
+    "pln_074"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_026",
+      "name": "Orrery Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 2,
+      "yieldPerCycle": 28.8,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_021",
+      "gateId": "gate_sys_021_sys_025",
+      "gateName": "Cindral \u2014 Orrery",
+      "jumpDistanceLy": 15.6,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_024",
+      "gateId": "gate_sys_024_sys_025",
+      "gateName": "Vantablack \u2014 Orrery",
+      "jumpDistanceLy": 12.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_026",
+      "gateId": "gate_sys_025_sys_026",
+      "gateName": "Orrery \u2014 Kiln",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_028",
+      "gateId": "gate_sys_025_sys_028",
+      "gateName": "Orrery \u2014 Redline",
+      "jumpDistanceLy": 26.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

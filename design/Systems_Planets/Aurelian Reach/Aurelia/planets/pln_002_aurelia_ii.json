@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_002",
+  "name": "Aurelia II",
+  "systemId": "sys_001",
+  "archetype": "volcanic",
+  "orbitIndex": 2,
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "extraction": {
+    "structural": 68.0,
+    "energy": 18.0,
+    "ordnance": 92.0,
+    "precision": 9.0
+  },
+  "refinery": {
+    "throughputPerTurn": 156.0,
+    "yieldModifier": 0.95
+  },
+  "manufactory": {
+    "throughputPerTurn": 33.6
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 4800
+  }
+}

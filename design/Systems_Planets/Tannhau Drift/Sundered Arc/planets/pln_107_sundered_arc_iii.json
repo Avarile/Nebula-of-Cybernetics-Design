@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_107",
+  "name": "Sundered Arc III",
+  "systemId": "sys_036",
+  "archetype": "shattered",
+  "orbitIndex": 3,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 131.2,
+    "energy": 19.2,
+    "ordnance": 28.8,
+    "precision": 92.8
+  },
+  "refinery": {
+    "throughputPerTurn": 54.25,
+    "yieldModifier": 0.93
+  },
+  "manufactory": {
+    "throughputPerTurn": 9.3
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 1860
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_071",
+  "name": "Vantablack III",
+  "systemId": "sys_024",
+  "archetype": "crystalline",
+  "orbitIndex": 3,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 19.2,
+    "energy": 168.0,
+    "ordnance": 12.8,
+    "precision": 35.2
+  },
+  "refinery": {
+    "throughputPerTurn": 77.5,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 15.5
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 2790
+  }
+}

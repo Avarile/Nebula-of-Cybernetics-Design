@@ -1,0 +1,59 @@
+{
+  "systemId": "sys_010",
+  "name": "Astra Vale",
+  "region": "Aurelian Reach",
+  "constellation": "Lumen Belt",
+  "securityTier": "mid",
+  "securityRating": 0.62,
+  "star": {
+    "spectralClass": "F",
+    "luminosity": 1.4
+  },
+  "coordinates": {
+    "x": -4.0,
+    "y": 10.0,
+    "z": -1.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "planets": [
+    "pln_028",
+    "pln_029"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_007",
+      "name": "Astra Vale Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 1,
+      "yieldPerCycle": 9.0,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_008",
+      "name": "Astra Vale Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 1,
+      "yieldPerCycle": 18.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_009",
+      "gateId": "gate_sys_009_sys_010",
+      "gateName": "Lumen \u2014 Astra Vale",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_021",
+      "gateId": "gate_sys_010_sys_021",
+      "gateName": "Cindral Approach",
+      "jumpDistanceLy": 77.8,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    }
+  ]
+}

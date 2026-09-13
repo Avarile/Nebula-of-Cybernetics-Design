@@ -1,0 +1,76 @@
+{
+  "systemId": "sys_050",
+  "name": "Ossuary",
+  "region": "Obsidian Marches",
+  "constellation": "Gravewatch Span",
+  "securityTier": "deadspace",
+  "securityRating": 0.02,
+  "star": {
+    "spectralClass": "O",
+    "luminosity": 8.0
+  },
+  "coordinates": {
+    "x": -71.0,
+    "y": 46.0,
+    "z": 11.5
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_147",
+    "pln_148",
+    "pln_149"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_085",
+      "name": "Ossuary Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_086",
+      "name": "Ossuary Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_087",
+      "name": "Ossuary Belt III",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_088",
+      "name": "Ossuary Belt IV",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_049",
+      "gateId": "gate_sys_049_sys_050",
+      "gateName": "Bleakspur \u2014 Ossuary",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_056",
+      "gateId": "gate_sys_050_sys_056",
+      "gateName": "Cold Harbour Approach",
+      "jumpDistanceLy": 117.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    }
+  ]
+}

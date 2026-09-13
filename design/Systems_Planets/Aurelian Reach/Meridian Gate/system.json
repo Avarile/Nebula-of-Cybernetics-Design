@@ -1,0 +1,60 @@
+{
+  "systemId": "sys_008",
+  "name": "Meridian Gate",
+  "region": "Aurelian Reach",
+  "constellation": "Lumen Belt",
+  "securityTier": "mid",
+  "securityRating": 0.7,
+  "star": {
+    "spectralClass": "O",
+    "luminosity": 8.0
+  },
+  "coordinates": {
+    "x": -11.0,
+    "y": 6.0,
+    "z": -6.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "planets": [
+    "pln_021",
+    "pln_022",
+    "pln_023"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_004",
+      "name": "Meridian Gate Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 1,
+      "yieldPerCycle": 14.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_005",
+      "name": "Meridian Gate Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 1,
+      "yieldPerCycle": 12.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_005",
+      "gateId": "gate_sys_005_sys_008",
+      "gateName": "Highmark \u2014 Meridian Gate",
+      "jumpDistanceLy": 31.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_009",
+      "gateId": "gate_sys_008_sys_009",
+      "gateName": "Meridian Gate \u2014 Lumen",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

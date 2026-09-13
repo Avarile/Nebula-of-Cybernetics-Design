@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_063",
+  "name": "Cindral IV",
+  "systemId": "sys_021",
+  "archetype": "oceanic",
+  "orbitIndex": 4,
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 42.0,
+    "energy": 32.0,
+    "ordnance": 52.0,
+    "precision": 18.0
+  },
+  "refinery": {
+    "throughputPerTurn": 108.5,
+    "yieldModifier": 0.97
+  },
+  "manufactory": {
+    "throughputPerTurn": 34.1
+  },
+  "shipyard": {
+    "berths": 1,
+    "maxHullTonnage": 6200,
+    "constructionRatePerTurn": 27.9
+  },
+  "warehouse": {
+    "capacity": 4030
+  }
+}

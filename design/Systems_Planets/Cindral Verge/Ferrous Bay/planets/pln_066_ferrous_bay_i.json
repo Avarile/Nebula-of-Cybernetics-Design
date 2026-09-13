@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_066",
+  "name": "Ferrous Bay I",
+  "systemId": "sys_023",
+  "archetype": "hive_world",
+  "orbitIndex": 1,
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 8.0,
+    "energy": 12.0,
+    "ordnance": 8.0,
+    "precision": 16.0
+  },
+  "refinery": {
+    "throughputPerTurn": 147.25,
+    "yieldModifier": 0.99
+  },
+  "manufactory": {
+    "throughputPerTurn": 116.25
+  },
+  "shipyard": {
+    "berths": 2,
+    "maxHullTonnage": 24800,
+    "constructionRatePerTurn": 65.1
+  },
+  "warehouse": {
+    "capacity": 13950
+  }
+}

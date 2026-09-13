@@ -1,0 +1,61 @@
+{
+  "systemId": "sys_024",
+  "name": "Vantablack",
+  "region": "Cindral Verge",
+  "constellation": "Cindral Forge",
+  "securityTier": "mid",
+  "securityRating": 0.57,
+  "star": {
+    "spectralClass": "F",
+    "luminosity": 1.4
+  },
+  "coordinates": {
+    "x": 44.5,
+    "y": -53.0,
+    "z": 10.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_069",
+    "pln_070",
+    "pln_071",
+    "pln_072"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_024",
+      "name": "Vantablack Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_025",
+      "name": "Vantablack Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 2,
+      "yieldPerCycle": 19.2,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_023",
+      "gateId": "gate_sys_023_sys_024",
+      "gateName": "Ferrous Bay \u2014 Vantablack",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_025",
+      "gateId": "gate_sys_024_sys_025",
+      "gateName": "Vantablack \u2014 Orrery",
+      "jumpDistanceLy": 12.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "systemId": "sys_041",
+  "name": "Obsidian",
+  "region": "Obsidian Marches",
+  "constellation": "Obsidian Gate",
+  "securityTier": "rim",
+  "securityRating": 0.4,
+  "star": {
+    "spectralClass": "G",
+    "luminosity": 1.0
+  },
+  "coordinates": {
+    "x": -70.0,
+    "y": 34.0,
+    "z": 18.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_120",
+    "pln_121",
+    "pln_122"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_060",
+      "name": "Obsidian Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 2,
+      "yieldPerCycle": 28.8,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_061",
+      "name": "Obsidian Belt II",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_040",
+      "gateId": "gate_sys_040_sys_041",
+      "gateName": "Obsidian Threshold",
+      "jumpDistanceLy": 100.7,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_042",
+      "gateId": "gate_sys_041_sys_042",
+      "gateName": "Obsidian \u2014 Blackmarch",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_046",
+      "gateId": "gate_sys_041_sys_046",
+      "gateName": "Obsidian \u2014 Nightfell",
+      "jumpDistanceLy": 20.7,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

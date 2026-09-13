@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_079",
+  "name": "Smeltholm II",
+  "systemId": "sys_027",
+  "archetype": "oceanic",
+  "orbitIndex": 2,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 67.2,
+    "energy": 51.2,
+    "ordnance": 83.2,
+    "precision": 28.8
+  },
+  "refinery": {
+    "throughputPerTurn": 108.5,
+    "yieldModifier": 0.97
+  },
+  "manufactory": {
+    "throughputPerTurn": 34.1
+  },
+  "shipyard": {
+    "berths": 1,
+    "maxHullTonnage": 6200,
+    "constructionRatePerTurn": 27.9
+  },
+  "warehouse": {
+    "capacity": 4030
+  }
+}

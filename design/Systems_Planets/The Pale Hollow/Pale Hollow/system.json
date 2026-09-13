@@ -1,0 +1,69 @@
+{
+  "systemId": "sys_051",
+  "name": "Pale Hollow",
+  "region": "The Pale Hollow",
+  "constellation": "Silent Quarter",
+  "securityTier": "rim",
+  "securityRating": 0.22,
+  "star": {
+    "spectralClass": "K",
+    "luminosity": 0.6
+  },
+  "coordinates": {
+    "x": 10.0,
+    "y": 90.0,
+    "z": -30.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_150",
+    "pln_151",
+    "pln_152",
+    "pln_153"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_089",
+      "name": "Pale Hollow Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_090",
+      "name": "Pale Hollow Belt II",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_046",
+      "gateId": "gate_sys_046_sys_051",
+      "gateName": "The Long Dark",
+      "jumpDistanceLy": 112.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_052",
+      "gateId": "gate_sys_051_sys_052",
+      "gateName": "Pale Hollow \u2014 Silentreach",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_056",
+      "gateId": "gate_sys_051_sys_056",
+      "gateName": "Pale Hollow \u2014 Cold Harbour",
+      "jumpDistanceLy": 23.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

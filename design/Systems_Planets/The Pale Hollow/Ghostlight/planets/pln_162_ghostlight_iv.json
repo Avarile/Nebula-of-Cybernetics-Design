@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_162",
+  "name": "Ghostlight IV",
+  "systemId": "sys_054",
+  "archetype": "ice",
+  "orbitIndex": 4,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 22.5,
+    "energy": 145.0,
+    "ordnance": 70.0,
+    "precision": 105.0
+  },
+  "refinery": {
+    "throughputPerTurn": 50.0,
+    "yieldModifier": 0.95
+  },
+  "manufactory": {
+    "throughputPerTurn": 9.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 2200
+  }
+}

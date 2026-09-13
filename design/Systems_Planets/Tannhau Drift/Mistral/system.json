@@ -1,0 +1,59 @@
+{
+  "systemId": "sys_037",
+  "name": "Mistral",
+  "region": "Tannhau Drift",
+  "constellation": "Longwake Spur",
+  "securityTier": "rim",
+  "securityRating": 0.26,
+  "star": {
+    "spectralClass": "K",
+    "luminosity": 0.6
+  },
+  "coordinates": {
+    "x": -54.0,
+    "y": -32.0,
+    "z": -3.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_109",
+    "pln_110"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_050",
+      "name": "Mistral Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_051",
+      "name": "Mistral Belt II",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_036",
+      "gateId": "gate_sys_036_sys_037",
+      "gateName": "Sundered Arc \u2014 Mistral",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_039",
+      "gateId": "gate_sys_037_sys_039",
+      "gateName": "Mistral \u2014 Threnody",
+      "jumpDistanceLy": 34.3,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

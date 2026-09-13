@@ -1,0 +1,68 @@
+{
+  "systemId": "sys_047",
+  "name": "Cairn",
+  "region": "Obsidian Marches",
+  "constellation": "Gravewatch Span",
+  "securityTier": "deadspace",
+  "securityRating": 0.1,
+  "star": {
+    "spectralClass": "M",
+    "luminosity": 0.3
+  },
+  "coordinates": {
+    "x": -81.5,
+    "y": 46.0,
+    "z": 11.5
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_138",
+    "pln_139",
+    "pln_140"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_075",
+      "name": "Cairn Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_076",
+      "name": "Cairn Belt II",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_077",
+      "name": "Cairn Belt III",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_046",
+      "gateId": "gate_sys_046_sys_047",
+      "gateName": "Nightfell \u2014 Cairn",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_048",
+      "gateId": "gate_sys_047_sys_048",
+      "gateName": "Cairn \u2014 Shrike",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

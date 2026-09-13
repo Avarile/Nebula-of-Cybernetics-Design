@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_125",
+  "name": "Blackmarch III",
+  "systemId": "sys_042",
+  "archetype": "gas_giant",
+  "orbitIndex": 3,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 6.4,
+    "energy": 60.8,
+    "ordnance": 200.0,
+    "precision": 12.8
+  },
+  "refinery": {
+    "throughputPerTurn": 85.25,
+    "yieldModifier": 0.94
+  },
+  "manufactory": {
+    "throughputPerTurn": 12.4
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 4650
+  }
+}

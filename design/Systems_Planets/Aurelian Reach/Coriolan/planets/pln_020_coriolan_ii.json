@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_020",
+  "name": "Coriolan II",
+  "systemId": "sys_007",
+  "archetype": "crystalline",
+  "orbitIndex": 2,
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "extraction": {
+    "structural": 12.0,
+    "energy": 105.0,
+    "ordnance": 8.0,
+    "precision": 22.0
+  },
+  "refinery": {
+    "throughputPerTurn": 120.0,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 24.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 4320
+  }
+}

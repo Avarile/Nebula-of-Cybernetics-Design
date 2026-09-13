@@ -1,0 +1,42 @@
+{
+  "systemId": "sys_001",
+  "name": "Aurelia",
+  "region": "Aurelian Reach",
+  "constellation": "Aurelian Core",
+  "securityTier": "core",
+  "securityRating": 1.0,
+  "star": {
+    "spectralClass": "O",
+    "luminosity": 8.0
+  },
+  "coordinates": {
+    "x": 0.0,
+    "y": -2.0,
+    "z": -2.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_001",
+    "pln_002"
+  ],
+  "asteroidBelts": [],
+  "connections": [
+    {
+      "toSystemId": "sys_002",
+      "gateId": "gate_sys_001_sys_002",
+      "gateName": "Aurelia \u2014 Cantoris",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_005",
+      "gateId": "gate_sys_001_sys_005",
+      "gateName": "Aurelia \u2014 Highmark",
+      "jumpDistanceLy": 16.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

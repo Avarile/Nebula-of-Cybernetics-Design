@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_032",
+  "name": "Kestrel III",
+  "systemId": "sys_011",
+  "archetype": "ferrous_barren",
+  "orbitIndex": 3,
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "extraction": {
+    "structural": 120.0,
+    "energy": 8.0,
+    "ordnance": 14.0,
+    "precision": 4.0
+  },
+  "refinery": {
+    "throughputPerTurn": 144.0,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 26.4
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 5760
+  }
+}

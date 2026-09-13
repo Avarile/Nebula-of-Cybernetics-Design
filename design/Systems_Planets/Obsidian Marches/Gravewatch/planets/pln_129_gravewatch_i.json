@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_129",
+  "name": "Gravewatch I",
+  "systemId": "sys_044",
+  "archetype": "shattered",
+  "orbitIndex": 1,
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "extraction": {
+    "structural": 205.0,
+    "energy": 30.0,
+    "ordnance": 45.0,
+    "precision": 145.0
+  },
+  "refinery": {
+    "throughputPerTurn": 35.0,
+    "yieldModifier": 0.93
+  },
+  "manufactory": {
+    "throughputPerTurn": 6.0
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 1200
+  }
+}

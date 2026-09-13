@@ -1,0 +1,67 @@
+{
+  "systemId": "sys_034",
+  "name": "Halcyon Rest",
+  "region": "Tannhau Drift",
+  "constellation": "Tannhau Crossing",
+  "securityTier": "rim",
+  "securityRating": 0.4,
+  "star": {
+    "spectralClass": "G",
+    "luminosity": 1.0
+  },
+  "coordinates": {
+    "x": -37.5,
+    "y": -38.0,
+    "z": -16.0
+  },
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "planets": [
+    "pln_100",
+    "pln_101"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_042",
+      "name": "Halcyon Rest Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 2,
+      "yieldPerCycle": 14.4,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_043",
+      "name": "Halcyon Rest Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 2,
+      "yieldPerCycle": 28.8,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_044",
+      "name": "Halcyon Rest Belt III",
+      "dominantLane": "energy",
+      "richnessTier": 2,
+      "yieldPerCycle": 22.4,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_030",
+      "gateId": "gate_sys_030_sys_034",
+      "gateName": "Scoria Crossing",
+      "jumpDistanceLy": 82.9,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_033",
+      "gateId": "gate_sys_033_sys_034",
+      "gateName": "Sable Cross \u2014 Halcyon Rest",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

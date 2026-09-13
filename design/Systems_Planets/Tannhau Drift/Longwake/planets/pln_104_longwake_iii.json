@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_104",
+  "name": "Longwake III",
+  "systemId": "sys_035",
+  "archetype": "volcanic",
+  "orbitIndex": 3,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 108.8,
+    "energy": 28.8,
+    "ordnance": 147.2,
+    "precision": 14.4
+  },
+  "refinery": {
+    "throughputPerTurn": 100.75,
+    "yieldModifier": 0.95
+  },
+  "manufactory": {
+    "throughputPerTurn": 21.7
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 3100
+  }
+}

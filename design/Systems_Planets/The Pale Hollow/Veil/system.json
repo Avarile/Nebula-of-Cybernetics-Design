@@ -1,0 +1,77 @@
+{
+  "systemId": "sys_057",
+  "name": "Veil",
+  "region": "The Pale Hollow",
+  "constellation": "The Abyssal",
+  "securityTier": "deadspace",
+  "securityRating": 0.04,
+  "star": {
+    "spectralClass": "O",
+    "luminosity": 8.0
+  },
+  "coordinates": {
+    "x": 29.5,
+    "y": 105.0,
+    "z": -16.5
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_168",
+    "pln_169",
+    "pln_170",
+    "pln_171"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_108",
+      "name": "Veil Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_109",
+      "name": "Veil Belt II",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_110",
+      "name": "Veil Belt III",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_054",
+      "gateId": "gate_sys_054_sys_057",
+      "gateName": "Ghostlight \u2014 Veil",
+      "jumpDistanceLy": 19.6,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_056",
+      "gateId": "gate_sys_056_sys_057",
+      "gateName": "Cold Harbour \u2014 Veil",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_058",
+      "gateId": "gate_sys_057_sys_058",
+      "gateName": "Veil \u2014 Anathema",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "systemId": "sys_009",
+  "name": "Lumen",
+  "region": "Aurelian Reach",
+  "constellation": "Lumen Belt",
+  "securityTier": "mid",
+  "securityRating": 0.65,
+  "star": {
+    "spectralClass": "K",
+    "luminosity": 0.6
+  },
+  "coordinates": {
+    "x": -7.5,
+    "y": 7.0,
+    "z": -3.5
+  },
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "planets": [
+    "pln_024",
+    "pln_025",
+    "pln_026",
+    "pln_027"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_006",
+      "name": "Lumen Belt I",
+      "dominantLane": "structural",
+      "richnessTier": 1,
+      "yieldPerCycle": 18.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_006",
+      "gateId": "gate_sys_006_sys_009",
+      "gateName": "Tessera \u2014 Lumen",
+      "jumpDistanceLy": 31.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_008",
+      "gateId": "gate_sys_008_sys_009",
+      "gateName": "Meridian Gate \u2014 Lumen",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_010",
+      "gateId": "gate_sys_009_sys_010",
+      "gateName": "Lumen \u2014 Astra Vale",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

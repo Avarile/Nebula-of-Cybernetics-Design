@@ -29,6 +29,23 @@
 # take a forge world to 2.40 and break the resource tier model outright.
 #
 # <<< generated from tools/generate_systems.py -- do not edit by hand
+#   archetype        struct energy  ordn   prec  refinery  yMod  mfg  berths  tonnage
+#   ferrous_barren     120      8    14      4        60  0.96   11       0        0
+#   crystalline         12    105     8     22        50  0.96   10       0        0
+#   gas_giant            4     38   125      8        55  0.94    8       0        0
+#   volcanic            68     18    92      9        65  0.95   14       0        0
+#   irradiated          18     28    22     95        45  0.92    9       0        0
+#   ice                  9     58    28     42        50  0.95    9       0        0
+#   oceanic             42     32    52     18        70  0.97   22       1     4000
+#   shattered           82     12    18     58        35  0.93    6       0        0
+#   hive_world           8     12     8     16        95  0.99   75       2    16000
+#   forge_world          0      0     0      0       130  1.00  110       4    34000
+#
+#   placement by security tier:
+#     core       crystalline ferrous_barren forge_world gas_giant hive_world ice oceanic volcanic
+#     mid        crystalline ferrous_barren forge_world gas_giant hive_world ice oceanic volcanic
+#     rim        crystalline ferrous_barren gas_giant hive_world ice irradiated oceanic shattered volcanic
+#     deadspace  crystalline ferrous_barren gas_giant ice irradiated shattered volcanic
 # >>> end generated
 #
 # INVARIANTS (enforced by tools/verify_systems.py)

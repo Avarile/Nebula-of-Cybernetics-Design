@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_037",
+  "name": "Nyx Landing I",
+  "systemId": "sys_013",
+  "archetype": "ice",
+  "orbitIndex": 1,
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "extraction": {
+    "structural": 9.0,
+    "energy": 58.0,
+    "ordnance": 28.0,
+    "precision": 42.0
+  },
+  "refinery": {
+    "throughputPerTurn": 120.0,
+    "yieldModifier": 0.95
+  },
+  "manufactory": {
+    "throughputPerTurn": 21.6
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 5280
+  }
+}

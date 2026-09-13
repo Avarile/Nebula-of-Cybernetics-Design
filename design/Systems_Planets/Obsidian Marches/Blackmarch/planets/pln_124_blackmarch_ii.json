@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_124",
+  "name": "Blackmarch II",
+  "systemId": "sys_042",
+  "archetype": "ferrous_barren",
+  "orbitIndex": 2,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 192.0,
+    "energy": 12.8,
+    "ordnance": 22.4,
+    "precision": 6.4
+  },
+  "refinery": {
+    "throughputPerTurn": 93.0,
+    "yieldModifier": 0.96
+  },
+  "manufactory": {
+    "throughputPerTurn": 17.05
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 3720
+  }
+}

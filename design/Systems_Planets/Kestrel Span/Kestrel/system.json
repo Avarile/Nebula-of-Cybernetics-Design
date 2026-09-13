@@ -1,0 +1,51 @@
+{
+  "systemId": "sys_011",
+  "name": "Kestrel",
+  "region": "Kestrel Span",
+  "constellation": "Kestrel Prime",
+  "securityTier": "core",
+  "securityRating": 0.9,
+  "star": {
+    "spectralClass": "B",
+    "luminosity": 4.0
+  },
+  "coordinates": {
+    "x": 62.0,
+    "y": 16.0,
+    "z": -8.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_030",
+    "pln_031",
+    "pln_032"
+  ],
+  "asteroidBelts": [],
+  "connections": [
+    {
+      "toSystemId": "sys_007",
+      "gateId": "gate_sys_007_sys_011",
+      "gateName": "The Meridian Gate",
+      "jumpDistanceLy": 49.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    },
+    {
+      "toSystemId": "sys_012",
+      "gateId": "gate_sys_011_sys_012",
+      "gateName": "Kestrel \u2014 Farhaven",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_015",
+      "gateId": "gate_sys_011_sys_015",
+      "gateName": "Kestrel \u2014 Emberlight",
+      "jumpDistanceLy": 16.4,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

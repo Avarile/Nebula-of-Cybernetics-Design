@@ -1,0 +1,52 @@
+{
+  "systemId": "sys_023",
+  "name": "Ferrous Bay",
+  "region": "Cindral Verge",
+  "constellation": "Cindral Forge",
+  "securityTier": "mid",
+  "securityRating": 0.61,
+  "star": {
+    "spectralClass": "K",
+    "luminosity": 0.6
+  },
+  "coordinates": {
+    "x": 41.0,
+    "y": -53.0,
+    "z": 15.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 2,
+  "planets": [
+    "pln_066",
+    "pln_067",
+    "pln_068"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_023",
+      "name": "Ferrous Bay Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 1,
+      "yieldPerCycle": 12.0,
+      "cycleTurns": 3
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_022",
+      "gateId": "gate_sys_022_sys_023",
+      "gateName": "Ashfall \u2014 Ferrous Bay",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_024",
+      "gateId": "gate_sys_023_sys_024",
+      "gateName": "Ferrous Bay \u2014 Vantablack",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

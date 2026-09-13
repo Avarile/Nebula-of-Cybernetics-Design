@@ -1,0 +1,85 @@
+{
+  "systemId": "sys_048",
+  "name": "Shrike",
+  "region": "Obsidian Marches",
+  "constellation": "Gravewatch Span",
+  "securityTier": "deadspace",
+  "securityRating": 0.08,
+  "star": {
+    "spectralClass": "G",
+    "luminosity": 1.0
+  },
+  "coordinates": {
+    "x": -78.0,
+    "y": 49.0,
+    "z": 14.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_141",
+    "pln_142",
+    "pln_143",
+    "pln_144"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_078",
+      "name": "Shrike Belt I",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_079",
+      "name": "Shrike Belt II",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_080",
+      "name": "Shrike Belt III",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_081",
+      "name": "Shrike Belt IV",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_047",
+      "gateId": "gate_sys_047_sys_048",
+      "gateName": "Cairn \u2014 Shrike",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_049",
+      "gateId": "gate_sys_048_sys_049",
+      "gateName": "Shrike \u2014 Bleakspur",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_053",
+      "gateId": "gate_sys_048_sys_053",
+      "gateName": "Shrike \u2014 The Maw",
+      "jumpDistanceLy": 112.1,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    }
+  ]
+}

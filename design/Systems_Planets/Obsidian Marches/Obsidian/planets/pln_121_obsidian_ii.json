@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_121",
+  "name": "Obsidian II",
+  "systemId": "sys_041",
+  "archetype": "ice",
+  "orbitIndex": 2,
+  "richnessTier": 2,
+  "developmentTier": 2,
+  "extraction": {
+    "structural": 14.4,
+    "energy": 92.8,
+    "ordnance": 44.8,
+    "precision": 67.2
+  },
+  "refinery": {
+    "throughputPerTurn": 77.5,
+    "yieldModifier": 0.95
+  },
+  "manufactory": {
+    "throughputPerTurn": 13.95
+  },
+  "shipyard": {
+    "berths": 0,
+    "maxHullTonnage": 0,
+    "constructionRatePerTurn": 0.0
+  },
+  "warehouse": {
+    "capacity": 3410
+  }
+}

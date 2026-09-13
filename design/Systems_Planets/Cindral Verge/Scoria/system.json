@@ -1,0 +1,69 @@
+{
+  "systemId": "sys_030",
+  "name": "Scoria",
+  "region": "Cindral Verge",
+  "constellation": "Scoria Deep",
+  "securityTier": "rim",
+  "securityRating": 0.28,
+  "star": {
+    "spectralClass": "K",
+    "luminosity": 0.6
+  },
+  "coordinates": {
+    "x": 31.0,
+    "y": -65.0,
+    "z": 22.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_087",
+    "pln_088",
+    "pln_089",
+    "pln_090"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_035",
+      "name": "Scoria Belt I",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_036",
+      "name": "Scoria Belt II",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    },
+    {
+      "beltId": "bel_037",
+      "name": "Scoria Belt III",
+      "dominantLane": "energy",
+      "richnessTier": 3,
+      "yieldPerCycle": 35.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_029",
+      "gateId": "gate_sys_029_sys_030",
+      "gateName": "Quarry Deep \u2014 Scoria",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_034",
+      "gateId": "gate_sys_030_sys_034",
+      "gateName": "Scoria Crossing",
+      "jumpDistanceLy": 82.9,
+      "crossesConstellation": true,
+      "crossesRegion": true
+    }
+  ]
+}

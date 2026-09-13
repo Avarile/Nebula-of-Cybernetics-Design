@@ -1,0 +1,59 @@
+{
+  "systemId": "sys_055",
+  "name": "Null Anchor",
+  "region": "The Pale Hollow",
+  "constellation": "Silent Quarter",
+  "securityTier": "deadspace",
+  "securityRating": 0.06,
+  "star": {
+    "spectralClass": "G",
+    "luminosity": 1.0
+  },
+  "coordinates": {
+    "x": 24.0,
+    "y": 91.0,
+    "z": -27.5
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_163",
+    "pln_164"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_101",
+      "name": "Null Anchor Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_102",
+      "name": "Null Anchor Belt II",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_103",
+      "name": "Null Anchor Belt III",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_054",
+      "gateId": "gate_sys_054_sys_055",
+      "gateName": "Ghostlight \u2014 Null Anchor",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

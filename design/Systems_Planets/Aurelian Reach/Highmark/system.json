@@ -1,0 +1,59 @@
+{
+  "systemId": "sys_005",
+  "name": "Highmark",
+  "region": "Aurelian Reach",
+  "constellation": "Meridian Chain",
+  "securityTier": "core",
+  "securityRating": 0.85,
+  "star": {
+    "spectralClass": "M",
+    "luminosity": 0.3
+  },
+  "coordinates": {
+    "x": 14.0,
+    "y": -11.0,
+    "z": 1.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_012",
+    "pln_013",
+    "pln_014"
+  ],
+  "asteroidBelts": [],
+  "connections": [
+    {
+      "toSystemId": "sys_001",
+      "gateId": "gate_sys_001_sys_005",
+      "gateName": "Aurelia \u2014 Highmark",
+      "jumpDistanceLy": 16.9,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_004",
+      "gateId": "gate_sys_004_sys_005",
+      "gateName": "Solane \u2014 Highmark",
+      "jumpDistanceLy": 13.8,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_006",
+      "gateId": "gate_sys_005_sys_006",
+      "gateName": "Highmark \u2014 Tessera",
+      "jumpDistanceLy": 4.4,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_008",
+      "gateId": "gate_sys_005_sys_008",
+      "gateName": "Highmark \u2014 Meridian Gate",
+      "jumpDistanceLy": 31.0,
+      "crossesConstellation": true,
+      "crossesRegion": false
+    }
+  ]
+}

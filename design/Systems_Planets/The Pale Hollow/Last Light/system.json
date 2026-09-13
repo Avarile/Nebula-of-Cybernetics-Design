@@ -1,0 +1,68 @@
+{
+  "systemId": "sys_059",
+  "name": "Last Light",
+  "region": "The Pale Hollow",
+  "constellation": "The Abyssal",
+  "securityTier": "deadspace",
+  "securityRating": 0.01,
+  "star": {
+    "spectralClass": "F",
+    "luminosity": 1.4
+  },
+  "coordinates": {
+    "x": 36.5,
+    "y": 108.0,
+    "z": -19.0
+  },
+  "richnessTier": 3,
+  "developmentTier": 1,
+  "planets": [
+    "pln_174",
+    "pln_175",
+    "pln_176"
+  ],
+  "asteroidBelts": [
+    {
+      "beltId": "bel_115",
+      "name": "Last Light Belt I",
+      "dominantLane": "ordnance",
+      "richnessTier": 3,
+      "yieldPerCycle": 30.0,
+      "cycleTurns": 3
+    },
+    {
+      "beltId": "bel_116",
+      "name": "Last Light Belt II",
+      "dominantLane": "precision",
+      "richnessTier": 3,
+      "yieldPerCycle": 22.5,
+      "cycleTurns": 4
+    },
+    {
+      "beltId": "bel_117",
+      "name": "Last Light Belt III",
+      "dominantLane": "structural",
+      "richnessTier": 3,
+      "yieldPerCycle": 45.0,
+      "cycleTurns": 2
+    }
+  ],
+  "connections": [
+    {
+      "toSystemId": "sys_058",
+      "gateId": "gate_sys_058_sys_059",
+      "gateName": "Anathema \u2014 Last Light",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_060",
+      "gateId": "gate_sys_059_sys_060",
+      "gateName": "Last Light \u2014 Abyssal Rift",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}

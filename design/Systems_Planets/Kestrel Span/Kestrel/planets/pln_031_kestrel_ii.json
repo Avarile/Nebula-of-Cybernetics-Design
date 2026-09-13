@@ -1,0 +1,30 @@
+{
+  "planetId": "pln_031",
+  "name": "Kestrel II",
+  "systemId": "sys_011",
+  "archetype": "oceanic",
+  "orbitIndex": 2,
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "extraction": {
+    "structural": 42.0,
+    "energy": 32.0,
+    "ordnance": 52.0,
+    "precision": 18.0
+  },
+  "refinery": {
+    "throughputPerTurn": 168.0,
+    "yieldModifier": 0.97
+  },
+  "manufactory": {
+    "throughputPerTurn": 52.8
+  },
+  "shipyard": {
+    "berths": 1,
+    "maxHullTonnage": 9600,
+    "constructionRatePerTurn": 43.2
+  },
+  "warehouse": {
+    "capacity": 6240
+  }
+}

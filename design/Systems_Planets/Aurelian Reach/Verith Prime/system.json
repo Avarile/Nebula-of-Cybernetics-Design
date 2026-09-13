@@ -1,0 +1,44 @@
+{
+  "systemId": "sys_003",
+  "name": "Verith Prime",
+  "region": "Aurelian Reach",
+  "constellation": "Aurelian Core",
+  "securityTier": "core",
+  "securityRating": 0.92,
+  "star": {
+    "spectralClass": "F",
+    "luminosity": 1.4
+  },
+  "coordinates": {
+    "x": 7.0,
+    "y": 2.0,
+    "z": 3.0
+  },
+  "richnessTier": 1,
+  "developmentTier": 3,
+  "planets": [
+    "pln_006",
+    "pln_007",
+    "pln_008",
+    "pln_009"
+  ],
+  "asteroidBelts": [],
+  "connections": [
+    {
+      "toSystemId": "sys_002",
+      "gateId": "gate_sys_002_sys_003",
+      "gateName": "Cantoris \u2014 Verith Prime",
+      "jumpDistanceLy": 5.2,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    },
+    {
+      "toSystemId": "sys_004",
+      "gateId": "gate_sys_003_sys_004",
+      "gateName": "Verith Prime \u2014 Solane",
+      "jumpDistanceLy": 6.1,
+      "crossesConstellation": false,
+      "crossesRegion": false
+    }
+  ]
+}
