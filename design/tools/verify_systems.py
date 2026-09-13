@@ -191,6 +191,10 @@ if refine_skill:
     check('the refinement skill still targets refineryYield',
           [] if eff else ['no refineryYield effect on skl_sta_refinement'])
     if eff:
+        check('the refineryYield effect is still a percent modifier',
+              [] if eff[0]['modifierType'] == 'percent'
+              else ['modifierType is %r -- the percent math below would be meaningless'
+                    % eff[0]['modifierType']])
         per_level = eff[0]['modifierPerLevel']
         max_level = refine_skill[0]['maxLevel']
         applies_from = eff[0].get('appliesFromLevel', 1)
@@ -222,12 +226,29 @@ check('some yard can build the heaviest hull in the game',
       [] if best_yard >= heaviest
       else ['heaviest hull %.0f t, best yard %.0f t' % (heaviest, best_yard)])
 
+# Per-category yard availability. Comparing every category against one global
+# best_yard was a tautology: no category can need more than the heaviest hull, so
+# it could never fail once the check above passed. Count the yards that can take
+# each category instead, and assert two things that CAN fail.
+need_by_class = {}
+for s in FLEET['ships'] + FLEET['namedShips']:
+    cls = s['shipClass']
+    need_by_class[cls] = max(need_by_class.get(cls, 0), s['mass']['value'])
+yards_for = {cls: sum(1 for p in yards if p['shipyard']['maxHullTonnage'] >= need)
+             for cls, need in need_by_class.items()}
+
+check('every ship category has at least one yard',
+      ['%s needs %.0f t, no yard can take it' % (cls, need_by_class[cls])
+       for cls, n in yards_for.items() if n == 0])
+
+ladder = sorted(need_by_class, key=lambda c: need_by_class[c])
 bad = []
-for cls in {s['shipClass'] for s in FLEET['ships']}:
-    need = max(s['mass']['value'] for s in FLEET['ships'] if s['shipClass'] == cls)
-    if best_yard < need:
-        bad.append('%s needs %.0f t, best yard %.0f t' % (cls, need, best_yard))
-check('every ship category is buildable somewhere', bad)
+for lighter, heavier in zip(ladder, ladder[1:]):
+    if yards_for[heavier] > yards_for[lighter]:
+        bad.append('%s (%.0f t, %d yards) has MORE yards than the lighter %s (%.0f t, %d yards)'
+                   % (heavier, need_by_class[heavier], yards_for[heavier],
+                      lighter, need_by_class[lighter], yards_for[lighter]))
+check('yard availability falls monotonically as hulls get heavier', bad)
 
 # capital hulls should come only from developed core/mid forge worlds -- a
 # consequence of the tables, so assert it rather than trusting it
