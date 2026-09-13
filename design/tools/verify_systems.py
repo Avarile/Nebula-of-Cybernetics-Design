@@ -177,5 +177,76 @@ check('hand-written plan survived the run',
       [] if os.path.exists(os.path.join(MAP_DIR, 'systems_planets_implementation_plan.md'))
       else ['systems_planets_implementation_plan.md was deleted by a generator run'])
 
+# ---- spec 6.1: refining can never become lossless.
+# effectiveYield = lane.conversionYield x planet.yieldModifier x skillMultiplier.
+# Every one of the three is read LIVE -- nothing here is hardcoded, so raising
+# the skill, a lane yield or a yieldModifier fails the build instead of quietly
+# producing a lane that refines without loss.
+refine_skill = [s for s in FLEET['skills'] if s['skillId'] == 'skl_sta_refinement']
+check('Material Refinement Management still exists',
+      [] if refine_skill else ['skl_sta_refinement missing -- 6.1 cannot be checked'])
+
+if refine_skill:
+    eff = [e for e in refine_skill[0]['effects'] if e['stat'] == 'refineryYield']
+    check('the refinement skill still targets refineryYield',
+          [] if eff else ['no refineryYield effect on skl_sta_refinement'])
+    if eff:
+        per_level = eff[0]['modifierPerLevel']
+        max_level = refine_skill[0]['maxLevel']
+        applies_from = eff[0].get('appliesFromLevel', 1)
+        steps = max(0, max_level - applies_from + 1)
+        skill_mult = 1 + (per_level * steps) / 100.0
+        lane_yield = {r['lane']: r['conversionYield'] for r in FLEET['resources']
+                      if r['tier'] == 'refined'}
+        bad = []
+        for p in P:
+            ymod = p['refinery']['yieldModifier']
+            for lane, ly in lane_yield.items():
+                effective = ly * ymod * skill_mult
+                if effective >= 1.0:
+                    bad.append('%s %s: %.2f x %.2f x %.2f = %.4f >= 1'
+                               % (p['name'], lane, ly, ymod, skill_mult, effective))
+        check('refining stays lossy: lane x planet x skill < 1 for every combination', bad)
+        print('     (worst case %.4f, margin %.4f)'
+              % (max(lane_yield.values()) * max(p['refinery']['yieldModifier'] for p in P)
+                 * skill_mult,
+                 1 - max(lane_yield.values()) * max(p['refinery']['yieldModifier'] for p in P)
+                 * skill_mult))
+
+# ---- spec 6.2: every hull has somewhere to be built.
+# maxHullTonnage means nothing unless it is checked against hulls that exist.
+yards = [p for p in P if p['shipyard']['berths'] > 0]
+best_yard = max((p['shipyard']['maxHullTonnage'] for p in yards), default=0)
+heaviest = max(s['mass']['value'] for s in FLEET['ships'] + FLEET['namedShips'])
+check('some yard can build the heaviest hull in the game',
+      [] if best_yard >= heaviest
+      else ['heaviest hull %.0f t, best yard %.0f t' % (heaviest, best_yard)])
+
+bad = []
+for cls in {s['shipClass'] for s in FLEET['ships']}:
+    need = max(s['mass']['value'] for s in FLEET['ships'] if s['shipClass'] == cls)
+    if best_yard < need:
+        bad.append('%s needs %.0f t, best yard %.0f t' % (cls, need, best_yard))
+check('every ship category is buildable somewhere', bad)
+
+# capital hulls should come only from developed core/mid forge worlds -- a
+# consequence of the tables, so assert it rather than trusting it
+capital_yards = [p for p in yards if p['shipyard']['maxHullTonnage'] >= heaviest]
+check('capital yards exist and are all forge worlds',
+      [] if capital_yards and all(p['archetype'] == 'forge_world' for p in capital_yards)
+      else ['%d capital yards, archetypes %s'
+            % (len(capital_yards), sorted({p['archetype'] for p in capital_yards}))])
+check('capital yards sit in core or mid security',
+      [p['name'] for p in capital_yards
+       if by_sys[p['systemId']]['securityTier'] not in ('core', 'mid')])
+
+# ---- spec 6.2 supporting: the precision lane is the bottleneck it is meant to be
+fab = {r['lane']: r['conversionYield'] for r in FLEET['resources'] if r['tier'] == 'manufactured'}
+ref = {r['lane']: r['conversionYield'] for r in FLEET['resources'] if r['tier'] == 'refined'}
+raw_per_unit = {lane: 1.0 / fab[lane] / ref[lane] for lane in ref}
+check('precision is the most raw-hungry lane',
+      [] if raw_per_unit['precision'] == max(raw_per_unit.values())
+      else ['precision %.2f is not the max %s' % (raw_per_unit['precision'], raw_per_unit)])
+
 print('\n' + ('ALL CHECKS PASSED' if not fails else '%d CHECK(S) FAILED' % len(fails)))
 sys.exit(1 if fails else 0)
