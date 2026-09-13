@@ -1,10 +1,11 @@
 # Reference — TypeScript interface
 
-A typed description of the data that already exists in this repo: the five
-catalogues (`Resources`, `Ships`, `Weapons`, `Modules`, `Skills`) and the combat
-logic that consumes them. Nothing here proposes a change to the data — every literal union
-was extracted from `fleet_and_weapons.json` and the generator tables in `tools/`,
-then cross-checked against the `.interface` schemas in `Data-Templates/`.
+A typed description of the data that already exists in this repo: the six
+catalogues (`Resources`, `Ships`, `Weapons`, `Modules`, `Skills`, `Systems_Planets`)
+and the combat logic that consumes them. Nothing here proposes a change to the data —
+every literal union was extracted from `fleet_and_weapons.json` and the generator
+tables in `tools/`, then cross-checked against the `.interface` schemas in
+`Data-Templates/`.
 
 ## Files
 
@@ -18,7 +19,7 @@ then cross-checked against the `.interface` schemas in `Data-Templates/`.
 | `skills.ts` | the 81 skills across 4 domains, the 18 skill-only stats, the EVE-style SP model, and the gates for hulls, fleet slots and industry |
 | `systems.ts` | the 60 systems and 180 planets, the security/richness/development ladders, the jump-gate graph, and the archetype table a planet's industry is built from |
 | `combat.ts` | turn structure, hit and damage resolution, missiles/point-defense, criticals, both logging tiers, and the open rulings |
-| `dataset.ts` | on-disk shapes: `fleet_and_weapons.json`, the five `index.json` files, a fitted hull directory |
+| `dataset.ts` | on-disk shapes: `fleet_and_weapons.json`, the six `index.json` files, a fitted hull directory |
 | `constants.ts` | the tuning tables the types describe — family bias, mass bands, yields, cost coefficients, range bands, critical table, skill gates and the effect formula |
 | `index.ts` | barrel re-export |
 | `verify_reference.py` | checks the unions and field sets against the live data |

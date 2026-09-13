@@ -343,17 +343,19 @@ Two invariants are enforced against other catalogues rather than assumed:
   margin of 0.01, which is why `yieldModifier` caps at 1.00 and scales with neither
   ladder. The verifier reads all three numbers live, so raising the skill, a lane yield
   or a modifier fails the build.
-* **Every region has at least one shipyard.** This is the check that can actually fail —
-  only `oceanic`, `hive_world` and `forge_world` carry berths, and none of the three may
-  exist in deadspace, so **deadspace cannot build a hull at all**: you extract there and
-  carry the material home. It is tight rather than comfortable — The Pale Hollow, eight
-  of whose ten systems are deadspace, has exactly one yard, sitting in one of its two
-  `rim` systems. (Two earlier versions of this check — comparing against the single
-  heaviest hull in the game, and counting yards per category — were tautologies that
-  could never fail once the map existed at all; see `systems_planets_specification.md`
-  §6.2 for why.) Tonnage still clears the bar that matters: a forge world at development
-  3 reaches 81,600 t against the 65,100 t Battleship Tier 3, while a hive world tops out
-  at 38,400 t, so a capital keel needs a developed core-or-mid forge world specifically.
+* **Every region has at least one shipyard.** Only `oceanic`, `hive_world` and
+  `forge_world` carry berths, and none of the three may exist in deadspace, so
+  **deadspace cannot build a hull at all**: you extract there and carry the material
+  home. It is tight rather than comfortable — The Pale Hollow, eight of whose ten
+  systems are deadspace, has exactly one yard, sitting in one of its two `rim` systems.
+  Two sibling checks stay active alongside it — the single heaviest hull has a yard, and
+  every category has one (the latter only ever failing in lockstep with the former, kept
+  for its diagnostics and for counting named ships). A third version, asserting yard
+  counts fall as hulls get heavier, was a genuine tautology — nested threshold sets can
+  never disagree — and was deleted; see `systems_planets_specification.md` §6.2. Tonnage
+  still clears the bar that matters: a forge world at development 3 reaches 81,600 t
+  against the 65,100 t Battleship Tier 3, while a hive world tops out at 38,400 t, so a
+  capital keel needs a developed core-or-mid forge world specifically.
 
 The graph is proved navigable, not assumed: symmetric, loop-free, duplicate-free, and
 fully connected — every system reachable from `sys_001` by graph traversal.
