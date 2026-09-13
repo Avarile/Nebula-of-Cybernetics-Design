@@ -556,7 +556,7 @@ for _sid, _conns in CONNECTIONS_BY_SYSTEM.items():
         assert _back[0]['gateId'] == _c['gateId'], 'gateId disagrees between endpoints'
         assert _back[0]['jumpDistanceLy'] == _c['jumpDistanceLy'], 'distance disagrees'
 
-# spec 6.3: every system reachable from sys_001 by BFS
+# spec 6.3: every system reachable from sys_001 by graph traversal
 _seen, _queue = {'sys_001'}, ['sys_001']
 while _queue:
     _cur = _queue.pop()
@@ -822,7 +822,7 @@ Expected: `FileNotFoundError: ... Data-Templates/system.interface`
 #   - 60 systems, ids and names unique; field set identical to the schema below
 #   - securityRating inside its tier's band; richness/development consistent with it
 #   - every connection symmetric, no self-loops, no duplicates, every toSystemId real
-#   - BFS from sys_001 reaches all 60 -- the map has no unreachable region
+#   - every system reachable from sys_001 -- the map has no unreachable region
 #   - links.json and the union of all connections[] are the same edge set
 
 {
@@ -1339,7 +1339,7 @@ while queue:
     for c in conn[cur]:
         if c['toSystemId'] not in seen:
             seen.add(c['toSystemId']); queue.append(c['toSystemId'])
-check('BFS from sys_001 reaches all 60 systems',
+check('every system reachable from sys_001',
       [] if len(seen) == 60 else ['%d unreachable: %s' % (60 - len(seen),
                                   sorted({s['systemId'] for s in S} - seen)[:5])])
 
