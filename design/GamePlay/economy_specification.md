@@ -201,6 +201,7 @@ drain — which is the correct price for a region where nothing else protects yo
 | NPC buy orders | `reference × index × 0.80` | goods the player actually produced |
 | Bounties | `0.05 / 0.10 / 0.18` of an NPC squadron's reference value in `mid` / `rim` / `deadspace` | NPC squadrons killed; none spawn in `core` |
 | Contract rewards | §8 | contracts posted by NPCs |
+| Haul rewards | `(tons × HAUL_FREIGHT_RATE + value × HAUL_RISK_RATE × (risk − 1)) × ly`, §8.1 | NPC haul contracts; in `core` the freight barely covers the hauler's running cost (§8.3) |
 | Insurance payouts | §6 | premiums paid in, minus the margin |
 
 **Drains — credits destroyed**
@@ -212,6 +213,7 @@ drain — which is the correct price for a region where nothing else protects yo
 | Insurance premiums | `0.004 × bare hull` per turn | hulls insured |
 | NPC sell orders | `reference × index` | fuel, ammunition and starter goods bought rather than made |
 | NPC markup on consumables | `× 1.25` on fuel and ammunition | fleets operating away from their own industry |
+| Forfeited haul collateral | cargo × the dearest NPC ask for it, §8.1 | NPC haul cargo lost to raiders or never delivered |
 
 The structural property: **every faucet is tied to an action, every drain is tied to a
 holding.** Credits enter when someone produces or fights and leave continuously from
@@ -227,12 +229,12 @@ documents appears in this table, and so does every drain.
 A contract is an offer to do work for credits, posted by an NPC or by a player, accepted in
 phase 13. Four archetypes, each generated with parameters rather than authored individually:
 
-| archetype | the job | reward derived from |
-|---|---|---|
-| `haul` | move N units of a good from system A to B | cargo reference value × distance in ly × the destination's risk index |
-| `supply` | deliver N manufactured units to a facility | reference value × shortfall urgency |
-| `bounty` | destroy N NPC hulls of a given tier in a given system | the squadron's reference value × the §7 bounty rate |
-| `escort` | accompany a named fleet across a route without it being destroyed | route distance × the escorted cargo's value |
+| archetype | posted by | the job | reward |
+|---|---|---|---|
+| `haul` | NPC, player | move N units of a good from system A to B | `(cargoTons × HAUL_FREIGHT_RATE + cargoReferenceValue × HAUL_RISK_RATE × (routeRiskIndex − 1)) × routeDistanceLy` |
+| `supply` | NPC, player | deliver N manufactured units to a facility | reference value × shortfall urgency |
+| `bounty` | NPC, player | destroy N NPC hulls of a given tier in a given system | the squadron's reference value × the §7 bounty rate |
+| `escort` | player | hold a convoy link to a named fleet from A to B | set by the poster; reference quote `escortedCargoValue × HAUL_RISK_RATE × (routeRiskIndex − 1) × ESCORT_SHARE × routeDistanceLy` |
 
 Player-posted contracts are collateralised: the poster's credits are held at posting and
 released on completion or on expiry. There is no unsecured promise, so a contract cannot be
@@ -242,6 +244,132 @@ used to create credits from nothing.
 categories can carry anything and none of them can fight. A contract that pays combat players
 to protect industrial ones is the mechanism that connects the two careers without forcing
 either to train the other's skills.
+
+**The route.** Both distance-priced archetypes are priced on the shortest route from A to B by
+ly, fixed at posting. `routeRiskIndex` is `RISK_INDEX` (`core` 1.00, `mid` 1.15, `rim` 1.45,
+`deadspace` 1.90) of the **least secure system on that route**, endpoints included. The haul
+that matters most runs from deadspace ore to a core yard; priced on its destination, as the
+first draft had it, it would earn no premium at all. The acceptor may fly any route; the
+reward does not change.
+
+### 8.1 Haul
+
+```
+HAUL_FREIGHT_RATE  0.012    credits per ton per ly        -- what it costs to run a hauler
+HAUL_RISK_RATE     0.002    of cargo value, per ly, per point of risk above 1.00
+```
+
+A haul pays **freight** on the tonnage and a **risk premium** on the value. Freight is set so a
+purpose-built hauler covers its running cost — fuel at the NPC ask and insurance premium, out
+laden and back empty — with a thin margin. An attack transport costs 0.0093–0.0096 credits per
+ton-ly to run and a landing ship 0.0078–0.0112, while an oiler, tender or merchant raider costs
+0.015–0.038, so freight alone pays only the hulls built to haul. The premium is zero in `core`,
+where nothing can attack a hauler, and it is the whole reason to haul anywhere else.
+
+**Cargo.** An NPC haul issues the goods into the acceptor's hold at A on acceptance; a player
+haul loads them from the poster's warehouse at A and delivers into the poster's warehouse at B.
+
+**Collateral.** The acceptor posts
+
+```
+collateral = quantity × referencePrice × max over NPC tiers of (PRICE_INDEX × (1 + NPC_SPREAD / 2))
+```
+
+— the dearest NPC ask for that good anywhere: 1.375 × reference for raw, 1.21 for refined,
+1.155 for manufactured goods and finished items. Keeping the cargo is then never a cheaper way
+to buy it than an NPC sell order, and never a profitable way to sell it to an NPC buy order at
+any trade skill. Without this, defaulting on an NPC haul of raw ore and selling it in `core` at
+1.25 × 0.90 would turn a contract into risk-free arbitrage.
+
+**Settlement**, in phase 13 of the turn the cargo reaches B: the acceptor receives
+`reward × delivered / quantity` and the same fraction of their collateral. The rest of the
+collateral is forfeited — to the poster of a player haul, and destroyed on an NPC haul, which
+makes it a drain (§7). A haul that expires undelivered settles with nothing delivered. Cargo
+lost in a fight is not delivered; half of it is in the wreck for whoever holds the field
+(`conflict_specification.md` §5.1).
+
+There is no escort variant of `haul`. A hauler who wants protection posts an `escort` for the
+same route and pays it out of the haul's premium, which is what §8.2's reference quote is.
+
+### 8.2 Escort
+
+```
+ESCORT_SHARE  0.50    of the haul's risk premium -- the reference quote
+ESCORT_BOND   1.00    x reward, posted by the escort, forfeited on desertion
+```
+
+**Posted by the escorted party only.** The hauler (or its union) posts the contract, names its
+fleet, A and B, and may reserve it for one player or union. An NPC-posted escort would put a
+stranger inside a hauler's convoy and tell them its route; the hauler chooses who rides with it.
+
+**What the escort does.** It accepts, names one of its fleets, and links that fleet to the
+hauler's as a follower (`logistics_specification.md` §8.1 — the accepted contract is the
+consent the link needs). From then on it travels at the convoy's pace and fights in the
+convoy's engagements (`conflict_specification.md` §4.4).
+
+**Reward.** The poster sets it, and it is held at posting like every player contract. The board
+quotes a reference figure: half the risk premium a `haul` of the same cargo and route would
+pay. It is zero on an all-`core` route, where an escort protects against nothing. The split
+says the escort takes half the risk off the hauler and is paid half the price of it.
+
+**Liability.** The escort's liability for a lost hauler is the fee it does not earn, in
+proportion to what was lost. It is never liable for the cargo itself, which an escort could not
+cover anyway: a hold of structural ore on an Attack Transport T3 is worth 96,720 credits, a
+Destroyer T3 10,015.
+
+| outcome | escort receives | poster receives | bond |
+|---|---|---|---|
+| convoy reaches B, link intact | `reward × arrivedCargoValue / departedCargoValue` | the rest of the reward | returned |
+| escorted fleet destroyed outright | nothing | the reward | returned — losing a fight is not desertion |
+| escort fleet destroyed outright | nothing | the reward | returned |
+| escort cancels the link before B | nothing | the reward and the bond | forfeited to the poster |
+| contract expires before B | nothing | the reward | returned |
+
+Cargo values are taken at reference price, so no index can be played, and settlement is in
+phase 13. Because both sides' credits are held in advance, an escort contract moves credits
+between players and creates none: it is not a faucet, and §7 does not list it.
+
+### 8.3 What a haul earns
+
+The representative haul: a full hold of the cheapest raw good (structural, 9,672 units worth
+96,720) on the hull with the largest hold (Attack Transport T3, 7.47 ly/turn), as an NPC
+`haul`, laden out and empty back. Per ly of route:
+
+| route tier | reward | running cost | margin | escort quote | hauler keeps | exposure | break-even loss per 100 ly |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `core` | 116.1 | 90.4 | 25.7 | 0.0 | 25.7 | 138,852 | 1.8 % |
+| `mid` | 145.1 | 90.4 | 54.7 | 14.5 | 40.2 | 140,332 | 2.9 % |
+| `rim` | 203.1 | 90.4 | 112.7 | 43.5 | 69.2 | 143,290 | 4.8 % |
+| `deadspace` | 290.2 | 90.4 | 199.8 | 87.0 | 112.7 | 150,687 | 7.5 % |
+
+*Exposure* is what a total loss costs the hauler: the collateral, plus the fit, plus the part of
+the bare hull insurance does not pay in that tier. *Break-even loss* is the chance per 100 ly of
+losing everything that would leave the haul, escort paid, at zero.
+
+Three things follow:
+
+* **Hauling pays at every tier**, thinly in `core`. Freight there is a living, not a fortune:
+  25.7 per ly is about 96 credits a turn over the round trip.
+* **The risk is priced faster than the safety net thins.** A `deadspace` haul stays worth
+  doing at four times `core`'s loss rate, though insurance pays nothing there. Whether the
+  route really is four times as dangerous is the game.
+* **The escort quote pays for an escort.** A Destroyer T3 kept at the transport's pace costs
+  24.6 per ly, out and back. The `rim` quote covers one and the `deadspace` quote three. An
+  Anti-Aircraft Cruiser T3, at 54.9, needs a `deadspace` route or a dearer cargo.
+
+**Hauling your own ore.** The same hold on the same hull carries raw ore from each system with
+no NPC market to the nearest one, and sells it to the NPC bid, untrained. Both legs' power
+cores ride in the hold, since there is nowhere to buy fuel where the ore is. Medians over the
+live map:
+
+| from | route ly | turns laden | precision ore, net per trip | structural ore, net per trip |
+|---|---:|---:|---:|---:|
+| `rim` | 56.7 | 7.6 | 29,159 | 3,446 |
+| `deadspace` | 311.1 | 41.7 | 39,190 | −11,294 |
+
+Precision ore pays its way home from anywhere it exists. Structural ore pays from `rim` and
+loses money from `deadspace`, where the route is too long for its price. That is the map's
+claim (`Systems_Planets` §3) restated as a haul: deadspace is for the precision lane.
 
 ## 9. Unions
 
@@ -305,3 +433,18 @@ field: `tradeableGoodCount` (1,043).
 * a same-system NPC round trip loses money at **every** level of `skl_trd_trade` —
   `(1 − halfSpread)/(1 + halfSpread) < 1` for margin 0.00 through 0.20
 * market tax is monotonically decreasing as security falls, and zero in `deadspace`
+
+`tools/verify_gameplay.py` and `tools/verify_npc.py`, contracts:
+
+* every constant a reward formula names exists in `tools/gameplay_tables.py`, and `escort` is
+  player-posted only
+* haul collateral is at least every NPC bid and ask for the good, at every trade level —
+  defaulting never beats delivering
+* the escort quote is zero exactly where PvP is blocked
+* the §8.3 tables recompute from the live hull, price and map catalogues; the representative
+  haul's margin is positive at every tier (and so, the quote being a share of the premium,
+  after paying an escort); its
+  break-even loss rises strictly as security falls; own-account precision ore pays from every
+  tier without NPC orders; and in `rim` and `deadspace` the escort quote covers a Destroyer
+  T3's running cost at the hauler's pace
+* freight covers the round-trip running cost of every tier of the largest-hold hull category

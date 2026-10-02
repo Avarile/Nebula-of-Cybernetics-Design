@@ -53,8 +53,8 @@ export interface TurnPhase {
 // ---------------------------------------------------------------- orders
 
 export type OrderType =
-  | 'train.queue' | 'mine.assign' | 'facility.job' | 'fleet.move' | 'fleet.posture'
-  | 'fleet.target' | 'cargo.transfer' | 'market.order' | 'facility.lease'
+  | 'train.queue' | 'mine.assign' | 'facility.job' | 'fleet.move' | 'fleet.convoy'
+  | 'fleet.posture' | 'fleet.target' | 'cargo.transfer' | 'market.order' | 'facility.lease'
   | 'contract.accept' | 'contract.post' | 'insurance.set' | 'union.action';
 
 /**
@@ -86,6 +86,33 @@ export interface TurnOrder {
   standing: boolean;
   payload: Record<string, unknown>;
   rejection: OrderRejection | null;
+}
+
+/**
+ * `fleet.convoy` (phase 7, before movement). `leaderFleetId: null` unlinks. The link
+ * forms only when both fleets share a system, neither is in transit, the leader is not
+ * itself a follower, and the leader's owner is the same player, a union-mate, or the
+ * counterparty of an accepted `ctr_escort` naming both fleets.
+ */
+export interface ConvoyOrderPayload {
+  followerFleetId: FleetId;
+  leaderFleetId: FleetId | null;
+}
+
+/**
+ * `fleet.target` (phase 9), per hull of the ordering player's fleet. `withdraw` sets
+ * the hull's intent to withdraw from round 1 — how a convoy runs its haulers while its
+ * warships fight. `cover` assigns a pool weapon to a friendly hull (cover,
+ * combat spec §2.5).
+ */
+export interface FleetTargetPayload {
+  fleetId: FleetId;
+  hulls: {
+    hullIndex: number;
+    targets?: ShipId[];
+    withdraw?: true;
+    cover?: { hardpointId: string; coveredShipRef: string }[];
+  }[];
 }
 
 /**
@@ -175,6 +202,12 @@ export interface Fleet {
   /** Non-null while a gate transit is still accumulating range across turns. */
   inTransit: { toSystemId: SystemId; lyRemaining: number } | null;
   route: SystemId[];
+  /**
+   * [+] Non-null while this fleet follows a convoy leader (`logistics_specification.md`
+   * §8). A follower takes the leader's route, pace and posture, and is caught and fights
+   * with it. `escortContractId` names the `ctr_escort` that is the link's consent, if any.
+   */
+  convoy: { leaderFleetId: FleetId; escortContractId: string | null } | null;
 }
 
 // ---------------------------------------------------------------- logistics
@@ -186,6 +219,7 @@ export interface Fleet {
  * formula applies a navigation multiplier a second time.
  */
 export interface JumpBudget {
+  /** For a convoy, the slowest hull of every member fleet. */
   slowestEffectiveTopSpeed: number;
   lyPerTurn: number;
 }

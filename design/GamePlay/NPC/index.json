@@ -35,6 +35,12 @@
     "rim": 0.5,
     "deadspace": 0.0
   },
+  "hauling": {
+    "haulFreightRate": 0.012,
+    "haulRiskRate": 0.002,
+    "escortShare": 0.5,
+    "escortBond": 1.0
+  },
   "raid": {
     "troopsPerWarehouseUnit": 0.5,
     "cooldownTurns": 4,

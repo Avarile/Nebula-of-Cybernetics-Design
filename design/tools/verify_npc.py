@@ -119,6 +119,16 @@ check('every contract archetype carries a reward formula',
       [c['contractId'] for c in contracts if not c.get('rewardFormula')])
 check('escort exists, because cargo hulls cannot fight',
       [] if any(c['contractId'] == 'ctr_escort' for c in contracts) else ['no escort contract'])
+# Every UPPER_CASE name in a formula is a rate constant; it must exist in gameplay_tables,
+# so a formula cannot quote a rate nobody authored (contract.interface invariant).
+import re
+check('every constant a reward formula names exists in gameplay_tables.py',
+      [f'{c["contractId"]}: {k}' for c in contracts
+       for k in re.findall(r'\b[A-Z][A-Z_]{2,}\b', c['rewardFormula']) if not hasattr(T, k)])
+check('an escort is hired by the escorted party: ctr_escort is player-posted only (economy 8.2)',
+      [c['posters'] for c in contracts if c['contractId'] == 'ctr_escort' and c['posters'] != ['player']])
+check('contracts.json matches the fleet json entry',
+      [] if contracts == FLEET.get('contractArchetypes') else ['differs'])
 
 # --- schema -------------------------------------------------------------------------
 body = '\n'.join(l for l in open(os.path.join(ROOT, 'Data-Templates', 'npc_squadron.interface'))

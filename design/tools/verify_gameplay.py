@@ -182,6 +182,117 @@ check('every contended resource names a tie-break',
 check('every contended resource is a real order type',
       [k for k in T.CONTENDED if k not in T.ORDER_TYPES])
 
+print('\n--- one order list, four places (turn 3) ---')
+spec3 = section_text('GamePlay/turn_specification.md', '3') or ''
+spec_orders = {}
+for cell, phases in re.findall(r'^\| ((?:`[\w.]+`(?: · )?)+) \| ([\d–, ]+) \|', spec3, re.M):
+    nums = set()
+    for part in phases.split(','):
+        a, _, b = part.strip().partition('–')
+        nums |= set(range(int(a), int(b or a) + 1))
+    for name in re.findall(r'`([\w.]+)`', cell):
+        spec_orders[name] = sorted(nums)
+iface = open(os.path.join(ROOT, 'Data-Templates', 'turn_order.interface')).read()
+mirror = iface.split('# <<< mirrors', 1)[-1].split('# >>> end mirror', 1)[0]
+iface_orders = {n: sorted(int(x) for x in re.findall(r'\d+', ph))
+                for n, ph in re.findall(r'^#\s+([\w]+\.[\w]+)\s+phases? ([\d, ]+)$', mirror, re.M)}
+gts = open(os.path.join(ROOT, 'Reference', 'gameplay.ts')).read()
+m = re.search(r'export type OrderType =(.*?);', gts, re.S)
+ts_orders = set(re.findall(r"'([\w.]+)'", m.group(1))) if m else set()
+table = {k: sorted(v) for k, v in T.ORDER_TYPES.items()}
+check('turn spec 3 order table lists exactly ORDER_TYPES, with the same phases',
+      [f'{k}: spec {spec_orders.get(k)} != table {table.get(k)}' for k in set(spec_orders) | set(table)
+       if spec_orders.get(k) != table.get(k)])
+check('turn_order.interface order list mirrors ORDER_TYPES',
+      [f'{k}: interface {iface_orders.get(k)} != table {table.get(k)}' for k in set(iface_orders) | set(table)
+       if iface_orders.get(k) != table.get(k)])
+check('Reference/gameplay.ts OrderType lists exactly ORDER_TYPES',
+      sorted(ts_orders ^ set(table)))
+
+print('\n--- hauling and escort (economy 8, logistics 8) ---')
+prices = C.resource_prices(FLEET)
+weapons, modules, ships = C.catalogues(FLEET)
+H = C.representative_haul(FLEET)
+rows = {r['tier']: r for r in H['rows']}
+tiers = T.SECURITY_TIERS
+check(f'the representative haul ({H["shipId"]}, a hold of {H["lane"]}) clears its running cost at every tier',
+      [f'{t}: margin {rows[t]["marginPerLy"]:.1f}/ly' for t in tiers if rows[t]['marginPerLy'] <= 0])
+be = [rows[t]['breakEvenLossPer100Ly'] for t in tiers]
+check('break-even loss rate rises strictly as security falls -- risk is priced faster than insurance thins',
+      [] if all(a < b for a, b in zip(be, be[1:])) else [[round(x, 4) for x in be]])
+check('the escort quote is zero exactly where PvP is blocked',
+      [t for t in tiers if (rows[t]['escortPerLy'] == 0) == T.PVP_ALLOWED[t]])
+hauler = C.representative_hauler(FLEET)
+check(f'freight covers the round-trip running cost of every {hauler["shipClass"]} tier',
+      [f'{s["shipId"]}: {2 * C.leg_cost_per_ly(FLEET, s, prices, weapons, modules) / s["capacities"]["cargo"]:.5f} '
+       f'>= {T.HAUL_FREIGHT_RATE}' for s in FLEET['ships'] if s['shipClass'] == hauler['shipClass']
+       and 2 * C.leg_cost_per_ly(FLEET, s, prices, weapons, modules) / s['capacities']['cargo'] >= T.HAUL_FREIGHT_RATE])
+pace = C.ly_per_turn(hauler)
+escort_cost = {sid: 2 * C.leg_cost_per_ly(FLEET, ships[sid], prices, weapons, modules, pace)
+               for sid in ('ship_destroyer_t3', 'ship_anti_aircraft_cruiser_t3')}
+unpoliced = [t for t in tiers if t not in T.RESPONSE_FLEET]
+check(f'where no response fleet comes ({", ".join(unpoliced)}), the escort quote covers a Destroyer T3 at the hauler\'s pace',
+      [f'{t}: quote {rows[t]["escortPerLy"]:.1f} <= cost {escort_cost["ship_destroyer_t3"]:.1f}'
+       for t in unpoliced if rows[t]['escortPerLy'] <= escort_cost['ship_destroyer_t3']])
+own = {lane: {r['tier']: r for r in C.own_account_hauls(FLEET, lane)} for lane in ('precision', 'structural')}
+check('own-account precision ore pays its way to an NPC market from every tier without one',
+      [f'{t}: {r["netPerTrip"]:,.0f}' for t, r in own['precision'].items() if r['netPerTrip'] <= 0]
+      + [t for t in tiers if t not in T.NPC_ORDER_TIERS and t not in own['precision']])
+# 6.2 extended: keeping an NPC haul's cargo never beats delivering it.
+bad = []
+for i, ptier in enumerate(T.PRICE_INDEX_TIERS):
+    for level in range(0, 11):
+        margin = eff['modifierPerLevel'] * max(0, level - eff['appliesFromLevel'] + 1) / 100.0
+        h = C.half_spread(margin)
+        for t in T.NPC_ORDER_TIERS:
+            for quote, name in ((T.PRICE_INDEX[t][i] * (1 - h), 'bid'), (T.PRICE_INDEX[t][i] * (1 + h), 'ask')):
+                if quote > C.collateral_factor(ptier) + 1e-12:
+                    bad.append(f'{ptier} L{level} {t} {name} {quote:.4f} > collateral {C.collateral_factor(ptier):.4f}')
+check('haul collateral is at least every NPC bid and ask for the good, at every trade level', bad)
+
+
+def nums(row):
+    return [float(x.replace(',', '').replace('−', '-').replace('%', '').strip()) for x in row]
+
+
+sec83 = section_text('GamePlay/economy_specification.md', '8.3') or ''
+bad = []
+seen = set()
+for tier, rest in re.findall(r'^\| `(\w+)` \|(.*)\|$', sec83, re.M):
+    cells = nums(rest.split('|'))
+    if len(cells) == 7:
+        r = rows[tier]; seen.add(('haul', tier))
+        want = [(r['rewardPerLy'], 1), (r['costPerLy'], 1), (r['marginPerLy'], 1), (r['escortPerLy'], 1),
+                (r['keepsPerLy'], 1), (r['exposure'], 0), (100 * r['breakEvenLossPer100Ly'], 1)]
+    elif len(cells) == 4:
+        p, s_ = own['precision'][tier], own['structural'][tier]; seen.add(('own', tier))
+        want = [(p['routeLy'], 1), (p['turnsLaden'], 1), (p['netPerTrip'], 0), (s_['netPerTrip'], 0)]
+    else:
+        bad.append(f'{tier}: unexpected row width {len(cells)}'); continue
+    # A published figure must be the live one to its stated precision (half a unit, either way).
+    if any(abs(c - w) > 0.5 * 10 ** -d + 1e-9 for c, (w, d) in zip(cells, want)):
+        bad.append(f'{tier}: spec {cells} != live {[round(w, d) for w, d in want]}')
+missing = {('haul', t) for t in tiers} | {('own', t) for t in own['precision']}
+bad += [f'no row for {k}' for k in sorted(missing - seen)]
+for sid, label in (('ship_destroyer_t3', 'Destroyer T3'), ('ship_anti_aircraft_cruiser_t3', 'Anti-Aircraft Cruiser T3')):
+    if f'{escort_cost[sid]:.1f}' not in sec83:
+        bad.append(f'{label} running cost {escort_cost[sid]:.1f} not stated')
+check('economy 8.3 tables and escort costs recompute from the live catalogues', bad)
+
+consts = open(os.path.join(ROOT, 'Reference', 'constants.ts')).read()
+hc = consts.split('export const HAULING_CONSTANTS', 1)[-1].split('} as const', 1)[0]
+
+
+def ts_val(key):
+    mm = re.search(rf'\b{key}:\s*(-?[\d.]+)', hc)
+    return float(mm.group(1)) if mm else None
+
+
+check('constants.ts HAULING_CONSTANTS matches gameplay_tables.py',
+      [k for k, v in (('haulFreightRate', T.HAUL_FREIGHT_RATE), ('haulRiskRate', T.HAUL_RISK_RATE),
+                      ('escortShare', T.ESCORT_SHARE), ('escortBond', T.ESCORT_BOND)) if ts_val(k) != v]
+      + [f'riskIndex.{t}' for t in tiers if ts_val(t) != T.RISK_INDEX[t]])
+
 print('\n--- turn and logistics consistency ---')
 check('SP_PER_TURN is derived from the skill catalogue reference rate',
       [] if T.SP_PER_TURN == T.TURN_LENGTH_HOURS * SP_PER_HOUR_REFERENCE

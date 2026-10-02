@@ -93,7 +93,7 @@ construction — is per turn and needs no reinterpretation. Every cooldown in
 | `turn_specification.md` | the 14 phases, order intake, determinism, tie-breaking |
 | `progression_specification.md` | SP rate, the training queue, specialisation, the new player |
 | `industry_specification.md` | leases, slots, warehouses, mining, the material chain |
-| `logistics_specification.md` | jump range, fuel, ammo, cargo, refuelling, interdiction |
+| `logistics_specification.md` | jump range, fuel, ammo, cargo, refuelling, convoys, interdiction |
 | `economy_specification.md` | credits, reference prices, NPC orders, markets, contracts, unions |
 | `conflict_specification.md` | PvE, PvP legality, engagement, destruction, insurance, salvage |
 | `lore_specification.md` | the setting, factions, region authorities, squadron and manufacturer origins; no numbers |

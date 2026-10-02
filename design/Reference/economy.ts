@@ -14,7 +14,7 @@
 import type { ResourceId, ResourceLane, ShipId } from './common';
 import type { ResourceTier } from './resources';
 import type { ShipClass } from './ships';
-import type { PlayerId, SecurityTier, SystemId, UnionId } from './gameplay';
+import type { FleetId, PlayerId, SecurityTier, SystemId, UnionId } from './gameplay';
 import type { Standings } from './lore';
 
 // ---------------------------------------------------------------- goods
@@ -164,11 +164,16 @@ export interface MarketOrder {
 
 export type ContractArchetypeId = 'ctr_haul' | 'ctr_supply' | 'ctr_bounty' | 'ctr_escort';
 
+/** Who may post an archetype. `ctr_escort` is player-only: the escorted party hires its escort. */
+export type ContractPoster = 'npc' | 'player';
+
 export interface ContractArchetype {
   contractId: ContractArchetypeId;
   name: string;
   job: string;
+  /** Upper-case names are constants in `tools/gameplay_tables.py` (`HAUL_FREIGHT_RATE` ...). */
   rewardFormula: string;
+  posters: ContractPoster[];
   riskIndex: Record<SecurityTier, number>;
 }
 
@@ -189,7 +194,65 @@ export interface Contract {
   reward: number;
   /** Equals `reward` for player-posted, 0 for NPC-posted. */
   collateral: number;
+  /**
+   * Held from the ACCEPTOR. A haul: the cargo at the dearest NPC ask for it anywhere, so
+   * keeping it never beats delivering it. An escort: `ESCORT_BOND x reward`, forfeited
+   * to the poster only on desertion. 0 for the other archetypes.
+   */
+  acceptorCollateral: number;
   status: ContractStatus;
+}
+
+/**
+ * `ctr_haul`. Reward = `(cargoTons x HAUL_FREIGHT_RATE + cargoReferenceValue x
+ * HAUL_RISK_RATE x (routeRiskIndex - 1)) x routeDistanceLy`, priced at posting on the
+ * shortest route; settlement pays `reward x delivered / quantity`.
+ */
+export interface HaulContractParameters {
+  goodId: GoodId;
+  quantity: number;
+  fromSystemId: SystemId;
+  toSystemId: SystemId;
+  route: SystemId[];
+  routeDistanceLy: number;
+  /** `RISK_INDEX` of the least secure system on `route`, endpoints included. */
+  routeRiskIndex: number;
+  delivered: number;
+}
+
+/**
+ * `ctr_escort`, posted by the escorted party. The escort links `escortFleetId` to
+ * `escortedFleetId` as a follower (`logistics_specification.md` §8) and is paid
+ * `reward x arrivedCargoValue / departedCargoValue` if the link holds to B.
+ */
+export interface EscortContractParameters {
+  escortedFleetId: FleetId;
+  escortFleetId: FleetId | null;
+  fromSystemId: SystemId;
+  toSystemId: SystemId;
+  routeDistanceLy: number;
+  routeRiskIndex: number;
+  reservedFor: PlayerId | UnionId | null;
+  departedCargoValue: number;
+  arrivedCargoValue: number | null;
+  /** The escort cancelled the link before B: its bond goes to the poster. */
+  deserted: boolean;
+}
+
+/** One row of `economy_specification.md` §8.3, per ly of route; recomputed by verify_gameplay.py. */
+export interface HaulEconomicsRow {
+  tier: SecurityTier;
+  rewardPerLy: number;
+  /** Fuel at the NPC ask plus insurance premium, out laden and back empty. */
+  costPerLy: number;
+  marginPerLy: number;
+  /** `ESCORT_SHARE` of the risk premium. Zero where PvP is blocked. */
+  escortPerLy: number;
+  keepsPerLy: number;
+  /** Collateral + fit + the bare hull insurance does not pay in this tier. */
+  exposure: number;
+  /** The chance per 100 ly of a total loss that leaves the haul at zero. */
+  breakEvenLossPer100Ly: number;
 }
 
 // ---------------------------------------------------------------- unions

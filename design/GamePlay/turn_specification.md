@@ -98,14 +98,15 @@ bucket without interpreting.
 | `mine.assign` | 3 | a fleet and a belt |
 | `facility.job` | 3–6 | a lease, an operation, an input good and a quantity |
 | `fleet.move` | 7 | a route: an ordered list of system ids |
+| `fleet.convoy` | 7 | a follower fleet and a leader fleet to link it to, or none to unlink (`logistics_specification.md` §8) |
 | `fleet.posture` | 8 | `engage` · `avoid` · `interdict` · `silent` |
-| `fleet.target` | 9 | a priority list for target selection |
+| `fleet.target` | 9 | per hull: a priority list for target selection, or `withdraw` from round 1; per pool weapon, optionally a friendly hull to cover (`conflict_specification.md` §4.4) |
 | `cargo.transfer` | 7, 12 | between a fleet hold and a warehouse at the same location |
 | `market.order` | 11 | buy or sell, good, quantity, limit price, system |
 | `facility.lease` | 12 | claim or release a slot |
 | `contract.accept` · `contract.post` | 13 | a contract |
 | `insurance.set` | 12 | a hull and a cover level |
-| `union.*` | 13 | membership and shared-asset actions |
+| `union.action` | 13 | membership and shared-asset actions |
 
 ### 3.1 Standing orders
 
@@ -115,6 +116,7 @@ cancelled or invalidated:
 * the training queue keeps advancing and rolls to the next entry on completion
 * facilities keep running their last job while inputs and rent hold out
 * a fleet on a multi-system route keeps travelling until it arrives
+* a convoy link holds until cancelled or until the agreement behind it lapses
 * a fleet's posture persists
 * market orders stand until filled, expired or cancelled
 
@@ -157,8 +159,9 @@ advantage for contested resources, which is the one place where being present ha
 and it is bounded: it decides *who gets the slot*, never *how much anyone produces*.
 
 The contended claims are: facility leases, market order matching, belt mining assignments
-where a belt has limited concurrent capacity, and interdiction when several fleets try to
-hold the same gate.
+where a belt has limited concurrent capacity, interdiction when several fleets try to
+hold the same gate, and convoy links submitted the same turn — resolved in rank order, a link
+naming a leader that is itself linked by then is rejected, so a convoy never becomes a chain.
 
 ## 5. Determinism
 
@@ -209,6 +212,9 @@ engagement id and the digest quotes the narrative highlights.
 `tools/verify_gameplay.py` checks the turn rules that can be checked statically:
 
 * every order type in `turn_order.interface` names a phase that exists in §2
+* the §3 order table, the order list in `turn_order.interface` and `Reference/gameplay.ts`
+  `OrderType` each list exactly the order types in `tools/gameplay_tables.py` `ORDER_TYPES`,
+  with the same phases
 * every phase in §2 is named by at least one order type or is a pure system phase —
   **1, 10 and 14** are the system phases (intake, salvage, log); every other phase is
   driven by an order a player can submit, including 8 via `fleet.posture` and 13 via

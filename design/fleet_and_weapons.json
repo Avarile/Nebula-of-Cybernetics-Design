@@ -70444,7 +70444,11 @@
       "contractId": "ctr_haul",
       "name": "Haul",
       "job": "move N units of a good from system A to B",
-      "rewardFormula": "cargoReferenceValue * jumpDistanceLy * destinationRiskIndex",
+      "rewardFormula": "(cargoTons * HAUL_FREIGHT_RATE + cargoReferenceValue * HAUL_RISK_RATE * (routeRiskIndex - 1)) * routeDistanceLy",
+      "posters": [
+        "npc",
+        "player"
+      ],
       "riskIndex": {
         "core": 1.0,
         "mid": 1.15,
@@ -70457,6 +70461,10 @@
       "name": "Supply",
       "job": "deliver N manufactured units to a facility",
       "rewardFormula": "referenceValue * shortfallUrgency",
+      "posters": [
+        "npc",
+        "player"
+      ],
       "riskIndex": {
         "core": 1.0,
         "mid": 1.15,
@@ -70468,7 +70476,11 @@
       "contractId": "ctr_bounty",
       "name": "Bounty",
       "job": "destroy N NPC hulls of a tier in a system",
-      "rewardFormula": "squadronReferenceValue * bountyRate",
+      "rewardFormula": "squadronReferenceValue * BOUNTY_RATE",
+      "posters": [
+        "npc",
+        "player"
+      ],
       "riskIndex": {
         "core": 1.0,
         "mid": 1.15,
@@ -70479,8 +70491,11 @@
     {
       "contractId": "ctr_escort",
       "name": "Escort",
-      "job": "accompany a fleet across a route without it being destroyed",
-      "rewardFormula": "routeDistanceLy * escortedCargoValue",
+      "job": "hold a convoy link to a named fleet from system A to B",
+      "rewardFormula": "escortedCargoValue * HAUL_RISK_RATE * (routeRiskIndex - 1) * ESCORT_SHARE * routeDistanceLy",
+      "posters": [
+        "player"
+      ],
       "riskIndex": {
         "core": 1.0,
         "mid": 1.15,

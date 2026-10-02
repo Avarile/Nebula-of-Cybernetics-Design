@@ -69,8 +69,7 @@ def build(fleet):
     dearest = max(C.reference_price(s['buildCost'], prices) for s in fleet['ships'])
     richest_player_fleet = dearest * slots
 
-    contracts = [{'contractId': c[0], 'name': c[1], 'job': c[2], 'rewardFormula': c[3],
-                  'riskIndex': T.RISK_INDEX} for c in T.CONTRACT_ARCHETYPES]
+    contracts = C.contract_archetypes()
 
     index = {
         'squadronCount': len(squadrons), 'responseFleetCount': len(response),
@@ -83,6 +82,8 @@ def build(fleet):
         'salvageDrop': T.SALVAGE_DROP, 'salvageCargo': T.SALVAGE_CARGO,
         'wreckLifetime': T.WRECK_LIFETIME,
         'insurancePremium': T.INSURANCE_PREMIUM, 'insurancePayout': T.INSURANCE_PAYOUT,
+        'hauling': {'haulFreightRate': T.HAUL_FREIGHT_RATE, 'haulRiskRate': T.HAUL_RISK_RATE,
+                    'escortShare': T.ESCORT_SHARE, 'escortBond': T.ESCORT_BOND},
         'raid': {'troopsPerWarehouseUnit': T.TROOPS_PER_WAREHOUSE_UNIT,
                  'cooldownTurns': T.RAID_COOLDOWN, 'allowedTiers': T.RAID_TIERS,
                  'capableHulls': sorted({s['shipClass'] for s in fleet['ships']

@@ -45,6 +45,7 @@ ORDER_TYPES = {
     'mine.assign':      [3],
     'facility.job':     [3, 4, 5, 6],
     'fleet.move':       [7],
+    'fleet.convoy':     [7],         # link to / unlink from a leader fleet. logistics 8
     'fleet.posture':    [8],
     'fleet.target':     [9],
     'cargo.transfer':   [7, 12],
@@ -64,6 +65,7 @@ CONTENDED = {
     'market.order':     'price, then rank',
     'mine.assign':      'rank',
     'fleet.posture':    'rank, among interdictors on one gate',
+    'fleet.convoy':     'rank; a link naming a leader that is itself linked by then is rejected',
 }
 
 # ----------------------------------------------------------------- security
@@ -220,18 +222,42 @@ NPC_SQUADRONS = [
      [('ship_battleship_t3', 1), ('ship_heavy_cruiser_t3', 4)]),
 ]
 
+#   (contractId, name, job, rewardFormula, posters)
+# `posters` says who may post the archetype. An escort is hired by the party whose fleet
+# it protects -- an NPC-posted escort would put a stranger inside a hauler's convoy, and
+# tell them its route (economy_specification.md 8.2). Upper-case names in a formula are
+# constants in this file; verify_npc.py resolves every one.
 CONTRACT_ARCHETYPES = [
     ('ctr_haul',   'Haul',   'move N units of a good from system A to B',
-     'cargoReferenceValue * jumpDistanceLy * destinationRiskIndex'),
+     '(cargoTons * HAUL_FREIGHT_RATE + cargoReferenceValue * HAUL_RISK_RATE * (routeRiskIndex - 1))'
+     ' * routeDistanceLy', ['npc', 'player']),
     ('ctr_supply', 'Supply', 'deliver N manufactured units to a facility',
-     'referenceValue * shortfallUrgency'),
+     'referenceValue * shortfallUrgency', ['npc', 'player']),
     ('ctr_bounty', 'Bounty', 'destroy N NPC hulls of a tier in a system',
-     'squadronReferenceValue * bountyRate'),
-    ('ctr_escort', 'Escort', 'accompany a fleet across a route without it being destroyed',
-     'routeDistanceLy * escortedCargoValue'),
+     'squadronReferenceValue * BOUNTY_RATE', ['npc', 'player']),
+    ('ctr_escort', 'Escort', 'hold a convoy link to a named fleet from system A to B',
+     'escortedCargoValue * HAUL_RISK_RATE * (routeRiskIndex - 1) * ESCORT_SHARE * routeDistanceLy',
+     ['player']),
 ]
-# Risk index used by ctr_haul; rises as security falls.
+# Risk index used by ctr_haul and ctr_escort; rises as security falls. A route's index is
+# that of the LEAST secure system on the shortest route from A to B (economy 8.1) -- the
+# old destination-only reading paid no premium on the haul that matters most, ore coming
+# home from deadspace to core.
 RISK_INDEX = {'core': 1.00, 'mid': 1.15, 'rim': 1.45, 'deadspace': 1.90}
+
+# ----------------------------------------------------------------- hauling and escort
+# economy_specification.md 8.1-8.3, logistics_specification.md 8.
+#
+# A haul pays FREIGHT for the tonnage and distance -- what it costs to run a hauler --
+# plus a RISK PREMIUM on the cargo's value for every point of route risk above core.
+# Freight is set so a purpose-built hauler clears its round-trip running cost (fuel at the
+# NPC ask, insurance premium) with a thin margin in core; the premium is where the money is,
+# and it is zero where PvP is blocked. verify_gameplay.py recomputes both against the live
+# hull, price and map catalogues.
+HAUL_FREIGHT_RATE = 0.012    # credits per ton of cargo per ly of route
+HAUL_RISK_RATE = 0.002       # of cargo reference value, per ly, per point of RISK_INDEX above 1
+ESCORT_SHARE = 0.50          # of a haul's risk premium: the reference quote for an escort
+ESCORT_BOND = 1.00           # x escort reward, posted by the escort, forfeited on desertion
 
 # ----------------------------------------------------------------- new player
 # progression_specification.md 5.
@@ -332,6 +358,7 @@ FAUCETS = [
     ('npc_buy_orders',   'NPC_SPREAD',        'goods a player actually produced'),
     ('bounties',         'BOUNTY_RATE',       'NPC squadrons killed; none spawn in core'),
     ('contract_rewards', 'RISK_INDEX',        'contracts posted by NPCs'),
+    ('haul_rewards',     'HAUL_FREIGHT_RATE', 'NPC haul contracts: freight plus HAUL_RISK_RATE premium over the route fixed at posting'),
     ('insurance_payout', 'INSURANCE_PAYOUT',  'premiums paid in, minus the margin'),
 ]
 DRAINS = [
@@ -341,6 +368,7 @@ DRAINS = [
     ('insurance_premium',  'INSURANCE_PREMIUM',   'hulls insured'),
     ('npc_sell_orders',    'NPC_SPREAD',          'fuel, ammunition and starter goods bought'),
     ('consumable_markup',  'FUEL_PER_POWER_CORE', 'fleets operating away from their own industry'),
+    ('forfeited_haul_collateral', 'PRICE_INDEX', 'NPC haul cargo lost or kept; collateral is the dearest NPC ask'),
 ]
 
 # ----------------------------------------------------------------- careers
@@ -388,3 +416,6 @@ assert all(set(v) <= set(SECURITY_TIERS) for v in ARCHETYPE_PLACEMENT.values()),
 assert set(ARCHETYPE_PLACEMENT) == set(PLANET_ARCHETYPES), 'placement and archetype tables disagree'
 assert all(len(v) == len(ARCHETYPE_FIELDS) for v in PLANET_ARCHETYPES.values()), 'archetype row width'
 assert all(ph in [p[0] for p in PHASES] for v in ORDER_TYPES.values() for ph in v), 'order names a phase that does not exist'
+assert set(RISK_INDEX) == set(SECURITY_TIERS), 'risk index must cover every security tier'
+assert all(set(c[4]) <= {'npc', 'player'} and c[4] for c in CONTRACT_ARCHETYPES), 'contract posters'
+assert 0 < ESCORT_SHARE < 1, 'an escort quote is a share of the premium, never all of it'

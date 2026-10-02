@@ -138,6 +138,30 @@ want = [f"'high_tracking' on the missile +{RULES['high_tracking']['projectile'][
         f"'multi_hit' (swarm pods) +{RULES['multi_hit']['projectile']['projectileEvasionDelta']:.2f}",
         f'projectileEvasion base = {CT.PROJECTILE_EVASION_BASE:.2f}']
 check('the interception step states the table\'s projectile-evasion numbers', [t for t in want if t not in steps])
+# Cover (spec 2.5; R7 craft and the GamePlay conflict 4.4 escort, unified): one rule, stated
+# once in 2.5 for missiles and craft alike. 2.6, the v2 JSON and combat.ts may point at it
+# but never restate a narrower version, and combat.ts carries one assignment field.
+_spec = open(SPEC_PATH).read()
+_spec25 = _spec.split('### 2.5', 1)[-1].split('### 2.6', 1)[0]
+_spec26 = _spec.split('### 2.6', 1)[-1].split('\n---', 1)[0]
+_ts = open(TS_PATH).read()
+_v2craft = json.dumps(V2.get('strikeCraftSystem', {}))
+_narrow = re.compile(r'(?i)craft only|only craft|engages only craft|met only by their target')
+_cover_lines = lambda text: [l for l in re.split(r'(?<=[.;])\s+|\n', text) if re.search(r'(?i)\bcover', l)]   # sentences
+check('cover is one rule: stated in spec 2.5 for missiles and craft, referenced (never narrowed) elsewhere',
+      [w for w, ok in (
+          ('spec 2.5 states it', '**Cover**' in _spec25 and "covering weapon's `range.optimal`" in _spec25
+           and 'missiles and craft alike' in _spec25),
+          ('spec 2.6 points at 2.5', '§2.5, **Cover**' in _spec26),
+          ('spec 2.6 does not restate the reach', not any('range.optimal' in l for l in _cover_lines(_spec26))),
+          ('no cover line is craft-only', not any(_narrow.search(l) for l in
+                                                  _cover_lines(_spec25 + _spec26 + steps + _v2craft)
+                                                  + _cover_lines(_ts))),
+          ('v2 missile step states it', 'cover one friendly ship within its own range.optimal' in steps
+           and 'missiles and craft alike' in steps),
+          ('combat.ts: one assignment field', _ts.count('coverAssignments:') == 1
+           and 'covering:' not in _ts and "source: 'pool' | 'cover' | 'escort';" in _ts))
+       if not ok])
 
 classes = {w['weaponClass'] for w in WEAPONS}
 check('every weapon class has a hit profile', sorted(classes - set(V2['weaponHitProfiles'])))

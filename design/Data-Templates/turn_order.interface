@@ -20,11 +20,12 @@
 #
 # ORDER TYPES and the phases they may resolve in:
 #
-# <<< generated from tools/generate_progression.py -- do not edit by hand
+# <<< mirrors tools/gameplay_tables.py ORDER_TYPES -- verify_gameplay.py checks it
 #   train.queue          phase 2
 #   mine.assign          phase 3
 #   facility.job         phases 3, 4, 5, 6
 #   fleet.move           phase 7
+#   fleet.convoy         phase 7
 #   fleet.posture        phase 8
 #   fleet.target         phase 9
 #   cargo.transfer       phases 7, 12
@@ -34,7 +35,18 @@
 #   contract.post        phase 13
 #   insurance.set        phase 12
 #   union.action         phase 13
-# >>> end generated
+# >>> end mirror
+#
+# [+] fleet.convoy -- links a follower fleet to a leader so they move, are detected and
+#     fight as one (GamePlay/logistics_specification.md 8). Resolves in phase 7 before
+#     any fleet moves. Payload: { followerFleetId, leaderFleetId | null } -- null unlinks.
+#     Valid only when both fleets share a system, neither is in transit, the leader is
+#     not itself a follower, and the leader's owner is the same player, a union-mate, or
+#     the counterparty of an accepted ctr_escort naming both fleets. Standing.
+# [+] fleet.target payload -- per hull { hullIndex, targets: [shipRef...] } or
+#     { hullIndex, withdraw: true } (withdraw from round 1), and per pool weapon an
+#     optional { hullIndex, hardpointId, cover: hullRef } -- cover
+#     (Combat-logic/combat_logic_specification.md 2.5, conflict_specification.md 4.4).
 #
 # INVARIANTS (enforced by tools/verify_gameplay.py)
 #   - every orderType names a phase that exists in PHASES
@@ -69,3 +81,8 @@
 #                "input": "res_raw_ferrite", "quantity": 500 },
 #   "rejection": null
 # }
+#
+# { "orderId": "ord_00418", "turnNumber": 47, "playerId": "ply_0052",
+#   "orderType": "fleet.convoy", "phase": 7, "submissionSequence": 1183, "standing": true,
+#   "payload": { "followerFleetId": "flt_0090", "leaderFleetId": "flt_0044" },
+#   "rejection": null }

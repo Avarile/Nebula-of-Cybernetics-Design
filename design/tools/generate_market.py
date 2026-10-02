@@ -95,8 +95,7 @@ def build(fleet):
         'lanePrices': {l: {k: round(v, 4) for k, v in prices[l].items()} for l in prices},
     }
 
-    contracts = [{'contractId': c[0], 'name': c[1], 'job': c[2], 'rewardFormula': c[3]}
-                 for c in T.CONTRACT_ARCHETYPES]
+    contracts = C.contract_archetypes()
 
     return resource_prices, items, constants, contracts, arbitrage_table(fleet)
 

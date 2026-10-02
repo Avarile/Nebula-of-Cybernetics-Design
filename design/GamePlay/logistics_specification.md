@@ -3,9 +3,9 @@
 Getting there, and getting back with the cargo. Written 2026-09-13.
 
 Owned by this document: how far a fleet moves in a turn, what it burns doing so, what it can
-carry, how it rearms, and who can stop it on the way. The gate graph and `jumpDistanceLy`
-are owned by `Systems_Planets/systems_planets_specification.md` §5.3; this document is what
-spends them.
+carry, how it rearms, how fleets travel together as a convoy, and who can stop them on the
+way. The gate graph and `jumpDistanceLy` are owned by
+`Systems_Planets/systems_planets_specification.md` §5.3; this document is what spends them.
 
 `Systems_Planets` §10 deferred travel cost explicitly — *"`jumpDistanceLy` is recorded so a
 later movement model can use it, but no turn cost is defined here"*. This is that model.
@@ -143,8 +143,9 @@ separate skill line and, in practice, a separate player.
 
 That single column is what makes the map's economic geometry bite. `Systems_Planets` §3 puts
 the ore where security is worst and the factories where it is best, and this table says the
-thing that moves between them is soft, slow and unarmed. The escort problem is not designed;
-it is what the two catalogues already imply when you put them together.
+thing that moves between them is soft, slow and unarmed. The escort problem is what the two
+catalogues imply when you put them together; §8 is how a hauler and its escort travel, and
+`conflict_specification.md` §4.4 what the escort does when they are caught.
 
 Cargo transfers (`cargo.transfer`, phases 7 and 12) move units between a fleet hold and a
 warehouse **at the same location**, and between hulls in the same fleet. There is no remote
@@ -190,6 +191,9 @@ Three properties:
 An interdictor pays for the privilege — it is stationary, visible, burning no fuel but
 earning nothing, and an interdiction that catches nothing is a wasted turn.
 
+A convoy (§8) arrives as one fleet would: the interdictor's detection is tested against every
+hull in it, and if any hull is seen, the whole convoy is caught.
+
 ## 6. Rearming
 
 `capacities.ammo` is the hull's magazine — the `ammoCapacity` stat, raised by magazine
@@ -234,7 +238,88 @@ fight once. Both are paid in `res_mfg_power_core` at 100 fuel per unit, which is
 per-turn consumer of manufactured energy goods in the game. Without it the energy lane would
 be a one-off construction input and nothing else.
 
-## 8. Invariants
+## 8. Convoys
+
+Cargo hulls cannot defend themselves (§3), so cargo worth taking travels with warships. There
+are two ways to put them together, and they differ only in who owns the hulls.
+
+**One fleet.** A player puts haulers and warships in the same fleet. Nothing new applies: the
+fleet moves at its slowest hull (§1), every hull draws its own fuel (§2), and the slots are
+shared — every escort hull is a hold not carrying cargo. Two attack transports and three
+destroyers is a complete convoy for one player.
+
+**A convoy link.** Two or more fleets travel as one. This is how an escort flown by someone
+else — a union-mate, or a player hired with an escort contract
+(`economy_specification.md` §8.2) — stays with a hauler.
+
+### 8.1 The link
+
+`fleet.convoy` (phase 7, standing) names one of the player's fleets as a **follower** and
+another fleet as its **leader**. It resolves before any fleet moves. The link forms only when:
+
+* both fleets are in the same system and neither is in transit;
+* the leader is not itself a follower — a convoy is one leader and its followers, never a
+  chain. Links submitted the same turn resolve in rank order (`turn_specification.md` §4);
+  one naming a leader that is linked by then is rejected;
+* the leader's owner has agreed: the same player, a member of the same union, or the other
+  party to an accepted `ctr_escort` naming the two fleets.
+
+Without the third rule anyone could attach a slow or loud hull to a stranger's fleet and drag
+it down to their pace, or into an interdictor's view.
+
+A linked follower's own `fleet.move` orders are set aside; it takes the leader's route. The
+fleet cap is untouched — a convoy is not a fleet, and each member is still bounded by its
+owner's Formation Drill.
+
+The link ends when the follower or the leader cancels it (phase 7, before movement), when the
+agreement behind it lapses (the escort contract settles or fails, a union membership ends), or
+when every hull of a member is gone. A link cancelled in transit ends when the convoy next
+emerges; a fleet cannot leave a gate transit halfway.
+
+### 8.2 Pace, fuel and range
+
+A convoy is one fleet for movement:
+
+```
+lyPerTurn(convoy) = JUMP_RANGE_BASE x (slowest effective topSpeed, over every hull of every member,
+                                       / JUMP_SPEED_REFERENCE)
+```
+
+The slowest hull sets the pace exactly as in §1, and nothing else changes: transit accumulates
+for the convoy as a whole (§1.1), and every member emerges at the same gate in the same
+phase 7. Three destroyers (12.5 ly/turn) escorting an attack transport T3 move at 7.5.
+
+Fuel stays per hull (§2). A convoy moves only if **every** hull can fuel the next transit;
+otherwise the whole convoy holds and the log names the hull that is short. An oiler in any
+member may transfer fuel to any hull in the convoy, since they are always at the same location
+(§4). A link does not merge holds: `cargo.transfer` still moves goods only within one fleet or
+to a warehouse (§3).
+
+The pace is a real price. An escort pays fuel and insurance premium for every turn it spends
+at the hauler's speed instead of its own, and `economy_specification.md` §8.3 prices that.
+
+### 8.3 Who is caught
+
+Detection and engagement treat a convoy as one fleet:
+
+* **Interdiction (§5)** tests every hull of every member against the interdictor's detection.
+  If any one is detected, the whole convoy is caught and every member enters the engagement,
+  on one side.
+* **NPC squadrons** and **mutual presence** (`conflict_specification.md` §4) likewise: an
+  engagement that includes one member includes them all.
+* **Posture** is the leader's. A convoy has one posture in phase 8. What each hull does inside
+  the battle is its owner's `fleet.target` (`conflict_specification.md` §4.4).
+
+So a convoy's signature is its loudest hull. A silent destroyer cannot hide an attack
+transport, and a fleet that wants to slip past a held gate unseen does better alone. Travelling
+together trades stealth for protection, and the choice is the player's.
+
+Members of a convoy cannot engage one another. An escort that wants to turn on its client must
+cancel the link first, which takes effect in phase 7, and then it is an aggressor like any
+other (`conflict_specification.md` §2) and a deserter under its contract
+(`economy_specification.md` §8.2).
+
+## 9. Invariants
 
 `tools/verify_gameplay.py`, logistics section:
 

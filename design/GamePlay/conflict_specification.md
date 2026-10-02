@@ -52,8 +52,10 @@ anywhere in `core` or `mid`, and NPC orders refuse to trade with them. Flagging 
 of using safe space as a hunting ground.
 
 **`rim` and `deadspace` have no rules at all.** This is where the precision lane lives
-(`Systems_Planets` §3 places `irradiated` and `shattered` worlds only there), where insurance
-stops paying, and where the market tax is zero because there is no one to collect it.
+(`Systems_Planets` §3 places `irradiated` and `shattered` worlds only there), and where the
+safety net thins out and then ends: insurance pays half a bare hull in `rim` and nothing in
+`deadspace`, and the market tax falls to 0.5 % in `rim` and to zero in `deadspace`, where
+there is no one to collect it.
 
 ## 3. NPC threat
 
@@ -96,12 +98,18 @@ Detection is the gate on all four. A fleet running `silent` — −50 % signatur
 weapons cold for the turn — may pass an interdictor entirely, which is the counter-play that
 keeps chokepoints from being absolute.
 
+A **convoy** (`logistics_specification.md` §8) is caught whole. Interdiction, mutual presence
+and an NPC squadron's detection each test every hull of every member; if any hull is caught,
+every member fleet enters the engagement, on one side, under the leader's posture. The loudest hull is the convoy's
+signature.
+
 ### 4.1 Fleet operations
 
 No player commands more than five hulls
 (`progression_specification.md` §3). A **fleet operation** is several union members'
 fleets declaring themselves one force in one engagement, and it is the only way a battle
-exceeds five hulls per side.
+exceeds five hulls per side. The fleets of one convoy are a fleet operation automatically,
+union or not — that is how an escort hired by contract fights beside its client.
 
 This is what makes `Combat-logic/battle_log_veritas_vs_cinder.md` — thirteen hulls against
 seventeen — a reachable game state rather than a fiction: three or four union members each
@@ -135,6 +143,43 @@ damage, and lose its fleet bonuses while it is. Ruled here, with the numbers in
 
 Disruption ends with the engagement. It is a battle state, never carried into the next turn.
 
+### 4.4 Escorting
+
+A caught convoy fights as one side (§4, §4.1). Nothing in the battle is special to convoys:
+an escort works through the combat rules as they stand, among them **cover**: a pool weapon
+assigned to defend another ship (`Combat-logic/combat_logic_specification.md` §2.5).
+
+**Orders.** `fleet.target` (phase 9) gives each hull a target priority list, or sets it to
+`withdraw` from round 1. That is how one fleet, or one convoy, runs its haulers and fights its
+warships in the same battle: the haulers withdraw, the escorts hold, close or cover. A fleet
+under `avoid` still withdraws every hull (§4). Each owner orders their own hulls.
+
+**Why a hauler cannot simply run.** A withdrawing hull leaves once no enemy holds a lock on it
+(combat §3.7). An attack transport T3 makes 280 against a destroyer's 470, and its signature
+is large enough to take the 4.0 cap (combat §2.3), so a Destroyer T3 holds it out to 3,640.
+Unescorted, it is caught and stays caught. An escort's whole job is to end the locks on the
+haulers sooner than the attackers can end the haulers.
+
+| lever | combat rule | what it does for the haulers |
+|---|---|---|
+| see first | §1.4: the side with the longer first lock chooses the opening distance | an escort's sensors can give the convoy the first lock; it opens as far out as it can, and the haulers start withdrawing from there |
+| break locks | §2.3: a disabled or destroyed `sensorArray` locks nothing; §3.5 component fire | fire at a pursuer's `sensorArray` (−0.2 accuracy) ends every lock it holds, and the haulers it chased leave at the end of that round |
+| kill or turn | §3.7: a hull at 30 % must withdraw | a pursuer driven to 30 % heads for its own rear, opening the range its lock depends on |
+| cover | §2.5: a pool weapon may cover a friendly ship within its own `range.optimal`, against missiles and craft | the escort's AA and PD join the hauler's interception pool, so a torpedo volley or a fighter strike has to saturate both |
+| bar the line | §3.4: proximity fields sit on the engagement line | a minelayer escort lays fields behind the haulers; a pursuer that closes across them sets them off |
+| delay | §2: the `mid` response fleet enters at round 6 | in `mid` the escort need not win, only keep the attack going past round 5 |
+
+The choice inside the battle is between cover and the intercept. A covering escort keeps
+station on the haulers with a `speedLimit` at their speed (combat §1.4), inside its PD's
+`range.optimal` of them — 298 to 529 for the AA autocannons the catalogue fits. An intercepting
+escort closes on the attackers and leaves its cover behind. A convoy decides per hull, per
+round.
+
+What an escort cannot do: share its locks (combat §2.3), put its hull between a shot and a
+hauler (the engagement line has no cover), or stop an attacker choosing the hauler as its
+target. A raider that ignores the escorts can still kill a transport; the escort's answer is
+to make it pay for those rounds with its sensors, its hulls, or its retreat.
+
 ## 5. Destruction
 
 **Retreat threshold: 30 % hull.** This is the ruling `gameplay_specification.md` §7 takes on
@@ -158,6 +203,11 @@ WRECK_LIFETIME   2 turns
 Wrecks persist for two turns in the system where the hull died and are looted in phase 10 by
 whoever holds the field — the side still present with a surviving hull. If both sides
 withdrew, the wreck stands until it expires or someone returns for it.
+
+When the side holding the field is the side that lost the hull, the salvage is its owner's:
+it loads into the owner's surviving hulls with free cargo, and what does not fit stays in the
+wreck. No fleet that was in the convoy when the hull died may ever loot its wreck, linked or
+not by then, so an escort cannot profit from losing its client.
 
 Salvage is the fit, never the hull, and `economy_specification.md` §2.1 shows how sharply
 that varies: a Motor Torpedo Boat is 84 % fittings and drops around 525 credits from a

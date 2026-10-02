@@ -473,9 +473,10 @@ export interface InterceptionAttempt {
   /** The pool weapon making the attempt; null for an escorting craft (spec 2.6). */
   pdWeaponId: WeaponId | null;
   /**
-   * R7: `pool` — the target's own pool; `cover` — a pool weapon on another ship
-   * assigned to cover the target (craft only); `escort` — a craft escorting the
-   * target, attempting as an anti_air pool weapon (craft only).
+   * `pool` — the target's own pool; `cover` — a pool weapon on another ship assigned
+   * to cover the target (spec 2.5: missiles and craft alike, while the two ships are
+   * within that weapon's `range.optimal`); `escort` — a craft escorting the target,
+   * attempting as an anti_air pool weapon (spec 2.6, craft only).
    */
   source: 'pool' | 'cover' | 'escort';
   /** The ship whose weapon or escort made the attempt. */
@@ -509,7 +510,7 @@ export interface MissileEvasionConstants {
 
 export interface MissileResolution {
   volley: MissileVolley;
-  /** Total pooled PD shots the defender had available this turn. */
+  /** Total pooled PD shots the defender had available this round, cover from other ships included (spec 2.5). */
   pdShotsAvailable: number;
   attempts: InterceptionAttempt[];
   intercepted: number;
@@ -958,7 +959,11 @@ export interface CombatantState {
   hangars: Partial<Record<CraftKind, HangarState>>;
   /** R7: squadrons this ship launched (or will recover) that are in the air. */
   squadronsAirborne: Squadron[];
-  /** R7: pool weapons assigned this round to cover another ship against craft. */
+  /**
+   * Pool weapons assigned this round to cover another friendly ship (spec 2.5), keyed
+   * by hardpoint. Against missiles and craft alike; lapses for the round while the
+   * covered ship is beyond the weapon's `range.optimal`.
+   */
   coverAssignments: Record<HardpointId, ShipId>;
   statusEffects: StatusEffect[];
 

@@ -112,7 +112,7 @@ lines and the remainder parses as JSON.
 | `marketPrices` | a reference price for all 1,043 tradeable goods |
 | `facilityTypes` | 30 rows: leasable slots by archetype × development tier |
 | `npcSquadrons` | 5 hostile formations, composed of real hull ids |
-| `contractArchetypes` | 4 job types and their reward formulas |
+| `contractArchetypes` | 4 job types, who may post them, and their reward formulas |
 
 ## The catalogues
 
@@ -401,6 +401,16 @@ and 44.8 % precision — the map's bottleneck, in money.
 Ship loss is real: the wreck drops the *fit*, insurance covers the *bare hull*, and the two
 run in opposite directions because a torpedo boat is 84 % fittings and a battleship 10 %.
 
+**Hauling and escort.** Cargo hulls cannot fight, so cargo worth taking travels with
+warships: in one fleet, or as a **convoy** — fleets linked by `fleet.convoy` that move at the
+slowest hull's pace, are caught whole by an interdictor, and fight as one side. Inside the
+battle an escort breaks the locks that keep a hauler from withdrawing, or **covers** it,
+lending its point defence to the hauler's interception pool against missiles and craft. A `haul` contract pays freight
+plus a risk premium on the cargo's value, priced on the least secure system of its route;
+the hauler hires its own `escort` for half that premium. `verify_gameplay.py` recomputes a
+representative haul per tier from the live catalogues: freight clears the running cost in
+`core`, and the break-even loss rate rises from 1.8 % to 7.5 % per 100 ly toward `deadspace`.
+
 **Lore.** The gates are a builderless feedback machine, the Helm, and `securityRating` is how
 strongly it governs a system — which is why the ore is where it is and the forge worlds are
 where they are. Four **authorities** police the `core` and `mid` space of one region each
@@ -494,15 +504,15 @@ python3 tools/verify_weapons.py       # 12 checks
 python3 tools/verify_modules.py       # 23 checks
 python3 tools/verify_ships.py         # 38 checks
 python3 tools/verify_skills.py        # 46 checks
-python3 tools/verify_systems.py       # 48 checks
+python3 tools/verify_systems.py       # 54 checks
 python3 tools/verify_progression.py   # 22 checks
 python3 tools/verify_market.py        # 23 checks
 python3 tools/verify_facilities.py    # 26 checks
-python3 tools/verify_npc.py           # 25 checks
-python3 tools/verify_gameplay.py      # 46 checks -- the cross-cutting invariants; runs last
+python3 tools/verify_npc.py           # 28 checks
+python3 tools/verify_gameplay.py      # 58 checks -- the cross-cutting invariants, order lists, haul pricing; runs last
 python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
-python3 tools/verify_combat.py        # 61 checks -- combat rulings, stat hooks, lock range, movement and strike craft vs. the catalogues and logs
-python3 Reference/verify_reference.py # 59 checks -- TypeScript interface vs. the data
+python3 tools/verify_combat.py        # 62 checks -- combat rulings, stat hooks, lock range, movement, strike craft and cover vs. the catalogues and logs
+python3 Reference/verify_reference.py # 67 checks -- TypeScript interface vs. the data
 ```
 
 All exit non-zero on failure. Between them they enforce: unique ids and names; field sets
@@ -558,8 +568,8 @@ Vanguard.
 | skills: levels, effects, unlocks, prerequisites | `tools/skill_tables.py` |
 | the hull progression tree | `HULL_TREE` in `tools/skill_tables.py` |
 | regions, systems, gates, planet archetypes | `tools/system_tables.py` |
-| turn length, SP rate, phases, prices, leases, PvP, NPC squadrons | `tools/gameplay_tables.py` |
-| combat rulings: special-effect rules, hit-formula terms, interception, strike craft | `tools/combat_tables.py` |
+| turn length, SP rate, phases, prices, leases, PvP, NPC squadrons, haul and escort rates | `tools/gameplay_tables.py` |
+| combat rulings: special-effect rules, hit-formula terms, interception, cover, strike craft | `tools/combat_tables.py` |
 | factions, region authorities, squadron factions, manufacturer houses | `tools/lore_tables.py` (then `Reference/lore.ts`) |
 | shared GamePlay derivations (prices, closures, hull splits) | `tools/gameplay_common.py` |
 | the SP curve and rank multiplier | `SP_BASE` / `SP_K` in `tools/skill_tables.py` |

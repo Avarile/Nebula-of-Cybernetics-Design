@@ -384,6 +384,29 @@ export const SHIP_HULL_COST_COEFFICIENTS = {
 } as const;
 
 // ================================================================
+// HAULING AND ESCORT — economy_specification.md §8.1–8.3
+// ================================================================
+
+/**
+ * Mirrors `tools/gameplay_tables.py`; `verify_gameplay.py` checks every value.
+ *
+ *   haul reward     = (cargoTons x haulFreightRate
+ *                      + cargoReferenceValue x haulRiskRate x (routeRiskIndex - 1)) x routeDistanceLy
+ *   escort quote    = cargoReferenceValue x haulRiskRate x (routeRiskIndex - 1) x escortShare x routeDistanceLy
+ *   escort bond     = escortBond x reward, forfeited only on desertion
+ *   haul collateral = cargo x the dearest NPC ask for it anywhere (derived, no constant)
+ *
+ * `routeRiskIndex` is the risk index of the least secure system on the route.
+ */
+export const HAULING_CONSTANTS = {
+  haulFreightRate: 0.012,
+  haulRiskRate: 0.002,
+  escortShare: 0.5,
+  escortBond: 1.0,
+  riskIndex: { core: 1.0, mid: 1.15, rim: 1.45, deadspace: 1.9 },
+} as const;
+
+// ================================================================
 // COMBAT — turn order, range bands, signature, evasion, criticals
 // ================================================================
 
