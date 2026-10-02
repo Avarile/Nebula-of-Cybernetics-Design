@@ -47,6 +47,36 @@ check('every stat a skill actually modifies has a rule',
       sorted({e['stat'] for s in FLEET['skills'] for e in s['effects'] if e['stat'] not in T.STAT_RULES}))
 check('every stat a module actually modifies has a rule',
       sorted({e['stat'] for m in FLEET['modules'] for e in m.get('effects', []) if e['stat'] not in T.STAT_RULES}))
+
+
+def section_text(doc, sec):
+    """The body of the heading numbered `sec` in `doc`, up to the next heading at its level or above."""
+    text = open(os.path.join(ROOT, doc)).read()
+    m = re.search(rf'^(#+) {re.escape(sec)}\.? ', text, re.M)
+    if not m:
+        return None
+    rest = text[m.end():]
+    n = re.search(rf'^#{{1,{len(m.group(1))}}} ', rest, re.M)
+    return rest[:n.start()] if n else rest
+
+
+# Existence was never enough: a rule could cite a section that never mentions the stat.
+# Now the cited section must name it -- unless the stat is parked on a combat ruling that
+# is still open, which combat.ts must say in so many words.
+import combat_tables as CT
+combat_ts = open(os.path.join(ROOT, 'Reference', 'combat.ts')).read()
+open_rulings = {r for r, s in re.findall(r"id: '(R\d+)',.*?status: '(open|ruled)'", combat_ts, re.S) if s == 'open'}
+bad = []
+for stat, (doc, sec, _) in sorted(T.STAT_RULES.items()):
+    body = section_text(doc, sec)
+    if body is None:
+        bad.append(f'{stat}: {doc} has no section {sec}')
+    elif stat in CT.PENDING_RULINGS:
+        if CT.PENDING_RULINGS[stat] not in open_rulings:
+            bad.append(f'{stat}: parked on {CT.PENDING_RULINGS[stat]}, which is no longer open -- write its rule')
+    elif not re.search(rf'(?<![\w.]){re.escape(stat)}(?![\w])', body):
+        bad.append(f'{stat}: {os.path.basename(doc)} {sec} never names it')
+check('every rule\'s cited section names its stat (or parks it on an open ruling)', bad)
 # A stat only a skill reaches must not be claimed by a hull-field rule, and vice versa.
 check('SHIP_STATS and SKILL_STATS are disjoint and jointly complete',
       [] if set(SHIP_STATS) | set(SKILL_STATS) == set(ALL_STATS)

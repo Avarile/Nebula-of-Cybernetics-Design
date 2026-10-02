@@ -199,6 +199,103 @@ check('constants.ts MISSILE_EVASION and RETREAT_POLICY match the table',
                          ('hullFractionThreshold', CT.RETREAT_THRESHOLD))
        if ts_num(consts, k) != want])
 
+# --- R8: effective stats ---------------------------------------------------------------------
+import gameplay_tables as GT
+from stat_vocabulary import ALL_STATS
+
+SHIP = FLEET['ships'][0]
+
+
+def hull_field(stat):
+    """Resolve a stat to a hull field path, or None. Dotted paths first, then by leaf name."""
+    path = CT.HULL_FIELD_ALIASES.get(stat, stat)
+    node = SHIP
+    for part in path.split('.'):
+        if not isinstance(node, dict) or part not in node:
+            break
+        node = node[part]
+    else:
+        return path
+    leaf = path.split('.')[-1]
+    hits = [f'{k}.{leaf}' for k, v in SHIP.items() if isinstance(v, dict) and leaf in v]
+    return hits[0] if len(hits) == 1 else None
+
+
+combat_stats = sorted(s for s, (doc, _, rule) in GT.STAT_RULES.items()
+                      if 'Combat-logic' in doc or 'combat' in rule)
+check('every STAT_KIND stat is in the stat vocabulary', sorted(set(CT.STAT_KIND) - set(ALL_STATS)))
+check('every combat stat is a hull field, has a STAT_KIND, or is parked on R6/R7',
+      [s for s in combat_stats if not hull_field(s) and s not in CT.STAT_KIND and s not in CT.PENDING_RULINGS])
+check('no STAT_KIND stat is secretly a hull field', [s for s in CT.STAT_KIND if hull_field(s)])
+check('caps apply only to additive stats',
+      [s for s in CT.ADDITIVE_CAPS if CT.STAT_KIND.get(s, ('',))[0] != 'additive'])
+
+# The module catalogue writes flat values in mixed units; each must match its stat's unit.
+bad = []
+for m in FLEET['modules']:
+    for e in m['effects']:
+        kind, unit = CT.STAT_KIND.get(e['stat'], (None, None))
+        if kind != 'additive' or e['modifierType'] != 'flat':
+            continue
+        v = abs(e['modifier'])
+        if (unit == 'points' and not 1 <= v <= 100) or (unit == 'fraction' and not v < 1):
+            bad.append(f'{m["moduleId"]}: {e["stat"]} {e["modifier"]} is not in {unit}')
+check('every flat module value on an additive stat is in that stat\'s unit', bad)
+
+module_types = {m['moduleType'] for m in FLEET['modules']}
+check('every ELECTRONIC_MODULE_TYPES entry is a real module type',
+      sorted(set(CT.ELECTRONIC_MODULE_TYPES) - module_types))
+
+# Mirror in Reference/constants.ts.
+eff_block = consts.split('export const EFFECTIVE_STAT_RULES', 1)[1].split('} as const', 1)[0] \
+    if 'export const EFFECTIVE_STAT_RULES' in consts else ''
+bad = []
+for s, (kind, unit) in CT.STAT_KIND.items():
+    key = f"'{s}'" if '.' in s else s
+    m = re.search(rf'^\s+{re.escape(key)}:\s*\{{(.*?)\}},', eff_block, re.M)
+    want_unit = 'null' if unit is None else f"'{unit}'"
+    if not m or f"kind: '{kind}'" not in m.group(1) or f'unit: {want_unit}' not in m.group(1) \
+            or ts_num(m.group(1), 'cap') != CT.ADDITIVE_CAPS.get(s):
+        bad.append(s)
+check('constants.ts EFFECTIVE_STAT_RULES matches STAT_KIND and ADDITIVE_CAPS', bad)
+
+hooks = consts.split('export const STAT_HOOK_CONSTANTS', 1)[1].split('} as const', 1)[0] \
+    if 'export const STAT_HOOK_CONSTANTS' in consts else ''
+check('constants.ts STAT_HOOK_CONSTANTS matches combat_tables.py',
+      [k for k, v in (('pilotSkillInitiativeDivisor', CT.PILOT_SKILL_INITIATIVE_DIVISOR),
+                      ('turnPenaltyMax', CT.TURN_PENALTY_MAX), ('turnRateReference', CT.TURN_RATE_REFERENCE),
+                      ('engineeringSkillDivisor', CT.ENGINEERING_SKILL_DIVISOR),
+                      ('lifeSupportCasualtyRate', CT.LIFE_SUPPORT_CASUALTY_RATE),
+                      ('disruptionHullFraction', CT.DISRUPTION_HULL_FRACTION),
+                      ('regroupBaseChance', CT.REGROUP_BASE_CHANCE)) if ts_num(hooks, k) != v]
+      + sorted(set(CT.ELECTRONIC_MODULE_TYPES) ^ set(re.findall(r"'(\w+)'", hooks.split('electronicModuleTypes', 1)[-1]))))
+
+# The spec 1.3 worked example, recomputed from the live catalogue and skill data.
+ballistic = next(s for s in FLEET['skills'] if s['skillId'] == 'skl_wpn_ballistic')
+acc_eff = next(e for e in ballistic['effects'] if e['stat'] == 'weaponAccuracy')
+acc_pen = next(p for p in ballistic['penalties'] if p['stat'] == 'weaponAccuracy')
+
+
+def accuracy_mult(level):
+    pct = acc_eff['modifierPerLevel'] * max(0, level - acc_eff['appliesFromLevel'] + 1)
+    pen = (1 + acc_pen['modifier'] / 100) if level < acc_pen['appliesBelowLevel'] else 1
+    return (1 + pct / 100) * pen
+
+
+rail = next(w for w in WEAPONS if w['weaponId'] == 'wpn_141')
+cruiser = next(s for s in FLEET['ships'] if s['shipId'] == 'ship_heavy_cruiser_t2')
+crown = next(s for s in FLEET['namedShips'] if s['name'] == 'Leviathan Crown')
+evasion = min(crown['mobility']['evasionRating']
+              + min(max((crown['mobility']['topSpeed'] - rail['accuracy']['tracking']) / 250, 0), 0.35), 0.60)
+worked = spec.split('**Worked example', 1)[1].split('**Pending', 1)[0] if '**Worked example' in spec else ''
+bad = []
+for level in (3, 5, 8):
+    final = min(max(rail['accuracy']['baseHitChance'] * accuracy_mult(level)
+                    + cruiser['crew']['gunnerySkill'] / CT.GUNNERY_SKILL_DIVISOR - evasion, 0.05), 0.95)
+    if f'**{final:.2f}**' not in worked:
+        bad.append(f'level {level}: hit chance {final:.2f} not in the table')
+check('spec 1.3 worked example recomputes from the live catalogue', bad)
+
 # --- the hand-written files survive ----------------------------------------------------------
 check('the hand-written combat files are present',
       [p for p in ('combat_logic_specification.md', 'advanced_combat_system.json',

@@ -31,6 +31,7 @@ import type {
   RetreatPolicy,
   SignificanceRule,
   SpecialEffectRules,
+  EffectiveStatRules,
 } from './combat';
 import type { ConversionYields, ResourceTier } from './resources';
 import type {
@@ -598,6 +599,48 @@ export const RETREAT_POLICY = {
   requiresNoWeaponsOperational: false,
   source: 'gameplay_tables.RETREAT_THRESHOLD',
 } as const satisfies RetreatPolicy;
+
+/**
+ * R8 — the stats with no hull field, and how each stacks (spec 1.3). Mirrors
+ * STAT_KIND and ADDITIVE_CAPS in tools/combat_tables.py; verify_combat.py checks it.
+ */
+export const EFFECTIVE_STAT_RULES = {
+  weaponAccuracy:                 { kind: 'multiplier', unit: null },
+  weaponDamage:                   { kind: 'multiplier', unit: null },
+  weaponTracking:                 { kind: 'multiplier', unit: null },
+  pointDefenseBonus:              { kind: 'multiplier', unit: null },
+  'sensorArray.effectiveness':    { kind: 'multiplier', unit: null },
+  electronicSystemsEffectiveness: { kind: 'multiplier', unit: null },
+  enemyHitChance:                 { kind: 'additive', unit: 'points' },
+  criticalChanceBonus:            { kind: 'additive', unit: 'fraction' },
+  criticalEventResistance:        { kind: 'additive', unit: 'fraction', cap: 0.75 },
+  damageReduction:                { kind: 'additive', unit: 'fraction', cap: 0.50 },
+  crewRecoveryRate:               { kind: 'additive', unit: 'fraction', cap: 0.90 },
+  minesweepRate:                  { kind: 'additive', unit: 'fraction' },
+  fleetRegroupRate:               { kind: 'additive', unit: 'fraction' },
+} as const satisfies EffectiveStatRules;
+
+/** R8 — the remaining hook constants, one per formula they enter. */
+export const STAT_HOOK_CONSTANTS = {
+  /** initiativeScore = effective(initiative) + effective(crew.pilotSkill) / 5 + d20 */
+  pilotSkillInitiativeDivisor: 5,
+  /** turnPenalty = 0.5 * (1 - min(effective(turnRate), 150) / 150), when the ship turned */
+  turnPenaltyMax: 0.5,
+  turnRateReference: 150,
+  /** resistChance = criticalEventResistance + effective(crew.engineeringSkill) / 200 */
+  engineeringSkillDivisor: 200,
+  /** crew lost per round while lifeSupport is down, before crewRecoveryRate */
+  lifeSupportCasualtyRate: 0.05,
+  /** conflict 4.3 — a fleet is disrupted by this share of its hull lost in one round */
+  disruptionHullFraction: 0.25,
+  /** conflict 4.3 — regroup chance = this + effective(fleetRegroupRate) */
+  regroupBaseChance: 0.25,
+  /** electronicSystemsEffectiveness scales every effect these module types carry */
+  electronicModuleTypes: [
+    'radar', 'sonar', 'cic', 'datalink', 'ecm', 'decoy',
+    'ecCounterElectronics', 'targetingComputer', 'fireControl', 'pdCoordinator',
+  ],
+} as const;
 
 // ================================================================
 // LOGGING — granularity and event significance

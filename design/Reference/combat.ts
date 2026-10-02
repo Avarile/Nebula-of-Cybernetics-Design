@@ -79,6 +79,43 @@ export interface GranularityPolicy {
   alwaysNarrateAtOrAbove: SignificanceTier;
 }
 
+/**
+ * Effective stats (R8, spec 1.3). Every formula reads a ship's stats through one rule:
+ *
+ *   effective(stat) = (base + sum(flat)) * (1 + sum(percent) / 100) * product(1 + penalty / 100)
+ *
+ * Percent effects from modules, ship-scope and fleet-scope skills are summed; each
+ * skill penalty multiplies on its own (a gate, not a modifier). Fleet-scope effects
+ * drop out while the fleet is disrupted (conflict_specification.md 4.3).
+ *   field       base is the hull field of the same name
+ *   multiplier  no hull field; base 1
+ *   additive    no hull field; base 0, flat values in `unit`, percent values as points
+ */
+export type StatKind = 'field' | 'multiplier' | 'additive';
+
+export interface EffectiveStatRule {
+  kind: Exclude<StatKind, 'field'>;
+  /** How a FLAT module value is written: `points` (-11.5 = -0.115) or `fraction`. */
+  unit: 'points' | 'fraction' | null;
+  /** Upper bound on the resulting fraction, for additive stats that need one. */
+  cap?: Fraction01;
+}
+
+/** Source of truth: STAT_KIND and ADDITIVE_CAPS in tools/combat_tables.py. */
+export type EffectiveStatRules = Readonly<Record<string, EffectiveStatRule>>;
+
+/** One stat's resolution, kept for the log so a number can be traced to its sources. */
+export interface EffectiveStatResolution {
+  stat: string;
+  base: number;
+  flat: number;
+  /** Summed percent from modules + ship skills + fleet skills (0 for fleet while disrupted). */
+  percent: number;
+  /** Each active skill penalty's factor, e.g. [0.5] for Ballistic below level 5. */
+  penaltyFactors: number[];
+  value: number;
+}
+
 // ================================================================
 // 2. RANGE BANDS
 // ================================================================
@@ -226,7 +263,9 @@ export interface EvasionResolution {
   baseEvasionRating: Fraction01;
   /** Target speed, reduced if it turned recently. */
   relativeSpeedFactor: number;
-  /** The attacking weapon's `accuracy.tracking`. */
+  /** `0.5 * (1 - min(turnRate, 150) / 150)` if the target turned this round, else 0 (R8). */
+  turnPenalty: Fraction01;
+  /** `weapon.tracking * trackingFactor * attacker.effective(weaponTracking)` (R8). */
   trackingCounter: number;
   speedEvasionBonus: Fraction01;
   effectiveEvasion: Fraction01;
@@ -420,8 +459,10 @@ export interface HitChanceResolution {
   detection: DetectionResolution;
   evasion: EvasionResolution;
   profile: WeaponHitProfile;
-  /** After the profile modifier and the gunnery-skill term. */
+  /** After the profile modifier, the accuracy multiplier and the gunnery-skill term. */
   baseChance: Fraction01;
+  /** attacker.effective(weaponAccuracy) for this weapon class — the Weaponry gate lives here (R8). */
+  accuracyMultiplier: number;
   gunnerySkillBonus: Fraction01;
   componentTargetingPenalty: number;
   /**
@@ -431,6 +472,8 @@ export interface HitChanceResolution {
   componentAccuracyMultiplier: Fraction01;
   preLockChance: Fraction01;
   blindFireApplied: boolean;
+  /** target.effective(enemyHitChance), a fraction <= 0, added after evasion (R8). */
+  targetEnemyHitChance: number;
   finalHitChance: Fraction01;
 }
 
@@ -462,8 +505,12 @@ export interface HitChanceConstants {
  *   hullDamage   = max(1, rawDamage - hull.armorRating)
  */
 export interface DamageResolution {
+  /** Includes attacker.effective(weaponDamage) for the weapon's class (R8). */
   rawDamage: number;
   varianceRoll: number;
+  damageMultiplier: number;
+  /** target.effective(damageReduction), applied to post-armour hull damage only (R8). */
+  damageReductionApplied: Fraction01;
   /** Portion routed straight to hull by `ignores_shields_partial`. */
   bypassedShields: number;
   damageToShields: number;
@@ -531,9 +578,18 @@ export interface CriticalBand {
 }
 
 export interface CriticalResolution {
-  /** Rolled against `weapon.criticalChance` on any confirmed hit. */
+  /** Rolled against `weapon.criticalChance + attacker.effective(criticalChanceBonus)`. */
   triggered: boolean;
   d100: number | null;
+  /** The band as rolled, before damage control. */
+  rolledKind: CriticalKind | null;
+  /**
+   * min(0.75, criticalEventResistance + crew.engineeringSkill / 200). A success
+   * downgrades one band; below minorSystemDamage the critical has no effect (R8).
+   */
+  resistChance: Fraction01 | null;
+  downgraded: boolean;
+  /** The band applied — null when a minor critical was resisted away. */
   kind: CriticalKind | null;
   /** The targeted component, or a randomly chosen one if none was targeted. */
   component: ComponentName | null;
@@ -612,6 +668,8 @@ export interface CombatantState {
   /** The immutable build sheet this combatant was instantiated from. */
   ship: Ship;
   fleet: string;
+  /** While true, fleet-scope skill effects are excluded from effectiveStats (conflict 4.3). */
+  fleetDisrupted: boolean;
   tier: ShipTier;
 
   hullCurrentHP: number;
@@ -841,9 +899,10 @@ export type NarrativeRenderer = (log: BattleLog, policy: GranularityPolicy) => N
 /**
  * Every inconsistency or gap that needs an explicit decision before implementation,
  * rather than being silently resolved differently by whoever builds it. R1-R5 came
- * from cross-referencing the three source files and are ruled
- * (combat_logic_specification.md 5.1). R6-R8 surfaced while ruling them and are
- * open (5.2). tools/verify_combat.py asserts R1-R5 stay ruled.
+ * from cross-referencing the three source files; R6-R9 surfaced while ruling them.
+ * Ruled entries are recorded in combat_logic_specification.md 5.1, open ones in 5.2.
+ * tools/verify_combat.py asserts R1-R5 stay ruled and every open one is listed;
+ * tools/verify_gameplay.py lets a stat stay unformulated only while its ruling is open.
  */
 export interface OpenRuling {
   id: string;
@@ -934,9 +993,21 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
     topic: 'Skill and module stats absent from the formulas',
     sources: ['tools/gameplay_tables.py STAT_RULES', 'tools/verify_gameplay.py'],
     conflict:
-      'weaponAccuracy, weaponDamage, weaponTracking, enemyHitChance, criticalChanceBonus, pointDefenseBonus, damageReduction, criticalEventResistance and electronicSystemsEffectiveness are routed to sections of the combat spec, but no formula there contains them, including the Weaponry skills\' -50% penalty below level 5. The verifier checks only that the document exists.',
+      'weaponAccuracy, weaponDamage, weaponTracking, enemyHitChance, criticalChanceBonus, pointDefenseBonus, damageReduction, criticalEventResistance and electronicSystemsEffectiveness were routed to sections of the combat spec, but no formula there contained them, including the Weaponry skills\' -50% penalty below level 5. The verifier checked only that the document existed.',
     recommendation:
       'Name the term each stat modifies in the hit, damage and critical formulas, and make verify_gameplay.py check that the cited section actually names the stat.',
+    status: 'ruled',
+    ruling:
+      'One stacking rule (spec 1.3): (base + flat) x (1 + summed percent) x each penalty on its own. Every combat stat is named in the formula it modifies; acceleration and the strike-craft stats are parked on R6/R7. verify_gameplay.py now fails when a cited section does not name its stat.',
+  },
+  {
+    id: 'R9',
+    topic: 'Detection formula is on the wrong scale',
+    sources: ['combat_logic_specification.md 2.3', 'advanced_combat_system.json -> signatureSystem.detectionAndLockOn'],
+    conflict:
+      'effectiveDetectionRange = sensorArray HP x effectiveness x signature/100 gives a Motor Torpedo Boat ~0.2 units of lock range and a Battleship ~70,000, against weapon ranges of 300-4,500. Every hull carries a sensors.detectionRange (260-1,495) the formula never reads.',
+    recommendation:
+      'Anchor lock range on effective(detectionRange), scaled by sensor condition and a bounded signature factor, and re-check the v2 worked example against it.',
     status: 'open',
   },
 ];

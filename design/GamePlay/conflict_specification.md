@@ -114,6 +114,25 @@ sides disengage with whatever damage they have taken. The cap exists so one batt
 hang a turn, and it is set well above the 14-round skirmish and the phased fleet action the
 two battle logs record.
 
+### 4.3 Disruption and regrouping
+
+The brief's Regroup and Hold skill presumes a fleet can be knocked out of formation by heavy
+damage, and lose its fleet bonuses while it is. Ruled here, with the numbers in
+`tools/combat_tables.py`:
+
+* **Disruption.** At the end of a round, a fleet is **disrupted** if in that round it lost a
+  hull, or took hull damage totalling at least `DISRUPTION_HULL_FRACTION` (25 %) of its
+  hulls' summed `hull.maxHP`. In a fleet operation each member's fleet is tested on its own.
+* **What it costs.** While disrupted, every **fleet-scope** skill effect — Attacking and
+  Defensive Formation, Fighter Squadron Control — stops applying to that fleet's hulls
+  (`Combat-logic/combat_logic_specification.md` §1.3). Ship-scope skills and modules are
+  untouched.
+* **Regrouping.** At the end of each later round, a disrupted fleet regroups with chance
+  `REGROUP_BASE_CHANCE + effective(fleetRegroupRate)` — 0.25 untrained, 0.75 with Regroup
+  and Hold at level 10. Regrouping restores the fleet bonuses from the next round.
+
+Disruption ends with the engagement. It is a battle state, never carried into the next turn.
+
 ## 5. Destruction
 
 **Retreat threshold: 30 % hull.** This is the ruling `gameplay_specification.md` §7 takes on

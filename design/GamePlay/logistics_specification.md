@@ -122,8 +122,9 @@ efficiency, not a bigger tank — since no hull carries a `fuelRange` field for 
 
 ## 3. Cargo
 
-Cargo capacity is `capacities.cargo`, in tons, and at `unitMass: 1.0` for every resource
-(`Resources/resource_tiers_specification.md`) one ton is one unit.
+Cargo capacity is `capacities.cargo`, in tons — the `cargoCapacity` stat, raised by cargo
+modules through the combat spec's stacking rule (§1.3 there). At `unitMass: 1.0` for every
+resource (`Resources/resource_tiers_specification.md`) one ton is one unit.
 
 **Six of the twenty-six categories can carry anything at all.** At tier 3:
 
@@ -177,7 +178,10 @@ Three properties:
   catches fleets as they emerge, never mid-jump.
 * **Detection decides.** Whether an interdictor sees an arrival is the combat spec's
   signature and detection model, unchanged — a fleet arriving with posture `silent` runs at
-  −50 % signature and may pass unseen, at the cost of −30 % speed and cold weapons.
+  −50 % signature and may pass unseen, at the cost of −30 % speed and cold weapons. The
+  interdictor's reach is its hulls' `detectionRange` (`sensors.detectionRange`, raised by
+  radar, CIC, datalink and the Scanning skill). The combat formula does not yet read it —
+  `Combat-logic/combat_logic_specification.md` §5.2, R9.
 * **Chokepoints are real.** `Systems_Planets` §5.3 authors about seven named region-bridge
   gates as the only links between regions. Interdiction is what finally makes "The Meridian
   Gate" and "Cold Harbour Approach" strategic objects rather than flavour names: a union
@@ -188,8 +192,8 @@ earning nothing, and an interdiction that catches nothing is a wasted turn.
 
 ## 6. Rearming
 
-`capacities.ammo` is the hull's magazine. It is drawn down by **missile and mine weapons
-only** — the 251 weapons that carry a finite `ammo` count. Kinetic and energy weapons are
+`capacities.ammo` is the hull's magazine — the `ammoCapacity` stat, raised by magazine
+modules. It is drawn down by **missile and mine weapons only** — the 251 weapons that carry a finite `ammo` count. Kinetic and energy weapons are
 `ammo: "infinite"` in the catalogue and consume nothing but power, which is what the combat
 rules already model.
 

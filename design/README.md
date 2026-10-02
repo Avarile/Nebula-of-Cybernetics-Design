@@ -488,8 +488,8 @@ python3 tools/verify_progression.py   # 22 checks
 python3 tools/verify_market.py        # 23 checks
 python3 tools/verify_facilities.py    # 26 checks
 python3 tools/verify_npc.py           # 25 checks
-python3 tools/verify_gameplay.py      # 44 checks -- the cross-cutting invariants; runs last
-python3 tools/verify_combat.py        # 23 checks -- combat rulings vs. the weapon catalogue
+python3 tools/verify_gameplay.py      # 45 checks -- the cross-cutting invariants; runs last
+python3 tools/verify_combat.py        # 32 checks -- combat rulings and stat hooks vs. the catalogues
 python3 Reference/verify_reference.py # 59 checks -- TypeScript interface vs. the data
 ```
 
@@ -512,7 +512,8 @@ The GamePlay verifiers add seven cross-cutting invariants, all recomputed from t
 catalogues rather than asserted against a literal:
 
 * **no dead skill** — every one of the 52 stats in `stat_vocabulary.py` is consumed by a
-  named rule in a named document, checked in both directions
+  named rule in a named document, checked in both directions — and the cited section must
+  actually name the stat, unless it is parked on a combat ruling that is still open
 * **no free money** — no NPC buy/sell loop profits at any level of `skl_trd_trade`, for any
   good and any pair of NPC-order tiers
 * **refining stays lossy** — leasing adds no fourth multiplier; the structural lane's 0.01

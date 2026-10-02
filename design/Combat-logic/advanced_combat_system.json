@@ -120,17 +120,18 @@
       "6. effectiveEvasion = speedEvasionSystem.formula(target, weapon)",
       "7. if weapon.weaponClass == 'missile': effectiveEvasion *= (1 - weaponHitProfiles.missile.evasionIgnoredFraction)",
       "8. baseChance = weapon.accuracy.baseHitChance * weaponHitProfiles[weapon.weaponClass].baseHitChanceModifier",
+      "8 (R8). baseChance *= attacker.effective(weaponAccuracy) for this weapon class - the Weaponry skill's x0.50 gate below level 5 lives here. Every stat below is read through effective(), combat_logic_specification.md 1.3.",
       "8a. baseChance += attacker.crew.gunnerySkill / 200   (carried forward from v1)",
       "8b. if targeting a specific component: baseChance -= 0.2   (carried forward from v1 componentTargetingRules)",
       "9. preLockChance = baseChance * rangeMultiplier * lockQuality * componentAccuracyMultiplier, where componentAccuracyMultiplier is the product over the attacker's disabled or destroyed components of sensorArray 0.60 and bridge 0.50 (1.0 when both are intact). This is v1's sensorDebuff.",
       "10. if not locked: preLockChance *= signatureSystem.detectionAndLockOn.blindFirePenalty (0.25)",
-      "11. finalHitChance = clamp(preLockChance - effectiveEvasion, 0.05, 0.95)",
+      "11. finalHitChance = clamp(preLockChance - effectiveEvasion + target.effective(enemyHitChance), 0.05, 0.95)   (R8: ECM, decoys and smoke make it negative)",
       "12. NOTE: for weapons carrying 'can_be_intercepted', steps 1-11 only run on projectiles that survive missileResolutionPhase's interception step."
     ]
   },
 
   "updatedTurnStructure": [
-    "1. Initiative: sort by (pilotSkill + sensorArray effectiveness + random d20) descending.",
+    "1. Initiative: sort by initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20, descending (R8; v1's undefined 'sensorArray effectiveness' term is replaced by the initiative stat sensor modules already carry).",
     "2. Signature/state declaration: each ship declares this round's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem.",
     "3. Detection phase: for every attacker-target pair, compute effectiveDetectionRange and update lockQuality (build, hold, or reset).",
     "4. Power allocation phase: assign power across weapons/shields/engines.",

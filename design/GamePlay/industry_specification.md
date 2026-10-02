@@ -127,8 +127,9 @@ All five `station_management` skills now have a base to multiply, which was the 
 
 ### 4.1 Construction, and why unions exist
 
-A berth is leased individually, and a hull is built at one berth. On the best yard in the
-game — a `forge_world` at developmentTier 3, with Ship Construction Management at 10:
+A berth is leased individually, and a hull is built at one berth, at the berth's rate times
+the builder's `shipConstructionRate`. On the best yard in the game — a `forge_world` at
+developmentTier 3, with Ship Construction Management at 10 (`shipConstructionRate` ×1.30):
 
 ```
 one berth    18.75 x 2.40 x 1.30  =  58.5 units/turn

@@ -204,6 +204,100 @@ SPECIAL_EFFECT_RULES = {
     },
 }
 
+# ----------------------------------------------------------------- R8: effective stats
+# combat_logic_specification.md 1.3. Every skill and module effect reaches combat
+# through ONE stacking rule:
+#
+#   effective(stat) = (base + sum(flat)) * (1 + sum(percent) / 100) * product(penalty)
+#
+# percent sources are modules, ship-scope skills and fleet-scope skills, summed
+# together. A skill penalty is a GATE, not a modifier: each active one multiplies by
+# (1 + modifier / 100) on its own, so no module or bonus can buy it back. Fleet-scope
+# skills drop out while the fleet is disrupted (conflict_specification.md 4.3).
+#
+# A stat's KIND says what "base" means:
+#   field       a hull field is the base (topSpeed, hull.armorRating, ...)
+#   multiplier  no hull field; base 1, so effective() is a pure multiplier
+#   additive    no hull field; base 0, flat values add in the stat's UNIT and percent
+#               values add as percentage points -- the result is a fraction
+#
+# UNIT matters because the module catalogue is not uniform: enemyHitChance is written
+# in percentage points (-11.5) while criticalChanceBonus is a fraction (0.029).
+# verify_combat.py checks every module value against its stat's unit.
+
+STAT_KIND = {
+    # stat:                          (kind,         unit for flat values)
+    'weaponAccuracy':                ('multiplier', None),
+    'weaponDamage':                  ('multiplier', None),
+    'weaponTracking':                ('multiplier', None),
+    'pointDefenseBonus':             ('multiplier', None),
+    'sensorArray.effectiveness':     ('multiplier', None),
+    'electronicSystemsEffectiveness': ('multiplier', None),
+    'enemyHitChance':                ('additive',   'points'),
+    'criticalChanceBonus':           ('additive',   'fraction'),
+    'criticalEventResistance':       ('additive',   'fraction'),
+    'damageReduction':               ('additive',   'fraction'),
+    'crewRecoveryRate':              ('additive',   'fraction'),
+    'minesweepRate':                 ('additive',   'fraction'),
+    'fleetRegroupRate':              ('additive',   'fraction'),
+}
+
+# 'field' stats whose hull field is not found by name alone.
+HULL_FIELD_ALIASES = {
+    'mineCapacity':    'capacities.mines',
+    'medicalCapacity': 'capacities.medical',
+    'repairRatePerTurn': 'capacities.repairRate',
+}
+
+# Caps on the additive stats that would otherwise break a formula at the extreme.
+ADDITIVE_CAPS = {
+    'criticalEventResistance': 0.75,
+    'damageReduction':         0.50,
+    'crewRecoveryRate':        0.90,
+}
+
+# Stats whose consuming rule belongs to a ruling that is still open. The strengthened
+# no-dead-skill check accepts these ONLY while the named ruling is open in combat.ts.
+PENDING_RULINGS = {
+    'acceleration':     'R6',   # how fast a ship reaches topSpeed is the movement model
+    'aircraftCapacity': 'R7',
+    'droneCapacity':    'R7',
+    'squadronSpeed':    'R7',
+    'squadronAccuracy': 'R7',
+    'squadronEvasion':  'R7',
+}
+
+# --- 1.1 initiative
+#   initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20
+PILOT_SKILL_INITIATIVE_DIVISOR = 5
+
+# --- 2.3 electronics. electronicSystemsEffectiveness multiplies the MAGNITUDE of every
+# effect carried by these module types (and the ecmModuleActive signature cut).
+ELECTRONIC_MODULE_TYPES = ('radar', 'sonar', 'cic', 'datalink', 'ecm', 'decoy',
+                           'ecCounterElectronics', 'targetingComputer', 'fireControl',
+                           'pdCoordinator')
+
+# --- 2.4 turn penalty, applied to a ship that changed heading this round:
+#   turnPenalty = 0.5 * (1 - min(effective(turnRate), 150) / 150)
+TURN_PENALTY_MAX = 0.5
+TURN_RATE_REFERENCE = 150
+
+# --- 3.6 criticals
+#   triggerChance = weapon.criticalChance + attacker.effective(criticalChanceBonus)
+#   resistChance  = defender.effective(criticalEventResistance)
+#                   + effective(crew.engineeringSkill) / 200        -> downgrade one band
+ENGINEERING_SKILL_DIVISOR = 200
+#   lifeSupport disabled or destroyed: lose 5% of maxCrew per round,
+#   x (1 - effective(crewRecoveryRate)); medicalCapacity returns casualties after.
+LIFE_SUPPORT_CASUALTY_RATE = 0.05
+
+# --- conflict 4.3 disruption (owned by GamePlay, numbers here with the other hooks)
+#   disrupted when, in one round, the fleet loses a hull or takes hull damage
+#   >= 25% of its summed hull.maxHP; regroup chance per end of round =
+#   0.25 + effective(fleetRegroupRate)
+DISRUPTION_HULL_FRACTION = 0.25
+REGROUP_BASE_CHANCE = 0.25
+
 # ----------------------------------------------------------------- hit profiles
 # advanced_combat_system.json weaponHitProfiles covered four classes. Melee had none,
 # which left 60 catalogue weapons with no way to resolve. Ruled: melee resolves as

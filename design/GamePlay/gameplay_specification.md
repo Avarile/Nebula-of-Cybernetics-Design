@@ -139,6 +139,11 @@ is consumed by a named, id'd rule in one of the seven documents. The verifier bu
 map and fails on either side being empty: a stat no rule reads, or a rule citing a stat that
 does not exist.
 
+Citing a document was once enough, and thirty combat stats passed while appearing in no
+formula. The check now reads the cited section and fails unless it names the stat. The only
+exception is a stat parked on a combat ruling that is still open (`PENDING_RULINGS` in
+`tools/combat_tables.py`), and that exception lapses the moment the ruling closes.
+
 This is what makes the skill catalogue honest. `troopCapacity` earned its rule
 (`conflict_specification.md` §7, facility raiding) because the invariant would not pass
 without one, not because someone thought of a use for landing ships.

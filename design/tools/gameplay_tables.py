@@ -284,13 +284,13 @@ STAT_RULES = {
     # --- gunnery -------------------------------------------------------------
     'weaponAccuracy':          (_COMBAT, '2.1', 'hit chance'),
     'criticalChanceBonus':     (_COMBAT, '3.6', 'critical roll'),
-    'pointDefenseBonus':       (_COMBAT, '2.5', 'missile interception attempts'),
+    'pointDefenseBonus':       (_COMBAT, '2.5', 'multiplies the pooled interception attempts'),
     'enemyHitChance':          (_COMBAT, '2.1', 'suppresses incoming accuracy'),
     'crew.gunnerySkill':       (_COMBAT, '2.1', 'gunnery term in the hit formula'),
     'crew.engineeringSkill':   (_COMBAT, '3.6', 'critical-damage handling'),
     'crew.pilotSkill':         (_COMBAT, '1.1', 'initiative term'),
     'crewRecoveryRate':        (_COMBAT, '3.6', 'crew casualties over time'),
-    'repairRatePerTurn':       (_LOG, '4', 'repair at sea; also in-combat repair modules'),
+    'repairRatePerTurn':       (_LOG, '4', 'repair at sea between engagements; in combat, repair modules act through hull.regenPerTurn'),
     # --- capacities ----------------------------------------------------------
     'cargoCapacity':           (_LOG, '3', 'what a fleet can haul'),
     'ammoCapacity':            (_LOG, '6', 'magazine drawn by missile and mine weapons'),
@@ -304,10 +304,10 @@ STAT_RULES = {
     # --- skill-only: combat ---------------------------------------------------
     'weaponDamage':            (_COMBAT, '3.1', 'raw damage, per weapon class'),
     'weaponTracking':          (_COMBAT, '2.4', 'tracking against speed-evasion'),
-    'damageReduction':         (_COMBAT, '3.3', 'flat reduction before hull'),
+    'damageReduction':         (_COMBAT, '3.3', 'fraction of post-armour hull damage removed'),
     'criticalEventResistance': (_COMBAT, '3.6', 'resisting critical effects'),
     'electronicSystemsEffectiveness': (_COMBAT, '2.3', 'ECM and sensor systems'),
-    'fleetRegroupRate':        (_CON, '4', 'reforming a disrupted fleet after a rout'),
+    'fleetRegroupRate':        (_CON, '4', 'regroup chance for a disrupted fleet (4.3)'),
     'squadronSpeed':           (_COMBAT, '2.5', 'fighter squadron performance'),
     'squadronAccuracy':        (_COMBAT, '2.5', 'fighter squadron performance'),
     'squadronEvasion':         (_COMBAT, '2.5', 'fighter squadron performance'),
