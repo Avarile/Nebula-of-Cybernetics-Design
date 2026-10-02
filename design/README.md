@@ -501,7 +501,7 @@ python3 tools/verify_facilities.py    # 26 checks
 python3 tools/verify_npc.py           # 25 checks
 python3 tools/verify_gameplay.py      # 46 checks -- the cross-cutting invariants; runs last
 python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
-python3 tools/verify_combat.py        # 49 checks -- combat rulings, stat hooks, lock range and movement vs. the catalogues and logs
+python3 tools/verify_combat.py        # 61 checks -- combat rulings, stat hooks, lock range, movement and strike craft vs. the catalogues and logs
 python3 Reference/verify_reference.py # 59 checks -- TypeScript interface vs. the data
 ```
 
@@ -559,7 +559,7 @@ Vanguard.
 | the hull progression tree | `HULL_TREE` in `tools/skill_tables.py` |
 | regions, systems, gates, planet archetypes | `tools/system_tables.py` |
 | turn length, SP rate, phases, prices, leases, PvP, NPC squadrons | `tools/gameplay_tables.py` |
-| combat rulings: special-effect rules, hit-formula terms, interception | `tools/combat_tables.py` |
+| combat rulings: special-effect rules, hit-formula terms, interception, strike craft | `tools/combat_tables.py` |
 | factions, region authorities, squadron factions, manufacturer houses | `tools/lore_tables.py` (then `Reference/lore.ts`) |
 | shared GamePlay derivations (prices, closures, hull splits) | `tools/gameplay_common.py` |
 | the SP curve and rank multiplier | `SP_BASE` / `SP_K` in `tools/skill_tables.py` |

@@ -107,7 +107,7 @@ not generate it.
 5. **`range.falloffPenalty` is superseded but retained.** It belongs to v1's hit
    formula; v2's range-band table replaced it for hit resolution. The field is
    still on every weapon, so it is still on the type, flagged in its doc comment.
-6. **Combat rulings R1–R6, R8 and R9 are ruled; R7 is open.** R1–R5
+6. **Combat rulings R1–R9 are all ruled.** R1–R5
    (`extends` naming a missing file, gunnery and the component penalty, the
    `specialEffects` rules, the 30% retreat threshold, `sensorDebuff`) carry their
    rulings in `OPEN_RULINGS`, and `constants.ts` mirrors the numbers in
@@ -117,14 +117,18 @@ not generate it.
    R9 (lock range) is mirrored as `DETECTION_CONSTANTS`. R6 (movement on the engagement
    line, and the recalibrated speed-evasion) is mirrored as `MOVEMENT_CONSTANTS` and
    `EVASION_CONSTANTS`, with `MovementIntent`, `MovementResolution` and the position,
-   speed and heading on `CombatantState`. R7 (strike craft) is still open — an
-   implementer gets the gap and the recommendation, not a guess presented as a rule.
+   speed and heading on `CombatantState`. R7 (strike craft) is mirrored as
+   `CRAFT_PROFILES` and `STRIKE_CRAFT_CONSTANTS`, with `CraftProfile`, `Squadron`,
+   `HangarState`, `CraftWaveInterception`, `CraftAttackResolution`, and the hangars,
+   airborne squadrons and cover assignments on `CombatantState`.
 7. **`drone` is a weapon-skill class with no weapon catalogue behind it.**
    `Skills/Design` lists Drones beside Ballistic, Energy and Missiles, but drones
    are hangar-launched craft (`droneCapacity`, hangar slots) and there is no
    `weaponClass: 'drone'` in `Weapons/`. `SkillWeaponClass` is therefore
    `WeaponClass | 'drone'`, and `tools/verify_skills.py` asserts the difference
-   from the catalogue is exactly that one value.
+   from the catalogue is exactly that one value. R7 gives the class its use: it
+   scopes the drone attack's `weaponAccuracy` and `weaponDamage` (combat spec §2.6,
+   `CRAFT_PROFILES.drone.weaponClass`).
 8. **`mine` and `melee` have no weapon skill.** Four Weaponry skills cover
    kinetic, energy, missile and drone; the mine and melee classes in the weapon
    catalogue are trained by nothing. Declared in `SkillWeaponClass` because the

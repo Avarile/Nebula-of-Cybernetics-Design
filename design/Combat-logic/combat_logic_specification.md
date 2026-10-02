@@ -22,13 +22,13 @@ This document reconciles the two combat-resolution layers into one authoritative
 v2's `updatedTurnStructure` supersedes v1's 9-step `turnStructure` — it's a strict superset (adds signature declaration, detection/lock-on, and missile resolution as new sub-phases), and both battle logs follow it. Canonical order:
 
 1. **Initiative** — sort all ships by `initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20`, descending (R8). v1 named "sensorArray effectiveness" here without defining it; sensor modules now reach initiative through the `initiative` stat they already carry.
-2. **Signature declaration** — each ship commits this round's operating state (normal / afterburner / running-silent / shields up-down), fixing its signature via the signature system for the whole round, and its movement intent (§1.4).
+2. **Signature declaration** — each ship commits this round's operating state (normal / afterburner / running-silent / shields up-down), fixing its signature via the signature system for the whole round, and its movement intent (§1.4). Carriers declare launches and every squadron's intent (§2.6).
 3. **Detection phase** — for every attacker–target pair, compute `effectiveDetectionRange` and update `lockQuality` (build, hold, or reset).
 4. **Power allocation** — assign the ship's power budget across weapons / shields / engines. The budget is capped at `effective(power.maxPower)`, and `effective(power.regenPerTurn)` is restored at the end of every round.
-5. **Movement** — every ship moves along the engagement line, one at a time in ascending initiative order (§1.4, R6). This sets the position, speed and pairwise `distance` everything downstream reads, and trips proximity mine fields (§3.4).
-6. **Targeting** — each ship picks target(s), weapon(s), and optionally a specific component, constrained by `range.maximum` and remaining ammo.
-7. **Missile resolution sub-phase** — ammo deduction, arming check, and point-defense interception for every missile weapon fired this round (§2.5). Runs *before* any hit roll.
-8. **Direct-fire resolution** — for non-missile weapons and missiles that survived interception: run the hit-chance formula (§2), then the damage formula (§3).
+5. **Movement** — every ship moves along the engagement line, one at a time in ascending initiative order (§1.4, R6). This sets the position, speed and pairwise `distance` everything downstream reads, and trips proximity mine fields (§3.4). Then craft launch, every airborne squadron moves, and craft that reach their carrier are recovered (§2.6).
+6. **Targeting** — each ship picks target(s), weapon(s), and optionally a specific component, constrained by `range.maximum` and remaining ammo. A pool weapon may instead cover a friendly ship against craft (§2.6).
+7. **Missile resolution sub-phase** — ammo deduction, arming check, and point-defense interception for every missile weapon fired this round (§2.5), and interception of every strike-craft wave (§2.6). Runs *before* any hit roll.
+8. **Direct-fire resolution** — for non-missile weapons, missiles that survived interception and craft attacking their target: run the hit-chance formula (§2, §2.6 for craft), then the damage formula (§3).
 9. **Critical checks** — on every confirmed hit, roll on the component-critical table (§3.6).
 10. **End of round** — shields recharge outside their delay window (§3.2), this round's signature bonuses expire, power regenerates, hull regenerates by `effective(hull.regenPerTurn)` (§3.3), crew casualties apply (§3.6), destruction/retreat conditions are checked, withdrawing ships that no enemy locks disengage (§3.7), and fleet disruption is tested (`GamePlay/conflict_specification.md` §4.3).
 11. Repeat from step 1 until a victory condition is met.
@@ -52,15 +52,15 @@ effective(stat) = (base + Σ flat) × (1 + Σ percent / 100) × Π (1 + penalty 
 
 * **Sources.** Percent effects from fitted modules, ship-scope skills and fleet-scope skills are **summed**, not chained. Two +5% bonuses make +10%.
 * **Penalties are gates.** Each active skill penalty multiplies on its own. The Weaponry skills' −50% below level 5 is ×0.50 whatever modules are fitted — a fire-control computer cannot buy back an untrained pilot.
-* **Scoping.** An effect with `appliesTo.weaponClass` applies only to weapons of that class. One with `appliesTo.shipCategory` applies only to hulls of that category. Mines and melee have no Weaponry skill, so they take neither the penalty nor the per-level bonus — only module and fleet effects. The Drones skill's `drone` class is strike craft, open with R7.
+* **Scoping.** An effect with `appliesTo.weaponClass` applies only to weapons of that class. One with `appliesTo.shipCategory` applies only to hulls of that category. Mines and melee have no Weaponry skill, so they take neither the penalty nor the per-level bonus — only module and fleet effects. The Drones skill's `drone` class is no catalogue weapon: it scopes drone attacks (§2.6).
 * **Fleet scope.** A fleet-scope skill — Attacking Formation, Defensive Formation, Fighter Squadron Control — applies to every hull in the owning player's fleet, and **drops out while that fleet is disrupted** (`GamePlay/conflict_specification.md` §4.3).
 
 A stat's **kind** says what `base` is. All of them are tabulated as `STAT_KIND` in `tools/combat_tables.py`.
 
 | kind | base | stats |
 |---|---|---|
-| field | the hull field of the same name | `topSpeed`, `turnRate`, `evasionRating`, `hull.maxHP`, `hull.armorRating`, `hull.regenPerTurn`, `shields.maxHP`, `rechargeRatePerTurn`, `shields.rechargeDelayAfterHit`, `power.maxPower`, `power.regenPerTurn`, `initiative`, `crew.*Skill`, `mineCapacity` (`capacities.mines`), `medicalCapacity` (`capacities.medical`) |
-| multiplier | 1 | `weaponAccuracy`, `weaponDamage`, `weaponTracking`, `pointDefenseBonus`, `sensorArray.effectiveness`, `electronicSystemsEffectiveness` |
+| field | the hull field of the same name | `topSpeed`, `turnRate`, `evasionRating`, `hull.maxHP`, `hull.armorRating`, `hull.regenPerTurn`, `shields.maxHP`, `rechargeRatePerTurn`, `shields.rechargeDelayAfterHit`, `power.maxPower`, `power.regenPerTurn`, `initiative`, `crew.*Skill`, `mineCapacity` (`capacities.mines`), `medicalCapacity` (`capacities.medical`), `aircraftCapacity` (`capacities.aircraft`), `droneCapacity` (`capacities.drones`) |
+| multiplier | 1 | `weaponAccuracy`, `weaponDamage`, `weaponTracking`, `pointDefenseBonus`, `sensorArray.effectiveness`, `electronicSystemsEffectiveness`, `squadronSpeed`, `squadronAccuracy`, `squadronEvasion` |
 | additive | 0; flat values add in the stat's unit, percent values add as points; the result is a fraction | `enemyHitChance` (flat unit: percentage points), `criticalChanceBonus`, `criticalEventResistance` (cap 0.75), `damageReduction` (cap 0.50), `crewRecoveryRate` (cap 0.90), `minesweepRate`, `fleetRegroupRate` |
 
 The unit column exists because the module catalogue is not uniform: an ECM suite writes `enemyHitChance −11.5` in points, while a targeting computer writes `criticalChanceBonus 0.029` as a fraction. `verify_combat.py` checks every module value against its stat's unit.
@@ -75,7 +75,7 @@ The unit column exists because the module catalogue is not uniform: an ECM suite
 
 The gate is the point of the skill design. Below level 5 the same gun on the same hull does about a sixth of the damage of a level-8 pilot. A ship can be fielded at level 5 in the hull tree's numbers (`GamePlay/progression_specification.md`), but it is only *fought* well once its weapon class is trained too.
 
-**Pending.** `aircraftCapacity`, `droneCapacity` and the three `squadron*` stats belong to strike craft (R7). They are listed as pending that ruling rather than given placeholder formulas. `acceleration` was parked on the movement model until R6 ruled it (§1.4, §2.4).
+**Strike craft (R7).** `aircraftCapacity` and `droneCapacity` are field stats, the hangar a ship carries. The three `squadron*` stats are multipliers that only fighters read. All five are ruled in §2.6. No stat is parked on an open ruling any more: `acceleration` waited for R6 (§1.4), these five for R7.
 
 ### 1.4 Movement — the engagement line
 
@@ -304,9 +304,125 @@ Missiles get **+25%** to base hit chance and only apply **50%** of the target's 
 
 The v2 JSON used to give `high_tracking` **−0.10**, which made tracking missiles *easier* to intercept while its own note called them "harder". The sign is corrected, and `verify_combat.py` fails if any projectile-evasion delta goes negative.
 
-**What a pool weapon engages.** `point_defense` engages missiles and strike craft at base chance; `anti_missile` engages missiles only, at +0.10; `anti_air` engages craft only, at +0.10. A weapon carrying two of them takes the union of targets and the better delta against each. A pool weapon fires *either* in the pool *or* as direct fire in a given round — it defaults to the pool, and its owner may reassign it in targeting. Strike craft enter the same pool, but how a squadron launches, attacks and is lost is not yet ruled (§5, R7).
+**What a pool weapon engages.** `point_defense` engages missiles and strike craft at base chance; `anti_missile` engages missiles only, at +0.10; `anti_air` engages craft only, at +0.10. A weapon carrying two of them takes the union of targets and the better delta against each. A pool weapon fires *either* in the pool *or* as direct fire in a given round — it defaults to the pool, and its owner may reassign it in targeting. Strike craft enter the same pool in the round they attack. How a squadron launches, attacks and is lost, and how a pool weapon covers a neighbour against craft, is §2.6.
 
 This is a deliberate rock-paper-scissors: missiles beat evasive ships, PD beats missiles, and **saturation** (more warheads than the defender's pooled PD shots can cover) beats PD. Both logs demonstrate the failure mode directly: *Halberd's Edge*'s 6-missile Swarm Pod overwhelms *Whisperfang*'s 3 PD shots (3 leak through) in Sable/Ember; at fleet scale, *Cinderwatch*'s 20-fighter saturation strike on an unescorted *Leviathan Crown* drops its shields from 1362 to ~400 in a single exchange because only its small-slot PD responds. **A ship with no PD hardpoint online is acutely vulnerable to any missile- or fighter-armed opponent** — this is the deciding factor in both logs and should be treated as a first-class tactical readout, not just a stat.
+
+### 2.6 Strike craft
+
+**Ruled (R7).** The numbers are in `tools/combat_tables.py` (`CRAFT_PROFILES`, `SQUADRON_SIZE`, `CRAFT_INTENTS`).
+
+**Two kinds of craft.** Fighters and drones are both craft. Neither is a weapon: a craft has no hardpoint, no range band and no lock of its own, and no direct-fire weapon can aim at one. Only the interception pool (§2.5) and escorting craft engage them, and only in a round they attack.
+
+| | fighter | drone |
+|---|---|---|
+| carried in | `aircraftCapacity` (`capacities.aircraft`) | `droneCapacity` (`capacities.drones`) |
+| hangar modules, Mk.1 | Aircraft Elevator +6, ASW Aircraft Bay +3, Seaplane Catapult +2 | Drone Bay +8, Drone Controller +4 |
+| speed | 1,000 × `effective(squadronSpeed)` | 600 |
+| hit profile | missile: ×1.25 base, half the evasion ignored | kinetic |
+| base hit chance | 0.65 × `effective(squadronAccuracy)` | 0.70 × `effective(weaponAccuracy)[drone]` |
+| tracking | 90 | 70 |
+| damage | 115 ± 15 explosive | 30 ± 4 kinetic, × `effective(weaponDamage)[drone]` |
+| critical chance | 0.05 | 0.02 |
+| evasion against interception | 1.10 × `effective(squadronEvasion)` | 1.00 |
+| attacks | one run per sortie, then returns | every round it is on its target |
+| first launch | round 5 (stowed 4 rounds) | round 2 (stowed 1 round) |
+| turnaround after recovery | 2 rounds | 1 round |
+| skill | Fighter Squadron Control (fleet scope) | Drones (Weaponry) |
+| restock, per craft | 1.6 manufactured units | 1.0 manufactured units |
+
+**Fighters and drones split the skills.** Fighter Squadron Control is the only source of `squadronSpeed`, `squadronAccuracy` and `squadronEvasion`, and only fighters read them: +1% per level to speed, attack chance and evasion against interception. Like every fleet-scope skill it drops out while the fleet is disrupted (§1.3). Fighters have no Weaponry skill and no gate. Their pilots are the skill, so no crew term enters their attack either.
+
+The Drones skill (`skl_wpn_drones`, class `drone`) is a Weaponry skill like the other three. Drones have no catalogue weapon, so it scopes the drone attack instead: `weaponAccuracy` and `weaponDamage` with `appliesTo.weaponClass` `drone`. Below level 5 it gates both at ×0.50, whatever modules are fitted (§1.3), and from level 6 it adds +5% a level. It reaches nothing else; drone speed and evasion have no skill. An unscoped `weaponAccuracy` effect, such as Attacking Formation or a CIC Tower, applies to drones as to any class, because drones fight from their controlling ship's fire control. It does not reach fighters.
+
+**The hangar.** A ship carries at most `floor(effective(aircraftCapacity))` fighters and `floor(effective(droneCapacity))` drones. The hull field is the base and hangar modules add their flat values, the field kind in §1.3. An Escort Carrier Tier 1 carries 20 + 6 = 26 fighters. Drones are refit-only: no template hull carries `capacities.drones` or fits a drone module, so a ship gets drones by fitting a Drone Bay or Drone Controller in a hangar slot.
+
+**Squadrons.** Craft fly in squadrons of up to `SQUADRON_SIZE` = 6, formed at launch from ready craft of one kind. A squadron may be short, like the log's "rebuilt" ones. A complement is reported as full squadrons plus a reserve: 26 fighters are 4 squadrons with 2 in reserve. The size comes from the log, "2 squadrons (12 fighters)" and "3 squadrons (18 fighters)".
+
+**Launch cadence.**
+
+* Craft aboard when the engagement starts are stowed. Fighters first launch in round 1 + 4 = 5, drones in round 2.
+* A craft recovered in round r launches again from round r + 2 (fighters) or r + 1 (drones). Rearming covers any number of craft at once.
+* Launch and recovery happen in phase 5. There is no deck limit: every ready craft may launch in the same round. Capacity is the only limit, and that is what lets a carrier mass a saturation strike.
+* A ship running silent neither launches nor recovers. Flight operations are emissions.
+* A strike launches only at a ship its carrier holds a lock on in phase 3 (§2.3). Locks are never shared. Without the lock, the craft stay aboard and stay ready.
+
+**On the engagement line.** A squadron has a position and one intent, declared in phase 2 with its carrier's own.
+
+| intent | does |
+|---|---|
+| `strike` | flies to an enemy ship and attacks if it ends phase 5 there. A fighter attacks once, then takes `return`; a drone stays on the target and attacks every round |
+| `escort` | flies to a friendly ship and stays with it; each craft adds one attempt a round to that ship's pool against enemy craft |
+| `return` | flies to its carrier; recovered if it ends phase 5 there |
+
+Squadrons move after every ship has moved, in their carriers' initiative order, so a strike finds its target wherever the target went. A squadron covers `speed × ROUND_TIME` a round, 4,000 for a fighter and 2,400 for a drone, and stops at its destination. It has no acceleration, no turn penalty and no signature, and it never trips a mine field.
+
+**Interception.** In phase 7, the craft attacking one ship this round are one **wave**. Before any hit roll, the wave faces three sources of attempts:
+
+* **The target's own pool.** Its pool weapons that engage craft (`point_defense`, `anti_air`, §2.5) draw on the same pooled attempts as against missiles. The defender splits them between missiles and craft, missiles first by default.
+* **Cover.** In targeting, a pool weapon may be assigned to cover one friendly ship within its `range.optimal`, instead of defending its own. A covering weapon engages only craft attacking that ship. Missiles are met only by their target's own pool: a missile is a homing shot that arrives in a moment, while a squadron flies its attack run through the formation.
+* **Escorts.** Each craft escorting the target makes one attempt as an `anti_air` pool weapon, with its profile's base hit chance (times its accuracy multiplier) and tracking.
+
+Each attempt is §2.5's `interceptChance` with the craft as the projectile:
+
+```
+projectileEvasion = interceptEvasion × carrier.effective(squadronEvasion)    // fighters
+                  = interceptEvasion                                          // drones
+```
+
+`area_denial` downs one more craft of the same wave on each success. An intercepted craft is destroyed.
+
+**Why 1.10 and not missiles' 0.20.** Every pool weapon that engages craft has a raw chance of 1.33–2.14 before evasion, because `tracking × trackingFactor / 150` alone is 0.39–1.09. At 0.20, every attempt would sit at the 0.95 cap and `squadronEvasion` would change nothing. At 1.10 the median such weapon hits a fighter about half the time; none of them is at the 0.05 floor, and only the Interceptor Missile Mk.4–5 reach the cap. Ten levels of Fighter Squadron Control (×1.10) cost every PD mount 0.11 a shot. The verifier recomputes this over the whole catalogue. Missiles keep 0.20: the formula's saturation against them is §2.5's to rule, not this section's.
+
+**The attack.** In phase 8, each craft that ended phase 5 on its target and survived interception rolls once:
+
+```
+baseChance     = baseHitChance × weaponHitProfiles[hitProfile].baseHitChanceModifier
+                 × accuracy            // fighter: carrier.effective(squadronAccuracy)
+                                       // drone:   controller.effective(weaponAccuracy)[drone]
+                 − 0.20 if a component is targeted
+evasion        = speedEvasionSystem(target, tracking) × (1 − evasionIgnoredFraction)     [§2.4]
+finalHitChance = clamp(baseChance − evasion + target.effective(enemyHitChance), 0.05, 0.95)
+rawDamage      = (damage.base ± variance)  × controller.effective(weaponDamage)[drone]   // drones only
+```
+
+A craft attacks from point-blank by definition, so there is no range multiplier and no arming check. Lock quality is 1 and blind fire does not apply. Shields, armour and the critical roll then run as for any hit (§3.2, §3.3, §3.6), at the profile's critical chance; the carrier's `criticalChanceBonus` does not apply. Tracking 90 covers 450 speed, so fighters take speed-evasion away from every hull except the fastest. Fighters, like missiles, beat evasion.
+
+**Drone control.** A drone attacks only a target its controlling ship holds a lock on that round; without the lock it holds position over the target. When the controller is destroyed or disengages, its airborne drones are lost.
+
+**Losses and recovery.**
+
+* Interception is the only way a craft dies in flight. The log's "finished off by return fire" is colour.
+* A fighter whose carrier is destroyed or disengages may recover aboard any friendly ship with free `aircraftCapacity`. One still airborne without a deck when the battle ends is lost.
+* When the battle ends, every airborne craft whose carrier is still present is recovered.
+* Craft aboard a ship that is destroyed are lost with it. They are not salvage.
+
+**Across engagements.** The craft aboard a ship are inventory, like its magazine (`GamePlay/logistics_specification.md` §6). Losses carry over: a carrier starts its next engagement with what came home. Replacement craft are not goods and have no market price. They are restocked in phase 12 from manufactured resources, out of a warehouse at the same location or by purchase, at a fixed cost per craft:
+
+| | structural | energy | ordnance | precision | total |
+|---|---:|---:|---:|---:|---:|
+| fighter | 0.50 | 0.25 | 0.30 | 0.55 | 1.60 |
+| drone | 0.30 | 0.30 | 0.00 | 0.40 | 1.00 |
+
+A full complement never costs more than a quarter of its hull (`CRAFT_WING_COST_SHARE_MAX`). The dearest is the Fleet Aircraft Carrier Tier 1, whose 78 fighters cost 22% of its `buildCost`. A refit that drops capacity below the craft aboard scraps the excess.
+
+**Calibration: Veritas/Cinder.** *Solmirage* and *Cinderwatch* are not catalogued named ships. Each stands for the escort-carrier template whose hangar gives its logged squadron count (`STRIKE_CARRIERS`).
+
+| carrier | stands for | fighters | squadrons | logged |
+|---|---|---:|---:|---:|
+| *Solmirage* | Escort Carrier Tier 1 | 20 + 6 = 26 | 4, 2 in reserve | 4 ✓ |
+| *Cinderwatch* | Escort Carrier Tier 2 | 26 + 7.2 → 33 | 5, 3 in reserve | 5 ✓ |
+
+The timeline fits the cadence. The first launch is round 5 = 1 + 4, "still two rounds out" while phase 1 ends. *Cinderwatch*'s round-5 survivors come home in round 6, the round both carriers hold, and are ready in round 8 = 6 + 2. That is when it launches "2 rebuilt" squadrons: 20 − 2 × 6 = 8 fighters, out of 9 survivors and 3 in reserve. Every fresh squadron flies exactly once: *Solmirage* 2 + 2 = 4, *Cinderwatch* 3 + 2 = 5. At 4,000 a round a fighter covers the 3,000 between the lines at round 5, so launch and attack fall in the same round.
+
+| round | strike | launched | downed: logged (expected) | attacked | hits: logged (chance) | shields |
+|---|---|---:|---|---:|---|---|
+| 5 | *Solmirage* → *Meridian Aegis* | 12 | 5 (≥ 3.4 from *Vanguard's Wake*; uncatalogued screens fire too) | 7 | 4 (0.68) | 4 × 113.8 = 455 < 898: hold ✓ |
+| 5 | *Cinderwatch* → *Stormbreaker* | 18 | 9 (8.6: own PD, *Obsidian March*, *Auric Drift*'s flak) | 9 | 6 (0.67) | 6 × 103.5 = 621 ≥ 610: collapse ✓ |
+| 7 | *Solmirage* → *Vanguard's Wake* | 12 | 4 (3.4) | 8 | 8 (0.66) | 8 × 100.0 = 800 ≥ 664: collapse ✓ |
+| 8 | *Cinderwatch* → *Leviathan Crown* | 20 | 6 (6.2: two small PD lasers, 12 attempts) | 14 | — (0.71) | 1,009 expected against 962 logged (1,362 → ~400) ✓ |
+
+Each target's chance is the formula above at skill level 0: the missile profile's 0.8125 base, less half its evasion, less its ECM suite's 0.08. Eight hits from eight is the lucky end of the table, 0.66⁸ ≈ 3.7%, but still inside the central 95% of outcomes. `verify_combat.py` recomputes every number in both tables from the catalogue (`STRIKE_CLAIMS`).
 
 ---
 
@@ -402,6 +518,8 @@ Mines never use the master hit formula. A field is laid against a chosen enemy s
 | damage effects | `armor_piercing`, `armor_melt` and `multi_hit` on a mine apply through the hit rules above when it detonates. |
 | capacity (R8) | A ship may have at most `effective(mineCapacity)` of its own fields active at once — `capacities.mines`, raised by mine rails. Each field still spends the mine weapon's own ammo. |
 | sweeping (R8) | At the end of each round, every hull with `effective(minesweepRate) > 0` rolls that chance once against each enemy field it currently detects; a success removes the field. Minesweep gear's +30% is a 0.30 chance. |
+| layer gone (R7) | A command field needs its layer to fire it. When the layer is destroyed or disengages, its command fields are spent. A proximity field fires itself, so it stays on the line until it detonates, its `area_denial` rounds run out, or it is swept. |
+| engagement end | Every field still on the line expires when the engagement ends. Nothing is carried into the next one. |
 
 **What the geometry does (R6).** A command field's reach is its whole `range.optimal`, 174–2,821 across the catalogue. A slow anchor cannot outrun it; a fast one that keeps moving can. A proximity field's radius is 17–282, smaller than almost any ship's movement in a round. The anchor escapes it simply by moving, but the field stays on the line. It catches any ship that holds or keeps station on that spot, and anyone who drives across it, friend or foe. Mines are how a fleet denies the ground a pursuer has to cross.
 
@@ -537,7 +655,7 @@ Flavor-quote generation should not be free text — tie it to the mechanical eve
 
 ### 5.1 Ruled
 
-Cross-referencing the three source files surfaced five inconsistencies. `GamePlay/gameplay_specification.md` §7 ruled on R2, R4 and R5, and named R1 a source fix; R3 was left to combat. All five are now applied at the source.
+Cross-referencing the three source files surfaced five inconsistencies. `GamePlay/gameplay_specification.md` §7 ruled on R2, R4 and R5, and named R1 a source fix; R3 was left to combat. All five are now applied at the source. R6–R9 surfaced while ruling them, and are ruled too.
 
 | | gap | ruling | where it landed |
 |---|---|---|---|
@@ -549,6 +667,7 @@ Cross-referencing the three source files surfaced five inconsistencies. `GamePla
 | R8 | Skill and module stats were routed here but appeared in no formula, including the Weaponry −50% gate | One stacking rule; every combat stat named in the formula it modifies; R6/R7-owned stats listed as pending (R6's since ruled) | §1.3; §1.1, §2.1, §2.3–2.5, §3.1–3.4, §3.6; `STAT_KIND` |
 | R6 | Phase 5 said only "resolve positioning"; nothing turned `topSpeed`, `acceleration` and `turnRate` into distance, and §2.4's `/250` saturated | One engagement line with positions; four intents; `ROUND_TIME` 4 calibrated on Sable/Ember; mines sit on the line; withdrawal succeeds when no enemy locks; speed-evasion recalibrated to tracking ×5 over 1,000 | §1.1, §1.4, §2.4, §3.4, §3.7; `RANGE_CLAIMS`, `OPENING_CLAIMS`; v2 JSON `movementSystem`, `speedEvasionSystem` |
 | R9 | The detection formula gave lock ranges from 0.2 to 70,000 and never read `sensors.detectionRange` | Anchored on `effective(detectionRange)` × sensor condition × `sensorArray.effectiveness` × `clamp(√(sig/16), 0.25, 4)`, calibrated on every lock claim in the repo | §2.3; `LOCK_CLAIMS`; v2 JSON `detectionAndLockOn` |
+| R7 | Fighters and drones decided Veritas/Cinder, and `aircraftCapacity`, `droneCapacity` and the `squadron*` stats pointed at §2.5, but nothing said how a squadron launches, attacks, is lost or rearms | Craft are not weapons: two profiles, fighter and drone; squadrons of 6; fighters stowed 4 rounds and turned round in 2; they move on the engagement line after the ships; interception at 1.10 craft evasion, with cover from neighbouring pool weapons; attack on the missile (fighter) or kinetic (drone) profile; losses carry over and craft are restocked from manufactured resources. Fighter Squadron Control drives fighters; the Drones Weaponry skill and its ×0.50 gate drive drones. Command mine fields die with their layer; proximity fields outlive it, and no field outlives the battle | §1.1, §1.3, §2.5, §2.6, §3.4; `CRAFT_PROFILES`, `STRIKE_CLAIMS`; v2 JSON `strikeCraftSystem` |
 
 Two smaller fixes came out of applying them. The interception sign for `high_tracking` was inverted (§2.5). Melee — 60 catalogue weapons — had no hit profile in the v2 JSON (§2.1); `Reference/constants.ts` already resolved it like kinetic, and the JSON now agrees.
 
@@ -556,6 +675,4 @@ Two smaller fixes came out of applying them. The interception sign for `high_tra
 
 ### 5.2 Open
 
-Gaps found while ruling the others, each blocking something the catalogue already contains:
-
-- **R7 — Strike craft.** Fighters and drones decide the Veritas/Cinder action, and `aircraftCapacity`, `droneCapacity` and the three `squadron*` skill stats all point at §2.5. No rule says how a squadron launches, attacks, takes losses or rearms; §2.5 only says craft enter the interception pool.
+None. R7 (strike craft) was the last open ruling; it is ruled in §2.6. `tools/combat_tables.py` `PENDING_RULINGS` is empty, so every combat stat in `STAT_RULES` must now be named in the section it cites.

@@ -33,6 +33,8 @@ import type {
   SpecialEffectRules,
   EffectiveStatRules,
   MovementConstants,
+  CraftProfiles,
+  StrikeCraftConstants,
 } from './combat';
 import type { ConversionYields, ResourceTier } from './resources';
 import type {
@@ -633,6 +635,9 @@ export const EFFECTIVE_STAT_RULES = {
   pointDefenseBonus:              { kind: 'multiplier', unit: null },
   'sensorArray.effectiveness':    { kind: 'multiplier', unit: null },
   electronicSystemsEffectiveness: { kind: 'multiplier', unit: null },
+  squadronSpeed:                  { kind: 'multiplier', unit: null },
+  squadronAccuracy:               { kind: 'multiplier', unit: null },
+  squadronEvasion:                { kind: 'multiplier', unit: null },
   enemyHitChance:                 { kind: 'additive', unit: 'points' },
   criticalChanceBonus:            { kind: 'additive', unit: 'fraction' },
   criticalEventResistance:        { kind: 'additive', unit: 'fraction', cap: 0.75 },
@@ -641,6 +646,41 @@ export const EFFECTIVE_STAT_RULES = {
   minesweepRate:                  { kind: 'additive', unit: 'fraction' },
   fleetRegroupRate:               { kind: 'additive', unit: 'fraction' },
 } as const satisfies EffectiveStatRules;
+
+/**
+ * R7 — strike craft (spec 2.6). Mirrors CRAFT_PROFILES, SQUADRON_SIZE, CRAFT_INTENTS and
+ * CRAFT_WING_COST_SHARE_MAX in tools/combat_tables.py; verify_combat.py checks it.
+ */
+export const CRAFT_PROFILES = {
+  fighter: {
+    capacityStat: 'aircraftCapacity',
+    speed: 1000, speedStat: 'squadronSpeed',
+    interceptEvasion: 1.10, evasionStat: 'squadronEvasion',
+    baseHitChance: 0.65, accuracyStat: 'squadronAccuracy', damageStat: null, weaponClass: null,
+    hitProfile: 'missile', tracking: 90,
+    damage: { base: 115, variance: 15, damageType: 'explosive' },
+    criticalChance: 0.05,
+    attacksPerSortie: 1, coldStartRounds: 4, turnaroundRounds: 2,
+    restockCost: { structural: 0.5, energy: 0.25, ordnance: 0.3, precision: 0.55 },
+  },
+  drone: {
+    capacityStat: 'droneCapacity',
+    speed: 600, speedStat: null,
+    interceptEvasion: 1.00, evasionStat: null,
+    baseHitChance: 0.70, accuracyStat: 'weaponAccuracy', damageStat: 'weaponDamage', weaponClass: 'drone',
+    hitProfile: 'kinetic', tracking: 70,
+    damage: { base: 30, variance: 4, damageType: 'kinetic' },
+    criticalChance: 0.02,
+    attacksPerSortie: null, coldStartRounds: 1, turnaroundRounds: 1,
+    restockCost: { structural: 0.3, energy: 0.3, ordnance: 0.0, precision: 0.4 },
+  },
+} as const satisfies CraftProfiles;
+
+export const STRIKE_CRAFT_CONSTANTS = {
+  squadronSize: 6,
+  intents: ['strike', 'escort', 'return'],
+  wingCostShareMax: 0.25,
+} as const satisfies StrikeCraftConstants;
 
 /** R9 — lock range. Mirrors DETECTION_SIGNATURE_* in tools/combat_tables.py. */
 export const DETECTION_CONSTANTS = {

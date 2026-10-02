@@ -53,7 +53,7 @@ INTERCEPT_TRACKING_DIVISOR = 150
 PROJECTILE_EVASION_BASE = 0.20
 
 # Which effects put a weapon into the interception pool, and what each may engage.
-# 'craft' = fighters and drones; their own resolution is open ruling R7.
+# 'craft' = fighters and drones; how they launch, attack and are lost is R7 (spec 2.6).
 POOL_EFFECTS = {
     'point_defense': ('missile', 'craft'),
     'anti_missile':  ('missile',),
@@ -103,6 +103,12 @@ MINE_BASE = {
     'position': "the anchor's position on the engagement line when the field is laid",
     'hitRoll': False,              # mines never use the master hit formula
     'consumedOnDetonation': True,
+    # Decided with R7. A command field needs its layer to fire it; a proximity field
+    # fires itself. Nothing outlives the battle.
+    'layerGone': 'when the layer is destroyed or disengages, its command fields are '
+                 'spent; its proximity fields stay on the line until they detonate, '
+                 'their area_denial rounds run out, or they are swept',
+    'engagementEnd': 'every field still on the line expires when the engagement ends',
 }
 
 # ----------------------------------------------------------------- special effects
@@ -238,6 +244,9 @@ STAT_KIND = {
     'pointDefenseBonus':             ('multiplier', None),
     'sensorArray.effectiveness':     ('multiplier', None),
     'electronicSystemsEffectiveness': ('multiplier', None),
+    'squadronSpeed':                 ('multiplier', None),   # R7: fighters only (spec 2.6)
+    'squadronAccuracy':              ('multiplier', None),
+    'squadronEvasion':               ('multiplier', None),
     'enemyHitChance':                ('additive',   'points'),
     'criticalChanceBonus':           ('additive',   'fraction'),
     'criticalEventResistance':       ('additive',   'fraction'),
@@ -252,6 +261,8 @@ HULL_FIELD_ALIASES = {
     'mineCapacity':    'capacities.mines',
     'medicalCapacity': 'capacities.medical',
     'repairRatePerTurn': 'capacities.repairRate',
+    'aircraftCapacity': 'capacities.aircraft',     # R7: fighters carried (spec 2.6)
+    'droneCapacity':    'capacities.drones',       # R7: drones carried
 }
 
 # Caps on the additive stats that would otherwise break a formula at the extreme.
@@ -263,13 +274,8 @@ ADDITIVE_CAPS = {
 
 # Stats whose consuming rule belongs to a ruling that is still open. The strengthened
 # no-dead-skill check accepts these ONLY while the named ruling is open in combat.ts.
-PENDING_RULINGS = {
-    'aircraftCapacity': 'R7',
-    'droneCapacity':    'R7',
-    'squadronSpeed':    'R7',
-    'squadronAccuracy': 'R7',
-    'squadronEvasion':  'R7',
-}
+# Empty since R7 ruled the last five (aircraftCapacity, droneCapacity, squadron*).
+PENDING_RULINGS = {}
 
 # --- 1.1 initiative
 #   initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20
@@ -417,6 +423,140 @@ LIFE_SUPPORT_CASUALTY_RATE = 0.05
 #   0.25 + effective(fleetRegroupRate)
 DISRUPTION_HULL_FRACTION = 0.25
 REGROUP_BASE_CHANCE = 0.25
+
+# ----------------------------------------------------------------- R7: strike craft
+# combat_logic_specification.md 2.6. Two kinds of craft, each with its own profile.
+# Craft are not weapons: no hardpoint, no range band, no lock of their own, and no
+# direct-fire weapon can shoot at them. Only the interception pool engages them, and
+# only in a round they attack (or by escorting craft).
+#
+# A ship carries floor(effective(capacityStat)) craft of a kind. Capacity is
+# capacities.aircraft / capacities.drones plus the hangar modules' flat values
+# (Aircraft Elevator, Seaplane Catapult, ASW Aircraft Bay / Drone Bay, Drone Controller).
+#
+# Launch and recovery happen in phase 5. Craft aboard at the start of an engagement are
+# stowed and first launch in round 1 + coldStartRounds. A recovered craft can launch
+# again turnaroundRounds after the round it was recovered. Readying runs for any number
+# of craft at once and launch has no deck limit: capacity is the only limit, which is
+# what lets a carrier mass a saturation strike. A ship running silent neither launches
+# nor recovers.
+#
+# On the engagement line a squadron moves after every ship has moved, at
+#   speed x speedStat multiplier x ROUND_TIME
+# per round, with no acceleration and no turn penalty, and stops at its destination.
+#
+# Attack, at phase 8, by every craft that ended phase 5 on its target and survived
+# phase 7's interception:
+#   baseChance  = baseHitChance x weaponHitProfiles[hitProfile].baseHitChanceModifier
+#                 x accuracy multiplier (fighter: effective(squadronAccuracy) of the
+#                 carrier; drone: effective(weaponAccuracy)[drone] of the controller,
+#                 which carries the Drones skill's x0.50 gate below level 5)
+#                 - 0.20 if a component is targeted
+#   evasion     = speedEvasionSystem(target, tracking) x (1 - evasionIgnoredFraction)
+#   finalHit    = clamp(baseChance - evasion + target.effective(enemyHitChance), 0.05, 0.95)
+#   rawDamage   = (damage.base +- variance) x (drone: effective(weaponDamage)[drone])
+# no range multiplier, lockQuality 1, no blind-fire penalty, no arming check; shields,
+# armour and the critical roll (criticalChance, no criticalChanceBonus) as for any hit.
+#
+# Interception: craft are projectiles in the 2.5 formula with
+#   projectileEvasion = interceptEvasion x (fighter: effective(squadronEvasion))
+# 0.20 never mattered against craft: every craft-engaging pool weapon's raw chance is
+# 1.33-2.14 before evasion, because tracking / 150 alone is 0.4-0.9. 1.10 puts the
+# catalogue's median pool weapon near 0.50 a shot against a fighter, which is what
+# Veritas/Cinder needs (Leviathan Crown's two PD lasers, 12 attempts, down 6 of 20).
+SQUADRON_SIZE = 6     # Veritas/Cinder: "2 squadrons (12 fighters)", "3 squadrons (18 fighters)"
+
+CRAFT_KINDS = ('fighter', 'drone')
+
+CRAFT_PROFILES = {
+    'fighter': {
+        'capacityStat': 'aircraftCapacity',
+        'speed': 1000,                 # x effective(squadronSpeed); 4,000 a round
+        'speedStat': 'squadronSpeed',
+        'interceptEvasion': 1.10,      # x effective(squadronEvasion)
+        'evasionStat': 'squadronEvasion',
+        'baseHitChance': 0.65,         # x effective(squadronAccuracy)
+        'accuracyStat': 'squadronAccuracy',
+        'damageStat': None,
+        'weaponClass': None,           # no Weaponry skill: Fighter Squadron Control instead
+        'hitProfile': 'missile',       # the log: "missile profile: +25% base, 50% evasion ignored"
+        'tracking': 90,
+        'damage': {'base': 115, 'variance': 15, 'damageType': 'explosive'},
+        'criticalChance': 0.05,
+        'attacksPerSortie': 1,         # one attack run, then it must return and rearm
+        'coldStartRounds': 4,          # first launch in round 5
+        'turnaroundRounds': 2,         # recovered in round r, launches again in round r + 2
+        # Restocked in phase 12, per craft, in manufactured-resource units (by lane),
+        # from a warehouse at the same location or by purchase -- like a magazine.
+        'restockCost': {'structural': 0.5, 'energy': 0.25, 'ordnance': 0.3, 'precision': 0.55},
+    },
+    'drone': {
+        'capacityStat': 'droneCapacity',
+        'speed': 600,                  # no skill reaches it; 2,400 a round
+        'speedStat': None,
+        'interceptEvasion': 1.00,
+        'evasionStat': None,
+        'baseHitChance': 0.70,         # x effective(weaponAccuracy)[drone] -- the Drones gate
+        'accuracyStat': 'weaponAccuracy',
+        'damageStat': 'weaponDamage',  # x effective(weaponDamage)[drone] -- the Drones gate
+        'weaponClass': 'drone',
+        'hitProfile': 'kinetic',       # gun-armed: direct fire, no evasion discount
+        'tracking': 70,
+        'damage': {'base': 30, 'variance': 4, 'damageType': 'kinetic'},
+        'criticalChance': 0.02,
+        'attacksPerSortie': None,      # attacks every round it is on its target
+        'coldStartRounds': 1,          # first launch in round 2
+        'turnaroundRounds': 1,
+        'restockCost': {'structural': 0.3, 'energy': 0.3, 'ordnance': 0.0, 'precision': 0.4},
+    },
+}
+
+# What a squadron is told to do; declared in phase 2 with the carrier's own intent.
+#   strike  fly to an enemy ship and attack it on arrival (a fighter makes one attack
+#           run, then returns; a drone stays and attacks every round)
+#   escort  fly to a friendly ship and stay with it; each craft adds one attempt a round
+#           to that ship's pool against enemy craft, as an anti_air pool weapon would
+#   return  fly to the carrier; recovered on arrival
+CRAFT_INTENTS = ('strike', 'escort', 'return')
+
+# A full complement never costs more than this share of its hull's buildCost.
+CRAFT_WING_COST_SHARE_MAX = 0.25
+
+# Against a fighter at squadronEvasion 1.0, no craft-engaging pool weapon may sit at the
+# 0.05 floor, and at most this share may sit at the 0.95 cap -- so squadronEvasion moves
+# almost every matchup.
+CRAFT_INTERCEPT_CAPPED_MAX = 0.10
+
+# --- battle-log calibration (Veritas/Cinder). The two carriers are not catalogued named
+# ships, so each stands for the escort-carrier template whose hangar matches its logged
+# squadron count: floor(floor(effective(aircraftCapacity)) / SQUADRON_SIZE).
+STRIKE_CARRIERS = {
+    'Solmirage':   'ship_escort_carrier_t1',     # 20 + Elevator Mk.1 6   = 26 -> 4 squadrons
+    'Cinderwatch': 'ship_escort_carrier_t2',     # 26 + Elevator Mk.2 7.2 = 33 -> 5 squadrons
+}
+
+# Each logged strike. `cover` names the catalogued ships whose pool weapons covered the
+# target; coverComplete is False where uncatalogued screens (Amberfall, Greywake,
+# Thornvale) also fired, so the catalogued cover is only a lower bound. `shields` is
+# 'hold', 'collapse', or (before, after) for a logged drop.
+STRIKE_LOG = 'battle_log_veritas_vs_cinder.md'
+STRIKE_CLAIMS = [
+    dict(round=5, carrier='Solmirage', fresh=2, rebuiltCraft=0, launched=12,
+         target='Meridian Aegis', cover=("Vanguard's Wake",), coverComplete=False,
+         downed=5, attacked=7, hits=4, shields='hold'),
+    dict(round=5, carrier='Cinderwatch', fresh=3, rebuiltCraft=0, launched=18,
+         target='Stormbreaker', cover=('Obsidian March', 'Auric Drift'), coverComplete=True,
+         downed=9, attacked=9, hits=6, shields='collapse'),
+    dict(round=7, carrier='Solmirage', fresh=2, rebuiltCraft=0, launched=12,
+         target="Vanguard's Wake", cover=(), coverComplete=True,
+         downed=4, attacked=8, hits=8, shields='collapse'),
+    dict(round=8, carrier='Cinderwatch', fresh=2, rebuiltCraft=8, launched=20,
+         target='Leviathan Crown', cover=(), coverComplete=True,
+         downed=6, attacked=14, hits=None, shields=(1362, 400)),
+]
+STRIKE_DOWNED_TOLERANCE = 1.0    # expected craft downed within this of the logged count
+STRIKE_HIT_CONFIDENCE = 0.95     # logged hits lie inside this central binomial interval
+STRIKE_DAMAGE_TOLERANCE = 0.10   # expected shield loss within this share of the logged one
 
 # ----------------------------------------------------------------- hit profiles
 # advanced_combat_system.json weaponHitProfiles covered four classes. Melee had none,

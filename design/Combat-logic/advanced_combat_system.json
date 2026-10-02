@@ -3,10 +3,10 @@
     "title": "Advanced Combat Resolution System v2",
     "version": "2.0",
     "extends": "data-template.json -> combatResolution",
-    "newConcepts": ["distance/range bands", "signature & detection/lock-on", "speed-based evasion", "missile flight + point-defense interception"],
+    "newConcepts": ["distance/range bands", "signature & detection/lock-on", "speed-based evasion", "missile flight + point-defense interception", "strike craft"],
     "note": "Formulas are given as readable pseudocode, not code. 'signature' is a derived stat computed from existing ship fields (see signatureSystem.derivation) so it works with ships that don't have an explicit signature field.",
     "vocabulary": "Every 'turn' in this file means a combat ROUND (GamePlay/gameplay_specification.md 3). Key and field names that still say 'turn' (updatedTurnStructure, shotsPerTurn, cooldownTurns, rechargeRatePerTurn) are renamed by the schema clean-up, not here.",
-    "rulings": "The numbers the five rulings and the special-effect rules introduce live in tools/combat_tables.py; Combat-logic/combat_logic_specification.md 1.4, 2.1, 2.4, 2.5, 3.4 and 3.7 explain them; tools/verify_combat.py holds the three together."
+    "rulings": "The numbers the five rulings and the special-effect rules introduce live in tools/combat_tables.py; Combat-logic/combat_logic_specification.md 1.4, 2.1, 2.4, 2.5, 2.6, 3.4 and 3.7 explain them; tools/verify_combat.py holds the three together."
   },
 
   "v1Overrides": {
@@ -134,6 +134,17 @@
     "designIntent": "This creates a rock-paper-scissors: missiles beat evasive/fast ships (ignore half their dodge), point-defense beats missiles (dedicated PD hardpoints shred small volleys), and swarm/saturation missile boats beat point-defense (more warheads than PD shots available). A ship with no PD hardpoints equipped is very vulnerable to any missile-armed opponent."
   },
 
+  "strikeCraftSystem": {
+    "description": "R7 (combat_logic_specification.md 2.6). Fighters and drones are craft, not weapons: no hardpoint, no range band, no lock of their own, and no direct-fire weapon can aim at one. Numbers live in tools/combat_tables.py CRAFT_PROFILES.",
+    "hangar": "A ship carries floor(effective(aircraftCapacity)) fighters and floor(effective(droneCapacity)) drones: capacities.aircraft / capacities.drones plus the hangar modules' flat values. Craft fly in squadrons of up to SQUADRON_SIZE = 6, formed at launch.",
+    "cadence": "Craft aboard at the start are stowed: fighters first launch in round 1 + 4, drones in round 1 + 1. A craft recovered in round r launches again from round r + 2 (fighters) or r + 1 (drones). Launch and recovery happen in the movement phase with no deck limit; a ship running silent does neither. A strike launches only at a ship its carrier holds a lock on.",
+    "movement": "Squadrons move after every ship, at speed x ROUND_TIME a round (fighter 1,000 x effective(squadronSpeed); drone 600), with no acceleration or turn penalty, and stop at their destination. Intents: strike (attack on arrival; a fighter once, then return; a drone every round), escort (stay with a friendly ship; one anti_air attempt per craft per round against enemy craft), return (recovered on arrival).",
+    "interception": "All craft attacking one ship in a round are one wave. It meets the target's own craft-engaging pool weapons (shared with missiles, missiles first by default), pool weapons other ships assigned to cover the target (craft only, within the weapon's range.optimal) and the target's escorts, before any hit roll. Craft projectileEvasion = 1.10 x effective(squadronEvasion) for fighters, 1.00 for drones. area_denial downs one more craft of the wave per success.",
+    "attack": "baseChance = baseHitChance x weaponHitProfiles[hitProfile].baseHitChanceModifier x accuracy (fighter 0.65, missile profile, x carrier.effective(squadronAccuracy); drone 0.70, kinetic profile, x controller.effective(weaponAccuracy)[drone], the Drones skill gate included), - 0.2 if a component is targeted. finalHitChance = clamp(baseChance - speedEvasion(target, tracking) x (1 - evasionIgnoredFraction) + target.effective(enemyHitChance), 0.05, 0.95). No range multiplier, no arming check, lockQuality 1. Damage: fighter 115 +- 15 explosive; drone 30 +- 4 kinetic x controller.effective(weaponDamage)[drone]. Critical chance 0.05 / 0.02.",
+    "losses": "Interception is the only loss in flight. Drones die with their controller (destroyed or disengaged). A fighter whose carrier left recovers aboard any friendly ship with free aircraftCapacity, or is lost when the battle ends. Craft aboard a destroyed ship are lost with it. Losses carry into the next engagement; craft are restocked in turn phase 12 from manufactured resources, per craft.",
+    "mines": "Decided with R7: when a mine layer is destroyed or disengages its command fields are spent and its proximity fields stay until they detonate, expire or are swept; every field expires when the engagement ends."
+  },
+
   "masterHitChanceFormula": {
     "pseudocode": [
       "1. Determine distance between attacker and target this round.",
@@ -156,13 +167,13 @@
 
   "updatedTurnStructure": [
     "1. Initiative: sort by initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20, descending (R8; v1's undefined 'sensorArray effectiveness' term is replaced by the initiative stat sensor modules already carry).",
-    "2. Signature/state declaration: each ship declares this round's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem, and its movement intent (hold / close / open / withdraw, movementSystem).",
+    "2. Signature/state declaration: each ship declares this round's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem, and its movement intent (hold / close / open / withdraw, movementSystem). Carriers declare launches and squadron intents (strikeCraftSystem).",
     "3. Detection phase: for every attacker-target pair, compute effectiveDetectionRange and update lockQuality (build, hold, or reset).",
     "4. Power allocation phase: assign power across weapons/shields/engines.",
-    "5. Movement phase: every ship moves along the engagement line in ascending initiative order per movementSystem (R6), updating position, speed and every pairwise distance; proximity mine fields trigger here.",
+    "5. Movement phase: every ship moves along the engagement line in ascending initiative order per movementSystem (R6), updating position, speed and every pairwise distance; proximity mine fields trigger here. Then craft launch, squadrons move and returning craft are recovered (strikeCraftSystem).",
     "6. Targeting phase: each ship selects target(s) and weapon(s) to fire, constrained by range.maximum and ammo remaining.",
-    "7. Missile resolution sub-phase: run missileResolutionPhase for all missile weapons fired this round (ammo deduction + PD interception).",
-    "8. Direct-fire resolution phase: for all non-missile weapons and surviving missiles, run masterHitChanceFormula, then apply damageFormula (shields -> armor -> hull/component) from the base combat system.",
+    "7. Missile resolution sub-phase: run missileResolutionPhase for all missile weapons fired this round, and strikeCraftSystem.interception for every craft wave (ammo deduction + PD interception).",
+    "8. Direct-fire resolution phase: for all non-missile weapons, surviving missiles and surviving craft (strikeCraftSystem.attack), run masterHitChanceFormula, then apply damageFormula (shields -> armor -> hull/component) from the base combat system.",
     "9. Critical checks on confirmed hits per componentCriticalTable.",
     "10. End of round: shields recharge (if outside rechargeDelay window), signature bonuses from this round's actions expire, repair modules apply, check destruction/retreat; a withdrawing ship that no enemy holds a lock on disengages (R6)."
   ],

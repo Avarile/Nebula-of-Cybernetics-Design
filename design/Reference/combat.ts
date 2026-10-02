@@ -20,8 +20,9 @@
  */
 
 import type { ComponentName, Ship } from './ships';
-import type { Distance, Fraction01, HardpointId, ModuleSlotId, ShipId, ShipTier, WeaponId } from './common';
+import type { DamageType, Distance, Fraction01, HardpointId, LaneQuantity, ModuleSlotId, ShipId, ShipTier, WeaponId } from './common';
 import type { AmmoCapacity, Weapon, WeaponClass, WeaponRange, WeaponSpecialEffect } from './weapons';
+import type { SkillWeaponClass } from './skills';
 
 // ================================================================
 // 1. TURN STRUCTURE
@@ -356,6 +357,13 @@ export interface MineDeployment {
   roundsRemaining: number | null;
   /** Ships already hit this round — an area_denial field fires once per ship per round. */
   detonatedThisRound: ShipId[];
+  /**
+   * R7: the layer (`ownerShipId`) has been destroyed or has disengaged. A command
+   * field is spent at that moment; a proximity field stays on the line until it
+   * detonates, runs out its area_denial rounds, or is swept. Every field expires
+   * when the engagement ends.
+   */
+  layerGone: boolean;
 }
 
 // ================================================================
@@ -462,8 +470,18 @@ export interface MissileVolley {
  *                           + interceptChanceDelta - projectileEvasion, 0.05, 0.95)
  */
 export interface InterceptionAttempt {
-  pdWeaponId: WeaponId;
-  /** What the attempt engaged. Craft resolution itself is OPEN_RULINGS R7. */
+  /** The pool weapon making the attempt; null for an escorting craft (spec 2.6). */
+  pdWeaponId: WeaponId | null;
+  /**
+   * R7: `pool` — the target's own pool; `cover` — a pool weapon on another ship
+   * assigned to cover the target (craft only); `escort` — a craft escorting the
+   * target, attempting as an anti_air pool weapon (craft only).
+   */
+  source: 'pool' | 'cover' | 'escort';
+  /** The ship whose weapon or escort made the attempt. */
+  fromShipId: ShipId;
+  escortSquadronId?: string;
+  /** What the attempt engaged. Craft are projectiles here, at `CraftProfile.interceptEvasion`. */
   targetKind: 'missile' | 'craft';
   targetIndex: number;
   /** 1.25 when the pool weapon carries `high_tracking`, else 1. */
@@ -514,6 +532,136 @@ export interface PointDefenceReadout {
   pooledShotsPerTurn: number;
   /** True when `pooledShotsPerTurn === 0`. */
   undefendedAgainstMissiles: boolean;
+}
+
+// ================================================================
+// 6b. STRIKE CRAFT (R7)
+// ================================================================
+
+/**
+ * Fighters and drones (spec 2.6). Neither is a weapon: no hardpoint, no range band,
+ * no lock of its own, and no direct-fire weapon can aim at one. The interception
+ * pool and escorting craft engage them, only in a round they attack.
+ */
+export type CraftKind = 'fighter' | 'drone';
+
+/** Source of truth: CRAFT_PROFILES in tools/combat_tables.py. */
+export interface CraftProfile {
+  /** A ship carries floor(effective(capacityStat)) craft of this kind. */
+  capacityStat: 'aircraftCapacity' | 'droneCapacity';
+  /** Distance per time unit, x effective(speedStat) when there is one; covers speed x ROUND_TIME a round. */
+  speed: number;
+  speedStat: 'squadronSpeed' | null;
+  /** The craft's projectileEvasion in the spec 2.5 interceptChance, x effective(evasionStat). */
+  interceptEvasion: number;
+  evasionStat: 'squadronEvasion' | null;
+  baseHitChance: Fraction01;
+  /** Fighter: the carrier's squadronAccuracy. Drone: the controller's weaponAccuracy[drone], gated by the Drones skill. */
+  accuracyStat: 'squadronAccuracy' | 'weaponAccuracy';
+  /** Drone: the controller's weaponDamage[drone]. Fighters have none. */
+  damageStat: 'weaponDamage' | null;
+  /** The skill class scoping accuracyStat / damageStat; null for fighters, which have no Weaponry skill. */
+  weaponClass: Extract<SkillWeaponClass, 'drone'> | null;
+  /** The weaponHitProfiles entry the attack reads. */
+  hitProfile: Extract<WeaponClass, 'missile' | 'kinetic'>;
+  /** Against the target's speed in spec 2.4, and in an escort's interception attempt. */
+  tracking: number;
+  damage: { base: number; variance: number; damageType: DamageType };
+  criticalChance: Fraction01;
+  /** 1: one attack run, then the squadron returns. null: attacks every round it is on its target. */
+  attacksPerSortie: number | null;
+  /** Stowed at the start of an engagement: first launch in round 1 + this. */
+  coldStartRounds: number;
+  /** Recovered in round r: launches again from round r + this. */
+  turnaroundRounds: number;
+  /** Per craft, in manufactured-resource units by lane; restocked in phase 12. */
+  restockCost: LaneQuantity;
+}
+
+export type CraftProfiles = Record<CraftKind, CraftProfile>;
+
+/** Declared in phase 2 with the carrier's own intent; resolved in phase 5. */
+export type CraftIntent =
+  /** Fly to an enemy ship; attack if the squadron ends phase 5 on it. */
+  | { kind: 'strike'; target: ShipId; targetedComponent?: ComponentName }
+  /** Fly to a friendly ship and stay; each craft adds one anti_air attempt a round to its pool. */
+  | { kind: 'escort'; ship: ShipId }
+  /** Fly to the carrier; recovered if it ends phase 5 there. */
+  | { kind: 'return' };
+
+export interface StrikeCraftConstants {
+  /** 6 — Veritas/Cinder: "2 squadrons (12 fighters)". */
+  squadronSize: number;
+  intents: readonly CraftIntent['kind'][];
+  /** A full complement never costs more than this share of its hull's buildCost. */
+  wingCostShareMax: Fraction01;
+}
+
+/**
+ * One airborne squadron: up to SQUADRON_SIZE craft of one kind, formed at launch.
+ * It lives on the engagement line until it is recovered or its last craft is lost.
+ */
+export interface Squadron {
+  squadronId: string;
+  kind: CraftKind;
+  /** The ship that launched it, or the friendly deck it is bound for after its carrier left. */
+  carrierShipId: ShipId;
+  /** Craft still flying; 1..SQUADRON_SIZE. */
+  craft: number;
+  intent: CraftIntent;
+  /** On the engagement line (spec 1.4); squadrons move after every ship has moved. */
+  position: Distance;
+  roundLaunched: number;
+  /** A fighter takes `return` once this reaches attacksPerSortie. */
+  attacksMade: number;
+}
+
+/**
+ * One kind of craft aboard one ship. RUNTIME STATE THAT OUTLIVES THE BATTLE: losses
+ * carry into the next engagement until the hangar is restocked in phase 12.
+ */
+export interface HangarState {
+  kind: CraftKind;
+  /** floor(effective(capacityStat)). */
+  capacity: number;
+  /** Aboard and ready to launch. */
+  ready: number;
+  /** Aboard but not yet launchable: stowed at the start of the engagement, or rearming. */
+  readying: { readyFromRound: number; craft: number }[];
+}
+
+/** Phase 7: every craft attacking one ship this round is one wave. */
+export interface CraftWaveInterception {
+  target: ShipId;
+  squadronIds: string[];
+  craftIn: number;
+  attempts: InterceptionAttempt[];
+  /** Includes the extra craft area_denial downs on each success. */
+  downed: number;
+  survived: number;
+}
+
+/**
+ * Phase 8: one surviving craft's attack.
+ *   baseChance     = baseHitChance x hitProfile.baseHitChanceModifier x accuracyMultiplier
+ *                    (- 0.20 when a component is targeted)
+ *   finalHitChance = clamp(baseChance - evasion x (1 - evasionIgnoredFraction)
+ *                          + target.effective(enemyHitChance), 0.05, 0.95)
+ * No range band, no arming check, lock quality 1, no crew term.
+ */
+export interface CraftAttackResolution {
+  squadronId: string;
+  kind: CraftKind;
+  target: ShipId;
+  accuracyMultiplier: number;
+  baseChance: Fraction01;
+  evasion: EvasionResolution;
+  targetEnemyHitChance: number;
+  finalHitChance: Fraction01;
+  roll: number;
+  hit: boolean;
+  damage: DamageResolution | null;
+  critical: CriticalResolution | null;
 }
 
 // ================================================================
@@ -805,6 +953,13 @@ export interface CombatantState {
 
   /** Lock this ship holds on each opponent — keyed by the opponent's id. */
   locks: Record<ShipId, LockState>;
+
+  /** R7: craft aboard, per kind this ship can carry. Persists between engagements. */
+  hangars: Partial<Record<CraftKind, HangarState>>;
+  /** R7: squadrons this ship launched (or will recover) that are in the air. */
+  squadronsAirborne: Squadron[];
+  /** R7: pool weapons assigned this round to cover another ship against craft. */
+  coverAssignments: Record<HardpointId, ShipId>;
   statusEffects: StatusEffect[];
 
   /** Aggregated module effects applied to the hull's stats for this battle. */
@@ -1100,7 +1255,9 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
     conflict:
       'Fighters and drones decide the Veritas/Cinder action, and aircraftCapacity, droneCapacity and the squadron* stats point at spec 2.5, but no rule says how a squadron launches, attacks, takes losses or rearms.',
     recommendation: 'Define squadron launch, attack, loss and rearm rules; craft already enter the interception pool.',
-    status: 'open',
+    status: 'ruled',
+    ruling:
+      'Craft are not weapons: fighter and drone profiles (CRAFT_PROFILES), squadrons of 6. Fighters are stowed 4 rounds and turned round in 2, move 1,000 x squadronSpeed on the engagement line after the ships, are intercepted at 1.10 x squadronEvasion (with cover from neighbouring pool weapons and escorts) and attack once on the missile profile at 0.65 x squadronAccuracy for 115 explosive. Drones read the Drones skill and its x0.50 gate through weaponAccuracy / weaponDamage [drone]. Losses carry over; craft are restocked from manufactured resources in phase 12. Command mine fields die with their layer, proximity fields outlive it, no field outlives the battle. Spec 2.6; verify_combat.py recomputes the Veritas/Cinder strikes.',
   },
   {
     id: 'R8',
@@ -1112,7 +1269,7 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
       'Name the term each stat modifies in the hit, damage and critical formulas, and make verify_gameplay.py check that the cited section actually names the stat.',
     status: 'ruled',
     ruling:
-      'One stacking rule (spec 1.3): (base + flat) x (1 + summed percent) x each penalty on its own. Every combat stat is named in the formula it modifies; acceleration and the strike-craft stats are parked on R6/R7. verify_gameplay.py now fails when a cited section does not name its stat.',
+      'One stacking rule (spec 1.3): (base + flat) x (1 + summed percent) x each penalty on its own. Every combat stat is named in the formula it modifies; acceleration and the strike-craft stats were parked on R6/R7, both since ruled. verify_gameplay.py now fails when a cited section does not name its stat.',
   },
   {
     id: 'R9',

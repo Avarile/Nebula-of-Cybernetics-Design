@@ -163,8 +163,8 @@ check('spec 3.7 states the ruled retreat threshold',
 # --- Reference/combat.ts -------------------------------------------------------------------
 ts = open(TS_PATH).read()
 rulings = dict(re.findall(r"id: '(R\d+)',.*?status: '(open|ruled)'", ts, re.S))
-check('R1-R6, R8 and R9 are marked ruled in combat.ts OPEN_RULINGS',
-      [f'{r}: {rulings.get(r)}' for r in ('R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R8', 'R9')
+check('R1-R9 are marked ruled in combat.ts OPEN_RULINGS',
+      [f'{r}: {rulings.get(r)}' for r in ('R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9')
        if rulings.get(r) != 'ruled'])
 sec52 = spec.split('### 5.2', 1)[1] if '### 5.2' in spec else ''
 check('every open ruling in combat.ts is listed in spec 5.2',
@@ -226,7 +226,7 @@ def hull_field(stat):
 combat_stats = sorted(s for s, (doc, _, rule) in GT.STAT_RULES.items()
                       if 'Combat-logic' in doc or 'combat' in rule)
 check('every STAT_KIND stat is in the stat vocabulary', sorted(set(CT.STAT_KIND) - set(ALL_STATS)))
-check('every combat stat is a hull field, has a STAT_KIND, or is parked on R6/R7',
+check('every combat stat is a hull field, has a STAT_KIND, or is parked on an open ruling',
       [s for s in combat_stats if not hull_field(s) and s not in CT.STAT_KIND and s not in CT.PENDING_RULINGS])
 check('no STAT_KIND stat is secretly a hull field', [s for s in CT.STAT_KIND if hull_field(s)])
 check('caps apply only to additive stats',
@@ -300,7 +300,7 @@ cruiser = next(s for s in FLEET['ships'] if s['shipId'] == 'ship_heavy_cruiser_t
 target = next(s for s in FLEET['namedShips'] if s['name'] == 'Whisperfang')
 evasion = min(target['mobility']['evasionRating']
               + speed_bonus(target['mobility']['topSpeed'], tracking_counter(rail)), 0.60)
-worked = spec.split('**Worked example', 1)[1].split('**Pending', 1)[0] if '**Worked example' in spec else ''
+worked = spec.split('**Worked example', 1)[1].split('**Strike craft (R7)', 1)[0] if '**Worked example' in spec else ''
 bad = []
 for level in (3, 5, 8):
     final = min(max(rail['accuracy']['baseHitChance'] * accuracy_mult(level)
@@ -519,6 +519,255 @@ check('constants.ts MOVEMENT_CONSTANTS, EVASION_CONSTANTS and the state boosts m
           ('runningSilent topSpeedDelta', sil and round(float(sil.group(1)) + 1, 9), CT.RUNNING_SILENT_SPEED_FACTOR))
        if got != want]
       + sorted(set(CT.MOVEMENT_INTENTS) ^ set(re.findall(r"'(\w+)'", mv.split('intents', 1)[-1]))))
+
+# --- R7: strike craft ---------------------------------------------------------------------------
+import math
+
+M_BY_ID = {m['moduleId']: m for m in FLEET['modules']}
+SHIP_BY_ID = {s['shipId']: s for s in FLEET['ships']}
+FIGHTER, DRONE = CT.CRAFT_PROFILES['fighter'], CT.CRAFT_PROFILES['drone']
+sec26 = spec.split('### 2.6', 1)[1].split('\n---', 1)[0] if '### 2.6' in spec else ''
+
+
+def effective(ship, stat, base):
+    """Spec 1.3 from the fitted modules alone (skills at level 0)."""
+    effects = [e for sl in ship['moduleSlots']['list'] if sl.get('moduleEquipped') in M_BY_ID
+               for e in M_BY_ID[sl['moduleEquipped']]['effects'] if e['stat'] == stat]
+    flat = sum(e['modifier'] for e in effects if e['modifierType'] == 'flat')
+    pct = sum(e['modifier'] for e in effects if e['modifierType'] == 'percent')
+    return (base + flat) * (1 + pct / 100)
+
+
+def craft_carried(ship, profile):
+    field = CT.HULL_FIELD_ALIASES[profile['capacityStat']].split('.')
+    return math.floor(effective(ship, profile['capacityStat'], ship[field[0]][field[1]]) + 1e-9)
+
+
+def clamp(x, lo, hi):
+    return min(max(x, lo), hi)
+
+
+def craft_pool(ship):
+    """(attempts, chance per attempt vs a fighter, craft downed per success) per craft-engaging mount."""
+    out = []
+    for h in ship['hardpoints']['list']:
+        w = W_BY_ID.get(h.get('weaponEquipped'))
+        fx = set(w['specialEffects']) if w else set()
+        engages = [e for e in fx if 'craft' in CT.POOL_EFFECTS.get(e, ())]
+        if not engages:
+            continue
+        delta = max(RULES[e]['intercept']['interceptChanceDelta'] for e in engages) \
+            + sum(RULES[e]['intercept'].get('interceptChanceDelta', 0) for e in fx
+                  if e not in CT.POOL_EFFECTS and 'intercept' in RULES.get(e, {}))
+        tf = RULES['high_tracking']['intercept']['trackingFactor'] if 'high_tracking' in fx else 1
+        raw = w['accuracy']['baseHitChance'] + w['accuracy']['tracking'] * tf / CT.INTERCEPT_TRACKING_DIVISOR + delta
+        shots = w['fireRate']['shotsPerTurn'] + sum(RULES[e]['intercept'].get('extraAttemptsPerMount', 0)
+                                                    for e in fx if 'intercept' in RULES.get(e, {}))
+        kills = 1 + sum(RULES[e]['intercept'].get('extraKillsPerSuccessVsCraft', 0)
+                        for e in fx if 'intercept' in RULES.get(e, {}))
+        out.append((shots * effective(ship, 'pointDefenseBonus', 1),
+                    clamp(raw - FIGHTER['interceptEvasion'], 0.05, 0.95), kills, raw))
+    return out
+
+
+def fighter_hit_chance(target):
+    profile = V2['weaponHitProfiles'][FIGHTER['hitProfile']]
+    speed = effective(target, 'topSpeed', target['mobility']['topSpeed'])
+    ev = clamp(effective(target, 'evasionRating', target['mobility']['evasionRating'])
+               + speed_bonus(speed, FIGHTER['tracking']), 0, 0.60)
+    base = FIGHTER['baseHitChance'] * profile['baseHitChanceModifier']
+    return clamp(base - ev * (1 - profile['evasionIgnoredFraction'])
+                 + effective(target, 'enemyHitChance', 0) / 100, 0.05, 0.95)
+
+
+def fighter_damage(target):
+    """Mean shield damage of one fighter hit."""
+    return FIGHTER['damage']['base'] * (1 - target['shields']['damageTypeResistance'][FIGHTER['damage']['damageType']])
+
+
+# The skills: Fighter Squadron Control is exactly the fighter's three stats; the Drones
+# skill gates exactly the drone's two, on a class no catalogue weapon has.
+fsc = next(s for s in FLEET['skills'] if s['skillId'] == 'skl_flt_fighter_squadron_control')
+drones = next(s for s in FLEET['skills'] if s['skillId'] == 'skl_wpn_drones')
+drone_stats = {str(DRONE['accuracyStat']), str(DRONE['damageStat'])}
+fighter_stats = [FIGHTER['speedStat'], FIGHTER['accuracyStat'], FIGHTER['evasionStat']]
+check('R7: Fighter Squadron Control raises exactly the fighter profile\'s squadron stats, which are multipliers',
+      sorted({e['stat'] for e in fsc['effects']} ^ set(map(str, fighter_stats)))
+      + [str(s) for s in fighter_stats if CT.STAT_KIND.get(s, ('',))[0] != 'multiplier'])
+check('R7: the Drones skill gates and raises exactly the drone attack stats, on a class no weapon carries',
+      sorted({p['stat'] for p in drones['penalties'] if p.get('appliesTo', {}).get('weaponClass') == DRONE['weaponClass']}
+             ^ drone_stats)
+      + sorted({e['stat'] for e in drones['effects'] if e.get('appliesTo', {}).get('weaponClass') == DRONE['weaponClass']}
+               ^ drone_stats)
+      + [w['weaponId'] for w in WEAPONS if w['weaponClass'] == DRONE['weaponClass']][:3])
+
+# Every hangar module feeds a craft kind's capacity, and every kind is fed by one.
+hangar_stats = {e['stat'] for m in FLEET['modules'] if m['slotType'] == 'hangar' for e in m['effects']
+                if e['stat'].endswith('Capacity')}
+check('R7: the hangar modules\' capacity stats are exactly the craft profiles\' capacity stats, each a hull field',
+      sorted(hangar_stats ^ {p['capacityStat'] for p in CT.CRAFT_PROFILES.values()})
+      + [p['capacityStat'] for p in CT.CRAFT_PROFILES.values() if not hull_field(p['capacityStat'])])
+
+# Interception against craft is graded: 1.10 must leave squadronEvasion something to move.
+craft_weapons = [w for w in WEAPONS if any('craft' in CT.POOL_EFFECTS.get(e, ()) for e in w['specialEffects'])]
+chances = [p for w in craft_weapons for _, p, _, _ in craft_pool({'hardpoints': {'list': [{'weaponEquipped': w['weaponId']}]},
+                                                                   'moduleSlots': {'list': []}})]
+floored = sum(p <= 0.05 for p in chances)
+capped = sum(p >= 0.95 for p in chances) / len(chances)
+check(f'R7: interception against a fighter is graded ({floored} at the floor, {capped:.0%} capped, '
+      f'median {sorted(chances)[len(chances) // 2]:.2f})',
+      [] if floored == 0 and capped <= CT.CRAFT_INTERCEPT_CAPPED_MAX else [f'floor {floored}, capped {capped:.2f}'])
+
+# A full complement is never a large share of its hull.
+bad = []
+lanes = set(FLEET['ships'][0]['buildCost'])        # buildCost is by resource lane
+for kind, profile in CT.CRAFT_PROFILES.items():
+    if set(profile['restockCost']) != lanes or min(profile['restockCost'].values()) < 0:
+        bad.append(f'{kind}: restockCost lanes {sorted(profile["restockCost"])}')
+    for s in ALL_HULLS:
+        n = craft_carried(s, profile)
+        share = n * sum(profile['restockCost'].values()) / sum(s['buildCost'].values())
+        if share > CT.CRAFT_WING_COST_SHARE_MAX:
+            bad.append(f'{s.get("shipId", s["name"])}: {n} {kind}s cost {share:.0%} of the hull')
+check(f'R7: restock costs are by resource lane, and no full complement costs over '
+      f'{CT.CRAFT_WING_COST_SHARE_MAX:.0%} of its hull', bad)
+
+# The logged carriers: their template's hangar gives the logged squadron count.
+log_text = open(os.path.join(ROOT, 'Combat-logic', CT.STRIKE_LOG)).read()
+bad, complement = [], {}
+for name, sid in CT.STRIKE_CARRIERS.items():
+    m = re.search(rf'\| \*{re.escape(name)}\* \| ([A-Za-z ]+?) \|.*\((\d+) squadrons\)', log_text)
+    hull = SHIP_BY_ID.get(sid)
+    if not m or not hull:
+        bad.append(f'{name}: no roster row or no hull {sid}'); continue
+    carried = craft_carried(hull, FIGHTER)
+    complement[name] = (int(m.group(2)), carried)
+    if m.group(1).lower().replace(' ', '_') != hull['shipClass']:
+        bad.append(f'{name}: logged as {m.group(1)}, stands for {hull["shipClass"]}')
+    elif carried // CT.SQUADRON_SIZE != int(m.group(2)):
+        bad.append(f'{name}: {carried} fighters is {carried // CT.SQUADRON_SIZE} squadrons, logged {m.group(2)}')
+    elif not re.search(rf'\*{re.escape(name)}\* \|[^|]+\|[^|]*\b{carried} \| {carried // CT.SQUADRON_SIZE}, '
+                       rf'{carried % CT.SQUADRON_SIZE} in reserve', sec26):
+        bad.append(f'{name}: {carried} fighters / {carried // CT.SQUADRON_SIZE} squadrons not in the spec 2.6 table')
+check('R7: each logged carrier\'s squadron count is its template\'s hangar over SQUADRON_SIZE', bad)
+
+
+def log_round(r):
+    return log_text.split(f'**Round {r}:**', 1)[-1].split('**Round', 1)[0] if f'**Round {r}:**' in log_text else ''
+
+
+# Bookkeeping: the log's craft counts add up, fresh squadrons fly once, rebuilt craft exist.
+bad, fresh, history = [], {}, {}
+for c in CT.STRIKE_CLAIMS:
+    tag = f'round {c["round"]} {c["carrier"]} -> {c["target"]}'
+    para = log_round(c['round'])
+    words = [c['carrier'], c['target']] + [str(n) for n in (c['launched'], c['downed'], c['attacked'], c['hits'])
+                                           if n is not None]
+    missing = [w for w in words if not re.search(rf'(?<![\w.]){re.escape(w)}(?![\w])', para)]
+    if missing:
+        bad.append(f'{tag}: {missing} not in the log\'s round {c["round"]}')
+    if c['launched'] != c['fresh'] * CT.SQUADRON_SIZE + c['rebuiltCraft']:
+        bad.append(f'{tag}: {c["launched"]} != {c["fresh"]} x {CT.SQUADRON_SIZE} + {c["rebuiltCraft"]}')
+    if c['downed'] + c['attacked'] != c['launched'] or (c['hits'] or 0) > c['attacked']:
+        bad.append(f'{tag}: downed + attacked != launched, or hits > attacked')
+    earlier = history.get(c['carrier'], [])
+    squadrons, carried = complement.get(c['carrier'], (0, 0))
+    if c['rebuiltCraft'] > sum(a for _, a in earlier) + carried - squadrons * CT.SQUADRON_SIZE:
+        bad.append(f'{tag}: {c["rebuiltCraft"]} rebuilt craft, more than came home plus the reserve')
+    fresh[c['carrier']] = fresh.get(c['carrier'], 0) + c['fresh']
+    history.setdefault(c['carrier'], []).append((c['round'], c['attacked']))
+bad += [f'{n}: {fresh.get(n, 0)} fresh squadrons flown, {sq} carried' for n, (sq, _) in complement.items()
+        if fresh.get(n, 0) != sq]
+check('R7: the logged strikes add up (launched = fresh x 6 + rebuilt = downed + attacked; each squadron flies once)', bad)
+
+# Timing: the cadence reproduces the log's launch rounds, and a fighter reaches the line.
+first = min(c['round'] for c in CT.STRIKE_CLAIMS)
+bad = [] if first == 1 + FIGHTER['coldStartRounds'] and 'First strike-craft launch' in log_round(first) \
+    else [f'first strike in round {first}, cadence says {1 + FIGHTER["coldStartRounds"]}']
+for c in CT.STRIKE_CLAIMS:
+    if c['rebuiltCraft']:
+        back = min(r for r, _ in history[c['carrier']] if r < c['round']) + 1      # recovered the round after
+        if c['round'] < back + FIGHTER['turnaroundRounds']:
+            bad.append(f'round {c["round"]}: rebuilt craft recovered in round {back} are not ready until '
+                       f'{back + FIGHTER["turnaroundRounds"]}')
+line = next((d1 for f, _s, _r0, _d0, r1, d1 in CT.RANGE_CLAIMS if f == CT.STRIKE_LOG and r1 == first), None)
+if line is None or FIGHTER['speed'] * CT.ROUND_TIME < line:
+    bad.append(f'a fighter covers {FIGHTER["speed"] * CT.ROUND_TIME} a round, the lines are {line} apart in round {first}')
+check('R7: first launch, rearm and reach match the log (cold start, turnaround, speed x ROUND_TIME)', bad)
+
+# Interception, hits and shield damage, recomputed from the catalogue for every strike.
+table_rows = {r.split('|')[2]: r for r in sec26.splitlines() if r.startswith('| ') and '→' in r}
+bad = []
+for c in CT.STRIKE_CLAIMS:
+    tag = f'round {c["round"]} -> {c["target"]}'
+    target = NAMED.get(c['target'])
+    cover = [NAMED.get(n) for n in c['cover']]
+    if not target or None in cover:
+        bad.append(f'{tag}: target or cover is not a named ship'); continue
+    pool = [mount for s in [target] + cover for mount in craft_pool(s)]
+    downed = min(sum(n * p * k for n, p, k, _ in pool), c['launched'])
+    p = fighter_hit_chance(target)
+    row = next((r for k, r in table_rows.items() if c['target'] in k and c['carrier'] in k), '')
+    if c['coverComplete'] and abs(downed - c['downed']) > CT.STRIKE_DOWNED_TOLERANCE:
+        bad.append(f'{tag}: {downed:.1f} downed expected, {c["downed"]} logged')
+    if not c['coverComplete'] and downed > c['downed'] + CT.STRIKE_DOWNED_TOLERANCE:
+        bad.append(f'{tag}: catalogued cover alone downs {downed:.1f}, more than the logged {c["downed"]}')
+    if f'{downed:.1f}' not in row or f'({p:.2f})' not in row:
+        bad.append(f'{tag}: {downed:.1f} downed / chance {p:.2f} not in the spec 2.6 row')
+    if c['hits'] is not None:
+        n, k = c['attacked'], c['hits']
+        cdf = lambda x: sum(math.comb(n, i) * p ** i * (1 - p) ** (n - i) for i in range(x + 1))
+        tail = (1 - CT.STRIKE_HIT_CONFIDENCE) / 2
+        if cdf(k) < tail or 1 - cdf(k - 1) < tail:
+            bad.append(f'{tag}: {k} hits of {n} is outside the central {CT.STRIKE_HIT_CONFIDENCE:.0%} at {p:.2f}')
+    dmg, shield = fighter_damage(target), target['shields']['maxHP']
+    if c['shields'] == 'hold' and c['hits'] * dmg >= shield:
+        bad.append(f'{tag}: {c["hits"]} hits deal {c["hits"] * dmg:.0f}, the logged shields {shield} would fall')
+    elif c['shields'] == 'collapse' and c['hits'] * dmg < shield:
+        bad.append(f'{tag}: {c["hits"]} hits deal {c["hits"] * dmg:.0f}, short of the logged collapse of {shield}')
+    elif isinstance(c['shields'], tuple):
+        before, after = c['shields']
+        want = c['attacked'] * p * dmg
+        if before != shield or abs(want - (before - after)) > CT.STRIKE_DAMAGE_TOLERANCE * (before - after):
+            bad.append(f'{tag}: {want:.0f} expected against {before - after} logged ({before} -> {after})')
+        elif f'{want:,.0f} expected' not in row:
+            bad.append(f'{tag}: {want:,.0f} not in the spec 2.6 row')
+    if isinstance(c['shields'], str) and f'{c["hits"] * dmg:.0f}' not in row:
+        bad.append(f'{tag}: {c["hits"] * dmg:.0f} not in the spec 2.6 row')
+check('R7: every logged strike recomputes from the catalogue (downed, hits, shields)', bad)
+
+# Mirrors: constants.ts and the v2 JSON.
+cp = consts.split('export const CRAFT_PROFILES', 1)[-1].split('} as const', 1)[0]
+bad = []
+for kind, profile in CT.CRAFT_PROFILES.items():
+    block_ = cp.split(f'{kind}: {{', 1)[-1].split('\n  },', 1)[0]
+    flat = {**{k: v for k, v in profile.items() if not isinstance(v, dict)},
+            **{f'damage.{k}': v for k, v in profile['damage'].items()},
+            **{f'restockCost.{k}': v for k, v in profile['restockCost'].items()}}
+    for k, v in flat.items():
+        leaf = k.split('.')[-1]
+        text = block_.split(k.split('.')[0] + ':', 1)[-1] if '.' in k else block_
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            ok = ts_num(text, leaf) == v
+        else:
+            ok = re.search(rf'\b{leaf}:\s*{"null" if v is None else repr(v)}', text) is not None
+        if not ok:
+            bad.append(f'{kind}.{k}')
+sc = consts.split('export const STRIKE_CRAFT_CONSTANTS', 1)[-1].split('} as const', 1)[0]
+bad += [k for k, v in (('squadronSize', CT.SQUADRON_SIZE), ('wingCostShareMax', CT.CRAFT_WING_COST_SHARE_MAX))
+        if ts_num(sc, k) != v]
+bad += sorted(set(CT.CRAFT_INTENTS) ^ set(re.findall(r"'(\w+)'", sc.split('intents', 1)[-1])))
+check('constants.ts CRAFT_PROFILES and STRIKE_CRAFT_CONSTANTS match combat_tables.py', bad)
+
+sc_v2 = V2.get('strikeCraftSystem', {})
+check('R7: the v2 strikeCraftSystem states the squadron size, cadence and craft evasion',
+      [t for t, where in ((f'SQUADRON_SIZE = {CT.SQUADRON_SIZE}', 'hangar'),
+                          (f'round 1 + {FIGHTER["coldStartRounds"]}', 'cadence'),
+                          (f'round r + {FIGHTER["turnaroundRounds"]}', 'cadence'),
+                          (f'{FIGHTER["interceptEvasion"]:.2f} x effective({FIGHTER["evasionStat"]})', 'interception'))
+       if t not in sc_v2.get(where, '')])
+intent_rows = set(re.findall(r'^\| `(\w+)` \|', sec26, re.M))
+check('R7: the spec 2.6 intent table lists exactly the craft intents', sorted(set(CT.CRAFT_INTENTS) ^ intent_rows))
 
 # --- the hand-written files survive ----------------------------------------------------------
 check('the hand-written combat files are present',

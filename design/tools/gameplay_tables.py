@@ -297,8 +297,8 @@ STAT_RULES = {
     'mineCapacity':            (_COMBAT, '3.4', 'mines deployable per engagement'),
     'minesweepRate':           (_COMBAT, '3.4', 'mines cleared per round'),
     'troopCapacity':           (_CON, '7', 'facility raiding'),
-    'aircraftCapacity':        (_COMBAT, '2.5', 'squadrons launchable'),
-    'droneCapacity':           (_COMBAT, '2.5', 'drones launchable'),
+    'aircraftCapacity':        (_COMBAT, '2.6', 'fighters a hangar carries'),
+    'droneCapacity':           (_COMBAT, '2.6', 'drones a hangar carries'),
     'medicalCapacity':         (_COMBAT, '3.6', 'crew recovery after casualties'),
     'fuelTransferRate':        (_LOG, '4', 'oiler refuelling other hulls'),
     # --- skill-only: combat ---------------------------------------------------
@@ -308,9 +308,9 @@ STAT_RULES = {
     'criticalEventResistance': (_COMBAT, '3.6', 'resisting critical effects'),
     'electronicSystemsEffectiveness': (_COMBAT, '2.3', 'ECM and sensor systems'),
     'fleetRegroupRate':        (_CON, '4', 'regroup chance for a disrupted fleet (4.3)'),
-    'squadronSpeed':           (_COMBAT, '2.5', 'fighter squadron performance'),
-    'squadronAccuracy':        (_COMBAT, '2.5', 'fighter squadron performance'),
-    'squadronEvasion':         (_COMBAT, '2.5', 'fighter squadron performance'),
+    'squadronSpeed':           (_COMBAT, '2.6', 'fighter speed on the engagement line'),
+    'squadronAccuracy':        (_COMBAT, '2.6', 'fighter attack chance'),
+    'squadronEvasion':         (_COMBAT, '2.6', 'fighter evasion against interception'),
     # --- skill-only: industry and trade ---------------------------------------
     'miningYield':             (_IND, '8', 'belt mining output per hull per turn'),
     'miningCycleSpeed':        (_IND, '8', 'belt mining cycle time'),
