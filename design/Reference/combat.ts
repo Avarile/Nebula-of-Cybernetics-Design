@@ -223,11 +223,23 @@ export interface LockState {
   turnsTracked: number;
 }
 
+/**
+ * Ruled (R9):
+ *   effectiveDetectionRange = effective(detectionRange) * sensorCondition
+ *                             * effective(sensorArray.effectiveness) * signatureFactor
+ *   signatureFactor = clamp((targetSignature / 16) ^ 0.5, 0.25, 4.0)
+ * Calibrated on every lock claim in the repo (LOCK_CLAIMS in tools/combat_tables.py).
+ */
 export interface DetectionResolution {
-  /** From `sensorArray.currentHP` (not maxHP, if damaged) x sensor-bonus modules. */
-  attackerSensorStrength: number;
+  /** The attacker's effective(detectionRange) — sensors.detectionRange plus radar/CIC/datalink and Scanning. */
+  detectionRange: Distance;
+  /** sensorArray.currentHP / sensorArray.maxHP; 0 while disabled or destroyed. */
+  sensorCondition: Fraction01;
+  /** effective(sensorArray.effectiveness). */
+  sensorEffectiveness: number;
   targetSignature: number;
-  /** `attackerSensorStrength * (targetSignature / 100)`. */
+  /** clamp((targetSignature / 16) ^ 0.5, 0.25, 4.0). */
+  signatureFactor: number;
   effectiveDetectionRange: Distance;
   distance: Distance;
   lock: LockState;
@@ -1008,6 +1020,8 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
       'effectiveDetectionRange = sensorArray HP x effectiveness x signature/100 gives a Motor Torpedo Boat ~0.2 units of lock range and a Battleship ~70,000, against weapon ranges of 300-4,500. Every hull carries a sensors.detectionRange (260-1,495) the formula never reads.',
     recommendation:
       'Anchor lock range on effective(detectionRange), scaled by sensor condition and a bounded signature factor, and re-check the v2 worked example against it.',
-    status: 'open',
+    status: 'ruled',
+    ruling:
+      'Anchored on effective(detectionRange) x sensor condition x effective(sensorArray.effectiveness) x clamp(sqrt(signature / 16), 0.25, 4.0). Calibrated on the v2 worked example and Sable/Ember round 2; verify_combat.py recomputes every claim.',
   },
 ];

@@ -150,11 +150,35 @@ Per-round state modifiers stack on top:
 | Running silent | −50% signature, but −30% top speed and **no weapons fire this round** |
 | ECM module active | −15% signature |
 
-Detection: `effectiveDetectionRange = attackerSensorStrength * (targetSignature / 100)`, where `attackerSensorStrength = sensorArray.currentHP × effective(sensorArray.effectiveness)` — scanning skill and sonar / counter-electronics modules raise it (R8). If `distance <= effectiveDetectionRange`, the target is **locked**; otherwise the attacker may still fire "blind" at a steep accuracy penalty.
+Detection (**ruled, R9**):
+
+```
+effectiveDetectionRange = effective(detectionRange)                                  // the hull's sensors.detectionRange
+                          * sensorArray.currentHP / sensorArray.maxHP                // sensor condition
+                          * effective(sensorArray.effectiveness)                     // R8
+                          * clamp((targetSignature / 16) ^ 0.5, 0.25, 4.0)           // signature factor
+```
+
+If `distance <= effectiveDetectionRange`, the target is **locked**; otherwise the attacker may still fire "blind" at a steep accuracy penalty. `detectionRange` carries radar, CIC, datalink and the Scanning skill. `sensorArray.effectiveness` carries Scanning and the sonar and counter-electronics modules. A disabled or destroyed sensor array gives a condition of 0, so that ship fires blind until it is repaired. This is the "reduced detection range" half of the sensor critical, and it stacks with R5's ×0.60 accuracy half.
+
+The formula this replaces, `sensorArray.currentHP × effectiveness × targetSignature / 100`, was on the wrong scale. It gave a Motor Torpedo Boat about 0.2 units of lock range and a Battleship about 70,000, and never read the `detectionRange` every hull carries. The exponent and reference are calibrated on the only lock claims the repo makes. Those claims admit a reference between about 4 and 17; 16 sits near the top so that signature keeps mattering for as many hulls as possible. `verify_combat.py` recomputes every row (`LOCK_CLAIMS`). Signature multipliers come from the state table above: shields ×1.10, one volley ×1.08, silent ×0.50.
+
+| claim | source | lock range | distance | result |
+|---|---|---:|---:|---|
+| *Leviathan Crown* holds *Whisperfang* | v2 worked example | ≈ 2,204 | 1,900 | locked ✓ |
+| *Wraithbolt* locks *Stormbreaker* | Sable/Ember round 2 | ≈ 3,725 | 2,600 | locked ✓ |
+| *Stormbreaker* sees the lit *Wraithbolt* | Sable/Ember round 2 | ≈ 3,048 | 2,600 | locked ✓ |
+| *Stormbreaker* sees the lit *Silverlance* | Sable/Ember round 2 | ≈ 2,698 | 2,600 | locked ✓ |
+| *Stormbreaker* misses silent *Whisperfang* | Sable/Ember round 2 | ≈ 1,292 | 2,600 | unseen ✓ |
+| *Stormbreaker* misses silent *Nightstrike* | Sable/Ember round 2 | ≈ 1,204 | 2,600 | unseen ✓ |
+| *Silverlance* fires blind at *Corvus* | Sable/Ember round 2 | ≈ 1,733 | 2,600 | blind ✓ |
+
+**What the shape means.** The square root and the 4.0 cap make signature matter most where it should. Against anything cruiser-sized or larger — 48 of the 78 template hulls — the cap applies and lock range is four times detection range. Big ships are loud, and running silent barely hides them. Against small hulls, signature decides everything: a silent destroyer drops below a heavy cruiser's lock at 2,600, and torpedo boats are nearly invisible to each other.
+
+Every armed hull can lock a Battleship T1 at least as far out as its shortest-ranged weapon's optimal; the verifier checks this. Five named capitals — *Stormbreaker*, *Doomcrest*, *Meridian Aegis*, *Leviathan Crown* and *World Ender* — carry mounts with 5,000–7,900 optimal, past even a capped lock. At those ranges they fire blind, or wait for the target to close. **Locks are never shared** (decided 2026-10-03): each ship fires on its own lock or not at all, so reach beyond a ship's own lock is always blind fire.
 
 **Electronics (R8).** `electronicSystemsEffectiveness` (the Electronics skill) is a multiplier on the **magnitude** of every effect carried by an electronic module: radar, sonar, CIC, datalink, ECM, decoy, counter-electronics, targeting computer, fire control and PD coordinator (`ELECTRONIC_MODULE_TYPES`). It also scales the ECM state's −15% signature. At level 10 an ECM suite's −11.5 points of `enemyHitChance` becomes −14.95. It never touches a non-electronic module, a skill or a hull field.
 
-The scale of this formula is suspect — see §5.2, R9. The stat hooks above do not depend on how that is resolved.
 
 Lock quality is not binary — it builds: a newly-locked target starts at `lockQuality = 0.5` and gains `+0.25` per round of continuous tracking, capping at `1.0` after 2 full rounds. Breaking line-of-sight/range, or the target going silent, resets it to 0. Sable/Ember Round 2 shows this directly: *Silverlance* fires at *Corvus* with a fresh, unbuilt lock and misses at long range — the log attributes the miss to lock quality, not just range.
 
@@ -420,6 +444,7 @@ Cross-referencing the three source files surfaced five inconsistencies. `GamePla
 | R4 | Retreat at 15% (v1) vs ~30% (both logs) | 30% hull; the logs win | §3.7; `RETREAT_THRESHOLD` |
 | R5 | v1's `sensorDebuff` was never defined | It is the `sensorArray` critical, applied as a multiplier | §2.1 step 8; v2 JSON step 9 |
 | R8 | Skill and module stats were routed here but appeared in no formula, including the Weaponry −50% gate | One stacking rule; every combat stat named in the formula it modifies; R6/R7-owned stats listed as pending | §1.3; §1.1, §2.1, §2.3–2.5, §3.1–3.4, §3.6; `STAT_KIND` |
+| R9 | The detection formula gave lock ranges from 0.2 to 70,000 and never read `sensors.detectionRange` | Anchored on `effective(detectionRange)` × sensor condition × `sensorArray.effectiveness` × `clamp(√(sig/16), 0.25, 4)`, calibrated on every lock claim in the repo | §2.3; `LOCK_CLAIMS`; v2 JSON `detectionAndLockOn` |
 
 Two smaller fixes came out of applying them. The interception sign for `high_tracking` was inverted (§2.5). Melee — 60 catalogue weapons — had no hit profile in the v2 JSON (§2.1); `Reference/constants.ts` already resolved it like kinetic, and the JSON now agrees.
 
@@ -431,4 +456,3 @@ Gaps found while ruling the others, each blocking something the catalogue alread
 
 - **R6 — Movement model.** Phase 5 says "resolve positioning" and nothing more. No rule turns `topSpeed`, `acceleration` and `turnRate` into a change in `distance` per round. Range bands, melee closing to a few dozen units, and where a ship stands relative to a mine field all read a distance this phase never computes. Related, and worth settling with it: §2.4's `/ 250` divisor saturates. Any target faster than a weapon's tracking + 88 gets the full 0.35 speed bonus, so even a 140-speed battleship maxes it against a railgun. The speed-vs-tracking matchup only differentiates among the slowest ships and the highest-tracking weapons.
 - **R7 — Strike craft.** Fighters and drones decide the Veritas/Cinder action, and `aircraftCapacity`, `droneCapacity` and the three `squadron*` skill stats all point at §2.5. No rule says how a squadron launches, attacks, takes losses or rearms; §2.5 only says craft enter the interception pool.
-- **R9 — Detection scale.** §2.3's `effectiveDetectionRange = sensorArray.currentHP × effectiveness × (targetSignature / 100)` is on the wrong scale for the catalogue. A Motor Torpedo Boat T1 (sensor HP 4) locks a peer at about 0.2 units. A Destroyer T1 (73) locks a peer at about 72, against weapon optimals of 300–500. A Battleship T3 (1,903) locks another at about 70,000. Every hull also carries a `sensors.detectionRange` (260 – 1,495) that this formula never reads. The v2 JSON's own worked example assumes *Leviathan Crown* holds a lock on *Whisperfang* at 1,900, which the formula as written does not give (≈ 99). Recommendation: anchor the formula on `effective(detectionRange)`, scaled by sensor condition and a bounded signature factor. That also lets `detectionRange` modules and the Scanning skill reach combat lock-on, which the logistics spec already claims they do.

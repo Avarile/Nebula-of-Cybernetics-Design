@@ -19,6 +19,7 @@ import combat_tables as CT
 
 FLEET = json.load(open(os.path.join(ROOT, 'fleet_and_weapons.json')))
 WEAPONS = FLEET['weapons']
+W_BY_ID = {w['weaponId']: w for w in WEAPONS}
 SPEC_PATH = os.path.join(ROOT, 'Combat-logic', 'combat_logic_specification.md')
 V2_PATH = os.path.join(ROOT, 'Combat-logic', 'advanced_combat_system.json')
 TS_PATH = os.path.join(ROOT, 'Reference', 'combat.ts')
@@ -295,6 +296,47 @@ for level in (3, 5, 8):
     if f'**{final:.2f}**' not in worked:
         bad.append(f'level {level}: hit chance {final:.2f} not in the table')
 check('spec 1.3 worked example recomputes from the live catalogue', bad)
+
+# --- R9: lock range --------------------------------------------------------------------------
+NAMED = {s['name']: s for s in FLEET['namedShips']}
+
+
+def signature(s):
+    return s['mass']['value'] * 0.05 + s['power']['maxPower'] * 0.1 + s['shields']['maxHP'] * 0.02
+
+
+def lock_range(attacker, target_signature):
+    lo, hi = CT.DETECTION_SIGNATURE_FACTOR_BOUNDS
+    factor = min(max((target_signature / CT.DETECTION_SIGNATURE_REFERENCE) ** CT.DETECTION_SIGNATURE_EXPONENT, lo), hi)
+    return attacker['sensors']['detectionRange'] * factor
+
+
+bad = []
+for a, t, mult, dist, want in CT.LOCK_CLAIMS:
+    if a not in NAMED or t not in NAMED:
+        bad.append(f'{a} / {t}: not a named ship'); continue
+    got = lock_range(NAMED[a], signature(NAMED[t]) * mult)
+    if (got >= dist) != want:
+        bad.append(f'{a} -> {t}: lock {got:.0f} at {dist} should be {"locked" if want else "unlocked"}')
+    elif f'{got:,.0f}' not in spec.split('Detection (**ruled, R9**)', 1)[-1].split('### 2.4', 1)[0]:
+        bad.append(f'{a} -> {t}: {got:,.0f} not in the spec 2.3 table')
+check('R9: every lock claim in the logs and worked example holds, and the spec table matches', bad)
+
+capital = next(s for s in FLEET['ships'] if s['shipId'] == 'ship_battleship_t1')
+bad = []
+for s in FLEET['ships'] + FLEET['namedShips']:
+    ranges = [W_BY_ID[h['weaponEquipped']]['range']['optimal'] for h in s['hardpoints']['list']
+              if h.get('weaponEquipped') in W_BY_ID and W_BY_ID[h['weaponEquipped']]['weaponClass'] != 'mine']
+    if ranges and lock_range(s, signature(capital) * 1.10) < min(ranges):
+        bad.append(f'{s.get("shipId")}: {lock_range(s, signature(capital) * 1.10):.0f} < {min(ranges)}')
+check('R9: every armed hull locks a Battleship T1 at its shortest weapon optimal', bad)
+
+check('constants.ts DETECTION_CONSTANTS matches combat_tables.py',
+      [k for k, v in (('signatureReference', CT.DETECTION_SIGNATURE_REFERENCE),
+                      ('signatureExponent', CT.DETECTION_SIGNATURE_EXPONENT),
+                      ('signatureFactorMin', CT.DETECTION_SIGNATURE_FACTOR_BOUNDS[0]),
+                      ('signatureFactorMax', CT.DETECTION_SIGNATURE_FACTOR_BOUNDS[1]))
+       if ts_num(consts.split('DETECTION_CONSTANTS', 1)[-1].split('} as const', 1)[0], k) != v])
 
 # --- the hand-written files survive ----------------------------------------------------------
 check('the hand-written combat files are present',

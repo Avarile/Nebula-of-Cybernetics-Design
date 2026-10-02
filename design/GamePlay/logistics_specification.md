@@ -180,8 +180,8 @@ Three properties:
   signature and detection model, unchanged — a fleet arriving with posture `silent` runs at
   −50 % signature and may pass unseen, at the cost of −30 % speed and cold weapons. The
   interdictor's reach is its hulls' `detectionRange` (`sensors.detectionRange`, raised by
-  radar, CIC, datalink and the Scanning skill). The combat formula does not yet read it —
-  `Combat-logic/combat_logic_specification.md` §5.2, R9.
+  radar, CIC, datalink and the Scanning skill), which the combat lock formula is anchored on
+  (`Combat-logic/combat_logic_specification.md` §2.3, R9).
 * **Chokepoints are real.** `Systems_Planets` §5.3 authors about seven named region-bridge
   gates as the only links between regions. Interdiction is what finally makes "The Meridian
   Gate" and "Cold Harbour Approach" strategic objects rather than flavour names: a union

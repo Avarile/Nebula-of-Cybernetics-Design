@@ -48,8 +48,8 @@
       { "state": "ecmModuleActive",      "effect": "-15% signature (mod_ecm_std or similar)" }
     ],
     "detectionAndLockOn": {
-      "attackerSensorStrength": "derived from sensorArray.maxHP (or currentHP if damaged) * (1 + sensorArray_bonus_modules)",
-      "effectiveDetectionRange": "attackerSensorStrength * (targetSignature / 100)",
+      "attackerSensorStrength": "superseded by R9 - see effectiveDetectionRange",
+      "effectiveDetectionRange": "R9: effective(sensors.detectionRange) * (sensorArray.currentHP / sensorArray.maxHP) * effective(sensorArray.effectiveness) * clamp((targetSignature / 16) ^ 0.5, 0.25, 4.0). The original sensorArray HP x signature/100 gave lock ranges from 0.2 to 70,000. See combat_logic_specification.md 2.3.",
       "rule": "if distance <= effectiveDetectionRange: target is 'locked' and full accuracy formula applies. If distance > effectiveDetectionRange: target is 'unlocked' - attacker may still fire but suffers the blindFirePenalty below.",
       "lockOnBuildUp": "A newly-locked target starts at lockQuality = 0.5 and gains +0.25/round while continuously tracked (line of sight + in range), capping at 1.0 after 2 rounds. Breaking range/LoS or target using runningSilent resets lockQuality to 0.",
       "blindFirePenalty": "finalHitChance is multiplied by 0.25 and lockQuality is treated as 0.5 flat, representing firing at last-known position"
@@ -158,6 +158,7 @@
       "weaponMaximum": 2900,
       "rangeMultiplier": "~0.75 (medium-long band)",
       "locked": true,
+      "lockNote": "R9: Leviathan Crown (detectionRange 1150) holds Whisperfang (signature 53 x1.10 shields) out to ~2,204, so the lock at 1,900 holds.",
       "lockQuality": 1.0,
       "speedEvasionBonus": "targetSpeed 350 vs tracking 12 -> (350-12)/250 = 1.35 -> capped at 0.35",
       "effectiveEvasion": "0.24 + 0.35 capped to 0.60 -> 0.60",

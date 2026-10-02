@@ -489,7 +489,7 @@ python3 tools/verify_market.py        # 23 checks
 python3 tools/verify_facilities.py    # 26 checks
 python3 tools/verify_npc.py           # 25 checks
 python3 tools/verify_gameplay.py      # 45 checks -- the cross-cutting invariants; runs last
-python3 tools/verify_combat.py        # 32 checks -- combat rulings and stat hooks vs. the catalogues
+python3 tools/verify_combat.py        # 35 checks -- combat rulings, stat hooks and lock range vs. the catalogues
 python3 Reference/verify_reference.py # 59 checks -- TypeScript interface vs. the data
 ```
 

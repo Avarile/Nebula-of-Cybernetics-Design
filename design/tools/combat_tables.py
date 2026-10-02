@@ -277,6 +277,37 @@ ELECTRONIC_MODULE_TYPES = ('radar', 'sonar', 'cic', 'datalink', 'ecm', 'decoy',
                            'ecCounterElectronics', 'targetingComputer', 'fireControl',
                            'pdCoordinator')
 
+# --- 2.3 lock range (R9). Anchored on the hull's own detectionRange, which the old
+# formula never read:
+#
+#   lockRange = effective(detectionRange)
+#               * sensorArray.currentHP / sensorArray.maxHP
+#               * effective(sensorArray.effectiveness)
+#               * clamp((targetSignature / 16) ** 0.5, 0.25, 4.0)
+#
+# Calibrated on the only lock claims the repo makes: the v2 worked example
+# (Leviathan Crown holds Whisperfang at 1,900) and Sable/Ember round 2 (Wraithbolt
+# locks Stormbreaker at 2,600; Stormbreaker sees both lit cruisers but neither silent
+# destroyer; Silverlance fires blind at Corvus). Those claims admit a reference between
+# about 4 and 17; 16 is near the top, so signature keeps mattering for as many hulls as
+# possible. verify_combat.py recomputes every claim (LOCK_CLAIMS).
+DETECTION_SIGNATURE_REFERENCE = 16
+DETECTION_SIGNATURE_EXPONENT = 0.5
+DETECTION_SIGNATURE_FACTOR_BOUNDS = (0.25, 4.0)
+
+# (attacker, target, target signature multiplier, distance, locked?) -- named ships.
+# Multipliers are the 2.3 state table: shields active x1.10, one volley fired x1.08,
+# running silent x0.50.
+LOCK_CLAIMS = [
+    ('Leviathan Crown', 'Whisperfang',  1.10,        1900, True),    # v2 worked example
+    ('Wraithbolt',      'Stormbreaker', 1.10,        2600, True),    # Sable/Ember round 2
+    ('Stormbreaker',    'Wraithbolt',   1.10 * 1.08, 2600, True),    #   the lit cruisers
+    ('Stormbreaker',    'Silverlance',  1.10 * 1.08, 2600, True),
+    ('Stormbreaker',    'Whisperfang',  0.50,        2600, False),   #   the silent destroyers
+    ('Stormbreaker',    'Nightstrike',  0.50,        2600, False),
+    ('Silverlance',     'Corvus',       1.10,        2600, False),   #   blind fire
+]
+
 # --- 2.4 turn penalty, applied to a ship that changed heading this round:
 #   turnPenalty = 0.5 * (1 - min(effective(turnRate), 150) / 150)
 TURN_PENALTY_MAX = 0.5

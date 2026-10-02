@@ -620,6 +620,14 @@ export const EFFECTIVE_STAT_RULES = {
   fleetRegroupRate:               { kind: 'additive', unit: 'fraction' },
 } as const satisfies EffectiveStatRules;
 
+/** R9 — lock range. Mirrors DETECTION_SIGNATURE_* in tools/combat_tables.py. */
+export const DETECTION_CONSTANTS = {
+  signatureReference: 16,
+  signatureExponent: 0.5,
+  signatureFactorMin: 0.25,
+  signatureFactorMax: 4.0,
+} as const;
+
 /** R8 — the remaining hook constants, one per formula they enter. */
 export const STAT_HOOK_CONSTANTS = {
   /** initiativeScore = effective(initiative) + effective(crew.pilotSkill) / 5 + d20 */
