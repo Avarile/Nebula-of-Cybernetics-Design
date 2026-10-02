@@ -153,10 +153,10 @@ export interface WeaponAccuracy {
 }
 
 export interface WeaponFireRate {
-  /** Shots resolved per turn; also the number of intercept attempts a PD weapon contributes. */
-  shotsPerTurn: number;
-  /** Turns of silence after a volley. 0 means the weapon fires every turn. */
-  cooldownTurns: number;
+  /** Shots resolved per round; also the number of intercept attempts a PD weapon contributes. Upstream: shotsPerTurn. */
+  shotsPerRound: number;
+  /** Rounds of silence after a volley. 0 means the weapon fires every round. Upstream: cooldownTurns. */
+  cooldownRounds: number;
 }
 
 /**
@@ -179,7 +179,7 @@ export interface Weapon {
   range: WeaponRange;
   accuracy: WeaponAccuracy;
   fireRate: WeaponFireRate;
-  /** Drawn from the ship's power pool per shot — a full volley costs this x shotsPerTurn. */
+  /** Drawn from the ship's power pool per shot — a full volley costs this x shotsPerRound. */
   powerCost: number;
   ammo: AmmoCapacity;
   /** Chance a confirmed hit rolls on the component-critical table. */
@@ -226,7 +226,7 @@ export interface WeaponSizeAnchor {
 
 /**
  * Manufacturer bias, applied on top of the archetype signature. Multipliers
- * except `hit` (added to base hit chance) and `cd` (added to cooldown turns).
+ * except `hit` (added to base hit chance) and `cd` (added to cooldown rounds).
  * 1.00 / +0 means the family leaves that stat at the Vanguard reference value.
  */
 export interface WeaponFamilyBias {
@@ -304,8 +304,8 @@ export interface WeaponIndexEntry {
   size: Size;
   /** `damage.base`, flattened. */
   damage: number;
-  shotsPerTurn: number;
-  cooldownTurns: number;
+  shotsPerRound: number;
+  cooldownRounds: number;
   powerCost: number;
   /** `Weapons/<weaponClass>/<size>/<weaponId>_<name_slug>.json`. */
   path: CataloguePath;

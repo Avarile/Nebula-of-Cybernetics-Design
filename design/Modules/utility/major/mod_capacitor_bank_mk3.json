@@ -12,12 +12,12 @@
   },
   "effects": [
     {
-      "stat": "power.regenPerTurn",
+      "stat": "power.regenPerRound",
       "modifier": 4.3,
       "modifierType": "flat"
     },
     {
-      "stat": "rechargeRatePerTurn",
+      "stat": "rechargeRatePerRound",
       "modifier": 11.5,
       "modifierType": "percent"
     }

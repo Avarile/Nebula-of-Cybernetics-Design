@@ -9,14 +9,12 @@
   },
   "hull": {
     "maxHP": 1531,
-    "currentHP": 1531,
     "armorRating": 31,
     "armorType": "heavy"
   },
   "shields": {
     "maxHP": 949,
-    "currentHP": 949,
-    "rechargeRatePerTurn": 76,
+    "rechargeRatePerRound": 76,
     "rechargeDelayAfterHit": 3,
     "shieldType": "hybrid",
     "damageTypeResistance": {
@@ -66,32 +64,26 @@
   "componentHitpoints": {
     "bridge": {
       "maxHP": 230,
-      "currentHP": 230,
       "criticalEffect": "disables targeting computer, -50% accuracy"
     },
     "engines": {
       "maxHP": 383,
-      "currentHP": 383,
       "criticalEffect": "-70% speed and turn rate"
     },
     "weaponSystems": {
       "maxHP": 306,
-      "currentHP": 306,
       "criticalEffect": "random hardpoint disabled"
     },
     "shieldGenerator": {
       "maxHP": 276,
-      "currentHP": 276,
       "criticalEffect": "shield recharge disabled"
     },
     "sensorArray": {
       "maxHP": 184,
-      "currentHP": 184,
       "criticalEffect": "-40% hit chance, reduced detection range"
     },
     "lifeSupport": {
       "maxHP": 153,
-      "currentHP": 153,
       "criticalEffect": "crew casualties over time"
     }
   },
@@ -103,15 +95,13 @@
   },
   "crew": {
     "maxCrew": 96,
-    "currentCrew": 96,
     "pilotSkill": 45,
     "gunnerySkill": 44,
     "engineeringSkill": 42
   },
   "power": {
     "maxPower": 252,
-    "currentPower": 252,
-    "regenPerTurn": 38
+    "regenPerRound": 38
   },
   "buildCost": {
     "structural": 156.93,

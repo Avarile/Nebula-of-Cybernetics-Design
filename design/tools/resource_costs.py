@@ -9,6 +9,8 @@ into this module as a post-processing step; ships then sum the buildCost
 their fitted weapons/modules already carry rather than re-deriving it.
 """
 
+import math
+
 LANES = ['structural', 'energy', 'ordnance', 'precision']
 TIERS = ['raw', 'refined', 'manufactured']
 
@@ -77,7 +79,7 @@ def _round_cost(d):
 
 
 def add_costs(*costs):
-    return _round_cost({lane: sum(c[lane] for c in costs) for lane in LANES})
+    return _round_cost({lane: math.fsum(c[lane] for c in costs) for lane in LANES})
 
 
 def expand_to_refined(mfg_cost):
@@ -125,9 +127,9 @@ ORDNANCE_STATS = {'ammoCapacity', 'mineCapacity'}
 def module_build_cost(m):
     structural = m['mass']['value'] * K_MOD_STRUCT
     energy = m['powerCost'] * K_MOD_ENERGY
-    precision = sum(abs(e['modifier']) for e in m['effects']
+    precision = math.fsum(abs(e['modifier']) for e in m['effects']
                      if e['stat'] in PRECISION_STATS) * K_MOD_PREC
-    ordnance = sum(abs(e['modifier']) for e in m['effects']
+    ordnance = math.fsum(abs(e['modifier']) for e in m['effects']
                     if e['stat'] in ORDNANCE_STATS) * K_MOD_ORD
     return _round_cost(dict(structural=structural, energy=energy, ordnance=ordnance, precision=precision))
 

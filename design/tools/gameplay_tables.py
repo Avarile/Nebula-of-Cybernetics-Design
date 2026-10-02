@@ -296,13 +296,13 @@ STAT_RULES = {
     # --- durability ----------------------------------------------------------
     'hull.maxHP':              (_COMBAT, '3.3', 'hull damage pool'),
     'hull.armorRating':        (_COMBAT, '3.3', 'damage reduction before hull'),
-    'hull.regenPerTurn':       (_COMBAT, '3.3', 'per-round hull regeneration'),
+    'hull.regenPerRound':       (_COMBAT, '3.3', 'per-round hull regeneration'),
     'shields.maxHP':           (_COMBAT, '3.2', 'shield damage pool'),
-    'rechargeRatePerTurn':     (_COMBAT, '3.2', 'shield recharge per round'),
+    'rechargeRatePerRound':     (_COMBAT, '3.2', 'shield recharge per round'),
     'shields.rechargeDelayAfterHit': (_COMBAT, '3.2', 'rounds before recharge resumes'),
     # --- power ---------------------------------------------------------------
     'power.maxPower':          (_COMBAT, '1.1', 'power allocation phase; also signature derivation'),
-    'power.regenPerTurn':      (_COMBAT, '1.1', 'power restored per round'),
+    'power.regenPerRound':      (_COMBAT, '1.1', 'power restored per round'),
     # --- sensors -------------------------------------------------------------
     'sensorArray.effectiveness': (_COMBAT, '2.3', 'attacker sensor strength for lock-on'),
     'detectionRange':          (_LOG, '5', 'interdiction detection; also combat lock-on'),
@@ -316,7 +316,7 @@ STAT_RULES = {
     'crew.engineeringSkill':   (_COMBAT, '3.6', 'critical-damage handling'),
     'crew.pilotSkill':         (_COMBAT, '1.1', 'initiative term'),
     'crewRecoveryRate':        (_COMBAT, '3.6', 'crew casualties over time'),
-    'repairRatePerTurn':       (_LOG, '4', 'repair at sea between engagements; in combat, repair modules act through hull.regenPerTurn'),
+    'repairRatePerTurn':       (_LOG, '4', 'repair at sea between engagements; in combat, repair modules act through hull.regenPerRound'),
     # --- capacities ----------------------------------------------------------
     'cargoCapacity':           (_LOG, '3', 'what a fleet can haul'),
     'ammoCapacity':            (_LOG, '6', 'magazine drawn by missile and mine weapons'),

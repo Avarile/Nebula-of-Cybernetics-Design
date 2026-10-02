@@ -18,8 +18,8 @@
     "tracking": 9
   },
   "fireRate": {
-    "shotsPerTurn": 1,
-    "cooldownTurns": 2
+    "shotsPerRound": 1,
+    "cooldownRounds": 2
   },
   "powerCost": 50.0,
   "ammo": 8,

@@ -18,7 +18,7 @@ tables in `tools/`, then cross-checked against the `.interface` schemas in
 | `ships.ts` | the 26 classes, 78 tier hulls and 20 named ships, plus the per-category signature table |
 | `skills.ts` | the 81 skills across 4 domains, the 18 skill-only stats, the EVE-style SP model, and the gates for hulls, fleet slots and industry |
 | `systems.ts` | the 60 systems and 180 planets, the security/richness/development ladders, the jump-gate graph, and the archetype table a planet's industry is built from |
-| `combat.ts` | turn structure, hit and damage resolution, missiles/point-defense, criticals, both logging tiers, and the open rulings |
+| `combat.ts` | round structure, hit and damage resolution, missiles/point-defense, criticals, both logging tiers, and the open rulings |
 | `lore.ts` | factions, which authority polices each region, which faction flies each NPC squadron, each weapon family's house and home, and the `Standings` key; checked by `tools/verify_lore.py` |
 | `dataset.ts` | on-disk shapes: `fleet_and_weapons.json`, the six `index.json` files, a fitted hull directory |
 | `constants.ts` | the tuning tables the types describe — family bias, mass bands, yields, cost coefficients, range bands, critical table, skill gates and the effect formula |
@@ -81,8 +81,15 @@ type:
   carries every term of the reconciled formula in resolution order, which is what
   makes the Tier 1 log replayable and the Tier 2 narrative regenerable.
 - **`CombatantState` separates the build sheet from the battle.** `Ship` is
-  immutable; current HP, ammo, cooldowns, locks and status effects live in the
-  runtime state, so a battle can be replayed against a pristine roster.
+  immutable and carries maxima only — the catalogue has no `current*` field. Current
+  HP, crew, power, ammo, cooldowns, locks and status effects live in the runtime
+  state, so a battle can be replayed against a pristine roster. Between battles a
+  hull's damage is carried by `FleetHull` (`gameplay.ts`).
+- **Names say which clock they count.** A battle counts rounds and says so
+  (`shotsPerRound`, `cooldownRounds`, `RoundLog`, `endOfRound`); a name that says
+  turn means the 24-hour turn. `tools/verify_naming.py` fails on any other, and its
+  allowlist gives the reason for each name that may say turn — `turnRate` among them,
+  which is heading, not the clock.
 
 ## Things the analysis turned up
 
@@ -138,7 +145,8 @@ not generate it.
 ## Verification
 
 ```sh
-python3 Reference/verify_reference.py     # 59 checks
+python3 Reference/verify_reference.py     # 67 checks
+python3 tools/verify_naming.py            # 8 checks -- no current* member, no stray 'turn' name
 ```
 
 Every string-literal union must declare exactly the values present in the data —

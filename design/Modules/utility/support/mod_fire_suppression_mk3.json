@@ -17,7 +17,7 @@
       "modifierType": "percent"
     },
     {
-      "stat": "hull.regenPerTurn",
+      "stat": "hull.regenPerRound",
       "modifier": 2.9,
       "modifierType": "flat"
     }

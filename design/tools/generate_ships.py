@@ -128,6 +128,30 @@ def pick_module(cat, slot, tier, modules, used, legacy_arch):
     return min(cands, key=key)
 
 
+# Named ships are carried forward from the previous fleet json, so their blocks still hold
+# whatever upstream shape they were first written in. Normalise them to the catalogue
+# shape on every run (idempotent): live values out, round-clock names in.
+LIVE_KEYS = {'hull': ('currentHP',), 'shields': ('currentHP',), 'crew': ('currentCrew',),
+             'power': ('currentPower',)}
+ROUND_RENAMES = {'shields': {'rechargeRatePerTurn': 'rechargeRatePerRound'},
+                 'power': {'regenPerTurn': 'regenPerRound'}}
+
+
+def catalogue_only(ship):
+    """A copy of `ship` with every current* value dropped and per-round fields renamed.
+    Key order is kept, so a migrated ship serialises exactly as a fresh one would."""
+    out = dict(ship)
+    for block in set(LIVE_KEYS) | set(ROUND_RENAMES):
+        if block not in out:
+            continue
+        drop, ren = LIVE_KEYS.get(block, ()), ROUND_RENAMES.get(block, {})
+        out[block] = {ren.get(k, k): v for k, v in out[block].items() if k not in drop}
+    out['componentHitpoints'] = {
+        name: ({k: v for k, v in c.items() if k != 'currentHP'} if isinstance(c, dict) else c)
+        for name, c in out['componentHitpoints'].items()}
+    return out
+
+
 def build_hull(cat, tier, weapons, modules, legacy_arch):
     lo, hi = cat['mass']
     mass = round(lo + TIER_MASS_POS[tier - 1] * (hi - lo), 1)
@@ -137,14 +161,14 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
     armor_rating = round(2.27 * mass ** 0.28 * ARMOR_RATING[cat['armor']] * (1 + 0.15 * t))
 
     if cat['shield'] == 'none':
-        shields = {'maxHP': 0, 'currentHP': 0, 'rechargeRatePerTurn': 0,
+        shields = {'maxHP': 0, 'rechargeRatePerRound': 0,
                    'rechargeDelayAfterHit': 0, 'shieldType': 'none',
                    'damageTypeResistance': dict(RESIST['none'])}
     else:
         smax = round(hull_hp * cat['shield_ratio'] * TIER_SHIELD[t])
         res = {k: round(v + 0.02 * t, 2) for k, v in RESIST[cat['shield']].items()}
-        shields = {'maxHP': smax, 'currentHP': smax,
-                   'rechargeRatePerTurn': max(1, round(smax * 0.08 * (1 + 0.1 * t))),
+        shields = {'maxHP': smax,
+                   'rechargeRatePerRound': max(1, round(smax * 0.08 * (1 + 0.1 * t))),
                    'rechargeDelayAfterHit': TIER_DELAY[t], 'shieldType': cat['shield'],
                    'damageTypeResistance': res}
 
@@ -189,7 +213,7 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
     # ---- power must cover passive module draw plus one full volley
     by_id = {w['weaponId']: w for w in weapons}
     volley = sum(by_id[h['weaponEquipped']]['powerCost'] *
-                 by_id[h['weaponEquipped']]['fireRate']['shotsPerTurn']
+                 by_id[h['weaponEquipped']]['fireRate']['shotsPerRound']
                  for h in hardpoints if h['weaponEquipped'])
     passive = sum(m['powerCost'] for m in fitted_modules)
     power = round(6.0 * mass ** 0.45 * (1 + 0.12 * t))
@@ -207,23 +231,23 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
         'tier': tier,
         'shipClass': cat['key'],
         'mass': {'value': mass, 'unit': 'tons'},
-        'hull': {'maxHP': hull_hp, 'currentHP': hull_hp, 'armorRating': armor_rating,
+        'hull': {'maxHP': hull_hp, 'armorRating': armor_rating,
                  'armorType': cat['armor']},
         'shields': shields,
         'hardpoints': {'list': hardpoints},
         'moduleSlots': {'list': slots},
         'componentHitpoints': {
-            name: {'maxHP': component_hp[name], 'currentHP': component_hp[name], 'criticalEffect': eff}
+            name: {'maxHP': component_hp[name], 'criticalEffect': eff}
             for name, (share, eff) in COMPONENT_SHARE.items()},
         'mobility': {'topSpeed': round(cat['speed'] * (1 + 0.06 * t)),
                      'acceleration': round(cat['accel'] * (1 + 0.07 * t)),
                      'turnRate': round(cat['turn'] * (1 + 0.05 * t)),
                      'evasionRating': round(cat['evade'] * (1 + 0.05 * t), 2)},
-        'crew': {'maxCrew': crew, 'currentCrew': crew,
+        'crew': {'maxCrew': crew,
                  'pilotSkill': 45 + 15 * t, 'gunnerySkill': 44 + 16 * t,
                  'engineeringSkill': 42 + 16 * t},
-        'power': {'maxPower': power, 'currentPower': power,
-                  'regenPerTurn': max(1, round(power * 0.15))},
+        'power': {'maxPower': power,
+                  'regenPerRound': max(1, round(power * 0.15))},
         'buildCost': total_cost,
         'sensors': {'detectionRange': round(cat['det'] * (1 + 0.15 * t)),
                     'initiative': cat['init'] + tier},
@@ -300,6 +324,7 @@ def main():
             base = dict(s)                       # already migrated on an earlier run
         else:
             base = dict(s)
+        base = catalogue_only(base)
         cls = base['shipClass']
         same = [h for h in hulls if h['shipClass'] == cls]
         if not same:

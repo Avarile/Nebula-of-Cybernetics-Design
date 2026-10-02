@@ -15,9 +15,9 @@ ALL_STATS    the union; what a skill effect may target.
 # Ship stats a module may modify. Every entry resolves to a field on the hull.
 SHIP_STATS = [
     'topSpeed', 'acceleration', 'turnRate', 'evasionRating', 'fuelRange',
-    'hull.maxHP', 'hull.armorRating', 'hull.regenPerTurn',
-    'shields.maxHP', 'rechargeRatePerTurn', 'shields.rechargeDelayAfterHit',
-    'power.maxPower', 'power.regenPerTurn',
+    'hull.maxHP', 'hull.armorRating', 'hull.regenPerRound',
+    'shields.maxHP', 'rechargeRatePerRound', 'shields.rechargeDelayAfterHit',
+    'power.maxPower', 'power.regenPerRound',
     'sensorArray.effectiveness', 'detectionRange', 'initiative', 'weaponAccuracy',
     'criticalChanceBonus', 'pointDefenseBonus', 'enemyHitChance',
     'crew.gunnerySkill', 'crew.engineeringSkill', 'crew.pilotSkill', 'crewRecoveryRate',

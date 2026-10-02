@@ -40,14 +40,14 @@ bad = []
 for key, items in lines.items():
     items.sort()
     for (m1, a), (m2, b) in zip(items, items[1:]):
-        pa = a['damage']['base'] * a['fireRate']['shotsPerTurn'] / (1 + a['fireRate']['cooldownTurns'])
-        pb = b['damage']['base'] * b['fireRate']['shotsPerTurn'] / (1 + b['fireRate']['cooldownTurns'])
+        pa = a['damage']['base'] * a['fireRate']['shotsPerRound'] / (1 + a['fireRate']['cooldownRounds'])
+        pb = b['damage']['base'] * b['fireRate']['shotsPerRound'] / (1 + b['fireRate']['cooldownRounds'])
         if pb <= pa or b['accuracy']['baseHitChance'] < a['accuracy']['baseHitChance'] \
            or not set(a['specialEffects']) <= set(b['specialEffects']):
-            bad.append(f'{key} Mk.{m1}->Mk.{m2}  dpt {pa:.1f}->{pb:.1f}')
+            bad.append(f'{key} Mk.{m1}->Mk.{m2}  dpr {pa:.1f}->{pb:.1f}')
         if sum(b['buildCost'].values()) < sum(a['buildCost'].values()):
             bad.append(f'{key} Mk.{m1}->Mk.{m2}  buildCost went down')
-check('mark ladder monotonic (dpt, hit, effects, buildCost)', bad)
+check('mark ladder monotonic (dpr, hit, effects, buildCost)', bad)
 
 # 4 -- no two identical stat blocks
 sig = defaultdict(list)
@@ -59,16 +59,16 @@ check('no duplicate stat blocks', [v for v in sig.values() if len(v) > 1])
 # 5 -- differentiation: within one mark, no weapon is strictly dominated by a rival of
 # the same class and size at equal-or-lower power cost. Cross-MARK domination is by design
 # (a mark ladder exists so tier-3 ships can outgun tier-1 ones) and is reported separately.
-def dpt(w): return w['damage']['base'] * w['fireRate']['shotsPerTurn'] / (1 + w['fireRate']['cooldownTurns'])
+def dpr(w): return w['damage']['base'] * w['fireRate']['shotsPerRound'] / (1 + w['fireRate']['cooldownRounds'])
 
 def dominates(a, b):
-    better = (dpt(a) >= dpt(b) and a['accuracy']['baseHitChance'] >= b['accuracy']['baseHitChance']
+    better = (dpr(a) >= dpr(b) and a['accuracy']['baseHitChance'] >= b['accuracy']['baseHitChance']
               and a['accuracy']['tracking'] >= b['accuracy']['tracking']
               and a['range']['optimal'] >= b['range']['optimal']
               and a['criticalChance'] >= b['criticalChance']
               and a['powerCost'] <= b['powerCost']
               and set(b['specialEffects']) <= set(a['specialEffects']))
-    return better and (dpt(a) > dpt(b) or a['powerCost'] < b['powerCost'])
+    return better and (dpr(a) > dpr(b) or a['powerCost'] < b['powerCost'])
 
 same_mark, cross_mark = [], 0
 buckets = defaultdict(list)

@@ -11,9 +11,10 @@ stated in Combat-logic/advanced_combat_system.json, which no tool reads yet; mov
 is not part of the rulings. The speed-evasion constants moved here when R6 recalibrated
 them.
 
-"turn" inside a field name (shotsPerTurn, cooldownTurns, rechargeRatePerTurn) means a
-combat ROUND -- gameplay_specification.md 3. Renaming those fields is schema work, not
-a ruling, so it is not done here.
+Clock words follow gameplay_specification.md 3: a field or stat that counts combat
+ROUNDS says Round (shotsPerRound, cooldownRounds, rechargeRatePerRound, regenPerRound);
+one that says Turn means the 24-hour turn (repairRatePerTurn, a between-battle rate).
+verify_naming.py holds the allowlist of every name that may still say turn.
 """
 import os, sys
 
@@ -291,7 +292,7 @@ ELECTRONIC_MODULE_TYPES = ('radar', 'sonar', 'cic', 'datalink', 'ecm', 'decoy',
 # formula never read:
 #
 #   lockRange = effective(detectionRange)
-#               * sensorArray.currentHP / sensorArray.maxHP
+#               * componentCurrentHP.sensorArray / sensorArray.maxHP   (live HP: CombatantState)
 #               * effective(sensorArray.effectiveness)
 #               * clamp((targetSignature / 16) ** 0.5, 0.25, 4.0)
 #

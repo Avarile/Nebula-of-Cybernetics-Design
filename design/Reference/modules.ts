@@ -123,6 +123,10 @@ export type ModuleArchetype =
  * `enemyHitChance`, `pointDefenseBonus`, `criticalChanceBonus`, `repairRatePerTurn`,
  * `crewRecoveryRate`, `minesweepRate`, `fuelTransferRate`, `sensorArray.effectiveness`).
  *
+ * CLOCK: `hull.regenPerRound`, `power.regenPerRound` and `rechargeRatePerRound` run per
+ * combat round (upstream said PerTurn); `repairRatePerTurn` and `fuelTransferRate` are
+ * between-battle rates per 24-h turn (logistics_specification.md 4).
+ *
  * NEGATIVE IS THE BENEFIT for exactly two stats: `enemyHitChance` and
  * `shields.rechargeDelayAfterHit`. A negative modifier on any other stat is a
  * drawback, and drawbacks shrink as the mark rises.
@@ -139,13 +143,13 @@ export type ModuleEffectStat =
   // survivability
   | 'hull.maxHP'
   | 'hull.armorRating'
-  | 'hull.regenPerTurn'
+  | 'hull.regenPerRound'
   | 'shields.maxHP'
-  | 'rechargeRatePerTurn'
+  | 'rechargeRatePerRound'
   | 'shields.rechargeDelayAfterHit'
   // power
   | 'power.maxPower'
-  | 'power.regenPerTurn'
+  | 'power.regenPerRound'
   // detection
   | 'sensorArray.effectiveness'
   | 'detectionRange'
@@ -201,7 +205,7 @@ interface ModuleBase {
   mass: Mass;
   /** Replaces data-template.json's single `effect`: a CIC tower changes three stats at once. */
   effects: ModuleEffect[];
-  /** Passive draw per turn — unlike a weapon, this is paid whether or not anything fires. */
+  /** Passive draw per round — unlike a weapon, this is paid whether or not anything fires. */
   powerCost: number;
   /** Drawn from the hull's complement; `sum(crewRequired) <= crew.maxCrew` is enforced. */
   crewRequired: number;

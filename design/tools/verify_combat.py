@@ -585,7 +585,7 @@ def craft_pool(ship):
                   if e not in CT.POOL_EFFECTS and 'intercept' in RULES.get(e, {}))
         tf = RULES['high_tracking']['intercept']['trackingFactor'] if 'high_tracking' in fx else 1
         raw = w['accuracy']['baseHitChance'] + w['accuracy']['tracking'] * tf / CT.INTERCEPT_TRACKING_DIVISOR + delta
-        shots = w['fireRate']['shotsPerTurn'] + sum(RULES[e]['intercept'].get('extraAttemptsPerMount', 0)
+        shots = w['fireRate']['shotsPerRound'] + sum(RULES[e]['intercept'].get('extraAttemptsPerMount', 0)
                                                     for e in fx if 'intercept' in RULES.get(e, {}))
         kills = 1 + sum(RULES[e]['intercept'].get('extraKillsPerSuccessVsCraft', 0)
                         for e in fx if 'intercept' in RULES.get(e, {}))

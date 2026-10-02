@@ -5,7 +5,7 @@
     "extends": "data-template.json -> combatResolution",
     "newConcepts": ["distance/range bands", "signature & detection/lock-on", "speed-based evasion", "missile flight + point-defense interception", "strike craft"],
     "note": "Formulas are given as readable pseudocode, not code. 'signature' is a derived stat computed from existing ship fields (see signatureSystem.derivation) so it works with ships that don't have an explicit signature field.",
-    "vocabulary": "Every 'turn' in this file means a combat ROUND (GamePlay/gameplay_specification.md 3). Key and field names that still say 'turn' (updatedTurnStructure, shotsPerTurn, cooldownTurns, rechargeRatePerTurn) are renamed by the schema clean-up, not here.",
+    "vocabulary": "A round is one exchange inside a battle; a turn is the 24-hour clock a whole engagement fits inside (GamePlay/gameplay_specification.md 3). Names that count rounds say so (updatedRoundStructure, shotsPerRound, cooldownRounds, rechargeRatePerRound, regenPerRound); v1's turnStructure keeps its upstream name in data-template.json. turnRate and the turn penalty are about heading, not the clock.",
     "rulings": "The numbers the five rulings and the special-effect rules introduce live in tools/combat_tables.py; Combat-logic/combat_logic_specification.md 1.4, 2.1, 2.4, 2.5, 2.6, 3.4 and 3.7 explain them; tools/verify_combat.py holds the three together."
   },
 
@@ -41,7 +41,7 @@
       "note": "Bigger, higher-power, heavily-shielded ships are inherently loud. This is a starting point, not a fixed stat."
     },
     "activeStateModifiers": [
-      { "state": "weaponsFiredThisTurn", "effect": "+8% signature per weapon volley fired (heat/EM bloom)" },
+      { "state": "weaponsFiredThisRound", "effect": "+8% signature per weapon volley fired (heat/EM bloom)" },
       { "state": "shieldsActive",        "effect": "+10% signature (shield emitters are detectable)" },
       { "state": "afterburner/highAccel","effect": "+40% signature (engine flare); topSpeed and acceleration x1.25 (R6, movementSystem)" },
       { "state": "runningSilent",        "effect": "-50% signature, but -30% topSpeed and weapons cannot fire that round (non-essential systems powered down)" },
@@ -49,7 +49,7 @@
     ],
     "detectionAndLockOn": {
       "attackerSensorStrength": "superseded by R9 - see effectiveDetectionRange",
-      "effectiveDetectionRange": "R9: effective(sensors.detectionRange) * (sensorArray.currentHP / sensorArray.maxHP) * effective(sensorArray.effectiveness) * clamp((targetSignature / 16) ^ 0.5, 0.25, 4.0). The original sensorArray HP x signature/100 gave lock ranges from 0.2 to 70,000. See combat_logic_specification.md 2.3.",
+      "effectiveDetectionRange": "R9: effective(sensors.detectionRange) * (componentCurrentHP.sensorArray / sensorArray.maxHP, live from CombatantState) * effective(sensorArray.effectiveness) * clamp((targetSignature / 16) ^ 0.5, 0.25, 4.0). The original sensorArray HP x signature/100 gave lock ranges from 0.2 to 70,000. See combat_logic_specification.md 2.3.",
       "rule": "if distance <= effectiveDetectionRange: target is 'locked' and full accuracy formula applies. If distance > effectiveDetectionRange: target is 'unlocked' - attacker may still fire but suffers the blindFirePenalty below.",
       "lockOnBuildUp": "A newly-locked target starts at lockQuality = 0.5 and gains +0.25/round while continuously tracked (line of sight + in range), capping at 1.0 after 2 rounds. Breaking range/LoS or target using runningSilent resets lockQuality to 0.",
       "blindFirePenalty": "finalHitChance is multiplied by 0.25 and lockQuality is treated as 0.5 flat, representing firing at last-known position"
@@ -122,9 +122,9 @@
   "missileResolutionPhase": {
     "description": "Runs as its own sub-phase, after the normal fire-resolution phase's targeting step but before damage is applied, for every missile weapon fired this round.",
     "steps": [
-      "1. Volley size = min(weapon.fireRate.shotsPerTurn, weapon.ammo). Decrement ammo by volley size immediately (spent whether they hit or not).",
+      "1. Volley size = min(weapon.fireRate.shotsPerRound, weapon.ammo). Decrement ammo by volley size immediately (spent whether they hit or not).",
       "2. Missile arming check: apply missileArmingRule if launched at pointBlank range.",
-      "3. Only weapons carrying 'can_be_intercepted' enter this sub-phase. Defender's pool weapons (specialEffects contains 'point_defense', 'anti_missile' or 'anti_air', and assigned to the pool in targeting) each get shotsPerTurn interception attempts this round, pooled across ALL incoming projectiles at the defending ship this round. A pool weapon may instead be assigned in targeting to cover one friendly ship within its own range.optimal (cover, spec 2.5): its attempts then join that ship's pool against missiles and craft alike, each multiplied by its own ship's pointDefenseBonus; out of reach they are lost for the round. 'point_defense' engages missiles and craft, 'anti_missile' missiles only, 'anti_air' craft only. A finite-ammo pool weapon spends 1 ammo per attempt.",
+      "3. Only weapons carrying 'can_be_intercepted' enter this sub-phase. Defender's pool weapons (specialEffects contains 'point_defense', 'anti_missile' or 'anti_air', and assigned to the pool in targeting) each get shotsPerRound interception attempts this round, pooled across ALL incoming projectiles at the defending ship this round. A pool weapon may instead be assigned in targeting to cover one friendly ship within its own range.optimal (cover, spec 2.5): its attempts then join that ship's pool against missiles and craft alike, each multiplied by its own ship's pointDefenseBonus; out of reach they are lost for the round. 'point_defense' engages missiles and craft, 'anti_missile' missiles only, 'anti_air' craft only. A finite-ammo pool weapon spends 1 ammo per attempt.",
       "4. For each interception attempt, roll against an incoming projectile (the defender allocates attempts until either attempts or projectiles run out): interceptChance = clamp(pdWeapon.accuracy.baseHitChance + pdWeapon.accuracy.tracking * trackingFactor / 150 + interceptChanceDelta - projectileEvasion, 0.05, 0.95). trackingFactor and interceptChanceDelta come from the pool weapon's own special effects (tools/combat_tables.py).",
       "5. projectileEvasion base = 0.20. A HIGHER value is HARDER to intercept. Modifiers: 'high_tracking' on the missile +0.10; 'multi_hit' (swarm pods) +0.05 on each missile - and the SWARM also launches more missiles than a single PD mount can realistically cover, so volume overwhelms defense even if per-missile intercept odds are normal. (This step previously gave high_tracking -0.10, which made tracking missiles easier to intercept, contradicting its own note; the sign is corrected.)",
       "6. Any missile successfully intercepted is destroyed and dealt with - no damage, no further rolls.",
@@ -165,7 +165,7 @@
     ]
   },
 
-  "updatedTurnStructure": [
+  "updatedRoundStructure": [
     "1. Initiative: sort by initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20, descending (R8; v1's undefined 'sensorArray effectiveness' term is replaced by the initiative stat sensor modules already carry).",
     "2. Signature/state declaration: each ship declares this round's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem, and its movement intent (hold / close / open / withdraw, movementSystem). Carriers declare launches and squadron intents (strikeCraftSystem).",
     "3. Detection phase: for every attacker-target pair, compute effectiveDetectionRange and update lockQuality (build, hold, or reset).",
@@ -207,7 +207,7 @@
       "evasionApplied": "0.53 * (1 - 0.5) = 0.265",
       "rangeMultiplier": "~0.85 (within medium band for missile's longer optimal)",
       "finalHitChancePreIntercept": "clamp(0.7625*0.85*1.0 - 0.265, 0.05, 0.95) = ~0.38",
-      "interceptionStep": "Whisperfang has 2 PD Laser Turrets (small), each shotsPerTurn ~3-4, easily covering the 1-2 missiles in this volley -> high chance the missile(s) never reach the hit roll at all",
+      "interceptionStep": "Whisperfang has 2 PD Laser Turrets (small), each shotsPerRound ~3-4, easily covering the 1-2 missiles in this volley -> high chance the missile(s) never reach the hit roll at all",
       "interpretation": "Missiles are the battleship's actual answer to a fast, evasive target - but only if the destroyer's PD gets overwhelmed or destroyed first. This is why saturation (multiple missile bays firing together) is the standard doctrine against fast escorts."
     }
   }

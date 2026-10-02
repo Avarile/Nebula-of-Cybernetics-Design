@@ -24,7 +24,7 @@ import type {
   RangeBandSpec,
   SignatureDerivation,
   SignatureStateModifier,
-  TurnPhaseSpec,
+  RoundPhaseSpec,
   WeaponHitProfiles,
   BlindFireRule,
   GranularityPolicy,
@@ -129,9 +129,9 @@ export const SHIP_CLASSES = [
 export const MODULE_EFFECT_STATS = [
   'topSpeed', 'acceleration', 'turnRate',
   'evasionRating', 'fuelRange', 'hull.maxHP',
-  'hull.armorRating', 'hull.regenPerTurn', 'shields.maxHP',
-  'rechargeRatePerTurn', 'shields.rechargeDelayAfterHit', 'power.maxPower',
-  'power.regenPerTurn', 'sensorArray.effectiveness', 'detectionRange',
+  'hull.armorRating', 'hull.regenPerRound', 'shields.maxHP',
+  'rechargeRatePerRound', 'shields.rechargeDelayAfterHit', 'power.maxPower',
+  'power.regenPerRound', 'sensorArray.effectiveness', 'detectionRange',
   'initiative', 'weaponAccuracy', 'criticalChanceBonus',
   'pointDefenseBonus', 'enemyHitChance', 'crew.gunnerySkill',
   'crew.engineeringSkill', 'crew.pilotSkill', 'crewRecoveryRate',
@@ -160,12 +160,12 @@ export const WEAPON_SIZE_ANCHORS = {
 
 /**
  * Manufacturer bias, applied on top of the archetype signature. Multipliers,
- * except `hit` (added to base hit chance) and `cd` (added to cooldown turns).
+ * except `hit` (added to base hit chance) and `cd` (added to cooldown rounds).
  *
  * Roughly trade-neutral: every gain is paid for somewhere. Two special cases the
  * numbers alone do not show:
  *   Ceridan's sustain bias (+ammo, -cooldown) is inert on an infinite-ammo,
- *     no-cooldown weapon; there it re-expresses as +1 shot per turn, so a Ceridan
+ *     no-cooldown weapon; there it re-expresses as +1 shot per round, so a Ceridan
  *     line is never just a worse Vanguard.
  *   Ashwright's effect potency unlocks its second specialEffect at Mk.2, not Mk.3.
  */
@@ -407,12 +407,13 @@ export const HAULING_CONSTANTS = {
 } as const;
 
 // ================================================================
-// COMBAT — turn order, range bands, signature, evasion, criticals
+// COMBAT — round order, range bands, signature, evasion, criticals
 // ================================================================
 
-export const TURN_PHASES = [
-  { phase: 'initiative', order: 1, description: 'Sort by (pilotSkill + sensorArray effectiveness + d20) descending.' },
-  { phase: 'signatureDeclaration', order: 2, description: 'Each ship commits an operating state, fixing its signature for the turn.' },
+/** The 10 phases of one combat round (spec 1.1). A whole engagement fits in phase 9 of one 24-h turn. */
+export const ROUND_PHASES = [
+  { phase: 'initiative', order: 1, description: 'Sort by effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20, descending (R8).' },
+  { phase: 'signatureDeclaration', order: 2, description: 'Each ship commits an operating state, fixing its signature for the round, and its movement intent.' },
   { phase: 'detection', order: 3, description: 'Per attacker-target pair: effective detection range, then build/hold/reset lock.' },
   { phase: 'powerAllocation', order: 4, description: 'Assign the power budget across weapons / shields / engines.' },
   { phase: 'movement', order: 5, description: 'Every ship moves along the engagement line in ascending initiative order (R6); sets position, speed and distance.' },
@@ -420,8 +421,8 @@ export const TURN_PHASES = [
   { phase: 'missileResolution', order: 7, description: 'Ammo deduction, arming check, PD interception. Runs before any hit roll.' },
   { phase: 'directFireResolution', order: 8, description: 'Non-missile weapons and surviving missiles: hit chance, then damage.' },
   { phase: 'criticalChecks', order: 9, description: 'On every confirmed hit, roll the component-critical table.' },
-  { phase: 'endOfTurn', order: 10, description: 'Shield recharge, signature bonuses expire, repair modules, destruction/retreat.' },
-] as const satisfies readonly TurnPhaseSpec[];
+  { phase: 'endOfRound', order: 10, description: 'Shield recharge, signature bonuses expire, power and hull regen, crew casualties, destruction/retreat.' },
+] as const satisfies readonly RoundPhaseSpec[];
 
 /** Bands are a percentage of the weapon's OWN range.optimal, so each weapon carries its own geometry. */
 export const RANGE_BANDS = [
@@ -448,7 +449,7 @@ export const SIGNATURE_DERIVATION = {
 } as const satisfies SignatureDerivation;
 
 export const SIGNATURE_STATE_MODIFIERS = [
-  { state: 'weaponsFiredThisTurn', signatureDelta: 0.08, perVolley: true },
+  { state: 'weaponsFiredThisRound', signatureDelta: 0.08, perVolley: true },
   { state: 'shieldsActive', signatureDelta: 0.10 },
   { state: 'afterburner', signatureDelta: 0.40,
     boost: { topSpeedFactor: 1.25, accelerationFactor: 1.25 } },
@@ -460,9 +461,9 @@ export const SIGNATURE_STATE_MODIFIERS = [
 export const LOCK_ON = {
   /** A fresh lock starts here. */
   initialQuality: 0.5,
-  /** Gained per turn of continuous tracking. */
-  buildPerTurn: 0.25,
-  /** Reached after 2 full turns. */
+  /** Gained per round of continuous tracking. */
+  buildPerRound: 0.25,
+  /** Reached after 2 full rounds. */
   maxQuality: 1.0,
   /** Breaking range/LoS, or the target running silent, drops it to this. */
   resetQuality: 0,
@@ -628,9 +629,9 @@ export const SPECIAL_EFFECT_RULES = {
 } as const satisfies SpecialEffectRules;
 
 export const CRITICAL_TABLE = [
-  { min: 1, max: 30, kind: 'minorSystemDamage', description: 'Minor system damage: -10% to a random stat for 2 turns.' },
+  { min: 1, max: 30, kind: 'minorSystemDamage', description: 'Minor system damage: -10% to a random stat for 2 rounds.' },
   { min: 31, max: 60, kind: 'bonusComponentDamage', description: 'Targeted component takes 25% of its maxHP as bonus damage.' },
-  { min: 61, max: 85, kind: 'componentDisabled', description: 'Targeted component (or a random one, if none chosen) disabled for 1 turn.' },
+  { min: 61, max: 85, kind: 'componentDisabled', description: 'Targeted component (or a random one, if none chosen) disabled for 1 round.' },
   { min: 86, max: 100, kind: 'catastrophic', description: 'Catastrophic: component destroyed, permanent until dock repair.' },
 ] as const satisfies readonly CriticalBand[];
 

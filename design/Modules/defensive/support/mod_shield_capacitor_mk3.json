@@ -17,7 +17,7 @@
       "modifierType": "percent"
     },
     {
-      "stat": "rechargeRatePerTurn",
+      "stat": "rechargeRatePerRound",
       "modifier": 14.4,
       "modifierType": "percent"
     }

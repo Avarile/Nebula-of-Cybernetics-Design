@@ -14,6 +14,16 @@
 #   "enum: a | b | c"     exactly one of the listed literals
 #   "number 0-1"          normalised fraction, not a percentage
 #
+# CLOCK. A weapon fires within a battle, so every rate here is per combat ROUND -- one
+# exchange; a whole engagement fits in phase 9 of one 24-h turn
+# (GamePlay/gameplay_specification.md 3).
+#
+# DEVIATIONS FROM data-template.json
+#   [+] fireRate.shotsPerRound  - renamed from shotsPerTurn; same value
+#   [+] fireRate.cooldownRounds - renamed from cooldownTurns; same value
+#   Upstream said "turn" where it meant a combat round. Nothing else differs: the rest of
+#   the schema is weaponSchema verbatim.
+#
 # SIZE vs HARDPOINT
 #   A weapon may only be mounted on a hardpoint of the SAME size.
 #
@@ -26,13 +36,13 @@
 #              power cost rising more slowly, so higher marks are stronger AND more
 #              efficient. Marks also step capability, not just numbers: a second
 #              specialEffect unlocks at Mk.3 (Mk.2 for Ashwright), and Mk.5 tightens
-#              variance and sheds one cooldown turn on sustained-fire weapons.
+#              variance and sheds one cooldown round on sustained-fire weapons.
 #   family     manufacturer bias, trade-neutral -- every gain is paid for somewhere.
 #              Vanguard is the neutral reference line the others are measured against.
 #
 # INVARIANTS (enforced by tools/verify_weapons.py)
 #   - weaponIds and names unique; field set identical to the schema below
-#   - every mark ladder monotonic in damage-per-turn, hit chance and effects
+#   - every mark ladder monotonic in damage-per-round, hit chance and effects
 #   - no two weapons share a stat block
 #   - no weapon is strictly dominated by a same-class, same-size, SAME-MARK rival at
 #     equal-or-lower power cost. Cross-mark domination is intended: the ladder exists so
@@ -90,7 +100,7 @@
 #   Voss        1.05  0.70   +1  0.90  +0.00  1.45  1.10  1.05  1.00  0.90   62
 #
 #   Ceridan sustain (+ammo, -cooldown) is inert on an infinite-ammo, no-cooldown
-#   weapon; there it re-expresses as +1 shot per turn, so a Ceridan line is never
+#   weapon; there it re-expresses as +1 shot per round, so a Ceridan line is never
 #   just a worse Vanguard. Ashwright "effect potency" unlocks its second
 #   specialEffect at Mk.2 instead of Mk.3.
 # >>> end generated
@@ -124,8 +134,8 @@
     "tracking": "number, ability to hit fast/small targets"
   },
   "fireRate": {
-    "shotsPerTurn": "number",
-    "cooldownTurns": "number after volley before it can fire again"
+    "shotsPerRound": "[+] renamed from shotsPerTurn; number, shots per round -- also a pool weapon's interception attempts",
+    "cooldownRounds": "[+] renamed from cooldownTurns; number, rounds of silence after a volley before it can fire again; 0 fires every round"
   },
   "powerCost": "number, drawn from ship power pool per shot",
   "ammo": "number or 'infinite', for missiles/kinetics with physical rounds",
@@ -141,7 +151,7 @@
   }
 }
 
-# ---- EXAMPLE INSTANCES (data-template.json -> "exampleWeapons") ----
+# ---- EXAMPLE INSTANCES (data-template.json -> "exampleWeapons", fireRate keys renamed) ----
 #
 # {
 #   "weaponId": "wpn_railgun_mk2",
@@ -151,7 +161,7 @@
 #   "damage": { "base": 45, "variance": 8, "damageType": "kinetic" },
 #   "range": { "optimal": 800, "maximum": 1500, "falloffPenalty": 0.05 },
 #   "accuracy": { "baseHitChance": 0.75, "tracking": 20 },
-#   "fireRate": { "shotsPerTurn": 1, "cooldownTurns": 0 },
+#   "fireRate": { "shotsPerRound": 1, "cooldownRounds": 0 },
 #   "powerCost": 12,
 #   "ammo": "infinite",
 #   "criticalChance": 0.1,
@@ -166,7 +176,7 @@
 #   "damage": { "base": 18, "variance": 3, "damageType": "energy" },
 #   "range": { "optimal": 400, "maximum": 700, "falloffPenalty": 0.08 },
 #   "accuracy": { "baseHitChance": 0.9, "tracking": 45 },
-#   "fireRate": { "shotsPerTurn": 3, "cooldownTurns": 0 },
+#   "fireRate": { "shotsPerRound": 3, "cooldownRounds": 0 },
 #   "powerCost": 6,
 #   "ammo": "infinite",
 #   "criticalChance": 0.05,
@@ -181,7 +191,7 @@
 #   "damage": { "base": 120, "variance": 15, "damageType": "explosive" },
 #   "range": { "optimal": 2000, "maximum": 3500, "falloffPenalty": 0.02 },
 #   "accuracy": { "baseHitChance": 0.6, "tracking": 10 },
-#   "fireRate": { "shotsPerTurn": 1, "cooldownTurns": 3 },
+#   "fireRate": { "shotsPerRound": 1, "cooldownRounds": 3 },
 #   "powerCost": 25,
 #   "ammo": 12,
 #   "criticalChance": 0.2,

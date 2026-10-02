@@ -225,9 +225,11 @@ section numbers below are the original §5 list's.
 | §5.1 `extends` names a file that does not exist | Source fix, no gameplay consequence. The base is `data-template.json`'s `combatResolution`. |
 | §5.3 undefined `specialEffects` | Combat's to define. GamePlay reads outcomes, not effects. Now defined: combat spec §3.4. |
 
-The `Combat-logic/` prose now says **round** throughout. Field names that still say "turn"
-(`shotsPerTurn`, `cooldownTurns`, `rechargeRatePerTurn`) mean round until the schema
-clean-up renames them.
+The `Combat-logic/` prose says **round** throughout, and so do the field names: a rate or
+count that runs per round says `Round` (`shotsPerRound`, `cooldownRounds`,
+`rechargeRatePerRound`, `regenPerRound`), and one that says `Turn` means the 24-hour turn
+(`repairRatePerTurn`, `rentPerTurn`, `throughputPerTurn`). `tools/verify_naming.py` fails on
+any other name that says turn; its allowlist gives the reason for each that does.
 
 ## 8. What GamePlay adds to the pipeline
 

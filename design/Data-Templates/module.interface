@@ -22,6 +22,13 @@
 #   hullAffinity   - which shipClass values a `specific` module belongs on; empty for
 #                    `major` and `support`, which any hull may fit
 #
+# CLOCK -- "round" is one exchange in a battle, "turn" is 24 h
+# (GamePlay/gameplay_specification.md 3). Stats that run per round say Round
+# (hull.regenPerRound, power.regenPerRound, rechargeRatePerRound -- renamed from the
+# upstream ...PerTurn, which meant a round); shields.rechargeDelayAfterHit counts rounds.
+# repairRatePerTurn and fuelTransferRate are between-battle rates per 24-h turn
+# (logistics_specification.md 4). turnRate is heading change, not the clock.
+#
 # FUNCTION CLASS -- what role the module plays on the ship
 #   major     a core system a warship is built around: propulsion, power generation,
 #             command, primary sensors. Any hull may fit one.
@@ -50,20 +57,20 @@
 #   Ion Drive              engine     major     medium    5.0    6     45  topSpeed +10%
 #                                                                          + Mk.3: acceleration +8%
 #   Cruise Drive           engine     major     medium    4.0    8     60  topSpeed +6%, fuelRange +20%
-#                                                                          + Mk.3: power.regenPerTurn +2
+#                                                                          + Mk.3: power.regenPerRound +2
 #   Sprint Drive           engine     major     medium    9.0    5     38  acceleration +18%
 #                                                                          + Mk.3: topSpeed +5%
 #   Manoeuvring Thrusters  engine     major     small     3.0    2     12  turnRate +15%, evasionRating +0.02
-#   Fusion Generator       utility    major     large     0.0   12    120  power.maxPower +25%, power.regenPerTurn +4
+#   Fusion Generator       utility    major     large     0.0   12    120  power.maxPower +25%, power.regenPerRound +4
 #   Auxiliary Power Core   utility    major     medium    0.0    6     55  power.maxPower +20%
-#                                                                          + Mk.3: power.regenPerTurn +2
-#   Capacitor Bank         utility    major     small     0.0    2     20  power.regenPerTurn +3
-#                                                                          + Mk.3: rechargeRatePerTurn +8%
-#   Repair Drone Bay       utility    support   medium    6.0    4     35  hull.regenPerTurn +4
+#                                                                          + Mk.3: power.regenPerRound +2
+#   Capacitor Bank         utility    major     small     0.0    2     20  power.regenPerRound +3
+#                                                                          + Mk.3: rechargeRatePerRound +8%
+#   Repair Drone Bay       utility    support   medium    6.0    4     35  hull.regenPerRound +4
 #                                                                          + Mk.3: repairRatePerTurn +15%
 #   Damage Control Party   utility    support   small     1.0   14      8  repairRatePerTurn +20%, crew.engineeringSkill +5
 #   Fire Suppression       utility    support   small     2.0    3     14  crewRecoveryRate +15%
-#                                                                          + Mk.3: hull.regenPerTurn +2
+#                                                                          + Mk.3: hull.regenPerRound +2
 #   Machine Shop           utility    support   large     5.0   20     90  repairRatePerTurn +30%, crew.engineeringSkill +8
 #   Smoke Generator        utility    specific  small     2.0    2     10  enemyHitChance -6
 #                                                                          + Mk.3: evasionRating +0.02
@@ -93,10 +100,10 @@
 #                                                                          + Mk.3: weaponAccuracy +3%
 #   Decoy Launcher         sensor     support   small     3.0    2     13  evasionRating +0.04
 #                                                                          + Mk.3: enemyHitChance -4
-#   Shield Booster         defensive  support   medium    8.0    3     26  rechargeRatePerTurn +25%
+#   Shield Booster         defensive  support   medium    8.0    3     26  rechargeRatePerRound +25%
 #                                                                          + Mk.3: shields.rechargeDelayAfterHit -1
 #   Shield Capacitor       defensive  support   medium   12.0    3     34  shields.maxHP +15%
-#                                                                          + Mk.3: rechargeRatePerTurn +10%
+#                                                                          + Mk.3: rechargeRatePerRound +10%
 #   Armour Plating         defensive  support   medium    0.0    0    150  hull.armorRating +20%
 #                                                                          + Mk.3: hull.maxHP +5%
 #   Belt Armour            defensive  support   large     0.0    0    400  hull.armorRating +35%, hull.maxHP +10%, topSpeed -5%
@@ -130,9 +137,9 @@
 #
 #   topSpeed                      acceleration                  turnRate
 #   evasionRating                 fuelRange                     hull.maxHP
-#   hull.armorRating              hull.regenPerTurn             shields.maxHP
-#   rechargeRatePerTurn           shields.rechargeDelayAfterHit power.maxPower
-#   power.regenPerTurn            sensorArray.effectiveness     detectionRange
+#   hull.armorRating              hull.regenPerRound            shields.maxHP
+#   rechargeRatePerRound          shields.rechargeDelayAfterHit power.maxPower
+#   power.regenPerRound           sensorArray.effectiveness     detectionRange
 #   initiative                    weaponAccuracy                criticalChanceBonus
 #   pointDefenseBonus             enemyHitChance                crew.gunnerySkill
 #   crew.engineeringSkill         crew.pilotSkill               crewRecoveryRate
@@ -174,7 +181,7 @@
       "modifierType": "enum: flat | percent"
     }
   ],
-  "powerCost": "number, passive power draw per turn",
+  "powerCost": "number, passive power draw per round, held against power.maxPower",
   "crewRequired": "[+] number, drawn from the hull's crew complement",
   "hullAffinity": [
     "[+] array of shipClass values; non-empty for functionClass 'specific', empty otherwise"

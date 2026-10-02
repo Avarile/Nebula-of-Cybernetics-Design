@@ -100,7 +100,7 @@ check('no module fitted twice on one hull',
 # the hull can actually run and man what is bolted to it
 bad_p, bad_c = [], []
 for s in S:
-    volley = sum(W[h['weaponEquipped']]['powerCost'] * W[h['weaponEquipped']]['fireRate']['shotsPerTurn']
+    volley = sum(W[h['weaponEquipped']]['powerCost'] * W[h['weaponEquipped']]['fireRate']['shotsPerRound']
                  for h in s['hardpoints']['list'] if h['weaponEquipped'])
     passive = sum(M[m['moduleEquipped']]['powerCost']
                   for m in s['moduleSlots']['list'] if m['moduleEquipped'])
@@ -117,12 +117,29 @@ check('every hull has at least one weapon and one module',
       [s['shipId'] for s in S
        if not any(h['weaponEquipped'] for h in s['hardpoints']['list'])
        or not any(m['moduleEquipped'] for m in s['moduleSlots']['list'])])
-check('currentX == maxX on a fresh hull',
-      [s['shipId'] for s in S
-       if s['hull']['currentHP'] != s['hull']['maxHP']
-       or s['shields']['currentHP'] != s['shields']['maxHP']
-       or s['power']['currentPower'] != s['power']['maxPower']
-       or s['crew']['currentCrew'] != s['crew']['maxCrew']])
+
+# Nested shape, not just the top level: every block of every hull (and named ship) carries
+# exactly the keys ship.interface declares for it. `description` and `note` are upstream
+# documentation keys the generated hulls omit. This is what holds live values (current*)
+# out of the catalogue from the schema side; verify_naming.py holds them out of the data.
+SCHEMA_DOC_KEYS = {'description', 'note'}
+
+
+def shape_diff(spec, data, path):
+    if isinstance(spec, dict) and isinstance(data, dict):
+        out = [f'{path}.{k} missing' for k in sorted(set(spec) - set(data) - SCHEMA_DOC_KEYS)]
+        out += [f'{path}.{k} not in schema' for k in sorted(set(data) - set(spec))]
+        return out + [d for k in sorted(set(spec) & set(data))
+                      for d in shape_diff(spec[k], data[k], f'{path}.{k}')]
+    if isinstance(spec, list) and isinstance(data, list) and spec:
+        return [d for i, x in enumerate(data) for d in shape_diff(spec[0], x, f'{path}[{i}]')]
+    return []
+
+
+nested = json.loads(body)
+check('every nested block matches ship.interface',
+      [d for s in S + NAMED   # a named ship adds only templateId, checked below
+       for d in shape_diff(nested, {k: v for k, v in s.items() if k != 'templateId'}, s['shipId'])])
 
 # named ships
 check('named ships keep their identity',

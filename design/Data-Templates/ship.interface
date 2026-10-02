@@ -21,7 +21,15 @@
 #   "string" / "number"   value type
 #   "enum: a | b | c"     exactly one of the listed literals
 #   "<x> or null"         nullable
-#   current* fields start equal to their max* counterpart on a newly built ship
+#
+# FIXED DATA ONLY. A hull here is a build sheet: every value is authored or derived
+# from a table and never changes in play. The values play changes are runtime state:
+#   in a battle      Reference/combat.ts CombatantState -- hullCurrentHP, shieldsCurrentHP,
+#                    componentCurrentHP, crewCurrent, powerCurrent (each starts at its max*)
+#   between battles  Reference/gameplay.ts FleetHull -- hullHP, shieldHP, ammo, fuel, cargo
+#
+# CLOCK. "round" is one exchange in a battle, "turn" is 24 h (GamePlay/gameplay_specification.md
+# 3). Rates that run per round say Round; capacities.repairRate is per turn, outside combat.
 #
 # EXTENSIONS BEYOND data-template.json (marked [+] below)
 #   tier       - required by the tier rule at the top of this file
@@ -36,6 +44,14 @@
 #   moduleSlots.list[].size     - the module size the slot accepts, mirroring hardpoints
 #   moduleSlots.list[].slotType - enum extended with `command` (CIC tower, flag bridge) and
 #                `hangar` (drone controller, catapult, aircraft elevator). See module.interface.
+#
+# DEVIATIONS FROM data-template.json
+#   current* removed - hull.currentHP, shields.currentHP, crew.currentCrew,
+#                power.currentPower and every componentHitpoints.<c>.currentHP. Live values
+#                are runtime state (see FIXED DATA ONLY above), not catalogue data.
+#   [+] renamed for the round clock - shields.rechargeRatePerTurn -> rechargeRatePerRound,
+#                power.regenPerTurn -> regenPerRound. Same values; upstream said "turn"
+#                where it meant a combat round.
 #
 # TIER GUIDANCE (relative to tier 1 of the SAME category)
 #   tier 1 basic    baseline hull/shields/power, mass at the low end of the band,
@@ -85,15 +101,13 @@
   },
   "hull": {
     "maxHP": "number",
-    "currentHP": "number",
     "armorRating": "number, flat damage reduction applied after shields are down",
     "armorType": "enum: light | medium | heavy | reactive"
   },
   "shields": {
     "maxHP": "number",
-    "currentHP": "number",
-    "rechargeRatePerTurn": "number",
-    "rechargeDelayAfterHit": "number, turns before recharge resumes",
+    "rechargeRatePerRound": "[+] renamed from rechargeRatePerTurn; number, shield points restored at the end of each round",
+    "rechargeDelayAfterHit": "number, ROUNDS after the last hit before recharge resumes",
     "shieldType": "enum: kinetic | energy | hybrid | none",
     "damageTypeResistance": {
       "kinetic": "number 0-1, percent reduction",
@@ -127,32 +141,26 @@
     "description": "Subsystems that can be targeted/critically hit independently of overall hull HP.",
     "bridge": {
       "maxHP": "number",
-      "currentHP": "number",
       "criticalEffect": "disables targeting computer, -50% accuracy"
     },
     "engines": {
       "maxHP": "number",
-      "currentHP": "number",
       "criticalEffect": "-70% speed and turn rate"
     },
     "weaponSystems": {
       "maxHP": "number",
-      "currentHP": "number",
       "criticalEffect": "random hardpoint disabled"
     },
     "shieldGenerator": {
       "maxHP": "number",
-      "currentHP": "number",
       "criticalEffect": "shield recharge disabled"
     },
     "sensorArray": {
       "maxHP": "number",
-      "currentHP": "number",
       "criticalEffect": "-40% hit chance, reduced detection range"
     },
     "lifeSupport": {
       "maxHP": "number",
-      "currentHP": "number",
       "criticalEffect": "crew casualties over time"
     }
   },
@@ -164,16 +172,14 @@
   },
   "crew": {
     "maxCrew": "number",
-    "currentCrew": "number",
     "pilotSkill": "number 0-100, affects accuracy and evasion",
     "gunnerySkill": "number 0-100, affects weapon accuracy and fire rate",
     "engineeringSkill": "number 0-100, affects repair speed and power management"
   },
   "power": {
     "maxPower": "number, must cover passive module draw plus one full weapon volley",
-    "currentPower": "number",
-    "regenPerTurn": "number",
-    "note": "Weapons/shields/engines draw power; allocation can be shifted between them each turn"
+    "regenPerRound": "[+] renamed from regenPerTurn; number, power restored at the end of each round",
+    "note": "Weapons/shields/engines draw power; allocation can be shifted between them each round"
   },
   "buildCost": {
     "structural": "number, manufactured-tier Structural Component units -- hull + every fitted weapon/module",
@@ -187,19 +193,20 @@
   },
   "capacities": {
     "cargo": "[+] number, tons",
-    "ammo": "[+] number, rounds",
+    "ammo": "[+] number, rounds of ammunition (not combat rounds)",
     "fuel": "[+] number, tons",
     "troops": "[+] number, embarked personnel",
     "aircraft": "[+] number, airframes",
     "drones": "[+] number",
     "mines": "[+] number",
     "medical": "[+] number, casualty berths",
-    "repairRate": "[+] number, hull points repaired per turn to a docked ship"
+    "repairRate": "[+] number, hull points restored per 24-h TURN to hulls at the same location, outside combat (logistics_specification.md 4)"
   }
 }
 
 # ---- EXAMPLE INSTANCE (data-template.json -> "exampleShip", with tier added and
-#      shipClass "frigate" remapped to the category whose mass band holds 850 t) ----
+#      shipClass "frigate" remapped to the category whose mass band holds 850 t,
+#      current* dropped and per-round fields renamed) ----
 #
 # {
 #   "shipId": "ship_torpedo_boat_fleet_venator_t1",
@@ -207,9 +214,9 @@
 #   "tier": 1,
 #   "shipClass": "torpedo_boat_fleet",
 #   "mass": { "value": 850, "unit": "tons" },
-#   "hull": { "maxHP": 400, "currentHP": 400, "armorRating": 15, "armorType": "medium" },
+#   "hull": { "maxHP": 400, "armorRating": 15, "armorType": "medium" },
 #   "shields": {
-#     "maxHP": 250, "currentHP": 250, "rechargeRatePerTurn": 20, "rechargeDelayAfterHit": 2,
+#     "maxHP": 250, "rechargeRatePerRound": 20, "rechargeDelayAfterHit": 2,
 #     "shieldType": "kinetic",
 #     "damageTypeResistance": { "kinetic": 0.3, "energy": 0.1, "explosive": 0.0 }
 #   },
@@ -223,16 +230,16 @@
 #     { "slotId": "ms_2", "slotType": "defensive", "size": "medium", "moduleEquipped": "mod_shield_booster_1" }
 #   ]},
 #   "componentHitpoints": {
-#     "bridge":          { "maxHP": 60,  "currentHP": 60,  "criticalEffect": "disables targeting computer, -50% accuracy" },
-#     "engines":         { "maxHP": 100, "currentHP": 100, "criticalEffect": "-70% speed and turn rate" },
-#     "weaponSystems":   { "maxHP": 80,  "currentHP": 80,  "criticalEffect": "random hardpoint disabled" },
-#     "shieldGenerator": { "maxHP": 70,  "currentHP": 70,  "criticalEffect": "shield recharge disabled" },
-#     "sensorArray":     { "maxHP": 50,  "currentHP": 50,  "criticalEffect": "-40% hit chance, reduced detection range" },
-#     "lifeSupport":     { "maxHP": 40,  "currentHP": 40,  "criticalEffect": "crew casualties over time" }
+#     "bridge":          { "maxHP": 60, "criticalEffect": "disables targeting computer, -50% accuracy" },
+#     "engines":         { "maxHP": 100, "criticalEffect": "-70% speed and turn rate" },
+#     "weaponSystems":   { "maxHP": 80, "criticalEffect": "random hardpoint disabled" },
+#     "shieldGenerator": { "maxHP": 70, "criticalEffect": "shield recharge disabled" },
+#     "sensorArray":     { "maxHP": 50, "criticalEffect": "-40% hit chance, reduced detection range" },
+#     "lifeSupport":     { "maxHP": 40, "criticalEffect": "crew casualties over time" }
 #   },
 #   "mobility": { "topSpeed": 320, "acceleration": 45, "turnRate": 60, "evasionRating": 0.22 },
-#   "crew": { "maxCrew": 24, "currentCrew": 24, "pilotSkill": 65, "gunnerySkill": 60, "engineeringSkill": 55 },
-#   "power": { "maxPower": 100, "currentPower": 100, "regenPerTurn": 15 },
+#   "crew": { "maxCrew": 24, "pilotSkill": 65, "gunnerySkill": 60, "engineeringSkill": 55 },
+#   "power": { "maxPower": 100, "regenPerRound": 15 },
 #   "sensors": { "detectionRange": 440, "initiative": 13 },
 #   "capacities": { "cargo": 0, "ammo": 180, "fuel": 700, "troops": 0, "aircraft": 0,
 #                   "drones": 0, "mines": 0, "medical": 0, "repairRate": 0 }

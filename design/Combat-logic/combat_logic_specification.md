@@ -11,7 +11,9 @@ This document reconciles the two combat-resolution layers into one authoritative
 
 **Numbers.** Every figure a ruling or a special-effect rule introduces lives in `tools/combat_tables.py`. This document explains them; `tools/verify_combat.py` checks that the two, the v2 JSON and the weapon catalogue agree.
 
-**Vocabulary.** A **round** is one exchange inside a battle; a whole engagement fits inside phase 9 of one 24-hour **turn** (`GamePlay/gameplay_specification.md` §3). Field names that still say "turn" — `shotsPerTurn`, `cooldownTurns`, `rechargeRatePerTurn`, `regenPerTurn`, `updatedTurnStructure` — mean round; renaming them is schema work, outside this document.
+**Vocabulary.** A **round** is one exchange inside a battle; a whole engagement fits inside phase 9 of one 24-hour **turn** (`GamePlay/gameplay_specification.md` §3). Every field, stat and type that counts rounds says so — `shotsPerRound`, `cooldownRounds`, `rechargeRatePerRound`, `power.regenPerRound`, `hull.regenPerRound`, `updatedRoundStructure` — and `shields.rechargeDelayAfterHit` is in rounds too. A name that says turn means the 24-hour turn: `repairRatePerTurn` is a between-battle tender rate (`GamePlay/logistics_specification.md` §4). `turnRate` and the turn penalty (§2.4) are about heading, not the clock. `tools/verify_naming.py` keeps the list.
+
+**Catalogue vs. live state.** A hull in the catalogue carries only its fixed maxima (`hull.maxHP`, `shields.maxHP`, `power.maxPower`, `crew.maxCrew`, each component's `maxHP`). The values a battle changes live in `CombatantState` (`Reference/combat.ts`): `hullCurrentHP`, `shieldsCurrentHP`, `componentCurrentHP`, `crewCurrent`, `powerCurrent`. Between battles a hull's damage is carried by its fleet entry (`FleetHull` in `Reference/gameplay.ts`).
 
 ---
 
@@ -19,18 +21,18 @@ This document reconciles the two combat-resolution layers into one authoritative
 
 ### 1.1 The canonical round structure
 
-v2's `updatedTurnStructure` supersedes v1's 9-step `turnStructure` — it's a strict superset (adds signature declaration, detection/lock-on, and missile resolution as new sub-phases), and both battle logs follow it. Canonical order:
+v2's `updatedRoundStructure` supersedes v1's 9-step `turnStructure` — it's a strict superset (adds signature declaration, detection/lock-on, and missile resolution as new sub-phases), and both battle logs follow it. Canonical order:
 
 1. **Initiative** — sort all ships by `initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20`, descending (R8). v1 named "sensorArray effectiveness" here without defining it; sensor modules now reach initiative through the `initiative` stat they already carry.
 2. **Signature declaration** — each ship commits this round's operating state (normal / afterburner / running-silent / shields up-down), fixing its signature via the signature system for the whole round, and its movement intent (§1.4). Carriers declare launches and every squadron's intent (§2.6).
 3. **Detection phase** — for every attacker–target pair, compute `effectiveDetectionRange` and update `lockQuality` (build, hold, or reset).
-4. **Power allocation** — assign the ship's power budget across weapons / shields / engines. The budget is capped at `effective(power.maxPower)`, and `effective(power.regenPerTurn)` is restored at the end of every round.
+4. **Power allocation** — assign the ship's power budget across weapons / shields / engines. The budget is capped at `effective(power.maxPower)`, and `effective(power.regenPerRound)` is restored at the end of every round.
 5. **Movement** — every ship moves along the engagement line, one at a time in ascending initiative order (§1.4, R6). This sets the position, speed and pairwise `distance` everything downstream reads, and trips proximity mine fields (§3.4). Then craft launch, every airborne squadron moves, and craft that reach their carrier are recovered (§2.6).
 6. **Targeting** — each ship picks target(s), weapon(s), and optionally a specific component, constrained by `range.maximum` and remaining ammo. A pool weapon may instead cover a friendly ship (§2.5).
 7. **Missile resolution sub-phase** — ammo deduction, arming check, and point-defense interception for every missile weapon fired this round (§2.5), and interception of every strike-craft wave (§2.6). Runs *before* any hit roll.
 8. **Direct-fire resolution** — for non-missile weapons, missiles that survived interception and craft attacking their target: run the hit-chance formula (§2, §2.6 for craft), then the damage formula (§3).
 9. **Critical checks** — on every confirmed hit, roll on the component-critical table (§3.6).
-10. **End of round** — shields recharge outside their delay window (§3.2), this round's signature bonuses expire, power regenerates, hull regenerates by `effective(hull.regenPerTurn)` (§3.3), crew casualties apply (§3.6), destruction/retreat conditions are checked, withdrawing ships that no enemy locks disengage (§3.7), and fleet disruption is tested (`GamePlay/conflict_specification.md` §4.3).
+10. **End of round** — shields recharge outside their delay window (§3.2), this round's signature bonuses expire, power regenerates, hull regenerates by `effective(hull.regenPerRound)` (§3.3), crew casualties apply (§3.6), destruction/retreat conditions are checked, withdrawing ships that no enemy locks disengage (§3.7), and fleet disruption is tested (`GamePlay/conflict_specification.md` §4.3).
 11. Repeat from step 1 until a victory condition is met.
 
 ### 1.2 Resolution granularity scales with fleet size
@@ -59,7 +61,7 @@ A stat's **kind** says what `base` is. All of them are tabulated as `STAT_KIND` 
 
 | kind | base | stats |
 |---|---|---|
-| field | the hull field of the same name | `topSpeed`, `turnRate`, `evasionRating`, `hull.maxHP`, `hull.armorRating`, `hull.regenPerTurn`, `shields.maxHP`, `rechargeRatePerTurn`, `shields.rechargeDelayAfterHit`, `power.maxPower`, `power.regenPerTurn`, `initiative`, `crew.*Skill`, `mineCapacity` (`capacities.mines`), `medicalCapacity` (`capacities.medical`), `aircraftCapacity` (`capacities.aircraft`), `droneCapacity` (`capacities.drones`) |
+| field | the hull field of the same name | `topSpeed`, `turnRate`, `evasionRating`, `hull.maxHP`, `hull.armorRating`, `hull.regenPerRound`, `shields.maxHP`, `rechargeRatePerRound`, `shields.rechargeDelayAfterHit`, `power.maxPower`, `power.regenPerRound`, `initiative`, `crew.*Skill`, `mineCapacity` (`capacities.mines`), `medicalCapacity` (`capacities.medical`), `aircraftCapacity` (`capacities.aircraft`), `droneCapacity` (`capacities.drones`) |
 | multiplier | 1 | `weaponAccuracy`, `weaponDamage`, `weaponTracking`, `pointDefenseBonus`, `sensorArray.effectiveness`, `electronicSystemsEffectiveness`, `squadronSpeed`, `squadronAccuracy`, `squadronEvasion` |
 | additive | 0; flat values add in the stat's unit, percent values add as points; the result is a fraction | `enemyHitChance` (flat unit: percentage points), `criticalChanceBonus`, `criticalEventResistance` (cap 0.75), `damageReduction` (cap 0.50), `crewRecoveryRate` (cap 0.90), `minesweepRate`, `fleetRegroupRate` |
 
@@ -231,7 +233,7 @@ Detection (**ruled, R9**):
 
 ```
 effectiveDetectionRange = effective(detectionRange)                                  // the hull's sensors.detectionRange
-                          * sensorArray.currentHP / sensorArray.maxHP                // sensor condition
+                          * componentCurrentHP.sensorArray / sensorArray.maxHP      // sensor condition
                           * effective(sensorArray.effectiveness)                     // R8
                           * clamp((targetSignature / 16) ^ 0.5, 0.25, 4.0)           // signature factor
 ```
@@ -294,9 +296,9 @@ The design intent survives with real gradation. Capital guns still lose fast esc
 
 Missiles get **+25%** to base hit chance and only apply **50%** of the target's effective evasion — their core advantage over direct-fire weapons. The cost is ammo depletion and a mandatory interception sub-phase that runs *before* the hit roll:
 
-1. Volley size = `min(shotsPerTurn, ammo)`; ammo decrements immediately, hit or not.
+1. Volley size = `min(shotsPerRound, ammo)`; ammo decrements immediately, hit or not.
 2. Arming check (§2.2) if launched point-blank.
-3. Only weapons carrying `can_be_intercepted` enter the sub-phase. Every defending **pool weapon** — one carrying `point_defense`, `anti_missile` or `anti_air` and left in the pool during targeting — contributes its `shotsPerTurn` interception attempts, **pooled across all incoming projectiles at that ship this round** — not per-launcher. A pool weapon may cover another ship instead (**Cover**, below). The pool is `round(Σ shotsPerTurn × effective(pointDefenseBonus))`, rounded half up once for the whole pool, so a PD coordinator's +15% is never lost to rounding on a single mount (R8). A finite-ammo pool weapon (the Interceptor Missile) spends 1 ammo per attempt.
+3. Only weapons carrying `can_be_intercepted` enter the sub-phase. Every defending **pool weapon** — one carrying `point_defense`, `anti_missile` or `anti_air` and left in the pool during targeting — contributes its `shotsPerRound` interception attempts, **pooled across all incoming projectiles at that ship this round** — not per-launcher. A pool weapon may cover another ship instead (**Cover**, below). The pool is `round(Σ shotsPerRound × effective(pointDefenseBonus))`, rounded half up once for the whole pool, so a PD coordinator's +15% is never lost to rounding on a single mount (R8). A finite-ammo pool weapon (the Interceptor Missile) spends 1 ammo per attempt.
 4. Each attempt: `interceptChance = clamp(pd.baseHitChance + pd.tracking × trackingFactor / 150 + interceptChanceDelta − projectileEvasion, 0.05, 0.95)`. `trackingFactor` and `interceptChanceDelta` come from the pool weapon's own effects (§3.4). `projectileEvasion` is 0.20 base, **+0.10** for `high_tracking` missiles and **+0.05** on each missile of a `multi_hit` volley. Higher is harder to intercept.
 5. Intercepted missiles are destroyed — no damage, no hit roll.
 6. Survivors roll the master hit-chance formula with the missile profile.
@@ -306,7 +308,7 @@ The v2 JSON used to give `high_tracking` **−0.10**, which made tracking missil
 
 **What a pool weapon engages.** `point_defense` engages missiles and strike craft at base chance; `anti_missile` engages missiles only, at +0.10; `anti_air` engages craft only, at +0.10. A weapon carrying two of them takes the union of targets and the better delta against each. A pool weapon fires *either* in the pool *or* as direct fire in a given round — it defaults to the pool, and its owner may reassign it in targeting. Strike craft enter the same pool in the round they attack; how a squadron launches, attacks and is lost is §2.6.
 
-**Cover** (R7 and the escort ruling, unified 2026-10-03). In targeting, a pool weapon may be assigned to **cover** one friendly ship instead of defending its own. Its attempts then join the covered ship's pool, against **missiles and craft alike** — each by what the weapon engages (above) — provided the two ships are within the covering weapon's `range.optimal` of each other on the engagement line when the sub-phase runs (after phase 5 movement, §1.4). Out of reach, its attempts are lost for the round. The covered ship's pool is `round(Σ shotsPerTurn × effective(pointDefenseBonus))` over every contributing weapon, each with its own ship's bonus, still rounded once, and it is split between missiles and craft as the ship's own pool is (§2.6, missiles first by default). Each attempt resolves with the covering weapon's own stats and spends its own ammo. No new number is involved.
+**Cover** (R7 and the escort ruling, unified 2026-10-03). In targeting, a pool weapon may be assigned to **cover** one friendly ship instead of defending its own. Its attempts then join the covered ship's pool, against **missiles and craft alike** — each by what the weapon engages (above) — provided the two ships are within the covering weapon's `range.optimal` of each other on the engagement line when the sub-phase runs (after phase 5 movement, §1.4). Out of reach, its attempts are lost for the round. The covered ship's pool is `round(Σ shotsPerRound × effective(pointDefenseBonus))` over every contributing weapon, each with its own ship's bonus, still rounded once, and it is split between missiles and craft as the ship's own pool is (§2.6, missiles first by default). Each attempt resolves with the covering weapon's own stats and spends its own ammo. No new number is involved.
 
 Cover meets missiles as well as craft for two reasons. On the engagement line nothing but distance separates a covering mount from the ship it covers, and within its `range.optimal` it engages a warhead's terminal run as well as the target's own mounts do: the model has no time step inside the interception sub-phase in which a missile is "faster" than a squadron. And the game needs it: a cargo hull carries two to four small AA autocannons and no warship's PD can reach it otherwise, so an escort that could stop fighters but not torpedoes could not protect a convoy from the cheapest raider there is (`GamePlay/conflict_specification.md` §4.4). It is also what the Veritas/Cinder log presumes when it calls *Leviathan Crown* "unescorted": only its own small-slot PD responded. Escorting **craft** (§2.6) remain craft-only.
 
@@ -451,7 +453,7 @@ shieldDamage = rawDamage * (1 - shields.damageTypeResistance[weapon.damage.damag
 
 Resistance is per damage type (`kinetic` / `energy` / `explosive`) and comes from the target's own shield type — damage-type matchups matter independently of raw weapon power.
 
-The pool is `effective(shields.maxHP)`. At the end of a round, a ship whose last hit was at least `effective(shields.rechargeDelayAfterHit)` rounds ago recharges `effective(rechargeRatePerTurn)`, up to that pool, unless EMP suppresses it (§3.4). Energy Shields and Defensive Formation raise the rate; shield boosters raise the pool and shorten the delay (R8).
+The pool is `effective(shields.maxHP)`. At the end of a round, a ship whose last hit was at least `effective(shields.rechargeDelayAfterHit)` rounds ago recharges `effective(rechargeRatePerRound)`, up to that pool, unless EMP suppresses it (§3.4). Energy Shields and Defensive Formation raise the rate; shield boosters raise the pool and shorten the delay (R8).
 
 ### 3.3 Armor and hull
 
@@ -462,9 +464,9 @@ hullDamage = max(1, (rawDamage - effective(hull.armorRating))
                      * (1 - target.effective(damageReduction)))                      // R8
 ```
 
-The hull pool is `effective(hull.maxHP)`. `damageReduction` — Defensive Formation, capped at 0.50 — cuts what armour lets through; it never reduces shield damage. At the end of every round the hull regains `effective(hull.regenPerTurn)` (repair drones, fire suppression), never above the pool (R8).
+The hull pool is `effective(hull.maxHP)`. `damageReduction` — Defensive Formation, capped at 0.50 — cuts what armour lets through; it never reduces shield damage. At the end of every round the hull regains `effective(hull.regenPerRound)` (repair drones, fire suppression), never above the pool (R8).
 
-Any damage exceeding `shields.currentHP` within a *single hit* carries over to hull in that same hit, minus armor — shields don't "block" an overkill hit from spilling through.
+Any damage exceeding `shieldsCurrentHP` within a *single hit* carries over to hull in that same hit, minus armor — shields don't "block" an overkill hit from spilling through.
 
 ### 3.4 Special effects
 
@@ -558,9 +560,9 @@ A success downgrades the critical one band: catastrophic → disabled → bonus 
 ### 3.7 Destruction and retreat
 
 ```
-hull.currentHP <= 0                                     -> destroyed (may splash nearby ships)
-lifeSupport component destroyed AND currentCrew == 0     -> destroyed (crew loss)
-hull.currentHP <= RETREAT_THRESHOLD × maxHP             -> attempts to break off (R4: 30%):
+hullCurrentHP <= 0                                      -> destroyed (may splash nearby ships)
+lifeSupport component destroyed AND crewCurrent == 0     -> destroyed (crew loss)
+hullCurrentHP <= RETREAT_THRESHOLD × hull.maxHP         -> attempts to break off (R4: 30%):
                                                            intent is withdraw from the next round on
 withdrawing AND no enemy holds a lock on it at end of round -> disengaged (R6)
 ```
@@ -586,11 +588,11 @@ The schema already provides two logging layers that don't currently talk to each
 
 ### 4.1 Tier 1 — Structured event log (ground truth)
 
-Every phase in §1.1 emits typed events into an append-only per-battle log. Extending `exampleCombatTurnLog`'s schema with the fields v2 actually needs to reconstruct a narrative later (range band, lock state, interception detail, critical roll) — nothing here is cosmetic, it's what Tier 2 reads:
+Every phase in §1.1 emits typed events into an append-only per-battle log. Extending `exampleCombatTurnLog`'s schema (the upstream name; `Reference/combat.ts` types one round of it as `RoundLog`, keyed by `round`) with the fields v2 actually needs to reconstruct a narrative later (range band, lock state, interception detail, critical roll) — nothing here is cosmetic, it's what Tier 2 reads:
 
 ```json
 {
-  "turn": 4,
+  "round": 4,
   "phase": "directFireResolution",
   "attacker": "ship_wraithbolt",
   "target": "ship_stormbreaker",

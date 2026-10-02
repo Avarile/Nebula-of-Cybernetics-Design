@@ -18,6 +18,10 @@
  * per-category preference order, and a `specific` module is only fitted where its
  * `hullAffinity` permits.
  *
+ * The catalogue is fixed data: maxima only. What a battle changes lives in
+ * `CombatantState` (combat.ts); what persists between battles in `FleetHull`
+ * (gameplay.ts).
+ *
  * Two budgets are enforced rather than assumed:
  *   power.maxPower >= passive module draw + one full weapon volley
  *   crew.maxCrew   >= sum of fitted modules' crewRequired
@@ -104,8 +108,9 @@ export interface DamageTypeResistance {
 }
 
 export interface Shields extends HitPoints {
-  rechargeRatePerTurn: number;
-  /** Turns that must pass after a hit before recharge resumes. */
+  /** Shield points restored at the end of each round (upstream: rechargeRatePerTurn). */
+  rechargeRatePerRound: number;
+  /** Rounds that must pass after a hit before recharge resumes. */
   rechargeDelayAfterHit: number;
   shieldType: ShieldType;
   damageTypeResistance: DamageTypeResistance;
@@ -179,7 +184,6 @@ export interface Mobility {
 
 export interface Crew {
   maxCrew: number;
-  currentCrew: number;
   /** 0-100. Feeds initiative and evasion. */
   pilotSkill: number;
   /** 0-100. Adds `gunnerySkill / 200` to base hit chance. */
@@ -191,8 +195,8 @@ export interface Crew {
 export interface Power {
   /** Covers passive module draw plus one full weapon volley — enforced, not assumed. */
   maxPower: number;
-  currentPower: number;
-  regenPerTurn: number;
+  /** Power restored at the end of each round (upstream: regenPerTurn). */
+  regenPerRound: number;
   note?: string;
 }
 
@@ -226,7 +230,10 @@ export interface Capacities {
   mines: number;
   /** Casualty berths. */
   medical: number;
-  /** Hull points repaired per turn to a docked ship. */
+  /**
+   * Hull points restored per 24-h turn to hulls at the same location, outside combat
+   * (logistics_specification.md 4). Per TURN, not per round.
+   */
   repairRate: number;
 }
 
@@ -294,6 +301,7 @@ export interface ShipCategorySignature {
   /** Tier-1 baselines; tiers 2 and 3 scale up from here. */
   speed: number;
   accel: number;
+  /** Tier-1 `turnRate` (heading, degrees/sec) -- not the 24-h turn. */
   turn: number;
   evade: Fraction01;
   /** Crew multiplier applied to a mass-derived base. */
@@ -322,7 +330,7 @@ export interface ShipCategorySignature {
 
 /** Fitting budgets the generated data satisfies, checked by tools/verify_ships.py. */
 export interface HullBudgets {
-  /** `sum(weapon.powerCost * weapon.fireRate.shotsPerTurn)` over fitted weapons. */
+  /** `sum(weapon.powerCost * weapon.fireRate.shotsPerRound)` over fitted weapons. */
   fullVolleyPowerDraw: number;
   /** `sum(module.powerCost)` over fitted modules. */
   passiveModuleDraw: number;

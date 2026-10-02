@@ -50,7 +50,7 @@ export type ShipTier = 1 | 2 | 3;
 /**
  * Weapon mark. 1–5 is the designed ladder (~+13% damage per mark, power cost
  * rising more slowly, a second special effect at Mk.3, tighter variance and one
- * less cooldown turn at Mk.5). Mk.6 exists on five legacy weapons only.
+ * less cooldown round at Mk.5). Mk.6 exists on five legacy weapons only.
  */
 export type WeaponMark = 1 | 2 | 3 | 4 | 5 | 6;
 
@@ -94,12 +94,12 @@ export interface Mass {
 }
 
 /**
- * A hit-point pool. On a newly built ship every `current*` equals its `max*`
- * counterpart; the verifier enforces that for generated hulls.
+ * A hit-point pool as the catalogue states it: the maximum only. The live value is
+ * runtime state -- `CombatantState` in combat.ts during a battle, `FleetHull` in
+ * gameplay.ts between battles -- and starts equal to this.
  */
 export interface HitPoints {
   maxHP: number;
-  currentHP: number;
 }
 
 // ---------------------------------------------------------------- resources

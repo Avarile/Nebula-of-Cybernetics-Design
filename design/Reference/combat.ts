@@ -1,5 +1,5 @@
 /**
- * combat.ts — turn structure, hit resolution, damage resolution, and logging.
+ * combat.ts — round structure, hit resolution, damage resolution, and logging.
  *
  * Derived from:
  *   data-template.json -> combatResolution                (v1.0 base layer)
@@ -14,9 +14,13 @@
  * this file; ruled entries carry their ruling, open ones are still undecided.
  * The numbers every ruling introduces live in tools/combat_tables.py.
  *
- * "turn" in this file's identifiers (`endOfTurn`, `TurnLog`, `turnsTracked`) means
- * a combat ROUND (GamePlay/gameplay_specification.md 3). Renaming them belongs to
- * the schema clean-up, together with `shotsPerTurn` and the other catalogue fields.
+ * Clock words follow GamePlay/gameplay_specification.md 3: a ROUND is one exchange in
+ * a battle and every identifier here that counts them says round (`endOfRound`,
+ * `RoundLog`, `roundsTracked`); a whole engagement fits in phase 9 of one 24-hour turn.
+ * `turnRate`, `turnPenalty` and `turnedThisRound` are about heading, not the clock.
+ *
+ * The catalogue `Ship` is fixed data (maxima only). Every value a battle changes lives
+ * in `CombatantState` below; between battles, in `FleetHull` (gameplay.ts).
  */
 
 import type { ComponentName, Ship } from './ships';
@@ -25,18 +29,21 @@ import type { AmmoCapacity, Weapon, WeaponClass, WeaponRange, WeaponSpecialEffec
 import type { SkillWeaponClass } from './skills';
 
 // ================================================================
-// 1. TURN STRUCTURE
+// 1. ROUND STRUCTURE
 // ================================================================
 
 /**
- * The canonical 10-phase turn, in resolution order. v2's `updatedTurnStructure`
+ * The canonical 10-phase round, in resolution order. v2's `updatedRoundStructure`
  * is a strict superset of v1's 9-step loop (it adds signature declaration,
  * detection/lock-on, and missile resolution), and both battle logs follow it.
  */
 export type CombatPhase =
-  /** Sort by (pilotSkill + sensorArray effectiveness + d20) descending. */
+  /**
+   * Sort by `effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20`,
+   * descending (R8, spec 1.1). v1's undefined "sensorArray effectiveness" term is gone.
+   */
   | 'initiative'
-  /** Each ship commits an operating state, fixing its signature for the whole turn. */
+  /** Each ship commits an operating state, fixing its signature for the whole round, and its movement intent. */
   | 'signatureDeclaration'
   /** Per attacker-target pair: effective detection range, then build/hold/reset lock. */
   | 'detection'
@@ -55,10 +62,10 @@ export type CombatPhase =
   | 'directFireResolution'
   /** On every confirmed hit, roll the component-critical table. */
   | 'criticalChecks'
-  /** Shield recharge, signature bonuses expire, repair modules, destruction/retreat. */
-  | 'endOfTurn';
+  /** Shield recharge, signature bonuses expire, power and hull regen, crew casualties, destruction/retreat. */
+  | 'endOfRound';
 
-export interface TurnPhaseSpec {
+export interface RoundPhaseSpec {
   phase: CombatPhase;
   /** 1-10. */
   order: number;
@@ -173,9 +180,9 @@ export interface MissileArmingRule {
 // ================================================================
 
 /**
- * What a ship commits to for the whole turn during `signatureDeclaration`.
+ * What a ship commits to for the whole round during `signatureDeclaration`.
  * `runningSilent` is a real tactical choice, not a modifier: it halves signature
- * but costs 30% top speed AND forbids weapons fire that turn.
+ * but costs 30% top speed AND forbids weapons fire that round.
  */
 export type OperatingState = 'normal' | 'afterburner' | 'runningSilent' | 'shieldsDown';
 
@@ -193,10 +200,10 @@ export interface SignatureDerivation {
   shieldMaxHPCoefficient: number;
 }
 
-/** A per-turn state modifier, stacked multiplicatively on the base signature. */
+/** A per-round state modifier, stacked multiplicatively on the base signature. */
 export interface SignatureStateModifier {
   state:
-    | 'weaponsFiredThisTurn'
+    | 'weaponsFiredThisRound'
     | 'shieldsActive'
     | 'afterburner'
     | 'runningSilent'
@@ -219,14 +226,14 @@ export interface SignatureResolution {
 
 /**
  * Lock quality is not binary — it builds. A newly locked target starts at 0.5 and
- * gains +0.25 per turn of continuous tracking, capping at 1.0 after two full
- * turns. Breaking range/line-of-sight, or the target going silent, resets it to 0.
+ * gains +0.25 per round of continuous tracking, capping at 1.0 after two full
+ * rounds. Breaking range/line-of-sight, or the target going silent, resets it to 0.
  */
 export interface LockState {
   locked: boolean;
   /** 0 (no lock), 0.5 (fresh), up to 1.0 (fully built). Multiplies hit chance. */
   lockQuality: Fraction01;
-  turnsTracked: number;
+  roundsTracked: number;
 }
 
 /**
@@ -239,7 +246,7 @@ export interface LockState {
 export interface DetectionResolution {
   /** The attacker's effective(detectionRange) — sensors.detectionRange plus radar/CIC/datalink and Scanning. */
   detectionRange: Distance;
-  /** sensorArray.currentHP / sensorArray.maxHP; 0 while disabled or destroyed. */
+  /** componentCurrentHP.sensorArray / sensorArray.maxHP; 0 while disabled or destroyed. */
   sensorCondition: Fraction01;
   /** effective(sensorArray.effectiveness). */
   sensorEffectiveness: number;
@@ -452,7 +459,7 @@ export interface MissileVolley {
   target: ShipId;
   weaponId: WeaponId;
   hardpointId: HardpointId;
-  /** `min(fireRate.shotsPerTurn, ammo)`. */
+  /** `min(fireRate.shotsPerRound, ammo)`. */
   volleySize: number;
   ammoBefore: AmmoCapacity;
   ammoAfter: AmmoCapacity;
@@ -529,9 +536,9 @@ export interface PointDefenceReadout {
   shipId: ShipId;
   /** Weapons carrying `point_defense`, `anti_missile` or `anti_air`, assigned to the pool. */
   pdWeapons: WeaponId[];
-  /** Sum of their `shotsPerTurn`, minus disabled hardpoints. */
-  pooledShotsPerTurn: number;
-  /** True when `pooledShotsPerTurn === 0`. */
+  /** Sum of their `shotsPerRound`, minus disabled hardpoints. */
+  pooledShotsPerRound: number;
+  /** True when `pooledShotsPerRound === 0`. */
   undefendedAgainstMissiles: boolean;
 }
 
@@ -807,11 +814,11 @@ export type SpecialEffectRules = Record<WeaponSpecialEffect, SpecialEffectRule>;
 // ================================================================
 
 export type CriticalKind =
-  /** 1-30: -10% to a random stat for 2 turns. */
+  /** 1-30: -10% to a random stat for 2 rounds. */
   | 'minorSystemDamage'
   /** 31-60: targeted component takes 25% of its maxHP as bonus damage. */
   | 'bonusComponentDamage'
-  /** 61-85: targeted (or random) component disabled for 1 turn. */
+  /** 61-85: targeted (or random) component disabled for 1 round. */
   | 'componentDisabled'
   /** 86-100: component destroyed, permanent until dock repair. */
   | 'catastrophic';
@@ -861,26 +868,26 @@ export interface StatusEffect {
   target: ComponentName | null;
   magnitude?: number;
   /** Null for permanent effects (a catastrophic critical lasts until dock repair). */
-  turnsRemaining: number | null;
+  roundsRemaining: number | null;
 }
 
 // ================================================================
-// 10. END OF TURN, DESTRUCTION, VICTORY
+// 10. END OF ROUND, DESTRUCTION, VICTORY
 // ================================================================
 
 export interface ShieldRechargeResolution {
-  /** `currentHP < maxHP && turnsSinceLastHit >= rechargeDelayAfterHit`. */
+  /** `shieldsCurrentHP < effective(shields.maxHP) && roundsSinceLastHit >= effective(shields.rechargeDelayAfterHit)`. */
   eligible: boolean;
-  turnsSinceLastHit: number;
-  /** `rechargeRatePerTurn`, modified by any equipped shield-booster module. */
+  roundsSinceLastHit: number;
+  /** `effective(rechargeRatePerRound)` (spec 3.2): shield boosters, Energy Shields, Defensive Formation. */
   amount: number;
   suppressed: boolean;
 }
 
 export type DestructionCause =
-  /** `hull.currentHP <= 0` — the explosion may splash nearby ships. */
+  /** `hullCurrentHP <= 0` — the explosion may splash nearby ships. */
   | 'hullDestroyed'
-  /** `lifeSupport` destroyed AND `crew.currentCrew === 0`. */
+  /** `lifeSupport` destroyed AND `crewCurrent === 0`. */
   | 'crewLoss';
 
 /**
@@ -904,7 +911,7 @@ export interface RetreatPolicy {
 
 export type VictoryCondition =
   | { kind: 'annihilation'; note: 'all enemy ships destroyed or retreated' }
-  | { kind: 'objective'; description: string; turns?: number };
+  | { kind: 'objective'; description: string; rounds?: number };
 
 // ================================================================
 // 11. RUNTIME COMBATANT STATE
@@ -912,7 +919,9 @@ export type VictoryCondition =
 
 /**
  * The mutable half of a ship during a battle. The `Ship` entity is the build
- * sheet; this is what changes turn to turn. Kept separate so the catalogue stays
+ * sheet; this is what changes round to round. Each `*Current` value starts at its
+ * catalogue maximum, or at the `FleetHull` value (gameplay.ts) for a hull that enters
+ * damaged. Kept separate so the catalogue stays
  * immutable and a battle can be replayed from a log against a pristine roster.
  */
 export interface CombatantState {
@@ -932,7 +941,7 @@ export interface CombatantState {
 
   /** Remaining rounds per mount; `'infinite'` mounts never decrement. */
   ammoRemaining: Record<HardpointId, AmmoCapacity>;
-  /** Turns left before a mount may fire again. */
+  /** Rounds left before a mount may fire again; set from `fireRate.cooldownRounds` after a volley. */
   cooldownRemaining: Record<HardpointId, number>;
   /** Mounts knocked out by a `weaponSystems` critical. */
   disabledHardpoints: HardpointId[];
@@ -949,8 +958,8 @@ export interface CombatantState {
   /** R6: the heading reversed while under way in this round's movement phase. */
   turnedThisRound: boolean;
   signature: SignatureResolution;
-  volleysFiredThisTurn: number;
-  turnsSinceLastHit: number;
+  volleysFiredThisRound: number;
+  roundsSinceLastHit: number;
 
   /** Lock this ship holds on each opponent — keyed by the opponent's id. */
   locks: Record<ShipId, LockState>;
@@ -994,7 +1003,7 @@ export type FireOutcome = 'hit' | 'miss' | 'intercepted' | 'failedToArm' | 'outO
  * narrative log be regenerated in a different tone without re-simulating.
  */
 export interface FireEvent {
-  turn: number;
+  round: number;
   phase: Extract<CombatPhase, 'directFireResolution' | 'missileResolution'>;
   attacker: ShipId;
   target: ShipId;
@@ -1031,7 +1040,7 @@ export interface FireEvent {
 
 /** Non-fire events the narrator needs: kills, retreats, lock changes, state declarations. */
 export interface StateEvent {
-  turn: number;
+  round: number;
   phase: CombatPhase;
   subject: ShipId;
   kind:
@@ -1050,9 +1059,9 @@ export interface StateEvent {
 
 export type CombatEvent = FireEvent | StateEvent;
 
-export interface TurnLog {
-  turn: number;
-  /** Initiative order resolved this turn. */
+export interface RoundLog {
+  round: number;
+  /** Initiative order resolved this round. */
   initiativeOrder: ShipId[];
   events: CombatEvent[];
 }
@@ -1063,7 +1072,7 @@ export interface BattleLog {
   rosters: Record<string, ShipId[]>;
   rngSeed: number;
   granularity: ResolutionGranularity;
-  turns: TurnLog[];
+  rounds: RoundLog[];
   result: BattleResult;
 }
 
@@ -1072,7 +1081,7 @@ export interface BattleResult {
   victoryCondition: VictoryCondition;
   losses: Record<string, ShipId[]>;
   survivors: Record<string, ShipId[]>;
-  turnsElapsed: number;
+  roundsElapsed: number;
 }
 
 // ================================================================
@@ -1136,11 +1145,11 @@ export interface RosterRow {
 }
 
 export interface NarrativeSection {
-  /** One header per turn in small actions; one per multi-turn phase in large ones. */
+  /** One header per round in small actions; one per multi-round phase in large ones. */
   heading: string;
   /** For large actions the phase name is doctrine commentary, not just a label. */
   phaseName?: string;
-  turns: number[];
+  rounds: number[];
   paragraphs: string[];
   chatter: RadioChatter[];
   /** Running tally stated inline whenever a kill happens: `EMBER: 7 -> 6 hulls`. */
@@ -1245,7 +1254,7 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
   {
     id: 'R6',
     topic: 'Movement model',
-    sources: ['combat_logic_specification.md 1.1 phase 5', 'advanced_combat_system.json -> updatedTurnStructure'],
+    sources: ['combat_logic_specification.md 1.1 phase 5', 'advanced_combat_system.json -> updatedRoundStructure'],
     conflict:
       'Phase 5 says "resolve positioning" and nothing more. No rule turns topSpeed, acceleration and turnRate into a change in distance per round, yet range bands, melee and mine fields all read that distance.',
     recommendation: 'Define how distance changes per round from mobility stats and declared intent (close / hold / open).',

@@ -17,7 +17,7 @@
       "modifierType": "percent"
     },
     {
-      "stat": "power.regenPerTurn",
+      "stat": "power.regenPerRound",
       "modifier": 4.0,
       "modifierType": "flat"
     }

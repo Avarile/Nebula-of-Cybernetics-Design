@@ -64,7 +64,7 @@ EARLY_EFFECT_FAMILY = 'Ashwright'
 
 # -------------------------------------------------------------------- archetypes
 # dmg/rng/pwr/ammo are multipliers on the size anchor. trk/hit/crit are absolute
-# at Mk.1. rof = shots per turn, cd = cooldown turns, span = maximum/optimal range.
+# at Mk.1. rof = shots per round, cd = cooldown rounds, span = maximum/optimal range.
 def A(name, cls, sizes, fams, dmg, rof, cd, trk, hit, rng, span, fall, pwr, crit,
       ammo=None, eff1=(), eff3=(), eff5=()):
     return dict(name=name, cls=cls, sizes=sizes, fams=fams, dmg=dmg, rof=rof, cd=cd,
@@ -194,7 +194,7 @@ def build(arch, size, family, mark):
     # re-expresses as continuous fire instead.
     if family == 'Ceridan' and arch['ammo'] is None and arch['cd'] == 0:
         shots += 1
-    # Mk.5 capability step: sustained-fire weapons shed a cooldown turn.
+    # Mk.5 capability step: sustained-fire weapons shed a cooldown round.
     if mark >= 5 and cooldown >= 2:
         cooldown -= 1
 
@@ -230,7 +230,7 @@ def build(arch, size, family, mark):
         'damage': {'base': round(dmg, 1), 'variance': round(var, 1), 'damageType': DAMAGE_TYPE[arch['cls']]},
         'range': {'optimal': opt, 'maximum': mx, 'falloffPenalty': arch['fall']},
         'accuracy': {'baseHitChance': round(hit, 2), 'tracking': trk},
-        'fireRate': {'shotsPerTurn': shots, 'cooldownTurns': cooldown},
+        'fireRate': {'shotsPerRound': shots, 'cooldownRounds': cooldown},
         'powerCost': pwr,
         'ammo': ammo,
         'criticalChance': round(crit, 2),
@@ -298,7 +298,7 @@ def write_interface_tables(weapons):
                      f'{b["var"]:5.2f} {b["ammo"]:5.2f}  {per_fam[fam]:>3}\n')
     lines += ['#\n',
               '#   Ceridan sustain (+ammo, -cooldown) is inert on an infinite-ammo, no-cooldown\n',
-              '#   weapon; there it re-expresses as +1 shot per turn, so a Ceridan line is never\n',
+              '#   weapon; there it re-expresses as +1 shot per round, so a Ceridan line is never\n',
               '#   just a worse Vanguard. Ashwright "effect potency" unlocks its second\n',
               '#   specialEffect at Mk.2 instead of Mk.3.\n']
 
@@ -438,8 +438,8 @@ def main():
         with open(os.path.join(ROOT, rel), 'w') as f:
             json.dump(w, f, indent=2); f.write('\n')
         index.append({'weaponId': w['weaponId'], 'name': w['name'], 'weaponClass': w['weaponClass'],
-                      'size': w['size'], 'damage': w['damage']['base'], 'shotsPerTurn': w['fireRate']['shotsPerTurn'],
-                      'cooldownTurns': w['fireRate']['cooldownTurns'], 'powerCost': w['powerCost'], 'path': rel})
+                      'size': w['size'], 'damage': w['damage']['base'], 'shotsPerRound': w['fireRate']['shotsPerRound'],
+                      'cooldownRounds': w['fireRate']['cooldownRounds'], 'powerCost': w['powerCost'], 'path': rel})
     with open(os.path.join(WEAPONS_DIR, 'index.json'), 'w') as f:
         json.dump({'count': len(index), 'weapons': index}, f, indent=2); f.write('\n')
     write_interface_tables(weapons)

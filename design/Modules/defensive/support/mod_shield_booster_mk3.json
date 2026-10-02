@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "stat": "rechargeRatePerTurn",
+      "stat": "rechargeRatePerRound",
       "modifier": 36.0,
       "modifierType": "percent"
     },

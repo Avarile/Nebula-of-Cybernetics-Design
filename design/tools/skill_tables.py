@@ -294,7 +294,7 @@ def ship_skills():
             f'Running a {disp}\'s internals: power routing, damage-control parties and '
             f'standing repairs. The other half of the level-{OPERATE_LEVEL} requirement '
             f'to operate the hull.' + climb,
-            effects=[E('power.regenPerTurn', 1.0, from_level=6, shipCategory=key),
+            effects=[E('power.regenPerRound', 1.0, from_level=6, shipCategory=key),
                      E('repairRatePerTurn', 1.0, from_level=6, shipCategory=key)],
             unlocks=[gate],
             prerequisites=[hull_prerequisite(key, 'systems')]))
@@ -325,7 +325,7 @@ ENGINEERING = [
       effects=[E('repairRatePerTurn', 3.0)]),
     S('skl_eng_energy_shields', 'Energy Shields', 'ship_command', 'engineering', 3, 'ship',
       'Shield generator tuning. The higher the skill, the faster the recharge rate.',
-      effects=[E('rechargeRatePerTurn', 3.0)]),
+      effects=[E('rechargeRatePerRound', 3.0)]),
     S('skl_eng_damage_control', 'Damage Control', 'ship_command', 'engineering', 4, 'ship',
       'Handling critical damage: hull breach, reactor fire, reactor failure, bridge '
       'failure, computer system failure. Higher levels improve the chance of containing '
@@ -384,7 +384,7 @@ FLEET_COMMAND = [
       'ship_command', 'fleet_command', 4, 'fleet',
       'Defensive station-keeping. Each level adds 1% to maintenance, energy shields, '
       'damage control, damage reduction and evasion across every ship in the fleet.',
-      effects=[E('repairRatePerTurn', 1.0), E('rechargeRatePerTurn', 1.0),
+      effects=[E('repairRatePerTurn', 1.0), E('rechargeRatePerRound', 1.0),
                E('criticalEventResistance', 1.0), E('damageReduction', 1.0),
                E('evasionRating', 1.0)],
       prerequisites=[R(_DRILL, 5)]),

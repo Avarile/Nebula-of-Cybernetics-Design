@@ -128,7 +128,7 @@ stat = size anchor  ×  archetype signature  ×  mark ladder  ×  family bias
   mounted on a hardpoint of the **same** size.
 * **mark 1–5** is a strict power ladder: ~+13% damage per mark with cost rising more
   slowly, plus capability steps — a second effect at Mk.3 (Mk.2 for Ashwright), tighter
-  variance and one less cooldown turn at Mk.5. Five legacy weapons carry a Mk.6.
+  variance and one less cooldown round at Mk.5. Five legacy weapons carry a Mk.6.
 * **family** (10 manufacturers) is a trade-neutral bias. Vanguard is the neutral
   reference line; Kestrel trades damage for rate of fire, Voss for range, Halcyon for
   accuracy, Draconis the reverse, Solari for power efficiency, and so on.
@@ -432,6 +432,21 @@ the map generator:
   orders, contracts in flight, wrecks. Created by play; typed in `Reference/gameplay.ts`
   and `Data-Templates/`, never generated.
 
+The line runs through the hull too. A generated hull is a build sheet: it carries
+`hull.maxHP`, `shields.maxHP`, `crew.maxCrew`, `power.maxPower` and each component's
+`maxHP`, and no `current*` value at all. What a battle changes lives in `CombatantState`
+(`Reference/combat.ts`); what a hull carries from one battle to the next lives in its
+fleet entry, `FleetHull` (`Reference/gameplay.ts`). `verify_naming.py` fails on any
+`current*` key in the generated data.
+
+**Clock words.** A rate or count that runs inside a battle says **round** —
+`shotsPerRound`, `cooldownRounds`, `rechargeRatePerRound`, `power.regenPerRound`,
+`hull.regenPerRound`; `shields.rechargeDelayAfterHit` counts rounds too. A name that says
+**turn** means the 24-hour turn: `rentPerTurn`, `throughputPerTurn`, and
+`repairRatePerTurn`, a tender's repair between battles. `verify_naming.py` fails on any
+other name that says turn in the data, the schemas or `Reference/`, and keeps the
+allowlist with a reason per entry — `turnRate` is on it, being heading, not the clock.
+
 Facility rules key off planet *archetype and development tier*, both of which the map spec
 already tables — never off a planet instance. The archetype table is **imported from**
 `tools/system_tables.py` rather than copied, and now that the map is generated,
@@ -464,7 +479,10 @@ The substantive deviations:
 |---|---|
 | ship | `shipClass` collapsed to one flat enum of the 26 categories; `shipSubClass` dropped |
 | ship | `tier`, `sensors`, `capacities` added; `moduleSlots.list[]` gained `size`, and its `slotType` gained `command` and `hangar` |
-| weapon | none — the schema is `weaponSchema` verbatim |
+| ship | every `current*` removed — `hull.currentHP`, `shields.currentHP`, `crew.currentCrew`, `power.currentPower`, each component's `currentHP`; live values are runtime state |
+| ship | `shields.rechargeRatePerTurn` → `rechargeRatePerRound`, `power.regenPerTurn` → `regenPerRound`: upstream said turn and meant round |
+| weapon | `fireRate.shotsPerTurn` → `shotsPerRound`, `fireRate.cooldownTurns` → `cooldownRounds`; otherwise `weaponSchema` verbatim |
+| module | stat names follow the hull: `hull.regenPerRound`, `power.regenPerRound`, `rechargeRatePerRound`; `repairRatePerTurn` keeps turn — it is a 24-hour rate |
 | module | single `effect` → `effects[]`; plus `functionClass`, `slotType`, `size`, `mark`, `mass`, `crewRequired`, `hullAffinity` |
 | skill | no upstream counterpart — `data-template.json` has no skill schema, so `skill.interface` is new in full |
 
@@ -512,11 +530,13 @@ python3 tools/verify_npc.py           # 28 checks
 python3 tools/verify_gameplay.py      # 58 checks -- the cross-cutting invariants, order lists, haul pricing; runs last
 python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
 python3 tools/verify_combat.py        # 62 checks -- combat rulings, stat hooks, lock range, movement, strike craft and cover vs. the catalogues and logs
+python3 tools/verify_naming.py        # 8 checks -- no current* in the catalogue, no stray 'turn' name, stat clocks match their rules
 python3 Reference/verify_reference.py # 67 checks -- TypeScript interface vs. the data
 ```
 
 All exit non-zero on failure. Between them they enforce: unique ids and names; field sets
-matching the `.interface` schemas; monotonic mark and tier ladders; no duplicate stat
+matching the `.interface` schemas (a hull's at every nesting level); no live `current*`
+value in the catalogue and no name that says turn unless it means the 24-hour turn; monotonic mark and tier ladders; no duplicate stat
 blocks; no weapon strictly dominated by a same-mark rival at equal-or-lower cost; module
 effects restricted to a fixed stat vocabulary; `specific` modules only where
 `hullAffinity` allows; every cross-reference resolving; hardpoint and slot sizes matching
@@ -574,6 +594,7 @@ Vanguard.
 | shared GamePlay derivations (prices, closures, hull splits) | `tools/gameplay_common.py` |
 | the SP curve and rank multiplier | `SP_BASE` / `SP_K` in `tools/skill_tables.py` |
 | the stat vocabulary modules and skills share | `tools/stat_vocabulary.py` |
+| a name allowed to say turn (with its reason) | `TURN_ALLOWLIST` in `tools/verify_naming.py` |
 
 Then re-run the pipeline. The archetype and family tables inside `weapon.interface` and
 `module.interface` are emitted by the generators, so documentation and data cannot drift.

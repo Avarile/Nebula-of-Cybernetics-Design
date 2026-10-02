@@ -12,7 +12,7 @@
   },
   "effects": [
     {
-      "stat": "hull.regenPerTurn",
+      "stat": "hull.regenPerRound",
       "modifier": 4.0,
       "modifierType": "flat"
     }

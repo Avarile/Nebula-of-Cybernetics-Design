@@ -42,7 +42,7 @@
       "appliesTo": {}
     },
     {
-      "stat": "rechargeRatePerTurn",
+      "stat": "rechargeRatePerRound",
       "modifierPerLevel": 1.0,
       "modifierType": "percent",
       "appliesFromLevel": 1,
