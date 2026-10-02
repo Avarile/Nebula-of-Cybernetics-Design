@@ -205,9 +205,11 @@ extended from data production to world simulation.
 
 ## 7. Rulings inherited from `Combat-logic/`
 
-`combat_logic_specification.md` §5 lists five gaps awaiting a decision. Three of them change
+`combat_logic_specification.md` §5 listed five gaps awaiting a decision. Three of them change
 how often ships die, which makes them gameplay questions rather than combat ones. Ruled
-here:
+here, and since applied at the source — the combat spec §5.1 records where each landed,
+`tools/combat_tables.py` holds the numbers and `tools/verify_combat.py` checks them. The
+section numbers below are the original §5 list's.
 
 | gap | ruling |
 |---|---|
@@ -215,9 +217,11 @@ here:
 | §5.2 gunnery skill and the −0.2 component penalty | **Both apply.** v2 extends v1; the terms are carried forward. |
 | §5.5 undefined `sensorDebuff` | **Folded into the existing `sensorArray` critical.** No second debuff is invented. |
 | §5.1 `extends` names a file that does not exist | Source fix, no gameplay consequence. The base is `data-template.json`'s `combatResolution`. |
-| §5.3 undefined `specialEffects` | Combat's to define. GamePlay reads outcomes, not effects. |
+| §5.3 undefined `specialEffects` | Combat's to define. GamePlay reads outcomes, not effects. Now defined: combat spec §3.4. |
 
-The word **turn** in all three `Combat-logic/` files means **round** in this vocabulary.
+The `Combat-logic/` prose now says **round** throughout. Field names that still say "turn"
+(`shotsPerTurn`, `cooldownTurns`, `rechargeRatePerTurn`) mean round until the schema
+clean-up renames them.
 
 ## 8. What GamePlay adds to the pipeline
 

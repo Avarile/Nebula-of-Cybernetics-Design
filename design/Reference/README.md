@@ -106,12 +106,14 @@ not generate it.
 5. **`range.falloffPenalty` is superseded but retained.** It belongs to v1's hit
    formula; v2's range-band table replaced it for hit resolution. The field is
    still on every weapon, so it is still on the type, flagged in its doc comment.
-6. **Five combat rulings are still open.** `extends` naming a file that does not
-   exist, whether gunnery skill and the component-targeting penalty survive into
-   v2, eleven of thirteen `specialEffects` having no numeric rule, the 15%-vs-30%
-   retreat threshold, and the undefined `sensorDebuff` term. They are modelled as
-   `OPEN_RULINGS` in `combat.ts` rather than silently resolved — an implementer
-   gets the conflict and the recommendation, not a guess presented as a rule.
+6. **The five original combat rulings are ruled; three new ones are open.** R1–R5
+   (`extends` naming a missing file, gunnery and the component penalty, the
+   `specialEffects` rules, the 30% retreat threshold, `sensorDebuff`) carry their
+   rulings in `OPEN_RULINGS`, and `constants.ts` mirrors the numbers in
+   `SPECIAL_EFFECT_RULES` and `RETREAT_POLICY`. `tools/combat_tables.py` is the source and
+   `tools/verify_combat.py` checks the mirror. R6 (movement), R7 (strike craft) and R8
+   (skill stats absent from the formulas) are still open — an implementer gets the
+   gap and the recommendation, not a guess presented as a rule.
 7. **`drone` is a weapon-skill class with no weapon catalogue behind it.**
    `Skills/Design` lists Drones beside Ballistic, Energy and Missiles, but drones
    are hangar-launched craft (`droneCapacity`, hangar slots) and there is no

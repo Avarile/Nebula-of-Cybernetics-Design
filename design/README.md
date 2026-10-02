@@ -489,6 +489,7 @@ python3 tools/verify_market.py        # 23 checks
 python3 tools/verify_facilities.py    # 26 checks
 python3 tools/verify_npc.py           # 25 checks
 python3 tools/verify_gameplay.py      # 44 checks -- the cross-cutting invariants; runs last
+python3 tools/verify_combat.py        # 23 checks -- combat rulings vs. the weapon catalogue
 python3 Reference/verify_reference.py # 59 checks -- TypeScript interface vs. the data
 ```
 
@@ -545,6 +546,7 @@ Vanguard.
 | the hull progression tree | `HULL_TREE` in `tools/skill_tables.py` |
 | regions, systems, gates, planet archetypes | `tools/system_tables.py` |
 | turn length, SP rate, phases, prices, leases, PvP, NPC squadrons | `tools/gameplay_tables.py` |
+| combat rulings: special-effect rules, hit-formula terms, interception | `tools/combat_tables.py` |
 | shared GamePlay derivations (prices, closures, hull splits) | `tools/gameplay_common.py` |
 | the SP curve and rank multiplier | `SP_BASE` / `SP_K` in `tools/skill_tables.py` |
 | the stat vocabulary modules and skills share | `tools/stat_vocabulary.py` |

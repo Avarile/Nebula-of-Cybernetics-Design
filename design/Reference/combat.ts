@@ -8,10 +8,15 @@
  *   Combat-logic/battle_log_sable_vs_ember.md             (5v7, shot-by-shot)
  *   Combat-logic/battle_log_veritas_vs_cinder.md          (13v17, phase-by-phase)
  *
- * v2 EXTENDS v1 rather than replacing it, so terms v2's pseudocode omits
+ * v2 EXTENDS v1 rather than replacing it, so terms v2's pseudocode omitted
  * (gunnery skill, the component-targeting penalty) still apply. Where the two
- * layers genuinely disagree, the conflict is modelled as an `OpenRuling` at the
- * bottom of this file rather than silently resolved.
+ * layers disagreed, the conflict is recorded as an `OpenRuling` at the bottom of
+ * this file; ruled entries carry their ruling, open ones are still undecided.
+ * The numbers every ruling introduces live in tools/combat_tables.py.
+ *
+ * "turn" in this file's identifiers (`endOfTurn`, `TurnLog`, `turnsTracked`) means
+ * a combat ROUND (GamePlay/gameplay_specification.md 3). Renaming them belongs to
+ * the schema clean-up, together with `shotsPerTurn` and the other catalogue fields.
  */
 
 import type { ComponentName, Ship } from './ships';
@@ -253,28 +258,40 @@ export interface WeaponHitProfile {
   evasionIgnoredFraction: Fraction01;
   /** True for beams — they skip the speed-derived evasion bonus. */
   ignoresSpeedEvasion: boolean;
-  /** False for mines: they do not roll to hit, they trigger on proximity. */
+  /** False for mines: they never use the master hit formula. */
   rollsToHit: boolean;
-  /** True for missiles: they must survive point-defense before any hit roll. */
+  /**
+   * Whether shots must survive point-defense before any hit roll. Read per WEAPON
+   * from `specialEffects.includes('can_be_intercepted')`, not from the class — the
+   * Interceptor Missile is a missile that is never itself intercepted.
+   */
   interceptable: boolean;
   notes: string;
 }
 
+/** Every class has a profile; melee resolves as direct fire with a 1.0 modifier. */
 export type WeaponHitProfiles = Record<WeaponClass, WeaponHitProfile>;
 
 /**
- * Mines are a standing trap rather than a targeted weapon: deployed to an area,
- * triggering on proximity for ANY ship — friend or foe — entering the zone.
+ * A mine field, laid against a chosen enemy ship (the anchor). Without
+ * `proximity_trigger` it is command-detonated against the anchor only; with it, it
+ * fires on ANY ship — friend or foe — inside its trigger radius. Without
+ * `area_denial` it is consumed by its first detonation.
  */
 export interface MineDeployment {
   weaponId: WeaponId;
   ownerShipId: ShipId;
-  /** Centre of the deployment zone. */
+  anchorShipId: ShipId;
+  /** Centre of the field. Its geometry waits on the movement model (OPEN_RULINGS R6). */
   position: unknown;
-  proximityTriggerRadius: Distance;
-  turnDeployed: number;
-  /** Mines do not discriminate. */
-  triggersOnFriendly: true;
+  /** `0.10 * range.optimal` with `proximity_trigger`; null when command-detonated. */
+  proximityTriggerRadius: Distance | null;
+  triggersOnFriendly: boolean;
+  roundDeployed: number;
+  /** 3 with `area_denial`; null when consumed on first detonation. */
+  roundsRemaining: number | null;
+  /** Ships already hit this round — an area_denial field fires once per ship per round. */
+  detonatedThisRound: ShipId[];
 }
 
 // ================================================================
@@ -299,27 +316,39 @@ export interface MissileVolley {
 }
 
 /**
- * Interception attempts are POOLED across all incoming missiles at the defending
- * ship this turn — not allocated per launcher. This is what makes saturation
+ * Interception attempts are POOLED across all incoming projectiles at the defending
+ * ship this round — not allocated per launcher. This is what makes saturation
  * work: more warheads than pooled PD shots means leakage regardless of per-missile
  * intercept odds.
  *
- *   interceptChance = clamp(pd.baseHitChance + pd.tracking / 150 - missileEvasion, 0.05, 0.95)
+ *   interceptChance = clamp(pd.baseHitChance + pd.tracking * trackingFactor / 150
+ *                           + interceptChanceDelta - projectileEvasion, 0.05, 0.95)
  */
 export interface InterceptionAttempt {
   pdWeaponId: WeaponId;
-  targetMissileIndex: number;
+  /** What the attempt engaged. Craft resolution itself is OPEN_RULINGS R7. */
+  targetKind: 'missile' | 'craft';
+  targetIndex: number;
+  /** 1.25 when the pool weapon carries `high_tracking`, else 1. */
+  trackingFactor: number;
+  /** +0.10 from `anti_missile` (vs missiles), `anti_air` (vs craft) or `proximity_trigger`. */
+  interceptChanceDelta: number;
   interceptChance: Fraction01;
   roll: number;
   intercepted: boolean;
 }
 
+/** A HIGHER projectile evasion is HARDER to intercept. */
 export interface MissileEvasionConstants {
   /** 0.20. */
   base: Fraction01;
-  /** -0.10 when the missile carries `high_tracking` — harder to intercept. */
+  /**
+   * +0.10 when the missile carries `high_tracking`. The v2 JSON once had -0.10,
+   * which made tracking missiles easier to intercept; tools/verify_combat.py now
+   * fails on any negative projectile-evasion delta.
+   */
   highTrackingDelta: number;
-  /** +0.05 per missile for `multi_hit` swarm pods. */
+  /** +0.05 on each missile of a `multi_hit` volley. */
   multiHitDeltaPerMissile: number;
 }
 
@@ -342,7 +371,7 @@ export interface MissileResolution {
  */
 export interface PointDefenceReadout {
   shipId: ShipId;
-  /** Weapons whose `specialEffects` include `point_defense` or `anti_missile`. */
+  /** Weapons carrying `point_defense`, `anti_missile` or `anti_air`, assigned to the pool. */
   pdWeapons: WeaponId[];
   /** Sum of their `shotsPerTurn`, minus disabled hardpoints. */
   pooledShotsPerTurn: number;
@@ -376,9 +405,10 @@ export interface HitChanceInput {
  *  4. effectiveEvasion
  *  5. missile? effectiveEvasion *= (1 - 0.5)
  *  6. baseChance = weapon.baseHitChance * profile.baseHitChanceModifier
- *                  + attacker.crew.gunnerySkill / 200        [carried forward from v1]
- *  7. component-targeted? baseChance -= 0.2                  [carried forward from v1]
+ *                  + attacker.crew.gunnerySkill / 200        [R2, carried forward from v1]
+ *  7. component-targeted? baseChance -= 0.2                  [R2, carried forward from v1]
  *  8. preLockChance = baseChance * rangeMultiplier * lockQuality
+ *                     * componentAccuracyMultiplier           [R5, v1's sensorDebuff]
  *  9. not locked? preLockChance *= 0.25
  * 10. finalHitChance = clamp(preLockChance - effectiveEvasion, 0.05, 0.95)
  */
@@ -394,6 +424,11 @@ export interface HitChanceResolution {
   baseChance: Fraction01;
   gunnerySkillBonus: Fraction01;
   componentTargetingPenalty: number;
+  /**
+   * Product over the attacker's disabled or destroyed components of
+   * sensorArray 0.60 and bridge 0.50; 1 when both are intact.
+   */
+  componentAccuracyMultiplier: Fraction01;
   preLockChance: Fraction01;
   blindFireApplied: boolean;
   finalHitChance: Fraction01;
@@ -409,6 +444,8 @@ export interface HitChanceConstants {
   gunnerySkillDivisor: number;
   /** -0.2 — flat penalty for targeting a specific component. */
   componentTargetingPenalty: number;
+  /** sensorArray 0.60, bridge 0.50 — COMPONENT_ACCURACY_CRITICALS. */
+  componentAccuracyCriticals: Partial<Record<ComponentName, Fraction01>>;
 }
 
 // ================================================================
@@ -444,27 +481,30 @@ export interface DamageResolution {
 }
 
 /**
- * Whether a special effect has a numeric rule yet. Only two of the thirteen do.
- * The rest are used narratively in both battle logs but have no mechanical
- * backing in the schema — modelling that explicitly keeps an implementer from
- * inventing one silently.
+ * Where a special effect acts. A weapon occupies the contexts its class and its
+ * other effects give it:
+ *   hit         the damage step of a shot that landed (incl. a mine detonation)
+ *   projectile  the shot as a target of the interception sub-phase
+ *   intercept   the weapon firing inside the interception pool
+ *   mine        a laid field: when it detonates and how long it lasts
  */
-export type SpecialEffectRule =
-  | {
-      effect: WeaponSpecialEffect;
-      status: 'specified';
-      /** Where the rule lives. */
-      source: 'combatResolution.damageFormula.specialEffectOverrides';
-      behaviour: string;
-    }
-  | {
-      effect: WeaponSpecialEffect;
-      status: 'unspecified';
-      /** How the battle logs already treat it — not yet a rule. */
-      narrativeUsage: string;
-      /** A concrete proposal, pending the ruling in `OPEN_RULINGS`. */
-      proposedBehaviour?: string;
-    };
+export type SpecialEffectContext = 'hit' | 'projectile' | 'intercept' | 'mine';
+
+/**
+ * One effect in one context. Every (effect, context) pair the catalogue produces is
+ * one of these three — tools/verify_combat.py fails on a pair that is none of them,
+ * so an implementer never has to invent a rule silently.
+ */
+export type SpecialEffectContextRule =
+  /** A ruled behaviour: its numeric parameters plus a one-line statement. */
+  | ({ rule: string } & Record<string, number | boolean | string | readonly string[]>)
+  /** The effect does nothing new in this context, and says why. */
+  | { inert: string }
+  /** The context resolves through another context's rule (a mine detonation -> hit). */
+  | { as: Exclude<SpecialEffectContext, 'mine'>; why: string };
+
+/** Source of truth: SPECIAL_EFFECT_RULES in tools/combat_tables.py. */
+export type SpecialEffectRule = Partial<Record<SpecialEffectContext, SpecialEffectContextRule>>;
 
 export type SpecialEffectRules = Record<WeaponSpecialEffect, SpecialEffectRule>;
 
@@ -501,9 +541,19 @@ export interface CriticalResolution {
   catastrophic: boolean;
 }
 
-/** A time-boxed effect on a combatant: a minor crit, an EMP suppression, a disable. */
+/**
+ * A time-boxed effect on a combatant: a minor crit, an EMP suppression, a disable,
+ * a melted armour plate. `emp_disable` produces two entries — recharge suppressed and
+ * a 0.70 topSpeed debuff — both 2 rounds, refreshed rather than stacked.
+ */
 export interface StatusEffect {
-  kind: 'statDebuff' | 'componentDisabled' | 'componentDestroyed' | 'shieldRechargeSuppressed';
+  kind:
+    | 'statDebuff'
+    | 'componentDisabled'
+    | 'componentDestroyed'
+    | 'shieldRechargeSuppressed'
+    /** `armor_melt`: cumulative, floored at 50% of base, lasts the engagement. */
+    | 'armorMelted';
   source: { weaponId: WeaponId; attacker: ShipId };
   target: ComponentName | null;
   magnitude?: number;
@@ -531,14 +581,17 @@ export type DestructionCause =
   | 'crewLoss';
 
 /**
- * The schema says retreat at 15% hull; both battle logs behave like ~30%
- * (Stormbreaker pulls out at 340/1072, World Ender at ~30%). See `OPEN_RULINGS`.
+ * Ruled (R4): a hull at or below 30% attempts to break off. v1 said below 15% AND
+ * with no weapons operational; both battle logs withdraw in the 30-33% band with
+ * guns still firing, and the logs won. The number is stated once, as
+ * RETREAT_THRESHOLD in tools/gameplay_tables.py.
  */
 export interface RetreatPolicy {
+  /** 0.30. */
   hullFractionThreshold: Fraction01;
-  requiresNoWeaponsOperational: boolean;
-  /** Which source the threshold came from. */
-  source: 'schema' | 'observedInLogs';
+  /** v1's extra condition, dropped by R4. */
+  requiresNoWeaponsOperational: false;
+  source: 'gameplay_tables.RETREAT_THRESHOLD';
 }
 
 export type VictoryCondition =
@@ -786,9 +839,11 @@ export type NarrativeRenderer = (log: BattleLog, policy: GranularityPolicy) => N
 // ================================================================
 
 /**
- * Cross-referencing the three source files surfaced five inconsistencies that
- * need an explicit decision before implementation, rather than being silently
- * resolved differently by whoever builds it.
+ * Every inconsistency or gap that needs an explicit decision before implementation,
+ * rather than being silently resolved differently by whoever builds it. R1-R5 came
+ * from cross-referencing the three source files and are ruled
+ * (combat_logic_specification.md 5.1). R6-R8 surfaced while ruling them and are
+ * open (5.2). tools/verify_combat.py asserts R1-R5 stay ruled.
  */
 export interface OpenRuling {
   id: string;
@@ -797,6 +852,8 @@ export interface OpenRuling {
   conflict: string;
   recommendation: string;
   status: 'open' | 'ruled';
+  /** Present once ruled: what was decided and where it landed. */
+  ruling?: string;
 }
 
 export const OPEN_RULINGS: readonly OpenRuling[] = [
@@ -805,38 +862,43 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
     topic: '`extends` points at a file that does not exist',
     sources: ['Combat-logic/advanced_combat_system.json'],
     conflict:
-      '_meta.extends names "combatResolution from spaceship_combat_system.json"; no such file exists. The actual base is data-template.json -> combatResolution.',
+      '_meta.extends named "combatResolution from spaceship_combat_system.json"; no such file exists. The actual base is data-template.json -> combatResolution.',
     recommendation: 'Rename the reference at the source.',
-    status: 'open',
+    status: 'ruled',
+    ruling: '_meta.extends now reads "data-template.json -> combatResolution"; the verifier resolves it.',
   },
   {
     id: 'R2',
     topic: 'Gunnery skill and the component-targeting penalty',
     sources: ['data-template.json -> combatResolution.hitChanceFormula', 'advanced_combat_system.json -> masterHitChanceFormula'],
     conflict:
-      "v1 includes attacker.gunnerySkill/200 and a -0.2 component-targeting penalty; v2's pseudocode omits both.",
+      "v1 includes attacker.gunnerySkill/200 and a -0.2 component-targeting penalty; v2's pseudocode omitted both.",
     recommendation:
       'Both still apply — v2 extends rather than replaces v1. HitChanceResolution models them explicitly at steps 6 and 7.',
-    status: 'open',
+    status: 'ruled',
+    ruling: 'Both apply. Written into the v2 JSON as masterHitChanceFormula steps 8a and 8b; spec 2.1 steps 6-7.',
   },
   {
     id: 'R3',
-    topic: 'Most specialEffects have no numeric rule',
+    topic: 'Most specialEffects had no numeric rule',
     sources: ['Data-Templates/weapon.interface', 'data-template.json -> specialEffectOverrides'],
     conflict:
-      'Only ignores_shields_partial and armor_piercing are specified. emp_disable, multi_hit, shield_disrupt, area_denial, anti_air, high_tracking, proximity_trigger, armor_melt, anti_missile, point_defense and can_be_intercepted are used narratively but unbacked.',
+      'Only ignores_shields_partial and armor_piercing were specified. emp_disable, multi_hit, shield_disrupt, area_denial, anti_air, high_tracking, proximity_trigger, armor_melt, anti_missile, point_defense and can_be_intercepted were used narratively but unbacked.',
     recommendation:
-      'Define numeric behaviour per effect; the battle logs already assume mechanics (2-turn shield-recharge suppression from EMP, double-hit autocannons) the schema does not provide.',
-    status: 'open',
+      'Define numeric behaviour per effect; the battle logs already assume mechanics (2-round shield-recharge suppression from EMP) the schema did not provide.',
+    status: 'ruled',
+    ruling:
+      'All 13 effects ruled per context in tools/combat_tables.py SPECIAL_EFFECT_RULES; spec 3.4. The high_tracking interception sign was inverted and is corrected.',
   },
   {
     id: 'R4',
     topic: 'Retreat threshold',
     sources: ['data-template.json -> destructionConditions', 'both battle logs'],
-    conflict: 'Schema says hull < 15%; both logs trigger withdrawal in the 30-33% band.',
-    recommendation:
-      'Move the canonical threshold to ~30% and update data-template.json, rather than leaving the sources disagreeing.',
-    status: 'open',
+    conflict: 'Schema said hull < 15%; both logs trigger withdrawal in the 30-33% band.',
+    recommendation: 'Move the canonical threshold to ~30% rather than leaving the sources disagreeing.',
+    status: 'ruled',
+    ruling:
+      "30% hull, no weapons condition. Stated once as RETREAT_THRESHOLD in tools/gameplay_tables.py; data-template.json stays the untouched upstream reference and the override is recorded in the v2 JSON's v1Overrides.",
   },
   {
     id: 'R5',
@@ -844,7 +906,37 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
     sources: ['data-template.json -> combatResolution.hitChanceFormula'],
     conflict: "v1's formula includes a sensorDebuff term with no formula given anywhere.",
     recommendation:
-      "Fold it into the existing sensorArray critical effect ('-40% hit chance') rather than inventing a second debuff — but make it an explicit decision.",
+      "Fold it into the existing sensorArray critical effect ('-40% hit chance') rather than inventing a second debuff.",
+    status: 'ruled',
+    ruling:
+      'It is the sensorArray critical: preLockChance x0.60 while the sensor array is disabled or destroyed (bridge x0.50 the same way). Spec 2.1 step 8.',
+  },
+  {
+    id: 'R6',
+    topic: 'Movement model',
+    sources: ['combat_logic_specification.md 1.1 phase 5', 'advanced_combat_system.json -> updatedTurnStructure'],
+    conflict:
+      'Phase 5 says "resolve positioning" and nothing more. No rule turns topSpeed, acceleration and turnRate into a change in distance per round, yet range bands, melee and mine fields all read that distance.',
+    recommendation: 'Define how distance changes per round from mobility stats and declared intent (close / hold / open).',
+    status: 'open',
+  },
+  {
+    id: 'R7',
+    topic: 'Strike craft resolution',
+    sources: ['battle_log_veritas_vs_cinder.md', 'tools/gameplay_tables.py STAT_RULES'],
+    conflict:
+      'Fighters and drones decide the Veritas/Cinder action, and aircraftCapacity, droneCapacity and the squadron* stats point at spec 2.5, but no rule says how a squadron launches, attacks, takes losses or rearms.',
+    recommendation: 'Define squadron launch, attack, loss and rearm rules; craft already enter the interception pool.',
+    status: 'open',
+  },
+  {
+    id: 'R8',
+    topic: 'Skill and module stats absent from the formulas',
+    sources: ['tools/gameplay_tables.py STAT_RULES', 'tools/verify_gameplay.py'],
+    conflict:
+      'weaponAccuracy, weaponDamage, weaponTracking, enemyHitChance, criticalChanceBonus, pointDefenseBonus, damageReduction, criticalEventResistance and electronicSystemsEffectiveness are routed to sections of the combat spec, but no formula there contains them, including the Weaponry skills\' -50% penalty below level 5. The verifier checks only that the document exists.',
+    recommendation:
+      'Name the term each stat modifies in the hit, damage and critical formulas, and make verify_gameplay.py check that the cited section actually names the stat.',
     status: 'open',
   },
 ];

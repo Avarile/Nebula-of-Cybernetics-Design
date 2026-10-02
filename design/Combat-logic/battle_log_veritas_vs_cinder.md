@@ -50,65 +50,65 @@ CINDER outnumbers VERITAS 17 to 13, but VERITAS holds a heavier average tonnage 
 
 ---
 
-### PHASE 1 — Approach & Detection (Turns 1–2)
+### PHASE 1 — Approach & Detection (Rounds 1–2)
 
 Both fleets enter the Rift on intercept vectors. Neither commander runs silent — at this scale, coordinating 13–17 hulls on EMCON discipline is impractical, and both sides know the other is coming from the mining-lane intel that triggered the deployment.
 
-Detection is mutual and near-simultaneous at 5,200m. Both flagships get full sensor locks on the opposing main body within the same turn — no first-strike advantage either way.
+Detection is mutual and near-simultaneous at 5,200m. Both flagships get full sensor locks on the opposing main body within the same round — no first-strike advantage either way.
 
-Both carriers hang back behind their battle lines, screened by two destroyers each. *Solmirage* and *Cinderwatch* begin spinning up strike squadrons; first launches are still two turns out per hangar-cycle rules.
+Both carriers hang back behind their battle lines, screened by two destroyers each. *Solmirage* and *Cinderwatch* begin spinning up strike squadrons; first launches are still two rounds out per hangar-cycle rules.
 
 ---
 
-### PHASE 2 — Long-Range Opening (Turns 3–5)
+### PHASE 2 — Long-Range Opening (Rounds 3–5)
 
 At 3,000–3,600m (long band for most capital weapons), the battlecruisers and battleships open the engagement. Cruiser and destroyer squadrons hold formation, still outside effective range for their smaller hardpoints.
 
-**Turn 3:** *Leviathan Crown* and *World Ender* trade capital-slot fire at extreme long range. Both land partial hits — rangeMultiplier ~0.3–0.4 at this distance keeps damage light. *World Ender*'s shields absorb a capital Ion Cannon hit (EMP triggers, but *World Ender*'s size means the effect barely registers this turn). *Leviathan Crown* shields dip 8%.
+**Round 3:** *Leviathan Crown* and *World Ender* trade capital-slot fire at extreme long range. Both land partial hits — rangeMultiplier ~0.3–0.4 at this distance keeps damage light. *World Ender*'s shields absorb a capital Ion Cannon hit (EMP triggers, but *World Ender*'s size means the effect barely registers this round). *Leviathan Crown* shields dip 8%.
 
-**Turn 4:** *Ashen Titan* and *Doomcrest* open a secondary duel at medium-long range. *Doomcrest*'s higher evasion (0.10 vs *Ashen Titan*'s 0.08) and slightly better speed start to matter — *Doomcrest* dodges two of three incoming volleys.
+**Round 4:** *Ashen Titan* and *Doomcrest* open a secondary duel at medium-long range. *Doomcrest*'s higher evasion (0.10 vs *Ashen Titan*'s 0.08) and slightly better speed start to matter — *Doomcrest* dodges two of three incoming volleys.
 
-**Turn 5:** First strike-craft launch. *Solmirage* sends 2 squadrons (12 fighters) at *Meridian Aegis*. CINDER's screen ships throw up PD fire — 5 fighters shot down before the attack run resolves. 7 survive to the hit roll (missile profile: +25% base, 50% evasion ignored). 4 connect. *Meridian Aegis* shields take a meaningful dent but hold.
+**Round 5:** First strike-craft launch. *Solmirage* sends 2 squadrons (12 fighters) at *Meridian Aegis*. CINDER's screen ships throw up PD fire — 5 fighters shot down before the attack run resolves. 7 survive to the hit roll (missile profile: +25% base, 50% evasion ignored). 4 connect. *Meridian Aegis* shields take a meaningful dent but hold.
 
 *Cinderwatch* answers with 3 squadrons (18 fighters) at *Stormbreaker*. VERITAS's screen intercepts 9. The remaining 9 fighters saturate *Stormbreaker*'s PD capacity — 6 hits land. **Stormbreaker shields collapse entirely**, hull takes light splash damage as several fighters press to point-blank before being finished off by return fire.
 
 ---
 
-### PHASE 3 — General Engagement (Turns 6–9)
+### PHASE 3 — General Engagement (Rounds 6–9)
 
 Range closes into medium/close bands across the whole line. This is where the numbers gap starts to bite — CINDER's extra 4 hulls (2 extra destroyers, 2 extra light cruisers relative to a straight per-class comparison) let it double up on targets that VERITAS can only answer once.
 
-**Turn 6:**
+**Round 6:**
 - CINDER's five destroyers run a coordinated flanking pass on VERITAS's three-destroyer screen. *Corvus*, still fresh, dodges most incoming fire (evasion 0.26 vs mediocre-tracking cruiser guns), but *Nightstrike* — lower evasion, already a known soft target from prior engagements — takes focused fire from *Talon Reach* and *Rimeclaw*. Shields drop to 0.
 - *Ironclad Vestige* and *Obsidian March* trade heavy fire; *Obsidian March* takes an armor-piercing Mass Driver hit that chews through 15% of remaining hull.
-- Both carriers hold this turn to let damaged squadrons return and rearm rather than pressing empty attack runs.
+- Both carriers hold this round to let damaged squadrons return and rearm rather than pressing empty attack runs.
 
-**Turn 7:**
+**Round 7:**
 - **First kill of the battle:** *Nightstrike*, shieldless and outnumbered on the flank, takes a critical hit (engine disable) from *Duskrunner*, then a finishing volley from *Ferrowind*. **Nightstrike destroyed.** VERITAS: 13 → 12.
 - In the main line, *Leviathan Crown* finally breaks through *World Ender*'s shields with a sustained ion/mass-driver combination — **World Ender shields: 1338 → 0**. Both battleships are now trading straight into armor and hull.
 - *Solmirage* launches its last 2 fresh squadrons at *Vanguard's Wake*. CINDER's PD, still recovering coordination from the earlier strikes, only intercepts 4 of 12 fighters. 8 connect — **Vanguard's Wake shields collapse** and take hull splash.
 
-**Turn 8:**
+**Round 8:**
 - CINDER presses the destroyer-flank advantage. *Whisperfang* and *Corvus*, VERITAS's two remaining destroyers, are forced into a fighting retreat toward the cruiser line for cover — successfully breaking two of CINDER's five destroyers' locks by cutting behind *Auric Drift*.
 - *Sovereign's Fist* lands a capital-slot alpha strike on *Ashen Titan* — **critical roll: catastrophic, bridge destroyed**. *Ashen Titan*'s accuracy craters (-50%) and it drops out of effective coordination for the rest of the engagement, still afloat but combat-ineffective as a gunline ship.
-- *Cinderwatch* commits its remaining 2 squadrons plus 2 rebuilt ones (partial fighter losses carried over) — 4 squadrons, 20 fighters — in a saturation strike on *Leviathan Crown*, which has no dedicated PD hardpoint free (power routed to weapons). Only the battleship's small-slot PD guns respond — 6 fighters downed, **14 survive to attack**. Massive hit volume: **Leviathan Crown shields 1362 → ~400** in a single exchange, and one lucky fighter run scores a critical on the shield generator component, suppressing recharge for 2 turns.
+- *Cinderwatch* commits its remaining 2 squadrons plus 2 rebuilt ones (partial fighter losses carried over) — 4 squadrons, 20 fighters — in a saturation strike on *Leviathan Crown*, which has no dedicated PD hardpoint free (power routed to weapons). Only the battleship's small-slot PD guns respond — 6 fighters downed, **14 survive to attack**. Massive hit volume: **Leviathan Crown shields 1362 → ~400** in a single exchange, and one lucky fighter run scores a critical on the shield generator component, suppressing recharge for 2 rounds.
 
-**Turn 9:**
+**Round 9:**
 - With *Leviathan Crown*'s shields nearly gone and recharge suppressed, VERITAS's flagship is now the most threatened capital ship on the field despite its size — a direct result of the carrier strike doctrine you specified: missiles/fighters beat evasion and punish ships without dedicated PD.
 - *Obsidian March*, already damaged, is finished off by combined fire from *Meridian Aegis* and two destroyers converging after the flank action. **Obsidian March destroyed.** VERITAS: 12 → 11.
 - VERITAS's screen finally regroups: *Wraithbolt*, *Silverlance*, and *Auric Drift* concentrate PD-capable escorts around *Leviathan Crown*, closing the gap that let the last carrier strike through unanswered.
 
 ---
 
-### PHASE 4 — Attrition & Breaking Point (Turns 10–13)
+### PHASE 4 — Attrition & Breaking Point (Rounds 10–13)
 
-**Turn 10:** *Cindermoor* and *Duskspire* focus *Stormbreaker*, still shieldless since Phase 2. **Stormbreaker destroyed** — catastrophic critical on the reactor. VERITAS: 11 → 10.
+**Round 10:** *Cindermoor* and *Duskspire* focus *Stormbreaker*, still shieldless since Phase 2. **Stormbreaker destroyed** — catastrophic critical on the reactor. VERITAS: 11 → 10.
 
-**Turn 11:** VERITAS answers hard. *Leviathan Crown*, shields still down but hull and armor intact, unloads both capital slots plus supporting fire from *Doomcrest* onto *World Ender*, whose shields are also down from Turn 7. Sustained hull damage: **World Ender hull 2796 → 1750**, roughly 37% down. *Solmirage* screens the flagship with its last operational squadron rather than attacking, dedicating it to escort/PD support instead — a doctrine shift once the carrier's offensive fighters are mostly spent.
+**Round 11:** VERITAS answers hard. *Leviathan Crown*, shields still down but hull and armor intact, unloads both capital slots plus supporting fire from *Doomcrest* onto *World Ender*, whose shields are also down from Round 7. Sustained hull damage: **World Ender hull 2796 → 1750**, roughly 37% down. *Solmirage* screens the flagship with its last operational squadron rather than attacking, dedicating it to escort/PD support instead — a doctrine shift once the carrier's offensive fighters are mostly spent.
 
-**Turn 12:** CINDER's numbers keep grinding. *Ironclad Vestige*, isolated after covering the destroyer retreat two turns earlier, is caught by *Vanguard's Wake*, *Graniteback*, and *Halberd's Edge* in a three-way crossfire. Shields long gone, hull drops from 1029 to 310 in one brutal exchange. It survives the turn but is now critical.
+**Round 12:** CINDER's numbers keep grinding. *Ironclad Vestige*, isolated after covering the destroyer retreat two rounds earlier, is caught by *Vanguard's Wake*, *Graniteback*, and *Halberd's Edge* in a three-way crossfire. Shields long gone, hull drops from 1029 to 310 in one brutal exchange. It survives the round but is now critical.
 
-**Turn 13 — the turning point:**
+**Round 13 — the turning point:**
 - *Ironclad Vestige* is finished off by a follow-up volley. **Ironclad Vestige destroyed.** VERITAS: 10 → 9. This is VERITAS's second heavy cruiser lost and its main secondary gun platform gone.
 - However, *Leviathan Crown* and *Doomcrest*'s continued focus fire finally drops *World Ender* below the retreat threshold (hull under 30%). **World Ender begins an emergency withdrawal**, screened by its two remaining destroyers.
 - *Cinderwatch*, its hangar down to 1 depleted squadron and increasingly exposed without its battleship's shield support, pulls back toward CINDER's rear formation rather than risk its now-thin fighter wing.

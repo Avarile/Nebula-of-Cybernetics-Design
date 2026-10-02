@@ -2,9 +2,18 @@
   "_meta": {
     "title": "Advanced Combat Resolution System v2",
     "version": "2.0",
-    "extends": "combatResolution from spaceship_combat_system.json",
+    "extends": "data-template.json -> combatResolution",
     "newConcepts": ["distance/range bands", "signature & detection/lock-on", "speed-based evasion", "missile flight + point-defense interception"],
-    "note": "Formulas are given as readable pseudocode, not code. 'signature' is a derived stat computed from existing ship fields (see signatureSystem.derivation) so it works with ships that don't have an explicit signature field."
+    "note": "Formulas are given as readable pseudocode, not code. 'signature' is a derived stat computed from existing ship fields (see signatureSystem.derivation) so it works with ships that don't have an explicit signature field.",
+    "vocabulary": "Every 'turn' in this file means a combat ROUND (GamePlay/gameplay_specification.md 3). Key and field names that still say 'turn' (updatedTurnStructure, shotsPerTurn, cooldownTurns, rechargeRatePerTurn) are renamed by the schema clean-up, not here.",
+    "rulings": "The numbers the five rulings and the special-effect rules introduce live in tools/combat_tables.py; Combat-logic/combat_logic_specification.md 2.1, 2.5, 3.4 and 3.7 explain them; tools/verify_combat.py holds the three together."
+  },
+
+  "v1Overrides": {
+    "description": "Where this layer replaces a v1 term in data-template.json -> combatResolution. data-template.json is the upstream reference and is left untouched; read it through these overrides.",
+    "retreatThreshold": "v1 says hull < 15%. Ruled: hull at or below RETREAT_THRESHOLD (tools/gameplay_tables.py, 30%), matching both battle logs. GamePlay/conflict_specification.md 5 depends on it.",
+    "sensorDebuff": "v1's hitChanceFormula names a sensorDebuff it never defines. Ruled: it IS the sensorArray component critical, applied as a multiplier on preLockChance (see masterHitChanceFormula step 9). No second debuff exists.",
+    "gunnerySkillAndComponentTargeting": "v1's attacker.gunnerySkill/200 and the -0.2 component-targeting penalty both still apply; they are now written into masterHitChanceFormula steps 8a and 8b."
   },
 
   "distanceSystem": {
@@ -35,14 +44,14 @@
       { "state": "weaponsFiredThisTurn", "effect": "+8% signature per weapon volley fired (heat/EM bloom)" },
       { "state": "shieldsActive",        "effect": "+10% signature (shield emitters are detectable)" },
       { "state": "afterburner/highAccel","effect": "+40% signature (engine flare)" },
-      { "state": "runningSilent",        "effect": "-50% signature, but -30% topSpeed and weapons cannot fire that turn (non-essential systems powered down)" },
+      { "state": "runningSilent",        "effect": "-50% signature, but -30% topSpeed and weapons cannot fire that round (non-essential systems powered down)" },
       { "state": "ecmModuleActive",      "effect": "-15% signature (mod_ecm_std or similar)" }
     ],
     "detectionAndLockOn": {
       "attackerSensorStrength": "derived from sensorArray.maxHP (or currentHP if damaged) * (1 + sensorArray_bonus_modules)",
       "effectiveDetectionRange": "attackerSensorStrength * (targetSignature / 100)",
       "rule": "if distance <= effectiveDetectionRange: target is 'locked' and full accuracy formula applies. If distance > effectiveDetectionRange: target is 'unlocked' - attacker may still fire but suffers the blindFirePenalty below.",
-      "lockOnBuildUp": "A newly-locked target starts at lockQuality = 0.5 and gains +0.25/turn while continuously tracked (line of sight + in range), capping at 1.0 after 2 turns. Breaking range/LoS or target using runningSilent resets lockQuality to 0.",
+      "lockOnBuildUp": "A newly-locked target starts at lockQuality = 0.5 and gains +0.25/round while continuously tracked (line of sight + in range), capping at 1.0 after 2 rounds. Breaking range/LoS or target using runningSilent resets lockQuality to 0.",
       "blindFirePenalty": "finalHitChance is multiplied by 0.25 and lockQuality is treated as 0.5 flat, representing firing at last-known position"
     }
   },
@@ -78,18 +87,22 @@
     },
     "mine": {
       "baseHitChanceModifier": "n/a - mines do not roll to hit directly",
-      "notes": "Deployed to an area; triggers on proximity (any ship, friend or foe, entering the deployment zone within proximityTrigger radius). Treat as a standing trap rather than a targeted weapon."
+      "notes": "Laid as a field against a chosen enemy ship. Without proximity_trigger the field is command-detonated against that ship only; with it, the field fires on ANY ship, friend or foe, inside its trigger radius. See tools/combat_tables.py MINE_BASE and the proximity_trigger / area_denial rules."
+    },
+    "melee": {
+      "baseHitChanceModifier": 1.0,
+      "notes": "Ruled: melee resolves as direct fire with no adjustments, like kinetic. Its range of a few dozen units means the attacker must be alongside; closing that distance is the movement model's job (open ruling R6)."
     }
   },
 
   "missileResolutionPhase": {
-    "description": "Runs as its own sub-phase, after the normal fire-resolution phase's targeting step but before damage is applied, for every missile weapon fired this turn.",
+    "description": "Runs as its own sub-phase, after the normal fire-resolution phase's targeting step but before damage is applied, for every missile weapon fired this round.",
     "steps": [
       "1. Volley size = min(weapon.fireRate.shotsPerTurn, weapon.ammo). Decrement ammo by volley size immediately (spent whether they hit or not).",
       "2. Missile arming check: apply missileArmingRule if launched at pointBlank range.",
-      "3. Defender's available point-defense weapons (specialEffects contains 'point_defense' or 'anti_missile') each get shotsPerTurn interception attempts this turn, pooled across ALL incoming missiles at the defending ship this turn.",
-      "4. For each PD interception attempt, roll against an incoming missile (defender's PD system allocates shots to missiles until either PD shots or incoming missiles run out): interceptChance = clamp(pdWeapon.accuracy.baseHitChance + pdWeapon.accuracy.tracking/150 - missileEvasion, 0.05, 0.95).",
-      "5. missileEvasion base = 0.20. Modifiers: 'high_tracking' special effect on the missile -0.10 (harder to intercept), 'multi_hit' (swarm pods) +0.05 per missile but the SWARM launches more missiles than a single PD mount can realistically cover, so volume overwhelms defense even if per-missile intercept odds are normal.",
+      "3. Only weapons carrying 'can_be_intercepted' enter this sub-phase. Defender's pool weapons (specialEffects contains 'point_defense', 'anti_missile' or 'anti_air', and assigned to the pool in targeting) each get shotsPerTurn interception attempts this round, pooled across ALL incoming projectiles at the defending ship this round. 'point_defense' engages missiles and craft, 'anti_missile' missiles only, 'anti_air' craft only. A finite-ammo pool weapon spends 1 ammo per attempt.",
+      "4. For each interception attempt, roll against an incoming projectile (the defender allocates attempts until either attempts or projectiles run out): interceptChance = clamp(pdWeapon.accuracy.baseHitChance + pdWeapon.accuracy.tracking * trackingFactor / 150 + interceptChanceDelta - projectileEvasion, 0.05, 0.95). trackingFactor and interceptChanceDelta come from the pool weapon's own special effects (tools/combat_tables.py).",
+      "5. projectileEvasion base = 0.20. A HIGHER value is HARDER to intercept. Modifiers: 'high_tracking' on the missile +0.10; 'multi_hit' (swarm pods) +0.05 on each missile - and the SWARM also launches more missiles than a single PD mount can realistically cover, so volume overwhelms defense even if per-missile intercept odds are normal. (This step previously gave high_tracking -0.10, which made tracking missiles easier to intercept, contradicting its own note; the sign is corrected.)",
       "6. Any missile successfully intercepted is destroyed and dealt with - no damage, no further rolls.",
       "7. Any missile NOT intercepted (PD ran out of shots, or intercept roll failed) proceeds to the normal hit-chance formula using the missile weaponHitProfile (1.25x base, 50% evasion ignored).",
       "8. If multiple missiles from the same volley hit, each rolls damage independently (they are separate warheads)."
@@ -99,32 +112,34 @@
 
   "masterHitChanceFormula": {
     "pseudocode": [
-      "1. Determine distance between attacker and target this turn.",
+      "1. Determine distance between attacker and target this round.",
       "2. If distance > weapon.range.maximum: cannot fire, stop.",
       "3. rangeMultiplier = distanceSystem.rangeMultiplierFormula(distance, weapon)",
       "4. locked = distance <= effectiveDetectionRange(attacker, target)",
-      "5. lockQuality = locked ? currentLockQuality (0.5 to 1.0, builds over turns) : 0.5",
+      "5. lockQuality = locked ? currentLockQuality (0.5 to 1.0, builds over rounds) : 0.5",
       "6. effectiveEvasion = speedEvasionSystem.formula(target, weapon)",
       "7. if weapon.weaponClass == 'missile': effectiveEvasion *= (1 - weaponHitProfiles.missile.evasionIgnoredFraction)",
       "8. baseChance = weapon.accuracy.baseHitChance * weaponHitProfiles[weapon.weaponClass].baseHitChanceModifier",
-      "9. preLockChance = baseChance * rangeMultiplier * lockQuality",
+      "8a. baseChance += attacker.crew.gunnerySkill / 200   (carried forward from v1)",
+      "8b. if targeting a specific component: baseChance -= 0.2   (carried forward from v1 componentTargetingRules)",
+      "9. preLockChance = baseChance * rangeMultiplier * lockQuality * componentAccuracyMultiplier, where componentAccuracyMultiplier is the product over the attacker's disabled or destroyed components of sensorArray 0.60 and bridge 0.50 (1.0 when both are intact). This is v1's sensorDebuff.",
       "10. if not locked: preLockChance *= signatureSystem.detectionAndLockOn.blindFirePenalty (0.25)",
       "11. finalHitChance = clamp(preLockChance - effectiveEvasion, 0.05, 0.95)",
-      "12. NOTE: for missile weapons, steps 1-11 only run on missiles that survive missileResolutionPhase's interception step."
+      "12. NOTE: for weapons carrying 'can_be_intercepted', steps 1-11 only run on projectiles that survive missileResolutionPhase's interception step."
     ]
   },
 
   "updatedTurnStructure": [
     "1. Initiative: sort by (pilotSkill + sensorArray effectiveness + random d20) descending.",
-    "2. Signature/state declaration: each ship declares this turn's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem.",
+    "2. Signature/state declaration: each ship declares this round's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem.",
     "3. Detection phase: for every attacker-target pair, compute effectiveDetectionRange and update lockQuality (build, hold, or reset).",
     "4. Power allocation phase: assign power across weapons/shields/engines.",
     "5. Movement phase: resolve positioning, update distance between all ship pairs.",
     "6. Targeting phase: each ship selects target(s) and weapon(s) to fire, constrained by range.maximum and ammo remaining.",
-    "7. Missile resolution sub-phase: run missileResolutionPhase for all missile weapons fired this turn (ammo deduction + PD interception).",
+    "7. Missile resolution sub-phase: run missileResolutionPhase for all missile weapons fired this round (ammo deduction + PD interception).",
     "8. Direct-fire resolution phase: for all non-missile weapons and surviving missiles, run masterHitChanceFormula, then apply damageFormula (shields -> armor -> hull/component) from the base combat system.",
     "9. Critical checks on confirmed hits per componentCriticalTable.",
-    "10. End of turn: shields recharge (if outside rechargeDelay window), signature bonuses from this turn's actions expire, repair modules apply, check destruction/retreat."
+    "10. End of round: shields recharge (if outside rechargeDelay window), signature bonuses from this round's actions expire, repair modules apply, check destruction/retreat."
   ],
 
   "workedExample": {

@@ -1,0 +1,209 @@
+#!/usr/bin/env python3
+"""Invariant checks for the combat rulings.
+
+Combat-logic/ is hand-written and generates nothing, so this verifier does not check
+output against a table. It checks that four hand-written things agree with each other
+and with the live weapon catalogue: tools/combat_tables.py (the numbers), the v2 JSON,
+the spec, and Reference/combat.ts.
+
+The load-bearing check is coverage: every (effect, context) pair the 798 weapons
+actually produce must be ruled or explicitly declared inert. A new archetype that
+pairs an effect with a new role fails here instead of reaching an implementer
+unruled.
+"""
+import json, os, re, sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, 'tools'))
+import combat_tables as CT
+
+FLEET = json.load(open(os.path.join(ROOT, 'fleet_and_weapons.json')))
+WEAPONS = FLEET['weapons']
+SPEC_PATH = os.path.join(ROOT, 'Combat-logic', 'combat_logic_specification.md')
+V2_PATH = os.path.join(ROOT, 'Combat-logic', 'advanced_combat_system.json')
+TS_PATH = os.path.join(ROOT, 'Reference', 'combat.ts')
+RULES = CT.SPECIAL_EFFECT_RULES
+fails = []
+
+
+def check(label, bad, show=6):
+    if bad:
+        fails.append(label); print(f'FAIL {label}: {len(bad)}')
+        for b in bad[:show]: print('      ', b)
+    else:
+        print(f'ok   {label}')
+
+
+def contexts_of(w):
+    """The contexts a weapon occupies -- derived from data, never declared."""
+    fx = set(w['specialEffects'])
+    ctx = {'mine'} if w['weaponClass'] == 'mine' else {'hit'}
+    if 'can_be_intercepted' in fx:
+        ctx.add('projectile')
+    if fx & set(CT.POOL_EFFECTS):
+        ctx.add('intercept')
+    return ctx
+
+
+def kind(entry):
+    return [k for k in ('rule', 'inert', 'as') if k in entry]
+
+
+# --- the vocabulary ---------------------------------------------------------------
+used = {e for w in WEAPONS for e in w['specialEffects']}
+ts_weapons = open(os.path.join(ROOT, 'Reference', 'weapons.ts')).read()
+m = re.search(r'export type WeaponSpecialEffect\s*=([^;]+);', ts_weapons)
+declared = set(re.findall(r"'([a-z_]+)'", m.group(1))) if m else set()
+
+check('every effect a weapon carries has a rule', sorted(used - set(RULES)))
+check('every rule names an effect in weapons.ts WeaponSpecialEffect', sorted(set(RULES) - declared))
+check('no declared effect is left without a rule', sorted(declared - set(RULES)))
+
+# --- coverage: every (effect, context) pair that occurs ------------------------------
+pairs = {}
+for w in WEAPONS:
+    for e in w['specialEffects']:
+        for c in contexts_of(w):
+            pairs.setdefault((e, c), w['name'])
+check('every (effect, context) pair in the catalogue is ruled or declared inert',
+      [f'{e} in {c} (e.g. {n})' for (e, c), n in sorted(pairs.items()) if c not in RULES.get(e, {})])
+
+# --- the table is well formed --------------------------------------------------------
+bad = []
+for e, by_ctx in RULES.items():
+    for c, entry in by_ctx.items():
+        if c not in CT.CONTEXTS:
+            bad.append(f'{e}: unknown context {c!r}')
+        elif len(kind(entry)) != 1:
+            bad.append(f'{e}.{c}: needs exactly one of rule / inert / as, has {kind(entry)}')
+        elif 'as' in entry and entry['as'] not in by_ctx:
+            bad.append(f'{e}.{c}: resolves "as {entry["as"]}", which {e} does not rule')
+check('each rule entry is exactly one of rule / inert / as, and "as" resolves', bad)
+
+# Parameter kind is read from its name: a multiplier, a fraction, or a count.
+bad = []
+for e, by_ctx in RULES.items():
+    for c, entry in by_ctx.items():
+        for k, v in entry.items():
+            if not isinstance(v, (int, float)) or isinstance(v, bool):
+                continue
+            if k.endswith('Factor'):
+                ok = 0 < v <= 2
+            elif k.endswith(('Rounds', 'Targets', 'PerMount', 'VsCraft')):
+                ok = isinstance(v, int) and v >= 1
+            else:
+                ok = -1 <= v <= 1
+            if not ok:
+                bad.append(f'{e}.{c}.{k} = {v}')
+check('multipliers in (0, 2], fractions in [-1, 1], counts positive integers', bad)
+
+# A HIGHER projectile evasion is HARDER to intercept. v2 once had high_tracking at -0.10.
+check('no effect makes a projectile easier to intercept',
+      [f'{e}: {r["projectile"]["projectileEvasionDelta"]}' for e, r in RULES.items()
+       if r.get('projectile', {}).get('projectileEvasionDelta', 0) < 0])
+
+check('the pool effects are exactly the effects whose intercept rule engages something',
+      sorted(set(CT.POOL_EFFECTS) ^ {e for e, r in RULES.items() if 'engages' in r.get('intercept', {})}))
+check('each pool effect engages what POOL_EFFECTS says',
+      [e for e, t in CT.POOL_EFFECTS.items() if RULES[e]['intercept'].get('engages') != list(t)])
+
+# --- the v2 JSON ------------------------------------------------------------------------
+try:
+    V2 = json.load(open(V2_PATH))
+except ValueError as exc:
+    check('advanced_combat_system.json parses', [str(exc)])
+    print(f'\n{len(fails)} CHECK(S) FAILED'); sys.exit(1)
+
+ext = V2['_meta']['extends']
+m = re.match(r'(\S+)\s*->\s*(\w+)$', ext)
+ok = m and os.path.exists(os.path.join(ROOT, m.group(1))) \
+    and m.group(2) in json.load(open(os.path.join(ROOT, m.group(1))))
+check('R1: _meta.extends names a file and key that exist', [] if ok else [ext])
+
+formula = ' '.join(V2['masterHitChanceFormula']['pseudocode'])
+check('R2: the v2 hit formula carries the gunnery term and the component penalty',
+      [t for t in (f'gunnerySkill / {CT.GUNNERY_SKILL_DIVISOR}', f'-= {abs(CT.COMPONENT_TARGETING_PENALTY):.1f}')
+       if t not in formula])
+check('R5: the v2 hit formula applies every component accuracy critical',
+      [f'{c} {f:.2f}' for c, f in CT.COMPONENT_ACCURACY_CRITICALS.items() if f'{c} {f:.2f}' not in formula])
+
+over = V2.get('v1Overrides', {})
+check('R4: v1Overrides states the retreat threshold by name and value',
+      [] if 'RETREAT_THRESHOLD' in over.get('retreatThreshold', '')
+      and f'{round(CT.RETREAT_THRESHOLD * 100)}%' in over['retreatThreshold'] else [over.get('retreatThreshold')])
+
+steps = ' '.join(V2['missileResolutionPhase']['steps'])
+want = [f"'high_tracking' on the missile +{RULES['high_tracking']['projectile']['projectileEvasionDelta']:.2f}",
+        f"'multi_hit' (swarm pods) +{RULES['multi_hit']['projectile']['projectileEvasionDelta']:.2f}",
+        f'projectileEvasion base = {CT.PROJECTILE_EVASION_BASE:.2f}']
+check('the interception step states the table\'s projectile-evasion numbers', [t for t in want if t not in steps])
+
+classes = {w['weaponClass'] for w in WEAPONS}
+check('every weapon class has a hit profile', sorted(classes - set(V2['weaponHitProfiles'])))
+
+# --- component criticals agree with the ship catalogue -----------------------------------
+crit_text = FLEET['ships'][0]['componentHitpoints']
+bad = []
+for comp, factor in CT.COMPONENT_ACCURACY_CRITICALS.items():
+    if comp not in crit_text:
+        bad.append(f'{comp}: not a ship component'); continue
+    pct = re.search(r'-(\d+)%', crit_text[comp]['criticalEffect'])
+    if not pct or abs((1 - int(pct.group(1)) / 100) - factor) > 1e-9:
+        bad.append(f'{comp}: {factor} vs "{crit_text[comp]["criticalEffect"]}"')
+check('each component accuracy factor matches its criticalEffect text', bad)
+
+# --- the spec ------------------------------------------------------------------------------
+spec = open(SPEC_PATH).read()
+sec34 = spec.split('### 3.4', 1)[1].split('### 3.5', 1)[0] if '### 3.4' in spec else ''
+check('spec 3.4 names every ruled effect', sorted(e for e in RULES if f'`{e}`' not in sec34))
+check('spec 3.7 states the ruled retreat threshold',
+      [] if f'{round(CT.RETREAT_THRESHOLD * 100)}% hull' in spec.split('### 3.7', 1)[1] else ['missing'])
+
+# --- Reference/combat.ts -------------------------------------------------------------------
+ts = open(TS_PATH).read()
+rulings = dict(re.findall(r"id: '(R\d+)',.*?status: '(open|ruled)'", ts, re.S))
+check('R1-R5 are marked ruled in combat.ts OPEN_RULINGS',
+      [f'{r}: {rulings.get(r)}' for r in ('R1', 'R2', 'R3', 'R4', 'R5') if rulings.get(r) != 'ruled'])
+sec52 = spec.split('### 5.2', 1)[1] if '### 5.2' in spec else ''
+check('every open ruling in combat.ts is listed in spec 5.2',
+      [r for r, s in rulings.items() if s == 'open' and f'**{r} ' not in sec52])
+
+# --- Reference/constants.ts mirrors the table --------------------------------------------------
+consts = open(os.path.join(ROOT, 'Reference', 'constants.ts')).read()
+block = consts.split('export const SPECIAL_EFFECT_RULES', 1)[1].split('} as const satisfies SpecialEffectRules', 1)[0] \
+    if 'export const SPECIAL_EFFECT_RULES' in consts else ''
+
+
+def ts_num(text, key):
+    m = re.search(rf'\b{key}:\s*(-?[\d.]+)', text)
+    return float(m.group(1)) if m else None
+
+
+bad = []
+for e, by_ctx in RULES.items():
+    em = re.search(rf'^\s+{e}: \{{(.*?)^\s+\}},', block, re.S | re.M)
+    if not em:
+        bad.append(f'{e}: missing'); continue
+    for c, entry in by_ctx.items():
+        cm = re.search(rf'^\s+{c}: \{{(.*?)\}},?$', em.group(1), re.M)
+        if not cm:
+            bad.append(f'{e}.{c}: missing'); continue
+        for k, v in entry.items():
+            if isinstance(v, (int, float)) and not isinstance(v, bool) and ts_num(cm.group(1), k) != v:
+                bad.append(f'{e}.{c}.{k}: ts {ts_num(cm.group(1), k)} != table {v}')
+check('constants.ts SPECIAL_EFFECT_RULES matches combat_tables.py', bad)
+
+check('constants.ts MISSILE_EVASION and RETREAT_POLICY match the table',
+      [k for k, want in (('highTrackingDelta', RULES['high_tracking']['projectile']['projectileEvasionDelta']),
+                         ('multiHitDeltaPerMissile', RULES['multi_hit']['projectile']['projectileEvasionDelta']),
+                         ('hullFractionThreshold', CT.RETREAT_THRESHOLD))
+       if ts_num(consts, k) != want])
+
+# --- the hand-written files survive ----------------------------------------------------------
+check('the hand-written combat files are present',
+      [p for p in ('combat_logic_specification.md', 'advanced_combat_system.json',
+                   'battle_log_sable_vs_ember.md', 'battle_log_veritas_vs_cinder.md')
+       if not os.path.exists(os.path.join(ROOT, 'Combat-logic', p))])
+
+print('\n' + ('ALL CHECKS PASSED' if not fails else f'{len(fails)} CHECK(S) FAILED'))
+sys.exit(1 if fails else 0)

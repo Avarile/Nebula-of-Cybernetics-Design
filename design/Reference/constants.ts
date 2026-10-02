@@ -30,6 +30,7 @@ import type {
   GranularityPolicy,
   RetreatPolicy,
   SignificanceRule,
+  SpecialEffectRules,
 } from './combat';
 import type { ConversionYields, ResourceTier } from './resources';
 import type {
@@ -469,12 +470,12 @@ export const WEAPON_HIT_PROFILES = {
   missile: {
     baseHitChanceModifier: 1.25, evasionIgnoredFraction: 0.5, ignoresSpeedEvasion: false,
     rollsToHit: true, interceptable: true,
-    notes: 'Core advantage: +25% base hit chance and half the target evasion. Paid for with finite ammo and a mandatory PD interception sub-phase before the hit roll.',
+    notes: 'Core advantage: +25% base hit chance and half the target evasion. Paid for with finite ammo and a mandatory PD interception sub-phase before the hit roll. `interceptable` is the class default; per weapon it is read from can_be_intercepted, so the Interceptor Missile is never itself shot down.',
   },
   mine: {
     baseHitChanceModifier: 1.0, evasionIgnoredFraction: 0, ignoresSpeedEvasion: false,
     rollsToHit: false, interceptable: false,
-    notes: 'Does not roll to hit. Deployed to an area and triggered on proximity by ANY ship, friend or foe.',
+    notes: 'Does not roll to hit. Laid against an anchor ship; command-detonated on it alone unless the mine carries proximity_trigger, which makes it fire on ANY ship, friend or foe. See SPECIAL_EFFECT_RULES.',
   },
   melee: {
     baseHitChanceModifier: 1.0, evasionIgnoredFraction: 0, ignoresSpeedEvasion: false,
@@ -483,22 +484,26 @@ export const WEAPON_HIT_PROFILES = {
   },
 } as const satisfies WeaponHitProfiles;
 
-/** interceptChance = clamp(pd.baseHitChance + pd.tracking / 150 - missileEvasion, 0.05, 0.95) */
+/**
+ * interceptChance = clamp(pd.baseHitChance + pd.tracking * trackingFactor / 150
+ *                         + interceptChanceDelta - projectileEvasion, 0.05, 0.95)
+ */
 export const INTERCEPT_CONSTANTS = {
   trackingDivisor: 150,
   floor: 0.05,
   ceiling: 0.95,
 } as const;
 
+/** A HIGHER value is HARDER to intercept. high_tracking was -0.10 until R3 fixed the sign. */
 export const MISSILE_EVASION = {
   base: 0.20,
-  highTrackingDelta: -0.10,
+  highTrackingDelta: 0.10,
   multiHitDeltaPerMissile: 0.05,
 } as const satisfies MissileEvasionConstants;
 
-/** Weapons that contribute pooled interception attempts. */
+/** Weapons that contribute pooled interception attempts, and what each engages. */
 export const POINT_DEFENCE_EFFECTS = [
-  'point_defense', 'anti_missile',
+  'point_defense', 'anti_missile', 'anti_air',
 ] as const satisfies readonly WeaponSpecialEffect[];
 
 export const HIT_CHANCE_CONSTANTS = {
@@ -506,13 +511,74 @@ export const HIT_CHANCE_CONSTANTS = {
   ceiling: 0.95,
   gunnerySkillDivisor: 200,
   componentTargetingPenalty: -0.2,
+  componentAccuracyCriticals: { sensorArray: 0.60, bridge: 0.50 },
 } as const satisfies HitChanceConstants;
 
-/** Only two of the thirteen special effects have a numeric rule today. */
-export const SPECIFIED_SPECIAL_EFFECTS = {
-  ignores_shields_partial: '50% of rawDamage bypasses shields straight to hull.',
-  armor_piercing: 'hull.armorRating is halved when computing hull damage.',
-} as const satisfies Partial<Record<WeaponSpecialEffect, string>>;
+/**
+ * Every special effect, ruled per context (R3). Mirrors SPECIAL_EFFECT_RULES in
+ * tools/combat_tables.py, which is the source; tools/verify_combat.py checks that
+ * every numeric parameter here matches it.
+ */
+export const SPECIAL_EFFECT_RULES = {
+  ignores_shields_partial: {
+    hit: { bypassFraction: 0.50, rule: '50% of rawDamage skips shields and goes to the hull step, where armour still applies' },
+    projectile: { inert: 'a projectile property; resolves when the shot lands' },
+  },
+  armor_piercing: {
+    hit: { armorRatingFactor: 0.50, rule: "the target's armorRating is halved for this hit, after armor_melt" },
+    projectile: { inert: 'a projectile property; resolves when the shot lands' },
+    mine: { as: 'hit', why: 'a detonation applies damage through the hit rule' },
+  },
+  armor_melt: {
+    hit: { armorLossPerHit: 0.05, armorFloor: 0.50, duration: 'engagement', rule: "every hull-damaging hit lowers armorRating by 5% of base, floored at 50%, for the engagement" },
+    projectile: { inert: 'a projectile property; resolves when the shot lands' },
+    mine: { as: 'hit', why: 'a detonation applies damage through the hit rule' },
+  },
+  shield_disrupt: {
+    hit: { resistanceFactor: 0.50, rule: "the target's shields.damageTypeResistance is halved for this hit" },
+  },
+  emp_disable: {
+    hit: { durationRounds: 2, topSpeedFactor: 0.70, shieldRechargeSuppressed: true, rule: 'on every hit: recharge suppressed and topSpeed x0.70 for 2 rounds; refreshes, never stacks' },
+  },
+  multi_hit: {
+    hit: { followUpDamageFraction: 0.50, followUpRollsCritical: false, excludes: 'can_be_intercepted', rule: 'a second damage application at 50%, no hit or critical roll; not for interceptable weapons' },
+    projectile: { projectileEvasionDelta: 0.05, rule: 'each missile of the volley is +0.05 harder to intercept' },
+    intercept: { extraAttemptsPerMount: 1, rule: '+1 interception attempt per mount per round' },
+    mine: { as: 'hit', why: 'a detonation applies damage through the hit rule' },
+  },
+  high_tracking: {
+    hit: { trackingFactor: 1.25, rule: "the weapon's tracking counts x1.25 in the speed-evasion formula" },
+    intercept: { trackingFactor: 1.25, rule: "the weapon's tracking counts x1.25 in interceptChance" },
+    projectile: { projectileEvasionDelta: 0.10, rule: 'a tracking missile is +0.10 harder to intercept' },
+  },
+  proximity_trigger: {
+    hit: { nearMissBand: 0.10, nearMissDamageFraction: 0.50, rule: 'a miss within 0.10 above finalHitChance still detonates for 50%, no critical' },
+    intercept: { interceptChanceDelta: 0.10, rule: 'a near miss kills light targets: +0.10 interceptChance' },
+    mine: { triggerRadiusFraction: 0.10, friendlyFire: true, rule: 'detonates with no hit roll on the first ship of either side within 0.10 x range.optimal' },
+  },
+  area_denial: {
+    hit: { splashFraction: 0.25, splashTargets: 2, splashDistanceBand: 0.10, rule: "25% splash to up to 2 ships of the target's side within +-10% of its distance from the attacker; no critical" },
+    projectile: { inert: 'splash resolves when the missile lands' },
+    intercept: { extraKillsPerSuccessVsCraft: 1, rule: 'a successful attempt against craft downs one more craft of the same wave' },
+    mine: { persistRounds: 3, rule: 'not consumed: persists 3 rounds, detonates at most once per ship per round' },
+  },
+  point_defense: {
+    intercept: { engages: ['missile', 'craft'], interceptChanceDelta: 0.0, rule: 'joins the pool; engages missiles and craft at base chance' },
+    hit: { rule: 'defaults to the interception pool; may be assigned to direct fire in targeting instead, never both in one round' },
+  },
+  anti_missile: {
+    intercept: { engages: ['missile'], interceptChanceDelta: 0.10, rule: 'joins the pool; +0.10 interceptChance against missiles' },
+    hit: { rule: 'defaults to the interception pool; may be assigned to direct fire in targeting instead, never both in one round' },
+  },
+  anti_air: {
+    intercept: { engages: ['craft'], interceptChanceDelta: 0.10, rule: 'joins the pool; +0.10 interceptChance against craft' },
+    hit: { rule: 'defaults to the interception pool; may be assigned to direct fire in targeting instead, never both in one round' },
+  },
+  can_be_intercepted: {
+    projectile: { projectileEvasionBase: 0.20, rule: 'the shot enters the interception sub-phase before any hit roll' },
+    hit: { inert: 'marks the projectile only' },
+  },
+} as const satisfies SpecialEffectRules;
 
 export const CRITICAL_TABLE = [
   { min: 1, max: 30, kind: 'minorSystemDamage', description: 'Minor system damage: -10% to a random stat for 2 turns.' },
@@ -522,20 +588,15 @@ export const CRITICAL_TABLE = [
 ] as const satisfies readonly CriticalBand[];
 
 /**
- * The schema says 15%; both battle logs withdraw in the 30-33% band, and read
- * better for it — a ship limping at 10% hull rarely gets a dramatic withdrawal
- * scene, it just dies next turn. See OPEN_RULINGS R4.
+ * Ruled (R4). v1 said 15% with no weapons operational; both battle logs withdraw in
+ * the 30-33% band, and read better for it — a ship limping at 10% hull rarely gets
+ * a dramatic withdrawal scene, it just dies the next round. Mirrors
+ * RETREAT_THRESHOLD in tools/gameplay_tables.py.
  */
-export const RETREAT_POLICY_SCHEMA = {
-  hullFractionThreshold: 0.15,
-  requiresNoWeaponsOperational: true,
-  source: 'schema',
-} as const satisfies RetreatPolicy;
-
-export const RETREAT_POLICY_RECOMMENDED = {
+export const RETREAT_POLICY = {
   hullFractionThreshold: 0.30,
-  requiresNoWeaponsOperational: true,
-  source: 'observedInLogs',
+  requiresNoWeaponsOperational: false,
+  source: 'gameplay_tables.RETREAT_THRESHOLD',
 } as const satisfies RetreatPolicy;
 
 // ================================================================
