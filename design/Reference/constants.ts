@@ -32,6 +32,7 @@ import type {
   SignificanceRule,
   SpecialEffectRules,
   EffectiveStatRules,
+  MovementConstants,
 } from './combat';
 import type { ConversionYields, ResourceTier } from './resources';
 import type {
@@ -389,7 +390,7 @@ export const TURN_PHASES = [
   { phase: 'signatureDeclaration', order: 2, description: 'Each ship commits an operating state, fixing its signature for the turn.' },
   { phase: 'detection', order: 3, description: 'Per attacker-target pair: effective detection range, then build/hold/reset lock.' },
   { phase: 'powerAllocation', order: 4, description: 'Assign the power budget across weapons / shields / engines.' },
-  { phase: 'movement', order: 5, description: 'Resolve positioning; sets the distance everything downstream reads.' },
+  { phase: 'movement', order: 5, description: 'Every ship moves along the engagement line in ascending initiative order (R6); sets position, speed and distance.' },
   { phase: 'targeting', order: 6, description: 'Pick targets, weapons, and optionally a component, within range.maximum and ammo.' },
   { phase: 'missileResolution', order: 7, description: 'Ammo deduction, arming check, PD interception. Runs before any hit roll.' },
   { phase: 'directFireResolution', order: 8, description: 'Non-missile weapons and surviving missiles: hit chance, then damage.' },
@@ -424,7 +425,8 @@ export const SIGNATURE_DERIVATION = {
 export const SIGNATURE_STATE_MODIFIERS = [
   { state: 'weaponsFiredThisTurn', signatureDelta: 0.08, perVolley: true },
   { state: 'shieldsActive', signatureDelta: 0.10 },
-  { state: 'afterburner', signatureDelta: 0.40 },
+  { state: 'afterburner', signatureDelta: 0.40,
+    boost: { topSpeedFactor: 1.25, accelerationFactor: 1.25 } },
   { state: 'runningSilent', signatureDelta: -0.50,
     cost: { topSpeedDelta: -0.30, weaponsFireForbidden: true } },
   { state: 'ecmModuleActive', signatureDelta: -0.15 },
@@ -446,11 +448,30 @@ export const BLIND_FIRE = {
   lockQualityTreatedAs: 0.5,
 } as const satisfies BlindFireRule;
 
+/**
+ * speedEvasionBonus = clamp((relativeSpeedFactor - trackingCounter * 5) / 1000, 0, 0.35).
+ * R6 recalibrated it from `/ 250`, which saturated 99% of catalogue matchups. Mirrors
+ * TRACKING_SPEED_FACTOR, SPEED_EVASION_DIVISOR and SPEED_EVASION_CAP in tools/combat_tables.py.
+ */
 export const EVASION_CONSTANTS = {
-  speedTrackingDivisor: 250,
+  speedTrackingDivisor: 1000,
+  trackingSpeedFactor: 5,
   maxSpeedEvasionBonus: 0.35,
   maxEffectiveEvasion: 0.60,
 } as const satisfies EvasionConstants;
+
+/**
+ * R6 — the engagement line (spec 1.4). Mirrors ROUND_TIME, MAX_ROUNDS_TO_TOP_SPEED,
+ * the movement state factors and MOVEMENT_INTENTS in tools/combat_tables.py.
+ */
+export const MOVEMENT_CONSTANTS = {
+  roundTime: 4,
+  maxRoundsToTopSpeed: 5,
+  runningSilentSpeedFactor: 0.70,
+  afterburnerFactor: 1.25,
+  engineCriticalFactor: 0.30,
+  intents: ['hold', 'close', 'open', 'withdraw'],
+} as const satisfies MovementConstants;
 
 /**
  * Per-class hit profiles. Missiles are the only class with a base-chance bonus
@@ -555,7 +576,7 @@ export const SPECIAL_EFFECT_RULES = {
   proximity_trigger: {
     hit: { nearMissBand: 0.10, nearMissDamageFraction: 0.50, rule: 'a miss within 0.10 above finalHitChance still detonates for 50%, no critical' },
     intercept: { interceptChanceDelta: 0.10, rule: 'a near miss kills light targets: +0.10 interceptChance' },
-    mine: { triggerRadiusFraction: 0.10, friendlyFire: true, rule: 'detonates with no hit roll on the first ship of either side within 0.10 x range.optimal' },
+    mine: { triggerRadiusFraction: 0.10, friendlyFire: true, rule: 'detonates with no hit roll on the first ship of either side, in movement order, that ends phase 5 within 0.10 x range.optimal of the field or crosses its position' },
   },
   area_denial: {
     hit: { splashFraction: 0.25, splashTargets: 2, splashDistanceBand: 0.10, rule: "25% splash to up to 2 ships of the target's side within +-10% of its distance from the attacker; no critical" },
@@ -598,6 +619,7 @@ export const RETREAT_POLICY = {
   hullFractionThreshold: 0.30,
   requiresNoWeaponsOperational: false,
   source: 'gameplay_tables.RETREAT_THRESHOLD',
+  disengagesWhen: 'noEnemyLock',
 } as const satisfies RetreatPolicy;
 
 /**

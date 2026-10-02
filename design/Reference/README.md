@@ -107,16 +107,18 @@ not generate it.
 5. **`range.falloffPenalty` is superseded but retained.** It belongs to v1's hit
    formula; v2's range-band table replaced it for hit resolution. The field is
    still on every weapon, so it is still on the type, flagged in its doc comment.
-6. **Combat rulings R1–R5, R8 and R9 are ruled; R6 and R7 are open.** R1–R5
+6. **Combat rulings R1–R6, R8 and R9 are ruled; R7 is open.** R1–R5
    (`extends` naming a missing file, gunnery and the component penalty, the
    `specialEffects` rules, the 30% retreat threshold, `sensorDebuff`) carry their
    rulings in `OPEN_RULINGS`, and `constants.ts` mirrors the numbers in
    `SPECIAL_EFFECT_RULES` and `RETREAT_POLICY`. `tools/combat_tables.py` is the source and
    `tools/verify_combat.py` checks the mirror. R8 (skill and module stats in the
    formulas) is ruled too, mirrored as `EFFECTIVE_STAT_RULES` and `STAT_HOOK_CONSTANTS`.
-   R9 (lock range) is mirrored as `DETECTION_CONSTANTS`. R6 (movement) and R7 (strike
-   craft) are still open — an implementer gets the gap and the recommendation, not a
-   guess presented as a rule.
+   R9 (lock range) is mirrored as `DETECTION_CONSTANTS`. R6 (movement on the engagement
+   line, and the recalibrated speed-evasion) is mirrored as `MOVEMENT_CONSTANTS` and
+   `EVASION_CONSTANTS`, with `MovementIntent`, `MovementResolution` and the position,
+   speed and heading on `CombatantState`. R7 (strike craft) is still open — an
+   implementer gets the gap and the recommendation, not a guess presented as a rule.
 7. **`drone` is a weapon-skill class with no weapon catalogue behind it.**
    `Skills/Design` lists Drones beside Ballistic, Energy and Missiles, but drones
    are hangar-launched craft (`droneCapacity`, hangar slots) and there is no

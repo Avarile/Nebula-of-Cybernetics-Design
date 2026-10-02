@@ -88,7 +88,9 @@ In phase 8, for every system, fleets present are grouped into engagements:
    and legality permitting, form an engagement.
 3. **NPC squadrons** engage any fleet not running `silent` that passes their detection check.
 4. **`avoid`** attempts disengagement. Success is the combat spec's signature, detection and
-   relative-speed model, unchanged — a fast, quiet fleet escapes a slow, loud one.
+   relative-speed model, unchanged — a fast, quiet fleet escapes a slow, loud one. Every hull
+   declares `withdraw` from round 1, and each leaves once no enemy holds a lock on it
+   (`Combat-logic/combat_logic_specification.md` §3.7, R6).
 
 Detection is the gate on all four. A fleet running `silent` — −50 % signature, −30 % speed,
 weapons cold for the turn — may pass an interdictor entirely, which is the counter-play that

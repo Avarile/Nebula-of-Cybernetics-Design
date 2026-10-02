@@ -163,8 +163,9 @@ check('spec 3.7 states the ruled retreat threshold',
 # --- Reference/combat.ts -------------------------------------------------------------------
 ts = open(TS_PATH).read()
 rulings = dict(re.findall(r"id: '(R\d+)',.*?status: '(open|ruled)'", ts, re.S))
-check('R1-R5 are marked ruled in combat.ts OPEN_RULINGS',
-      [f'{r}: {rulings.get(r)}' for r in ('R1', 'R2', 'R3', 'R4', 'R5') if rulings.get(r) != 'ruled'])
+check('R1-R6, R8 and R9 are marked ruled in combat.ts OPEN_RULINGS',
+      [f'{r}: {rulings.get(r)}' for r in ('R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R8', 'R9')
+       if rulings.get(r) != 'ruled'])
 sec52 = spec.split('### 5.2', 1)[1] if '### 5.2' in spec else ''
 check('every open ruling in combat.ts is listed in spec 5.2',
       [r for r, s in rulings.items() if s == 'open' and f'**{r} ' not in sec52])
@@ -283,11 +284,22 @@ def accuracy_mult(level):
     return (1 + pct / 100) * pen
 
 
+def tracking_counter(w):
+    return w['accuracy']['tracking'] * (RULES['high_tracking']['hit']['trackingFactor']
+                                         if 'high_tracking' in w['specialEffects'] else 1)
+
+
+def speed_bonus(speed, counter):
+    """Spec 2.4 as recalibrated by R6."""
+    return min(max((speed - counter * CT.TRACKING_SPEED_FACTOR) / CT.SPEED_EVASION_DIVISOR, 0),
+               CT.SPEED_EVASION_CAP)
+
+
 rail = next(w for w in WEAPONS if w['weaponId'] == 'wpn_141')
 cruiser = next(s for s in FLEET['ships'] if s['shipId'] == 'ship_heavy_cruiser_t2')
-crown = next(s for s in FLEET['namedShips'] if s['name'] == 'Leviathan Crown')
-evasion = min(crown['mobility']['evasionRating']
-              + min(max((crown['mobility']['topSpeed'] - rail['accuracy']['tracking']) / 250, 0), 0.35), 0.60)
+target = next(s for s in FLEET['namedShips'] if s['name'] == 'Whisperfang')
+evasion = min(target['mobility']['evasionRating']
+              + speed_bonus(target['mobility']['topSpeed'], tracking_counter(rail)), 0.60)
 worked = spec.split('**Worked example', 1)[1].split('**Pending', 1)[0] if '**Worked example' in spec else ''
 bad = []
 for level in (3, 5, 8):
@@ -337,6 +349,176 @@ check('constants.ts DETECTION_CONSTANTS matches combat_tables.py',
                       ('signatureFactorMin', CT.DETECTION_SIGNATURE_FACTOR_BOUNDS[0]),
                       ('signatureFactorMax', CT.DETECTION_SIGNATURE_FACTOR_BOUNDS[1]))
        if ts_num(consts.split('DETECTION_CONSTANTS', 1)[-1].split('} as const', 1)[0], k) != v])
+
+# --- R6: movement and the recalibrated speed-evasion ------------------------------------------
+ALL_HULLS = FLEET['ships'] + FLEET['namedShips']
+HULL_BY_NAME = {s['name']: s for s in ALL_HULLS}
+sec14 = spec.split('### 1.4', 1)[1].split('\n---', 1)[0] if '### 1.4' in spec else ''
+sec24 = spec.split('### 2.4', 1)[1].split('### 2.5', 1)[0] if '### 2.4' in spec else ''
+
+# Speed vs tracking must differentiate: over every hull and every direct-fire weapon that
+# reads the speed bonus (not beams, not pool weapons), few matchups may hit the cap.
+direct = [w for w in WEAPONS if w['weaponClass'] in ('kinetic', 'energy', 'missile')
+          and not set(w['specialEffects']) & set(CT.POOL_EFFECTS)
+          and not any(b in w['name'] for b in ('Beam Laser', 'Particle Lance'))]
+counters = [tracking_counter(w) for w in direct]
+bonuses = [speed_bonus(h['mobility']['topSpeed'], c) for h in ALL_HULLS for c in counters]
+saturated = sum(b >= CT.SPEED_EVASION_CAP for b in bonuses) / len(bonuses)
+graded = sum(0 < b < CT.SPEED_EVASION_CAP for b in bonuses) / len(bonuses)
+check(f'R6: speed-evasion differentiates ({saturated:.0%} saturated, {graded:.0%} graded)',
+      [] if saturated <= CT.SPEED_EVASION_SATURATED_MAX and graded >= CT.SPEED_EVASION_GRADED_MIN
+      else [f'saturated {saturated:.2f} > {CT.SPEED_EVASION_SATURATED_MAX} or graded {graded:.2f} '
+            f'< {CT.SPEED_EVASION_GRADED_MIN}'])
+
+# Every row of the spec 2.4 sample table recomputes, old and new, from the catalogue.
+bad, rows = [], 0
+for row in sec24.splitlines():
+    cells = [c.strip() for c in row.strip().strip('|').split('|')]
+    if len(cells) != 4 or not re.search(r'\(\d+\)$', cells[0]):
+        continue
+    rows += 1
+    tname = re.sub(r'\s*\(\d+\)$', '', cells[0]).strip('*')
+    wname = cells[1].split(' (')[0]
+    hull, weapon = HULL_BY_NAME.get(tname), next((w for w in WEAPONS if w['name'] == wname), None)
+    if not hull or not weapon:
+        bad.append(f'{tname} / {wname}: not in the catalogue'); continue
+    speed, counter = hull['mobility']['topSpeed'], tracking_counter(weapon)
+    old = min(max((speed - counter) / 250, 0), 0.35)
+    for got, cell in ((old, cells[2]), (speed_bonus(speed, counter), cells[3])):
+        if abs(got - float(cell)) > 0.0005 + 1e-9:     # the table shows 3 decimals
+            bad.append(f'{tname} vs {wname}: {cell} != {got:.4f}')
+check('R6: the spec 2.4 sample table recomputes from the catalogue', bad if rows else ['no rows found'])
+
+# The v2 worked example keeps its interpretation: the capital gun is at the floor.
+ex = V2['workedExample']['capitalIonCannonShot']
+want_bonus = speed_bonus(350, 12)
+floor_hit = max(ex['baseChance'] * 0.75 * ex['lockQuality'] - (0.24 + want_bonus), 0.05)
+check('R6: the v2 worked example states the new bonus and still computes to the 0.05 floor',
+      [t for t, ok in ((f'{want_bonus:.2f}', f'= {want_bonus:.2f}' in ex['speedEvasionBonus']),
+                       ('floor', floor_hit == 0.05 and ex['finalHitChance'].endswith('= 0.05')))
+       if not ok])
+check('R6: the v2 speedEvasionSystem formula carries the table constants',
+      [] if f'trackingCounter * {CT.TRACKING_SPEED_FACTOR}) / {CT.SPEED_EVASION_DIVISOR}'
+      in V2['speedEvasionSystem']['formula']['speedEvasionBonus'] else ['speedEvasionBonus'])
+
+# Acceleration matters but never dominates: every hull reaches top speed from rest in time.
+slow = [(round(h['mobility']['topSpeed'] / (h['mobility']['acceleration'] * CT.ROUND_TIME), 2), h['name'])
+        for h in ALL_HULLS
+        if h['mobility']['topSpeed'] / (h['mobility']['acceleration'] * CT.ROUND_TIME) > CT.MAX_ROUNDS_TO_TOP_SPEED]
+check(f'R6: every hull reaches top speed from rest within {CT.MAX_ROUNDS_TO_TOP_SPEED} rounds', slow)
+
+# The engine critical's factor is its catalogue text, like the accuracy criticals.
+eng = re.search(r'-(\d+)% speed and turn rate', FLEET['ships'][0]['componentHitpoints']['engines']['criticalEffect'])
+check('R6: ENGINE_CRITICAL_FACTOR matches the engines criticalEffect text',
+      [] if eng and abs(1 - int(eng.group(1)) / 100 - CT.ENGINE_CRITICAL_FACTOR) < 1e-9 else ['engines'])
+check("R6: RUNNING_SILENT_SPEED_FACTOR matches the v2 JSON's running-silent cost",
+      [] if f'-{round((1 - CT.RUNNING_SILENT_SPEED_FACTOR) * 100)}% topSpeed' in
+      next(m['effect'] for m in V2['signatureSystem']['activeStateModifiers'] if m['state'] == 'runningSilent')
+      else ['runningSilent'])
+
+
+def log_rosters(fname):
+    """{side: [(name, speed)]} from a battle log's roster tables."""
+    text = open(os.path.join(ROOT, 'Combat-logic', fname)).read()
+    block = text.split('### Rosters', 1)[1].split('\n---', 1)[0]
+    sides, side, col = {}, None, None
+    for line in block.splitlines():
+        if not line.startswith('|'):
+            m = re.search(r'\*\*(?:TASK FORCE )?([A-Z]+)', line)
+            side = m.group(1) if m else side
+            continue
+        cells = [c.strip() for c in line.strip('|').split('|')]
+        if 'Speed' in cells:
+            col = cells.index('Speed'); continue
+        name = re.search(r'\*([^*]+)\*', line)
+        if name and col is not None and cells[col].isdigit():
+            sides.setdefault(side, []).append((name.group(1), int(cells[col])))
+    return text, sides
+
+
+# The logged roster speeds are the named-ship catalogue's, wherever the ship is catalogued.
+bad = []
+for fname in sorted({c[0] for c in CT.RANGE_CLAIMS}):
+    for side, ships in log_rosters(fname)[1].items():
+        bad += [f'{fname}: {n} {sp} != {NAMED[n]["mobility"]["topSpeed"]}'
+                for n, sp in ships if n in NAMED and NAMED[n]['mobility']['topSpeed'] != sp]
+check('R6: every log roster speed matches the named-ship catalogue', bad)
+
+
+def reachable(round_time):
+    out = []
+    for fname, closing, r0, d0, r1, d1 in CT.RANGE_CLAIMS:
+        text, sides = log_rosters(fname)
+        rate = sum(min(sp for _, sp in sides[s]) for s in closing) * round_time
+        out.append((fname, r0, d0, r1, d1, text, rate * (r1 - r0)))
+    return out
+
+
+bad = []
+for fname, r0, d0, r1, d1, text, cover in reachable(CT.ROUND_TIME):
+    if f'{d0:,}' not in text or f'{d1:,}' not in text:
+        bad.append(f'{fname}: {d0:,} or {d1:,} is not in the log')
+    elif abs(d1 - d0) > cover:
+        bad.append(f'{fname} rounds {r0}->{r1}: {abs(d1 - d0)} > {cover}')
+    elif f'| {cover:,} |' not in sec14:
+        bad.append(f'{fname} rounds {r0}->{r1}: can-cover {cover:,} not in the spec 1.4 table')
+check('R6: every logged range progression is reachable at formation speed x ROUND_TIME', bad)
+check('R6: ROUND_TIME is the smallest whole value that reaches every logged progression',
+      [] if any(abs(d1 - d0) > cover for _f, _r0, d0, _r1, d1, _t, cover in reachable(CT.ROUND_TIME - 1))
+      else [f'{CT.ROUND_TIME - 1} would do'])
+
+# The opening distance lies between the two sides' first-lock ranges (spec 1.4).
+scanning = next(s for s in FLEET['skills'] if s['skillId'] == 'skl_scan_scanning')
+scan_pct = {e['stat']: e['modifierPerLevel'] for e in scanning['effects']}
+
+
+def first_lock(seers, targets, target_mult, level):
+    sensor = (1 + scan_pct['detectionRange'] * level / 100) * (1 + scan_pct['sensorArray.effectiveness'] * level / 100)
+    return max(lock_range(NAMED[a], signature(NAMED[t]) * target_mult) * sensor
+               for a in seers for t in targets)
+
+
+bad = []
+for fname, opening, states in CT.OPENING_CLAIMS:
+    text, sides = log_rosters(fname)
+    a, b = states
+    named = {s: [n for n, _ in sides[s] if n in NAMED] for s in (a, b)}
+    ra = first_lock(named[a], named[b], states[b][0], states[a][1])
+    rb = first_lock(named[b], named[a], states[a][0], states[b][1])
+    if f'{opening:,}m' not in text:
+        bad.append(f'{fname}: {opening:,}m is not in the log')
+    elif not min(ra, rb) <= opening <= max(ra, rb):
+        bad.append(f'{fname}: {opening} outside [{min(ra, rb):.0f}, {max(ra, rb):.0f}]')
+    elif f'{max(ra, rb):,.0f} | {min(ra, rb):,.0f} | {opening:,}' not in sec14:
+        bad.append(f'{fname}: {max(ra, rb):,.0f} / {min(ra, rb):,.0f} not in the spec 1.4 table')
+check('R6: each logged opening distance lies between the two first-lock ranges', bad)
+
+intent_rows = set(re.findall(r'^\| `(\w+)` \|', sec14, re.M))
+check('R6: the spec 1.4 intent table and the v2 movementSystem list exactly the movement intents',
+      sorted(set(CT.MOVEMENT_INTENTS) ^ intent_rows)
+      + [i for i in CT.MOVEMENT_INTENTS if i not in V2['movementSystem']['intents']])
+check('R6: the v2 movementSystem states ROUND_TIME',
+      [] if f'ROUND_TIME = {CT.ROUND_TIME}' in V2['movementSystem']['units'] else ['units'])
+
+mv = consts.split('export const MOVEMENT_CONSTANTS', 1)[-1].split('} as const', 1)[0]
+ev = consts.split('export const EVASION_CONSTANTS', 1)[-1].split('} as const', 1)[0]
+ab = re.search(r"state: 'afterburner'.*?\}", consts, re.S)
+sil = re.search(r"state: 'runningSilent'.*?topSpeedDelta:\s*(-?[\d.]+)", consts, re.S)
+check('constants.ts MOVEMENT_CONSTANTS, EVASION_CONSTANTS and the state boosts match combat_tables.py',
+      [k for k, got, want in (
+          ('roundTime', ts_num(mv, 'roundTime'), CT.ROUND_TIME),
+          ('maxRoundsToTopSpeed', ts_num(mv, 'maxRoundsToTopSpeed'), CT.MAX_ROUNDS_TO_TOP_SPEED),
+          ('runningSilentSpeedFactor', ts_num(mv, 'runningSilentSpeedFactor'), CT.RUNNING_SILENT_SPEED_FACTOR),
+          ('afterburnerFactor', ts_num(mv, 'afterburnerFactor'), CT.AFTERBURNER_FACTOR),
+          ('engineCriticalFactor', ts_num(mv, 'engineCriticalFactor'), CT.ENGINE_CRITICAL_FACTOR),
+          ('speedTrackingDivisor', ts_num(ev, 'speedTrackingDivisor'), CT.SPEED_EVASION_DIVISOR),
+          ('trackingSpeedFactor', ts_num(ev, 'trackingSpeedFactor'), CT.TRACKING_SPEED_FACTOR),
+          ('maxSpeedEvasionBonus', ts_num(ev, 'maxSpeedEvasionBonus'), CT.SPEED_EVASION_CAP),
+          ('afterburner topSpeedFactor', ab and ts_num(ab.group(0), 'topSpeedFactor'), CT.AFTERBURNER_FACTOR),
+          ('afterburner accelerationFactor', ab and ts_num(ab.group(0), 'accelerationFactor'), CT.AFTERBURNER_FACTOR),
+          ('runningSilent topSpeedDelta', sil and round(float(sil.group(1)) + 1, 9), CT.RUNNING_SILENT_SPEED_FACTOR))
+       if got != want]
+      + sorted(set(CT.MOVEMENT_INTENTS) ^ set(re.findall(r"'(\w+)'", mv.split('intents', 1)[-1]))))
 
 # --- the hand-written files survive ----------------------------------------------------------
 check('the hand-written combat files are present',

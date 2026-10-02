@@ -6,9 +6,10 @@ gameplay_tables.py does to GamePlay/*.md: this file is the source of truth for e
 number the five combat rulings and the special-effect rules introduce, the spec
 explains them, and tools/verify_combat.py holds the two together.
 
-Only the RULED terms live here. The range bands, signature coefficients and evasion
-constants are still stated in Combat-logic/advanced_combat_system.json, which no tool
-reads yet; moving them is not part of the rulings.
+Only the RULED terms live here. The range bands and signature coefficients are still
+stated in Combat-logic/advanced_combat_system.json, which no tool reads yet; moving them
+is not part of the rulings. The speed-evasion constants moved here when R6 recalibrated
+them.
 
 "turn" inside a field name (shotsPerTurn, cooldownTurns, rechargeRatePerTurn) means a
 combat ROUND -- gameplay_specification.md 3. Renaming those fields is schema work, not
@@ -92,11 +93,14 @@ POOL_ASSIGNMENT = {
 # A field is laid against a chosen enemy ship within range.maximum. Without
 # proximity_trigger it is command-detonated: it fires on that ship only, at the next
 # round's direct-fire step, if the ship is still within range.optimal of the field.
-# Without area_denial it is consumed by its first detonation. Where a ship IS relative
-# to a field depends on the movement model, which is open ruling R6.
+# Without area_denial it is consumed by its first detonation. A field sits at a fixed
+# position on the engagement line (R6, spec 1.4): the anchor's position when it is laid.
+# A command field whose anchor is beyond range.optimal of it at that step is spent.
 
 MINE_BASE = {
-    'detonation': 'command: the anchor ship only, next round, if within range.optimal',
+    'detonation': 'command: the anchor ship only, next round, if within range.optimal '
+                  'of the field; otherwise the field is spent',
+    'position': "the anchor's position on the engagement line when the field is laid",
     'hitRoll': False,              # mines never use the master hit formula
     'consumedOnDetonation': True,
 }
@@ -164,7 +168,8 @@ SPECIAL_EFFECT_RULES = {
                       'rule': 'a near miss kills light targets: +0.10 interceptChance'},
         'mine': {'triggerRadiusFraction': 0.10, 'friendlyFire': True,
                  'rule': 'the field detonates with no hit roll on the first ship of EITHER '
-                         'side that comes within 0.10 x range.optimal of it'},
+                         'side, in movement order, that ends phase 5 within 0.10 x '
+                         "range.optimal of it or whose movement crosses the field's position"},
     },
     'area_denial': {
         'hit': {'splashFraction': 0.25, 'splashTargets': 2, 'splashDistanceBand': 0.10,
@@ -259,7 +264,6 @@ ADDITIVE_CAPS = {
 # Stats whose consuming rule belongs to a ruling that is still open. The strengthened
 # no-dead-skill check accepts these ONLY while the named ruling is open in combat.ts.
 PENDING_RULINGS = {
-    'acceleration':     'R6',   # how fast a ship reaches topSpeed is the movement model
     'aircraftCapacity': 'R7',
     'droneCapacity':    'R7',
     'squadronSpeed':    'R7',
@@ -313,6 +317,91 @@ LOCK_CLAIMS = [
 TURN_PENALTY_MAX = 0.5
 TURN_RATE_REFERENCE = 150
 
+# ----------------------------------------------------------------- R6: movement
+# combat_logic_specification.md 1.4. Every ship and every mine field has a POSITION on
+# one engagement line, in the same distance units as weapon ranges and detectionRange.
+# distance(a, b) = |position(a) - position(b)|. Speed is distance per time unit, and
+# acceleration is speed per time unit; one combat round lasts ROUND_TIME time units:
+#
+#   maxSpeed     = effective(topSpeed) * product(MOVEMENT_STATE_FACTORS that apply)
+#   speedStep    = effective(acceleration) * ROUND_TIME   (x AFTERBURNER_FACTOR too)
+#   v0           = min(speed, maxSpeed); if the ship reverses: v0 *= 1 - turnPenalty
+#   v1           = v0 moved toward the intent's speed by at most speedStep
+#   displacement = min((v0 + v1) / 2 * ROUND_TIME, distance the intent still needs)
+#
+# ROUND_TIME is calibrated on Sable/Ember rounds 1-2: SABLE holds, and EMBER's line,
+# whose slowest hull is Obsidian March at 201, closes the logged 3,400 -> 2,600 in one
+# round. 4 is the smallest whole value that reaches 800 (201 x 4 = 804);
+# verify_combat.py recomputes every logged range progression (RANGE_CLAIMS).
+ROUND_TIME = 4
+
+# A ship never takes more than this many rounds to reach top speed from rest. The
+# slowest is Leviathan Crown (140 / (8 x 4) = 4.4 rounds); the bound keeps acceleration
+# meaningful without letting it eat a fifth of the ROUND_CAP.
+MAX_ROUNDS_TO_TOP_SPEED = 5
+
+# Declared in phase 2 with the operating state; resolved in phase 5.
+#   hold      brake toward speed 0, drifting along the current heading meanwhile
+#   close     head toward a target; stop at a standoff distance (default 0)
+#   open      head away from a target; stop at a standoff distance (default: never)
+#   withdraw  head for the own side's rear at full speed; the only way to disengage
+# Every moving intent takes an optional speedLimit (formation keeping is a speedLimit
+# equal to the slowest hull's maxSpeed). A ship that reaches its standoff keeps its
+# speed and spends the rest of the round station-keeping, so it keeps its speed-evasion.
+MOVEMENT_INTENTS = ('hold', 'close', 'open', 'withdraw')
+
+# Multipliers on maxSpeed. Each applies while its state lasts; they multiply together.
+#   runningSilent        the 2.3 state table's '-30% top speed'
+#   empDisable           SPECIAL_EFFECT_RULES['emp_disable'] topSpeedFactor (2 rounds)
+#   enginesCritical      the engines criticalEffect '-70% speed and turn rate', while the
+#                        component is disabled or destroyed; it also cuts turnRate x0.30
+#   afterburner          +25% top speed AND acceleration, bought with +40% signature
+RUNNING_SILENT_SPEED_FACTOR = 0.70
+ENGINE_CRITICAL_FACTOR = 0.30
+AFTERBURNER_FACTOR = 1.25
+
+# --- 2.4 speed-based evasion (R6 recalibration). The old divisor (250, tracking taken
+# at face value) gave 99% of hull-vs-weapon matchups the full 0.35 bonus. Tracking now
+# counts x5 in speed units, and every 100 speed of excess is +0.10 evasion:
+#
+#   speedEvasionBonus = clamp((relativeSpeedFactor - trackingCounter * 5) / 1000, 0, 0.35)
+#
+# Over every catalogue hull's topSpeed against every direct-fire weapon's tracking, about
+# 17% of matchups get nothing, 73% are graded and 10% saturate. verify_combat.py
+# recomputes those shares against the two bounds below.
+TRACKING_SPEED_FACTOR = 5
+SPEED_EVASION_DIVISOR = 1000
+SPEED_EVASION_CAP = 0.35
+SPEED_EVASION_SATURATED_MAX = 0.15     # at most this share of matchups hits the cap
+SPEED_EVASION_GRADED_MIN = 0.50        # at least this share falls strictly between
+
+# --- 3.7 disengagement. A withdrawing ship disengages at the end of a round in which no
+# enemy holds a lock on it (2.3 effectiveDetectionRange < distance for every enemy).
+# There is no constant: lock range and relative speed decide it, as conflict 4 item 4
+# says. At ROUND_CAP every ship still present disengages.
+
+# --- battle-log plausibility. Each claim is a logged range at two rounds; it is
+# reachable when the change fits inside the rounds between at the closing sides'
+# formation speed (the slowest roster hull of each side that is moving that way).
+#   (log file, side(s) closing, round from, distance from, round to, distance to)
+RANGE_CLAIMS = [
+    ('battle_log_sable_vs_ember.md',   ('EMBER',),           1, 3400, 2, 2600),  # SABLE holds silent
+    ('battle_log_sable_vs_ember.md',   ('EMBER',),           2, 2600, 4, 1100),
+    ('battle_log_veritas_vs_cinder.md', ('VERITAS', 'CINDER'), 1, 5200, 3, 3600),  # intercept vectors
+    ('battle_log_veritas_vs_cinder.md', ('VERITAS', 'CINDER'), 3, 3600, 5, 3000),
+]
+
+# The opening distance (1.4): the side that can lock the other from further out chooses
+# it, anywhere between the other side's first-lock range and its own.
+#   (log file, opening distance, {side: (signature multiplier as a target, Scanning level)})
+# Sable/Ember: SABLE runs silent (x0.50); EMBER's shields are up (x1.10). Veritas/Cinder:
+# neither runs silent; both battlecruiser lines cap at 5,000, and one level of Scanning
+# on VERITAS (+3% detectionRange, +2% sensorArray.effectiveness) reaches the logged 5,200.
+OPENING_CLAIMS = [
+    ('battle_log_sable_vs_ember.md',    3400, {'SABLE': (0.50, 0), 'EMBER': (1.10, 0)}),
+    ('battle_log_veritas_vs_cinder.md', 5200, {'VERITAS': (1.10, 1), 'CINDER': (1.10, 0)}),
+]
+
 # --- 3.6 criticals
 #   triggerChance = weapon.criticalChance + attacker.effective(criticalChanceBonus)
 #   resistChance  = defender.effective(criticalEventResistance)
@@ -333,7 +422,7 @@ REGROUP_BASE_CHANCE = 0.25
 # advanced_combat_system.json weaponHitProfiles covered four classes. Melee had none,
 # which left 60 catalogue weapons with no way to resolve. Ruled: melee resolves as
 # direct fire. Its range of a few dozen units already forces the attacker alongside
-# the target; closing that distance is the movement model's job (R6).
+# the target; it gets there with a 'close' intent and a standoff inside that range (R6).
 
 MELEE_HIT_PROFILE = {'baseHitChanceModifier': 1.0, 'evasionIgnoredFraction': 0.0,
                      'ignoresSpeedEvasion': False, 'rollsToHit': True}

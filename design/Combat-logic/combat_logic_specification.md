@@ -22,15 +22,15 @@ This document reconciles the two combat-resolution layers into one authoritative
 v2's `updatedTurnStructure` supersedes v1's 9-step `turnStructure` — it's a strict superset (adds signature declaration, detection/lock-on, and missile resolution as new sub-phases), and both battle logs follow it. Canonical order:
 
 1. **Initiative** — sort all ships by `initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20`, descending (R8). v1 named "sensorArray effectiveness" here without defining it; sensor modules now reach initiative through the `initiative` stat they already carry.
-2. **Signature declaration** — each ship commits this round's operating state (normal / afterburner / running-silent / shields up-down), fixing its signature via the signature system for the whole round.
+2. **Signature declaration** — each ship commits this round's operating state (normal / afterburner / running-silent / shields up-down), fixing its signature via the signature system for the whole round, and its movement intent (§1.4).
 3. **Detection phase** — for every attacker–target pair, compute `effectiveDetectionRange` and update `lockQuality` (build, hold, or reset).
 4. **Power allocation** — assign the ship's power budget across weapons / shields / engines. The budget is capped at `effective(power.maxPower)`, and `effective(power.regenPerTurn)` is restored at the end of every round.
-5. **Movement** — resolve positioning; sets the `distance` used by everything downstream.
+5. **Movement** — every ship moves along the engagement line, one at a time in ascending initiative order (§1.4, R6). This sets the position, speed and pairwise `distance` everything downstream reads, and trips proximity mine fields (§3.4).
 6. **Targeting** — each ship picks target(s), weapon(s), and optionally a specific component, constrained by `range.maximum` and remaining ammo.
 7. **Missile resolution sub-phase** — ammo deduction, arming check, and point-defense interception for every missile weapon fired this round (§2.5). Runs *before* any hit roll.
 8. **Direct-fire resolution** — for non-missile weapons and missiles that survived interception: run the hit-chance formula (§2), then the damage formula (§3).
 9. **Critical checks** — on every confirmed hit, roll on the component-critical table (§3.6).
-10. **End of round** — shields recharge outside their delay window (§3.2), this round's signature bonuses expire, power regenerates, hull regenerates by `effective(hull.regenPerTurn)` (§3.3), crew casualties apply (§3.6), destruction/retreat conditions are checked, and fleet disruption is tested (`GamePlay/conflict_specification.md` §4.3).
+10. **End of round** — shields recharge outside their delay window (§3.2), this round's signature bonuses expire, power regenerates, hull regenerates by `effective(hull.regenPerTurn)` (§3.3), crew casualties apply (§3.6), destruction/retreat conditions are checked, withdrawing ships that no enemy locks disengage (§3.7), and fleet disruption is tested (`GamePlay/conflict_specification.md` §4.3).
 11. Repeat from step 1 until a victory condition is met.
 
 ### 1.2 Resolution granularity scales with fleet size
@@ -65,17 +65,94 @@ A stat's **kind** says what `base` is. All of them are tabulated as `STAT_KIND` 
 
 The unit column exists because the module catalogue is not uniform: an ECM suite writes `enemyHitChance −11.5` in points, while a targeting computer writes `criticalChanceBonus 0.029` as a fraction. `verify_combat.py` checks every module value against its stat's unit.
 
-**Worked example — what Ballistic Weapon training buys.** A Heavy Cruiser Tier 2 (crew `gunnerySkill` 60, no accuracy modules, no fleet skills) fires a Halcyon Railgun Mk.3 (`wpn_141`: base hit 0.84, damage 134, tracking 29) at *Leviathan Crown*. The battleship is at optimal range with a full lock. Its effective evasion is 0.04 + 0.35 (speed 140 against tracking 29 caps the speed bonus) = 0.39.
+**Worked example — what Ballistic Weapon training buys.** A Heavy Cruiser Tier 2 (crew `gunnerySkill` 60, no accuracy modules, no fleet skills) fires a Halcyon Railgun Mk.3 (`wpn_141`: base hit 0.84, damage 134, tracking 29) at *Whisperfang*. The destroyer is at optimal range, under way at its full 309, with a full lock. Its effective evasion is 0.23 + (309 − 29 × 5) / 1,000 = 0.23 + 0.164 = 0.394 (§2.4). Against *Leviathan Crown* the same gun would face 0.04 and no speed bonus at all, because tracking 29 covers 145 speed and the battleship makes 140.
 
 | Ballistic level | multiplier | baseChance (0.84 × m + 60/200) | finalHitChance | damage per hit | expected per shot |
 |---:|---:|---:|---:|---:|---:|
-| 3 | 0.50 (gate) | 0.72 | **0.33** | 67.0 | 22.1 |
-| 5 | 1.00 | 1.14 | **0.75** | 134.0 | 100.5 |
-| 8 | 1.15 | 1.27 | **0.88** | 154.1 | 135.0 |
+| 3 | 0.50 (gate) | 0.72 | **0.33** | 67.0 | 21.8 |
+| 5 | 1.00 | 1.14 | **0.75** | 134.0 | 100.0 |
+| 8 | 1.15 | 1.27 | **0.87** | 154.1 | 134.4 |
 
 The gate is the point of the skill design. Below level 5 the same gun on the same hull does about a sixth of the damage of a level-8 pilot. A ship can be fielded at level 5 in the hull tree's numbers (`GamePlay/progression_specification.md`), but it is only *fought* well once its weapon class is trained too.
 
-**Pending.** `acceleration` belongs to the movement model (R6). `aircraftCapacity`, `droneCapacity` and the three `squadron*` stats belong to strike craft (R7). They are listed as pending those rulings rather than given placeholder formulas.
+**Pending.** `aircraftCapacity`, `droneCapacity` and the three `squadron*` stats belong to strike craft (R7). They are listed as pending that ruling rather than given placeholder formulas. `acceleration` was parked on the movement model until R6 ruled it (§1.4, §2.4).
+
+### 1.4 Movement — the engagement line
+
+**Ruled (R6).** Phase 5 moves every ship along one line. The numbers are in `tools/combat_tables.py`.
+
+**The line.** Every ship and every mine field has a `position` on a single axis, in the same units as weapon ranges and `detectionRange`. The distance between two of them is `|position(a) − position(b)|`. A line is the least geometry that gives every rule in this document something to read. Pairwise distances stay consistent with each other, a mine field has a point to sit on, and each side has a rear to withdraw toward. Flanking, cover and line of sight are not modelled. The logs narrate them as colour: Sable/Ember's asteroid cover, and Veritas/Cinder's destroyers "cutting behind *Auric Drift*".
+
+**Units.** Speed is distance per time unit. Acceleration is speed per time unit. A round lasts **`ROUND_TIME` = 4** time units. A ship holding speed 201 covers 804 a round, and a ship with acceleration 40 gains or sheds up to 160 speed a round. The value is calibrated on Sable/Ember rounds 1–2. SABLE holds, and EMBER's line, whose slowest hull is *Obsidian March* at 201, closes the logged 3,400 → 2,600 in one round. 4 is the smallest whole value that covers 800.
+
+**Opening the engagement.**
+
+* **Distance.** A side's *first-lock range* is the longest lock (§2.3) any of its ships has on any enemy ship, using the round-1 operating states. The side with the longer first-lock range sees first, and it chooses the opening distance anywhere from the other side's first-lock range up to its own. It can let the enemy come closer, but not past the point where the enemy would see it too. Equal ranges open at that range.
+* **Positions.** One side starts at position 0 with its rear toward −; the other starts at the opening distance with its rear toward +. All of a side's ships start on its point.
+* **Speed.** Each ship starts at the speed its round-1 intent asks for: 0 for `hold`, otherwise its `maxSpeed` or `speedLimit`, heading where that intent points. Fleets meet under way, and the starting heading is not a turn.
+
+| log | sees first | its first lock | the other side's | logged opening |
+|---|---|---:|---:|---:|
+| Sable/Ember | SABLE: silent ×0.50; EMBER's shields up ×1.10 | 4,000 | 2,517 | 3,400 ✓ |
+| Veritas/Cinder | VERITAS, with Scanning at level 1 | 5,253 | 5,000 | 5,200 ✓ |
+
+Both battlecruiser lines in Veritas/Cinder lock the opposing capitals at the 4.0 cap, 5,000 each. One level of Scanning on VERITAS (+3% `detectionRange`, +2% `sensorArray.effectiveness`) is enough to see first and open at the logged 5,200: "near-simultaneous".
+
+**Intent.** Each ship declares one intent in phase 2, together with its operating state.
+
+| intent | takes | does |
+|---|---|---|
+| `hold` | — | brakes toward speed 0, drifting along its heading meanwhile |
+| `close` | target, standoff (default 0) | heads toward the target and stops at the standoff |
+| `open` | target, standoff (default none) | heads away from the target and stops at the standoff; with none, keeps going |
+| `withdraw` | — | heads for its own side's rear at full speed; the only way to disengage (§3.7) |
+
+Every moving intent takes an optional `speedLimit`. Formation keeping is a `speedLimit` equal to the slowest hull's `maxSpeed`, which is how EMBER's destroyers stay with its heavy cruisers in the log. Pursuit is `close` on a ship that is withdrawing. A ship that reaches its standoff **keeps its speed** and spends the rest of the round holding station, so it keeps its speed-evasion (§2.4). Only `hold` gives speed up.
+
+**Resolving a ship's move.** Ships move one at a time in **ascending initiative order**. The highest initiative moves last and sees where everyone else ended up. For each ship:
+
+```
+maxSpeed  = effective(topSpeed) × the state factors below
+speedStep = effective(acceleration) × ROUND_TIME            (× 1.25 under afterburner)
+v0        = min(speed, maxSpeed)                            // a new cut bites at once
+heading'  = where the intent points: toward the target, away from it, or the own rear
+if heading' ≠ heading and v0 > 0:                           // a reversal
+    turnedThisRound = true
+    v0 ×= (1 − turnPenalty)                                 // §2.4's turnPenalty, from effective(turnRate)
+vWanted   = hold ? 0 : min(maxSpeed, speedLimit)
+v1        = v0 moved toward vWanted by at most speedStep
+along     = min((v0 + v1) / 2 × ROUND_TIME, need)           // need: distance left to the standoff
+position += heading' × along
+speed     = v1
+```
+
+`need` is `distance − standoff` for `close` and `standoff − distance` for `open`, never below 0. It has no limit for `withdraw`, for `open` without a standoff, or for `hold`, which drifts while it brakes. A ship whose intent needs no movement keeps its heading, so standing still is never a turn. `close` never carries a ship past its target.
+
+| state | `maxSpeed` | also |
+|---|---|---|
+| running silent | ×0.70 | the §2.3 state table's −30% top speed |
+| afterburner | ×1.25 | `speedStep` ×1.25; paid for with +40% signature |
+| `emp_disable` hit | ×0.70 for 2 rounds | §3.4 |
+| `engines` disabled or destroyed | ×0.30 | `turnRate` ×0.30 as well: the critical's "−70% speed and turn rate" |
+
+The factors multiply together. A silent ship hit by EMP makes 0.49 of its top speed.
+
+**What the three stats do.**
+
+* `effective(topSpeed)` is the ceiling, and through §2.4 the evasion.
+* `effective(acceleration)` is how fast speed changes. From rest, the slowest hull in the catalogue, *Leviathan Crown* (140 / (8 × 4)), takes 4.4 rounds to reach top speed, and a Submarine Chaser takes 1.7. No hull takes more than `MAX_ROUNDS_TO_TOP_SPEED` (5).
+* `effective(turnRate)` is how much speed a reversal keeps: (1 − turnPenalty). A Motor Torpedo Boat keeps 93%, a Destroyer 77%, a Battleship 59%, *Leviathan Crown* 55%.
+
+**The logs are reachable.** Each logged range change fits inside the rounds between it at the closing sides' formation speed. `verify_combat.py` recomputes every row from the log rosters and the named-ship catalogue (`RANGE_CLAIMS`).
+
+| log | rounds | logged change | closing | can cover |
+|---|---|---:|---|---:|
+| Sable/Ember | 1 → 2 | 3,400 → 2,600 (800) | EMBER at 201; SABLE holds | 804 |
+| Sable/Ember | 2 → 4 | 2,600 → 1,100 (1,500) | EMBER at 201 | 1,608 |
+| Veritas/Cinder | 1 → 3 | 5,200 → 3,600 (1,600) | both lines, 140 + 138 | 2,224 |
+| Veritas/Cinder | 3 → 5 | 3,600 → 3,000 (600) | both lines, 140 + 138 | 2,224 |
+
+**Melee.** A boarder declares `close` with a standoff inside its weapon's `range.optimal`. A target with the higher initiative moves after the boarder and opens the gap again before anyone fires. To board a ship that is running, a boarder needs more initiative or a target that has stopped.
 
 ---
 
@@ -146,7 +223,7 @@ Per-round state modifiers stack on top:
 |---|---|
 | Fired a weapon volley this round | +8% signature per volley (heat/EM bloom) |
 | Shields active | +10% signature (emitters are detectable) |
-| Afterburner / high acceleration | +40% signature (engine flare) |
+| Afterburner / high acceleration | +40% signature (engine flare); top speed and acceleration ×1.25 (§1.4) |
 | Running silent | −50% signature, but −30% top speed and **no weapons fire this round** |
 | ECM module active | −15% signature |
 
@@ -191,13 +268,27 @@ relativeSpeedFactor = targetSpeed * (1 - turnPenalty)
 turnPenalty         = turnedThisRound ? 0.5 * (1 - min(effective(turnRate), 150) / 150) : 0
 trackingCounter     = weapon.accuracy.tracking * trackingFactor
                         * attacker.effective(weaponTracking)                          // R8
-speedEvasionBonus   = clamp((relativeSpeedFactor - trackingCounter) / 250, 0, 0.35)
+speedEvasionBonus   = clamp((relativeSpeedFactor - trackingCounter * 5) / 1000, 0, 0.35)    // R6
 effectiveEvasion    = clamp(target.effective(evasionRating) + speedEvasionBonus, 0, 0.60)
 ```
 
-`targetSpeed` is the target's current speed, never above `effective(topSpeed)`. How it gets there each round from `acceleration`, and whether the ship turned, is the movement model (R6). The turn penalty, undefined in v2, is **ruled (R8)**: a nimble corvette (`turnRate` ~140) keeps almost all its speed through a turn, while a battleship (~20) gives up nearly half. `trackingFactor` is 1.25 for `high_tracking` weapons (§3.4). `weaponTracking` carries Attacking Formation. `evasionRating` carries the hull Control skills, Defensive Formation, and the engine, ECM and decoy modules.
+`targetSpeed` is the speed the target ended phase 5 with (§1.4). It never exceeds `effective(topSpeed)` after the state factors, and it changes by at most `effective(acceleration) × ROUND_TIME` a round (×1.25 under afterburner). A ship on `hold` brakes toward 0 and gives its speed-evasion up; a ship holding station at a standoff keeps it. `turnedThisRound` is true when the target reversed heading in phase 5 while under way (§1.4). Starting the engagement, holding station and getting under way from rest are not turns. The turn penalty, undefined in v2, is **ruled (R8)**: a nimble corvette (`turnRate` ~140) keeps almost all its speed through a turn, while a battleship (~20) gives up nearly half. While its engines are disabled or destroyed, a ship's `turnRate` counts ×0.30 here too. `trackingFactor` is 1.25 for `high_tracking` weapons (§3.4). `weaponTracking` carries Attacking Formation. `evasionRating` carries the hull Control skills, Defensive Formation, and the engine, ECM and decoy modules.
 
 Design intent, confirmed by both battle logs: high-tracking weapons (PD lasers, pulse lasers) counter fast targets well; low-tracking weapons (railguns, mass drivers, capital ion cannons) lose most of their effective accuracy against fast ships. This is *why* SABLE's destroyers consistently dodge EMBER's slower-tracking capital guns (the JSON's own worked example has a capital Ion Cannon vs. a fast destroyer at long range compute down to the 0.05 accuracy floor), and why EMP/engine-critical hits matter tactically — they strip speed to strip evasion. Beam weapons (Beam Laser, Particle Lance) are the one exception: near-instant travel time means they ignore `speedEvasionBonus` entirely, though they still take full range falloff.
+
+**Recalibrated (R6).** The old form, `(speed − tracking) / 250`, saturated. Catalogue speeds run 129–694 and tracking 3–131, so any target faster than a weapon's tracking + 88 got the full 0.35. That was 99% of all hull-against-weapon matchups, a 140-speed battleship against a railgun included. Tracking now counts ×5 in speed units (`TRACKING_SPEED_FACTOR`), and every 100 speed beyond what the gun covers is worth +0.10 (`SPEED_EVASION_DIVISOR` 1,000). Over every catalogue hull's top speed against every direct-fire weapon's tracking, beams and pool weapons aside, about 17% of matchups now get nothing, 73% are graded and 10% reach the cap. `verify_combat.py` recomputes those shares and fails if more than 15% saturate or fewer than half are graded.
+
+| target (speed) | weapon (tracking) | old bonus | new bonus |
+|---|---|---:|---:|
+| *Leviathan Crown* (140) | Halcyon Railgun Mk.3 (29) | 0.35 | 0 |
+| *Whisperfang* (309) | Halcyon Railgun Mk.3 (29) | 0.35 | 0.164 |
+| *Whisperfang* (309) | Draconis PD Laser Turret Mk.5 (84, `high_tracking` → 105) | 0.35 | 0 |
+| *Corvus* (377) | Vanguard Siege Ion Cannon Mk.4 (26) | 0.35 | 0.247 |
+| *Corvus* (377) | Solari Pulse Laser Mk.3 (54, `high_tracking` → 67.5) | 0.35 | 0.040 |
+| Motor Torpedo Boat Tier 1 (620) | Solari Pulse Laser Mk.3 | 0.35 | 0.282 |
+| Motor Torpedo Boat Tier 1 (620) | Vanguard Siege Ion Cannon Mk.4 | 0.35 | 0.35 |
+
+The design intent survives with real gradation. Capital guns still lose fast escorts, and the v2 worked example still computes to the 0.05 floor: a destroyer at 350 against tracking 12 gets 0.29, for 0.53 evasion against a 0.41 pre-lock chance. Pulse lasers and PD now actually catch destroyers, and a battleship no longer dodges anything by speed.
 
 ### 2.5 Missiles and point-defense
 
@@ -280,7 +371,7 @@ An effect can act in four **contexts**, and a weapon occupies the ones its class
 | `shield_disrupt` | The target's `shields.damageTypeResistance` is **halved** for this hit — the shield-side mirror of `armor_piercing`. Sable/Ember's cruise missiles "ignore 50% of shield resistance" is this rule. |
 | `emp_disable` | On **every** hit: shield recharge suppressed and `topSpeed` ×0.70 for **2 rounds**. A second EMP hit refreshes the duration and never stacks. The speed cut feeds §2.4 — EMP strips speed to strip evasion. |
 | `multi_hit` | Every hit is followed by a second damage application at **50%**, with no hit roll and no critical roll of its own. **Not** for interceptable weapons: their volley size is already the multiple. |
-| `area_denial` | **25%** of `rawDamage` also strikes up to **2** other ships of the target's side whose distance from the attacker is within **±10%** of the target's. Splash passes shields and armour normally and never rolls a critical. It uses only pairwise distance, so it works before a spatial model exists. |
+| `area_denial` | **25%** of `rawDamage` also strikes up to **2** other ships of the target's side whose distance from the attacker is within **±10%** of the target's. Splash passes shields and armour normally and never rolls a critical. On the engagement line (§1.4) a ship X qualifies when `|d(attacker, X) − d(attacker, target)| ≤ 0.10 × d(attacker, target)`. |
 | `proximity_trigger` | A miss whose roll lands within **0.10** above `finalHitChance` still detonates for **50%** damage, with no critical roll. |
 
 **Accuracy and interception**
@@ -304,14 +395,15 @@ Mines never use the master hit formula. A field is laid against a chosen enemy s
 
 | | rule |
 |---|---|
-| base | **Command-detonated**: fires on its anchor ship only, at the next round's direct-fire step, if that ship is still within `range.optimal`; consumed by its first detonation. |
-| `proximity_trigger` | Detonates with no hit roll on the first ship of **either side** within **0.10 × `range.optimal`** of the field. Friendly fire is real. |
+| position (R6) | A field is laid in the direct-fire step at its anchor's `position` on the engagement line (§1.4), and it never moves. |
+| base | **Command-detonated**: fires on its anchor ship only, at the next round's direct-fire step, if the anchor is still within `range.optimal` **of the field**. Otherwise the anchor has outrun it and the field is spent. Consumed by its first detonation. |
+| `proximity_trigger` | Detonates with no hit roll on the first ship of **either side**, in movement order, that **ends phase 5** within **0.10 × `range.optimal`** of the field or whose phase-5 movement **crosses** the field's position. The damage applies at that round's direct-fire step. A field is first checked in the round after it is laid. Friendly fire is real. |
 | `area_denial` | The field is not consumed: it persists **3 rounds** and detonates at most once per ship per round. |
 | damage effects | `armor_piercing`, `armor_melt` and `multi_hit` on a mine apply through the hit rules above when it detonates. |
 | capacity (R8) | A ship may have at most `effective(mineCapacity)` of its own fields active at once — `capacities.mines`, raised by mine rails. Each field still spends the mine weapon's own ammo. |
 | sweeping (R8) | At the end of each round, every hull with `effective(minesweepRate) > 0` rolls that chance once against each enemy field it currently detects; a success removes the field. Minesweep gear's +30% is a 0.30 chance. |
 
-*Where* a ship stands relative to a field depends on the movement model, which is not yet ruled (§5, R6). The numbers above are fixed; the geometry they read is not.
+**What the geometry does (R6).** A command field's reach is its whole `range.optimal`, 174–2,821 across the catalogue. A slow anchor cannot outrun it; a fast one that keeps moving can. A proximity field's radius is 17–282, smaller than almost any ship's movement in a round. The anchor escapes it simply by moving, but the field stays on the line. It catches any ship that holds or keeps station on that spot, and anyone who drives across it, friend or foe. Mines are how a fleet denies the ground a pursuer has to cross.
 
 ### 3.5 Component targeting
 
@@ -346,12 +438,23 @@ A success downgrades the critical one band: catastrophic → disabled → bonus 
 ```
 hull.currentHP <= 0                                     -> destroyed (may splash nearby ships)
 lifeSupport component destroyed AND currentCrew == 0     -> destroyed (crew loss)
-hull.currentHP <= RETREAT_THRESHOLD × maxHP             -> attempts to break off (R4: 30%)
+hull.currentHP <= RETREAT_THRESHOLD × maxHP             -> attempts to break off (R4: 30%):
+                                                           intent is withdraw from the next round on
+withdrawing AND no enemy holds a lock on it at end of round -> disengaged (R6)
 ```
 
 **Ruled (R4): 30% hull.** v1 said retreat below 15% hull *and* with no weapons operational. Both battle logs trigger withdrawal in the 30–33% band instead: *Stormbreaker* pulls out at 340/1072 ≈ 32%, *World Ender* withdraws at about 30%, and SABLE calls its withdrawal while its flagship's hull is still well above 15%. The logs read better with the higher threshold — a ship limping at 10% hull rarely gets a dramatic withdrawal scene, it just dies the next round.
 
 The logs win, and the "no weapons operational" condition goes with the old number: none of the logged withdrawals waited for it. The threshold is stated once, as `RETREAT_THRESHOLD` in `tools/gameplay_tables.py`, which `GamePlay/conflict_specification.md` §5 also reads. `data-template.json` is the untouched upstream reference, so the override is recorded in the v2 JSON's `v1Overrides` block instead of being edited into v1.
+
+**Disengagement (R6).** Breaking off is the `withdraw` intent (§1.4).
+
+* **Who withdraws.** Any ship may declare `withdraw`. A ship at or below 30% hull must, from the next round to the end of the engagement. A withdrawing ship keeps firing, a fighting withdrawal, unless it runs silent.
+* **Success.** At the end of each round, a withdrawing ship that **no enemy holds a lock on** leaves the battle. It must be beyond every enemy's `effectiveDetectionRange` on it (§2.3). It is `retreated`, not destroyed, and it is not a loss.
+* **Why lock, not weapon reach.** Blind fire can still reach a ship until it is clear. Cruise missiles reach 11,000–20,000, so making escape wait on weapon reach would make it impossible. Lock is what the logs narrate breaking ("using terrain to break EMBER's sensor lock"), and it is the model `GamePlay/conflict_specification.md` §4 names: signature, detection and relative speed.
+* **The trade.** Running silent while withdrawing halves the signature enemies lock on, but it costs 30% speed. Afterburner adds 25% speed and 40% signature. A pursuer keeps its lock by declaring `close` on the runner. A runner shakes a pursuit only by being faster or quieter, or by facing enemies whose sensors are damaged. For example, *Whisperfang* (309) withdrawing from *Stormbreaker* (209) with shields up is locked out to 1,917. Once at full speed it opens 400 a round on a pursuing *Stormbreaker*.
+* **`avoid` posture.** A fleet with posture `avoid` declares `withdraw` for every hull from round 1. If it sees first (§1.4), it opens at its own first-lock range, as far out as it can. A fast, quiet fleet that the enemy never locks is gone at the end of round 1.
+* **The round cap.** At `ROUND_CAP` (25), every ship still present disengages, withdrawing or not (`GamePlay/conflict_specification.md` §4.2). A withdrawal that has not finished by then ends with the battle.
 
 ---
 
@@ -443,7 +546,8 @@ Cross-referencing the three source files surfaced five inconsistencies. `GamePla
 | R3 | 11 of 13 `specialEffects` had no numeric rule | Every effect is ruled in every context it occurs in | §3.4; `tools/combat_tables.py` |
 | R4 | Retreat at 15% (v1) vs ~30% (both logs) | 30% hull; the logs win | §3.7; `RETREAT_THRESHOLD` |
 | R5 | v1's `sensorDebuff` was never defined | It is the `sensorArray` critical, applied as a multiplier | §2.1 step 8; v2 JSON step 9 |
-| R8 | Skill and module stats were routed here but appeared in no formula, including the Weaponry −50% gate | One stacking rule; every combat stat named in the formula it modifies; R6/R7-owned stats listed as pending | §1.3; §1.1, §2.1, §2.3–2.5, §3.1–3.4, §3.6; `STAT_KIND` |
+| R8 | Skill and module stats were routed here but appeared in no formula, including the Weaponry −50% gate | One stacking rule; every combat stat named in the formula it modifies; R6/R7-owned stats listed as pending (R6's since ruled) | §1.3; §1.1, §2.1, §2.3–2.5, §3.1–3.4, §3.6; `STAT_KIND` |
+| R6 | Phase 5 said only "resolve positioning"; nothing turned `topSpeed`, `acceleration` and `turnRate` into distance, and §2.4's `/250` saturated | One engagement line with positions; four intents; `ROUND_TIME` 4 calibrated on Sable/Ember; mines sit on the line; withdrawal succeeds when no enemy locks; speed-evasion recalibrated to tracking ×5 over 1,000 | §1.1, §1.4, §2.4, §3.4, §3.7; `RANGE_CLAIMS`, `OPENING_CLAIMS`; v2 JSON `movementSystem`, `speedEvasionSystem` |
 | R9 | The detection formula gave lock ranges from 0.2 to 70,000 and never read `sensors.detectionRange` | Anchored on `effective(detectionRange)` × sensor condition × `sensorArray.effectiveness` × `clamp(√(sig/16), 0.25, 4)`, calibrated on every lock claim in the repo | §2.3; `LOCK_CLAIMS`; v2 JSON `detectionAndLockOn` |
 
 Two smaller fixes came out of applying them. The interception sign for `high_tracking` was inverted (§2.5). Melee — 60 catalogue weapons — had no hit profile in the v2 JSON (§2.1); `Reference/constants.ts` already resolved it like kinetic, and the JSON now agrees.
@@ -454,5 +558,4 @@ Two smaller fixes came out of applying them. The interception sign for `high_tra
 
 Gaps found while ruling the others, each blocking something the catalogue already contains:
 
-- **R6 — Movement model.** Phase 5 says "resolve positioning" and nothing more. No rule turns `topSpeed`, `acceleration` and `turnRate` into a change in `distance` per round. Range bands, melee closing to a few dozen units, and where a ship stands relative to a mine field all read a distance this phase never computes. Related, and worth settling with it: §2.4's `/ 250` divisor saturates. Any target faster than a weapon's tracking + 88 gets the full 0.35 speed bonus, so even a 140-speed battleship maxes it against a railgun. The speed-vs-tracking matchup only differentiates among the slowest ships and the highest-tracking weapons.
 - **R7 — Strike craft.** Fighters and drones decide the Veritas/Cinder action, and `aircraftCapacity`, `droneCapacity` and the three `squadron*` skill stats all point at §2.5. No rule says how a squadron launches, attacks, takes losses or rearms; §2.5 only says craft enter the interception pool.

@@ -6,7 +6,7 @@
     "newConcepts": ["distance/range bands", "signature & detection/lock-on", "speed-based evasion", "missile flight + point-defense interception"],
     "note": "Formulas are given as readable pseudocode, not code. 'signature' is a derived stat computed from existing ship fields (see signatureSystem.derivation) so it works with ships that don't have an explicit signature field.",
     "vocabulary": "Every 'turn' in this file means a combat ROUND (GamePlay/gameplay_specification.md 3). Key and field names that still say 'turn' (updatedTurnStructure, shotsPerTurn, cooldownTurns, rechargeRatePerTurn) are renamed by the schema clean-up, not here.",
-    "rulings": "The numbers the five rulings and the special-effect rules introduce live in tools/combat_tables.py; Combat-logic/combat_logic_specification.md 2.1, 2.5, 3.4 and 3.7 explain them; tools/verify_combat.py holds the three together."
+    "rulings": "The numbers the five rulings and the special-effect rules introduce live in tools/combat_tables.py; Combat-logic/combat_logic_specification.md 1.4, 2.1, 2.4, 2.5, 3.4 and 3.7 explain them; tools/verify_combat.py holds the three together."
   },
 
   "v1Overrides": {
@@ -43,7 +43,7 @@
     "activeStateModifiers": [
       { "state": "weaponsFiredThisTurn", "effect": "+8% signature per weapon volley fired (heat/EM bloom)" },
       { "state": "shieldsActive",        "effect": "+10% signature (shield emitters are detectable)" },
-      { "state": "afterburner/highAccel","effect": "+40% signature (engine flare)" },
+      { "state": "afterburner/highAccel","effect": "+40% signature (engine flare); topSpeed and acceleration x1.25 (R6, movementSystem)" },
       { "state": "runningSilent",        "effect": "-50% signature, but -30% topSpeed and weapons cannot fire that round (non-essential systems powered down)" },
       { "state": "ecmModuleActive",      "effect": "-15% signature (mod_ecm_std or similar)" }
     ],
@@ -56,12 +56,36 @@
     }
   },
 
+  "movementSystem": {
+    "description": "R6 (combat_logic_specification.md 1.4). Every ship and mine field has a position on one engagement line, in the same units as weapon ranges; distance(a, b) = |position(a) - position(b)|. Numbers live in tools/combat_tables.py.",
+    "units": "speed = distance per time unit, acceleration = speed per time unit, one round = ROUND_TIME = 4 time units. Calibrated on Sable/Ember rounds 1-2: EMBER's line (slowest hull 201) closes 3,400 -> 2,600 while SABLE holds; 201 x 4 = 804.",
+    "opening": "Each side's first-lock range is the longest lock any of its ships has on any enemy ship with round-1 states. The side with the longer one chooses the opening distance between the other side's first-lock range and its own. Sides start on two points that far apart; each ship starts at the speed its round-1 intent asks for (0 for hold, else maxSpeed or its speedLimit).",
+    "intents": {
+      "hold": "brake toward speed 0, drifting along the current heading meanwhile",
+      "close": "head toward a target; stop at a standoff distance (default 0). Pursuit is close on a withdrawing ship.",
+      "open": "head away from a target; stop at a standoff distance (default none)",
+      "withdraw": "head for the own side's rear at full speed; the only way to disengage",
+      "speedLimit": "optional on every moving intent; formation keeping is the slowest hull's maxSpeed",
+      "standoff": "a ship that reaches its standoff keeps its speed and holds station; only hold gives speed up"
+    },
+    "perShip": [
+      "Ships move one at a time in ascending initiative order; the highest initiative moves last.",
+      "maxSpeed = effective(topSpeed) x state factors: runningSilent 0.70, afterburner 1.25, emp_disable 0.70 (2 rounds), engines disabled/destroyed 0.30 (turnRate x0.30 too).",
+      "speedStep = effective(acceleration) x ROUND_TIME (x1.25 under afterburner).",
+      "v0 = min(speed, maxSpeed). If the intent's heading reverses the current one while v0 > 0: turnedThisRound = true and v0 *= (1 - turnPenalty).",
+      "v1 = v0 moved toward (hold ? 0 : min(maxSpeed, speedLimit)) by at most speedStep.",
+      "position += heading x min((v0 + v1) / 2 x ROUND_TIME, distance still needed to reach the standoff); speed = v1."
+    ],
+    "disengagement": "A ship at or below RETREAT_THRESHOLD hull must withdraw from the next round; any ship may. At the end of a round a withdrawing ship that no enemy holds a lock on (signatureSystem.detectionAndLockOn) leaves the battle, retreated rather than destroyed. Posture avoid withdraws every hull from round 1. At ROUND_CAP every ship still present disengages."
+  },
+
   "speedEvasionSystem": {
     "description": "Replaces the flat evasionRating lookup with a dynamic value driven by relative speed and the attacking weapon's tracking stat, so fast small ships dodge slow-tracking capital guns but get caught by high-tracking PD/energy weapons.",
     "formula": {
-      "relativeSpeedFactor": "targetSpeed_or_topSpeed * (1 - target.mobility.turnRate_normalized_penalty_if_recently_turned)",
-      "trackingCounter": "attackerWeapon.accuracy.tracking",
-      "speedEvasionBonus": "clamp((relativeSpeedFactor - trackingCounter) / 250, 0, 0.35)",
+      "relativeSpeedFactor": "targetSpeed * (1 - turnPenalty). targetSpeed is the speed the target ended the movement phase with (movementSystem); turnPenalty = turnedThisRound ? 0.5 * (1 - min(effective(turnRate), 150) / 150) : 0, and turnedThisRound means the target reversed heading while under way this round.",
+      "trackingCounter": "attackerWeapon.accuracy.tracking * trackingFactor (1.25 for high_tracking) * attacker.effective(weaponTracking)",
+      "speedEvasionBonus": "clamp((relativeSpeedFactor - trackingCounter * 5) / 1000, 0, 0.35)",
+      "recalibration": "R6: the original (relativeSpeedFactor - trackingCounter) / 250 gave 99% of catalogue hull-vs-weapon matchups the full 0.35, a 140-speed battleship against a railgun included. Tracking now counts x5 in speed units and each 100 speed of excess is +0.10; about 17% of matchups get nothing, 73% are graded and 10% saturate. tools/combat_tables.py TRACKING_SPEED_FACTOR, SPEED_EVASION_DIVISOR.",
       "effectiveEvasion": "clamp(target.mobility.evasionRating + speedEvasionBonus, 0, 0.60)"
     },
     "designIntent": [
@@ -87,11 +111,11 @@
     },
     "mine": {
       "baseHitChanceModifier": "n/a - mines do not roll to hit directly",
-      "notes": "Laid as a field against a chosen enemy ship. Without proximity_trigger the field is command-detonated against that ship only; with it, the field fires on ANY ship, friend or foe, inside its trigger radius. See tools/combat_tables.py MINE_BASE and the proximity_trigger / area_denial rules."
+      "notes": "Laid as a field against a chosen enemy ship. Without proximity_trigger the field is command-detonated against that ship only; with it, the field fires on ANY ship, friend or foe, inside its trigger radius. The field sits at the anchor's position on the engagement line when laid and never moves (R6). See tools/combat_tables.py MINE_BASE and the proximity_trigger / area_denial rules."
     },
     "melee": {
       "baseHitChanceModifier": 1.0,
-      "notes": "Ruled: melee resolves as direct fire with no adjustments, like kinetic. Its range of a few dozen units means the attacker must be alongside; closing that distance is the movement model's job (open ruling R6)."
+      "notes": "Ruled: melee resolves as direct fire with no adjustments, like kinetic. Its range of a few dozen units means the attacker must be alongside: it declares a 'close' intent with a standoff inside the weapon's range.optimal (movementSystem, R6)."
     }
   },
 
@@ -132,15 +156,15 @@
 
   "updatedTurnStructure": [
     "1. Initiative: sort by initiativeScore = effective(sensors.initiative) + effective(crew.pilotSkill) / 5 + d20, descending (R8; v1's undefined 'sensorArray effectiveness' term is replaced by the initiative stat sensor modules already carry).",
-    "2. Signature/state declaration: each ship declares this round's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem.",
+    "2. Signature/state declaration: each ship declares this round's state (normal / afterburner / runningSilent / shields up-down), which sets its signature per signatureSystem, and its movement intent (hold / close / open / withdraw, movementSystem).",
     "3. Detection phase: for every attacker-target pair, compute effectiveDetectionRange and update lockQuality (build, hold, or reset).",
     "4. Power allocation phase: assign power across weapons/shields/engines.",
-    "5. Movement phase: resolve positioning, update distance between all ship pairs.",
+    "5. Movement phase: every ship moves along the engagement line in ascending initiative order per movementSystem (R6), updating position, speed and every pairwise distance; proximity mine fields trigger here.",
     "6. Targeting phase: each ship selects target(s) and weapon(s) to fire, constrained by range.maximum and ammo remaining.",
     "7. Missile resolution sub-phase: run missileResolutionPhase for all missile weapons fired this round (ammo deduction + PD interception).",
     "8. Direct-fire resolution phase: for all non-missile weapons and surviving missiles, run masterHitChanceFormula, then apply damageFormula (shields -> armor -> hull/component) from the base combat system.",
     "9. Critical checks on confirmed hits per componentCriticalTable.",
-    "10. End of round: shields recharge (if outside rechargeDelay window), signature bonuses from this round's actions expire, repair modules apply, check destruction/retreat."
+    "10. End of round: shields recharge (if outside rechargeDelay window), signature bonuses from this round's actions expire, repair modules apply, check destruction/retreat; a withdrawing ship that no enemy holds a lock on disengages (R6)."
   ],
 
   "workedExample": {
@@ -160,18 +184,18 @@
       "locked": true,
       "lockNote": "R9: Leviathan Crown (detectionRange 1150) holds Whisperfang (signature 53 x1.10 shields) out to ~2,204, so the lock at 1,900 holds.",
       "lockQuality": 1.0,
-      "speedEvasionBonus": "targetSpeed 350 vs tracking 12 -> (350-12)/250 = 1.35 -> capped at 0.35",
-      "effectiveEvasion": "0.24 + 0.35 capped to 0.60 -> 0.60",
+      "speedEvasionBonus": "R6: targetSpeed 350 vs tracking 12 -> (350 - 12 * 5) / 1000 = 0.29 (under the 0.35 cap)",
+      "effectiveEvasion": "0.24 + 0.29 = 0.53",
       "baseChance": 0.55,
-      "finalHitChance": "clamp(0.55 * 0.75 * 1.0 - 0.60, 0.05, 0.95) = clamp(0.0125, 0.05, 0.95) = 0.05",
+      "finalHitChance": "clamp(0.55 * 0.75 * 1.0 - 0.53, 0.05, 0.95) = clamp(-0.1175, 0.05, 0.95) = 0.05",
       "interpretation": "A fast destroyer at range is extremely hard for a low-tracking capital gun to hit - floor accuracy only. The battleship should use its ion cannon's EMP effect via a lucky hit or rely on missiles/PD-supported allies instead."
     },
     "cruiseMissileShot": {
       "distance": 1900,
       "baseChance": "0.61 * 1.25 = 0.7625",
-      "evasionApplied": "0.60 * (1 - 0.5) = 0.30",
+      "evasionApplied": "0.53 * (1 - 0.5) = 0.265",
       "rangeMultiplier": "~0.85 (within medium band for missile's longer optimal)",
-      "finalHitChancePreIntercept": "clamp(0.7625*0.85*1.0 - 0.30, 0.05, 0.95) = ~0.35",
+      "finalHitChancePreIntercept": "clamp(0.7625*0.85*1.0 - 0.265, 0.05, 0.95) = ~0.38",
       "interceptionStep": "Whisperfang has 2 PD Laser Turrets (small), each shotsPerTurn ~3-4, easily covering the 1-2 missiles in this volley -> high chance the missile(s) never reach the hit roll at all",
       "interpretation": "Missiles are the battleship's actual answer to a fast, evasive target - but only if the destroyer's PD gets overwhelmed or destroyed first. This is why saturation (multiple missile bays firing together) is the standard doctrine against fast escorts."
     }

@@ -41,7 +41,10 @@ export type CombatPhase =
   | 'detection'
   /** Assign the power budget across weapons / shields / engines. */
   | 'powerAllocation'
-  /** Resolve positioning; sets the `distance` everything downstream reads. */
+  /**
+   * Every ship moves along the engagement line in ascending initiative order (R6,
+   * spec 1.4); sets position, speed and every pairwise `distance` downstream reads.
+   */
   | 'movement'
   /** Pick target(s), weapon(s), and optionally a component, within range and ammo. */
   | 'targeting'
@@ -203,6 +206,8 @@ export interface SignatureStateModifier {
   perVolley?: boolean;
   /** Side effects the state imposes, if any. */
   cost?: { topSpeedDelta?: number; weaponsFireForbidden?: boolean };
+  /** What the state buys in the movement phase (R6): afterburner x1.25 on both. */
+  boost?: { topSpeedFactor: number; accelerationFactor: number };
 }
 
 export interface SignatureResolution {
@@ -263,8 +268,11 @@ export interface BlindFireRule {
  * evasion against different weapons, because the weapon's own `tracking` is
  * subtracted from the target's speed.
  *
- *     speedEvasionBonus = clamp((relativeSpeedFactor - weapon.tracking) / 250, 0, 0.35)
+ *     speedEvasionBonus = clamp((relativeSpeedFactor - trackingCounter * 5) / 1000, 0, 0.35)
  *     effectiveEvasion  = clamp(evasionRating + speedEvasionBonus, 0, 0.60)
+ *
+ * Recalibrated by R6: the old `/ 250` with tracking at face value saturated 99% of
+ * catalogue matchups. `targetSpeed` is the speed the target ended phase 5 with.
  *
  * This is why low-tracking capital guns compute down to the 0.05 accuracy floor
  * against a fast destroyer, and why EMP and engine criticals matter tactically:
@@ -273,7 +281,7 @@ export interface BlindFireRule {
 export interface EvasionResolution {
   /** Target's `mobility.evasionRating`. */
   baseEvasionRating: Fraction01;
-  /** Target speed, reduced if it turned recently. */
+  /** The target's speed after phase 5 (`CombatantState.speed`), times (1 - turnPenalty). */
   relativeSpeedFactor: number;
   /** `0.5 * (1 - min(turnRate, 150) / 150)` if the target turned this round, else 0 (R8). */
   turnPenalty: Fraction01;
@@ -290,8 +298,10 @@ export interface EvasionResolution {
 }
 
 export interface EvasionConstants {
-  /** 250 — divisor converting the speed-vs-tracking gap into an evasion bonus. */
+  /** 1000 — divisor converting the speed-vs-tracking gap into an evasion bonus (R6; was 250). */
   speedTrackingDivisor: number;
+  /** 5 — tracking counts this many speed units against the target's speed (R6). */
+  trackingSpeedFactor: number;
   /** 0.35 — cap on the speed-derived component alone. */
   maxSpeedEvasionBonus: Fraction01;
   /** 0.60 — hard cap on total effective evasion. */
@@ -333,8 +343,11 @@ export interface MineDeployment {
   weaponId: WeaponId;
   ownerShipId: ShipId;
   anchorShipId: ShipId;
-  /** Centre of the field. Its geometry waits on the movement model (OPEN_RULINGS R6). */
-  position: unknown;
+  /**
+   * Centre of the field on the engagement line: the anchor's `position` when the
+   * field was laid. It never moves (R6, spec 3.4).
+   */
+  position: Distance;
   /** `0.10 * range.optimal` with `proximity_trigger`; null when command-detonated. */
   proximityTriggerRadius: Distance | null;
   triggersOnFriendly: boolean;
@@ -343,6 +356,79 @@ export interface MineDeployment {
   roundsRemaining: number | null;
   /** Ships already hit this round — an area_denial field fires once per ship per round. */
   detonatedThisRound: ShipId[];
+}
+
+// ================================================================
+// 5b. MOVEMENT (R6) — the engagement line
+// ================================================================
+
+/**
+ * Declared in phase 2 with the operating state, resolved in phase 5 (spec 1.4).
+ * Pursuit is `close` on a withdrawing ship. A ship that reaches its standoff keeps
+ * its speed and holds station; only `hold` gives speed up.
+ */
+export type MovementIntent =
+  /** Brake toward speed 0, drifting along the current heading meanwhile. */
+  | { kind: 'hold' }
+  /** Head toward `target`; stop at `standoff` (default 0). */
+  | { kind: 'close'; target: ShipId; standoff?: Distance; speedLimit?: number }
+  /** Head away from `target`; stop at `standoff` (default: keep going). */
+  | { kind: 'open'; target: ShipId; standoff?: Distance; speedLimit?: number }
+  /** Head for the own side's rear at full speed — the only way to disengage (spec 3.7). */
+  | { kind: 'withdraw'; speedLimit?: number };
+
+/** Direction along the engagement line; each side's rear is one end of it. */
+export type Heading = 1 | -1;
+
+/**
+ * One ship's move in phase 5. Ships move one at a time in ascending initiative
+ * order, each reading the positions already updated this phase.
+ *
+ *   maxSpeed  = effective(topSpeed) x state factors
+ *   speedStep = effective(acceleration) x ROUND_TIME (x1.25 under afterburner)
+ *   v0        = min(speed, maxSpeed); on a reversal v0 *= 1 - turnPenalty
+ *   v1        = v0 moved toward the intent's speed by at most speedStep
+ *   along     = min((v0 + v1) / 2 x ROUND_TIME, need)
+ */
+export interface MovementResolution {
+  shipId: ShipId;
+  intent: MovementIntent;
+  maxSpeed: number;
+  speedStep: number;
+  speedBefore: number;
+  speedAfter: number;
+  headingBefore: Heading;
+  headingAfter: Heading;
+  /** The heading reversed while the ship was under way — feeds spec 2.4's turn penalty. */
+  turnedThisRound: boolean;
+  positionBefore: Distance;
+  positionAfter: Distance;
+  /** Proximity mine fields this move tripped, in the order it reached them. */
+  minesTriggered: Pick<MineDeployment, 'ownerShipId' | 'weaponId' | 'position'>[];
+}
+
+export interface MovementConstants {
+  /** 4 — time units per round: displacement = speed x 4, speed change <= acceleration x 4. */
+  roundTime: number;
+  /** 5 — no hull may take longer than this many rounds to reach top speed from rest. */
+  maxRoundsToTopSpeed: number;
+  /** maxSpeed multipliers; they multiply together. */
+  runningSilentSpeedFactor: number;
+  /** topSpeed AND acceleration under afterburner. */
+  afterburnerFactor: number;
+  /** speed and turnRate while the engines component is disabled or destroyed. */
+  engineCriticalFactor: number;
+  intents: readonly MovementIntent['kind'][];
+}
+
+/**
+ * How an engagement opens (spec 1.4). The side with the longer first-lock range
+ * chooses the distance, anywhere from the other side's first-lock range to its own.
+ */
+export interface EngagementOpening {
+  firstLockRange: Record<string, Distance>;
+  seesFirst: string | null;
+  openingDistance: Distance;
 }
 
 // ================================================================
@@ -655,11 +741,16 @@ export type DestructionCause =
  * RETREAT_THRESHOLD in tools/gameplay_tables.py.
  */
 export interface RetreatPolicy {
-  /** 0.30. */
+  /** 0.30. At or below it, the ship's intent is `withdraw` from the next round on. */
   hullFractionThreshold: Fraction01;
   /** v1's extra condition, dropped by R4. */
   requiresNoWeaponsOperational: false;
   source: 'gameplay_tables.RETREAT_THRESHOLD';
+  /**
+   * R6: a withdrawing ship disengages at the end of a round in which no enemy holds a
+   * lock on it. At the round cap every ship still present disengages.
+   */
+  disengagesWhen: 'noEnemyLock';
 }
 
 export type VictoryCondition =
@@ -699,6 +790,15 @@ export interface CombatantState {
   disabledSlots: ModuleSlotId[];
 
   operatingState: OperatingState;
+  /** R6: this round's declared movement intent; forced to `withdraw` at or below the retreat threshold. */
+  intent: MovementIntent;
+  /** R6: position on the engagement line, in weapon-range units. */
+  position: Distance;
+  /** R6: current speed, after this round's movement phase. Spec 2.4 reads it as targetSpeed. */
+  speed: number;
+  heading: Heading;
+  /** R6: the heading reversed while under way in this round's movement phase. */
+  turnedThisRound: boolean;
   signature: SignatureResolution;
   volleysFiredThisTurn: number;
   turnsSinceLastHit: number;
@@ -989,7 +1089,9 @@ export const OPEN_RULINGS: readonly OpenRuling[] = [
     conflict:
       'Phase 5 says "resolve positioning" and nothing more. No rule turns topSpeed, acceleration and turnRate into a change in distance per round, yet range bands, melee and mine fields all read that distance.',
     recommendation: 'Define how distance changes per round from mobility stats and declared intent (close / hold / open).',
-    status: 'open',
+    status: 'ruled',
+    ruling:
+      'One engagement line: every ship and mine field has a position; intents hold / close / open / withdraw; ROUND_TIME 4 (speed x 4 per round, acceleration x 4 per round), calibrated on Sable/Ember; reversal is the turn. The side that locks first chooses the opening distance. Withdrawal succeeds when no enemy holds a lock. Speed-evasion recalibrated to (speed - tracking x 5) / 1000. Spec 1.4, 2.4, 3.4, 3.7; verify_combat.py recomputes every logged range progression.',
   },
   {
     id: 'R7',

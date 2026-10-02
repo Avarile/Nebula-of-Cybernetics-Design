@@ -263,8 +263,8 @@ _CON = 'GamePlay/conflict_specification.md'
 STAT_RULES = {
     # --- mobility -----------------------------------------------------------
     'topSpeed':                (_LOG, '1', 'jump range budget; also combat speed-evasion'),
-    'acceleration':            (_COMBAT, '2.4', 'speed-based evasion'),
-    'turnRate':                (_COMBAT, '2.4', 'turn penalty in the evasion formula'),
+    'acceleration':            (_COMBAT, '2.4', 'speed change per combat round (R6), which sets the evasion targetSpeed'),
+    'turnRate':                (_COMBAT, '2.4', 'turn penalty in the evasion formula; speed kept through a reversal'),
     'evasionRating':           (_COMBAT, '2.4', 'base evasion before the speed bonus'),
     'fuelRange':               (_LOG, '2', 'percentage multiplier on the derived ly range'),
     # --- durability ----------------------------------------------------------
