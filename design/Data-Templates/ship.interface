@@ -26,7 +26,14 @@
 # from a table and never changes in play. The values play changes are runtime state:
 #   in a battle      Reference/combat.ts CombatantState -- hullCurrentHP, shieldsCurrentHP,
 #                    componentCurrentHP, crewCurrent, powerCurrent (each starts at its max*)
-#   between battles  Reference/gameplay.ts FleetHull -- hullHP, shieldHP, ammo, fuel, cargo
+#   between battles  Reference/gameplay.ts FleetHull -- hullHP, shieldHP, ammo, fuel, cargo,
+#                    and the hull's own fit
+#
+# DEFAULT FIT. weaponEquipped / moduleEquipped are the fit a hull is built and sold with.
+# A hull a player holds carries its own (FleetHull.fit) and may be refitted at a yard
+# (GamePlay/fitting_specification.md). The rules a fit must pass -- default or player --
+# have one implementation, tools/fitting.py; tools/generate_ships.py checks every default
+# fit against it.
 #
 # CLOCK. "round" is one exchange in a battle, "turn" is 24 h (GamePlay/gameplay_specification.md
 # 3). Rates that run per round say Round; capacities.repairRate is per turn, outside combat.
@@ -41,7 +48,9 @@
 #   capacities  - what the hull can hold: cargo, ammo, fuel, troops, aircraft, drones,
 #                 mines, medical, repairRate. Most read 0 -- a battleship carries no
 #                 troops -- which is what makes a `specific` module specific.
-#   moduleSlots.list[].size     - the module size the slot accepts, mirroring hardpoints
+#   moduleSlots.list[].size     - the largest module the slot accepts: the category's module
+#                 capacity (mod_cap in tools/ship_tables.py) on a tier hull. A module fits a slot of
+#                 its slotType at or below this size (GamePlay/fitting_specification.md 2).
 #   moduleSlots.list[].slotType - enum extended with `command` (CIC tower, flag bridge) and
 #                `hangar` (drone controller, catapult, aircraft elevator). See module.interface.
 #
@@ -121,7 +130,7 @@
       {
         "hardpointId": "string, format: hp_<n>",
         "size": "enum: small | medium | large | capital",
-        "mountType": "enum: fixed | turret | missile_bay",
+        "mountType": "enum: fixed | turret | missile_bay -- follows the weapon fitted (kinetic/energy turret, missile missile_bay, mine/melee fixed); not a fitting constraint",
         "weaponEquipped": "weaponId (see weapon.interface) or null"
       }
     ]
@@ -132,7 +141,7 @@
       {
         "slotId": "string, format: ms_<n>",
         "slotType": "[+] enum: engine | utility | defensive | sensor | cargo | command | hangar",
-        "size": "[+] enum: small | medium | large | capital, must equal the module's size",
+        "size": "[+] enum: small | medium | large | capital, the largest module size the slot accepts",
         "moduleEquipped": "moduleId (see module.interface) or null"
       }
     ]

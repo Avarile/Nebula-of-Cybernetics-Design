@@ -62,19 +62,19 @@
       {
         "slotId": "ms_1",
         "slotType": "engine",
-        "size": "medium",
+        "size": "capital",
         "moduleEquipped": "mod_ion_drive_hp"
       },
       {
         "slotId": "ms_2",
         "slotType": "command",
-        "size": "large",
+        "size": "capital",
         "moduleEquipped": "mod_cic_tower_mk2"
       },
       {
         "slotId": "ms_3",
         "slotType": "defensive",
-        "size": "large",
+        "size": "capital",
         "moduleEquipped": "mod_belt_armour_mk2"
       }
     ]

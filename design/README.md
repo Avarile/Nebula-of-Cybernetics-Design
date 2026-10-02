@@ -16,7 +16,7 @@ output.
 | | count | |
 |---|---|---|
 | Ship categories | 26 | motor torpedo boat (30 t) → battleship (72,000 t) |
-| Tier hulls | 78 | 3 tiers per category, fully fitted |
+| Tier hulls | 78 | 3 tiers per category, each with a default fit |
 | Named ships | 20 | instances of a class, each with its own loadout |
 | Weapons | 798 | 31 archetypes × 4 sizes × 10 manufacturers × Mk.1–5 |
 | Modules | 135 | 45 archetypes × Mk.1–3, across 7 slot types |
@@ -81,6 +81,7 @@ GamePlay/                    the rules layer: how a player spends a day
   logistics_specification.md jump range, fuel, cargo, interdiction
   economy_specification.md   credits, prices, markets, contracts, unions
   conflict_specification.md  PvE, PvP, destruction, insurance, raiding
+  fitting_specification.md   the fitting rules, parts as goods, the refit order and its cost
   lore_specification.md      the setting, factions, region authorities, manufacturer origins
   Progression/ Market/ Facilities/ NPC/     the generated half
 
@@ -172,10 +173,11 @@ shield type, how many mounts at which sizes, which slot types, mobility, capacit
 what it reaches for when arming itself. Tier 1 sits low in the mass band, tier 3 high;
 hull, shields, power and crew skill rise per tier, and tiers 2 and 3 add mounts and slots.
 
-Hulls arrive **fitted**. Weapons and modules are chosen at `mark == tier` from a
+Hulls arrive with a **default fit**. Weapons and modules are chosen at `mark == tier` from a
 per-category preference order, and a `specific` module is only fitted where its
 `hullAffinity` permits — which is why the minelayer carries mine rails and sweep gear,
-the transport a cargo derrick, and the battleship neither.
+the transport a cargo derrick, and the battleship neither. A hull a player holds carries
+its own fit and can be refitted at a yard (`GamePlay/fitting_specification.md`).
 
 ```
 Battleship Tier 3     65,100 t  heavy   15,855 hp  speed 336  crew 847
@@ -188,6 +190,10 @@ Motor Torpedo Boat T1     38 t  light       37 hp  speed 620  crew 7
 
 Two hull budgets are enforced rather than assumed: `power.maxPower` covers passive module
 draw plus one full weapon volley, and `maxCrew` covers the fitted modules' `crewRequired`.
+They are two of the nine fitting rules in `tools/fitting.py` — weapon on a hardpoint of the
+same size, module in a slot of its type at or above its size, `hullAffinity`, one module
+per `moduleType` — which judge a default fit and a player's refit alike. A slot's `size` is
+its category's module capacity; a hardpoint's `mountType` follows the weapon on it.
 
 ### Resources — `lane × tier`
 
@@ -401,6 +407,15 @@ and 44.8 % precision — the map's bottleneck, in money.
 Ship loss is real: the wreck drops the *fit*, insurance covers the *bare hull*, and the two
 run in opposite directions because a torpedo boat is 84 % fittings and a battleship 10 %.
 
+**Fitting.** A hull's catalogue fit is its *default* fit; a player refits at a berth they
+lease (slow, free, their Ship Construction skill applies) or at an NPC yard in `core`/`mid`
+(the planet's whole rate, a fee of 5 % of every part moved). A refit is `ship.refit` in
+phase 6, judged by the same `tools/fitting.py` the verifiers run on all 78 default fits. A
+hull is worth its bare hull plus its parts, so stripping one and selling the pieces only
+pays the NPC spread; insurance still covers the bare hull and the wreck drops the fit the
+hull actually carried. Every weapon and module is now a legal fit somewhere — before, 730
+weapons and 22 module lines sat in no fit at all.
+
 **Hauling and escort.** Cargo hulls cannot fight, so cargo worth taking travels with
 warships: in one fleet, or as a **convoy** — fleets linked by `fleet.convoy` that move at the
 slowest hull's pace, are caught whole by an interdictor, and fight as one side. Inside the
@@ -435,8 +450,8 @@ the map generator:
 The line runs through the hull too. A generated hull is a build sheet: it carries
 `hull.maxHP`, `shields.maxHP`, `crew.maxCrew`, `power.maxPower` and each component's
 `maxHP`, and no `current*` value at all. What a battle changes lives in `CombatantState`
-(`Reference/combat.ts`); what a hull carries from one battle to the next lives in its
-fleet entry, `FleetHull` (`Reference/gameplay.ts`). `verify_naming.py` fails on any
+(`Reference/combat.ts`); what a hull carries from one battle to the next — its damage, and
+its own fit — lives in its fleet entry, `FleetHull` (`Reference/gameplay.ts`). `verify_naming.py` fails on any
 `current*` key in the generated data.
 
 **Clock words.** A rate or count that runs inside a battle says **round** —
@@ -520,7 +535,7 @@ files or directories behind.
 python3 tools/verify_resources.py     # 16 checks
 python3 tools/verify_weapons.py       # 12 checks
 python3 tools/verify_modules.py       # 23 checks
-python3 tools/verify_ships.py         # 38 checks
+python3 tools/verify_ships.py         # 39 checks
 python3 tools/verify_skills.py        # 46 checks
 python3 tools/verify_systems.py       # 54 checks
 python3 tools/verify_progression.py   # 22 checks
@@ -531,6 +546,7 @@ python3 tools/verify_gameplay.py      # 58 checks -- the cross-cutting invariant
 python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
 python3 tools/verify_combat.py        # 62 checks -- combat rulings, stat hooks, lock range, movement, strike craft and cover vs. the catalogues and logs
 python3 tools/verify_naming.py        # 8 checks -- no current* in the catalogue, no stray 'turn' name, stat clocks match their rules
+python3 tools/verify_fitting.py       # 17 checks -- the fitting rules vs. every default fit, no dead good, refit cost, no free money
 python3 Reference/verify_reference.py # 67 checks -- TypeScript interface vs. the data
 ```
 
@@ -540,7 +556,9 @@ value in the catalogue and no name that says turn unless it means the 24-hour tu
 blocks; no weapon strictly dominated by a same-mark rival at equal-or-lower cost; module
 effects restricted to a fixed stat vocabulary; `specific` modules only where
 `hullAffinity` allows; every cross-reference resolving; hardpoint and slot sizes matching
-what is fitted; power and crew budgets covering the fit; skill effects restricted to the
+what is fitted, judged by the one implementation of the fitting rules (`tools/fitting.py`)
+that also validates a player's refit; power and crew budgets covering the fit; every weapon
+and module a legal fit on some hull and no `hullAffinity` entry that could never be fitted; skill effects restricted to the
 shared stat vocabulary, with an acyclic prerequisite graph, exactly two `ship_operation`
 claimants per hull category and no penalty on a stat the same skill cannot buff back;
 every published SP figure matching the closed-form curve, the hull tree acyclic with no
@@ -585,6 +603,8 @@ Vanguard.
 | module archetypes, effects, stat vocabulary | `tools/generate_modules.py` |
 | ship categories: mass, armour, mounts, slots, capacities, doctrine | `tools/ship_tables.py` |
 | how hulls are derived and fitted | `tools/generate_ships.py` |
+| the fitting rules (size, slot, affinity, budgets) | `tools/fitting.py`; mounts and sizes in `tools/ship_tables.py` |
+| what a refit costs (labour share, NPC yard fee) | `tools/gameplay_tables.py` (then `Reference/constants.ts`) |
 | skills: levels, effects, unlocks, prerequisites | `tools/skill_tables.py` |
 | the hull progression tree | `HULL_TREE` in `tools/skill_tables.py` |
 | regions, systems, gates, planet archetypes | `tools/system_tables.py` |

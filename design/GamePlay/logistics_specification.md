@@ -289,8 +289,9 @@ The slowest hull sets the pace exactly as in §1, and nothing else changes: tran
 for the convoy as a whole (§1.1), and every member emerges at the same gate in the same
 phase 7. Three destroyers (12.5 ly/turn) escorting an attack transport T3 move at 7.5.
 
-Fuel stays per hull (§2). A convoy moves only if **every** hull can fuel the next transit;
-otherwise the whole convoy holds and the log names the hull that is short. An oiler in any
+Fuel stays per hull (§2). A convoy moves only if **every** hull can fuel the next transit
+and none is docked for a refit (`fitting_specification.md` §4.4); otherwise the whole convoy
+holds and the log names the hull that is short or docked. An oiler in any
 member may transfer fuel to any hull in the convoy, since they are always at the same location
 (§4). A link does not merge holds: `cargo.transfer` still moves goods only within one fleet or
 to a warehouse (§3).

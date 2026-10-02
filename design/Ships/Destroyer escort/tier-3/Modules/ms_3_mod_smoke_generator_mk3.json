@@ -27,7 +27,6 @@
   "powerCost": 2.5,
   "crewRequired": 2,
   "hullAffinity": [
-    "destroyer",
     "destroyer_escort",
     "corvette",
     "torpedo_boat_fleet",

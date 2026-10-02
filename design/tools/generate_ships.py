@@ -13,20 +13,16 @@ from collections import Counter, defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
-from ship_tables import CATEGORIES, BY_KEY
+from ship_tables import CATEGORIES, BY_KEY, SIZE_RANK, MOUNT_FOR_CLASS
 from generate_weapons import split_name
 from resource_costs import ship_hull_build_cost, add_costs
+import fitting
 
 FLEET = os.path.join(ROOT, 'fleet_and_weapons.json')
 SHIPS_DIR = os.path.join(ROOT, 'Ships')
 IFACE = os.path.join(ROOT, 'Data-Templates', 'ship.interface')
 
 TIERS = [1, 2, 3]
-SIZE_RANK = {'small': 0, 'medium': 1, 'large': 2, 'capital': 3}
-
-# A hardpoint's mount follows from what is bolted to it, so the two can never disagree.
-MOUNT_FOR_CLASS = {'kinetic': 'turret', 'energy': 'turret', 'missile': 'missile_bay',
-                   'mine': 'fixed', 'melee': 'fixed'}
 
 ARMOR_HP = {'light': 0.85, 'medium': 1.00, 'heavy': 1.25, 'reactive': 1.15}
 ARMOR_RATING = {'light': 0.70, 'medium': 1.00, 'heavy': 1.35, 'reactive': 1.15}
@@ -186,7 +182,9 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
                            'mountType': MOUNT_FOR_CLASS[w['weaponClass']],
                            'weaponEquipped': w['weaponId']})
 
-    # ---- module slots
+    # ---- module slots. A slot's size is the category's module capacity, not the size of
+    # whatever the default fit put there: a module fits any slot of its type at or above
+    # its own size (fitting_specification.md 2), so a refit can take a larger module.
     slot_types = list(cat['slots'])
     if tier >= 2:
         slot_types += cat['slots2']
@@ -202,7 +200,7 @@ def build_hull(cat, tier, weapons, modules, legacy_arch):
         arch, m = picked
         used.add(arch)
         fitted_modules.append(m)
-        slots.append({'slotId': f'ms_{i}', 'slotType': st, 'size': m['size'],
+        slots.append({'slotId': f'ms_{i}', 'slotType': st, 'size': cat['mod_cap'],
                       'moduleEquipped': m['moduleId']})
 
     # ---- crew must actually man what is fitted
@@ -316,6 +314,12 @@ def main():
     legacy_arch = {mid: arch for mid, (arch, _) in MOD_LEGACY.items()}
 
     hulls = [build_hull(c, t, weapons, modules, legacy_arch) for c in CATEGORIES for t in TIERS]
+    # A default fit is judged by the same code as a player's refit. The budgets above are
+    # sized to pass it, so a failure here is a generator bug, not a tuning question.
+    invalid = [f'{h["shipId"]}: {p}' for h in hulls
+               for p in fitting.fit_problems(h, fitting.default_fit(h), weapons_by_id, modules_by_id)]
+    if invalid:
+        sys.exit('default fit breaks the fitting rules: ' + '; '.join(invalid[:6]))
 
     # ---- the 20 pre-existing ships become named instances of the class they belong to
     named = []

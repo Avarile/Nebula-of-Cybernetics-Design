@@ -21,8 +21,7 @@
   "crewRequired": 18,
   "hullAffinity": [
     "attack_transport",
-    "repair_ship_tender",
-    "fleet_aircraft_carrier"
+    "repair_ship_tender"
   ],
   "buildCost": {
     "structural": 2.92,

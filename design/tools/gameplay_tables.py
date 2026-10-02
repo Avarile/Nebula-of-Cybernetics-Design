@@ -28,7 +28,7 @@ PHASES = [
     (3,  'extraction',    'player',   'planetary slots and belt mining produce'),
     (4,  'refining',      'player',   'raw -> refined'),
     (5,  'manufacturing', 'player',   'refined -> manufactured'),
-    (6,  'construction',  'player',   'shipyard berths advance; finished hulls delivered'),
+    (6,  'construction',  'player',   'shipyard berths advance; finished hulls and parts delivered; refits complete'),
     (7,  'movement',      'player',   'fleets spend jump range; arrivals recorded'),
     (8,  'detection',     'player',   'sensor resolution, interdiction, engagement formation'),
     (9,  'combat',        'player',   'every engagement runs to conclusion'),
@@ -44,6 +44,7 @@ ORDER_TYPES = {
     'train.queue':      [2],
     'mine.assign':      [3],
     'facility.job':     [3, 4, 5, 6],
+    'ship.refit':       [6],         # change one hull's fit at a yard. fitting 4
     'fleet.move':       [7],
     'fleet.convoy':     [7],         # link to / unlink from a leader fleet. logistics 8
     'fleet.posture':    [8],
@@ -66,6 +67,7 @@ CONTENDED = {
     'mine.assign':      'rank',
     'fleet.posture':    'rank, among interdictors on one gate',
     'fleet.convoy':     'rank; a link naming a leader that is itself linked by then is rejected',
+    'ship.refit':       'rank, among refits naming one union berth; the berth takes one hull at a time',
 }
 
 # ----------------------------------------------------------------- security
@@ -259,6 +261,18 @@ HAUL_RISK_RATE = 0.002       # of cargo reference value, per ly, per point of RI
 ESCORT_SHARE = 0.50          # of a haul's risk premium: the reference quote for an escort
 ESCORT_BOND = 1.00           # x escort reward, posted by the escort, forfeited on desertion
 
+# ----------------------------------------------------------------- fitting
+# fitting_specification.md 3-4. The fitting RULES are tools/fitting.py; these are what a
+# refit costs. A refit moves items: each one installed and each one removed counts once.
+#
+# Labour is in the berth's own unit -- manufactured units of construction -- so a refit
+# competes with construction for the same throughput and Ship Construction Management
+# speeds both. Installing a part is half the work of building it.
+REFIT_LABOUR_SHARE = 0.50    # berth labour per item moved, x the item's buildCost units
+# An NPC yard (a core or mid system with berths, NPC_ORDER_TIERS) refits without a lease
+# or a skill, at the planet's whole construction rate, for a fee on the value moved.
+NPC_YARD_FEE = 0.05          # of the reference price of each item moved
+
 # ----------------------------------------------------------------- new player
 # progression_specification.md 5.
 
@@ -369,6 +383,7 @@ DRAINS = [
     ('npc_sell_orders',    'NPC_SPREAD',          'fuel, ammunition and starter goods bought'),
     ('consumable_markup',  'FUEL_PER_POWER_CORE', 'fleets operating away from their own industry'),
     ('forfeited_haul_collateral', 'PRICE_INDEX', 'NPC haul cargo lost or kept; collateral is the dearest NPC ask'),
+    ('npc_yard_fee',       'NPC_YARD_FEE',        'refits done at NPC yards rather than a berth the player leases'),
 ]
 
 # ----------------------------------------------------------------- careers
@@ -419,3 +434,5 @@ assert all(ph in [p[0] for p in PHASES] for v in ORDER_TYPES.values() for ph in 
 assert set(RISK_INDEX) == set(SECURITY_TIERS), 'risk index must cover every security tier'
 assert all(set(c[4]) <= {'npc', 'player'} and c[4] for c in CONTRACT_ARCHETYPES), 'contract posters'
 assert 0 < ESCORT_SHARE < 1, 'an escort quote is a share of the premium, never all of it'
+assert 0 < REFIT_LABOUR_SHARE <= 1, 'installing a part is never more work than building it'
+assert 0 < NPC_YARD_FEE < 1, 'a yard fee is a share of the value moved'

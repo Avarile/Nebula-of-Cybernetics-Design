@@ -62,19 +62,19 @@
       {
         "slotId": "ms_1",
         "slotType": "engine",
-        "size": "medium",
+        "size": "large",
         "moduleEquipped": "mod_ion_drive_mk3"
       },
       {
         "slotId": "ms_2",
         "slotType": "sensor",
-        "size": "medium",
+        "size": "large",
         "moduleEquipped": "mod_search_radar_mk3"
       },
       {
         "slotId": "ms_3",
         "slotType": "cargo",
-        "size": "medium",
+        "size": "large",
         "moduleEquipped": "mod_troop_berthing_mk3"
       },
       {

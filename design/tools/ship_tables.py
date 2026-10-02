@@ -202,3 +202,17 @@ CATEGORIES = [
 
 BY_KEY = {c['key']: c for c in CATEGORIES}
 assert len(CATEGORIES) == 26, len(CATEGORIES)
+
+# ----------------------------------------------------------------- mounts
+# The fitting rules (GamePlay/fitting_specification.md 2) read these; tools/fitting.py is
+# the one implementation, shared by the generator, the verifiers and a player's refit.
+SIZES = ['small', 'medium', 'large', 'capital']
+SIZE_RANK = {s: i for i, s in enumerate(SIZES)}
+
+# A hardpoint's mount follows from what is bolted to it, so the two can never disagree:
+# a refit that puts a launcher where a gun was turns the turret into a missile bay.
+MOUNT_FOR_CLASS = {'kinetic': 'turret', 'energy': 'turret', 'missile': 'missile_bay',
+                   'mine': 'fixed', 'melee': 'fixed'}
+
+# `mod_cap` above is the largest module a category's slots accept, and each slot carries it
+# as its `size`: a module fits a slot of its own slotType at or above its own size.

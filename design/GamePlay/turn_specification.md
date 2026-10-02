@@ -39,7 +39,7 @@ the same time; there is no interleaving by player.
 | 3 | **Extraction** | planetary slots and belt mining produce |
 | 4 | **Refining** | raw → refined |
 | 5 | **Manufacturing** | refined → manufactured |
-| 6 | **Construction** | shipyard berths advance; finished hulls delivered |
+| 6 | **Construction** | shipyard berths advance; finished hulls and parts delivered; refits complete |
 | 7 | **Movement** | fleets spend jump range; arrivals recorded |
 | 8 | **Detection** | sensor resolution, interdiction, engagement formation |
 | 9 | **Combat** | every engagement runs to conclusion |
@@ -97,6 +97,7 @@ bucket without interpreting.
 | `train.queue` | 2 | an ordered list of `(skillId, targetLevel)` |
 | `mine.assign` | 3 | a fleet and a belt |
 | `facility.job` | 3–6 | a lease, an operation, an input good and a quantity |
+| `ship.refit` | 6 | a hull, a yard, a parts warehouse and the target fit (`fitting_specification.md` §4) |
 | `fleet.move` | 7 | a route: an ordered list of system ids |
 | `fleet.convoy` | 7 | a follower fleet and a leader fleet to link it to, or none to unlink (`logistics_specification.md` §8) |
 | `fleet.posture` | 8 | `engage` · `avoid` · `interdict` · `silent` |
@@ -160,8 +161,9 @@ and it is bounded: it decides *who gets the slot*, never *how much anyone produc
 
 The contended claims are: facility leases, market order matching, belt mining assignments
 where a belt has limited concurrent capacity, interdiction when several fleets try to
-hold the same gate, and convoy links submitted the same turn — resolved in rank order, a link
-naming a leader that is itself linked by then is rejected, so a convoy never becomes a chain.
+hold the same gate, convoy links submitted the same turn — resolved in rank order, a link
+naming a leader that is itself linked by then is rejected, so a convoy never becomes a chain —
+and refits naming one union berth in the same turn, of which the berth takes the first.
 
 ## 5. Determinism
 

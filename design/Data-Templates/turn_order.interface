@@ -24,6 +24,7 @@
 #   train.queue          phase 2
 #   mine.assign          phase 3
 #   facility.job         phases 3, 4, 5, 6
+#   ship.refit           phase 6
 #   fleet.move           phase 7
 #   fleet.convoy         phase 7
 #   fleet.posture        phase 8
@@ -43,6 +44,15 @@
 #     Valid only when both fleets share a system, neither is in transit, the leader is
 #     not itself a follower, and the leader's owner is the same player, a union-mate, or
 #     the counterparty of an accepted ctr_escort naming both fleets. Standing.
+# [+] ship.refit -- changes one hull's fit at a yard (GamePlay/fitting_specification.md 4).
+#     Resolves in phase 6, beside construction, so a refit finished today sails today.
+#     Payload: { fleetId, hullId, site: { leaseId } | { npcYardPlanetId }, partsLeaseId | null,
+#     fit: HullFit | null } -- fit is the complete target fit; null cancels the refit in
+#     progress. Not standing: one order starts one refit, which runs to completion. Valid
+#     only when the hull's fleet is in the site's system and not in transit, the hull fits
+#     the site's maxHullTonnage, the target fit passes tools/fitting.py fit_is_valid, the
+#     parts are in partsLeaseId (or, at an NPC yard, credits cover the asks and the fee),
+#     and the hull's cargo and ammunition fit the new capacities.
 # [+] fleet.target payload -- per hull { hullIndex, targets: [shipRef...] } or
 #     { hullIndex, withdraw: true } (withdraw from round 1), and per pool weapon an
 #     optional { hullIndex, hardpointId, cover: hullRef } -- cover
@@ -86,3 +96,15 @@
 #   "orderType": "fleet.convoy", "phase": 7, "submissionSequence": 1183, "standing": true,
 #   "payload": { "followerFleetId": "flt_0090", "leaderFleetId": "flt_0044" },
 #   "rejection": null }
+#
+# { "orderId": "ord_00419", "turnNumber": 47, "playerId": "ply_0031",
+#   "orderType": "ship.refit", "phase": 6, "submissionSequence": 1190, "standing": false,
+#   "payload": { "fleetId": "flt_0044", "hullId": "hul_0102",
+#                "site": { "npcYardPlanetId": "pln_001" }, "partsLeaseId": null,
+#                "fit": { "weapons": { "hp_1": "wpn_776", "hp_2": "wpn_776",
+#                                      "hp_3": "wpn_394", "hp_4": "wpn_394" },
+#                         "modules": { "ms_1": "mod_ion_drive_hp", "ms_2": "mod_ecm_suite_mk2",
+#                                      "ms_3": "mod_armour_plating_mk2" } } },
+#   "rejection": null }
+#   -- a Destroyer Tier 2 trading its Search Radar for an ECM Suite at the Aurelia I yard:
+#   6.3 units of labour, done the same phase 6; fee 53.89 plus the suite at the NPC ask.

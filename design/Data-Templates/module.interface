@@ -15,7 +15,8 @@
 #   functionClass  - major | support | specific (see below)
 #   slotType       - carried on the module so a fit can be checked against the hull.
 #                    Enum extended with `command` and `hangar`; see ship.interface.
-#   size           - the slot size the module needs, mirroring weapons and hardpoints
+#   size           - the smallest slot size the module fits: a slot of its slotType at
+#                    this size or larger (GamePlay/fitting_specification.md 2)
 #   mass           - tons, counts against the hull's mass budget
 #   mark           - 1 | 2 | 3, matching ship tiers 1 | 2 | 3
 #   crewRequired   - crew drawn from the hull's complement
@@ -44,6 +45,8 @@
 #     Mk.3 effect set a superset of Mk.1's
 #   - functionClass 'specific' has a non-empty hullAffinity; 'major'/'support' empty
 #   - every hullAffinity entry is a real shipClass value
+#   - every hullAffinity entry names a category with a slot the module fits, and every
+#     module is a legal fit on some tier hull (tools/verify_fitting.py)
 #   - folder placement matches slotType/functionClass
 #   - every moduleEquipped reference in fleet_and_weapons.json -> ships still resolves
 #
@@ -74,14 +77,14 @@
 #   Machine Shop           utility    support   large     5.0   20     90  repairRatePerTurn +30%, crew.engineeringSkill +8
 #   Smoke Generator        utility    specific  small     2.0    2     10  enemyHitChance -6
 #                                                                          + Mk.3: evasionRating +0.02
-#                                                                          hulls: destroyer, destroyer_escort, corvette, torpedo_boat_fleet, motor_torpedo_boat, sloop_patrol_escort
+#                                                                          hulls: destroyer_escort, corvette, torpedo_boat_fleet, motor_torpedo_boat, sloop_patrol_escort
 #   Minesweep Gear         utility    specific  medium    5.0   12     45  minesweepRate +30%, detectionRange +10%
 #                                                                          hulls: minelayer_sweeper, sloop_patrol_escort, corvette
 #   Repair Shop            utility    specific  large     6.0   28    140  repairRatePerTurn +35%, crew.engineeringSkill +10
 #                                                                          hulls: repair_ship_tender, seaplane_tender, fleet_oiler
 #   Hospital Bay           utility    specific  medium    3.0   16     55  medicalCapacity +30
 #                                                                          + Mk.3: crewRecoveryRate +20%
-#                                                                          hulls: attack_transport, repair_ship_tender, fleet_aircraft_carrier
+#                                                                          hulls: attack_transport, repair_ship_tender
 #   CIC Tower              command    major     large    10.0   18     85  weaponAccuracy +6%, initiative +5, detectionRange +10%
 #   Flag Bridge            command    major     capital   8.0   30    140  initiative +8, crew.gunnerySkill +6
 #                                                                          + Mk.3: weaponAccuracy +4%
@@ -115,19 +118,19 @@
 #   Drone Bay              hangar     major     large     6.0   12     95  droneCapacity +8
 #                                                                          + Mk.3: repairRatePerTurn +10%
 #   Seaplane Catapult      hangar     specific  large     7.0   14    110  aircraftCapacity +2, detectionRange +25%
-#                                                                          hulls: seaplane_tender, light_cruiser, heavy_cruiser, battlecruiser, battleship
+#                                                                          hulls: seaplane_tender
 #   Aircraft Elevator      hangar     specific  capital  10.0   25    220  aircraftCapacity +6
 #                                                                          hulls: fleet_aircraft_carrier, light_carrier, escort_carrier
 #   ASW Aircraft Bay       hangar     specific  large     8.0   16    130  aircraftCapacity +3, detectionRange +20%
-#                                                                          hulls: escort_carrier, destroyer_escort, sloop_patrol_escort, seaplane_tender
+#                                                                          hulls: escort_carrier, seaplane_tender
 #   Bulk Hold              cargo      support   large     0.0    4     40  cargoCapacity +30%
 #   Ammunition Magazine    cargo      support   medium    2.0    8     85  ammoCapacity +40%, hull.maxHP -3%
 #   Cargo Derrick          cargo      specific  large     3.0   10     70  cargoCapacity +25%
 #                                                                          hulls: attack_transport, fleet_oiler, repair_ship_tender, landing_ship_tank
 #   Mine Rails             cargo      specific  medium    1.0    8     65  mineCapacity +40%
-#                                                                          hulls: minelayer_sweeper, destroyer, submarine, torpedo_boat_fleet
+#                                                                          hulls: minelayer_sweeper, submarine
 #   Refuelling Rig         cargo      specific  large     4.0   14     95  fuelTransferRate +40%
-#                                                                          hulls: fleet_oiler, repair_ship_tender, seaplane_tender
+#                                                                          hulls: fleet_oiler, repair_ship_tender
 #   Landing Craft Davits   cargo      specific  large     2.0   18    105  troopCapacity +35%
 #                                                                          hulls: attack_transport, landing_ship_tank
 #   Troop Berthing         cargo      specific  medium    2.0    6     60  troopCapacity +45%, topSpeed -2%
@@ -168,7 +171,7 @@
   "moduleType": "enum: 33 values, see the archetype table above",
   "functionClass": "[+] enum: major | support | specific",
   "slotType": "enum: engine | utility | defensive | sensor | cargo | command | hangar",
-  "size": "[+] enum: small | medium | large | capital, the slot size this module needs",
+  "size": "[+] enum: small | medium | large | capital, the smallest slot size this module fits",
   "mark": "[+] number: 1 | 2 | 3, matches the tier of the hull it is meant for",
   "mass": {
     "value": "[+] number",

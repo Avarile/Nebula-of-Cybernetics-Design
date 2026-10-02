@@ -96,11 +96,13 @@ refs = [(s['shipId'], sl['slotId'], sl['moduleEquipped'])
 check('ship moduleEquipped references resolve',
       [f'{a}:{b} -> {c}' for a, b, c in refs if c not in ids])
 by_id = {m['moduleId']: m for m in M}
-check('ship slot size/type match the fitted module',
-      [f'{a}:{b}' for s in FLEET['ships'] for sl in s['moduleSlots']['list']
-       if (a := s['shipId']) and (b := sl['slotId']) and sl['moduleEquipped']
-       and (sl['size'] != by_id[sl['moduleEquipped']]['size']
-            or sl['slotType'] != by_id[sl['moduleEquipped']]['slotType'])])
+# The slot rules live in tools/fitting.py, the one implementation a refit is judged by.
+import fitting
+W_BY_ID = {w['weaponId']: w for w in FLEET['weapons']}
+check('ship slots take their fitted module (slot type, module size <= slot size)',
+      [f'{s["shipId"]}: {d}' for s in FLEET['ships']
+       for r, d in fitting.fit_problems(s, fitting.default_fit(s), W_BY_ID, by_id)
+       if r in ('slot_type', 'slot_size')])
 
 # files on disk
 disk = {}

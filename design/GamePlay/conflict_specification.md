@@ -209,9 +209,12 @@ it loads into the owner's surviving hulls with free cargo, and what does not fit
 wreck. No fleet that was in the convoy when the hull died may ever loot its wreck, linked or
 not by then, so an escort cannot profit from losing its client.
 
-Salvage is the fit, never the hull, and `economy_specification.md` §2.1 shows how sharply
-that varies: a Motor Torpedo Boat is 84 % fittings and drops around 525 credits from a
-1,247-credit hull, while a Battleship is 10 % fittings and drops 3,812 from 74,003.
+Salvage is the fit, never the hull — the fit the hull **carried when it died**, its own
+`FleetHull.fit`, not the catalogue's (`fitting_specification.md` §5.3). For a default fit
+`economy_specification.md` §2.1 shows how sharply that varies: a Motor Torpedo Boat is 84 %
+fittings and drops around 525 credits from a 1,247-credit hull, while a Battleship is 10 %
+fittings and drops 3,812 from 74,003. NPC squadrons fly default fits, so §3's salvage column
+is exact for them; a player's refit moves their own figure either way.
 
 **Killing small ships is proportionally the better business.** That falls out of the
 catalogue's own build costs rather than from a rule, and it is a useful counterweight: it
@@ -224,8 +227,10 @@ Numbers in `economy_specification.md` §6. The mechanics:
 
 * Cover is bought per hull, continuous, charged in phase 12, at **0.004 × bare hull
   reference price per turn**.
-* It pays the **bare hull** only — `buildCost` minus fitted weapons and modules — at the rate
-  of the tier the hull **died in**, not the tier it was insured in.
+* It pays the **bare hull** only — the catalogue hull's `buildCost` minus its default fit —
+  at the rate of the tier the hull **died in**, not the tier it was insured in. The bare hull
+  price belongs to the hull, not the fit, so a refit changes neither premium nor payout
+  (`fitting_specification.md` §5.3).
 * `deadspace` pays **nothing**. A player who takes a battleship into deadspace has accepted
   its full loss, and the premiums they paid getting there are gone too.
 

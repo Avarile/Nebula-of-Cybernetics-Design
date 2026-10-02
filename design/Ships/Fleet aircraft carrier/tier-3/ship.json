@@ -68,7 +68,7 @@
       {
         "slotId": "ms_1",
         "slotType": "engine",
-        "size": "medium",
+        "size": "capital",
         "moduleEquipped": "mod_ion_drive_mk3"
       },
       {
@@ -80,13 +80,13 @@
       {
         "slotId": "ms_3",
         "slotType": "command",
-        "size": "large",
+        "size": "capital",
         "moduleEquipped": "mod_cic_tower_mk3"
       },
       {
         "slotId": "ms_4",
         "slotType": "sensor",
-        "size": "medium",
+        "size": "capital",
         "moduleEquipped": "mod_search_radar_mk3"
       }
     ]

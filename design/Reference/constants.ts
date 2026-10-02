@@ -56,6 +56,20 @@ export const DAMAGE_TYPES = ['kinetic', 'energy', 'explosive'] as const satisfie
 
 export const MOUNT_TYPES = ['fixed', 'turret', 'missile_bay'] as const satisfies readonly MountType[];
 
+/**
+ * The mount a weapon makes of the hardpoint it is fitted to. A hardpoint is a size; its
+ * `mountType` follows the weapon, so a refit that puts a launcher where a gun was turns
+ * the turret into a missile bay (GamePlay/fitting_specification.md 2). Mirrors
+ * `tools/ship_tables.py` MOUNT_FOR_CLASS; `verify_fitting.py` checks it.
+ */
+export const MOUNT_FOR_WEAPON_CLASS = {
+  kinetic: 'turret',
+  energy: 'turret',
+  missile: 'missile_bay',
+  mine: 'fixed',
+  melee: 'fixed',
+} as const satisfies Record<WeaponClass, MountType>;
+
 export const MODULE_SLOT_TYPES = [
   'engine', 'utility', 'defensive', 'sensor', 'cargo', 'command', 'hangar',
 ] as const satisfies readonly ModuleSlotType[];
@@ -404,6 +418,23 @@ export const HAULING_CONSTANTS = {
   escortShare: 0.5,
   escortBond: 1.0,
   riskIndex: { core: 1.0, mid: 1.15, rim: 1.45, deadspace: 1.9 },
+} as const;
+
+/**
+ * What a refit costs (GamePlay/fitting_specification.md 4.3). Mirrors
+ * `tools/gameplay_tables.py`; `verify_fitting.py` checks every value. An item is moved
+ * once when installed and once when removed.
+ *
+ *   labour = refitLabourShare x SUM over items moved (item buildCost units)
+ *            accrues at the berth's construction rate x shipConstructionRate, or at an
+ *            NPC yard's whole-planet rate, untrained
+ *   fee    = npcYardFee x SUM over items moved (item reference price) -- NPC yards only
+ *
+ * The fitting RULES are not constants: `tools/fitting.py` is their one implementation.
+ */
+export const FITTING_CONSTANTS = {
+  refitLabourShare: 0.5,
+  npcYardFee: 0.05,
 } as const;
 
 // ================================================================

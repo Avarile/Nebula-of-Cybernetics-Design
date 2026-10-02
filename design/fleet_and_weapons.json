@@ -1200,7 +1200,6 @@
       "powerCost": 2.0,
       "crewRequired": 2,
       "hullAffinity": [
-        "destroyer",
         "destroyer_escort",
         "corvette",
         "torpedo_boat_fleet",
@@ -1236,7 +1235,6 @@
       "powerCost": 2.2,
       "crewRequired": 2,
       "hullAffinity": [
-        "destroyer",
         "destroyer_escort",
         "corvette",
         "torpedo_boat_fleet",
@@ -1277,7 +1275,6 @@
       "powerCost": 2.5,
       "crewRequired": 2,
       "hullAffinity": [
-        "destroyer",
         "destroyer_escort",
         "corvette",
         "torpedo_boat_fleet",
@@ -1542,8 +1539,7 @@
       "crewRequired": 16,
       "hullAffinity": [
         "attack_transport",
-        "repair_ship_tender",
-        "fleet_aircraft_carrier"
+        "repair_ship_tender"
       ],
       "buildCost": {
         "structural": 2.75,
@@ -1575,8 +1571,7 @@
       "crewRequired": 18,
       "hullAffinity": [
         "attack_transport",
-        "repair_ship_tender",
-        "fleet_aircraft_carrier"
+        "repair_ship_tender"
       ],
       "buildCost": {
         "structural": 2.92,
@@ -1613,8 +1608,7 @@
       "crewRequired": 19,
       "hullAffinity": [
         "attack_transport",
-        "repair_ship_tender",
-        "fleet_aircraft_carrier"
+        "repair_ship_tender"
       ],
       "buildCost": {
         "structural": 3.09,
@@ -3630,11 +3624,7 @@
       "powerCost": 7.0,
       "crewRequired": 14,
       "hullAffinity": [
-        "seaplane_tender",
-        "light_cruiser",
-        "heavy_cruiser",
-        "battlecruiser",
-        "battleship"
+        "seaplane_tender"
       ],
       "buildCost": {
         "structural": 5.5,
@@ -3670,11 +3660,7 @@
       "powerCost": 7.8,
       "crewRequired": 15,
       "hullAffinity": [
-        "seaplane_tender",
-        "light_cruiser",
-        "heavy_cruiser",
-        "battlecruiser",
-        "battleship"
+        "seaplane_tender"
       ],
       "buildCost": {
         "structural": 5.83,
@@ -3710,11 +3696,7 @@
       "powerCost": 8.8,
       "crewRequired": 17,
       "hullAffinity": [
-        "seaplane_tender",
-        "light_cruiser",
-        "heavy_cruiser",
-        "battlecruiser",
-        "battleship"
+        "seaplane_tender"
       ],
       "buildCost": {
         "structural": 6.18,
@@ -3850,8 +3832,6 @@
       "crewRequired": 16,
       "hullAffinity": [
         "escort_carrier",
-        "destroyer_escort",
-        "sloop_patrol_escort",
         "seaplane_tender"
       ],
       "buildCost": {
@@ -3889,8 +3869,6 @@
       "crewRequired": 18,
       "hullAffinity": [
         "escort_carrier",
-        "destroyer_escort",
-        "sloop_patrol_escort",
         "seaplane_tender"
       ],
       "buildCost": {
@@ -3928,8 +3906,6 @@
       "crewRequired": 19,
       "hullAffinity": [
         "escort_carrier",
-        "destroyer_escort",
-        "sloop_patrol_escort",
         "seaplane_tender"
       ],
       "buildCost": {
@@ -4253,9 +4229,7 @@
       "crewRequired": 8,
       "hullAffinity": [
         "minelayer_sweeper",
-        "destroyer",
-        "submarine",
-        "torpedo_boat_fleet"
+        "submarine"
       ],
       "buildCost": {
         "structural": 3.25,
@@ -4287,9 +4261,7 @@
       "crewRequired": 9,
       "hullAffinity": [
         "minelayer_sweeper",
-        "destroyer",
-        "submarine",
-        "torpedo_boat_fleet"
+        "submarine"
       ],
       "buildCost": {
         "structural": 3.45,
@@ -4321,9 +4293,7 @@
       "crewRequired": 10,
       "hullAffinity": [
         "minelayer_sweeper",
-        "destroyer",
-        "submarine",
-        "torpedo_boat_fleet"
+        "submarine"
       ],
       "buildCost": {
         "structural": 3.65,
@@ -4355,8 +4325,7 @@
       "crewRequired": 14,
       "hullAffinity": [
         "fleet_oiler",
-        "repair_ship_tender",
-        "seaplane_tender"
+        "repair_ship_tender"
       ],
       "buildCost": {
         "structural": 4.75,
@@ -4388,8 +4357,7 @@
       "crewRequired": 15,
       "hullAffinity": [
         "fleet_oiler",
-        "repair_ship_tender",
-        "seaplane_tender"
+        "repair_ship_tender"
       ],
       "buildCost": {
         "structural": 5.04,
@@ -4421,8 +4389,7 @@
       "crewRequired": 17,
       "hullAffinity": [
         "fleet_oiler",
-        "repair_ship_tender",
-        "seaplane_tender"
+        "repair_ship_tender"
       ],
       "buildCost": {
         "structural": 5.34,
@@ -35486,7 +35453,7 @@
           {
             "slotId": "ms_3",
             "slotType": "utility",
-            "size": "small",
+            "size": "medium",
             "moduleEquipped": "mod_smoke_generator_mk2"
           }
         ]
@@ -35625,7 +35592,7 @@
           {
             "slotId": "ms_3",
             "slotType": "utility",
-            "size": "small",
+            "size": "medium",
             "moduleEquipped": "mod_smoke_generator_mk3"
           },
           {
@@ -35897,7 +35864,7 @@
           {
             "slotId": "ms_3",
             "slotType": "utility",
-            "size": "small",
+            "size": "medium",
             "moduleEquipped": "mod_smoke_generator_mk2"
           }
         ]
@@ -36042,7 +36009,7 @@
           {
             "slotId": "ms_3",
             "slotType": "utility",
-            "size": "small",
+            "size": "medium",
             "moduleEquipped": "mod_smoke_generator_mk3"
           },
           {
@@ -36447,7 +36414,7 @@
           {
             "slotId": "ms_4",
             "slotType": "utility",
-            "size": "small",
+            "size": "medium",
             "moduleEquipped": "mod_smoke_generator_mk3"
           }
         ]
@@ -36979,7 +36946,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -37106,7 +37073,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -37245,7 +37212,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -38182,7 +38149,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -38315,7 +38282,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -38460,7 +38427,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -38478,7 +38445,7 @@
           {
             "slotId": "ms_4",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           }
         ]
@@ -38605,13 +38572,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk1"
           }
         ]
@@ -38744,13 +38711,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk2"
           },
           {
@@ -38895,13 +38862,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           },
           {
@@ -39034,7 +39001,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -39167,7 +39134,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -39312,7 +39279,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -39330,7 +39297,7 @@
           {
             "slotId": "ms_4",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           }
         ]
@@ -39457,13 +39424,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk1"
           }
         ]
@@ -39596,13 +39563,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk2"
           },
           {
@@ -39747,13 +39714,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           },
           {
@@ -39880,7 +39847,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -40007,7 +39974,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -40019,7 +39986,7 @@
           {
             "slotId": "ms_3",
             "slotType": "utility",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_hospital_bay_mk2"
           }
         ]
@@ -40146,7 +40113,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -40158,7 +40125,7 @@
           {
             "slotId": "ms_3",
             "slotType": "utility",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_hospital_bay_mk3"
           },
           {
@@ -40285,7 +40252,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -40418,7 +40385,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -40430,7 +40397,7 @@
           {
             "slotId": "ms_3",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_search_radar_mk2"
           }
         ]
@@ -40563,7 +40530,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -40575,13 +40542,13 @@
           {
             "slotId": "ms_3",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_search_radar_mk3"
           },
           {
             "slotId": "ms_4",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk3"
           }
         ]
@@ -40708,7 +40675,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -40847,7 +40814,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -40998,7 +40965,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -41016,7 +40983,7 @@
           {
             "slotId": "ms_4",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           }
         ]
@@ -41137,13 +41104,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk1"
           }
         ]
@@ -41270,19 +41237,19 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk2"
           },
           {
             "slotId": "ms_3",
             "slotType": "cargo",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_troop_berthing_mk2"
           }
         ]
@@ -41415,19 +41382,19 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           },
           {
             "slotId": "ms_3",
             "slotType": "cargo",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_troop_berthing_mk3"
           },
           {
@@ -41554,7 +41521,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -41687,7 +41654,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -41832,7 +41799,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -41850,7 +41817,7 @@
           {
             "slotId": "ms_4",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           }
         ]
@@ -41965,13 +41932,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
             "slotId": "ms_2",
             "slotType": "utility",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_hospital_bay_mk1"
           }
         ]
@@ -42092,13 +42059,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
             "slotId": "ms_2",
             "slotType": "utility",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_hospital_bay_mk2"
           },
           {
@@ -42231,13 +42198,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
             "slotId": "ms_2",
             "slotType": "utility",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_hospital_bay_mk3"
           },
           {
@@ -42376,13 +42343,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk1"
           }
         ]
@@ -42515,13 +42482,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk2"
           },
           {
@@ -42666,13 +42633,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
             "slotId": "ms_2",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_search_radar_mk3"
           },
           {
@@ -42799,7 +42766,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -42926,7 +42893,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -42938,7 +42905,7 @@
           {
             "slotId": "ms_3",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_search_radar_mk2"
           }
         ]
@@ -43065,7 +43032,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -43077,13 +43044,13 @@
           {
             "slotId": "ms_3",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_search_radar_mk3"
           },
           {
             "slotId": "ms_4",
             "slotType": "utility",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_fusion_generator_mk3"
           }
         ]
@@ -43198,7 +43165,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -43325,7 +43292,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -43464,7 +43431,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "large",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -43609,7 +43576,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
@@ -43748,7 +43715,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
@@ -43760,7 +43727,7 @@
           {
             "slotId": "ms_3",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk2"
           }
         ]
@@ -43899,7 +43866,7 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
@@ -43911,13 +43878,13 @@
           {
             "slotId": "ms_3",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk3"
           },
           {
             "slotId": "ms_4",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_search_radar_mk3"
           }
         ]
@@ -44044,13 +44011,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
             "slotId": "ms_2",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk1"
           }
         ]
@@ -44183,19 +44150,19 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
             "slotId": "ms_2",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk2"
           },
           {
             "slotId": "ms_3",
             "slotType": "defensive",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_belt_armour_mk2"
           }
         ]
@@ -44334,25 +44301,25 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
             "slotId": "ms_2",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk3"
           },
           {
             "slotId": "ms_3",
             "slotType": "defensive",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_belt_armour_mk3"
           },
           {
             "slotId": "ms_4",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_search_radar_mk3"
           }
         ]
@@ -44485,13 +44452,13 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_std"
           },
           {
             "slotId": "ms_2",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk1"
           }
         ]
@@ -44630,19 +44597,19 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_hp"
           },
           {
             "slotId": "ms_2",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk2"
           },
           {
             "slotId": "ms_3",
             "slotType": "defensive",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_belt_armour_mk2"
           }
         ]
@@ -44787,25 +44754,25 @@
           {
             "slotId": "ms_1",
             "slotType": "engine",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_ion_drive_mk3"
           },
           {
             "slotId": "ms_2",
             "slotType": "command",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_cic_tower_mk3"
           },
           {
             "slotId": "ms_3",
             "slotType": "defensive",
-            "size": "large",
+            "size": "capital",
             "moduleEquipped": "mod_belt_armour_mk3"
           },
           {
             "slotId": "ms_4",
             "slotType": "sensor",
-            "size": "medium",
+            "size": "capital",
             "moduleEquipped": "mod_search_radar_mk3"
           }
         ]

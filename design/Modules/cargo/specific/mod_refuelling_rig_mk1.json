@@ -21,8 +21,7 @@
   "crewRequired": 14,
   "hullAffinity": [
     "fleet_oiler",
-    "repair_ship_tender",
-    "seaplane_tender"
+    "repair_ship_tender"
   ],
   "buildCost": {
     "structural": 4.75,

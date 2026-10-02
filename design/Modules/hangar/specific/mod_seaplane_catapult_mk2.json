@@ -25,11 +25,7 @@
   "powerCost": 7.8,
   "crewRequired": 15,
   "hullAffinity": [
-    "seaplane_tender",
-    "light_cruiser",
-    "heavy_cruiser",
-    "battlecruiser",
-    "battleship"
+    "seaplane_tender"
   ],
   "buildCost": {
     "structural": 5.83,

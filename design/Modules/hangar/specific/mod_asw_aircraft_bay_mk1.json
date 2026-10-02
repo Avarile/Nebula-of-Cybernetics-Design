@@ -26,8 +26,6 @@
   "crewRequired": 16,
   "hullAffinity": [
     "escort_carrier",
-    "destroyer_escort",
-    "sloop_patrol_escort",
     "seaplane_tender"
   ],
   "buildCost": {

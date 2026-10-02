@@ -256,6 +256,90 @@ def own_account_hauls(fleet, lane):
     return rows
 
 
+# ----------------------------------------------------------------- fitting
+# fitting_specification.md 3-5. The rules are tools/fitting.py; this is what a fit is worth
+# and what changing one costs, recomputed from the live catalogues.
+
+def item_entry(item_id, weapons, modules):
+    return weapons[item_id] if item_id in weapons else modules[item_id]
+
+
+def item_units(item_id, weapons, modules):
+    """A part's buildCost in manufactured units -- also the warehouse space it takes."""
+    return sum(item_entry(item_id, weapons, modules)['buildCost'].values())
+
+
+def fit_value(fit, weapons, modules, prices):
+    """Reference value of the parts on a hull: what the wreck drops at SALVAGE_DROP each."""
+    import fitting
+    ws, ms = fitting.fitted_items(fit)
+    return sum(reference_price(item_entry(i, weapons, modules)['buildCost'], prices) for i in ws + ms)
+
+
+def hull_value(ship, fit, weapons, modules, prices):
+    """A hull as fitted: its bare hull price plus the parts actually on it. For the default
+    fit this is the catalogue referencePrice, because a hull's buildCost is that sum."""
+    _, bare, _ = hull_split(ship, weapons, modules, prices)
+    return bare + fit_value(fit, weapons, modules, prices)
+
+
+def refit_labour(old, new, weapons, modules):
+    """Berth labour for a refit, in manufactured units of construction."""
+    import fitting
+    installed, removed = fitting.items_moved(old, new)
+    return T.REFIT_LABOUR_SHARE * sum(item_units(i, weapons, modules) for i in installed + removed)
+
+
+def refit_fee(old, new, weapons, modules, prices):
+    """An NPC yard's fee for a refit: NPC_YARD_FEE of the reference value moved."""
+    import fitting
+    installed, removed = fitting.items_moved(old, new)
+    return T.NPC_YARD_FEE * sum(reference_price(item_entry(i, weapons, modules)['buildCost'], prices)
+                                for i in installed + removed)
+
+
+def yard_rates(fleet, archetype, dev):
+    """(one berth, the whole yard) construction per turn on a planet of this archetype and
+    development tier, untrained -- read from the generated facility rows."""
+    row = next(r for r in fleet['facilityTypes']
+               if r['archetype'] == archetype and r['developmentTier'] == dev)
+    sy = row['slots']['shipyard']
+    return sy['throughputPerTurn'], sy['throughputPerTurn'] * sy['slotCount']
+
+
+def turns_for(labour, rate):
+    """Turns a refit holds its hull, counting the turn it is ordered: it completes in phase 6
+    of the turn its accumulated labour is covered."""
+    import math
+    return max(1, math.ceil(labour / rate - 1e-9))
+
+
+REFIT_EXAMPLE_HULLS = ['ship_motor_torpedo_boat_t1', 'ship_destroyer_t3',
+                       'ship_heavy_cruiser_t3', 'ship_battleship_t3']
+REFIT_EXAMPLE_YARD = ('forge_world', 3)
+
+
+def refit_examples(fleet):
+    """fitting_specification.md 4.3: strip each hull's default fit and fit it again -- every
+    part moved twice -- at one forge-world berth (developmentTier 3) and at the NPC yard on
+    the same planet. Labour then equals the fit's buildCost units exactly."""
+    import fitting
+    prices = resource_prices(fleet)
+    weapons, modules, ships = catalogues(fleet)
+    berth, yard = yard_rates(fleet, *REFIT_EXAMPLE_YARD)
+    rows = []
+    for sid in REFIT_EXAMPLE_HULLS:
+        s = ships[sid]
+        d, b = fitting.default_fit(s), fitting.bare_fit(s)
+        labour = refit_labour(d, b, weapons, modules) + refit_labour(b, d, weapons, modules)
+        fee = refit_fee(d, b, weapons, modules, prices) + refit_fee(b, d, weapons, modules, prices)
+        rows.append({'shipId': sid, 'name': s['name'], 'fitUnits': sum(fitted_build_cost(s, weapons, modules).values()),
+                     'labour': labour, 'berthTurns': turns_for(labour, berth),
+                     'yardTurns': turns_for(labour, yard), 'fee': fee,
+                     'fitValue': fit_value(d, weapons, modules, prices)})
+    return {'berthRate': berth, 'yardRate': yard, 'rows': rows}
+
+
 def contract_archetypes():
     """The published archetype list. generate_market.py and generate_npc.py both write the
     fleet json's "contractArchetypes" key; one shape here means run order cannot change it."""

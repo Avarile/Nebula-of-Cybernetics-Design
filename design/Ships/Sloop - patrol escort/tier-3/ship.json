@@ -74,7 +74,7 @@
       {
         "slotId": "ms_4",
         "slotType": "utility",
-        "size": "small",
+        "size": "medium",
         "moduleEquipped": "mod_smoke_generator_mk3"
       }
     ]

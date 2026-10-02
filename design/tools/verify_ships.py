@@ -6,7 +6,8 @@ from collections import Counter, defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 from ship_tables import CATEGORIES, BY_KEY
-from generate_ships import MOUNT_FOR_CLASS, CAPACITY_KEYS, TIERS
+from generate_ships import CAPACITY_KEYS, TIERS
+import fitting
 
 FLEET = json.load(open(os.path.join(ROOT, 'fleet_and_weapons.json')))
 S = FLEET['ships']
@@ -70,17 +71,25 @@ check('weaponEquipped ids resolve',
 check('moduleEquipped ids resolve',
       [f'{s["shipId"]}:{m["slotId"]} -> {m["moduleEquipped"]}' for s in ALL
        for m in s['moduleSlots']['list'] if m['moduleEquipped'] and m['moduleEquipped'] not in M])
-check('hardpoint size == fitted weapon size',
-      [f'{s["shipId"]}:{h["hardpointId"]}' for s in ALL for h in s['hardpoints']['list']
-       if h['weaponEquipped'] and W[h['weaponEquipped']]['size'] != h['size']])
-check('mountType matches the weapon class',
+# The fitting rules have ONE implementation, tools/fitting.py, which also validates a
+# player's refit (GamePlay/fitting_specification.md 2). These checks call it rather than
+# restating it; each reports the rules it names. Named ships are story hulls logged before
+# the budgets existed, so they answer to the size and slot rules only (fitting spec 6).
+PROBLEMS = {s['shipId']: fitting.fit_problems(s, fitting.default_fit(s), W, M) for s in ALL}
+
+
+def broken(rules, hulls):
+    return [f'{s["shipId"]}: {d}' for s in hulls for r, d in PROBLEMS[s['shipId']] if r in rules]
+
+
+check('hardpoint size == fitted weapon size', broken({'weapon_size', 'items', 'mounts'}, ALL))
+check('mountType is the mount the fitted weapon makes',
       [f'{s["shipId"]}:{h["hardpointId"]}' for s in S for h in s['hardpoints']['list']
-       if h['weaponEquipped']
-       and MOUNT_FOR_CLASS[W[h['weaponEquipped']]['weaponClass']] != h['mountType']])
-check('slot size/type == fitted module',
-      [f'{s["shipId"]}:{m["slotId"]}' for s in ALL for m in s['moduleSlots']['list']
-       if m['moduleEquipped'] and (M[m['moduleEquipped']]['size'] != m['size']
-                                   or M[m['moduleEquipped']]['slotType'] != m['slotType'])])
+       if h['weaponEquipped'] and fitting.mount_for(W[h['weaponEquipped']]) != h['mountType']])
+check('slot type matches and the module fits the slot size', broken({'slot_type', 'slot_size'}, ALL))
+check('tier hull slots carry the category module capacity as their size',
+      [f'{s["shipId"]}:{m["slotId"]} {m["size"]}' for s in S for m in s['moduleSlots']['list']
+       if m['size'] != BY_KEY[s['shipClass']]['mod_cap']])
 check('fitted weapon mark == hull tier',
       [f'{s["shipId"]}:{h["hardpointId"]}' for s in S for h in s['hardpoints']['list']
        if h['weaponEquipped']
@@ -88,30 +97,12 @@ check('fitted weapon mark == hull tier',
 check('fitted module mark == hull tier',
       [f'{s["shipId"]}:{m["slotId"]}' for s in S for m in s['moduleSlots']['list']
        if m['moduleEquipped'] and M[m['moduleEquipped']]['mark'] != s['tier']])
-check('specific modules only where hullAffinity allows',
-      [f'{s["shipId"]}: {m["moduleEquipped"]}' for s in S for m in s['moduleSlots']['list']
-       if m['moduleEquipped'] and M[m['moduleEquipped']]['hullAffinity']
-       and s['shipClass'] not in M[m['moduleEquipped']]['hullAffinity']])
-check('no module fitted twice on one hull',
-      [s['shipId'] for s in S
-       if len({m['moduleEquipped'] for m in s['moduleSlots']['list'] if m['moduleEquipped']})
-       != len([m for m in s['moduleSlots']['list'] if m['moduleEquipped']])])
+check('specific modules only where hullAffinity allows', broken({'affinity'}, S))
+check('no two modules of one moduleType on a hull', broken({'one_per_type'}, S))
 
 # the hull can actually run and man what is bolted to it
-bad_p, bad_c = [], []
-for s in S:
-    volley = sum(W[h['weaponEquipped']]['powerCost'] * W[h['weaponEquipped']]['fireRate']['shotsPerRound']
-                 for h in s['hardpoints']['list'] if h['weaponEquipped'])
-    passive = sum(M[m['moduleEquipped']]['powerCost']
-                  for m in s['moduleSlots']['list'] if m['moduleEquipped'])
-    if s['power']['maxPower'] < volley + passive:
-        bad_p.append(f'{s["shipId"]}: {s["power"]["maxPower"]} < {volley + passive:.1f}')
-    need = sum(M[m['moduleEquipped']]['crewRequired']
-               for m in s['moduleSlots']['list'] if m['moduleEquipped'])
-    if s['crew']['maxCrew'] < need:
-        bad_c.append(f'{s["shipId"]}: crew {s["crew"]["maxCrew"]} < {need} required')
-check('power covers passive draw + one full volley', bad_p)
-check('crew covers fitted modules', bad_c)
+check('power covers passive draw + one full volley', broken({'power'}, S))
+check('crew covers fitted modules', broken({'crew'}, S))
 
 check('every hull has at least one weapon and one module',
       [s['shipId'] for s in S

@@ -50,13 +50,13 @@
       {
         "slotId": "ms_1",
         "slotType": "engine",
-        "size": "medium",
+        "size": "large",
         "moduleEquipped": "mod_ion_drive_hp"
       },
       {
         "slotId": "ms_2",
         "slotType": "utility",
-        "size": "medium",
+        "size": "large",
         "moduleEquipped": "mod_hospital_bay_mk2"
       },
       {

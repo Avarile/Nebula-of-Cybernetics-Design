@@ -140,6 +140,8 @@ export interface ChainStep {
 
 export interface FacilityJob {
   operation: 'extract' | 'refine' | 'manufacture' | 'construct';
+  /** For `construct`: the hull, weapon or module to build. A berth with a refit in
+   *  progress advances the refit and pauses this job (fitting_specification.md 4.1). */
   input: string | null;
   quantity: number;
 }

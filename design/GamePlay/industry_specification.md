@@ -107,7 +107,7 @@ the warehouse snapshot from the start of phase 3 (`turn_specification.md` §2.1)
  phase 3   EXTRACT      lane slot          -> raw          x richness x planetaryProductionRate
  phase 4   REFINE       refinery slot      -> refined      x conversionYield x yieldModifier x refineryYield
  phase 5   MANUFACTURE  manufactory slot   -> manufactured x 0.85 x manufacturingRate
- phase 6   CONSTRUCT    shipyard berth     -> hull progress  x shipConstructionRate
+ phase 6   CONSTRUCT    shipyard berth     -> hull or part   x shipConstructionRate
 ```
 
 Each stage's output lands in a warehouse at the same planet. Moving it anywhere else is
@@ -124,6 +124,10 @@ All five `station_management` skills now have a base to multiply, which was the 
 | Material Refinement Management | lane `conversionYield` | ×1.10 |
 | Manufactory Management | manufactory slot throughput | ×1.30 |
 | Ship Construction Management | berth construction rate | ×1.30 |
+
+A berth's `construct` job builds a weapon or a module as readily as a hull — each from its
+`buildCost` in manufactured units — and the same berth refits hulls
+(`fitting_specification.md` §3–4). A hull is always built with its default fit.
 
 ### 4.1 Construction, and why unions exist
 

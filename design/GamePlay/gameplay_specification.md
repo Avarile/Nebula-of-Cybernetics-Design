@@ -2,7 +2,7 @@
 
 How a player spends a day. Written 2026-09-13.
 
-This is the spine document for `GamePlay/`. It fixes the vocabulary, names the seven
+This is the spine document for `GamePlay/`. It fixes the vocabulary, names the eight
 sub-specifications and states the rules that belong to no single one of them. Where a rule
 is owned by a sub-spec, this document says so and stops; where a rule is cross-cutting, it
 lives here.
@@ -47,6 +47,7 @@ has to remember:
 
     TRAIN   43,200 SP/turn buys levels in 81 skills          progression
     FIELD   skills gate hulls; credits and material buy them industry + economy
+            and fit them, at a yard                          fitting
     GO      jump range, fuel, cargo, who is waiting on gates logistics
     TAKE    extract on a leased planet slot, or mine a belt   industry
     MAKE    refine → manufacture → construct                  industry
@@ -64,7 +65,7 @@ moving it is what the conflict layer preys on.
 
 ## 3. Vocabulary
 
-Terms fixed here and used identically in all eight documents.
+Terms fixed here and used identically in all nine documents.
 
 | term | meaning |
 |---|---|
@@ -79,13 +80,15 @@ Terms fixed here and used identically in all eight documents.
 | **slot** | an indivisible unit of planetary industrial capacity. |
 | **reference price** | the credit value of a good, derived from its `buildCost`. |
 | **union** | a player organisation. |
+| **fit** | the weapons and modules on one hull. A catalogue hull's is its **default fit**; a hull a player holds carries its own. |
+| **refit** | changing one hull's fit at a yard — a berth the player leases, or an NPC yard. |
 
 **Turn is the universal denominator.** Every rate already written in
 `Systems_Planets/systems_planets_specification.md` §4 — extraction, refinery throughput,
 construction — is per turn and needs no reinterpretation. Every cooldown in
 `Combat-logic/` is per *round* and is renamed, not rescaled.
 
-## 4. The eight documents
+## 4. The nine documents
 
 | document | owns |
 |---|---|
@@ -96,6 +99,7 @@ construction — is per turn and needs no reinterpretation. Every cooldown in
 | `logistics_specification.md` | jump range, fuel, ammo, cargo, refuelling, convoys, interdiction |
 | `economy_specification.md` | credits, reference prices, NPC orders, markets, contracts, unions |
 | `conflict_specification.md` | PvE, PvP legality, engagement, destruction, insurance, salvage |
+| `fitting_specification.md` | the fitting rules, parts as goods, the refit order, where and what a refit costs |
 | `lore_specification.md` | the setting, factions, region authorities, squadron and manufacturer origins; no numbers |
 
 Each is hand-written and survives regeneration. Four generated catalogues sit beside them —
@@ -136,7 +140,7 @@ invariant — by reading the data, not by restating a constant.
 ### 6.1 No dead skill
 
 Every stat in `tools/stat_vocabulary.py` — all 34 `SHIP_STATS` and all 20 `SKILL_STATS` —
-is consumed by a named, id'd rule in one of the eight documents. The verifier builds the
+is consumed by a named, id'd rule in one of the nine documents. The verifier builds the
 map and fails on either side being empty: a stat no rule reads, or a rule citing a stat that
 does not exist.
 
@@ -244,7 +248,7 @@ npc_squadron.interface    a hostile formation template
 turn_order.interface      one submitted instruction
 ```
 
-Generators and verifiers in `tools/`:
+Generators, verifiers and shared code in `tools/`:
 
 ```sh
 python3 tools/generate_progression.py   # per-skill training table -> GamePlay/Progression/
@@ -260,7 +264,13 @@ python3 tools/verify_facilities.py
 python3 tools/verify_npc.py
 python3 tools/verify_gameplay.py        # the seven §6 invariants; runs last
 python3 tools/verify_lore.py            # factions, authorities, origins vs. the live catalogue
+python3 tools/verify_fitting.py         # the fitting rules vs. every default fit; refit costs; no free money
 ```
+
+`tools/fitting.py` is the one implementation of the fitting rules. The ship generator checks
+every default fit it builds against it, the ship, module and fitting verifiers judge the
+catalogue by it, and a `ship.refit` order is validated by it — so a catalogue fit and a
+player's fit cannot be judged differently.
 
 New keys in `fleet_and_weapons.json`: `progression`, `marketPrices`, `facilityTypes`,
 `npcSquadrons`, `contractArchetypes`, plus `_meta` additions `spPerTurn`,
@@ -280,8 +290,9 @@ Deliberately deferred, each with the reason:
 * **Sovereignty and territory capture.** Planets stay terrain, per
   `Systems_Planets` §10. Conflict over industry is conflict over *leases and cargo*, not
   over ground.
-* **Ship fitting by the player.** Hulls arrive fitted from the catalogue. Refitting is a
-  catalogue-side feature, not a gameplay one.
+* **Refitting in the field.** A refit needs a yard; a repair tender repairs, it does not
+  refit, so a fit is a commitment made in port. `fitting_specification.md` §4.1 names the
+  hook. (Ship fitting by the player was on this list until 2026-10-03; it is now in scope.)
 * **Research and blueprints.** `skl_sta_science` gates *training*, not *recipes*. Adding
   discoverable blueprints would make `buildCost` player-variable, which every price in
   `economy_specification.md` is derived from.

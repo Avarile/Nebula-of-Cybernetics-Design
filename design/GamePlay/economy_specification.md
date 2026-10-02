@@ -69,9 +69,11 @@ energy and 1.0 % ordnance. Nearly half the cost of a capital ship is guidance el
 whose raw feedstock only exists in `rim` and `deadspace`, which is the map's central claim
 restated as a price tag.
 
-A hull's `buildCost` **already includes its fitted weapons and modules** — ships sum the
-catalogues they fit from. So a reference price is the fitted value, never a sum to be added
-to. The split matters for insurance and salvage (§6), and it is sharply tier-dependent:
+A hull's `buildCost` **already includes its default fit** — ships sum the catalogues they
+fit from. So a hull's reference price is its value as the catalogue fits it, never a sum to be
+added to. A hull a player has refitted is worth its bare hull plus the parts actually on it
+(`fitting_specification.md` §5.1); for the default fit the two are the same number. The split
+matters for insurance and salvage (§6), and it is sharply tier-dependent:
 
 | hull | total | bare hull | fit | fit share |
 |---|---:|---:|---:|---:|
@@ -177,8 +179,9 @@ INSURANCE_PAYOUT    core 0.80   mid 0.70   rim 0.50   deadspace 0.00   of bare h
 SALVAGE_DROP        0.50 per fitted item, independently rolled; 0.50 of cargo units
 ```
 
-Insurance covers the **bare hull only** — `buildCost` minus the fitted weapons and modules —
-and pays at the rate of the tier the hull died in, not the tier it was insured in.
+Insurance covers the **bare hull only** — `buildCost` minus the default fit — and pays at the
+rate of the tier the hull died in, not the tier it was insured in. The bare hull price is the
+hull's own, whatever is fitted to it, so a refit moves neither premium nor payout.
 
 The §2.1 fit table makes this sharply asymmetric, and the asymmetry is real rather than
 tuned: insurance replaces 90 % of a battleship's value and 16 % of a motor torpedo boat's,
@@ -214,6 +217,7 @@ drain — which is the correct price for a region where nothing else protects yo
 | NPC sell orders | `reference × index` | fuel, ammunition and starter goods bought rather than made |
 | NPC markup on consumables | `× 1.25` on fuel and ammunition | fleets operating away from their own industry |
 | Forfeited haul collateral | cargo × the dearest NPC ask for it, §8.1 | NPC haul cargo lost to raiders or never delivered |
+| NPC yard fee | `0.05 ×` the reference value of every part moved, `fitting_specification.md` §4.3 | refits done at an NPC yard rather than a berth the player leases |
 
 The structural property: **every faucet is tied to an action, every drain is tied to a
 holding.** Credits enter when someone produces or fights and leave continuously from

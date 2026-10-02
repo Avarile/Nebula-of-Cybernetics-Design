@@ -14,9 +14,11 @@
  * tier 3 high; hull, shields, power and crew skill rise per tier, and tiers 2
  * and 3 add mounts and slots.
  *
- * Hulls arrive FITTED. Weapons and modules are chosen at `mark === tier` from a
- * per-category preference order, and a `specific` module is only fitted where its
- * `hullAffinity` permits.
+ * Hulls arrive with a DEFAULT FIT. Weapons and modules are chosen at `mark === tier`
+ * from a per-category preference order, and a `specific` module is only fitted where its
+ * `hullAffinity` permits. A hull a player holds carries its own fit (`FleetHull.fit`,
+ * gameplay.ts) and may be refitted; default and player fits pass the same rules,
+ * `tools/fitting.py` (GamePlay/fitting_specification.md 2).
  *
  * The catalogue is fixed data: maxima only. What a battle changes lives in
  * `CombatantState` (combat.ts); what persists between battles in `FleetHull`
@@ -120,6 +122,7 @@ export interface Hardpoint {
   hardpointId: HardpointId;
   /** A weapon may only be mounted here if `weapon.size === this.size`. */
   size: Size;
+  /** Follows the weapon fitted (`MOUNT_FOR_WEAPON_CLASS`); not a fitting constraint. */
   mountType: MountType;
   /** Null on an empty mount. Every generated hull arrives fully fitted. */
   weaponEquipped: WeaponId | null;
@@ -133,7 +136,8 @@ export interface Hardpoints {
 export interface ModuleSlot {
   slotId: ModuleSlotId;
   slotType: ModuleSlotType;
-  /** Must equal the module's size. */
+  /** The largest module the slot accepts; a module fits at or below it. A tier hull's
+   *  slots carry the category's module capacity. */
   size: Size;
   moduleEquipped: ModuleId | null;
 }

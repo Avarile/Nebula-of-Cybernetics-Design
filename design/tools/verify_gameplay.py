@@ -19,7 +19,8 @@ fails = []
 
 DOCS = ['gameplay_specification.md', 'turn_specification.md', 'progression_specification.md',
         'industry_specification.md', 'logistics_specification.md',
-        'economy_specification.md', 'conflict_specification.md', 'lore_specification.md']
+        'economy_specification.md', 'conflict_specification.md', 'lore_specification.md',
+        'fitting_specification.md']
 
 
 def check(label, bad, show=6):

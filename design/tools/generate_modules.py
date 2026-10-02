@@ -54,6 +54,13 @@ def M(name, mtype, fclass, slot, size, mass, pwr, crew, effects, eff3=(), hull=(
 
 E = lambda stat, mod, kind: (stat, mod, kind)
 
+# hullAffinity names only categories that have a slot the module fits (its slotType, at
+# its size or larger) at some tier -- verify_fitting.py fails on an entry that could never
+# be fitted. Dropped on that rule (fitting_specification.md 6): Seaplane Catapult from the
+# light/heavy cruiser, battlecruiser and battleship, ASW Aircraft Bay from the destroyer
+# escort and sloop (none has a hangar slot); Smoke Generator from the destroyer and Hospital
+# Bay from the fleet carrier (no utility slot); Mine Rails from the destroyer and fleet
+# torpedo boat, Refuelling Rig from the seaplane tender (no cargo slot).
 ARCHETYPES = [
     # ---- engine slot / major ------------------------------------------------
     M('Ion Drive', 'engine', 'major', 'engine', 'medium', 45, 5.0, 6,
@@ -82,7 +89,7 @@ ARCHETYPES = [
       [E('repairRatePerTurn', 30, 'percent'), E('crew.engineeringSkill', 8, 'flat')]),
     M('Smoke Generator', 'smokeGenerator', 'specific', 'utility', 'small', 10, 2.0, 2,
       [E('enemyHitChance', -6, 'flat')], [E('evasionRating', 0.02, 'flat')],
-      ['destroyer', 'destroyer_escort', 'corvette', 'torpedo_boat_fleet',
+      ['destroyer_escort', 'corvette', 'torpedo_boat_fleet',
        'motor_torpedo_boat', 'sloop_patrol_escort']),
     M('Minesweep Gear', 'minesweep', 'specific', 'utility', 'medium', 45, 5.0, 12,
       [E('minesweepRate', 30, 'percent'), E('detectionRange', 10, 'percent')], (),
@@ -92,7 +99,7 @@ ARCHETYPES = [
       ['repair_ship_tender', 'seaplane_tender', 'fleet_oiler']),
     M('Hospital Bay', 'hospitalBay', 'specific', 'utility', 'medium', 55, 3.0, 16,
       [E('medicalCapacity', 30, 'flat')], [E('crewRecoveryRate', 20, 'percent')],
-      ['attack_transport', 'repair_ship_tender', 'fleet_aircraft_carrier']),
+      ['attack_transport', 'repair_ship_tender']),
     # ---- command slot -------------------------------------------------------
     M('CIC Tower', 'cic', 'major', 'command', 'large', 85, 10.0, 18,
       [E('weaponAccuracy', 6, 'percent'), E('initiative', 5, 'flat'), E('detectionRange', 10, 'percent')]),
@@ -140,13 +147,13 @@ ARCHETYPES = [
       [E('droneCapacity', 8, 'flat')], [E('repairRatePerTurn', 10, 'percent')]),
     M('Seaplane Catapult', 'catapult', 'specific', 'hangar', 'large', 110, 7.0, 14,
       [E('aircraftCapacity', 2, 'flat'), E('detectionRange', 25, 'percent')], (),
-      ['seaplane_tender', 'light_cruiser', 'heavy_cruiser', 'battlecruiser', 'battleship']),
+      ['seaplane_tender']),
     M('Aircraft Elevator', 'aircraftElevator', 'specific', 'hangar', 'capital', 220, 10.0, 25,
       [E('aircraftCapacity', 6, 'flat')], (),
       ['fleet_aircraft_carrier', 'light_carrier', 'escort_carrier']),
     M('ASW Aircraft Bay', 'aswBay', 'specific', 'hangar', 'large', 130, 8.0, 16,
       [E('aircraftCapacity', 3, 'flat'), E('detectionRange', 20, 'percent')], (),
-      ['escort_carrier', 'destroyer_escort', 'sloop_patrol_escort', 'seaplane_tender']),
+      ['escort_carrier', 'seaplane_tender']),
     # ---- cargo slot ---------------------------------------------------------
     M('Bulk Hold', 'cargoExpander', 'support', 'cargo', 'large', 40, 0.0, 4,
       [E('cargoCapacity', 30, 'percent')]),
@@ -157,10 +164,10 @@ ARCHETYPES = [
       ['attack_transport', 'fleet_oiler', 'repair_ship_tender', 'landing_ship_tank']),
     M('Mine Rails', 'mineRails', 'specific', 'cargo', 'medium', 65, 1.0, 8,
       [E('mineCapacity', 40, 'percent')], (),
-      ['minelayer_sweeper', 'destroyer', 'submarine', 'torpedo_boat_fleet']),
+      ['minelayer_sweeper', 'submarine']),
     M('Refuelling Rig', 'refuelRig', 'specific', 'cargo', 'large', 95, 4.0, 14,
       [E('fuelTransferRate', 40, 'percent')], (),
-      ['fleet_oiler', 'repair_ship_tender', 'seaplane_tender']),
+      ['fleet_oiler', 'repair_ship_tender']),
     M('Landing Craft Davits', 'davits', 'specific', 'cargo', 'large', 105, 2.0, 18,
       [E('troopCapacity', 35, 'percent')], (),
       ['attack_transport', 'landing_ship_tank']),
@@ -294,8 +301,11 @@ def main():
     if args.dry_run:
         return
 
-    # Slots carry a size now (ship.interface [+]). A filled slot takes the size of the
-    # module fitted to it; the schema and the ship data cannot drift apart.
+    # Slots carry a size (ship.interface [+]): the largest module the slot accepts. A slot
+    # is never smaller than the module fitted to it, so a filled slot grows to fit its
+    # module and never shrinks -- tier hulls carry their category's module capacity
+    # (generate_ships.py), named ships the size of what they were logged with.
+    from ship_tables import SIZE_RANK
     by_id = {m['moduleId']: m for m in modules}
     unresolved = []
     for ship in fleet['ships'] + fleet.get('namedShips', []):
@@ -303,7 +313,8 @@ def main():
             mid = slot.get('moduleEquipped')
             if mid and mid in by_id:
                 fitted = by_id[mid]
-                slot['size'] = fitted['size']
+                if SIZE_RANK[fitted['size']] > SIZE_RANK.get(slot.get('size'), -1):
+                    slot['size'] = fitted['size']
                 slot['slotType'] = fitted['slotType']
             elif mid:
                 unresolved.append(f"{ship['shipId']}:{slot['slotId']} -> {mid}")

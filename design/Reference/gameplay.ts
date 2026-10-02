@@ -12,7 +12,7 @@
  * combat.ts keeps that file's vocabulary, this file uses the world's.
  */
 
-import type { ResourceId, ShipId } from './common';
+import type { HardpointId, ModuleId, ModuleSlotId, ResourceId, ShipId, WeaponId } from './common';
 import type { ShipClass } from './ships';
 import type { SkillId, SkillLevel } from './skills';
 import type { Standings } from './lore';
@@ -53,7 +53,7 @@ export interface TurnPhase {
 // ---------------------------------------------------------------- orders
 
 export type OrderType =
-  | 'train.queue' | 'mine.assign' | 'facility.job' | 'fleet.move' | 'fleet.convoy'
+  | 'train.queue' | 'mine.assign' | 'facility.job' | 'ship.refit' | 'fleet.move' | 'fleet.convoy'
   | 'fleet.posture' | 'fleet.target' | 'cargo.transfer' | 'market.order' | 'facility.lease'
   | 'contract.accept' | 'contract.post' | 'insurance.set' | 'union.action';
 
@@ -97,6 +97,24 @@ export interface TurnOrder {
 export interface ConvoyOrderPayload {
   followerFleetId: FleetId;
   leaderFleetId: FleetId | null;
+}
+
+/**
+ * `ship.refit` (phase 6, not standing). Changes one hull's fit at a yard
+ * (`GamePlay/fitting_specification.md` §4). Validated at intake and again in phase 6:
+ * the hull is the player's, its fleet is in the site's system and not in transit, the
+ * hull fits the site's `maxHullTonnage`, the target fit passes `tools/fitting.py`
+ * `fit_is_valid`, the parts are in `partsLeaseId` (or, at an NPC yard, the credits cover
+ * the asks and the fee), and the hull's cargo and ammunition fit the new capacities.
+ * `fit: null` cancels the refit in progress.
+ */
+export interface RefitOrderPayload {
+  fleetId: FleetId;
+  hullId: HullInstanceId;
+  site: RefitSite;
+  /** A warehouse lease on the site's planet. Required at a berth; optional at an NPC yard. */
+  partsLeaseId: LeaseId | null;
+  fit: HullFit | null;
 }
 
 /**
@@ -181,7 +199,48 @@ export interface Player {
 
 // ---------------------------------------------------------------- the fleet
 
+/** [+] One hull a player holds. `shipId` names its catalogue entry; this names the hull. */
+export type HullInstanceId = string;
+
+/**
+ * [+] What is bolted to one hull: every hardpoint and slot of its catalogue entry, `null`
+ * where empty. A catalogue hull's `weaponEquipped`/`moduleEquipped` are its DEFAULT fit,
+ * the one it is built and sold with; a held hull carries its own. Legal exactly when
+ * `tools/fitting.py` `fit_is_valid` passes (`GamePlay/fitting_specification.md` §2).
+ * A hardpoint's mount follows the weapon (`MOUNT_FOR_WEAPON_CLASS`), so it is not stored.
+ */
+export interface HullFit {
+  weapons: Record<HardpointId, WeaponId | null>;
+  modules: Record<ModuleSlotId, ModuleId | null>;
+}
+
+/**
+ * [+] Where a refit happens. A berth the player or union leases (any `siteType`, so an
+ * orbital station's berth is a refit site with no new rule), or an NPC yard: a planet with
+ * berths in a `core` or `mid` system.
+ */
+export type RefitSite = { leaseId: LeaseId } | { npcYardPlanetId: PlanetId };
+
+/**
+ * [+] A refit in progress. While non-null the hull is DOCKED: its fleet cannot move, it
+ * fights with its current fit, and `targetFit` replaces it in phase 6 of the turn
+ * `progress` reaches `labour`. Labour is
+ * `REFIT_LABOUR_SHARE x` the buildCost units of every item installed or removed.
+ */
+export interface RefitJob {
+  site: RefitSite;
+  targetFit: HullFit;
+  partsLeaseId: LeaseId | null;
+  /** Manufactured units of construction the refit needs. */
+  labour: number;
+  /** Accrued at the site's rate each phase 6. */
+  progress: number;
+  startedTurn: number;
+}
+
 export interface FleetHull {
+  /** [+] Unique per hull, so insurance, a refit and a wreck can name one hull. */
+  hullId: HullInstanceId;
   shipId: ShipId;
   hullHP: number;
   shieldHP: number;
@@ -190,6 +249,10 @@ export interface FleetHull {
   fuel: number;
   cargo: Partial<Record<ResourceId, number>>;
   insured: boolean;
+  /** [+] The hull's own fit. Starts as its catalogue default fit. The wreck drops this one. */
+  fit: HullFit;
+  /** [+] Non-null while the hull is docked for a refit. */
+  refit: RefitJob | null;
 }
 
 export interface Fleet {
@@ -348,6 +411,8 @@ export interface ResponseFleet {
 
 export interface Wreck {
   wreckId: string;
+  /** The hull that died; `contents` were rolled on ITS fit, not the catalogue's. */
+  hullId: HullInstanceId;
   shipId: ShipId;
   systemId: SystemId;
   diedTurn: number;
