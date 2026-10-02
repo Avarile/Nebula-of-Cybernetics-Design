@@ -183,7 +183,12 @@ investment; it does not protect a fit.
 
 ## 6. Standings
 
-One number per player per region, moved by actions the region's NPC authority observes:
+One number per player per **authority** — the faction that polices a region's `core` and
+`mid` systems (`lore_specification.md` §4–5, `tools/lore_tables.py` `REGION_AUTHORITY`).
+Standings are keyed by that faction's id, not by region name. Each authority polices
+exactly one region, so this is the same rule under a stable id; Obsidian Marches and The
+Pale Hollow have no authority and no standing key. An action moves the standing of the
+authority of the region it happens in:
 
 | action | effect |
 |---|---|
@@ -192,8 +197,8 @@ One number per player per region, moved by actions the region's NPC authority ob
 | unprovoked aggression in `mid` | standing down, plus a 10-turn flag |
 | aggression in `core` | not possible — rejected at validation |
 
-Standing moves NPC order prices within that region and how quickly response fleets arrive.
-It has no effect in `rim` or `deadspace`, where no authority exists to hold an opinion.
+Standing moves NPC order prices within that authority's region and how quickly its response
+fleets arrive. It has no effect in `rim` or `deadspace`, where no authority's writ runs.
 
 Union standing is the mean of its members'. Unions do not accrue standing of their own,
 consistent with `economy_specification.md` §9 — they are a pooling device, not a polity.

@@ -19,7 +19,7 @@ fails = []
 
 DOCS = ['gameplay_specification.md', 'turn_specification.md', 'progression_specification.md',
         'industry_specification.md', 'logistics_specification.md',
-        'economy_specification.md', 'conflict_specification.md']
+        'economy_specification.md', 'conflict_specification.md', 'lore_specification.md']
 
 
 def check(label, bad, show=6):
@@ -30,9 +30,24 @@ def check(label, bad, show=6):
         print(f'ok   {label}')
 
 
+def section_text(doc, sec):
+    """The body of the heading numbered `sec` in `doc`, up to the next heading at its level or above."""
+    text = open(os.path.join(ROOT, doc)).read()
+    m = re.search(rf'^(#+) {re.escape(sec)}\.? ', text, re.M)
+    if not m:
+        return None
+    rest = text[m.end():]
+    n = re.search(rf'^#{{1,{len(m.group(1))}}} ', rest, re.M)
+    return rest[:n.start()] if n else rest
+
+
 print('--- documents ---')
 check('every document named in gameplay_specification.md 4 exists',
       [d for d in DOCS if not os.path.exists(os.path.join(GP, d))])
+spec4 = section_text('GamePlay/gameplay_specification.md', '4') or ''
+named = set(re.findall(r'^\| `([\w]+\.md)` \|', spec4, re.M))
+check('DOCS is exactly the document table of gameplay_specification.md 4',
+      sorted(named ^ set(DOCS)) if named else ['section 4 table not found'])
 check('the hand-written brief survived every generator run',
       [] if os.path.exists(os.path.join(GP, 'PlayerSpecific')) else ['PlayerSpecific missing'])
 
@@ -47,17 +62,6 @@ check('every stat a skill actually modifies has a rule',
       sorted({e['stat'] for s in FLEET['skills'] for e in s['effects'] if e['stat'] not in T.STAT_RULES}))
 check('every stat a module actually modifies has a rule',
       sorted({e['stat'] for m in FLEET['modules'] for e in m.get('effects', []) if e['stat'] not in T.STAT_RULES}))
-
-
-def section_text(doc, sec):
-    """The body of the heading numbered `sec` in `doc`, up to the next heading at its level or above."""
-    text = open(os.path.join(ROOT, doc)).read()
-    m = re.search(rf'^(#+) {re.escape(sec)}\.? ', text, re.M)
-    if not m:
-        return None
-    rest = text[m.end():]
-    n = re.search(rf'^#{{1,{len(m.group(1))}}} ', rest, re.M)
-    return rest[:n.start()] if n else rest
 
 
 # Existence was never enough: a rule could cite a section that never mentions the stat.

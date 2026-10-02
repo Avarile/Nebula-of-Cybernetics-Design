@@ -15,6 +15,7 @@ import type { ResourceId, ResourceLane, ShipId } from './common';
 import type { ResourceTier } from './resources';
 import type { ShipClass } from './ships';
 import type { PlayerId, SecurityTier, SystemId, UnionId } from './gameplay';
+import type { Standings } from './lore';
 
 // ---------------------------------------------------------------- goods
 
@@ -209,7 +210,7 @@ export interface Union {
   credits: number;
   leaseIds: string[];
   /** The mean of members' standings; unions accrue none of their own. */
-  standings: Record<string, number>;
+  standings: Standings;
 }
 
 // ---------------------------------------------------------------- faucets/drains

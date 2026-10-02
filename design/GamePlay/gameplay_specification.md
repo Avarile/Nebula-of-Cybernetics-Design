@@ -2,7 +2,7 @@
 
 How a player spends a day. Written 2026-09-13.
 
-This is the spine document for `GamePlay/`. It fixes the vocabulary, names the six
+This is the spine document for `GamePlay/`. It fixes the vocabulary, names the seven
 sub-specifications and states the rules that belong to no single one of them. Where a rule
 is owned by a sub-spec, this document says so and stops; where a rule is cross-cutting, it
 lives here.
@@ -64,7 +64,7 @@ moving it is what the conflict layer preys on.
 
 ## 3. Vocabulary
 
-Terms fixed here and used identically in all seven documents.
+Terms fixed here and used identically in all eight documents.
 
 | term | meaning |
 |---|---|
@@ -85,7 +85,7 @@ Terms fixed here and used identically in all seven documents.
 construction — is per turn and needs no reinterpretation. Every cooldown in
 `Combat-logic/` is per *round* and is renamed, not rescaled.
 
-## 4. The seven documents
+## 4. The eight documents
 
 | document | owns |
 |---|---|
@@ -96,6 +96,7 @@ construction — is per turn and needs no reinterpretation. Every cooldown in
 | `logistics_specification.md` | jump range, fuel, ammo, cargo, refuelling, interdiction |
 | `economy_specification.md` | credits, reference prices, NPC orders, markets, contracts, unions |
 | `conflict_specification.md` | PvE, PvP legality, engagement, destruction, insurance, salvage |
+| `lore_specification.md` | the setting, factions, region authorities, squadron and manufacturer origins; no numbers |
 
 Each is hand-written and survives regeneration. Four generated catalogues sit beside them —
 `Progression/`, `Market/`, `Facilities/`, `NPC/` — and §8 lists them.
@@ -135,7 +136,7 @@ invariant — by reading the data, not by restating a constant.
 ### 6.1 No dead skill
 
 Every stat in `tools/stat_vocabulary.py` — all 34 `SHIP_STATS` and all 20 `SKILL_STATS` —
-is consumed by a named, id'd rule in one of the seven documents. The verifier builds the
+is consumed by a named, id'd rule in one of the eight documents. The verifier builds the
 map and fails on either side being empty: a stat no rule reads, or a rule citing a stat that
 does not exist.
 
@@ -256,6 +257,7 @@ python3 tools/verify_market.py
 python3 tools/verify_facilities.py
 python3 tools/verify_npc.py
 python3 tools/verify_gameplay.py        # the seven §6 invariants; runs last
+python3 tools/verify_lore.py            # factions, authorities, origins vs. the live catalogue
 ```
 
 New keys in `fleet_and_weapons.json`: `progression`, `marketPrices`, `facilityTypes`,
@@ -263,7 +265,8 @@ New keys in `fleet_and_weapons.json`: `progression`, `marketPrices`, `facilityTy
 `turnLengthHours`, `tradeableGoodCount`.
 
 TypeScript in `Reference/`: `gameplay.ts` (turn, orders, player, fleet), `economy.ts`
-(prices, orders, contracts), `facilities.ts` (slots and leases).
+(prices, orders, contracts), `facilities.ts` (slots and leases), `lore.ts` (factions,
+region authorities, squadron and manufacturer origins, the `Standings` key).
 
 ## 9. Out of scope
 

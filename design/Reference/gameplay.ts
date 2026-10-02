@@ -15,6 +15,7 @@
 import type { ResourceId, ShipId } from './common';
 import type { ShipClass } from './ships';
 import type { SkillId, SkillLevel } from './skills';
+import type { Standings } from './lore';
 
 // ---------------------------------------------------------------- the clock
 
@@ -146,8 +147,8 @@ export interface Player {
   fleetIds: FleetId[];
   leaseIds: LeaseId[];
   unionId: UnionId | null;
-  /** regionName -> standing. No effect in `rim` or `deadspace`. */
-  standings: Record<string, number>;
+  /** Authority factionId -> standing (`lore.ts`). No effect in `rim` or `deadspace`. */
+  standings: Standings;
   flags: AggressorFlag[];
 }
 

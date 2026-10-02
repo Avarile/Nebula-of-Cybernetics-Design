@@ -417,6 +417,8 @@ Deliberately not in this pass, to keep it one spec:
   stations will want the same five capacity fields. They are a sibling catalogue with a
   different placement model (player-built, not map-authored), not a planet variant.
 * **Ownership, factions, sovereignty.** No `owner` field. Every planet here is terrain.
+  Factions now exist (`GamePlay/lore_specification.md`): they police security tiers and
+  own no planet, so this still holds.
 * **Markets and prices.** `tradePriceMargin` exists in the skill vocabulary and has no
   base to multiply yet; that is a market catalogue, not a map one.
 * **Travel time and fuel.** `jumpDistanceLy` is recorded so a later movement model can use

@@ -81,13 +81,14 @@ GamePlay/                    the rules layer: how a player spends a day
   logistics_specification.md jump range, fuel, cargo, interdiction
   economy_specification.md   credits, prices, markets, contracts, unions
   conflict_specification.md  PvE, PvP, destruction, insurance, raiding
+  lore_specification.md      the setting, factions, region authorities, manufacturer origins
   Progression/ Market/ Facilities/ NPC/     the generated half
 
 tools/                       generators, verifiers, and the tables that drive them
 
 Reference/                   TypeScript interface for all of the above, plus Combat-logic
   common.ts resources.ts weapons.ts modules.ts ships.ts skills.ts systems.ts combat.ts
-  gameplay.ts economy.ts facilities.ts
+  gameplay.ts economy.ts facilities.ts lore.ts
   dataset.ts constants.ts
 ```
 
@@ -400,6 +401,16 @@ and 44.8 % precision — the map's bottleneck, in money.
 Ship loss is real: the wreck drops the *fit*, insurance covers the *bare hull*, and the two
 run in opposite directions because a torpedo boat is 84 % fittings and a battleship 10 %.
 
+**Lore.** The gates are a builderless feedback machine, the Helm, and `securityRating` is how
+strongly it governs a system — which is why the ore is where it is and the forge worlds are
+where they are. Four **authorities** police the `core` and `mid` space of one region each
+under a shared treaty (the response fleets, the aggressor flag); four **hostile factions**
+fly the five NPC squadrons; each of the ten weapon families is a house with a home system.
+Standings are keyed by authority faction id, not region name — outcome-neutral, since the map
+is one-to-one. `tools/lore_tables.py` holds the ids; `verify_lore.py` checks that every
+house's stated strength is still its best stat in `FAMILIES`, and that a region has an
+authority exactly when it holds policed space. No number changed.
+
 ### Authored rules vs. runtime state
 
 The distinction that keeps the layer tractable, and the reason none of it had to wait on
@@ -488,7 +499,8 @@ python3 tools/verify_progression.py   # 22 checks
 python3 tools/verify_market.py        # 23 checks
 python3 tools/verify_facilities.py    # 26 checks
 python3 tools/verify_npc.py           # 25 checks
-python3 tools/verify_gameplay.py      # 45 checks -- the cross-cutting invariants; runs last
+python3 tools/verify_gameplay.py      # 46 checks -- the cross-cutting invariants; runs last
+python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
 python3 tools/verify_combat.py        # 35 checks -- combat rulings, stat hooks and lock range vs. the catalogues
 python3 Reference/verify_reference.py # 59 checks -- TypeScript interface vs. the data
 ```
@@ -548,6 +560,7 @@ Vanguard.
 | regions, systems, gates, planet archetypes | `tools/system_tables.py` |
 | turn length, SP rate, phases, prices, leases, PvP, NPC squadrons | `tools/gameplay_tables.py` |
 | combat rulings: special-effect rules, hit-formula terms, interception | `tools/combat_tables.py` |
+| factions, region authorities, squadron factions, manufacturer houses | `tools/lore_tables.py` (then `Reference/lore.ts`) |
 | shared GamePlay derivations (prices, closures, hull splits) | `tools/gameplay_common.py` |
 | the SP curve and rank multiplier | `SP_BASE` / `SP_K` in `tools/skill_tables.py` |
 | the stat vocabulary modules and skills share | `tools/stat_vocabulary.py` |

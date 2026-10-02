@@ -3,6 +3,10 @@
 # Spec            : ../GamePlay/progression_specification.md, gameplay_specification.md 5
 #
 # [+] No upstream counterpart; new in full.
+# [+] standings are keyed by AUTHORITY FACTION ID (tools/lore_tables.py
+#     REGION_AUTHORITY, GamePlay/lore_specification.md 5), not by region name. Each
+#     authority polices exactly one region, so no outcome changes; the two regions
+#     with no policed space simply have no key, as their standing never had an effect.
 #
 # One account. Everything a player IS lives here; everything a player OWNS is
 # referenced by id. Trained levels are stored as levels, never as a derived
@@ -23,6 +27,7 @@
 #   - a queue entry whose prerequisites are unmet is HELD, not dropped
 #   - fleetIds length never exceeds the Formation Drill derivation above
 #   - credits may go to zero but never negative; unpaid rent ends a lease instead
+#   - every standings key is an authority factionId (enforced by tools/verify_lore.py)
 
 {
   "playerId": "string, unique",
@@ -36,7 +41,7 @@
   "fleetIds": "array of fleetId -- a player commands one fleet at a time in the base design; the array admits more without a schema change",
   "leaseIds": "array of leaseId -- see facility.interface",
   "unionId": "unionId or null",
-  "standings": "object: regionName -> number -- moved by NPC-observed actions; no effect in rim or deadspace",
+  "standings": "object: authority factionId -> number -- [+] keyed by faction (lore_tables.REGION_AUTHORITY); moved by actions that authority observes; no effect in rim or deadspace",
   "flags": "array of { type: 'aggressor', securityTier, expiresTurn } -- mid-space aggression flag, 10 turns"
 }
 
@@ -49,5 +54,5 @@
 #   "trainingQueue": [ { "skillId": "skl_sta_science", "targetLevel": 7 } ],
 #   "credits": 148320.5,
 #   "fleetIds": ["flt_0044"], "leaseIds": ["lse_0099", "lse_0100"],
-#   "unionId": "uni_0007", "standings": { "Aurelian Reach": 3.4 }, "flags": []
+#   "unionId": "uni_0007", "standings": { "fac_aurelian_admiralty": 3.4 }, "flags": []
 # }
