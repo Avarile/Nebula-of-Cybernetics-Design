@@ -45,8 +45,8 @@ the same time; there is no interleaving by player.
 | 9 | **Combat** | every engagement runs to conclusion |
 | 10 | **Salvage** | wrecks rolled, field holder loots |
 | 11 | **Market** | orders matched and cleared |
-| 12 | **Upkeep** | lease rent, station upkeep, insurance premiums, fuel and ammo drawn; stations anchored |
-| 13 | **Settlement** | contracts completed, standings adjusted, bounties paid |
+| 12 | **Upkeep** | lease rent, station upkeep, insurance premiums, fuel and ammo drawn, fleets restocked; stations anchored |
+| 13 | **Settlement** | contracts completed, bounties paid, standings moved — each with the authority of the region the act happened in (`conflict_specification.md` §6); none in a region with no authority |
 | 14 | **Log** | turn log written, turn N+1 opens |
 
 Four orderings are load-bearing and were chosen, not inherited:
@@ -98,17 +98,23 @@ bucket without interpreting.
 | `mine.assign` | 3 | a fleet and a belt |
 | `facility.job` | 3–6 | a lease, an operation, an input good and a quantity |
 | `ship.refit` | 6 | a hull, a yard, a parts warehouse and the target fit (`fitting_specification.md` §4) |
+| `fleet.organize` | 7 | hulls to move from one of the player's fleets to another, or to a new fleet, in one system (`logistics_specification.md` §1.2) |
 | `fleet.move` | 7 | a route: an ordered list of system ids |
 | `fleet.convoy` | 7 | a follower fleet and a leader fleet to link it to, or none to unlink (`logistics_specification.md` §8) |
 | `fleet.posture` | 8 | `engage` · `avoid` · `interdict` · `silent` |
 | `fleet.target` | 9 | per hull: a priority list for target selection, or `withdraw` from round 1; per pool weapon, optionally a friendly hull to cover (`conflict_specification.md` §4.4) |
+| `fleet.raid` | 9 | a fleet with troops and a warehouse lease to raid in its `rim` or `deadspace` system (`conflict_specification.md` §7) |
 | `cargo.transfer` | 7, 12 | between a fleet hold and a warehouse at the same location |
-| `market.order` | 11 | buy or sell, good, quantity, limit price, system |
+| `market.order` | 11 | buy or sell, good, quantity, limit price, system, and where the goods are delivered: a warehouse lease or a fleet there (`economy_specification.md` §5) |
 | `facility.lease` | 12 | claim or release a slot |
 | `station.deploy` | 12 | anchor a station kit in a planet's orbit, or scrap a station (`station_specification.md` §3.2) |
+| `fleet.restock` | 12 | a fleet, what to top up — ammunition, fuel, craft — and the source (`logistics_specification.md` §6) |
 | `contract.accept` · `contract.post` | 13 | a contract |
-| `insurance.set` | 12 | a hull and a cover level |
-| `union.action` | 13 | membership and shared-asset actions |
+| `insurance.set` | 12 | a hull, cover on or off |
+| `union.action` | 13 | membership and shared-asset actions (`economy_specification.md` §9) |
+
+Every payload is typed: `Data-Templates/turn_order.interface` pins one shape per order type and
+`Reference/gameplay.ts` `OrderPayloads` mirrors it, both checked against this table.
 
 ### 3.1 Standing orders
 
@@ -120,6 +126,7 @@ cancelled or invalidated:
 * a fleet on a multi-system route keeps travelling until it arrives
 * a convoy link holds until cancelled or until the agreement behind it lapses
 * a fleet's posture persists
+* a fleet's restock keeps topping it up while it is at its source
 * market orders stand until filled, expired or cancelled
 
 Silence is a valid strategy, not a penalty. In a game where a turn is a day, requiring daily
@@ -164,8 +171,10 @@ The contended claims are: facility leases, market order matching, belt mining as
 where a belt has limited concurrent capacity, interdiction when several fleets try to
 hold the same gate, convoy links submitted the same turn — resolved in rank order, a link
 naming a leader that is itself linked by then is rejected, so a convoy never becomes a chain —
-refits naming one union berth in the same turn, of which the berth takes the first, and
-station kits naming one planet's orbit in the same turn, which fill it in rank order.
+refits naming one union berth in the same turn, of which the berth takes the first,
+station kits naming one planet's orbit in the same turn, which fill it in rank order, and
+raids naming one warehouse in the same turn, of which the first takes the contents and
+`RAID_COOLDOWN` bars the rest.
 
 ## 5. Determinism
 
@@ -202,14 +211,17 @@ battles, extended to the whole turn.
 turn: SP awarded, each facility job's input and output, each movement, each engagement's
 full event log, each market fill, each credit debit and credit, each rejected order with its
 reason. This is ground truth and it is what the determinism property in §5 is asserted
-against.
+against. Its shape is `Data-Templates/turn_log.interface`: one ledger entry per change, each
+credit movement naming the faucet or drain it is (`economy_specification.md` §7). Standings
+keep no ledger of their own — a change is an entry keyed by the authority's faction id.
 
 **Tier 2 — the player's day.** A per-player narrative digest drawn from tier 1: what
 finished training, what the facilities made, where the fleet is, what it met, what it cost.
 A player reads this and knows what their day was without reading a ledger.
 
 Battles inside phase 9 keep their own two-tier treatment unchanged; the turn log embeds the
-engagement id and the digest quotes the narrative highlights.
+engagement id (`Data-Templates/engagement.interface`: who fought, why, the battle log, the
+wrecks) and the digest quotes the narrative highlights.
 
 ## 7. Invariants
 
@@ -219,6 +231,8 @@ engagement id and the digest quotes the narrative highlights.
 * the §3 order table, the order list in `turn_order.interface` and `Reference/gameplay.ts`
   `OrderType` each list exactly the order types in `tools/gameplay_tables.py` `ORDER_TYPES`,
   with the same phases
+* every order type has exactly one payload shape in `turn_order.interface`, and
+  `Reference/gameplay.ts` `OrderPayloads` declares the same fields (`Reference/verify_reference.py`)
 * every phase in §2 is named by at least one order type or is a pure system phase —
   **1, 10 and 14** are the system phases (intake, salvage, log); every other phase is
   driven by an order a player can submit, including 8 via `fleet.posture` and 13 via

@@ -6,6 +6,12 @@
 # [+] No upstream counterpart. data-template.json has no concept of a turn, an
 # order, or a player, so this schema is new in full.
 #
+# TWO SHAPES:
+#   order      RUNTIME. One submitted instruction.
+#   payloads   [+] the payload of each order type, one shape per ORDER_TYPES key.
+#              Reference/gameplay.ts OrderPayloads mirrors them field for field
+#              (Reference/verify_reference.py).
+#
 # An order is ONE instruction submitted against ONE turn. It names the phase it
 # resolves in, so intake can bucket orders without interpreting their payload.
 # Orders are validated twice -- at intake against the state at submission, and
@@ -15,8 +21,8 @@
 # why an order did nothing has lost a day with no way to learn from it.
 #
 # STANDING ORDERS -- an order with `standing: true` repeats until cancelled or
-# invalidated. Training queues, facility jobs, multi-system routes, fleet postures
-# and market orders all stand. An absent player keeps producing and keeps training.
+# invalidated. Training queues, facility jobs, multi-system routes, fleet postures,
+# restocks and market orders all stand. An absent player keeps producing and keeps training.
 #
 # ORDER TYPES and the phases they may resolve in:
 #
@@ -25,14 +31,17 @@
 #   mine.assign          phase 3
 #   facility.job         phases 3, 4, 5, 6
 #   ship.refit           phase 6
+#   fleet.organize       phase 7
 #   fleet.move           phase 7
 #   fleet.convoy         phase 7
 #   fleet.posture        phase 8
 #   fleet.target         phase 9
+#   fleet.raid           phase 9
 #   cargo.transfer       phases 7, 12
 #   market.order         phase 11
 #   facility.lease       phase 12
 #   station.deploy       phase 12
+#   fleet.restock        phase 12
 #   contract.accept      phase 13
 #   contract.post        phase 13
 #   insurance.set        phase 12
@@ -41,54 +50,180 @@
 #
 # [+] fleet.convoy -- links a follower fleet to a leader so they move, are detected and
 #     fight as one (GamePlay/logistics_specification.md 8). Resolves in phase 7 before
-#     any fleet moves. Payload: { followerFleetId, leaderFleetId | null } -- null unlinks.
-#     Valid only when both fleets share a system, neither is in transit, the leader is
-#     not itself a follower, and the leader's owner is the same player, a union-mate, or
-#     the counterparty of an accepted ctr_escort naming both fleets. Standing.
+#     any fleet moves. Valid only when both fleets share a system, neither is in transit,
+#     the leader is not itself a follower, and the leader's owner is the same player, a
+#     union-mate, or the counterparty of an accepted ctr_escort naming both fleets. Standing.
 # [+] ship.refit -- changes one hull's fit at a yard (GamePlay/fitting_specification.md 4).
 #     Resolves in phase 6, beside construction, so a refit finished today sails today.
-#     Payload: { fleetId, hullId, site: { leaseId } | { npcYardPlanetId }, partsLeaseId | null,
-#     fit: HullFit | null } -- fit is the complete target fit; null cancels the refit in
-#     progress. Not standing: one order starts one refit, which runs to completion. Valid
-#     only when the hull's fleet is in the site's system and not in transit, the hull fits
-#     the site's maxHullTonnage, the target fit passes tools/fitting.py fit_is_valid, the
-#     parts are in partsLeaseId (or, at an NPC yard, credits cover the asks and the fee),
-#     and the hull's cargo and ammunition fit the new capacities.
+#     fit is the complete target fit; null cancels the refit in progress. Not standing:
+#     one order starts one refit, which runs to completion. Valid only when the hull's fleet
+#     is in the site's system and not in transit, the hull fits the site's maxHullTonnage,
+#     the target fit passes tools/fitting.py fit_is_valid, the parts are in partsLeaseId
+#     (or, at an NPC yard, credits cover the asks and the fee), and the hull's cargo and
+#     ammunition fit the new capacities.
+# [+] fleet.organize -- moves hulls between two of the player's fleets in one system,
+#     neither in transit nor a convoy member, or to a new fleet (toFleetId null); a fleet
+#     left empty is dissolved (GamePlay/logistics_specification.md 1.2). Resolves first in
+#     phase 7, before convoy links and movement, so a docked hull can stay at its yard while
+#     the rest sails. Formation Drill bounds the hulls across all of a player's fleets.
+# [+] fleet.raid -- a fleet carrying troops takes the contents of another player's warehouse
+#     lease in its rim or deadspace system (GamePlay/conflict_specification.md 7). Resolves
+#     at the end of phase 9, after any engagement in the system, and only if the raider's
+#     side holds the field. Not standing.
 # [+] station.deploy -- anchors an orbital station kit in a planet's orbit, or scraps a
 #     station (GamePlay/station_specification.md 3.2). Resolves in phase 12, where
-#     facility.lease claims slots. Payload: { action: "deploy", stationTypeId, planetId,
-#     ownerId, kitSource: { fleetId, hullId } | { leaseId } } or { action: "decommission",
-#     stationId }. Not standing. A deploy is valid only when the submitter is the owner or
-#     in the owning union and holds the shipyard-lease gate (Science 7, Ship Construction
-#     Management >= 1), the planet's system is in STATION_TIERS, its orbit is free after
-#     earlier-ranked deployments, and the kit is in the named hold (a fleet in the system,
-#     not in transit) or warehouse (on that planet). A decommission needs an empty station
-#     warehouse and no hull docked.
-# [+] fleet.target payload -- per hull { hullIndex, targets: [shipRef...] } or
+#     facility.lease claims slots. Not standing. A deploy is valid only when the submitter
+#     is the owner or in the owning union and holds the shipyard-lease gate (Science 7, Ship
+#     Construction Management >= 1), the planet's system is in STATION_TIERS, its orbit is
+#     free after earlier-ranked deployments, and the kit is in the named hold (a fleet in the
+#     system, not in transit) or warehouse (on that planet). A decommission needs an empty
+#     station warehouse and no hull docked.
+# [+] fleet.restock -- tops up every hull of a fleet from one source: a warehouse lease at
+#     the same location, the fleet's own holds, or the system's NPC sell orders (core/mid).
+#     Ammunition at ROUNDS_PER_ORDNANCE_CHARGE a charge, fuel at FUEL_PER_POWER_CORE a core,
+#     craft at CRAFT_PROFILES restockCost each (GamePlay/logistics_specification.md 6,
+#     Combat-logic/combat_logic_specification.md 2.6). Resolves in phase 12. Standing.
+# [+] market.order -- names where a fill is delivered or taken from: a warehouse lease the
+#     poster holds in the order's system, or one of the poster's fleets there
+#     (GamePlay/economy_specification.md 5).
+# [+] fleet.target payload -- per hull { hullIndex, targets: [shipId...] } or
 #     { hullIndex, withdraw: true } (withdraw from round 1), and per pool weapon an
-#     optional { hullIndex, hardpointId, cover: hullRef } -- cover
+#     optional { hardpointId, coveredHullId } -- cover
 #     (Combat-logic/combat_logic_specification.md 2.5, conflict_specification.md 4.4).
 #
-# INVARIANTS (enforced by tools/verify_gameplay.py)
+# INVARIANTS (enforced by tools/verify_gameplay.py, Reference/verify_reference.py)
 #   - every orderType names a phase that exists in PHASES
+#   - payloads has exactly one shape per ORDER_TYPES key, and each matches OrderPayloads
 #   - submissionSequence is unique within a turn and assigned in receipt order
 #   - the resolution rank (phaseOrdinal, submissionSequence, playerId) is a TOTAL
 #     order -- no two orders ever tie
 #   - a rejected order has a non-null rejection and produced no state change
 
 {
-  "orderId": "string, unique within a turn",
-  "turnNumber": "integer -- the turn this order resolves in",
-  "playerId": "string",
-  "orderType": "enum: one of the ORDER_TYPES keys above",
-  "phase": "integer 1-14 -- must be one of the phases the orderType permits",
-  "submissionSequence": "integer -- monotonic, assigned at intake in receipt order; the primary tie-break",
-  "standing": "boolean -- repeat until cancelled or invalidated",
-  "payload": "object -- shape determined by orderType; see GamePlay/turn_specification.md 3",
-  "rejection": "object or null -- { reason: string, phase: integer } when the execution-time check failed"
+  "order": {
+    "orderId": "string, unique within a turn",
+    "turnNumber": "integer -- the turn this order resolves in",
+    "playerId": "string",
+    "orderType": "enum: one of the ORDER_TYPES keys above",
+    "phase": "integer 1-14 -- must be one of the phases the orderType permits",
+    "submissionSequence": "integer -- monotonic, assigned at intake in receipt order; the primary tie-break",
+    "standing": "boolean -- repeat until cancelled or invalidated",
+    "payload": "object -- the payloads shape for orderType",
+    "rejection": "object or null -- { reason: string, phase: integer } when the execution-time check failed"
+  },
+
+  "payloads": {
+    "train.queue": {
+      "entries": "array of { skillId, targetLevel } -- the whole queue, replacing the last one"
+    },
+    "mine.assign": {
+      "fleetId": "fleetId",
+      "beltId": "beltId or null -- a belt in the fleet's system; null stops mining"
+    },
+    "facility.job": {
+      "leaseId": "leaseId -- the slot; its facilityType fixes the phase",
+      "operation": "enum: extract | refine | manufacture | construct",
+      "input": "string or null -- the good refined or manufactured; for construct the hull, weapon, module or station kit",
+      "quantity": "number"
+    },
+    "ship.refit": {
+      "fleetId": "fleetId",
+      "hullId": "hullInstanceId",
+      "site": "{ leaseId } | { npcYardPlanetId }",
+      "partsLeaseId": "leaseId or null -- a warehouse lease on the site's planet; required at a berth",
+      "fit": "HullFit (fleet.interface hullFit) or null -- null cancels"
+    },
+    "fleet.organize": {
+      "fromFleetId": "fleetId",
+      "hullIds": "array of hullInstanceId -- hulls of fromFleetId",
+      "toFleetId": "fleetId or null -- another of the player's fleets in the system; null forms a new fleet"
+    },
+    "fleet.move": {
+      "fleetId": "fleetId",
+      "route": "array of systemId -- ordered gates to cross"
+    },
+    "fleet.convoy": {
+      "followerFleetId": "fleetId",
+      "leaderFleetId": "fleetId or null -- null unlinks"
+    },
+    "fleet.posture": {
+      "fleetId": "fleetId",
+      "posture": "enum: engage | avoid | interdict | silent"
+    },
+    "fleet.target": {
+      "fleetId": "fleetId",
+      "hulls": "array of { hullIndex, targets?: [shipId], withdraw?: true, cover?: [{ hardpointId, coveredHullId }] }"
+    },
+    "fleet.raid": {
+      "fleetId": "fleetId -- carrying troops >= TROOPS_PER_WAREHOUSE_UNIT x the slot's capacity",
+      "warehouseLeaseId": "leaseId -- another player's warehouse in this rim or deadspace system"
+    },
+    "cargo.transfer": {
+      "from": "{ fleetId, hullId } | { leaseId }",
+      "to": "{ fleetId, hullId } | { leaseId } -- at the same location; a hull of the same fleet",
+      "goodId": "resourceId | weaponId | moduleId | stationTypeId",
+      "quantity": "number > 0"
+    },
+    "market.order": {
+      "action": "enum: post | cancel",
+      "systemId": "systemId -- post",
+      "goodId": "goodId -- post",
+      "side": "enum: buy | sell -- post",
+      "quantity": "integer > 0 -- post",
+      "limitPrice": "number -- post",
+      "expiresTurn": "integer or null -- post",
+      "location": "{ leaseId } | { fleetId } -- post: where a fill is delivered or taken from",
+      "orderId": "string -- cancel: the market order"
+    },
+    "facility.lease": {
+      "action": "enum: claim | release",
+      "holderId": "playerId or unionId -- claim",
+      "planetId": "planetId -- claim",
+      "facilityType": "enum: extraction | refinery | manufactory | shipyard | warehouse -- claim",
+      "lane": "enum or null -- claim, extraction only",
+      "leaseId": "leaseId -- release"
+    },
+    "station.deploy": {
+      "action": "enum: deploy | decommission",
+      "stationTypeId": "stationTypeId -- deploy",
+      "planetId": "planetId -- deploy",
+      "ownerId": "playerId or unionId -- deploy",
+      "kitSource": "{ fleetId, hullId } | { leaseId } -- deploy",
+      "stationId": "stationId -- decommission"
+    },
+    "fleet.restock": {
+      "fleetId": "fleetId",
+      "items": "array of enum: ammo | fuel | craft",
+      "source": "{ leaseId } | 'holds' | 'npc'"
+    },
+    "contract.accept": {
+      "instanceId": "string -- the contract",
+      "fleetId": "fleetId or null -- a haul's carrying fleet, an escort's escorting fleet"
+    },
+    "contract.post": {
+      "contractId": "enum: ctr_haul | ctr_supply | ctr_bounty | ctr_escort",
+      "posterId": "playerId or unionId",
+      "parameters": "object -- contract.interface parameters.<contractId>",
+      "reward": "number, credits -- held from the poster at posting",
+      "expiresTurn": "integer"
+    },
+    "insurance.set": {
+      "fleetId": "fleetId",
+      "hullId": "hullInstanceId",
+      "insured": "boolean -- cover on or off; there is one level"
+    },
+    "union.action": {
+      "action": "enum: found | invite | join | leave | expel | deposit | withdraw | grant | revoke",
+      "unionId": "unionId or null -- null only for found",
+      "name": "string or null -- found",
+      "playerId": "playerId or null -- invite, expel, grant, revoke",
+      "credits": "number or null -- deposit, withdraw",
+      "leaseId": "leaseId or null -- grant, revoke: a union warehouse"
+    }
+  }
 }
 
-# ---- EXAMPLE INSTANCE ----
+# ---- EXAMPLE INSTANCES ----
 #
 # {
 #   "orderId": "ord_00417",
@@ -125,3 +260,11 @@
 #   "payload": { "action": "deploy", "stationTypeId": "stn_orbital_yard", "planetId": "pln_085",
 #                "ownerId": "uni_0007", "kitSource": { "fleetId": "flt_0090", "hullId": "hul_0311" } },
 #   "rejection": null }
+#
+# { "orderId": "ord_00421", "turnNumber": 88, "playerId": "ply_0031",
+#   "orderType": "fleet.restock", "phase": 12, "submissionSequence": 2214, "standing": true,
+#   "payload": { "fleetId": "flt_0044", "items": ["ammo", "fuel", "craft"],
+#                "source": { "leaseId": "lse_0100" } },
+#   "rejection": null }
+#   -- a carrier group home at its own warehouse: magazines, tanks and hangars refilled every
+#   phase 12 it spends there, from the charges, cores and manufactured units stored.

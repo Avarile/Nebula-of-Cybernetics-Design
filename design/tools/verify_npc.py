@@ -66,6 +66,12 @@ for a in N:
                        f'{b["squadronId"]} ({b["securityTier"]}, {b["referenceValue"]:,.0f})')
 check('squadron value rises strictly as security falls', bad)
 
+import lore_tables as L
+check('every squadron carries the hostile faction lore_tables.SQUADRON_FACTION gives it',
+      [f'{s["squadronId"]}: {s.get("factionId")} != {L.SQUADRON_FACTION.get(s["squadronId"])}' for s in N
+       if s.get('factionId') != L.SQUADRON_FACTION.get(s['squadronId'])
+       or L.FACTION_BY_ID.get(s.get('factionId'), ('', '', ''))[2] != 'hostile'])
+
 check('nothing hostile spawns in core',
       [s['squadronId'] for s in N if s['securityTier'] == 'core'])
 check('every squadron securityTier is one of the four',

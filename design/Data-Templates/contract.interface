@@ -13,8 +13,10 @@
 #     posts the cargo at the dearest NPC ask for it anywhere (8.1), so keeping the cargo
 #     never beats delivering it; an escort's acceptor posts ESCORT_BOND x reward, forfeited
 #     only on desertion (8.2).
-# [+] parameters for ctr_haul and ctr_escort are pinned below, including the route the
-#     reward was priced on and its routeRiskIndex (the least secure system on it).
+# [+] parameters for every archetype are pinned below -- ctr_haul and ctr_escort including
+#     the route the reward was priced on and its routeRiskIndex (the least secure system on
+#     it); ctr_supply and ctr_bounty as well. ctr_supply's shortfallUrgency is the poster's
+#     to set: no table scales it yet (GamePlay/schema_coverage.md lists it as open).
 #
 # TWO SHAPES:
 #   archetype   GENERATED. Four of them, each a job description plus the formula its
@@ -86,6 +88,22 @@
     "departedCargoValue": "number -- reference value of the escorted fleet's cargo when the link formed",
     "arrivedCargoValue": "number or null -- the same at B; the escort is paid reward x arrived / departed",
     "deserted": "boolean -- the escort cancelled the link before B; the bond goes to the poster"
+  },
+
+  "parameters.ctr_supply": {
+    "goodId": "a manufactured good",
+    "quantity": "integer units",
+    "toLeaseId": "leaseId -- the warehouse the goods are delivered into",
+    "shortfallUrgency": "number -- the reward multiplier on the goods' reference value; set by the poster",
+    "delivered": "integer units delivered so far -- settlement pays reward x delivered / quantity"
+  },
+
+  "parameters.ctr_bounty": {
+    "systemId": "systemId -- where the hulls must die",
+    "securityTier": "enum: mid | rim | deadspace -- nothing hostile spawns in core",
+    "squadronId": "squadronId or null -- a squadron template, or any NPC hull of the tier",
+    "hullsRequired": "integer",
+    "hullsDestroyed": "integer -- counted from engagement.interface losses"
   }
 }
 

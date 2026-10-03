@@ -177,7 +177,11 @@ is a sufficient penalty in a game where a day is a turn; losing the stock as wel
 punish absence, which `turn_specification.md` §3.1 rules out.
 
 Union warehouses are ordinary warehouse leases held by a union rather than a player
-(`economy_specification.md` §8).
+(`economy_specification.md` §9), with per-member withdrawal rights on the union's record.
+
+A warehouse's contents are one record per lease (`Data-Templates/warehouse.interface`): what
+is stored, in tons — a resource one a unit, a part or a kit its `buildCost` units — what is
+reserved for a refit, and when it was last raided.
 
 ## 6. What leasing may never touch
 

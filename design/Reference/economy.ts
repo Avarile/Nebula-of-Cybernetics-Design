@@ -14,8 +14,10 @@
 import type { ResourceId, ResourceLane, ShipId } from './common';
 import type { ResourceTier } from './resources';
 import type { ShipClass } from './ships';
-import type { FleetId, PlayerId, SecurityTier, SystemId, UnionId } from './gameplay';
-import type { Standings } from './lore';
+import type { FleetId, LeaseId, PlayerId, UnionId } from './gameplay';
+import type { NpcSquadronId, Standings } from './lore';
+import type { StationId } from './stations';
+import type { SecurityTier, SystemId } from './systems';
 
 // ---------------------------------------------------------------- goods
 
@@ -147,6 +149,14 @@ export interface ArbitrageRow {
 
 export type MarketSide = 'buy' | 'sell';
 
+/**
+ * [+] Where a fill is delivered to (a buy) or taken from (a sell): a warehouse lease the
+ * poster holds in the order's system, or one of the poster's fleets there, not in transit,
+ * whose holds load or unload it (`economy_specification.md` §5). A hull is never in a hold:
+ * a hull bought joins the named fleet, or a new fleet in the system when none is named.
+ */
+export type MarketLocation = { leaseId: LeaseId } | { fleetId: FleetId };
+
 /** Per system. There is no global market. */
 export interface MarketOrder {
   orderId: string;
@@ -158,6 +168,8 @@ export interface MarketOrder {
   limitPrice: number;
   postedTurn: number;
   expiresTurn: number | null;
+  /** [+] Where the goods are delivered or taken from. */
+  location: MarketLocation;
 }
 
 // ---------------------------------------------------------------- contracts
@@ -190,7 +202,8 @@ export interface Contract {
   postedTurn: number;
   expiresTurn: number;
   acceptedBy: PlayerId | UnionId | null;
-  parameters: Record<string, unknown>;
+  /** [+] Typed per archetype. */
+  parameters: ContractParameters;
   reward: number;
   /** Equals `reward` for player-posted, 0 for NPC-posted. */
   collateral: number;
@@ -239,6 +252,36 @@ export interface EscortContractParameters {
   deserted: boolean;
 }
 
+/**
+ * [+] `ctr_supply`: deliver `quantity` of a manufactured good into a named warehouse lease.
+ * Reward `referenceValue x shortfallUrgency`; `shortfallUrgency` is set by the poster and has
+ * no authored scale yet (`schema_coverage.md`, open).
+ */
+export interface SupplyContractParameters {
+  goodId: GoodId;
+  quantity: number;
+  toLeaseId: LeaseId;
+  shortfallUrgency: number;
+  delivered: number;
+}
+
+/**
+ * [+] `ctr_bounty`: destroy `hullsRequired` NPC hulls of `securityTier` in one system.
+ * Reward `squadronReferenceValue x BOUNTY_RATE`.
+ */
+export interface BountyContractParameters {
+  systemId: SystemId;
+  securityTier: Exclude<SecurityTier, 'core'>;
+  squadronId: NpcSquadronId | null;
+  hullsRequired: number;
+  hullsDestroyed: number;
+}
+
+/** [+] A contract's parameters, one shape per archetype. */
+export type ContractParameters =
+  | HaulContractParameters | EscortContractParameters
+  | SupplyContractParameters | BountyContractParameters;
+
 /** One row of `economy_specification.md` §8.3, per ly of route; recomputed by verify_gameplay.py. */
 export interface HaulEconomicsRow {
   tier: SecurityTier;
@@ -268,11 +311,21 @@ export interface HaulEconomicsRow {
 export interface Union {
   unionId: UnionId;
   name: string;
+  /** Administers the union: invites, expels, grants warehouse rights, withdraws credits. */
   founderId: PlayerId;
+  /** At most the founder's `unionMemberCapacity`. */
   memberIds: PlayerId[];
   credits: number;
-  leaseIds: string[];
-  /** The mean of members' standings; unions accrue none of their own. */
+  leaseIds: LeaseId[];
+  /** [+] Stations the union owns (`station_specification.md` §5). */
+  stationIds: StationId[];
+  /**
+   * [+] Per-member withdrawal rights on union warehouses (`economy_specification.md` §9):
+   * warehouse leaseId -> the members who may take from it. A warehouse not listed is open
+   * to every member.
+   */
+  withdrawRights: Record<LeaseId, PlayerId[]>;
+  /** Derived, never accrued: the mean of members' standings. */
   standings: Standings;
 }
 

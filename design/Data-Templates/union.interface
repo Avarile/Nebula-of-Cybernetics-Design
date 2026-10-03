@@ -1,0 +1,57 @@
+# INTERFACE: Union
+# Source of truth : runtime state -- no generated instances exist
+# Spec            : ../GamePlay/economy_specification.md 9, conflict_specification.md 4.1, 6,
+#                   station_specification.md 5
+# Reference       : ../Reference/economy.ts -> Union (Reference/verify_reference.py)
+#
+# [+] No upstream counterpart; new in full. Until now the union existed only in TypeScript.
+#
+# A player organisation and the only shared-ownership structure in the game: an economic
+# and military pooling device, never a polity. It has no territory, no sovereignty and no
+# standing of its own.
+#
+# SIZE is the founder's trained unionMemberCapacity (skl_trd_union_management, +5 members a
+# level). There is no other cap and no constant.
+#
+# WHAT IT HOLDS: ordinary leases held by the union and paid from union credits (four berths
+# on one forge world build a battleship in 10 turns instead of 39), orbital stations, and
+# one credit balance. Members' fleets caught in one engagement fight on one side -- a fleet
+# operation needs no order (conflict_specification.md 4.1).
+#
+# [+] founderId administers: only the founder invites, expels, grants or revokes warehouse
+#     rights and withdraws credits (union.action, turn_order.interface). Any member may
+#     deposit, and run the union's slots under their own skills.
+# [+] stationIds -- stations the union owns (station.interface ownerId names it).
+# [+] withdrawRights -- economy 9's "per-member withdrawal rights": a union warehouse lease
+#     listed here may be emptied by the members named; one not listed is open to every member.
+# [+] standings is DERIVED, never accrued: the mean of the members' standings, per authority.
+#
+# INVARIANTS (rules of play; enforced at order validation)
+#   - memberIds includes founderId, and its length <= the founder's unionMemberCapacity
+#   - a player is in at most one union (player.interface unionId)
+#   - credits >= 0; unpaid union rent ends that lease, as for a player
+#   - every withdrawRights key is a warehouse lease in leaseIds, every value a member
+
+{
+  "unionId": "string, unique",
+  "name": "string",
+  "founderId": "playerId -- administers the union",
+  "memberIds": "array of playerId -- founder included",
+  "credits": "number >= 0 -- one balance; pays union rent, upkeep and contracts",
+  "leaseIds": "array of leaseId -- ordinary leases held by the union (facility.interface playerId)",
+  "stationIds": "[+] array of stationId -- stations the union owns",
+  "withdrawRights": "[+] object: warehouse leaseId -> array of playerId; unlisted = every member",
+  "standings": "object: authority factionId -> number -- derived, the mean of the members'"
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# { "unionId": "uni_0007", "name": "Cold Harbour Freight", "founderId": "ply_0052",
+#   "memberIds": ["ply_0052", "ply_0031", "ply_0077", "ply_0103"],
+#   "credits": 412890.0,
+#   "leaseIds": ["lse_0401", "lse_0402", "lse_0403", "lse_0404", "lse_0410", "lse_0411"],
+#   "stationIds": ["stn_0007"],
+#   "withdrawRights": { "lse_0411": ["ply_0052", "ply_0077"] },
+#   "standings": { "fac_cindral_syndics": 2.1, "fac_aurelian_admiralty": 0.4 } }
+#   -- four berths on one forge world (lse_0401-0404) and an orbital yard (stn_0007, whose
+#   leases are lse_0410-0411); the yard's warehouse may be emptied by two members only.

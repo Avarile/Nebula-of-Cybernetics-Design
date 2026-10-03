@@ -1,0 +1,56 @@
+# INTERFACE: Wreck
+# Source of truth : runtime state -- no generated instances exist
+# Spec            : ../GamePlay/conflict_specification.md 5.1, fitting_specification.md 5.3
+# Reference       : ../Reference/gameplay.ts -> Wreck (Reference/verify_reference.py)
+#
+# [+] No upstream counterpart; new in full. Until now the wreck existed only in TypeScript.
+#
+# What a destroyed hull leaves in the system it died in, for WRECK_LIFETIME turns. Looted in
+# phase 10 by whoever holds the field -- the side still present with a surviving hull. If
+# both sides withdrew, it stands until it expires or someone returns for it.
+#
+# CONTENTS are rolled once, when the hull dies, and stored -- phase 10 only moves them:
+#   - each item of the fit the hull CARRIED (fleet.interface fleetHull.fit, not the
+#     catalogue's), independently at SALVAGE_DROP;
+#   - each station kit or part in its hold, whole, at SALVAGE_DROP -- one item, not split;
+#   - SALVAGE_CARGO of each resource in its hold.
+#   Craft aboard are lost with the hull and are never salvage (combat 2.6). The bare hull is
+#   never salvage either; insurance pays on it (conflict 5.2).
+#
+# [+] ownerId -- the player who lost it, or null for an NPC hull. When the owner's side
+#     holds the field the salvage is theirs and loads into their surviving hulls.
+# [+] lootBarredFleetIds -- every fleet of the dead hull's convoy when it died that its owner
+#     does not own; none may ever loot it, linked or not by then, so an escort cannot profit
+#     from losing its client. The owner's own fleets recover their salvage as above.
+# [+] engagementId -- the engagement it died in (engagement.interface).
+# [+] hullId is null for an NPC hull, which is never a held hull.
+#
+# INVARIANTS (rules of play)
+#   - expiresTurn = diedTurn + WRECK_LIFETIME
+#   - every contents id was in the dead hull's fit or hold
+#   - contents.cargo[resource] <= SALVAGE_CARGO x what was aboard
+
+{
+  "wreckId": "string, unique",
+  "hullId": "hullInstanceId or null -- the held hull that died; null for an NPC hull",
+  "shipId": "shipId -- its catalogue entry",
+  "ownerId": "[+] playerId or null -- who lost it; null for an NPC hull",
+  "engagementId": "[+] engagementId -- where it died",
+  "systemId": "systemId",
+  "diedTurn": "integer",
+  "expiresTurn": "integer -- diedTurn + WRECK_LIFETIME",
+  "lootBarredFleetIds": "[+] array of fleetId -- the dead hull's convoy, its owner's fleets aside; may never loot it",
+  "contents": "object -- { weaponIds: [weaponId], moduleIds: [moduleId], cargo: { goodId -> quantity } }, rolled at death"
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# { "wreckId": "wrk_01133", "hullId": "hul_0311", "shipId": "ship_attack_transport_t3",
+#   "ownerId": "ply_0052", "engagementId": "eng_00412", "systemId": "sys_056",
+#   "diedTurn": 91, "expiresTurn": 93, "lootBarredFleetIds": ["flt_0044"],
+#   "contents": { "weaponIds": ["wpn_395", "wpn_395"], "moduleIds": ["mod_cargo_derrick_mk3"],
+#                 "cargo": { "res_raw_isotopes": 4701, "stn_orbital_depot": 1 } } }
+#   -- an Attack Transport T3 lost in deadspace with 9,402 t of isotopes and a 270 t depot
+#   kit in its 9,672 t hold: half the ore, the kit and three of its eight fitted items
+#   survived their rolls, and wait two turns for whoever holds the field. Its escort
+#   flt_0044 can never take them.

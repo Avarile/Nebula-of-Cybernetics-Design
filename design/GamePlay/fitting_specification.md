@@ -99,8 +99,10 @@ Every weapon and module is one of the 1,043 tradeable goods, at the reference pr
   manufactured units: 3.45–54.01 for a weapon, 0.55–22.47 for a module. A hull is still
   built with its default fit; there is no bare-hull job, because stripping a new hull gives
   back the parts as goods and wastes nothing.
-* **Stored in a warehouse.** A part takes warehouse capacity equal to its `buildCost` units
-  — the space of what it was made from. A Belt Armour Mk.1 takes 20.0.
+* **Stored in a warehouse, carried in a hold.** A part takes warehouse capacity equal to its
+  `buildCost` units — the space of what it was made from. A Belt Armour Mk.1 takes 20.0. In a
+  hold it weighs the same in tons, and it is one item: a wreck rolls it whole
+  (`logistics_specification.md` §3, `conflict_specification.md` §5.1).
 * **Traded like any good.** NPC orders in `core` and `mid` buy and sell every part, at the
   manufactured column of the price index, as they do every finished item.
 
@@ -214,7 +216,9 @@ catalogues.
 
 * **The fleet is held.** A `fleet.move` for a fleet with a docked hull is rejected, and a
   convoy holding one holds as a whole, as it does for a hull short of fuel
-  (`logistics_specification.md` §8.2).
+  (`logistics_specification.md` §8.2). A player who wants the rest to sail splits the docked
+  hull off into a fleet of its own with `fleet.organize`, earlier in the same phase 7
+  (`logistics_specification.md` §1.2), and merges it back when the refit is done.
 * **The hull fights as it is.** The fit changes only on completion. A docked hull in `mid`
   or `rim` can be attacked like any other and fights with the fit it has; the yard does not
   protect it.
@@ -326,7 +330,8 @@ written with, before the power budget and mounts were rules: all 20 overdraw `po
 logs' lock ranges are calibrated on (combat §2.3), so it cannot simply be raised. No rule
 hands a named ship to a player or sets one against a player: starting hulls, NPC squadrons
 and response fleets are all tier hulls, and the verifier holds them to legal fits. Named
-ships answer to the size and slot rules only.
+ships answer to the size and slot rules only, and no NPC order trades one: their reference
+prices are a valuation only (`economy_specification.md` §4).
 
 ## 7. Invariants
 

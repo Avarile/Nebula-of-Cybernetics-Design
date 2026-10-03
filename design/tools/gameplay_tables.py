@@ -34,8 +34,8 @@ PHASES = [
     (9,  'combat',        'player',   'every engagement runs to conclusion'),
     (10, 'salvage',       'system',   'wrecks rolled, field holder loots'),
     (11, 'market',        'player',   'orders matched and cleared'),
-    (12, 'upkeep',        'player',   'lease rent, station upkeep, insurance premiums, fuel and ammo drawn; stations anchored'),
-    (13, 'settlement',    'player',   'contracts completed, standings adjusted, bounties paid'),
+    (12, 'upkeep',        'player',   'lease rent, station upkeep, insurance premiums, fuel and ammo drawn, fleets restocked; stations anchored'),
+    (13, 'settlement',    'player',   "contracts completed, bounties paid, standings moved with the authority of the region each act happened in"),
     (14, 'log',           'system',   'turn log written, turn N+1 opens'),
 ]
 
@@ -45,14 +45,17 @@ ORDER_TYPES = {
     'mine.assign':      [3],
     'facility.job':     [3, 4, 5, 6],
     'ship.refit':       [6],         # change one hull's fit at a yard. fitting 4
+    'fleet.organize':   [7],         # split or merge the player's own fleets, before convoys and moves. logistics 1.2
     'fleet.move':       [7],
     'fleet.convoy':     [7],         # link to / unlink from a leader fleet. logistics 8
     'fleet.posture':    [8],
     'fleet.target':     [9],
+    'fleet.raid':       [9],         # take a rim/deadspace warehouse's contents after the fight. conflict 7
     'cargo.transfer':   [7, 12],
     'market.order':     [11],
     'facility.lease':   [12],
     'station.deploy':   [12],        # anchor a station kit in an orbit, or scrap a station. station 3
+    'fleet.restock':    [12],        # top up ammunition, fuel and craft. logistics 6
     'contract.accept':  [13],
     'contract.post':    [13],
     'insurance.set':    [12],
@@ -70,6 +73,7 @@ CONTENDED = {
     'fleet.convoy':     'rank; a link naming a leader that is itself linked by then is rejected',
     'ship.refit':       'rank, among refits naming one union berth; the berth takes one hull at a time',
     'station.deploy':   'rank, among deployments naming one planet; its orbits fill in rank order',
+    'fleet.raid':       'rank, among raids naming one warehouse; the first takes it and RAID_COOLDOWN bars the rest',
 }
 
 # ----------------------------------------------------------------- security

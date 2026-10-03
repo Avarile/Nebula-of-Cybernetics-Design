@@ -12,6 +12,13 @@
 #                modules and hulls = 1,043. Derived, never authored.
 #   order        RUNTIME. A player's standing buy or sell at one system.
 #
+# [+] order.location -- where a fill is delivered (a buy) or taken from (a sell): a warehouse
+#     lease the poster holds in the order's system, or one of the poster's fleets there, not
+#     in transit, whose holds load or unload it (economy_specification.md 5). A hull bought
+#     joins the named fleet, or a new fleet in the system; hulls are never cargo.
+# [+] The 20 named ships are priced for valuation only. They are story hulls no player can
+#     hold (fitting_specification.md 6), so no NPC order lists them (economy 4).
+#
 # DERIVATION -- only the four RAW_PRICE anchors are authored:
 #     refined      = raw     / lane.conversionYield x (1 + PROCESS_MARGIN)
 #     manufactured = refined / 0.85                 x (1 + PROCESS_MARGIN)
@@ -68,7 +75,8 @@
     "quantity": "integer > 0 -- remaining, decremented on partial fills",
     "limitPrice": "number, credits per unit",
     "postedTurn": "integer",
-    "expiresTurn": "integer or null -- null stands until filled or cancelled"
+    "expiresTurn": "integer or null -- null stands until filled or cancelled",
+    "location": "[+] { leaseId } | { fleetId } -- where fills are delivered or taken from, in systemId"
   }
 }
 
@@ -84,4 +92,5 @@
 # order:
 # { "orderId": "mko_0812", "playerId": "ply_0031", "systemId": "sys_014",
 #   "goodId": "res_mfg_guidance_assembly", "side": "sell", "quantity": 400,
-#   "limitPrice": 138.0, "postedTurn": 47, "expiresTurn": null }
+#   "limitPrice": 138.0, "postedTurn": 47, "expiresTurn": null,
+#   "location": { "leaseId": "lse_0100" } }

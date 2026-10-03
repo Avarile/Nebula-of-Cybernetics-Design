@@ -46,6 +46,92 @@ def fields(filename, iface):
     return set(re.findall(r'^\s{2}(\w+)[?]?:', m.group(1), re.M))
 
 
+# A brace-aware reader for declarations `fields()` cannot handle: inherited members
+# (`extends`), type aliases whose arms are object literals, quoted keys. Comments are
+# stripped first; members are read at the declaration's own brace depth only.
+def _strip(src):
+    src = re.sub(r'/\*.*?\*/', '', src, flags=re.S)
+    return re.sub(r'//[^\n]*', '', src)
+
+
+TS_ALL = {f: _strip(open(os.path.join(REF, f)).read())
+          for f in sorted(os.listdir(REF)) if f.endswith('.ts')}
+
+
+def _match(src, i, open_c, close_c):
+    depth = 0
+    for j in range(i, len(src)):
+        if src[j] == open_c:
+            depth += 1
+        elif src[j] == close_c:
+            depth -= 1
+            if depth == 0:
+                return j
+    raise ValueError('unbalanced')
+
+
+def _depth0(body):
+    """The body with everything inside nested braces/brackets/parens blanked out."""
+    out, depth = [], 0
+    for c in body:
+        if c in '{[(':
+            depth += 1
+        if depth == 0 or (depth == 1 and c in '{[('):
+            out.append(c if depth == 0 else ' ')
+        else:
+            out.append(' ' if c != '\n' else '\n')
+        if c in '}])':
+            depth -= 1
+    return ''.join(out)
+
+
+def _keys(body):
+    return set(re.findall(r"(?:^|[;\n{,])\s*(?:readonly\s+)?['\"]?([A-Za-z_][\w.]*)['\"]?\??\s*:",
+                          _depth0(body)))
+
+
+def _decl(name):
+    for src in TS_ALL.values():
+        m = re.search(r'(?:export\s+)?interface\s+%s\b(?:<[^>{]*>)?\s*(extends\s+[^{]+)?\{' % re.escape(name), src)
+        if m:
+            i = m.end() - 1
+            return 'interface', src[i + 1:_match(src, i, '{', '}')], m.group(1) or ''
+        m = re.search(r'(?:export\s+)?type\s+%s\b(?:<[^>=]*>)?\s*=' % re.escape(name), src)
+        if m:
+            j, depth = m.end(), 0
+            while j < len(src) and not (src[j] == ';' and depth == 0):
+                depth += src[j] in '{[(<'
+                depth -= src[j] in '}])>'
+                j += 1
+            return 'type', src[m.end():j], ''
+    sys.exit(f'declaration {name} not found in Reference/')
+
+
+def ts_fields(name):
+    """Every member name of an interface (inherited ones included) or of every object-literal
+    arm of a type alias."""
+    kind, body, ext = _decl(name)
+    if kind == 'interface':
+        out = _keys(body)
+        for base in re.findall(r'\b([A-Z]\w*)\b(?:<[^>]*>)?', ext.replace('extends', '')):
+            out |= ts_fields(base)
+        return out
+    out, i = set(), 0
+    while True:
+        i = body.find('{', i)
+        if i < 0:
+            return out
+        j = _match(body, i, '{', '}')
+        out |= _keys(body[i + 1:j])
+        i = j + 1
+
+
+def ts_member_types(name):
+    """{member: the bare type name it is declared as} for an interface like OrderPayloads."""
+    _, body, _ = _decl(name)
+    return dict(re.findall(r"['\"]?([\w.]+)['\"]?\s*:\s*(\w+)\s*;", body))
+
+
 def check(label, declared, actual, schema_only=()):
     """`schema_only` names values the schema permits but no current row uses."""
     missing = actual - declared
@@ -244,6 +330,104 @@ check('AsteroidBelt interface declares the right fields',
       set(next(b for s in SYSTEMS_DATA for b in s['asteroidBelts'])))
 check('SystemConnection interface declares the right fields',
       fields('systems.ts', 'SystemConnection'), set(SYSTEMS_DATA[0]['connections'][0]))
+
+# ---------------------------------------------------------------- generated GamePlay rows
+check('NpcSquadron fields', ts_fields('NpcSquadron'), {k for s in FLEET['npcSquadrons'] for k in s})
+check('NpcSquadronHull fields', ts_fields('NpcSquadronHull'),
+      {k for s in FLEET['npcSquadrons'] for h in s['hulls'] for k in h})
+RESPONSE = json.load(open(os.path.join(ROOT, 'GamePlay', 'NPC', 'response_fleets.json')))['responseFleets']
+check('ResponseFleet fields', ts_fields('ResponseFleet'), {k for r in RESPONSE for k in r})
+
+# ---------------------------------------------------------------- runtime schemas
+# A runtime record has no generated instance to check, so its .interface and its TS type
+# are held to each other instead: the same field set, shape by shape. A shape is the whole
+# JSON body, or one top-level key of it; dotted keys ('slots.<key>.x') document sub-fields.
+RUNTIME_SHAPES = [
+    ('player.interface', None, 'Player'),
+    ('fleet.interface', 'fleet', 'Fleet'),
+    ('fleet.interface', 'fleetHull', 'FleetHull'),
+    ('fleet.interface', 'hullFit', 'HullFit'),
+    ('fleet.interface', 'refitJob', 'RefitJob'),
+    ('facility.interface', 'lease', 'Lease'),
+    ('warehouse.interface', None, 'WarehouseContents'),
+    ('station.interface', 'station', 'Station'),
+    ('market.interface', 'order', 'MarketOrder'),
+    ('contract.interface', 'contract', 'Contract'),
+    ('contract.interface', 'parameters.ctr_haul', 'HaulContractParameters'),
+    ('contract.interface', 'parameters.ctr_escort', 'EscortContractParameters'),
+    ('contract.interface', 'parameters.ctr_supply', 'SupplyContractParameters'),
+    ('contract.interface', 'parameters.ctr_bounty', 'BountyContractParameters'),
+    ('union.interface', None, 'Union'),
+    ('wreck.interface', None, 'Wreck'),
+    ('engagement.interface', 'engagement', 'Engagement'),
+    ('engagement.interface', 'side', 'EngagementSide'),
+    ('engagement.interface', 'combatant', 'EngagementCombatant'),
+    ('engagement.interface', 'battleLog', 'BattleLog'),
+    ('engagement.interface', 'roundLog', 'RoundLog'),
+    ('engagement.interface', 'battleResult', 'BattleResult'),
+    ('engagement.interface', 'fireEvent', 'FireEvent'),
+    ('engagement.interface', 'stateEvent', 'StateEvent'),
+    ('engagement.interface', 'craftWaveEvent', 'CraftWaveEvent'),
+    ('engagement.interface', 'craftAttackEvent', 'CraftAttackEvent'),
+    ('turn_order.interface', 'order', 'TurnOrder'),
+    ('turn_log.interface', 'turnLog', 'TurnLog'),
+    ('turn_log.interface', 'ledgerEntry', 'LedgerEntry'),
+]
+# Shapes checked against generated data by their own verifiers; not runtime.
+GENERATED_SHAPES = {('facility.interface', 'facilityType'), ('station.interface', 'stationType'),
+                    ('market.interface', 'priceEntry'), ('contract.interface', 'archetype'),
+                    ('turn_order.interface', 'payloads')}   # payloads: checked below, per order type
+
+
+def iface_body(name):
+    path = os.path.join(ROOT, 'Data-Templates', name)
+    return json.loads('\n'.join(l for l in open(path) if not l.lstrip().startswith('#')))
+
+
+def iface_header(name):
+    return '\n'.join(l for l in open(os.path.join(ROOT, 'Data-Templates', name)) if l.lstrip().startswith('#'))
+
+
+def shape_fields(name, shape):
+    body = iface_body(name)
+    node = body if shape is None else body.get(shape)
+    return None if node is None else {k for k in node if '.' not in k}
+
+
+for name, shape, ts in RUNTIME_SHAPES:
+    got = shape_fields(name, shape)
+    if got is None:
+        check(f'{name} {shape} vs {ts}', set(), {f'<no shape {shape}>'})
+        continue
+    check(f'{name.split(".")[0]}{"." + shape if shape else ""} = {ts}', ts_fields(ts), got)
+
+# Every runtime schema is covered: a file whose header calls itself runtime state, or names
+# a RUNTIME shape, is in the table; and every top-level shape of a mapped file is mapped.
+mapped = {n for n, _, _ in RUNTIME_SHAPES}
+runtime_files = {f for f in os.listdir(os.path.join(ROOT, 'Data-Templates')) if f.endswith('.interface')
+                 and re.search(r'Source of truth\s*:\s*runtime|\bRUNTIME\.', iface_header(f))}
+unmapped = []
+for f in sorted(mapped):
+    body = iface_body(f)
+    shapes = {s for n, s, _ in RUNTIME_SHAPES if n == f}
+    if None not in shapes:
+        unmapped += [f'{f}: {k}' for k in body if k not in shapes and (f, k) not in GENERATED_SHAPES]
+bad_runtime = sorted(runtime_files - mapped) + unmapped
+check('every runtime .interface shape has a TS twin', set(), set(bad_runtime))
+
+# Order payloads: one shape per order type, in the interface and in OrderPayloads.
+import gameplay_tables as GT  # noqa: E402
+payloads = iface_body('turn_order.interface').get('payloads', {})
+check('turn_order.interface payloads = ORDER_TYPES', set(payloads), set(GT.ORDER_TYPES))
+op_types = ts_member_types('OrderPayloads')
+check('gameplay.ts OrderPayloads = ORDER_TYPES', set(op_types), set(GT.ORDER_TYPES))
+bad = set()
+for otype, shape in payloads.items():
+    if otype in op_types:
+        want = {k for k in shape if '.' not in k}
+        have = ts_fields(op_types[otype])
+        bad |= {f'{otype}: {d}' for d in sorted(want ^ have)}
+check('every order payload shape = its OrderPayloads type', set(), bad)
 
 print()
 if failures:

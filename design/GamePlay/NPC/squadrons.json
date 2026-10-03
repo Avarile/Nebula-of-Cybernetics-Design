@@ -4,6 +4,7 @@
     {
       "squadronId": "npc_mid_pirate_raiders",
       "name": "Pirate Raiders",
+      "factionId": "fac_free_corsairs",
       "securityTier": "mid",
       "hullCount": 4,
       "hulls": [
@@ -30,6 +31,7 @@
     {
       "squadronId": "npc_rim_raider_pack",
       "name": "Raider Pack",
+      "factionId": "fac_lettered_captains",
       "securityTier": "rim",
       "hullCount": 4,
       "hulls": [
@@ -56,6 +58,7 @@
     {
       "squadronId": "npc_rim_pirate_wing",
       "name": "Pirate Wing",
+      "factionId": "fac_free_corsairs",
       "securityTier": "rim",
       "hullCount": 5,
       "hulls": [
@@ -82,6 +85,7 @@
     {
       "squadronId": "npc_dead_warband",
       "name": "Deadspace Warband",
+      "factionId": "fac_gravewatch_warbands",
       "securityTier": "deadspace",
       "hullCount": 5,
       "hulls": [
@@ -108,6 +112,7 @@
     {
       "squadronId": "npc_dead_capital_threat",
       "name": "Capital Threat",
+      "factionId": "fac_revenant_line",
       "securityTier": "deadspace",
       "hullCount": 5,
       "hulls": [

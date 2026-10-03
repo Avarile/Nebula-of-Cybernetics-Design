@@ -6,6 +6,9 @@
 #                   ../tools/verify_npc.py checks the invariants below.
 #
 # [+] No upstream counterpart; new in full.
+# [+] factionId -- the hostile faction that flies it, from tools/lore_tables.py
+#     SQUADRON_FACTION (GamePlay/lore_specification.md 4.2). A name, not a mechanic:
+#     spawning stays by securityTier, and no number reads the faction.
 #
 # A squadron is a COMPOSITION, not a stat block. Every entry names a real shipId in
 # the ship catalogue, so an NPC hull is exactly the hull a player would fly, fitted
@@ -32,10 +35,16 @@
 #   - no squadron has securityTier core
 #   - every response fleet outvalues fleetSlots copies of the dearest hull
 #   - securityTier is one of the four in systems_planets_specification.md 3
+#   - factionId is SQUADRON_FACTION[squadronId], a hostile faction
+#
+# A response fleet (GamePlay/NPC/response_fleets.json) carries no owner field on purpose:
+# it is the authority of whichever region the engagement is in, so the owner is recorded
+# per engagement (engagement.interface sides[].responseFleet.authorityId).
 
 {
   "squadronId": "string, unique, format: npc_<tier>_<slug>",
   "name": "string",
+  "factionId": "[+] hostile factionId -- tools/lore_tables.py SQUADRON_FACTION",
   "securityTier": "enum: mid | rim | deadspace   (never core -- nothing hostile spawns there)",
   "hullCount": "integer -- sum of counts below",
   "hulls": "array of { shipId, name, shipClass, count, unitReferencePrice }",
@@ -49,6 +58,7 @@
 #
 # {
 #   "squadronId": "npc_dead_warband", "name": "Deadspace Warband",
+#   "factionId": "fac_gravewatch_warbands",
 #   "securityTier": "deadspace", "hullCount": 5,
 #   "hulls": [
 #     { "shipId": "ship_heavy_cruiser_t3", "name": "Heavy Cruiser Tier 3",

@@ -148,10 +148,23 @@ than trusting the numbers on this page.
 Beyond `mid` there is no floor. `rim` and `deadspace` trade at whatever players will pay,
 which is exactly where the risk premium should live.
 
+**What NPC orders list.** Every tradeable good except two kinds. Station kits are commissions
+(`station_specification.md` §3.1). The 20 named ships are story hulls no player can hold —
+their fits overdraw their own power budgets (`fitting_specification.md` §6) — so their
+reference prices are a valuation only, and no NPC order sells or buys one.
+
 ## 5. The player market
 
 Orders are per system, per good — a limit price, a quantity, a side. They match in phase 11
 by price, then by the total order of `turn_specification.md` §4.
+
+**Where a fill lands.** Every order names a location in its system (`market.interface`
+`order.location`): a warehouse lease the poster holds there, or one of the poster's fleets
+there, not in transit. A buy is delivered into it and a sell taken from it, so goods never
+move remotely (`logistics_specification.md` §3). A fleet's holds take a fill hull by hull, in
+fleet order, up to their free tons; what does not fit is not bought, and the shortfall is
+logged. A hull bought joins the named fleet — or a new fleet in the system, when the location is
+a warehouse — and counts against Formation Drill like any other.
 
 ```
 MARKET_TAX   core 2.0 %   mid 1.5 %   rim 0.5 %   deadspace 0 %
@@ -205,17 +218,18 @@ drain — which is the correct price for a region where nothing else protects yo
 | Bounties | `0.05 / 0.10 / 0.18` of an NPC squadron's reference value in `mid` / `rim` / `deadspace` | NPC squadrons killed; none spawn in `core` |
 | Contract rewards | §8 | contracts posted by NPCs |
 | Haul rewards | `(tons × HAUL_FREIGHT_RATE + value × HAUL_RISK_RATE × (risk − 1)) × ly`, §8.1 | NPC haul contracts; in `core` the freight barely covers the hauler's running cost (§8.3) |
-| Insurance payouts | §6 | premiums paid in, minus the margin |
+| Insurance payout | §6 | premiums paid in, minus the margin |
 
 **Drains — credits destroyed**
 
 | sink | rate | scales with |
 |---|---|---|
 | Facility rent | `industry_specification.md` §7 | capacity the playerbase holds — the largest and most continuous drain |
+| Warehouse rent | `0.02` per unit of capacity per turn, `industry_specification.md` §7 | storage held |
 | Market tax | 2.0 / 1.5 / 0.5 / 0 % | trade volume in safe space |
-| Insurance premiums | `0.004 × bare hull` per turn | hulls insured |
+| Insurance premium | `0.004 × bare hull` per turn | hulls insured |
 | NPC sell orders | `reference × index` | fuel, ammunition and starter goods bought rather than made |
-| NPC markup on consumables | `× 1.25` on fuel and ammunition | fleets operating away from their own industry |
+| Consumable markup | `× 1.25` on fuel and ammunition | fleets operating away from their own industry |
 | Forfeited haul collateral | cargo × the dearest NPC ask for it, §8.1 | NPC haul cargo lost to raiders or never delivered |
 | NPC yard fee | `0.05 ×` the reference value of every part moved, `fitting_specification.md` §4.3 | refits done at an NPC yard rather than a berth the player leases |
 | Station upkeep | `STATION_UPKEEP_RATE` (1.00) `×` the rent the station's slots would pay as leases, `station_specification.md` §4 | stations anchored — never less per unit than the cheapest lease, so moving capacity off-planet cannot shrink the rent drain |
@@ -226,8 +240,15 @@ everyone who holds capacity or hulls. A player who stops playing stops earning b
 paying, so idle wealth erodes and the supply cannot ratchet upward from accumulated
 inactivity.
 
-`verify_market.py` asserts the list is closed — every faucet named in any of the seven
-documents appears in this table, and so does every drain.
+`verify_market.py` asserts the list is closed against the code: the two tables name exactly the
+`FAUCETS` and `DRAINS` of `tools/gameplay_tables.py`, row for row in both directions, and
+`verify_gameplay.py` that each names a rate constant that exists. A faucet or drain cannot enter the game without entering this
+table, and a row cannot outlive its entry. Each credit a turn creates or destroys names its row
+in the turn log (`Data-Templates/turn_log.interface` `flow`), so a live turn's balance is a sum.
+
+The `× 1.25` consumable markup is the one row whose rate is not yet a constant: it is named by
+`FUEL_PER_POWER_CORE` and not applied by §8.3's running cost, which prices fuel at the plain NPC
+ask (`GamePlay/schema_coverage.md` keeps it open).
 
 ## 8. Contracts
 
@@ -398,6 +419,12 @@ A union holds:
   `Combat-logic/battle_log_veritas_vs_cinder.md` narrates happens at all, given that no
   player commands more than five hulls.
 
+**Who runs it.** The founder administers: invites, expels, grants and revokes withdrawal
+rights on union warehouses, and withdraws union credits. Any member deposits, and runs the
+union's slots under their own skills. All of it is `union.action` (phase 13); the record is
+`Data-Templates/union.interface`, whose `withdrawRights` names, per warehouse, the members who
+may empty it.
+
 Unions have no territory, no sovereignty and no standings of their own beyond the average of
 their members'. They are an economic and military pooling device, which is all the brief's
 *"Union (league of many player) Management"* asks for.
@@ -436,7 +463,7 @@ field: `tradeableGoodCount` (1,043).
 * processing is profitable but bounded: refining one unit returns between 1.00 and
   `1 + PROCESS_MARGIN` times its input value after `yieldModifier`, for every lane and every
   archetype
-* every faucet and drain named anywhere in `GamePlay/` appears in the §7 table
+* the §7 tables list exactly `FAUCETS` and `DRAINS`, row for row, in both directions
 * a same-system NPC round trip loses money at **every** level of `skl_trd_trade` —
   `(1 − halfSpread)/(1 + halfSpread) < 1` for margin 0.00 through 0.20
 * market tax is monotonically decreasing as security falls, and zero in `deadspace`

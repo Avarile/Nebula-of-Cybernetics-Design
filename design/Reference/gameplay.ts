@@ -1,9 +1,11 @@
 /**
- * gameplay.ts — the turn, orders, the player, the fleet, and what moving and
- * fighting cost.
+ * gameplay.ts — the turn, orders and their payloads, the player, the fleet, what moving
+ * and fighting cost, and what a fight leaves: engagements, wrecks, the turn log.
  *
  * Derived from: GamePlay/*.md, tools/gameplay_tables.py, fleet_and_weapons.json
- *               -> "progression", Data-Templates/{turn_order,player}.interface
+ *               -> "progression", Data-Templates/{turn_order,player,fleet,wreck,
+ *               engagement,turn_log}.interface. Every runtime type here is held field for
+ *               field to its .interface by Reference/verify_reference.py.
  *
  * Two clocks, and they are not the same thing. A TURN is one resolution of the
  * whole universe: 24 real hours, fourteen ordered phases, everything advancing
@@ -12,14 +14,22 @@
  * combat.ts keeps that file's vocabulary, this file uses the world's.
  */
 
-import type { HardpointId, ModuleId, ModuleSlotId, ResourceId, ShipId, WeaponId } from './common';
-import type { ShipClass } from './ships';
+import type { HardpointId, ModuleId, ModuleSlotId, ResourceId, ResourceLane, ShipId, WeaponId } from './common';
+import type { ComponentName, ShipClass } from './ships';
 import type { SkillId, SkillLevel } from './skills';
-import type { Standings } from './lore';
-import type { StationTypeId } from './stations';
+import type { AuthorityFactionId, HostileFactionId, NpcSquadronId, Standings } from './lore';
+import type { StationDeployPayload, StationId, StationTypeId } from './stations';
+import type { BeltId, PlanetId, SecurityTier, SystemId } from './systems';
+import type { CombatantRef, CraftKind } from './combat';
+import type { ContractArchetypeId, ContractParameters, GoodId, MarketLocation, MarketSide } from './economy';
+import type { FacilityJob, FacilityKind } from './facilities';
 
-/** [+] What a hold or a wreck carries: resources, and station kits (station spec §3.1). */
-export type CargoGoodId = ResourceId | StationTypeId;
+/**
+ * [+] What a hold, a warehouse or a wreck carries: resources, station kits (station spec
+ * §3.1), and parts — weapons and modules (fitting spec §3). A kit or a part is one item and
+ * takes its `buildCost` units in tons; a resource takes one ton a unit (logistics §3).
+ */
+export type CargoGoodId = ResourceId | StationTypeId | WeaponId | ModuleId;
 
 // ---------------------------------------------------------------- the clock
 
@@ -29,8 +39,7 @@ export type TurnLengthHours = 24;
 /** `TURN_LENGTH_HOURS x SP_PER_HOUR_REFERENCE` — derived, never authored. */
 export type SpPerTurn = 43200;
 
-/** Security tiers, from `Systems_Planets/systems_planets_specification.md` §3. */
-export type SecurityTier = 'core' | 'mid' | 'rim' | 'deadspace';
+// `SecurityTier`, `SystemId` and `PlanetId` are the map's (`systems.ts`), imported above.
 
 // ---------------------------------------------------------------- phases
 
@@ -57,9 +66,10 @@ export interface TurnPhase {
 // ---------------------------------------------------------------- orders
 
 export type OrderType =
-  | 'train.queue' | 'mine.assign' | 'facility.job' | 'ship.refit' | 'fleet.move' | 'fleet.convoy'
-  | 'fleet.posture' | 'fleet.target' | 'cargo.transfer' | 'market.order' | 'facility.lease'
-  | 'station.deploy' | 'contract.accept' | 'contract.post' | 'insurance.set' | 'union.action';
+  | 'train.queue' | 'mine.assign' | 'facility.job' | 'ship.refit' | 'fleet.organize' | 'fleet.move'
+  | 'fleet.convoy' | 'fleet.posture' | 'fleet.target' | 'fleet.raid' | 'cargo.transfer'
+  | 'market.order' | 'facility.lease' | 'station.deploy' | 'fleet.restock' | 'contract.accept'
+  | 'contract.post' | 'insurance.set' | 'union.action';
 
 /**
  * `silent` costs −50% signature for −30% speed and cold weapons; it is the
@@ -78,18 +88,194 @@ export interface OrderRejection {
  * failed execution check drops the order whole and records `rejection`; silent
  * failure is not permitted.
  */
-export interface TurnOrder {
+export interface TurnOrder<T extends OrderType = OrderType> {
   orderId: string;
   turnNumber: number;
   playerId: PlayerId;
-  orderType: OrderType;
+  orderType: T;
   phase: PhaseOrdinal;
   /** Monotonic, assigned at intake in receipt order. The primary tie-break. */
   submissionSequence: number;
   /** Repeats until cancelled or invalidated. An absent player keeps producing. */
   standing: boolean;
-  payload: Record<string, unknown>;
+  /** [+] Typed per order type (`OrderPayloads`); `turn_order.interface` pins each shape. */
+  payload: OrderPayloads[T];
   rejection: OrderRejection | null;
+}
+
+/**
+ * [+] Every order type's payload. `Reference/verify_reference.py` holds its keys to
+ * `tools/gameplay_tables.py` `ORDER_TYPES` and each shape to `turn_order.interface`.
+ */
+export interface OrderPayloads {
+  'train.queue': TrainQueuePayload;
+  'mine.assign': MineAssignPayload;
+  'facility.job': FacilityJobPayload;
+  'ship.refit': RefitOrderPayload;
+  'fleet.organize': FleetOrganizePayload;
+  'fleet.move': FleetMovePayload;
+  'fleet.convoy': ConvoyOrderPayload;
+  'fleet.posture': FleetPosturePayload;
+  'fleet.target': FleetTargetPayload;
+  'fleet.raid': FleetRaidPayload;
+  'cargo.transfer': CargoTransferPayload;
+  'market.order': MarketOrderPayload;
+  'facility.lease': FacilityLeasePayload;
+  'station.deploy': StationDeployPayload;
+  'fleet.restock': FleetRestockPayload;
+  'contract.accept': ContractAcceptPayload;
+  'contract.post': ContractPostPayload;
+  'insurance.set': InsuranceSetPayload;
+  'union.action': UnionActionPayload;
+}
+
+/** `train.queue` (phase 2, standing). The whole queue, replacing the last one. */
+export interface TrainQueuePayload {
+  entries: TrainingQueueEntry[];
+}
+
+/** `mine.assign` (phase 3, standing). `beltId: null` stops mining. */
+export interface MineAssignPayload {
+  fleetId: FleetId;
+  beltId: BeltId | null;
+}
+
+/** `facility.job` (phases 3-6, standing). The lease's job; the lease's kind fixes the phase. */
+export interface FacilityJobPayload {
+  leaseId: LeaseId;
+  operation: FacilityJob['operation'];
+  input: string | null;
+  quantity: number;
+}
+
+/**
+ * [+] `fleet.organize` (phase 7, before convoys and movement, not standing). Moves hulls
+ * between two of the player's fleets in one system, neither in transit nor a convoy member;
+ * `toFleetId: null` forms a new fleet there, and a fleet left empty is dissolved. It is how a
+ * docked hull stays at the yard while the rest sails (`logistics_specification.md` §1.2).
+ * Formation Drill bounds the hulls across all the player's fleets, never the number of fleets.
+ */
+export interface FleetOrganizePayload {
+  fromFleetId: FleetId;
+  hullIds: HullInstanceId[];
+  toFleetId: FleetId | null;
+}
+
+/** `fleet.move` (phase 7, standing until arrival). */
+export interface FleetMovePayload {
+  fleetId: FleetId;
+  route: SystemId[];
+}
+
+/** `fleet.posture` (phase 8, standing). */
+export interface FleetPosturePayload {
+  fleetId: FleetId;
+  posture: FleetPosture;
+}
+
+/**
+ * [+] `fleet.raid` (phase 9, not standing): take the contents of another player's warehouse
+ * lease in this `rim` or `deadspace` system, once any engagement there is won (conflict §7).
+ */
+export interface FleetRaidPayload {
+  fleetId: FleetId;
+  warehouseLeaseId: LeaseId;
+}
+
+/** One end of a `cargo.transfer`: a hull's hold, or a warehouse lease at the same location. */
+export type CargoPlace = { fleetId: FleetId; hullId: HullInstanceId } | { leaseId: LeaseId };
+
+/** `cargo.transfer` (phases 7 and 12, not standing). No remote transfer (logistics §3). */
+export interface CargoTransferPayload {
+  from: CargoPlace;
+  to: CargoPlace;
+  goodId: CargoGoodId;
+  quantity: number;
+}
+
+/** What `fleet.restock` tops up: magazines, fuel tanks, hangars. */
+export type RestockItem = 'ammo' | 'fuel' | 'craft';
+
+/**
+ * Where it comes from: a warehouse lease at the same location, the fleet's own holds, or the
+ * system's NPC sell orders (`core` and `mid` only).
+ */
+export type RestockSource = { leaseId: LeaseId } | 'holds' | 'npc';
+
+/**
+ * [+] `fleet.restock` (phase 12, standing). Refills every hull of the fleet: ammunition at
+ * `ROUNDS_PER_ORDNANCE_CHARGE` a charge, fuel at `FUEL_PER_POWER_CORE` a core (logistics §2,
+ * §6), craft at `CRAFT_PROFILES[kind].restockCost` manufactured units each (combat §2.6).
+ */
+export interface FleetRestockPayload {
+  fleetId: FleetId;
+  items: RestockItem[];
+  source: RestockSource;
+}
+
+/** `market.order` (phase 11). Post a standing order, or cancel one. */
+export type MarketOrderPayload =
+  | {
+      action: 'post';
+      systemId: SystemId;
+      goodId: GoodId;
+      side: MarketSide;
+      quantity: number;
+      limitPrice: number;
+      expiresTurn: number | null;
+      location: MarketLocation;
+    }
+  | { action: 'cancel'; orderId: string };
+
+/** `facility.lease` (phase 12). Claim a free planet slot, or release a lease. */
+export type FacilityLeasePayload =
+  | {
+      action: 'claim';
+      holderId: PlayerId | UnionId;
+      planetId: PlanetId;
+      facilityType: FacilityKind;
+      lane: ResourceLane | null;
+    }
+  | { action: 'release'; leaseId: LeaseId };
+
+/** `contract.accept` (phase 13). A haul names the fleet whose holds take the cargo; an escort, the escorting fleet. */
+export interface ContractAcceptPayload {
+  instanceId: string;
+  fleetId: FleetId | null;
+}
+
+/** `contract.post` (phase 13). The reward is held from the poster at posting. */
+export interface ContractPostPayload {
+  contractId: ContractArchetypeId;
+  posterId: PlayerId | UnionId;
+  parameters: ContractParameters;
+  reward: number;
+  expiresTurn: number;
+}
+
+/** `insurance.set` (phase 12, standing). Cover is on or off per hull; there is one level. */
+export interface InsuranceSetPayload {
+  fleetId: FleetId;
+  hullId: HullInstanceId;
+  insured: boolean;
+}
+
+export type UnionActionKind =
+  | 'found' | 'invite' | 'join' | 'leave' | 'expel' | 'deposit' | 'withdraw' | 'grant' | 'revoke';
+
+/**
+ * [+] `union.action` (phase 13). `found` needs `name`; `invite`, `expel`, `grant` and `revoke`
+ * a `playerId`; `deposit` and `withdraw` `credits`; `grant` and `revoke` a union warehouse
+ * `leaseId`. Only the founder may invite, expel, grant, revoke or withdraw credits
+ * (`economy_specification.md` §9).
+ */
+export interface UnionActionPayload {
+  action: UnionActionKind;
+  unionId: UnionId | null;
+  name: string | null;
+  playerId: PlayerId | null;
+  credits: number | null;
+  leaseId: LeaseId | null;
 }
 
 /**
@@ -133,7 +319,7 @@ export interface FleetTargetPayload {
     hullIndex: number;
     targets?: ShipId[];
     withdraw?: true;
-    cover?: { hardpointId: string; coveredShipRef: string }[];
+    cover?: { hardpointId: HardpointId; coveredHullId: HullInstanceId }[];
   }[];
 }
 
@@ -153,9 +339,6 @@ export type PlayerId = string;
 export type FleetId = string;
 export type UnionId = string;
 export type LeaseId = string;
-/** One of the 60 generated systems. */
-export type SystemId = string;
-export type PlanetId = string;
 
 export interface TrainedSkill {
   skillId: SkillId;
@@ -193,8 +376,11 @@ export interface Player {
   /** Ordered. An entry whose prerequisites are unmet is held in place, not dropped. */
   trainingQueue: TrainingQueueEntry[];
   credits: number;
+  /** Any number of fleets; Formation Drill bounds the hulls across all of them. */
   fleetIds: FleetId[];
   leaseIds: LeaseId[];
+  /** [+] Stations the player owns; a union's are on the union. */
+  stationIds: StationId[];
   unionId: UnionId | null;
   /** Authority factionId -> standing (`lore.ts`). No effect in `rim` or `deadspace`. */
   standings: Standings;
@@ -242,21 +428,38 @@ export interface RefitJob {
   startedTurn: number;
 }
 
+/**
+ * One hull a player holds: what it carries from one battle to the next. A battle starts its
+ * `CombatantState` from these values and writes them back at the end of phase 9.
+ */
 export interface FleetHull {
   /** [+] Unique per hull, so insurance, a refit and a wreck can name one hull. */
   hullId: HullInstanceId;
   shipId: ShipId;
+  /** As the last battle left it; a tender's `repairRatePerTurn` restores it (logistics §4). */
   hullHP: number;
+  /** Full again at the start of every engagement: a turn is thousands of rounds of recharge (logistics §4). */
   shieldHP: number;
+  /** [+] Per component. A catastrophic critical leaves 0: destroyed until dock repair (combat §3.6). */
+  componentHP: Record<ComponentName, number>;
+  /** [+] Crew aboard. Casualties the fleet's `medicalCapacity` does not return are lost (combat §3.6). */
+  crew: number;
   /** Drawn down by missile and mine weapons only. */
   ammo: number;
   fuel: number;
   cargo: Partial<Record<CargoGoodId, number>>;
+  /** The whole insurance policy: cover on or off. Premium and payout derive from the bare hull. */
   insured: boolean;
   /** [+] The hull's own fit. Starts as its catalogue default fit. The wreck drops this one. */
   fit: HullFit;
   /** [+] Non-null while the hull is docked for a refit. */
   refit: RefitJob | null;
+  /**
+   * [+] Craft aboard, per kind (combat §2.6): inventory like the magazine, never above
+   * `floor(effective(capacityStat))`. Losses carry over until `fleet.restock`. Every craft
+   * aboard starts an engagement stowed, so no readying queue outlives a battle.
+   */
+  craftAboard: Partial<Record<CraftKind, number>>;
 }
 
 export interface Fleet {
@@ -389,8 +592,10 @@ export interface NpcSquadronHull {
  * as a player's would be. Nothing spawns in `core`.
  */
 export interface NpcSquadron {
-  squadronId: string;
+  squadronId: NpcSquadronId;
   name: string;
+  /** [+] The hostile faction that flies it (`lore_tables.SQUADRON_FACTION`). */
+  factionId: HostileFactionId;
   securityTier: Exclude<SecurityTier, 'core'>;
   hullCount: number;
   hulls: NpcSquadronHull[];
@@ -404,6 +609,8 @@ export interface NpcSquadron {
 /**
  * The NPC military answer to aggression. Must outvalue the richest fleet one
  * player can field — fleet-slot copies of the dearest hull in the catalogue.
+ * No fixed owner: it is the authority of the region an engagement is in, recorded on
+ * the engagement (`EngagementSide.responseFleet.authorityId`).
  */
 export interface ResponseFleet {
   securityTier: 'core' | 'mid';
@@ -415,12 +622,108 @@ export interface ResponseFleet {
 
 export interface Wreck {
   wreckId: string;
-  /** The hull that died; `contents` were rolled on ITS fit, not the catalogue's. */
-  hullId: HullInstanceId;
+  /** The hull that died; `contents` were rolled on ITS fit, not the catalogue's. Null for an NPC hull. */
+  hullId: HullInstanceId | null;
   shipId: ShipId;
+  /** [+] Who lost it: salvage is theirs when their side holds the field (conflict §5.1). Null for NPC. */
+  ownerId: PlayerId | null;
+  /** [+] The engagement it died in. */
+  engagementId: string;
   systemId: SystemId;
   diedTurn: number;
   expiresTurn: number;
-  /** Survived the per-item `SALVAGE_DROP` roll. */
-  contents: { weaponIds: string[]; moduleIds: string[]; cargo: Partial<Record<CargoGoodId, number>> };
+  /** [+] The dead hull's convoy when it died, its owner's fleets aside; none may ever loot it (conflict §5.1). */
+  lootBarredFleetIds: FleetId[];
+  /**
+   * Survived the per-item `SALVAGE_DROP` roll: each fitted part, and each kit or part in the
+   * hold, whole; `SALVAGE_CARGO` of each resource. Craft aboard are never salvage.
+   */
+  contents: { weaponIds: WeaponId[]; moduleIds: ModuleId[]; cargo: Partial<Record<CargoGoodId, number>> };
+}
+
+// ---------------------------------------------------------------- engagements
+
+/** Which phase-8 rule formed it (`conflict_specification.md` §4). */
+export type EngagementCause = 'interdiction' | 'mutualPresence' | 'npcSquadron';
+
+/**
+ * [+] One side. Every convoy member and every union-mate's fleet caught together fight on one
+ * side: a fleet operation needs no order (conflict §4.1).
+ */
+export interface EngagementSide {
+  sideId: string;
+  fleetIds: FleetId[];
+  playerIds: PlayerId[];
+  /** NPC squadron instances on this side. */
+  npcSquadrons: { instanceId: string; squadronId: NpcSquadronId; factionId: HostileFactionId }[];
+  /** The response fleet, when one joins: the authority of the system's region (conflict §2). */
+  responseFleet: { authorityId: AuthorityFactionId; securityTier: 'core' | 'mid'; entersAtRound: number } | null;
+}
+
+/** [+] Who a battle's `CombatantRef` is: the catalogue hull, and the held hull for a player's. */
+export interface EngagementCombatant {
+  ref: CombatantRef;
+  sideId: string;
+  shipId: ShipId;
+  hullId: HullInstanceId | null;
+  fleetId: FleetId | null;
+}
+
+/**
+ * [+] One engagement, formed in phase 8 and fought in phase 9. The battle itself is the
+ * `BattleLog` (`combat.ts`) named by `battleId`; this record says who fought, why, and what
+ * it left: the aggressors flagged and the wrecks. Runtime state, never generated.
+ */
+export interface Engagement {
+  engagementId: string;
+  turnNumber: number;
+  systemId: SystemId;
+  securityTier: SecurityTier;
+  cause: EngagementCause;
+  sides: EngagementSide[];
+  combatants: EngagementCombatant[];
+  /**
+   * Owners whose `engage` or `interdict` posture formed it against a player fleet that held
+   * neither: flagged for `AGGRESSOR_FLAG_TURNS` in `mid`, and the region's authority's
+   * standing with them falls (conflict §4, §6).
+   */
+  aggressorIds: PlayerId[];
+  battleId: string;
+  wreckIds: string[];
+}
+
+// ---------------------------------------------------------------- the turn log
+
+/** What a ledger entry records (`turn_specification.md` §6). */
+export type LedgerKind =
+  | 'sp' | 'job' | 'construction' | 'refit' | 'move' | 'engagement' | 'salvage' | 'raid'
+  | 'fill' | 'upkeep' | 'restock' | 'contract' | 'standing' | 'bounty' | 'insurance' | 'union';
+
+/**
+ * [+] One state change, Tier 1. Every credit that moves names the faucet or drain it is
+ * (`gameplay_tables.FAUCETS` / `DRAINS`), or null when it moves between players.
+ */
+export interface LedgerEntry {
+  phase: PhaseOrdinal;
+  kind: LedgerKind;
+  ownerId: PlayerId | UnionId | null;
+  /** The record that changed: a fleet, hull, lease, order, contract or authority id. */
+  subjectId: string;
+  /** Credits in (positive) or out (negative) for `ownerId`; 0 when none move. */
+  credits: number;
+  flow: string | null;
+  detail: Record<string, unknown>;
+}
+
+/**
+ * [+] The whole turn, Tier 1: enough to reconstruct it, and what determinism is asserted
+ * against (`turn_specification.md` §5-6). Standings keep no ledger of their own: a change is
+ * an entry here of kind `standing`, its subject the authority faction id.
+ */
+export interface TurnLog {
+  turnNumber: number;
+  entries: LedgerEntry[];
+  engagementIds: string[];
+  /** Every order dropped at execution, with its reason (turn §3.2). */
+  rejections: { orderId: string; playerId: PlayerId; phase: PhaseOrdinal; reason: string }[];
 }

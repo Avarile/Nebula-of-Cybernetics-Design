@@ -17,15 +17,12 @@
 import type { ResourceLane } from './common';
 import type { SkillId } from './skills';
 import type { StationId } from './stations';
-import type {
-  LeaseId, PhaseOrdinal, PlanetId, PlayerId, SecurityTier, UnionId,
-} from './gameplay';
+import type { CargoGoodId, LeaseId, PhaseOrdinal, PlayerId, UnionId } from './gameplay';
+import type { PlanetArchetype, PlanetId, SecurityTier } from './systems';
 
 // ---------------------------------------------------------------- vocabulary
 
-export type PlanetArchetype =
-  | 'ferrous_barren' | 'crystalline' | 'gas_giant' | 'volcanic' | 'irradiated'
-  | 'ice' | 'oceanic' | 'shattered' | 'hive_world' | 'forge_world';
+// `PlanetArchetype` is the map's (`systems.ts`), imported above: GamePlay keeps no second copy.
 
 export type FacilityKind =
   | 'extraction' | 'refinery' | 'manufactory' | 'shipyard' | 'warehouse';
@@ -170,19 +167,31 @@ export interface Lease {
   rentPaidThroughTurn: number;
   /** The new-player grant — 20 turns. */
   freeUntilTurn: number | null;
-  /** A standing order; it keeps running while inputs and rent hold out. */
-  currentJob: FacilityJob | null;
+  /**
+   * A standing order; it keeps running while inputs and rent hold out. [+] Named `job`, not
+   * `currentJob`: `current*` is kept for `CombatantState`'s in-battle mirrors of catalogue maxima.
+   */
+  job: FacilityJob | null;
 }
 
 /**
- * Contents of a warehouse lease. A full warehouse HALTS production; it never
- * destroys material. Losing a day's output to an unwatched warehouse is penalty
- * enough when a day is a turn.
+ * [+] Contents of a warehouse lease, planet or orbital. A full warehouse HALTS production;
+ * it never destroys material. Losing a day's output to an unwatched warehouse is penalty
+ * enough when a day is a turn. Units are tons: a resource one a unit, a part or kit its
+ * `buildCost` units (`fitting_specification.md` §3).
  */
 export interface WarehouseContents {
   leaseId: LeaseId;
+  /** `slot capacity x warehouseCapacity` of the leaseholder. */
   capacity: number;
-  stored: Record<string, number>;
+  stored: Partial<Record<CargoGoodId, number>>;
+  /**
+   * Parts held for a refit in progress (fitting §4.2): counted in `stored`, not removable by
+   * the owner. A raid takes them like the rest, and the refit is then held (fitting §4.4).
+   */
+  reserved: Partial<Record<CargoGoodId, number>>;
+  /** The last turn it was raided; `RAID_COOLDOWN` turns bar the next (conflict §7). Null if never. */
+  lastRaidedTurn: number | null;
 }
 
 // ---------------------------------------------------------------- belts

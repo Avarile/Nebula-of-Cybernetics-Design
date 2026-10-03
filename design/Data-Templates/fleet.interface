@@ -1,0 +1,119 @@
+# INTERFACE: Fleet
+# Source of truth : runtime state -- no generated instances exist
+# Spec            : ../GamePlay/logistics_specification.md 1-8, fitting_specification.md 4-5,
+#                   conflict_specification.md 5, Combat-logic/combat_logic_specification.md 2.6, 3.6
+# Reference       : ../Reference/gameplay.ts -> Fleet, FleetHull, HullFit, RefitJob
+#                   (Reference/verify_reference.py holds every shape below to its type)
+#
+# [+] No upstream counterpart; new in full. Until now the fleet existed only in TypeScript.
+#
+# FOUR SHAPES:
+#   fleet       RUNTIME. Hulls under one player, moving and fighting as a unit.
+#   fleetHull   RUNTIME. One hull a player holds -- what it carries between battles.
+#   hullFit     the weapons and modules on one hull (also a ship.refit order's target).
+#   refitJob    a refit in progress; non-null while the hull is docked.
+#
+# THE BUILD SHEET AND THE HULL. A catalogue hull (ship.interface) carries maxima only and
+# no current* value. A held hull's live state is here: hullHP, shieldHP, componentHP,
+# crew, ammo, fuel, cargo and the craft aboard. A battle starts its CombatantState
+# (Reference/combat.ts) from these and writes them back at the end of phase 9; nothing in
+# a battle touches the catalogue. Named plainly -- current* is CombatantState's alone
+# (tools/verify_naming.py).
+#
+# [+] THE FLEET CAP is not a field and not a constant. Formation Drill's fleet_slot unlocks
+#     plus the free first hull bound the hulls across ALL of one player's fleets
+#     (gameplay_specification.md 6.6). A player may hold several fleets and moves hulls
+#     between them with fleet.organize (logistics_specification.md 1.2).
+# [+] fit -- the hull's own fit. It starts as the catalogue default fit; ship.refit changes
+#     it; the wreck drops this one, not the catalogue's (fitting_specification.md 5.3).
+# [+] componentHP, crew -- carried between battles: a catastrophic critical destroys a
+#     component until dock repair, and casualties the fleet's medicalCapacity does not
+#     return are lost (combat 3.6).
+# [+] shieldHP -- carried for the log only: shields are full again at the start of every
+#     engagement, a turn being thousands of rounds of recharge (logistics_specification.md 4).
+# [+] craftAboard -- the HANGAR INVENTORY: craft aboard per kind, the persistent state
+#     combat 2.6 rules ("losses carry over"). At most floor(effective(capacityStat)) of a
+#     kind. Every craft aboard starts an engagement stowed (cold start), so the in-battle
+#     readying queue (combat.ts HangarState.readying) never outlives a battle and is not
+#     stored here. Refilled by fleet.restock; craft are not goods and never salvage.
+# [+] cargo -- resources, station kits and parts (weapons, modules). A kit or part is one
+#     item that takes its buildCost units in tons; a resource one ton a unit.
+# [+] insured -- the whole insurance policy. Cover is per hull and on or off; premium
+#     (INSURANCE_PREMIUM x bareHullPrice) and payout (INSURANCE_PAYOUT of the tier it dies
+#     in) derive from the catalogue, so no separate policy record exists.
+# [+] convoy -- non-null while this fleet follows a convoy leader (logistics 8).
+#
+# INVARIANTS (rules of play; enforced at order validation, not by a static check)
+#   - hulls across all of a player's fleets <= 1 + Formation Drill's reached fleet_slot unlocks
+#   - fit passes tools/fitting.py fit_is_valid for the hull's catalogue entry
+#   - 0 <= hullHP <= effective(hull.maxHP); 0 <= componentHP[c] <= the component's maxHP
+#   - cargo tons <= effective(cargoCapacity); ammo <= effective(ammoCapacity); fuel <= capacities.fuel
+#   - craftAboard[kind] <= floor(effective(aircraftCapacity | droneCapacity))
+#   - a fleet with a docked hull (refit non-null) does not move; a follower is never a leader
+
+{
+  "fleet": {
+    "fleetId": "string, unique",
+    "playerId": "playerId -- the owner",
+    "hulls": "array of fleetHull -- length bounded by Formation Drill across the owner's fleets, never by a constant",
+    "systemId": "systemId -- where it is, or where its transit began",
+    "posture": "enum: engage | avoid | interdict | silent -- standing; a follower takes its leader's",
+    "inTransit": "object or null -- { toSystemId, lyRemaining } while a gate transit accumulates range across turns",
+    "route": "array of systemId -- the standing fleet.move route still to fly",
+    "convoy": "[+] object or null -- { leaderFleetId, escortContractId | null } while it follows a convoy leader"
+  },
+
+  "fleetHull": {
+    "hullId": "[+] hullInstanceId, unique -- names one hull for insurance, a refit, a wreck, a battle",
+    "shipId": "shipId -- its catalogue entry (a tier hull; named ships are never held)",
+    "hullHP": "number -- as the last battle left it; a tender's repairRatePerTurn restores it",
+    "shieldHP": "number -- as the last battle left it; full at the start of the next engagement",
+    "componentHP": "[+] object: componentName -> number; 0 = destroyed until dock repair",
+    "crew": "[+] integer -- crew aboard, <= crew.maxCrew",
+    "ammo": "number -- magazine rounds, drawn by missile and mine weapons only",
+    "fuel": "number -- fuel units",
+    "cargo": "object: resourceId | stationTypeId | weaponId | moduleId -> quantity",
+    "insured": "boolean -- cover on or off; set by insurance.set",
+    "fit": "[+] hullFit -- the hull's own fit",
+    "refit": "[+] refitJob or null -- non-null while docked for a refit",
+    "craftAboard": "[+] object: fighter | drone -> integer -- the hangar inventory"
+  },
+
+  "hullFit": {
+    "weapons": "object: hardpointId -> weaponId or null -- every hardpoint of the catalogue hull",
+    "modules": "object: moduleSlotId -> moduleId or null -- every slot of the catalogue hull"
+  },
+
+  "refitJob": {
+    "site": "{ leaseId } (a shipyard lease, any siteType) | { npcYardPlanetId }",
+    "targetFit": "hullFit -- installed in phase 6 of the turn progress reaches labour",
+    "partsLeaseId": "leaseId or null -- the warehouse the parts are reserved in",
+    "labour": "number -- REFIT_LABOUR_SHARE x the buildCost units of every item moved",
+    "progress": "number -- accrued at the site's rate each phase 6",
+    "startedTurn": "integer"
+  }
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# fleet:
+# { "fleetId": "flt_0044", "playerId": "ply_0031", "systemId": "sys_014", "posture": "avoid",
+#   "inTransit": null, "route": ["sys_014", "sys_015"], "convoy": null,
+#   "hulls": [
+#     { "hullId": "hul_0102", "shipId": "ship_destroyer_t2", "hullHP": 611.0, "shieldHP": 205.0,
+#       "componentHP": { "bridge": 146.0, "engines": 0.0, "weaponSystems": 195.0,
+#                        "shieldGenerator": 175.0, "sensorArray": 117.0, "lifeSupport": 61.0 },
+#       "crew": 61, "ammo": 280, "fuel": 1610.0,
+#       "cargo": {}, "insured": true,
+#       "fit": { "weapons": { "hp_1": "wpn_776", "hp_2": "wpn_776", "hp_3": "wpn_394", "hp_4": "wpn_394" },
+#                "modules": { "ms_1": "mod_ion_drive_hp", "ms_2": "mod_search_radar_mk2",
+#                             "ms_3": "mod_armour_plating_mk2" } },
+#       "refit": null, "craftAboard": {} } ] }
+#   -- a Destroyer Tier 2 (974 hull, 618 shields, 63 crew in the catalogue) home from a
+#   fight: engines destroyed by a catastrophic critical until dock repair, two crew lost, life
+#   support hit; its shields read 205 now and are full again at its next engagement.
+#
+# fleetHull, a carrier after a strike:
+# { "hullId": "hul_0207", "shipId": "ship_escort_carrier_t1", "...": "...",
+#   "craftAboard": { "fighter": 19 } }
+#   -- 26 carried, 7 lost; fleet.restock at 1.6 manufactured units each refills it.

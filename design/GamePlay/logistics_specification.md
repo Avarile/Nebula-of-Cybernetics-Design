@@ -26,6 +26,12 @@ so `skl_nav_navigation` at +1 %/level is already inside it and is not applied a 
 There is no separate navigation term in this formula, and `verify_gameplay.py` checks that
 no document introduces one.
 
+**Running silent costs range too.** A fleet whose posture is `silent` when phase 7 runs — the
+posture it held from the last phase 8, since posture is standing — moves at
+`RUNNING_SILENT_SPEED_FACTOR` (0.70) of its `lyPerTurn`. That is the "−30 % speed" the posture
+has always cited (conflict §4; §5 below), read from the same combat constant that cuts a silent
+ship's speed inside a battle; slipping past a held gate unseen is paid for on the way there.
+
 At tier 3, with no skills:
 
 | hull | topSpeed | ly/turn | gates/turn at 4.2 ly |
@@ -63,6 +69,21 @@ worth holding (§5).
 This rule exists so that a monitor at 5.4 ly/turn can still cross a 6 ly gate. Without it a
 slow hull on a long gate would be permanently immobile, and the map spec authors gate
 distances without knowing what will try to cross them.
+
+### 1.2 Splitting and merging fleets
+
+A player may hold several fleets. Formation Drill's `fleet_slot` unlocks bound the **hulls**
+across all of them, never the number of fleets (`gameplay_specification.md` §6.6), so splitting
+a fleet adds no hull and merging two frees no slot.
+
+`fleet.organize` (phase 7, not standing) moves named hulls from one of the player's fleets to
+another, or to a new fleet, in one system. Both fleets must be the player's, in the same
+system, not in transit and not in a convoy; a fleet left empty is dissolved. It resolves first
+in phase 7, before convoy links and movement, so the rest of a fleet can sail the same turn.
+
+This is what keeps a refit from holding a whole fleet: a docked hull (`fitting_specification.md`
+§4.4) is split off into a fleet of its own at the yard, and the others move on. It is also how a
+hauler joins its escort, or a mining fleet sheds the hull that has filled its hold.
 
 ## 2. Fuel
 
@@ -126,6 +147,12 @@ Cargo capacity is `capacities.cargo`, in tons — the `cargoCapacity` stat, rais
 modules through the combat spec's stacking rule (§1.3 there). At `unitMass: 1.0` for every
 resource (`Resources/resource_tiers_specification.md`) one ton is one unit.
 
+A hold carries resources, station kits and **parts** — weapons and modules, the goods a refit
+installs (`fitting_specification.md` §3). A kit or a part is one item and weighs its `buildCost`
+units in tons, as it takes that many units of warehouse space; a Belt Armour Mk.1 is 20 t. Hulls
+are never cargo: a hull bought or built joins a fleet. The hold is `FleetHull.cargo`
+(`Data-Templates/fleet.interface`).
+
 **Six of the twenty-six categories can carry anything at all.** At tier 3:
 
 | hull | cargo |
@@ -163,6 +190,11 @@ hulls that should have them:
 * **`repairRatePerTurn`** — a repair ship / tender restores hull HP per turn to hulls at the
   same location, outside combat. Without one, a damaged fleet repairs only at a facility it
   or its union leases.
+
+What a hull carries between battles is its `FleetHull` record (`Data-Templates/fleet.interface`):
+hull HP, each component's HP, crew, ammunition, fuel, cargo and the craft aboard. Shields need
+no repair — they are full again at the start of every engagement, a turn being thousands of
+rounds of recharge.
 
 Both are drawn from the same fleet slots as anything else, so a five-hull fleet that brings
 an oiler and a tender brings three fighting hulls.
@@ -207,6 +239,19 @@ ROUNDS_PER_ORDNANCE_CHARGE = 100    rounds restocked per res_mfg_ordnance_charge
 
 Restocking happens in phase 12, from a warehouse at the same location or by purchase. A hull
 whose magazine cannot cover a launcher's volley does not fire that weapon.
+
+**Craft are restocked the same way.** The fighters and drones aboard a carrier are inventory
+like its magazine (`Combat-logic/combat_logic_specification.md` §2.6): losses carry over until
+they are replaced in phase 12, at a fixed cost per craft in manufactured units —
+`CRAFT_PROFILES` `restockCost`, 1.6 a fighter and 1.0 a drone. Craft are not goods and have no
+market price; "by purchase" means buying those manufactured units at the system's NPC ask.
+
+**The order.** All three are one standing order, `fleet.restock` (phase 12): a fleet, what to
+top up — `ammo`, `fuel`, `craft` — and one source, a warehouse lease at the same location, the
+fleet's own holds, or the system's NPC sell orders (`core` and `mid` only). Every hull of the
+fleet is filled in fleet order until the source runs out; a shortfall is logged, never an
+error. Fuel follows the same rule at `FUEL_PER_POWER_CORE` a core, which is how a stranded
+fleet's own cargo refuels it (§2.1).
 
 Magazines are deep relative to a battle. A tier-3 destroyer escort carries 468 rounds against
 10 rounds per volley — 47 volleys, where an engagement caps at 25 rounds. So ammunition is a
@@ -337,3 +382,4 @@ other (`conflict_specification.md` §2) and a deserter under its contract
   rule in this document — the `gameplay_specification.md` §6.1 "no dead skill" check
 * no formula in this document applies a navigation multiplier outside
   `slowestEffectiveTopSpeed`
+* §1's silent-range factor is `RUNNING_SILENT_SPEED_FACTOR` as `tools/combat_tables.py` states it

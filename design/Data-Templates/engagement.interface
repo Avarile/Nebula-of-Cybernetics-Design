@@ -1,0 +1,211 @@
+# INTERFACE: Engagement
+# Source of truth : runtime state -- no generated instances exist
+# Spec            : ../GamePlay/conflict_specification.md 2-6, turn_specification.md 6,
+#                   ../Combat-logic/combat_logic_specification.md 4.1 (Tier 1 log), 2.6
+# Reference       : ../Reference/gameplay.ts -> Engagement, EngagementSide, EngagementCombatant
+#                   ../Reference/combat.ts   -> BattleLog, RoundLog, BattleResult, FireEvent,
+#                                               StateEvent, CraftWaveEvent, CraftAttackEvent
+#                   (Reference/verify_reference.py holds every shape below to its type)
+#
+# [+] No upstream counterpart for the engagement; new in full. The battle log extends
+#     data-template.json -> combatResolution.exampleCombatTurnLog, as combat spec 4.1 does.
+#
+# ONE ENGAGEMENT, formed in phase 8 and fought to conclusion in phase 9. The engagement
+# record says who fought and why, and what it left: the aggressors flagged, the wrecks.
+# The battle itself is the Tier 1 battle log -- every RNG draw stored, so the narrative
+# (Tier 2) is a rendering of it and the battle replays from it.
+#
+# SHAPES:
+#   engagement        RUNTIME. Who, where, why, and what it left.
+#   side              one side of it -- a fleet operation, NPC squadrons, a response fleet.
+#   combatant         [+] who each CombatantRef is.
+#   battleLog         the Tier 1 log of the battle (combat spec 4.1).
+#   roundLog          one round of it.
+#   battleResult      how it ended.
+#   fireEvent         one weapon's fire -- missiles and direct fire.
+#   stateEvent        kills, retreats, locks, criticals, declarations, flight operations.
+#   craftWaveEvent    [+] one strike-craft wave meeting interception (combat 2.6, phase 7).
+#   craftAttackEvent  [+] one surviving craft's attack (combat 2.6, phase 8).
+#
+# [+] COMBATANT REFS. Two Corvette T1s of one squadron share a catalogue shipId, so every
+#     field naming a combatant -- attacker, target, subject, roster entry -- carries a
+#     CombatantRef unique within the engagement: a player hull's hullInstanceId, or
+#     <npcSquadronInstance>#<n>. The combatant shape maps each ref to its ship, hull and fleet,
+#     which is how phase 9 writes damage back to fleet.interface fleetHull.
+# [+] craftWaveEvent / craftAttackEvent -- fireEvent is weapon fire only and a craft has no
+#     weapon. Each stores its rolls (every interception attempt's roll; the attack's roll),
+#     as fireEvent does.
+# [+] side.responseFleet.authorityId -- a response fleet has no fixed owner; it is the
+#     authority of the system's region, recorded here (lore_tables.REGION_AUTHORITY).
+# [+] FLEET OPERATIONS need no order: every convoy member and every union-mate's fleet caught
+#     in one engagement fight on one side (conflict_specification.md 4.1).
+# [+] aggressorIds -- the owners whose engage or interdict posture formed the engagement
+#     against a player fleet holding neither: flagged AGGRESSOR_FLAG_TURNS in mid, and their
+#     standing with the region's authority falls in phase 13 (conflict 2, 6). Empty in rim,
+#     deadspace, and for fights with NPCs only.
+#
+# Mine fields and airborne squadrons are battle state (combat.ts MineDeployment, Squadron):
+# every field expires and every airborne craft is recovered or lost when the battle ends
+# (combat 2.6, 3.4, R7), so neither has a record of its own.
+#
+# INVARIANTS (rules of play)
+#   - every CombatantRef in the battle log appears once in combatants
+#   - a combatant with a hullId belongs to a fleet in its side's fleetIds
+#   - no two sides share a player; convoy members share a side
+#   - cause is the phase-8 rule that formed it; wreckIds name wreck.interface records
+
+{
+  "engagement": {
+    "engagementId": "string, unique",
+    "turnNumber": "integer",
+    "systemId": "systemId",
+    "securityTier": "enum: core | mid | rim | deadspace -- legality and response read it",
+    "cause": "enum: interdiction | mutualPresence | npcSquadron",
+    "sides": "array of side",
+    "combatants": "[+] array of combatant",
+    "aggressorIds": "[+] array of playerId -- flagged in mid; standing falls",
+    "battleId": "string -- the battleLog",
+    "wreckIds": "array of wreckId"
+  },
+
+  "side": {
+    "sideId": "string -- the key battleLog.rosters and battleResult use",
+    "fleetIds": "array of fleetId -- every player fleet on this side",
+    "playerIds": "array of playerId",
+    "npcSquadrons": "array of { instanceId, squadronId, factionId }",
+    "responseFleet": "[+] object or null -- { authorityId, securityTier, entersAtRound }"
+  },
+
+  "combatant": {
+    "ref": "combatantRef -- unique in the engagement",
+    "sideId": "string",
+    "shipId": "shipId -- the catalogue build sheet",
+    "hullId": "hullInstanceId or null -- the held hull; null for an NPC hull",
+    "fleetId": "fleetId or null -- null for an NPC hull"
+  },
+
+  "battleLog": {
+    "battleId": "string",
+    "rosters": "object: sideId -> array of combatantRef",
+    "rngSeed": "integer -- H(turnNumber, engagementId), turn_specification.md 5",
+    "granularity": "enum: perShot | perGroupPerPhase -- combat 1.2",
+    "rounds": "array of roundLog",
+    "result": "battleResult"
+  },
+
+  "roundLog": {
+    "round": "integer",
+    "initiativeOrder": "array of combatantRef",
+    "events": "array of fireEvent | stateEvent | craftWaveEvent | craftAttackEvent"
+  },
+
+  "battleResult": {
+    "victor": "sideId or null",
+    "victoryCondition": "object -- { kind: annihilation } | { kind: objective, description, rounds? }",
+    "losses": "object: sideId -> array of combatantRef",
+    "survivors": "object: sideId -> array of combatantRef",
+    "roundsElapsed": "integer <= ROUND_CAP"
+  },
+
+  "fireEvent": {
+    "round": "integer",
+    "phase": "enum: directFireResolution | missileResolution",
+    "attacker": "combatantRef",
+    "target": "combatantRef",
+    "weaponUsed": "weaponId",
+    "weaponClass": "enum: kinetic | energy | missile | mine | melee",
+    "volleySize": "integer",
+    "ammoRemaining": "integer or 'infinite'",
+    "targetedComponent": "componentName or null",
+    "distance": "number",
+    "rangeBand": "enum: pointBlank | close | medium | long | extreme",
+    "locked": "boolean",
+    "lockQuality": "number 0.5-1.0",
+    "interception": "object or null -- { attempts, intercepted, survived }, missiles only",
+    "hitChanceCalculated": "number 0.05-0.95",
+    "rollResult": "number -- hit when rollResult <= hitChanceCalculated",
+    "outcome": "enum: hit | miss | intercepted | failedToArm | outOfRange",
+    "rawDamage": "number",
+    "damageToShields": "number",
+    "damageToHull": "number",
+    "shieldsBefore": "number",
+    "shieldsAfter": "number",
+    "hullBefore": "number",
+    "hullAfter": "number",
+    "criticalRolled": "boolean",
+    "critical": "object or null -- the critical resolution, d100 and resist roll included"
+  },
+
+  "stateEvent": {
+    "round": "integer",
+    "phase": "enum: a combat round phase",
+    "subject": "combatantRef",
+    "kind": "enum: destroyed | retreated | shieldsCollapsed | componentDisabled | componentDestroyed | lockAcquired | lockLost | stateDeclared | shieldsRecharged | squadronLaunched | squadronRecovered | craftLost",
+    "detail": "string",
+    "cause": "enum or absent -- hullDestroyed | crewLoss, on destroyed"
+  },
+
+  "craftWaveEvent": {
+    "round": "integer",
+    "phase": "enum: missileResolution",
+    "event": "'craftWave'",
+    "target": "combatantRef -- the ship the wave attacks",
+    "squadronIds": "array of string",
+    "craftIn": "integer",
+    "attempts": "array of interception attempts -- pool, cover or escort, each with its roll",
+    "downed": "integer -- area_denial's extra kills included",
+    "survived": "integer"
+  },
+
+  "craftAttackEvent": {
+    "round": "integer",
+    "phase": "enum: directFireResolution",
+    "event": "'craftAttack'",
+    "squadronId": "string",
+    "craftKind": "enum: fighter | drone",
+    "carrier": "combatantRef -- the carrier, or a drone's controlling ship",
+    "target": "combatantRef",
+    "targetedComponent": "componentName or null",
+    "hitChanceCalculated": "number 0.05-0.95",
+    "rollResult": "number",
+    "outcome": "enum: hit | miss",
+    "rawDamage": "number",
+    "damageToShields": "number",
+    "damageToHull": "number",
+    "shieldsBefore": "number",
+    "shieldsAfter": "number",
+    "hullBefore": "number",
+    "hullAfter": "number",
+    "critical": "object or null"
+  }
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# engagement:
+# { "engagementId": "eng_00412", "turnNumber": 91, "systemId": "sys_056",
+#   "securityTier": "deadspace", "cause": "npcSquadron",
+#   "sides": [
+#     { "sideId": "A", "fleetIds": ["flt_0090", "flt_0044"], "playerIds": ["ply_0052", "ply_0031"],
+#       "npcSquadrons": [], "responseFleet": null },
+#     { "sideId": "B", "fleetIds": [], "playerIds": [],
+#       "npcSquadrons": [ { "instanceId": "nsq_7731", "squadronId": "npc_dead_warband",
+#                           "factionId": "fac_gravewatch_warbands" } ],
+#       "responseFleet": null } ],
+#   "combatants": [
+#     { "ref": "hul_0311", "sideId": "A", "shipId": "ship_attack_transport_t3",
+#       "hullId": "hul_0311", "fleetId": "flt_0090" },
+#     { "ref": "nsq_7731#1", "sideId": "B", "shipId": "ship_heavy_cruiser_t3",
+#       "hullId": null, "fleetId": null } ],
+#   "aggressorIds": [], "battleId": "btl_00412", "wreckIds": ["wrk_01133"] }
+#   -- a convoy (a union hauler and its contracted escort) caught by a Gravewatch warband in
+#   The Pale Hollow: one side, no aggressor, one transport lost (wreck.interface example).
+#
+# craftWaveEvent:
+# { "round": 5, "phase": "missileResolution", "event": "craftWave", "target": "hul_0102",
+#   "squadronIds": ["sqd_3", "sqd_4"], "craftIn": 12,
+#   "attempts": [ { "pdWeaponId": "wpn_007", "source": "pool", "fromShipId": "hul_0102",
+#                   "targetKind": "craft", "targetIndex": 0, "trackingFactor": 1,
+#                   "interceptChanceDelta": 0.10, "interceptChance": 0.54, "roll": 0.31,
+#                   "intercepted": true } ],
+#   "downed": 5, "survived": 7 }

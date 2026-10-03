@@ -35,14 +35,14 @@ output.
 data-template.json           original schema design; the upstream reference
 fleet_and_weapons.json       the whole dataset in one file (see "Keys" below)
 
-Data-Templates/              the schema each generated file conforms to
-  ship.interface
-  weapon.interface
-  module.interface
-  resource.interface
-  skill.interface
-  system.interface
-  planet.interface
+Data-Templates/              the schema each generated file or runtime record conforms to
+  ship.interface  weapon.interface  module.interface  resource.interface
+  skill.interface  system.interface  planet.interface          the catalogues
+  facility.interface  station.interface  market.interface
+  contract.interface  npc_squadron.interface                     generated rows (+ their runtime twins)
+  player.interface  fleet.interface  union.interface  warehouse.interface
+  turn_order.interface  engagement.interface  wreck.interface
+  turn_log.interface                                             runtime records only
 
 Ships/<Category>/            one folder per ship category, prose-named
   tier-1/  tier-2/  tier-3/  a hull is a DIRECTORY, not a file
@@ -85,6 +85,7 @@ GamePlay/                    the rules layer: how a player spends a day
   fitting_specification.md   the fitting rules, parts as goods, the refit order and its cost
   station_specification.md   orbital stations: the kit, hosted slots, upkeep, where they anchor
   lore_specification.md      the setting, factions, region authorities, manufacturer origins
+  schema_coverage.md         every section of the specs -> the schemas it needs and the checks that hold it; the gaps
   Progression/ Market/ Facilities/ Stations/ NPC/     the generated half
 
 tools/                       generators, verifiers, and the tables that drive them
@@ -461,16 +462,30 @@ the map generator:
 
 * **Authored and generated** — the SP ladder in turns, reference prices, facility slot
   counts and rent, station types, NPC squadrons and contract archetypes. Pure functions of a table.
-* **Runtime, schema-pinned only** — players, fleets, leases, stations, warehouse contents, market
-  orders, contracts in flight, wrecks. Created by play; typed in `Reference/gameplay.ts`
-  and `Data-Templates/`, never generated.
+* **Runtime, schema-pinned only** — players, fleets and their hulls, unions, leases, warehouse
+  contents, stations, market orders, contracts in flight, orders and their payloads,
+  engagements and their battle logs, wrecks, turn logs. Created by play, never generated. Each
+  has a `[+]` `.interface` in `Data-Templates/` and a twin type in `Reference/`, and
+  `Reference/verify_reference.py` holds the two to the same fields, shape by shape — 12 schemas
+  with a runtime shape, 29 shapes, and all 19 order payloads.
+
+**Does every mechanic have its data?** `GamePlay/schema_coverage.md` answers it section by
+section: one row per numbered section of the ten GamePlay documents and the combat spec, naming
+the schemas the mechanic reads or writes and the checks that hold it. `tools/verify_coverage.py`
+derives the row list from the specs' headings, so a new section without a row fails, as does a
+cited schema, verifier or check label that does not exist. Seven gaps remain (mining equipment,
+dock repair, the ammunition model, NPC volume rates, the consumable markup, the supply contract's
+scale, the new player's seed credits), and the open design questions are listed beside them.
 
 The line runs through the hull too. A generated hull is a build sheet: it carries
 `hull.maxHP`, `shields.maxHP`, `crew.maxCrew`, `power.maxPower` and each component's
 `maxHP`, and no `current*` value at all. What a battle changes lives in `CombatantState`
 (`Reference/combat.ts`); what a hull carries from one battle to the next — its damage, and
-its own fit — lives in its fleet entry, `FleetHull` (`Reference/gameplay.ts`). `verify_naming.py` fails on any
-`current*` key in the generated data.
+its own fit, its crew and the craft aboard — lives in its fleet entry, `FleetHull`
+(`Data-Templates/fleet.interface`, `Reference/gameplay.ts`). `verify_naming.py` fails on any
+`current*` key in the generated data, and on any `current*` field in a runtime schema: a
+record's live value is named plainly (`hullHP`, `Lease.job`), and `current*` stays
+`CombatantState`'s.
 
 **Clock words.** A rate or count that runs inside a battle says **round** —
 `shotsPerRound`, `cooldownRounds`, `rechargeRatePerRound`, `power.regenPerRound`,
@@ -558,16 +573,17 @@ python3 tools/verify_ships.py         # 39 checks
 python3 tools/verify_skills.py        # 46 checks
 python3 tools/verify_systems.py       # 54 checks
 python3 tools/verify_progression.py   # 22 checks
-python3 tools/verify_market.py        # 23 checks
+python3 tools/verify_market.py        # 25 checks -- incl. the economy 7 faucet/drain tables vs. FAUCETS/DRAINS, row for row
 python3 tools/verify_facilities.py    # 26 checks
-python3 tools/verify_npc.py           # 28 checks
-python3 tools/verify_gameplay.py      # 59 checks -- the cross-cutting invariants, order lists, haul pricing; runs last
+python3 tools/verify_npc.py           # 29 checks -- incl. every squadron's factionId
+python3 tools/verify_gameplay.py      # 61 checks -- the cross-cutting invariants, order lists, haul pricing; runs last
 python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
-python3 tools/verify_combat.py        # 62 checks -- combat rulings, stat hooks, lock range, movement, strike craft and cover vs. the catalogues and logs
-python3 tools/verify_naming.py        # 8 checks -- no current* in the catalogue, no stray 'turn' name, stat clocks match their rules
+python3 tools/verify_combat.py        # 63 checks -- combat rulings, stat hooks, lock range, movement, strike craft, cover, granularity, the v2 worked example
+python3 tools/verify_naming.py        # 9 checks -- no current* in the catalogue or a runtime schema, no stray 'turn' name, stat clocks match their rules
 python3 tools/verify_fitting.py       # 17 checks -- the fitting rules vs. every default fit, no dead good, refit cost, no free money
 python3 tools/verify_stations.py      # 28 checks -- station capacity vs. the map, lossy refining, yard tonnage, upkeep vs. rent
-python3 Reference/verify_reference.py # 67 checks -- TypeScript interface vs. the data
+python3 tools/verify_coverage.py      # 9 checks -- every spec section has a row in GamePlay/schema_coverage.md; every cited schema, check and gap exists
+python3 Reference/verify_reference.py # 103 checks -- TypeScript interface vs. the data, and every runtime .interface vs. its TS twin
 ```
 
 All exit non-zero on failure. Between them they enforce: unique ids and names; field sets
@@ -636,6 +652,9 @@ Vanguard.
 | the SP curve and rank multiplier | `SP_BASE` / `SP_K` in `tools/skill_tables.py` |
 | the stat vocabulary modules and skills share | `tools/stat_vocabulary.py` |
 | a name allowed to say turn (with its reason) | `TURN_ALLOWLIST` in `tools/verify_naming.py` |
+| a runtime record (fleet, union, wreck, engagement, turn log ...) | its `Data-Templates/*.interface` and its `Reference/` type together; `RUNTIME_SHAPES` in `Reference/verify_reference.py` for a new one |
+| an order type | `ORDER_TYPES` in `tools/gameplay_tables.py`, the turn spec §3 table, `turn_order.interface` (list and payload), `Reference/gameplay.ts` `OrderType` and `OrderPayloads` |
+| a new spec section | its row in `GamePlay/schema_coverage.md` (`tools/verify_coverage.py --missing` prints the stub) |
 
 Then re-run the pipeline. The archetype and family tables inside `weapon.interface` and
 `module.interface` are emitted by the generators, so documentation and data cannot drift.

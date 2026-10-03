@@ -179,36 +179,43 @@
   ],
 
   "workedExample": {
-    "scenario": "Destroyer 'Whisperfang' (fast, evasionRating 0.24, no signature tricks active) is targeted by Battleship 'Leviathan Crown' at long range using a large Mass Driver (tracking 20), and separately by a Cruise Missile Bay.",
+    "scenario": "Destroyer 'Whisperfang' (topSpeed 309, evasionRating 0.23, shields up, no signature tricks) is targeted by Battleship 'Leviathan Crown' (gunnerySkill 74) at 1,900 with three of the weapons it actually carries: a low-tracking mass driver, an ion cannon, and a cruise missile bay.",
+    "catalogueBacked": "Every hull and weapon figure is the catalogue's (the named ships and wpn_064, wpn_155, wpn_200); tools/verify_combat.py recomputes each shot's finalHitChance from them. The first draft used an invented ion cannon and a 350/0.24 Whisperfang; its conclusion -- the capital gun at the 0.05 floor -- does not survive the real numbers.",
+    "assumptions": "Leviathan Crown's Weaponry skills at level 5 (accuracy multiplier 1.00); neither ship's module effects counted (combat_logic_specification.md 1.3's worked example shows what they add); the lock held long enough for lockQuality 1.0.",
+    "attacker": "Leviathan Crown",
+    "target": "Whisperfang",
+    "distance": 1900,
+    "lockNote": "R9: Leviathan Crown (detectionRange 1150) holds Whisperfang (signature 53 x1.10 shields) out to ~2,204, so the lock at 1,900 holds.",
     "massDriverShot": {
-      "distance": 2600,
-      "weaponOptimal": 1200,
-      "weaponMaximum": 2200,
-      "note": "distance EXCEEDS weapon.range.maximum (2200) -> cannot fire. Illustrates why battleships need to close range or out-range with capital weapons instead.",
-      "result": "shot not taken"
+      "weaponId": "wpn_064",
+      "weapon": "Voss Mass Driver Mk.1 (medium; base 0.62, tracking 8, optimal 1,508, maximum 3,016)",
+      "rangeMultiplier": "medium band: 1.00 - 0.35 * (1900 - 1508) / 754 = 0.818",
+      "speedEvasionBonus": "R6: (309 - 8 * 5) / 1000 = 0.269",
+      "effectiveEvasion": "0.23 + 0.269 = 0.499",
+      "baseChance": "0.62 * 1.0 + 74 / 200 = 0.99",
+      "finalHitChance": "clamp(0.99 * 0.818 * 1.0 - 0.499, 0.05, 0.95) = 0.31",
+      "interpretation": "Tracking 8 covers 40 speed of the destroyer's 309; speed evasion takes 0.27 off a gun that would otherwise hit four times in five."
     },
-    "capitalIonCannonShot": {
-      "distance": 1900,
-      "weaponOptimal": 1500,
-      "weaponMaximum": 2900,
-      "rangeMultiplier": "~0.75 (medium-long band)",
-      "locked": true,
-      "lockNote": "R9: Leviathan Crown (detectionRange 1150) holds Whisperfang (signature 53 x1.10 shields) out to ~2,204, so the lock at 1,900 holds.",
-      "lockQuality": 1.0,
-      "speedEvasionBonus": "R6: targetSpeed 350 vs tracking 12 -> (350 - 12 * 5) / 1000 = 0.29 (under the 0.35 cap)",
-      "effectiveEvasion": "0.24 + 0.29 = 0.53",
-      "baseChance": 0.55,
-      "finalHitChance": "clamp(0.55 * 0.75 * 1.0 - 0.53, 0.05, 0.95) = clamp(-0.1175, 0.05, 0.95) = 0.05",
-      "interpretation": "A fast destroyer at range is extremely hard for a low-tracking capital gun to hit - floor accuracy only. The battleship should use its ion cannon's EMP effect via a lucky hit or rely on missiles/PD-supported allies instead."
+    "ionCannonShot": {
+      "weaponId": "wpn_155",
+      "weapon": "Ceridan Ion Cannon Mk.4 (large; base 0.81, tracking 26, optimal 1,815, maximum 3,358; emp_disable)",
+      "rangeMultiplier": "medium band: 1.00 - 0.35 * (1900 - 1815) / 907.5 = 0.967",
+      "speedEvasionBonus": "R6: (309 - 26 * 5) / 1000 = 0.179",
+      "effectiveEvasion": "0.23 + 0.179 = 0.409",
+      "baseChance": "0.81 * 1.0 + 74 / 200 = 1.18",
+      "finalHitChance": "clamp(1.18 * 0.967 * 1.0 - 0.409, 0.05, 0.95) = 0.73",
+      "interpretation": "Same battleship, same target, better tracking: 0.73. Its emp_disable hit then cuts the destroyer to 0.70 of its top speed for 2 rounds (spec 3.4), which takes its speed evasion away from the mass driver too."
     },
     "cruiseMissileShot": {
-      "distance": 1900,
-      "baseChance": "0.61 * 1.25 = 0.7625",
-      "evasionApplied": "0.53 * (1 - 0.5) = 0.265",
-      "rangeMultiplier": "~0.85 (within medium band for missile's longer optimal)",
-      "finalHitChancePreIntercept": "clamp(0.7625*0.85*1.0 - 0.265, 0.05, 0.95) = ~0.38",
-      "interceptionStep": "Whisperfang has 2 PD Laser Turrets (small), each shotsPerRound ~3-4, easily covering the 1-2 missiles in this volley -> high chance the missile(s) never reach the hit roll at all",
-      "interpretation": "Missiles are the battleship's actual answer to a fast, evasive target - but only if the destroyer's PD gets overwhelmed or destroyed first. This is why saturation (multiple missile bays firing together) is the standard doctrine against fast escorts."
+      "weaponId": "wpn_200",
+      "weapon": "Vanguard Cruise Missile Bay Mk.6 (capital; base 0.71, tracking 16, optimal 6,968)",
+      "rangeMultiplier": "close band: 1,900 is 27% of optimal -> 1.00; above the 10% arming threshold",
+      "speedEvasionBonus": "R6: (309 - 16 * 5) / 1000 = 0.229",
+      "evasionApplied": "(0.23 + 0.229) * (1 - 0.5) = 0.2295",
+      "baseChance": "0.71 * 1.25 + 74 / 200 = 1.2575",
+      "finalHitChance": "clamp(1.2575 * 1.0 * 1.0 - 0.2295, 0.05, 0.95) = 0.95",
+      "interceptionStep": "Whisperfang carries no pool weapon (two coilguns and two mine dispensers), so nothing intercepts the volley: the missile reaches the hit roll at the 0.95 ceiling.",
+      "interpretation": "A destroyer with no point defence is acutely vulnerable to missiles (PointDefenceReadout.undefendedAgainstMissiles). Its defence against a capital ship is not its speed but its signature: running silent, it is outside this lock entirely."
     }
   }
 }

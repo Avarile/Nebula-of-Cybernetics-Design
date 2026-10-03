@@ -1,0 +1,49 @@
+# INTERFACE: Warehouse
+# Source of truth : runtime state -- no generated instances exist
+# Spec            : ../GamePlay/industry_specification.md 5, fitting_specification.md 3-4,
+#                   conflict_specification.md 7, station_specification.md 4, 6
+# Reference       : ../Reference/facilities.ts -> WarehouseContents (Reference/verify_reference.py)
+#
+# [+] No upstream counterpart; new in full. Until now warehouse contents existed only in
+#     TypeScript.
+#
+# The contents of ONE warehouse lease (facility.interface lease with facilityType
+# "warehouse"), on a planet or in an orbital station. Material sits in a warehouse or it
+# does not exist. A full warehouse HALTS production; it never destroys material.
+#
+# UNITS ARE TONS. A resource takes one unit a unit (unitMass 1.0); a part (weapon, module)
+# or a station kit takes its buildCost units (fitting_specification.md 3,
+# station_specification.md 3.1). Hulls are never stored: a finished hull joins a fleet.
+#
+# [+] reserved -- parts held for a refit in progress (fitting 4.2). Counted in stored, not
+#     removable by the owner; a raid takes them like the rest and the refit is then held
+#     until they are replaced (fitting 4.4).
+# [+] lastRaidedTurn -- RAID_COOLDOWN turns per warehouse (conflict 7): a fleet.raid on it
+#     is rejected until lastRaidedTurn + RAID_COOLDOWN.
+#
+# Snapshot rule: phases 3-6 read stored as it stood at the start of phase 3
+# (turn_specification.md 2.1).
+#
+# A union warehouse's per-member withdrawal rights live on the union (union.interface).
+#
+# INVARIANTS (rules of play)
+#   - sum of stored (in tons) <= capacity; reserved[g] <= stored[g]
+#   - capacity = the slot's capacity x the leaseholder's warehouseCapacity
+#   - a station warehouse is emptied before a decommission; a scrapped station's is destroyed
+
+{
+  "leaseId": "leaseId -- a warehouse lease; one record per lease",
+  "capacity": "number, tons -- slot capacity x warehouseCapacity",
+  "stored": "object: resourceId | weaponId | moduleId | stationTypeId -> quantity",
+  "reserved": "[+] object: goodId -> quantity -- parts held for a refit in progress",
+  "lastRaidedTurn": "[+] integer or null -- the last turn it was raided"
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# { "leaseId": "lse_0100", "capacity": 1440.0,
+#   "stored": { "res_mfg_power_core": 220, "res_mfg_ordnance_charge": 40,
+#               "wpn_394": 2, "mod_ecm_suite_mk2": 1 },
+#   "reserved": { "mod_ecm_suite_mk2": 1 }, "lastRaidedTurn": null }
+#   -- a core warehouse (600 x 2.40 at development 3) feeding a fleet's restock, with an ECM
+#   suite held for a refit on the berth next door.

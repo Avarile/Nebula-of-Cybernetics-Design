@@ -155,6 +155,28 @@ risk = [T.RISK_INDEX[t] for t in T.SECURITY_TIERS]
 check('contract risk index rises as security falls',
       [] if all(a < b for a, b in zip(risk, risk[1:])) else [risk])
 
+# --- the faucet/drain list is closed (economy 7) ---------------------------------
+# Each table row's first cell is the flow's id read as words ('NPC yard fee' <-> npc_yard_fee);
+# both directions must hold, so a flow cannot be added to the code without the table, nor
+# linger in the table after the code drops it. That every rate constant exists is
+# verify_gameplay.py's 6.5 check.
+import re
+spec = open(os.path.join(ROOT, 'GamePlay', 'economy_specification.md')).read()
+sec7 = spec.split('## 7. ', 1)[-1].split('\n## ', 1)[0]
+
+
+def rows(after):
+    part = sec7.split(after, 1)[-1].split('\n\n**', 1)[0]
+    return {r.strip().lower() for r in re.findall(r'^\| ([^|]+?) \|', part, re.M)
+            if r.strip().lower() not in ('source', 'sink') and not set(r.strip()) <= set('-')}
+
+
+for side, after, flows in (('faucet', '**Faucets', T.FAUCETS), ('drain', '**Drains', T.DRAINS)):
+    table = rows(after)
+    code = {n.replace('_', ' ') for n, _, _ in flows}
+    check(f'economy 7 lists exactly the {side}s of gameplay_tables.py, row for row',
+          [f'table only: {r}' for r in sorted(table - code)] + [f'code only: {c}' for c in sorted(code - table)])
+
 # --- schema --------------------------------------------------------------------
 body = '\n'.join(l for l in open(os.path.join(ROOT, 'Data-Templates', 'market.interface'))
                  if not l.lstrip().startswith('#'))

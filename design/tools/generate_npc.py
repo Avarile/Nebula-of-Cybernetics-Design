@@ -15,6 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
 import gameplay_tables as T
 import gameplay_common as C
+from lore_tables import SQUADRON_FACTION
 
 OUT = os.path.join(ROOT, 'GamePlay', 'NPC')
 KEEP = set()
@@ -39,7 +40,10 @@ def build(fleet):
     for sq_id, tier, name, comp in T.NPC_SQUADRONS:
         hulls, value = compose(ships, prices, comp)
         squadrons.append({
-            'squadronId': sq_id, 'name': name, 'securityTier': tier,
+            'squadronId': sq_id, 'name': name,
+            # who flies it: lore_tables owns the map, the squadron carries the id
+            'factionId': SQUADRON_FACTION[sq_id],
+            'securityTier': tier,
             'hullCount': sum(n for _, n in comp),
             'hulls': hulls,
             'referenceValue': round(value, 2),

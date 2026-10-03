@@ -40,6 +40,10 @@
 # Deep-space stations are deferred by GamePlay/PlayerSpecific ("later stage of the game,
 # not designed yet") and will add "deep_space" to this enum without any other schema change.
 #
+# [+] lease.job -- the running facility.job, renamed from currentJob: a runtime record names
+#     its live values plainly, and current* is kept for CombatantState's in-battle mirrors
+#     (tools/verify_naming.py). A warehouse lease's contents are warehouse.interface.
+#
 # INVARIANTS (enforced by tools/verify_facilities.py)
 #   - slotCount x slotThroughput equals the archetype's published capacity
 #   - slotCount >= 1 wherever capacity > 0, and 0 where capacity is 0
@@ -78,7 +82,7 @@
     "startedTurn": "integer",
     "rentPaidThroughTurn": "integer -- unpaid rent ends the lease at the end of phase 12; an orbital lease mirrors its station's upkeepPaidThroughTurn",
     "freeUntilTurn": "integer or null -- the new-player grant, 20 turns",
-    "currentJob": "object or null -- { operation, input, quantity }; a standing order"
+    "job": "[+] object or null -- { operation, input, quantity }; a standing order (was currentJob)"
   }
 }
 
@@ -95,4 +99,4 @@
 # { "leaseId": "lse_0099", "playerId": "ply_0031", "siteType": "planet",
 #   "planetId": "pln_014", "stationId": null, "facilityType": "refinery", "lane": null, "slotIndex": 2,
 #   "startedTurn": 6, "rentPaidThroughTurn": 47, "freeUntilTurn": null,
-#   "currentJob": { "operation": "refine", "input": "res_raw_ferrite", "quantity": 500 } }
+#   "job": { "operation": "refine", "input": "res_raw_ferrite", "quantity": 500 } }

@@ -103,13 +103,22 @@ and an NPC squadron's detection each test every hull of every member; if any hul
 every member fleet enters the engagement, on one side, under the leader's posture. The loudest hull is the convoy's
 signature.
 
+**Who is the aggressor.** The owners whose `engage` or `interdict` posture formed an
+engagement against a player fleet that held neither posture. In `mid` they are flagged
+(§2) and their standing with the region's authority falls (§6); in `rim` and `deadspace`
+nothing records it. A fight with NPCs only has no aggressor. Each engagement is a record —
+who fought on which side, why it formed, the aggressors, the battle log and the wrecks
+(`Data-Templates/engagement.interface`).
+
 ### 4.1 Fleet operations
 
 No player commands more than five hulls
 (`progression_specification.md` §3). A **fleet operation** is several union members'
-fleets declaring themselves one force in one engagement, and it is the only way a battle
-exceeds five hulls per side. The fleets of one convoy are a fleet operation automatically,
-union or not — that is how an escort hired by contract fights beside its client.
+fleets fighting as one force in one engagement, and it is the only way a battle
+exceeds five hulls per side. It needs no order: union-mates' fleets caught in one engagement
+are on one side, and union-mates cannot engage one another. The fleets of one convoy are a
+fleet operation the same way, union or not — that is how an escort hired by contract fights
+beside its client.
 
 This is what makes `Combat-logic/battle_log_veritas_vs_cinder.md` — thirteen hulls against
 seventeen — a reachable game state rather than a fiction: three or four union members each
@@ -206,11 +215,18 @@ withdrew, the wreck stands until it expires or someone returns for it.
 
 When the side holding the field is the side that lost the hull, the salvage is its owner's:
 it loads into the owner's surviving hulls with free cargo, and what does not fit stays in the
-wreck. No fleet that was in the convoy when the hull died may ever loot its wreck, linked or
-not by then, so an escort cannot profit from losing its client.
+wreck. No fleet that was in the convoy when the hull died, other than its owner's own, may
+ever loot its wreck, linked or not by then, so an escort cannot profit from losing its client.
 
-A station kit in the hold is one item: it is rolled whole at `SALVAGE_DROP`, like a fitted
-part, not split like ore (`station_specification.md` §3.1).
+A station kit or a part (a weapon or module) in the hold is one item: it is rolled whole at
+`SALVAGE_DROP`, like a fitted part, not split like ore (`station_specification.md` §3.1,
+`logistics_specification.md` §3).
+
+Craft aboard are not salvage. Fighters and drones are lost with the hull that carried them
+(`Combat-logic/combat_logic_specification.md` §2.6); they are not goods and have no price to
+salvage. Contents are rolled once, when the hull dies, and the wreck keeps them
+(`Data-Templates/wreck.interface`), together with its owner and the convoy fleets barred from
+looting it.
 
 Salvage is the fit, never the hull — the fit the hull **carried when it died**, its own
 `FleetHull.fit`, not the catalogue's (`fitting_specification.md` §5.3). For a default fit
@@ -285,6 +301,12 @@ RAID_COOLDOWN             4 turns per warehouse
 A 600-unit warehouse slot needs 300 troops, so an Attack Transport T3 can crack seven slots
 in one operation and carry 9,672 units away. If a defending fleet is present, the raid
 happens only if the raider wins the engagement in phase 9 first.
+
+**The order.** `fleet.raid` (phase 9, not standing) names the raiding fleet and one warehouse
+lease. It resolves at the end of phase 9, after any engagement in the system, and only if
+the raider's side holds the field. Two raids naming one warehouse resolve by rank
+(`turn_specification.md` §4): the first takes the contents and `RAID_COOLDOWN` bars the rest.
+The warehouse records when it was last raided (`Data-Templates/warehouse.interface`).
 
 **A raid takes the contents, never the lease.** Planets remain terrain, per
 `Systems_Planets` §10 and `industry_specification.md` §1; there is no capture, no ownership

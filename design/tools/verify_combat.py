@@ -413,14 +413,40 @@ for row in sec24.splitlines():
             bad.append(f'{tname} vs {wname}: {cell} != {got:.4f}')
 check('R6: the spec 2.4 sample table recomputes from the catalogue', bad if rows else ['no rows found'])
 
-# The v2 worked example keeps its interpretation: the capital gun is at the floor.
-ex = V2['workedExample']['capitalIonCannonShot']
-want_bonus = speed_bonus(350, 12)
-floor_hit = max(ex['baseChance'] * 0.75 * ex['lockQuality'] - (0.24 + want_bonus), 0.05)
-check('R6: the v2 worked example states the new bonus and still computes to the 0.05 floor',
-      [t for t, ok in ((f'{want_bonus:.2f}', f'= {want_bonus:.2f}' in ex['speedEvasionBonus']),
-                       ('floor', floor_hit == 0.05 and ex['finalHitChance'].endswith('= 0.05')))
-       if not ok])
+# The v2 worked example is catalogue-backed: every shot names a weapon the attacker
+# actually carries, and its stated finalHitChance recomputes from the live catalogue
+# (master formula steps 3-11, Weaponry at level 5, modules aside, lockQuality 1).
+def range_multiplier(d, w):
+    o, mx = w['range']['optimal'], w['range']['maximum']
+    if d > mx:
+        return 0.0
+    if d <= o:
+        return 1.10 if d <= 0.25 * o else 1.0
+    if d <= 1.5 * o:
+        return 1 - 0.35 * (d - o) / (0.5 * o)
+    return 0.65 - 0.50 * (d - 1.5 * o) / (mx - 1.5 * o)
+
+
+WX = V2['workedExample']
+wx_att, wx_tgt = NAMED.get(WX.get('attacker')), NAMED.get(WX.get('target'))
+bad = [] if wx_att and wx_tgt else ['attacker or target is not a named ship']
+shots = {k: v for k, v in WX.items() if isinstance(v, dict) and 'weaponId' in v}
+carried = {h.get('weaponEquipped') for h in (wx_att or {}).get('hardpoints', {}).get('list', [])}
+for key, shot in sorted(shots.items()):
+    w = W_BY_ID.get(shot['weaponId'])
+    if not w or shot['weaponId'] not in carried:
+        bad.append(f'{key}: {shot["weaponId"]} is not carried by {WX.get("attacker")}'); continue
+    prof = V2['weaponHitProfiles'][w['weaponClass']]
+    ev = min(wx_tgt['mobility']['evasionRating']
+             + speed_bonus(wx_tgt['mobility']['topSpeed'], tracking_counter(w)), 0.60)
+    ev *= 1 - prof.get('evasionIgnoredFraction', 0)
+    base = (w['accuracy']['baseHitChance'] * prof['baseHitChanceModifier']
+            + wx_att['crew']['gunnerySkill'] / CT.GUNNERY_SKILL_DIVISOR)
+    final = min(max(base * range_multiplier(WX['distance'], w) - ev, 0.05), 0.95)
+    if not shot['finalHitChance'].endswith(f'= {final:.2f}'):
+        bad.append(f'{key}: states {shot["finalHitChance"].rsplit("=", 1)[-1].strip()}, live {final:.2f}')
+check('the v2 worked example recomputes from the catalogue, every shot a weapon the attacker carries',
+      bad if shots else ['no shots with a weaponId'])
 check('R6: the v2 speedEvasionSystem formula carries the table constants',
       [] if f'trackingCounter * {CT.TRACKING_SPEED_FACTOR}) / {CT.SPEED_EVASION_DIVISOR}'
       in V2['speedEvasionSystem']['formula']['speedEvasionBonus'] else ['speedEvasionBonus'])
@@ -467,6 +493,18 @@ for fname in sorted({c[0] for c in CT.RANGE_CLAIMS}):
         bad += [f'{fname}: {n} {sp} != {NAMED[n]["mobility"]["topSpeed"]}'
                 for n, sp in ships if n in NAMED and NAMED[n]['mobility']['topSpeed'] != sp]
 check('R6: every log roster speed matches the named-ship catalogue', bad)
+
+# Spec 1.2: the granularity threshold sits between the two logs -- above every side of the
+# shot-by-shot one, at or below every side of the batched one -- and constants.ts mirrors it.
+shot_sides = [len(v) for v in log_rosters('battle_log_sable_vs_ember.md')[1].values()]
+group_sides = [len(v) for v in log_rosters('battle_log_veritas_vs_cinder.md')[1].values()]
+gp = consts.split('export const GRANULARITY_POLICY', 1)[-1].split('} as const', 1)[0]
+check(f'spec 1.2: {CT.GRANULARITY_HULLS_PER_SIDE} hulls a side separates the logs '
+      f'(shot by shot {shot_sides}, batched {group_sides}) and constants.ts mirrors it',
+      ([] if shot_sides and group_sides and max(shot_sides) < CT.GRANULARITY_HULLS_PER_SIDE <= min(group_sides)
+       else [f'{shot_sides} / {group_sides}'])
+      + ([] if ts_num(gp, 'hullCountThresholdPerSide') == CT.GRANULARITY_HULLS_PER_SIDE else ['constants.ts'])
+      + ([] if f'`GRANULARITY_HULLS_PER_SIDE` = {CT.GRANULARITY_HULLS_PER_SIDE}' in spec else ['spec 1.2']))
 
 
 def reachable(round_time):

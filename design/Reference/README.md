@@ -23,7 +23,11 @@ tables in `tools/`, then cross-checked against the `.interface` schemas in
 | `dataset.ts` | on-disk shapes: `fleet_and_weapons.json`, the six `index.json` files, a fitted hull directory |
 | `constants.ts` | the tuning tables the types describe — family bias, mass bands, yields, cost coefficients, range bands, critical table, skill gates and the effect formula |
 | `index.ts` | barrel re-export |
-| `verify_reference.py` | checks the unions and field sets against the live data |
+| `gameplay.ts` | the turn, orders and every order payload, the player, the fleet and its hulls, wrecks, engagements, the turn log |
+| `economy.ts` | prices, market orders and where they deliver, contracts and their parameters, unions |
+| `facilities.ts` | leasable slots, leases, warehouse contents |
+| `stations.ts` | station types, the anchored station, `station.deploy` |
+| `verify_reference.py` | checks the unions and field sets against the live data, and every runtime `.interface` against its type |
 
 ```ts
 import type { FleetDataset, Ship, Weapon, CombatantState } from './Reference';
@@ -145,9 +149,17 @@ not generate it.
 ## Verification
 
 ```sh
-python3 Reference/verify_reference.py     # 67 checks
-python3 tools/verify_naming.py            # 8 checks -- no current* member, no stray 'turn' name
+python3 Reference/verify_reference.py     # 103 checks
+python3 tools/verify_naming.py            # 9 checks -- no current* member, no stray 'turn' name
 ```
+
+**Runtime twins.** Runtime records — a player, a fleet and its hulls, a union, a lease, a
+warehouse, a station, a market order, a contract and its parameters, an order and its payload
+per order type, an engagement and its battle log, a wreck, a turn log — have no generated
+instance, so `verify_reference.py` holds each `Data-Templates/*.interface` shape to its type
+here instead: the same field set, read with a brace-aware reader that follows `extends` and the
+object arms of a union type (`RUNTIME_SHAPES`). It also fails on a runtime `.interface` whose
+shape has no twin, and on any order type without a payload shape in both places.
 
 Every string-literal union must declare exactly the values present in the data —
 no missing member, no invented one — and every entity interface must declare

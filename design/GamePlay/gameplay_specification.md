@@ -74,8 +74,8 @@ Terms fixed here and used identically in all ten documents.
 | **round** | one exchange inside a battle. Many rounds fit in one turn. Formerly "turn" in `Combat-logic/`. |
 | **phase** | one of the 14 ordered steps a turn resolves through. |
 | **order** | an instruction a player submits for the coming turn. |
-| **player** | one account. Owns skills, credits, a fleet, leases and standings. |
-| **fleet** | 1–5 hulls under one player, moving and fighting as a unit. |
+| **player** | one account. Owns skills, credits, fleets, leases, stations and standings. |
+| **fleet** | hulls under one player, moving and fighting as a unit. A player may hold several; Formation Drill bounds the hulls across all of them. |
 | **fleet operation** | several players' fleets acting as one force in a single engagement. |
 | **lease** | a player's claim on one facility slot on one planet, paid per turn. |
 | **slot** | an indivisible unit of planetary industrial capacity. |
@@ -121,12 +121,29 @@ the map generator:
 * station types — hosted slots, upkeep and kit cost, keyed by `stationType × developmentTier`
 * NPC squadron templates and contract archetypes
 
-**Runtime** — created by play, never generated, but schema-pinned:
+**Runtime** — created by play, never generated, but schema-pinned. Each has a `.interface` in
+`Data-Templates/` and a twin type in `Reference/`, held field for field by
+`Reference/verify_reference.py`:
 
-* players, their trained levels, credits, standings
-* fleets and the hulls in them
-* leases, stations, warehouse contents, market orders, contracts in flight
-* wrecks, engagements, turn logs
+| record | schema | TypeScript |
+|---|---|---|
+| a player: trained levels, credits, standings | `player.interface` | `Player` |
+| a fleet and the hulls in it — fit, refit, damage, crew, ammunition, fuel, cargo, craft aboard | `fleet.interface` | `Fleet`, `FleetHull`, `HullFit`, `RefitJob` |
+| a union | `union.interface` | `Union` |
+| a lease; a warehouse's contents | `facility.interface` `lease`; `warehouse.interface` | `Lease`; `WarehouseContents` |
+| an anchored station | `station.interface` `station` | `Station` |
+| a market order | `market.interface` `order` | `MarketOrder` |
+| a contract in flight, per archetype | `contract.interface` `contract`, `parameters.*` | `Contract`, `*ContractParameters` |
+| an order, and its payload per order type | `turn_order.interface` | `TurnOrder`, `OrderPayloads` |
+| an engagement and its battle log | `engagement.interface` | `Engagement`, `BattleLog`, the events |
+| a wreck | `wreck.interface` | `Wreck` |
+| a turn's ledger | `turn_log.interface` | `TurnLog`, `LedgerEntry` |
+
+Four things have no record of their own, by design: an insurance policy is a hull's `insured`
+flag (premium and payout derive from the bare hull); a standing's history is the turn log's
+`standing` entries; a mine field and an airborne squadron end with their battle; a response
+fleet's owner is the engagement's region's authority. `GamePlay/schema_coverage.md` maps every
+section of these documents to its schemas and checks.
 
 Facility rules key off planet *archetype and development tier*, both of which
 `systems_planets_specification.md` §4 tables in full. They never key off a planet instance.
@@ -204,7 +221,11 @@ Nothing in this table is authored. It falls out of `HULL_TREE` and the rank ladd
 ### 6.5 Every faucet has a drain
 
 The credit supply is bounded. Each per-turn source of credits is paired with a named sink,
-and `economy_specification.md` §7 tabulates both sides with the steady-state ratio.
+and `economy_specification.md` §7 tabulates both sides. The tables and
+`tools/gameplay_tables.py` `FAUCETS` / `DRAINS` list the same flows row for row
+(`verify_market.py`), and every credit a turn creates or destroys names its flow in the turn
+log. The steady-state ratio is not computed: NPC contract posting and squadron spawn rates are
+not yet set (`GamePlay/schema_coverage.md`, open questions).
 
 ### 6.6 The fleet cap has exactly one source
 
@@ -243,16 +264,22 @@ any other name that says turn; its allowlist gives the reason for each that does
 
 ## 8. What GamePlay adds to the pipeline
 
-Schemas in `Data-Templates/` — seven new `.interface` files, `[+]`-annotated like the rest:
+Schemas in `Data-Templates/` — thirteen new `.interface` files, `[+]`-annotated like the rest:
 
 ```
 player.interface          account: skills, SP, credits, standings, union
+fleet.interface           a fleet and its hulls: fit, refit, damage, crew, stores, craft aboard
+union.interface           a player organisation: members, credits, leases, stations, rights
 facility.interface        a leasable slot and the lease on it
+warehouse.interface       the contents of one warehouse lease
 station.interface         an orbital station type and an anchored station
 market.interface          a reference price and an order
-contract.interface        NPC and player contracts
-npc_squadron.interface    a hostile formation template
-turn_order.interface      one submitted instruction
+contract.interface        NPC and player contracts, parameters per archetype
+npc_squadron.interface    a hostile formation template, with the faction that flies it
+turn_order.interface      one submitted instruction, and the payload of each order type
+engagement.interface      one engagement: sides, combatants, the Tier 1 battle log
+wreck.interface           what a dead hull leaves, and who may loot it
+turn_log.interface        the Tier 1 ledger of one turn
 ```
 
 Generators, verifiers and shared code in `tools/`:
@@ -274,7 +301,14 @@ python3 tools/verify_gameplay.py        # the seven §6 invariants; runs last
 python3 tools/verify_lore.py            # factions, authorities, origins vs. the live catalogue
 python3 tools/verify_fitting.py         # the fitting rules vs. every default fit; refit costs; no free money
 python3 tools/verify_stations.py        # station capacity vs. the map, lossy refining, upkeep vs. rent
+python3 tools/verify_coverage.py        # every section of these documents has a row in schema_coverage.md
 ```
+
+`GamePlay/schema_coverage.md` is the map from mechanics to data: one row per numbered section
+of the ten documents and the combat spec, naming the schemas it reads or writes and the checks
+that hold it, with every gap and every open design question listed. A new section without a row
+fails `verify_coverage.py`. `Reference/verify_reference.py` holds each runtime `.interface` to
+its TypeScript type, and `tools/verify_naming.py` keeps `current*` out of runtime schemas.
 
 `tools/fitting.py` is the one implementation of the fitting rules. The ship generator checks
 every default fit it builds against it, the ship, module and fitting verifiers judge the
@@ -285,10 +319,11 @@ New keys in `fleet_and_weapons.json`: `progression`, `marketPrices`, `facilityTy
 `stationTypes`, `npcSquadrons`, `contractArchetypes`, plus `_meta` additions `spPerTurn`,
 `turnLengthHours`, `tradeableGoodCount`.
 
-TypeScript in `Reference/`: `gameplay.ts` (turn, orders, player, fleet), `economy.ts`
-(prices, orders, contracts), `facilities.ts` (slots and leases), `stations.ts` (station
-types, the anchored station, `station.deploy`), `lore.ts` (factions,
-region authorities, squadron and manufacturer origins, the `Standings` key).
+TypeScript in `Reference/`: `gameplay.ts` (turn, orders and their payloads, player, fleet,
+wreck, engagement, turn log), `economy.ts` (prices, orders, contracts, unions), `facilities.ts`
+(slots, leases, warehouse contents), `stations.ts` (station types, the anchored station,
+`station.deploy`), `lore.ts` (factions, region authorities, squadron and manufacturer origins,
+the `Standings` key), and in `combat.ts` the Tier 1 battle log with its craft events.
 
 ## 9. Out of scope
 

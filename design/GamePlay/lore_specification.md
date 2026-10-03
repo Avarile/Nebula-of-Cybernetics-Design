@@ -292,7 +292,7 @@ region names.
 |---|---|---|
 | `FACTIONS` | id, name, kind, home region | UI, contracts, battle log narration |
 | `REGION_AUTHORITY` | region → authority id or none | standings keys, response-fleet and NPC-order owner |
-| `SQUADRON_FACTION` | squadron id → hostile faction id | spawn naming, bounty notices, narration |
+| `SQUADRON_FACTION` | squadron id → hostile faction id | `factionId` on every generated squadron (`npc_squadron.interface`), spawn naming, bounty notices, narration |
 | `FAMILY_HOUSES` | family → house, home system, strength, pays | weapon display, market flavour |
 | `POLICED_TIERS` | derived from `RESPONSE_FLEET`'s keys, never typed | the authority-exists rule |
 
@@ -314,10 +314,13 @@ region names.
 * this document's §5 table matches the live security mix, and it names every faction id;
 * `player.interface` keys standings by faction id.
 
+`tools/verify_npc.py` checks that every generated squadron carries the `factionId`
+`SQUADRON_FACTION` gives it, and that it is a hostile faction. A response fleet carries no
+owner: it is the authority of the region an engagement is in, recorded on the engagement
+(`Data-Templates/engagement.interface`).
+
 ## 8. Out of scope
 
-* **A `factionId` on generated squadrons.** The map lives here; `npc_squadron.interface` and
-  `GamePlay/NPC/squadrons.json` do not carry it yet. That is schema work for the generator.
 * **Faction-specific response fleets or prices.** The Accord makes them uniform, which is
   exactly what `gameplay_tables.py` already says. Differentiating them would be a mechanics
   change.

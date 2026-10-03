@@ -1,0 +1,66 @@
+# INTERFACE: TurnLog
+# Source of truth : runtime state -- no generated instances exist
+# Spec            : ../GamePlay/turn_specification.md 5-6, economy_specification.md 7,
+#                   conflict_specification.md 6
+# Reference       : ../Reference/gameplay.ts -> TurnLog, LedgerEntry (Reference/verify_reference.py)
+#
+# [+] No upstream counterpart; new in full.
+#
+# TIER 1 of the turn log: every state change of one turn, machine-readable, sufficient to
+# reconstruct the turn. It is what the determinism property is asserted against -- the same
+# orders and the same turn number produce a byte-identical log. Tier 2, the per-player digest,
+# is a rendering of it and has no schema of its own.
+#
+# TWO SHAPES:
+#   turnLog       RUNTIME. One per turn.
+#   ledgerEntry   one state change.
+#
+# [+] flow -- every credit that moves names the faucet or drain it is, by the id
+#     tools/gameplay_tables.py FAUCETS / DRAINS gives it (economy_specification.md 7), or null
+#     when credits move between players (fills, escort fees, forfeited bonds). So the
+#     faucet/drain balance of a live turn is a sum over the log.
+# [+] STANDINGS keep no ledger of their own. A change is an entry of kind "standing" whose
+#     subjectId is the authority's factionId and whose detail says why (conflict 6).
+# [+] Engagements are referenced, not inlined: engagementIds name engagement.interface records,
+#     which name their battle logs.
+#
+# INVARIANTS (implementation test obligations, turn_specification.md 7)
+#   - entries are in phase order, and within a phase in resolution-rank order
+#   - every rejected order of the turn is in rejections, with its reason
+#   - sum of credits over entries with a faucet flow >= 0; with a drain flow <= 0
+
+{
+  "turnLog": {
+    "turnNumber": "integer",
+    "entries": "array of ledgerEntry",
+    "engagementIds": "array of engagementId",
+    "rejections": "array of { orderId, playerId, phase, reason }"
+  },
+
+  "ledgerEntry": {
+    "phase": "integer 1-14",
+    "kind": "enum: sp | job | construction | refit | move | engagement | salvage | raid | fill | upkeep | restock | contract | standing | bounty | insurance | union",
+    "ownerId": "playerId | unionId | null -- whose state changed; null for the world",
+    "subjectId": "string -- the record that changed: fleet, hull, lease, order, contract or authority id",
+    "credits": "number -- in (+) or out (-) for ownerId; 0 when none move",
+    "flow": "[+] string or null -- a FAUCETS or DRAINS id when credits are created or destroyed",
+    "detail": "object -- what changed, shaped by kind"
+  }
+}
+
+# ---- EXAMPLE INSTANCE ----
+#
+# { "turnNumber": 47,
+#   "entries": [
+#     { "phase": 2, "kind": "sp", "ownerId": "ply_0031", "subjectId": "skl_sta_science",
+#       "credits": 0, "flow": null, "detail": { "sp": 43200, "levelReached": null } },
+#     { "phase": 12, "kind": "upkeep", "ownerId": "ply_0031", "subjectId": "lse_0099",
+#       "credits": -24.61, "flow": "facility_rent", "detail": {} },
+#     { "phase": 13, "kind": "standing", "ownerId": "ply_0031",
+#       "subjectId": "fac_kestrel_charter", "credits": 0, "flow": null,
+#       "detail": { "delta": 0.4, "why": "npc squadron destroyed", "engagementId": "eng_00398" } },
+#     { "phase": 13, "kind": "bounty", "ownerId": "ply_0031", "subjectId": "eng_00398",
+#       "credits": 604.85, "flow": "bounties", "detail": { "squadronId": "npc_mid_pirate_raiders" } } ],
+#   "engagementIds": ["eng_00398"],
+#   "rejections": [ { "orderId": "ord_00402", "playerId": "ply_0031", "phase": 7,
+#                     "reason": "fleet flt_0044 has a docked hull (hul_0102)" } ] }

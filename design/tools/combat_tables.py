@@ -425,6 +425,12 @@ LIFE_SUPPORT_CASUALTY_RATE = 0.05
 DISRUPTION_HULL_FRACTION = 0.25
 REGROUP_BASE_CHANCE = 0.25
 
+# --- 1.2 resolution granularity. Below this many hulls a side, every shot resolves and logs
+#   on its own; at or above it, same-class exchanges batch per phase. The logs bracket it:
+#   Sable/Ember (5 v 7) is shot by shot, Veritas/Cinder (13 v 17) per task group.
+#   Reference/constants.ts GRANULARITY_POLICY mirrors it.
+GRANULARITY_HULLS_PER_SIDE = 9
+
 # ----------------------------------------------------------------- R7: strike craft
 # combat_logic_specification.md 2.6. Two kinds of craft, each with its own profile.
 # Craft are not weapons: no hardpoint, no range band, no lock of their own, and no

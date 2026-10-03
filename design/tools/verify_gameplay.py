@@ -333,6 +333,15 @@ check('at least one hull category can haul',
 check('the fuel and ammo resources exist',
       [r for r in (T.FUEL_RESOURCE, T.AMMO_RESOURCE)
        if r not in {x['resourceId'] for x in FLEET['resources']}])
+# Logistics reads two combat numbers; the prose must state the tables' values, not its own.
+log1 = section_text('GamePlay/logistics_specification.md', '1') or ''
+check('logistics 1 cuts a silent fleet\'s range by combat_tables.RUNNING_SILENT_SPEED_FACTOR',
+      [] if f'`RUNNING_SILENT_SPEED_FACTOR` ({CT.RUNNING_SILENT_SPEED_FACTOR:.2f})' in log1
+      else [f'logistics 1 does not state RUNNING_SILENT_SPEED_FACTOR ({CT.RUNNING_SILENT_SPEED_FACTOR:.2f})'])
+log6 = section_text('GamePlay/logistics_specification.md', '6') or ''
+want = {k: sum(p['restockCost'].values()) for k, p in CT.CRAFT_PROFILES.items()}
+check('logistics 6 states each craft\'s restock cost as CRAFT_PROFILES has it',
+      [f'{k}: {v:.1f} not stated' for k, v in want.items() if f'{v:.1f} a {k}' not in log6])
 
 print('\n--- catalogue presence ---')
 for key in ('progression', 'marketPrices', 'facilityTypes', 'stationTypes', 'npcSquadrons', 'contractArchetypes'):

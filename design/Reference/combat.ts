@@ -27,6 +27,16 @@ import type { ComponentName, Ship } from './ships';
 import type { DamageType, Distance, Fraction01, HardpointId, LaneQuantity, ModuleSlotId, ShipId, ShipTier, WeaponId } from './common';
 import type { AmmoCapacity, Weapon, WeaponClass, WeaponRange, WeaponSpecialEffect } from './weapons';
 import type { SkillWeaponClass } from './skills';
+import type { HullInstanceId } from './gameplay';
+
+/**
+ * [+] One combatant in one battle. A catalogue `ShipId` names a build sheet, and two Corvette
+ * T1s in one squadron share it, so every field that names a combatant — attacker, target,
+ * lock holder, roster entry — carries this instead: the `HullInstanceId` of a player's hull,
+ * `<npcSquadronInstance>#<n>` for an NPC one. The engagement maps each ref to its ship, hull
+ * and fleet (`EngagementCombatant`, gameplay.ts).
+ */
+export type CombatantRef = string;
 
 // ================================================================
 // 1. ROUND STRUCTURE
@@ -349,8 +359,8 @@ export type WeaponHitProfiles = Record<WeaponClass, WeaponHitProfile>;
  */
 export interface MineDeployment {
   weaponId: WeaponId;
-  ownerShipId: ShipId;
-  anchorShipId: ShipId;
+  ownerShipId: CombatantRef;
+  anchorShipId: CombatantRef;
   /**
    * Centre of the field on the engagement line: the anchor's `position` when the
    * field was laid. It never moves (R6, spec 3.4).
@@ -363,7 +373,7 @@ export interface MineDeployment {
   /** 3 with `area_denial`; null when consumed on first detonation. */
   roundsRemaining: number | null;
   /** Ships already hit this round — an area_denial field fires once per ship per round. */
-  detonatedThisRound: ShipId[];
+  detonatedThisRound: CombatantRef[];
   /**
    * R7: the layer (`ownerShipId`) has been destroyed or has disengaged. A command
    * field is spent at that moment; a proximity field stays on the line until it
@@ -386,9 +396,9 @@ export type MovementIntent =
   /** Brake toward speed 0, drifting along the current heading meanwhile. */
   | { kind: 'hold' }
   /** Head toward `target`; stop at `standoff` (default 0). */
-  | { kind: 'close'; target: ShipId; standoff?: Distance; speedLimit?: number }
+  | { kind: 'close'; target: CombatantRef; standoff?: Distance; speedLimit?: number }
   /** Head away from `target`; stop at `standoff` (default: keep going). */
-  | { kind: 'open'; target: ShipId; standoff?: Distance; speedLimit?: number }
+  | { kind: 'open'; target: CombatantRef; standoff?: Distance; speedLimit?: number }
   /** Head for the own side's rear at full speed — the only way to disengage (spec 3.7). */
   | { kind: 'withdraw'; speedLimit?: number };
 
@@ -406,7 +416,7 @@ export type Heading = 1 | -1;
  *   along     = min((v0 + v1) / 2 x ROUND_TIME, need)
  */
 export interface MovementResolution {
-  shipId: ShipId;
+  shipId: CombatantRef;
   intent: MovementIntent;
   maxSpeed: number;
   speedStep: number;
@@ -455,8 +465,8 @@ export interface EngagementOpening {
  * hits, misses, or is shot down entirely.
  */
 export interface MissileVolley {
-  attacker: ShipId;
-  target: ShipId;
+  attacker: CombatantRef;
+  target: CombatantRef;
   weaponId: WeaponId;
   hardpointId: HardpointId;
   /** `min(fireRate.shotsPerRound, ammo)`. */
@@ -487,7 +497,7 @@ export interface InterceptionAttempt {
    */
   source: 'pool' | 'cover' | 'escort';
   /** The ship whose weapon or escort made the attempt. */
-  fromShipId: ShipId;
+  fromShipId: CombatantRef;
   escortSquadronId?: string;
   /** What the attempt engaged. Craft are projectiles here, at `CraftProfile.interceptEvasion`. */
   targetKind: 'missile' | 'craft';
@@ -533,7 +543,7 @@ export interface MissileResolution {
  * readout, not just a stat.
  */
 export interface PointDefenceReadout {
-  shipId: ShipId;
+  shipId: CombatantRef;
   /** Weapons carrying `point_defense`, `anti_missile` or `anti_air`, assigned to the pool. */
   pdWeapons: WeaponId[];
   /** Sum of their `shotsPerRound`, minus disabled hardpoints. */
@@ -591,9 +601,9 @@ export type CraftProfiles = Record<CraftKind, CraftProfile>;
 /** Declared in phase 2 with the carrier's own intent; resolved in phase 5. */
 export type CraftIntent =
   /** Fly to an enemy ship; attack if the squadron ends phase 5 on it. */
-  | { kind: 'strike'; target: ShipId; targetedComponent?: ComponentName }
+  | { kind: 'strike'; target: CombatantRef; targetedComponent?: ComponentName }
   /** Fly to a friendly ship and stay; each craft adds one anti_air attempt a round to its pool. */
-  | { kind: 'escort'; ship: ShipId }
+  | { kind: 'escort'; ship: CombatantRef }
   /** Fly to the carrier; recovered if it ends phase 5 there. */
   | { kind: 'return' };
 
@@ -613,7 +623,7 @@ export interface Squadron {
   squadronId: string;
   kind: CraftKind;
   /** The ship that launched it, or the friendly deck it is bound for after its carrier left. */
-  carrierShipId: ShipId;
+  carrierShipId: CombatantRef;
   /** Craft still flying; 1..SQUADRON_SIZE. */
   craft: number;
   intent: CraftIntent;
@@ -640,7 +650,7 @@ export interface HangarState {
 
 /** Phase 7: every craft attacking one ship this round is one wave. */
 export interface CraftWaveInterception {
-  target: ShipId;
+  target: CombatantRef;
   squadronIds: string[];
   craftIn: number;
   attempts: InterceptionAttempt[];
@@ -660,7 +670,7 @@ export interface CraftWaveInterception {
 export interface CraftAttackResolution {
   squadronId: string;
   kind: CraftKind;
-  target: ShipId;
+  target: CombatantRef;
   accuracyMultiplier: number;
   baseChance: Fraction01;
   evasion: EvasionResolution;
@@ -864,7 +874,7 @@ export interface StatusEffect {
     | 'shieldRechargeSuppressed'
     /** `armor_melt`: cumulative, floored at 50% of base, lasts the engagement. */
     | 'armorMelted';
-  source: { weaponId: WeaponId; attacker: ShipId };
+  source: { weaponId: WeaponId; attacker: CombatantRef };
   target: ComponentName | null;
   magnitude?: number;
   /** Null for permanent effects (a catastrophic critical lasts until dock repair). */
@@ -921,11 +931,17 @@ export type VictoryCondition =
  * The mutable half of a ship during a battle. The `Ship` entity is the build
  * sheet; this is what changes round to round. Each `*Current` value starts at its
  * catalogue maximum, or at the `FleetHull` value (gameplay.ts) for a hull that enters
- * damaged. Kept separate so the catalogue stays
- * immutable and a battle can be replayed from a log against a pristine roster.
+ * damaged, and is written back to that `FleetHull` when the battle ends. Kept separate so
+ * the catalogue stays immutable and a battle can be replayed from a log against a pristine
+ * roster.
  */
 export interface CombatantState {
+  /** [+] This combatant's id in the battle; every lock, target and log entry names it. */
+  ref: CombatantRef;
+  /** The catalogue build sheet's id. Two combatants may share it. */
   shipId: ShipId;
+  /** [+] The held hull this combatant is, written back after the battle; null for an NPC hull. */
+  hullId: HullInstanceId | null;
   /** The immutable build sheet this combatant was instantiated from. */
   ship: Ship;
   fleet: string;
@@ -962,9 +978,12 @@ export interface CombatantState {
   roundsSinceLastHit: number;
 
   /** Lock this ship holds on each opponent — keyed by the opponent's id. */
-  locks: Record<ShipId, LockState>;
+  locks: Record<CombatantRef, LockState>;
 
-  /** R7: craft aboard, per kind this ship can carry. Persists between engagements. */
+  /**
+   * R7: craft aboard, per kind this ship can carry. Starts from `FleetHull.craftAboard`, all
+   * stowed, and the count aboard at the end is written back: losses persist between engagements.
+   */
   hangars: Partial<Record<CraftKind, HangarState>>;
   /** R7: squadrons this ship launched (or will recover) that are in the air. */
   squadronsAirborne: Squadron[];
@@ -973,7 +992,7 @@ export interface CombatantState {
    * by hardpoint. Against missiles and craft alike; lapses for the round while the
    * covered ship is beyond the weapon's `range.optimal`.
    */
-  coverAssignments: Record<HardpointId, ShipId>;
+  coverAssignments: Record<HardpointId, CombatantRef>;
   statusEffects: StatusEffect[];
 
   /** Aggregated module effects applied to the hull's stats for this battle. */
@@ -1005,8 +1024,8 @@ export type FireOutcome = 'hit' | 'miss' | 'intercepted' | 'failedToArm' | 'outO
 export interface FireEvent {
   round: number;
   phase: Extract<CombatPhase, 'directFireResolution' | 'missileResolution'>;
-  attacker: ShipId;
-  target: ShipId;
+  attacker: CombatantRef;
+  target: CombatantRef;
   weaponUsed: WeaponId;
   weaponClass: WeaponClass;
   volleySize: number;
@@ -1042,7 +1061,7 @@ export interface FireEvent {
 export interface StateEvent {
   round: number;
   phase: CombatPhase;
-  subject: ShipId;
+  subject: CombatantRef;
   kind:
     | 'destroyed'
     | 'retreated'
@@ -1052,24 +1071,71 @@ export interface StateEvent {
     | 'lockAcquired'
     | 'lockLost'
     | 'stateDeclared'
-    | 'shieldsRecharged';
+    | 'shieldsRecharged'
+    /** [+] R7 flight operations; `detail` names the squadron and its craft count. */
+    | 'squadronLaunched'
+    | 'squadronRecovered'
+    | 'craftLost';
   detail: string;
   cause?: DestructionCause;
 }
 
-export type CombatEvent = FireEvent | StateEvent;
+/**
+ * [+] One strike-craft wave meeting interception (spec 2.6, phase 7): every craft attacking one
+ * ship this round. `FireEvent` is weapon fire only; a craft has no weapon, so it logs here.
+ * Every attempt keeps its roll, as `FireEvent` keeps its own.
+ */
+export interface CraftWaveEvent {
+  round: number;
+  phase: Extract<CombatPhase, 'missileResolution'>;
+  event: 'craftWave';
+  target: CombatantRef;
+  squadronIds: string[];
+  craftIn: number;
+  /** Pool, cover and escort attempts, each with its `roll` (spec 2.5-2.6). */
+  attempts: InterceptionAttempt[];
+  /** Includes the extra craft `area_denial` downs on each success. */
+  downed: number;
+  survived: number;
+}
+
+/** [+] One surviving craft's attack (spec 2.6, phase 8), with its roll and its damage. */
+export interface CraftAttackEvent {
+  round: number;
+  phase: Extract<CombatPhase, 'directFireResolution'>;
+  event: 'craftAttack';
+  squadronId: string;
+  craftKind: CraftKind;
+  /** The carrier (fighter) or controlling ship (drone). */
+  carrier: CombatantRef;
+  target: CombatantRef;
+  targetedComponent: ComponentName | null;
+  hitChanceCalculated: Fraction01;
+  rollResult: number;
+  outcome: Extract<FireOutcome, 'hit' | 'miss'>;
+  rawDamage: number;
+  damageToShields: number;
+  damageToHull: number;
+  shieldsBefore: number;
+  shieldsAfter: number;
+  hullBefore: number;
+  hullAfter: number;
+  critical: CriticalResolution | null;
+}
+
+export type CombatEvent = FireEvent | StateEvent | CraftWaveEvent | CraftAttackEvent;
 
 export interface RoundLog {
   round: number;
   /** Initiative order resolved this round. */
-  initiativeOrder: ShipId[];
+  initiativeOrder: CombatantRef[];
   events: CombatEvent[];
 }
 
 export interface BattleLog {
   battleId: string;
   /** Every entry needed to replay: roster, seed, granularity. */
-  rosters: Record<string, ShipId[]>;
+  rosters: Record<string, CombatantRef[]>;
   rngSeed: number;
   granularity: ResolutionGranularity;
   rounds: RoundLog[];
@@ -1079,8 +1145,8 @@ export interface BattleLog {
 export interface BattleResult {
   victor: string | null;
   victoryCondition: VictoryCondition;
-  losses: Record<string, ShipId[]>;
-  survivors: Record<string, ShipId[]>;
+  losses: Record<string, CombatantRef[]>;
+  survivors: Record<string, CombatantRef[]>;
   roundsElapsed: number;
 }
 

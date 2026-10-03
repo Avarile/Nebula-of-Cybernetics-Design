@@ -15,9 +15,8 @@
 
 import type { ResourceLane } from './common';
 import type { DevelopmentTier, FacilityKind, FacilitySlot } from './facilities';
-import type {
-  FleetId, HullInstanceId, LeaseId, PlanetId, PlayerId, SecurityTier, UnionId,
-} from './gameplay';
+import type { FleetId, HullInstanceId, LeaseId, PlayerId, UnionId } from './gameplay';
+import type { PlanetId, SecurityTier } from './systems';
 
 // ---------------------------------------------------------------- vocabulary
 

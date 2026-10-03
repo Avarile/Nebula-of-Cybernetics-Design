@@ -7,7 +7,9 @@ runtime state (CombatantState in Reference/combat.ts, FleetHull in Reference/gam
 This verifier holds both lines across every name a consumer reads:
 
   1. no current* key anywhere in generated catalogue data (live values are runtime
-     state), and no current* member in the Reference types of catalogue entities
+     state), and no current* member in the Reference types of catalogue entities; and
+     no current* field in a runtime schema either, whose live values are named plainly
+     (FleetHull.hullHP, Lease.job) -- current* is CombatantState's alone
   2. no name containing the word turn/turns -- in the catalogue data, the .interface
      schemas or the Reference types -- unless TURN_ALLOWLIST below names it, in that
      place, with the reason it may say turn
@@ -73,7 +75,18 @@ GAMEPLAY_SCHEMA = ('Data-Templates/contract.interface', 'Data-Templates/facility
                    'Data-Templates/market.interface', 'Data-Templates/npc_squadron.interface',
                    'Data-Templates/player.interface', 'Data-Templates/turn_order.interface',
                    'Data-Templates/planet.interface', 'Data-Templates/system.interface',
-                   'Data-Templates/station.interface')
+                   'Data-Templates/station.interface', 'Data-Templates/fleet.interface',
+                   'Data-Templates/union.interface', 'Data-Templates/wreck.interface',
+                   'Data-Templates/warehouse.interface', 'Data-Templates/engagement.interface',
+                   'Data-Templates/turn_log.interface')
+# Runtime schemas: records play creates. Their live values are named plainly (hullHP, job);
+# current* is kept for CombatantState's in-battle mirrors of catalogue maxima.
+RUNTIME_SCHEMA = ('Data-Templates/player.interface', 'Data-Templates/turn_order.interface',
+                  'Data-Templates/fleet.interface', 'Data-Templates/union.interface',
+                  'Data-Templates/wreck.interface', 'Data-Templates/warehouse.interface',
+                  'Data-Templates/engagement.interface', 'Data-Templates/turn_log.interface')
+RUNTIME_SHAPES = {'facility.interface': 'lease', 'station.interface': 'station',
+                  'market.interface': 'order', 'contract.interface': 'contract'}
 GAMEPLAY_TS = ('Reference/gameplay.ts', 'Reference/economy.ts', 'Reference/facilities.ts', 'Reference/stations.ts',
                'Reference/systems.ts', 'Reference/dataset.ts')
 HEADING = 'heading change (turning), not the clock -- data-template.json mobility.turnRate'
@@ -113,7 +126,10 @@ TURN_ALLOWLIST = [
     ('upkeepGraceTurns', GAMEPLAY_DATA + ('Reference/constants.ts',),
      'offline 24-h turns before an unpaid station is scrapped'),
     ('diedTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn a hull was lost'),
-    ('turnNumber', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn an order is for'),
+    ('turnNumber', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn an order, engagement or log is for'),
+    ('lastRaidedTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn a warehouse was last raided'),
+    ('TurnLog', GAMEPLAY_TS, 'the ledger of one 24-h turn (turn_specification.md 6)'),
+    ('turnLog', ('Data-Templates/turn_log.interface',), 'the turn_log.interface shape of TurnLog'),
     ('TurnPhase', GAMEPLAY_TS, 'one of the 14 phases of the 24-h turn'),
     ('TurnOrder', GAMEPLAY_TS, 'an order submitted for the coming 24-h turn'),
     ('TurnLengthHours', GAMEPLAY_TS, 'the length of a turn, as a type: 24'),
@@ -211,14 +227,22 @@ check('no key in the v2 combat JSON says turn', turn_hits(V2_KEYS))
 
 # --------------------------------------------------------------------- .interface schemas
 IFACE_KEYS = set()
+RUNTIME_KEYS = set()
 for f in sorted(os.listdir(os.path.join(ROOT, 'Data-Templates'))):
     if not f.endswith('.interface'):
         continue
-    body = '\n'.join(l for l in open(os.path.join(ROOT, 'Data-Templates', f))
-                     if not l.lstrip().startswith('#'))
-    for k in keys(json.loads(body)):
+    body = json.loads('\n'.join(l for l in open(os.path.join(ROOT, 'Data-Templates', f))
+                                if not l.lstrip().startswith('#')))
+    for k in keys(body):
         IFACE_KEYS.add((k, f'Data-Templates/{f}'))
+    if f'Data-Templates/{f}' in RUNTIME_SCHEMA:
+        RUNTIME_KEYS |= {(k, f) for k in keys(body)}
+    elif f in RUNTIME_SHAPES:
+        RUNTIME_KEYS |= {(k, f'{f}#{RUNTIME_SHAPES[f]}') for k in keys(body.get(RUNTIME_SHAPES[f], {}))}
 check('no .interface key says turn unless allowlisted', turn_hits(IFACE_KEYS))
+check('no current* field in a runtime schema (current* is for CombatantState only)',
+      sorted(f'{where}: {k}' for k, where in RUNTIME_KEYS if any(is_live(seg) for seg in k.split('.')))
+      + [f'{p}: missing' for p in RUNTIME_SCHEMA if not os.path.exists(os.path.join(ROOT, p))])
 
 # --------------------------------------------------------------------- Reference types
 def ts_names(path):
