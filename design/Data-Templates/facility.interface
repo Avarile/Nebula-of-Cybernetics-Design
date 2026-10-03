@@ -35,8 +35,9 @@
 #
 # siteType admits "planet" and "orbital". [+] An "orbital" lease is a slot hosted by an
 # orbital station (station.interface, GamePlay/station_specification.md): stationId names
-# it, the station pays upkeep in place of the lease's rent, and everything else that reads
-# a lease -- facility.job, cargo.transfer, a refit's site and parts -- reads it unchanged.
+# it, it pays NO rent (and the station no upkeep -- the kit is the whole price), and
+# everything else that reads a lease -- facility.job, cargo.transfer, a refit's site and
+# parts -- reads it unchanged. An orbital lease ends only when its station is decommissioned.
 # Deep-space stations are deferred by GamePlay/PlayerSpecific ("later stage of the game,
 # not designed yet") and will add "deep_space" to this enum without any other schema change.
 #
@@ -80,7 +81,7 @@
     "lane": "enum or null -- extraction leases only",
     "slotIndex": "integer 0..slotCount-1 -- which slot on that planet, or on that station",
     "startedTurn": "integer",
-    "rentPaidThroughTurn": "integer -- unpaid rent ends the lease at the end of phase 12; an orbital lease mirrors its station's upkeepPaidThroughTurn",
+    "rentPaidThroughTurn": "integer -- unpaid rent ends the lease at the end of phase 12; an orbital lease owes none: set to the turn its station was anchored and never advanced",
     "freeUntilTurn": "integer or null -- the new-player grant, 20 turns",
     "job": "[+] object or null -- { operation, input, quantity }; a standing order (was currentJob)"
   }

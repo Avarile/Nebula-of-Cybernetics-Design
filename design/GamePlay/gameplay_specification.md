@@ -74,8 +74,8 @@ Terms fixed here and used identically in all ten documents.
 | **round** | one exchange inside a battle. Many rounds fit in one turn. Formerly "turn" in `Combat-logic/`. |
 | **phase** | one of the 14 ordered steps a turn resolves through. |
 | **order** | an instruction a player submits for the coming turn. |
-| **player** | one account. Owns skills, credits, fleets, leases, stations and standings. |
-| **fleet** | hulls under one player, moving and fighting as a unit. A player may hold several; Formation Drill bounds the hulls across all of them. |
+| **player** | one account. Owns skills, credits, one fleet, leases, stations and standings. |
+| **fleet** | hulls under one player, moving and fighting as a unit. A player has exactly one; a hull under refit or newly built is **docked** at its yard, apart from it, until it rejoins. Formation Drill bounds every hull the player owns, docked or not. |
 | **fleet operation** | several players' fleets acting as one force in a single engagement. |
 | **lease** | a player's claim on one facility slot on one planet, paid per turn. |
 | **slot** | an indivisible unit of planetary industrial capacity. |
@@ -102,7 +102,7 @@ construction — is per turn and needs no reinterpretation. Every cooldown in
 | `economy_specification.md` | credits, reference prices, NPC orders, markets, contracts, unions |
 | `conflict_specification.md` | PvE, PvP legality, engagement, destruction, insurance, salvage |
 | `fitting_specification.md` | the fitting rules, parts as goods, the refit order, where and what a refit costs |
-| `station_specification.md` | orbital stations: ownership, the kit, hosted slots, upkeep, where they may anchor, the deep-space hook |
+| `station_specification.md` | orbital stations: ownership, the kit, hosted slots, no upkeep and the kit's payback, where they may anchor, the deep-space hook |
 | `lore_specification.md` | the setting, factions, region authorities, squadron and manufacturer origins; no numbers |
 
 Each is hand-written and survives regeneration. Five generated catalogues sit beside them —
@@ -118,7 +118,7 @@ the map generator:
 * the SP ladder (already in `skills[].training`)
 * reference prices for all 1,043 tradeable goods
 * facility slot counts and lease rates, keyed by `archetype × developmentTier`
-* station types — hosted slots, upkeep and kit cost, keyed by `stationType × developmentTier`
+* station types — hosted slots, their lease-rent equivalent and kit cost, keyed by `stationType × developmentTier`
 * NPC squadron templates and contract archetypes
 
 **Runtime** — created by play, never generated, but schema-pinned. Each has a `.interface` in
@@ -128,7 +128,7 @@ the map generator:
 | record | schema | TypeScript |
 |---|---|---|
 | a player: trained levels, credits, standings | `player.interface` | `Player` |
-| a fleet and the hulls in it — fit, refit, damage, crew, ammunition, fuel, cargo, craft aboard | `fleet.interface` | `Fleet`, `FleetHull`, `HullFit`, `RefitJob` |
+| a player's one fleet, the hulls in it and those docked at yards — fit, refit, damage, crew, ammunition, fuel, cargo, craft aboard | `fleet.interface` | `Fleet`, `FleetHull`, `DockedHull`, `HullFit`, `RefitJob` |
 | a union | `union.interface` | `Union` |
 | a lease; a warehouse's contents | `facility.interface` `lease`; `warehouse.interface` | `Lease`; `WarehouseContents` |
 | an anchored station | `station.interface` `station` | `Station` |
@@ -233,6 +233,10 @@ Five ships is not a constant. It is the count of `unlocks[].type == "fleet_slot"
 in `skl_flt_formation_drill`, plus the free first hull. No document, schema, generator or
 interface may state `5` as a fleet limit. The verifier greps for it.
 
+The bound is on **every hull a player owns**. A player has exactly one fleet, and the bound
+covers its hulls and the hulls docked at yards apart from it (`logistics_specification.md`
+§1.2), so neither a second fleet nor a docked hull is a way around it.
+
 ### 6.7 Resolution is deterministic
 
 The same submitted orders and the same turn seed produce a byte-identical turn log. Phase
@@ -268,7 +272,7 @@ Schemas in `Data-Templates/` — thirteen new `.interface` files, `[+]`-annotate
 
 ```
 player.interface          account: skills, SP, credits, standings, union
-fleet.interface           a fleet and its hulls: fit, refit, damage, crew, stores, craft aboard
+fleet.interface           a player's one fleet, its hulls and docked hulls: fit, refit, damage, crew, stores, craft aboard
 union.interface           a player organisation: members, credits, leases, stations, rights
 facility.interface        a leasable slot and the lease on it
 warehouse.interface       the contents of one warehouse lease
@@ -300,7 +304,7 @@ python3 tools/verify_npc.py
 python3 tools/verify_gameplay.py        # the seven §6 invariants; runs last
 python3 tools/verify_lore.py            # factions, authorities, origins vs. the live catalogue
 python3 tools/verify_fitting.py         # the fitting rules vs. every default fit; refit costs; no free money
-python3 tools/verify_stations.py        # station capacity vs. the map, lossy refining, upkeep vs. rent
+python3 tools/verify_stations.py        # station capacity vs. the map, lossy refining, the kit's payback
 python3 tools/verify_coverage.py        # every section of these documents has a row in schema_coverage.md
 ```
 

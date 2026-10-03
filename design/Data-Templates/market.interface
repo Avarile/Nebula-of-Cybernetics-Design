@@ -13,9 +13,10 @@
 #   order        RUNTIME. A player's standing buy or sell at one system.
 #
 # [+] order.location -- where a fill is delivered (a buy) or taken from (a sell): a warehouse
-#     lease the poster holds in the order's system, or one of the poster's fleets there, not
-#     in transit, whose holds load or unload it (economy_specification.md 5). A hull bought
-#     joins the named fleet, or a new fleet in the system; hulls are never cargo.
+#     lease the poster holds in the order's system, or the poster's fleet there, not in
+#     transit, whose holds load or unload it (economy_specification.md 5). A hull is bought
+#     into, and sold from, the fleet only -- never a warehouse; hulls are never cargo. A
+#     fleet with no hull may be named in any system, and is then there.
 # [+] The 20 named ships are priced for valuation only. They are story hulls no player can
 #     hold (fitting_specification.md 6), so no NPC order lists them (economy 4).
 #

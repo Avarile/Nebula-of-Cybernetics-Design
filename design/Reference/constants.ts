@@ -447,7 +447,7 @@ export const FITTING_CONSTANTS = {
  *
  *   station slot  = planet slot size (or stationBerthRate / stationBerthTonnage) x development
  *   refining      = conversionYield x stationYieldModifier x refineryYield   (replaces the planet's term)
- *   upkeep        = upkeepRate x SUM(slotCount x the rent that slot would pay as a lease there)
+ *   upkeep        = none; payback = kit referencePrice / SUM(slotCount x the rent each slot would pay as a lease)
  *   kit buildCost = STATION_FRAME_COST + SUM over hosted slots (STATION_SLOT_COST[kind])
  */
 export const STATION_CONSTANTS = {
@@ -456,8 +456,6 @@ export const STATION_CONSTANTS = {
   stationYieldModifier: 0.94,
   stationBerthRate: 12.0,
   stationBerthTonnage: 4000.0,
-  upkeepRate: 1.0,
-  upkeepGraceTurns: 20,
   deployFacility: 'shipyard',
   siteTypes: ['orbital'],
 } as const;

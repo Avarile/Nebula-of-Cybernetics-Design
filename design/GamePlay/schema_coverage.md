@@ -98,7 +98,7 @@ on (`gameplay_specification.md` §5 lists the pairs).
 |---|---|---|---|---|
 | 1 | Jump range | `JUMP_RANGE_BASE` `JUMP_SPEED_REFERENCE` `JumpBudget` `RUNNING_SILENT_SPEED_FACTOR` | `verify_gameplay.py`: "every hull has a positive jump range", "cuts a silent fleet" | held |
 | 1.1 | Transit carries over | `fleet.interface` `Fleet` | `verify_reference.py` | typed |
-| 1.2 | Splitting and merging fleets | `fleet.interface` `FleetOrganizePayload` | `verify_reference.py`: "every order payload shape = its OrderPayloads type" | typed |
+| 1.2 | One fleet, and docked hulls | `player.interface` `fleet.interface` `Fleet` `DockedHull` | `verify_gameplay.py`: "a player has exactly one fleet"; `verify_reference.py`: "every runtime .interface shape has a TS twin" | held |
 | 2 | Fuel | `FUEL_MASS_DIVISOR` `FUEL_PER_POWER_CORE` `COMBAT_FUEL_BURN` `FuelProfile` | `verify_gameplay.py`: "fuel burn per ly rises strictly with hull mass", "every hull with a fuel tank has a finite fuel range" | held |
 | 2.1 | Running dry | `fleet.interface` `FleetRestockPayload` | `verify_reference.py` | typed |
 | 3 | Cargo | `fleet.interface` `CargoGoodId` `CargoTransferPayload` | `verify_gameplay.py`: "no warship category carries cargo", "at least one hull category can haul" | held |
@@ -164,7 +164,7 @@ on (`gameplay_specification.md` §5 lists the pairs).
 | 4.1 | Where | `RefitSite` `NPC_YARD_FEE` | `verify_fitting.py`: "every region with policed space has an NPC yard" | held |
 | 4.2 | The order | `turn_order.interface` `RefitOrderPayload` | `verify_reference.py`: "every order payload shape = its OrderPayloads type" | held |
 | 4.3 | How long, and what it costs | `REFIT_LABOUR_SHARE` `NPC_YARD_FEE` | `verify_fitting.py`: "refit table recomputes from the live catalogues" | held |
-| 4.4 | While docked | `fleet.interface` `FleetOrganizePayload` `warehouse.interface` | `verify_reference.py` | typed |
+| 4.4 | While docked | `fleet.interface` `DockedHull` `RefitJob` `warehouse.interface` | `verify_reference.py`; `verify_gameplay.py`: "docked hulls sit on it" | typed |
 | 5 | Value, insurance and salvage | `marketPrices` | `verify_fitting.py` | held |
 | 5.1 | A hull is worth its hull plus its parts | `marketPrices` | `verify_fitting.py`: "a hull is worth its bare hull plus its parts" | held |
 | 5.2 | No free money | `PRICE_INDEX` `NPC_SPREAD` | `verify_fitting.py`: "buying a hull and selling it stripped never pays" | held |
@@ -183,7 +183,7 @@ on (`gameplay_specification.md` §5 lists the pairs).
 | 3 | Building one | `STATION_FRAME_COST` `STATION_SLOT_COST` | `verify_stations.py` | held |
 | 3.1 | The kit | `stationTypes` `CargoGoodId` | `verify_stations.py`: "a kit is its frame plus its slots" | held |
 | 3.2 | Anchoring — the `station.deploy` order | `StationDeployPayload` `STATION_DEPLOY_FACILITY` `STATION_TIERS` | `verify_stations.py`: "read live, as 3.2 states", "station.deploy resolves in the phase facility.lease does" | held |
-| 4 | Upkeep | `STATION_UPKEEP_RATE` `STATION_GRACE_TURNS` `station.interface` | `verify_stations.py`: "a station never undercuts the lease market" | held |
+| 4 | No upkeep | `station.interface` `stationTypes` `DRAINS` `facility.interface` | `verify_stations.py`: "payback table (kit price / the rent its slots would pay) recomputes", "no station flow among the drains" | held |
 | 5 | Ownership | `station.interface` `player.interface` `union.interface` | `verify_reference.py` | typed |
 | 6 | Where, and what can happen to it | `STATION_TIERS` `warehouse.interface` | `verify_stations.py`: "no station brings a yard to a tier where the map places no planet yard" | held |
 | 7 | Deep-space stations — the hook | `STATION_SITE_TYPES` `SiteType` `StationSiteType` | `verify_stations.py` | held |
@@ -310,7 +310,7 @@ Items routed here by the earlier tasks, and what became of each.
 | parts as hold cargo untyped | `CargoGoodId` admits weapons and modules; a part weighs its `buildCost` units (logistics §3) |
 | `Lease.currentJob` uses a `current*` name | renamed `job`; `verify_naming.py` now fails on any `current*` field in a runtime schema |
 | where a market buy is delivered | every order names a location: a warehouse lease or a fleet in the system (economy §5, `MarketLocation`) |
-| no fleet split or merge; a refit holds the whole fleet | `fleet.organize` (phase 7, before convoys and movement); a player may hold several fleets, and Formation Drill bounds the hulls across them |
+| no fleet split or merge; a refit holds the whole fleet | first ruled with a `fleet.organize` order and several fleets per player; **reversed by the owner** (below): one fleet per player, and a hull under refit or newly built is docked at its yard while the fleet sails (logistics §1.2) |
 | silent posture: does −30 % speed cut strategic range? | yes: `RUNNING_SILENT_SPEED_FACTOR` (0.70) on `lyPerTurn` while posture is silent (logistics §1), checked |
 | `turn_order.interface` order list not verified | already verified by `verify_gameplay.py`; now every payload shape is too |
 | named ships priced as goods but unobtainable | a valuation only: no NPC order lists them (economy §4, fitting §6) |
@@ -320,6 +320,16 @@ Items routed here by the earlier tasks, and what became of each.
 | raiding had no order | `fleet.raid` (phase 9), contended by rank, `RAID_COOLDOWN` on `warehouse.interface` `lastRaidedTurn` |
 | `GRANULARITY_POLICY` lived only in `constants.ts` | `GRANULARITY_HULLS_PER_SIDE` in `tools/combat_tables.py`, recomputed against both logs' rosters |
 | combatants named by catalogue `ShipId` (two Corvette T1s collide) | `CombatantRef` in every combatant field of `combat.ts`; the engagement maps each ref to its ship, hull and fleet |
+
+## Owner rulings
+
+Decisions the project owner made, recorded here because they override what an earlier task
+proposed.
+
+| ruling | what it changed |
+|---|---|
+| **Orbital stations have no upkeep.** | `STATION_UPKEEP_RATE`, `STATION_GRACE_TURNS`, the `station_upkeep` drain, a station's `online`/`offline` status and its scrapping are gone. A station costs its kit and nothing per turn; its orbital leases pay no rent (`rentPaidThroughTurn` is set at anchoring and never advances); union credits pay nothing for it; no rule destroys a station's warehouse contents — `decommission` is rejected until the warehouse is empty. The station no longer keeps the rent drain whole: station §4 tables the kit's payback period (95 – 556 turns), which `verify_stations.py` recomputes |
+| **A player has exactly one fleet.** | `Player.fleetId` replaces `fleetIds`; `fleet.organize` is removed. A hull under refit, or built and awaiting pickup, is **docked** at its yard (`Fleet.docked`, `DockedHull`): out of play, never engaged, raided or destroyed, and rejoining the fleet automatically at the end of phase 6 when the fleet is in its system. Formation Drill bounds every hull the player owns, docked included. A convoy link always joins two players. Union fleet operations are unchanged |
 
 ## Known open design questions
 

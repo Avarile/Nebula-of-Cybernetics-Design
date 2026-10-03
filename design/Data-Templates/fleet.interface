@@ -1,17 +1,19 @@
 # INTERFACE: Fleet
 # Source of truth : runtime state -- no generated instances exist
-# Spec            : ../GamePlay/logistics_specification.md 1-8, fitting_specification.md 4-5,
+# Spec            : ../GamePlay/logistics_specification.md 1-8 (1.2: one fleet, docked hulls), fitting_specification.md 4-5,
 #                   conflict_specification.md 5, Combat-logic/combat_logic_specification.md 2.6, 3.6
-# Reference       : ../Reference/gameplay.ts -> Fleet, FleetHull, HullFit, RefitJob
+# Reference       : ../Reference/gameplay.ts -> Fleet, FleetHull, DockedHull, HullFit, RefitJob
 #                   (Reference/verify_reference.py holds every shape below to its type)
 #
 # [+] No upstream counterpart; new in full. Until now the fleet existed only in TypeScript.
 #
-# FOUR SHAPES:
-#   fleet       RUNTIME. Hulls under one player, moving and fighting as a unit.
+# FIVE SHAPES:
+#   fleet       RUNTIME. A player's ONE fleet: every hull they own, moving and fighting as a unit.
 #   fleetHull   RUNTIME. One hull a player holds -- what it carries between battles.
+#   dockedHull  RUNTIME. A hull apart from the fleet, docked at a yard: under refit, or built
+#               and awaiting pickup.
 #   hullFit     the weapons and modules on one hull (also a ship.refit order's target).
-#   refitJob    a refit in progress; non-null while the hull is docked.
+#   refitJob    a refit in progress; only ever on a docked hull.
 #
 # THE BUILD SHEET AND THE HULL. A catalogue hull (ship.interface) carries maxima only and
 # no current* value. A held hull's live state is here: hullHP, shieldHP, componentHP,
@@ -20,10 +22,20 @@
 # a battle touches the catalogue. Named plainly -- current* is CombatantState's alone
 # (tools/verify_naming.py).
 #
+# [+] ONE FLEET PER PLAYER (player.interface fleetId). It exists from the player's first
+#     turn to the last, even with no hull in it, and no order splits or merges it
+#     (logistics_specification.md 1.2).
+# [+] docked -- a player's hulls are either with the fleet (hulls) or DOCKED at a yard
+#     (docked): under refit (fitting_specification.md 4), or built and awaiting pickup
+#     (industry_specification.md 4.1). A docked hull cannot move, fight, trade, transfer cargo,
+#     restock or mine, and cannot be detected, engaged or raided -- it is out of play, like a
+#     fleet in transit. It rejoins the fleet AUTOMATICALLY at the end of phase 6 of any turn
+#     the fleet is in its system and not in transit, once no refit is in progress on it. A
+#     fleet with no hull is wherever its next hull is: in phase 6 it takes the system of its
+#     first docked hull free to rejoin (lowest hullId), which joins it.
 # [+] THE FLEET CAP is not a field and not a constant. Formation Drill's fleet_slot unlocks
-#     plus the free first hull bound the hulls across ALL of one player's fleets
-#     (gameplay_specification.md 6.6). A player may hold several fleets and moves hulls
-#     between them with fleet.organize (logistics_specification.md 1.2).
+#     plus the free first hull bound EVERY hull the player owns -- hulls + docked
+#     (gameplay_specification.md 6.6) -- so docking is never extra storage.
 # [+] fit -- the hull's own fit. It starts as the catalogue default fit; ship.refit changes
 #     it; the wreck drops this one, not the catalogue's (fitting_specification.md 5.3).
 # [+] componentHP, crew -- carried between battles: a catastrophic critical destroys a
@@ -44,18 +56,20 @@
 # [+] convoy -- non-null while this fleet follows a convoy leader (logistics 8).
 #
 # INVARIANTS (rules of play; enforced at order validation, not by a static check)
-#   - hulls across all of a player's fleets <= 1 + Formation Drill's reached fleet_slot unlocks
+#   - len(hulls) + len(docked) <= 1 + Formation Drill's reached fleet_slot unlocks
 #   - fit passes tools/fitting.py fit_is_valid for the hull's catalogue entry
 #   - 0 <= hullHP <= effective(hull.maxHP); 0 <= componentHP[c] <= the component's maxHP
 #   - cargo tons <= effective(cargoCapacity); ammo <= effective(ammoCapacity); fuel <= capacities.fuel
 #   - craftAboard[kind] <= floor(effective(aircraftCapacity | droneCapacity))
-#   - a fleet with a docked hull (refit non-null) does not move; a follower is never a leader
+#   - refit is non-null only on a hull in docked; a follower is never a leader
+#   - one fleet per player: fleet.playerId's player.fleetId is this fleetId
 
 {
   "fleet": {
     "fleetId": "string, unique",
     "playerId": "playerId -- the owner",
-    "hulls": "array of fleetHull -- length bounded by Formation Drill across the owner's fleets, never by a constant",
+    "hulls": "array of fleetHull -- the hulls with the fleet; with docked, bounded by Formation Drill, never by a constant",
+    "docked": "[+] array of dockedHull -- the player's hulls apart from the fleet at a yard; out of play until they rejoin",
     "systemId": "systemId -- where it is, or where its transit began",
     "posture": "enum: engage | avoid | interdict | silent -- standing; a follower takes its leader's",
     "inTransit": "object or null -- { toSystemId, lyRemaining } while a gate transit accumulates range across turns",
@@ -75,8 +89,13 @@
     "cargo": "object: resourceId | stationTypeId | weaponId | moduleId -> quantity",
     "insured": "boolean -- cover on or off; set by insurance.set",
     "fit": "[+] hullFit -- the hull's own fit",
-    "refit": "[+] refitJob or null -- non-null while docked for a refit",
+    "refit": "[+] refitJob or null -- non-null only while docked for a refit",
     "craftAboard": "[+] object: fighter | drone -> integer -- the hangar inventory"
+  },
+
+  "dockedHull": {
+    "hull": "fleetHull -- the hull, as it was when it docked or was built",
+    "planetId": "planetId -- the yard's planet: a berth lease's, or an NPC yard's; its system is the planet's"
   },
 
   "hullFit": {
@@ -98,7 +117,7 @@
 #
 # fleet:
 # { "fleetId": "flt_0044", "playerId": "ply_0031", "systemId": "sys_014", "posture": "avoid",
-#   "inTransit": null, "route": ["sys_014", "sys_015"], "convoy": null,
+#   "inTransit": null, "route": ["sys_014", "sys_015"], "convoy": null, "docked": [],
 #   "hulls": [
 #     { "hullId": "hul_0102", "shipId": "ship_destroyer_t2", "hullHP": 611.0, "shieldHP": 205.0,
 #       "componentHP": { "bridge": 146.0, "engines": 0.0, "weaponSystems": 195.0,
@@ -112,6 +131,15 @@
 #   -- a Destroyer Tier 2 (974 hull, 618 shields, 63 crew in the catalogue) home from a
 #   fight: engines destroyed by a catastrophic critical until dock repair, two crew lost, life
 #   support hit; its shields read 205 now and are full again at its next engagement.
+#
+# dockedHull, a Destroyer Tier 3 under a two-turn refit while its fleet sails on:
+# { "hull": { "hullId": "hul_0140", "shipId": "ship_destroyer_t3", "...": "...",
+#             "refit": { "site": { "leaseId": "lse_0402" }, "targetFit": { "...": "..." },
+#                        "partsLeaseId": "lse_0404", "labour": 74.0, "progress": 45.0,
+#                        "startedTurn": 91 } },
+#   "planetId": "pln_031" }
+#   -- it rejoins the fleet at the end of the first phase 6 after the refit completes in which
+#   the fleet is in pln_031's system.
 #
 # fleetHull, a carrier after a strike:
 # { "hullId": "hul_0207", "shipId": "ship_escort_carrier_t1", "...": "...",

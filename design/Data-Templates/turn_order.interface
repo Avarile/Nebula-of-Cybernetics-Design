@@ -31,7 +31,6 @@
 #   mine.assign          phase 3
 #   facility.job         phases 3, 4, 5, 6
 #   ship.refit           phase 6
-#   fleet.organize       phase 7
 #   fleet.move           phase 7
 #   fleet.convoy         phase 7
 #   fleet.posture        phase 8
@@ -48,24 +47,27 @@
 #   union.action         phase 13
 # >>> end mirror
 #
-# [+] fleet.convoy -- links a follower fleet to a leader so they move, are detected and
-#     fight as one (GamePlay/logistics_specification.md 8). Resolves in phase 7 before
-#     any fleet moves. Valid only when both fleets share a system, neither is in transit,
-#     the leader is not itself a follower, and the leader's owner is the same player, a
-#     union-mate, or the counterparty of an accepted ctr_escort naming both fleets. Standing.
+# [+] ONE FLEET PER PLAYER. Every fleetId in a payload is the submitting player's one fleet
+#     (player.interface fleetId), except a convoy's leaderFleetId, which is another
+#     player's. There is no order that splits or merges fleets
+#     (GamePlay/logistics_specification.md 1.2).
+# [+] fleet.convoy -- links the player's fleet, as follower, to another player's fleet as
+#     leader, so they move, are detected and fight as one
+#     (GamePlay/logistics_specification.md 8). Resolves in phase 7 before any fleet moves.
+#     Valid only when both fleets share a system, neither is in transit, the leader is not
+#     itself a follower, and the leader's owner is a union-mate or the counterparty of an
+#     accepted ctr_escort naming both fleets. Standing.
 # [+] ship.refit -- changes one hull's fit at a yard (GamePlay/fitting_specification.md 4).
 #     Resolves in phase 6, beside construction, so a refit finished today sails today.
 #     fit is the complete target fit; null cancels the refit in progress. Not standing:
-#     one order starts one refit, which runs to completion. Valid only when the hull's fleet
-#     is in the site's system and not in transit, the hull fits the site's maxHullTonnage,
+#     one order starts one refit, which runs to completion. The hull is DOCKED at the site
+#     from then until it rejoins the fleet (fleet.interface dockedHull); the fleet may sail.
+#     Valid only when the hull is with the fleet and the fleet is in the site's system and
+#     not in transit, or the hull is already docked on the site's planet; the hull fits the
+#     site's maxHullTonnage,
 #     the target fit passes tools/fitting.py fit_is_valid, the parts are in partsLeaseId
 #     (or, at an NPC yard, credits cover the asks and the fee), and the hull's cargo and
 #     ammunition fit the new capacities.
-# [+] fleet.organize -- moves hulls between two of the player's fleets in one system,
-#     neither in transit nor a convoy member, or to a new fleet (toFleetId null); a fleet
-#     left empty is dissolved (GamePlay/logistics_specification.md 1.2). Resolves first in
-#     phase 7, before convoy links and movement, so a docked hull can stay at its yard while
-#     the rest sails. Formation Drill bounds the hulls across all of a player's fleets.
 # [+] fleet.raid -- a fleet carrying troops takes the contents of another player's warehouse
 #     lease in its rim or deadspace system (GamePlay/conflict_specification.md 7). Resolves
 #     at the end of phase 9, after any engagement in the system, and only if the raider's
@@ -75,17 +77,18 @@
 #     facility.lease claims slots. Not standing. A deploy is valid only when the submitter
 #     is the owner or in the owning union and holds the shipyard-lease gate (Science 7, Ship
 #     Construction Management >= 1), the planet's system is in STATION_TIERS, its orbit is
-#     free after earlier-ranked deployments, and the kit is in the named hold (a fleet in the
-#     system, not in transit) or warehouse (on that planet). A decommission needs an empty
-#     station warehouse and no hull docked.
+#     free after earlier-ranked deployments, and the kit is in the named hold (the fleet in
+#     the system, not in transit) or warehouse (on that planet). A decommission needs an
+#     empty station warehouse and no refit in progress on its berth; it is rejected otherwise.
 # [+] fleet.restock -- tops up every hull of a fleet from one source: a warehouse lease at
 #     the same location, the fleet's own holds, or the system's NPC sell orders (core/mid).
 #     Ammunition at ROUNDS_PER_ORDNANCE_CHARGE a charge, fuel at FUEL_PER_POWER_CORE a core,
 #     craft at CRAFT_PROFILES restockCost each (GamePlay/logistics_specification.md 6,
 #     Combat-logic/combat_logic_specification.md 2.6). Resolves in phase 12. Standing.
 # [+] market.order -- names where a fill is delivered or taken from: a warehouse lease the
-#     poster holds in the order's system, or one of the poster's fleets there
-#     (GamePlay/economy_specification.md 5).
+#     poster holds in the order's system, or the poster's fleet there
+#     (GamePlay/economy_specification.md 5). A hull is bought into the fleet, never a
+#     warehouse.
 # [+] fleet.target payload -- per hull { hullIndex, targets: [shipId...] } or
 #     { hullIndex, withdraw: true } (withdraw from round 1), and per pool weapon an
 #     optional { hardpointId, coveredHullId } -- cover
@@ -133,18 +136,13 @@
       "partsLeaseId": "leaseId or null -- a warehouse lease on the site's planet; required at a berth",
       "fit": "HullFit (fleet.interface hullFit) or null -- null cancels"
     },
-    "fleet.organize": {
-      "fromFleetId": "fleetId",
-      "hullIds": "array of hullInstanceId -- hulls of fromFleetId",
-      "toFleetId": "fleetId or null -- another of the player's fleets in the system; null forms a new fleet"
-    },
     "fleet.move": {
       "fleetId": "fleetId",
       "route": "array of systemId -- ordered gates to cross"
     },
     "fleet.convoy": {
-      "followerFleetId": "fleetId",
-      "leaderFleetId": "fleetId or null -- null unlinks"
+      "followerFleetId": "fleetId -- the submitting player's fleet",
+      "leaderFleetId": "fleetId or null -- another player's fleet; null unlinks"
     },
     "fleet.posture": {
       "fleetId": "fleetId",
@@ -172,7 +170,7 @@
       "quantity": "integer > 0 -- post",
       "limitPrice": "number -- post",
       "expiresTurn": "integer or null -- post",
-      "location": "{ leaseId } | { fleetId } -- post: where a fill is delivered or taken from",
+      "location": "{ leaseId } | { fleetId } -- post: where a fill is delivered or taken from; a hull only { fleetId }",
       "orderId": "string -- cancel: the market order"
     },
     "facility.lease": {

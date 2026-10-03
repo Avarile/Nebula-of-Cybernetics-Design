@@ -157,8 +157,9 @@ submission, and again in phase 6 against the state the phase finds — warehouse
 stood at the start of phase 3 (§2.1 there). The order is dropped with a logged reason
 unless all of these hold:
 
-1. the hull is the player's, in the named fleet, the fleet is in the site's system and not
-   in transit, and the hull has no refit in progress (unless the order cancels it);
+1. the hull is the player's and either with the fleet, the fleet in the site's system and not
+   in transit, or already docked on the site's planet (a hull built there, or one whose refit
+   was cancelled); and it has no refit in progress (unless the order cancels it);
 2. the site is a shipyard lease the player or their union holds, with no other refit on it,
    or an NPC yard the player is not flagged at;
 3. the hull's `mass.value` is within the site's `maxHullTonnage`;
@@ -172,7 +173,8 @@ unless all of these hold:
    `cargo.transfer`. Craft over a new hangar capacity are scrapped instead (combat §2.6):
    craft are not goods and have nowhere to be unloaded to.
 
-When it passes in phase 6 the hull is **docked**: the parts it needs are reserved in the
+When it passes in phase 6 the hull is **docked** (`logistics_specification.md` §1.2): it
+leaves the fleet for the yard's planet (`fleet.docked`), the parts it needs are reserved in the
 warehouse, and the refit starts.
 
 ### 4.3 How long, and what it costs
@@ -204,7 +206,7 @@ berth builds 45 a turn untrained, the NPC yard on the same planet 180.
 | Battleship Tier 3 | 182.9 | 5 | 2 | 7,623 | 762 |
 
 Two trades fall out. **A berth is slow and free; an NPC yard is fast and charges.** A
-battleship's full refit holds its fleet five days on one untrained berth (four with Ship
+battleship's full refit keeps it out of its fleet five days on one untrained berth (four with Ship
 Construction Management at 10, at 58.5 a turn) and two at the yard, which charges about
 10 % of the fit for moving it twice. **The poorer the yard, the longer the wait**: the same
 destroyer refit takes 5 turns on an oceanic berth at development 1 (18 a turn).
@@ -214,23 +216,31 @@ catalogues.
 
 ### 4.4 While docked
 
-* **The fleet is held.** A `fleet.move` for a fleet with a docked hull is rejected, and a
-  convoy holding one holds as a whole, as it does for a hull short of fuel
-  (`logistics_specification.md` §8.2). A player who wants the rest to sail splits the docked
-  hull off into a fleet of its own with `fleet.organize`, earlier in the same phase 7
-  (`logistics_specification.md` §1.2), and merges it back when the refit is done.
-* **The hull fights as it is.** The fit changes only on completion. A docked hull in `mid`
-  or `rim` can be attacked like any other and fights with the fit it has; the yard does not
-  protect it.
+* **The fleet sails; the hull stays.** A docked hull is not with the fleet: the fleet may move,
+  fight and trade without it, and nothing it does holds the fleet or a convoy. The hull counts
+  against Formation Drill all the while (`logistics_specification.md` §1.2).
+* **The hull is out of play.** It cannot move, fight, trade, transfer cargo or restock, and it
+  cannot be detected, engaged or raided — the yard is no place to fight it, since it is not in
+  a fleet that phase 8 could catch. So a refit is never destroyed in progress, and a docked hull
+  leaves no wreck. Its insurance stays as set: the premium is charged in phase 12 as for any
+  insured hull, and since nothing can happen to it, its owner may turn cover off until it
+  rejoins.
 * **Completion** installs the parts and returns the removed ones to the parts warehouse, or
   sells them at the NPC bid. At an NPC yard the asks, the bids and the fee settle here. A
   completion that cannot settle — a full warehouse, credits short — is **held**, not
   dropped, and logged; it completes in the first phase 6 that it can, as a full warehouse
   halts production rather than destroying it (industry §5).
-* **Cancelling** (`fit: null`) undocks the hull in the next phase 6. Its fit is unchanged,
-  the reserved parts are released, the labour spent is lost, and nothing is charged.
-* **Destruction** ends the refit. Reserved parts never left the warehouse, so they are not
-  in the wreck.
+* **Rejoining** is automatic: at the end of phase 6, a docked hull with no refit in progress
+  rejoins the fleet if the fleet is in its system and not in transit, so a refit finished today
+  sails in today's phase 7 when the fleet is there; otherwise it waits at the yard until the
+  fleet ends a turn in that system (`logistics_specification.md` §1.2).
+* **Cancelling** (`fit: null`) ends the refit in the next phase 6. Its fit is unchanged,
+  the reserved parts are released, the labour spent is lost, and nothing is charged; the hull
+  rejoins by the rule above.
+* **The site going away.** If the berth lease ends — released, or its rent unpaid — the refit
+  is cancelled as above; the hull stays docked on that planet and rejoins by the rule above. A
+  station whose berth has a refit in progress cannot be decommissioned
+  (`station_specification.md` §4).
 
 At a berth, contention exists only between members of one union naming the same union berth
 in one turn; they resolve by rank (`turn_specification.md` §4), and the berth takes the

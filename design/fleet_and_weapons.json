@@ -80987,7 +80987,6 @@
           "rentPerTurn": 12.0
         }
       },
-      "upkeepPerTurn": 24.0,
       "buildCost": {
         "structural": 230.0,
         "energy": 30.0,
@@ -81016,7 +81015,6 @@
           "rentPerTurn": 18.6
         }
       },
-      "upkeepPerTurn": 37.2,
       "buildCost": {
         "structural": 230.0,
         "energy": 30.0,
@@ -81045,7 +81043,6 @@
           "rentPerTurn": 28.8
         }
       },
-      "upkeepPerTurn": 57.6,
       "buildCost": {
         "structural": 230.0,
         "energy": 30.0,
@@ -81083,7 +81080,6 @@
           "rentPerTurn": 12.0
         }
       },
-      "upkeepPerTurn": 19.28,
       "buildCost": {
         "structural": 310.0,
         "energy": 70.0,
@@ -81121,7 +81117,6 @@
           "rentPerTurn": 18.6
         }
       },
-      "upkeepPerTurn": 29.9,
       "buildCost": {
         "structural": 310.0,
         "energy": 70.0,
@@ -81159,7 +81154,6 @@
           "rentPerTurn": 28.8
         }
       },
-      "upkeepPerTurn": 46.3,
       "buildCost": {
         "structural": 310.0,
         "energy": 70.0,
@@ -81196,7 +81190,6 @@
           "rentPerTurn": 12.0
         }
       },
-      "upkeepPerTurn": 49.94,
       "buildCost": {
         "structural": 310.0,
         "energy": 80.0,
@@ -81233,7 +81226,6 @@
           "rentPerTurn": 18.6
         }
       },
-      "upkeepPerTurn": 77.4,
       "buildCost": {
         "structural": 310.0,
         "energy": 80.0,
@@ -81270,7 +81262,6 @@
           "rentPerTurn": 28.8
         }
       },
-      "upkeepPerTurn": 119.84,
       "buildCost": {
         "structural": 310.0,
         "energy": 80.0,
@@ -81308,7 +81299,6 @@
           "rentPerTurn": 12.0
         }
       },
-      "upkeepPerTurn": 70.16,
       "buildCost": {
         "structural": 440.0,
         "energy": 70.0,
@@ -81346,7 +81336,6 @@
           "rentPerTurn": 18.6
         }
       },
-      "upkeepPerTurn": 108.75,
       "buildCost": {
         "structural": 440.0,
         "energy": 70.0,
@@ -81384,7 +81373,6 @@
           "rentPerTurn": 28.8
         }
       },
-      "upkeepPerTurn": 168.39,
       "buildCost": {
         "structural": 440.0,
         "energy": 70.0,

@@ -3,7 +3,8 @@
 
 Stations add capacity beside the planets', so every check that matters is held against
 another catalogue: the resource and skill catalogues for lossy refining, the facility rows
-for rent and yard tonnage, the live map for the build-out and for where yards may exist.
+for rent and yard tonnage, the live map for the build-out and for where yards may exist,
+and the price tables for the payback period a kit earns now that a station pays no upkeep.
 Nothing here is read off the page; the spec's tables are recomputed and compared.
 """
 import json, os, re, sys
@@ -139,40 +140,33 @@ if f'all {n_planets} planets' not in sec:
     bad.append(f'planet count {n_planets} not stated')
 check('station 2.1 build-out table recomputes from the live map', bad)
 
-print('\n--- upkeep (station 4) ---')
+print('\n--- no upkeep: what the kit buys back (station 4) ---')
 bad = []
 for (sid, dev), r in rows.items():
-    want = T.STATION_UPKEEP_RATE * sum(s['slotCount'] * s['rentPerTurn'] for s in r['slots'].values())
-    if abs(r['upkeepPerTurn'] - want) > 0.006 or r['upkeepPerTurn'] <= 0:
-        bad.append(f'{sid} dev{dev}: upkeep {r["upkeepPerTurn"]} != {want:.2f}')
     for kind, s in r['slots'].items():
         per = s[C.STATION_CAPACITY_FIELD[kind]]
         live = C.slot_rent(kind, per, prices, s.get('yieldModifier'))
         if abs(s['rentPerTurn'] - live) > 0.006 or s['rentPerTurn'] <= 0:
             bad.append(f'{sid} dev{dev} {kind}: rent {s["rentPerTurn"]} != {live:.2f}')
-check('upkeep is STATION_UPKEEP_RATE x the slot rents, each the industry 7 formula, all positive', bad)
-bad = []
-for (sid, dev), r in rows.items():
-    for kind, s in r['slots'].items():
-        field = C.STATION_CAPACITY_FIELD[kind]
-        # Both rents are published to the cent; give each side its half-cent of rounding.
-        leases = [(f['slots'][kind]['rentPerTurn'] - 0.005) / f['slots'][kind][field]
-                  for (a, d), f in fac.items() if d == dev and kind in f['slots']]
-        mine = T.STATION_UPKEEP_RATE * (s['rentPerTurn'] + 0.005) / s[field]
-        if leases and mine < min(leases) - 1e-9:
-            bad.append(f'{sid} dev{dev} {kind}: {mine:.5f}/unit < cheapest lease {min(leases):.5f}/unit')
-check('a station never undercuts the lease market: upkeep per unit >= the cheapest lease at that tier', bad)
-check('station upkeep is a listed drain naming STATION_UPKEEP_RATE',
-      [] if ('station_upkeep', 'STATION_UPKEEP_RATE') in [(n, c) for n, c, _ in T.DRAINS] else ['missing'])
+check('each slot publishes the rent it would pay as a lease, the industry 7 formula, positive', bad)
+check('nothing a station holds is charged per turn: no station flow among the drains',
+      sorted(n for n, c, _ in T.DRAINS if 'station' in n.lower() or c.startswith('STATION_')))
+payback = C.station_payback(FLEET)
 sec = section_text(SPEC, '4')
 bad = []
 for sid, (name, _) in types.items():
     m = re.search(rf'^\| {re.escape(name)} \|(.*)\|$', sec, re.M)
-    want = [rows[(sid, d)]['upkeepPerTurn'] for d in sorted(T.DEVELOPMENT_LADDER)]
+    pb = [payback[(sid, d)] for d in sorted(T.DEVELOPMENT_LADDER)]
+    want = [(pb[0]['kitPrice'], 0)] + [(x['rentPerTurn'], 2) for x in pb] + [(x['turns'], 0) for x in pb]
     cells = nums(m.group(1).split('|')) if m else None
-    if cells is None or len(cells) != len(want) or any(abs(c - w) > 0.005 for c, w in zip(cells, want)):
-        bad.append(f'{name}: spec {cells} != live {want}')
-check('station 4 upkeep table recomputes', bad)
+    if cells is None or len(cells) != len(want) or any(abs(c - w) > 0.5 * 10 ** -d + 1e-9 for c, (w, d) in zip(cells, want)):
+        bad.append(f'{name}: spec {cells} != live {[round(w, d) for w, d in want]}')
+    if any(abs(x['kitPrice'] - rows[(sid, d)]['referencePrice']) > 0.006 for d, x in zip(sorted(T.DEVELOPMENT_LADDER), pb)):
+        bad.append(f'{name}: kit price differs from the published row')
+lo = min(payback.values(), key=lambda x: x['turns'])
+if f'**{lo["turns"]:.0f} turns**' not in sec:
+    bad.append(f'the shortest payback, {lo["turns"]:.0f} turns, is not stated in bold')
+check('station 4 payback table (kit price / the rent its slots would pay) recomputes from the live catalogues', bad)
 
 print('\n--- the kit (station 3) ---')
 bad = []
@@ -237,8 +231,7 @@ def ts_nested(name):
 
 
 bad = [k for k, v in (('orbitsPerPlanet', T.ORBITS_PER_PLANET), ('stationYieldModifier', T.STATION_YIELD_MODIFIER),
-                      ('stationBerthRate', T.STATION_BERTH_RATE), ('stationBerthTonnage', T.STATION_BERTH_TONNAGE),
-                      ('upkeepRate', T.STATION_UPKEEP_RATE), ('upkeepGraceTurns', T.STATION_GRACE_TURNS))
+                      ('stationBerthRate', T.STATION_BERTH_RATE), ('stationBerthTonnage', T.STATION_BERTH_TONNAGE))
        if ts_num(sc, k) != v]
 bad += [k for k, v in (('securityTiers', T.STATION_TIERS), ('siteTypes', T.STATION_SITE_TYPES)) if ts_list(sc, k) != v]
 if f"deployFacility: '{T.STATION_DEPLOY_FACILITY}'" not in sc:

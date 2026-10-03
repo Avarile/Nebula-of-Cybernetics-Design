@@ -48,8 +48,8 @@ def slot_rent(kind, per, prices, yield_modifier=None, lane=None):
         rentPerTurn = LEASE_RATE x (outputValue - inputValue)
 
     One formula for a planet slot and for the same slot on a station
-    (station_specification.md 4), so a station's upkeep is priced off what the lease
-    market charges rather than off a second table."""
+    (station_specification.md 4): a station pays no rent, and what its slots WOULD pay as
+    leases is the yardstick its payback period is measured against."""
     if kind == 'extraction':
         return T.LEASE_RATE['extraction'] * (per * prices[lane]['raw'])
     if kind == 'refinery':
@@ -428,6 +428,26 @@ def station_kit_turns(fleet, rows=None):
     rates = [yard_rates(fleet, a, d)[0] for a, d in STATION_KIT_YARDS]
     return {r['stationTypeId']: [turns_for(r['kitUnits'], rate) for rate in rates]
             for r in rows if r['developmentTier'] == 1}, rates
+
+
+def station_payback(fleet):
+    """station_specification.md 4: what a kit buys back. A station pays nothing per turn, so
+    the rent its slots would pay as leases at the orbited planet's developmentTier -- the
+    industry 7 formula, recomputed here from the slot sizes, never read off the rows -- is
+    what owning one saves each turn, and the kit's reference price over that saving is its
+    payback period. (stationTypeId, developmentTier) -> {'kitPrice', 'rentPerTurn', 'turns'}."""
+    prices = resource_prices(fleet)
+    size = {'refinery': T.REFINERY_SLOT_SIZE, 'manufactory': T.MANUFACTORY_SLOT_SIZE,
+            'shipyard': T.STATION_BERTH_RATE, 'warehouse': T.WAREHOUSE_SLOT_SIZE}
+    out = {}
+    for sid, _, hosted in T.STATION_TYPES:
+        price = reference_price(station_build_cost(hosted), prices)
+        for dev, mult in sorted(T.DEVELOPMENT_LADDER.items()):
+            rent = sum(n * slot_rent(k, size[k] * mult, prices,
+                                     T.STATION_YIELD_MODIFIER if k == 'refinery' else None)
+                       for k, n in hosted.items())
+            out[(sid, dev)] = {'kitPrice': price, 'rentPerTurn': rent, 'turns': price / rent}
+    return out
 
 
 def contract_archetypes():

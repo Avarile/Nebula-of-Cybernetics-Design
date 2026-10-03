@@ -39,13 +39,13 @@ the same time; there is no interleaving by player.
 | 3 | **Extraction** | planetary slots and belt mining produce |
 | 4 | **Refining** | raw → refined |
 | 5 | **Manufacturing** | refined → manufactured |
-| 6 | **Construction** | shipyard berths advance; finished hulls and parts delivered; refits complete |
+| 6 | **Construction** | shipyard berths advance; finished hulls and parts delivered; refits complete; docked hulls rejoin the fleet |
 | 7 | **Movement** | fleets spend jump range; arrivals recorded |
 | 8 | **Detection** | sensor resolution, interdiction, engagement formation |
 | 9 | **Combat** | every engagement runs to conclusion |
 | 10 | **Salvage** | wrecks rolled, field holder loots |
 | 11 | **Market** | orders matched and cleared |
-| 12 | **Upkeep** | lease rent, station upkeep, insurance premiums, fuel and ammo drawn, fleets restocked; stations anchored |
+| 12 | **Upkeep** | lease rent, insurance premiums, fuel and ammo drawn, fleets restocked; stations anchored |
 | 13 | **Settlement** | contracts completed, bounties paid, standings moved — each with the authority of the region the act happened in (`conflict_specification.md` §6); none in a region with no authority |
 | 14 | **Log** | turn log written, turn N+1 opens |
 
@@ -56,9 +56,10 @@ every phase after it. A player who finishes Ship Construction Management on turn
 better rate on turn N, not N+1. The alternative — training last — makes every level a day
 late for no design benefit.
 
-**Industry before movement (3–6 before 7).** A hull finished in phase 6 can be crewed and
-moved in phase 7 the same turn. Material produced this turn can be loaded and hauled the
-same turn. The chain does not stall a day on delivery.
+**Industry before movement (3–6 before 7).** A hull finished in phase 6 joins the fleet at the
+end of that phase if the fleet is in its system, and moves with it in phase 7 the same turn.
+Material produced this turn can be loaded and hauled the same turn. The chain does not stall a
+day on delivery.
 
 **Movement before combat (7 before 9).** A fleet that jumps into a system fights there the
 same turn. Without this, every engagement is announced a day in advance and no attack ever
@@ -98,16 +99,15 @@ bucket without interpreting.
 | `mine.assign` | 3 | a fleet and a belt |
 | `facility.job` | 3–6 | a lease, an operation, an input good and a quantity |
 | `ship.refit` | 6 | a hull, a yard, a parts warehouse and the target fit (`fitting_specification.md` §4) |
-| `fleet.organize` | 7 | hulls to move from one of the player's fleets to another, or to a new fleet, in one system (`logistics_specification.md` §1.2) |
 | `fleet.move` | 7 | a route: an ordered list of system ids |
-| `fleet.convoy` | 7 | a follower fleet and a leader fleet to link it to, or none to unlink (`logistics_specification.md` §8) |
+| `fleet.convoy` | 7 | another player's fleet to follow as leader, or none to unlink (`logistics_specification.md` §8) |
 | `fleet.posture` | 8 | `engage` · `avoid` · `interdict` · `silent` |
 | `fleet.target` | 9 | per hull: a priority list for target selection, or `withdraw` from round 1; per pool weapon, optionally a friendly hull to cover (`conflict_specification.md` §4.4) |
 | `fleet.raid` | 9 | a fleet with troops and a warehouse lease to raid in its `rim` or `deadspace` system (`conflict_specification.md` §7) |
 | `cargo.transfer` | 7, 12 | between a fleet hold and a warehouse at the same location |
-| `market.order` | 11 | buy or sell, good, quantity, limit price, system, and where the goods are delivered: a warehouse lease or a fleet there (`economy_specification.md` §5) |
+| `market.order` | 11 | buy or sell, good, quantity, limit price, system, and where the goods are delivered: a warehouse lease or the player's fleet there (`economy_specification.md` §5) |
 | `facility.lease` | 12 | claim or release a slot |
-| `station.deploy` | 12 | anchor a station kit in a planet's orbit, or scrap a station (`station_specification.md` §3.2) |
+| `station.deploy` | 12 | anchor a station kit in a planet's orbit, or decommission a station (`station_specification.md` §3.2) |
 | `fleet.restock` | 12 | a fleet, what to top up — ammunition, fuel, craft — and the source (`logistics_specification.md` §6) |
 | `contract.accept` · `contract.post` | 13 | a contract |
 | `insurance.set` | 12 | a hull, cover on or off |

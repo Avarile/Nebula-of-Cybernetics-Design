@@ -70,20 +70,34 @@ This rule exists so that a monitor at 5.4 ly/turn can still cross a 6 ly gate. W
 slow hull on a long gate would be permanently immobile, and the map spec authors gate
 distances without knowing what will try to cross them.
 
-### 1.2 Splitting and merging fleets
+### 1.2 One fleet, and docked hulls
 
-A player may hold several fleets. Formation Drill's `fleet_slot` unlocks bound the **hulls**
-across all of them, never the number of fleets (`gameplay_specification.md` §6.6), so splitting
-a fleet adds no hull and merging two frees no slot.
+**A player has exactly one fleet** (`player.interface` `fleetId`). It is created with the
+account, kept for its life even when it holds no hull, and never splits or merges; there is no
+order that does either. Everything a player flies moves, is seen and fights as that one fleet.
 
-`fleet.organize` (phase 7, not standing) moves named hulls from one of the player's fleets to
-another, or to a new fleet, in one system. Both fleets must be the player's, in the same
-system, not in transit and not in a convoy; a fleet left empty is dissolved. It resolves first
-in phase 7, before convoy links and movement, so the rest of a fleet can sail the same turn.
+A player's hulls are each in one of two places:
 
-This is what keeps a refit from holding a whole fleet: a docked hull (`fitting_specification.md`
-§4.4) is split off into a fleet of its own at the yard, and the others move on. It is also how a
-hauler joins its escort, or a mining fleet sheds the hull that has filled its hold.
+| where | what it does |
+|---|---|
+| **with the fleet** (`fleet.hulls`) | moves, is detected, fights, mines, trades, transfers cargo and restocks, as every rule in this document says |
+| **docked** at a yard (`fleet.docked`) | nothing: it cannot move, fight, trade, transfer cargo, restock or mine, and cannot be detected, engaged or raided — out of play, like a fleet in transit (§1.1) |
+
+A hull is docked for one of two reasons, and only these: it is **under refit**
+(`fitting_specification.md` §4.4), or it was **built** at a berth and is awaiting pickup
+(`industry_specification.md` §4.1). No order docks a hull for any other reason.
+
+**Rejoining is automatic.** At the end of phase 6, after construction and refits resolve, every
+docked hull with no refit in progress rejoins the fleet if the fleet is in that hull's system and
+not in transit. A refit or construction finished today therefore sails in today's phase 7 when
+the fleet is there; when it is elsewhere, the hull waits until the fleet ends a turn in that
+system. A fleet with no hull aboard — all lost, sold or docked — is wherever its next hull is: in
+phase 6 it takes the system of its first docked hull free to rejoin (lowest `hullId`), and that
+hull joins it.
+
+**Formation Drill bounds every hull the player owns** — with the fleet and docked together
+(`gameplay_specification.md` §6.6). Docking is never extra storage: a hull at a yard holds its
+fleet slot exactly as one with the fleet does.
 
 ## 2. Fuel
 
@@ -150,7 +164,8 @@ resource (`Resources/resource_tiers_specification.md`) one ton is one unit.
 A hold carries resources, station kits and **parts** — weapons and modules, the goods a refit
 installs (`fitting_specification.md` §3). A kit or a part is one item and weighs its `buildCost`
 units in tons, as it takes that many units of warehouse space; a Belt Armour Mk.1 is 20 t. Hulls
-are never cargo: a hull bought or built joins a fleet. The hold is `FleetHull.cargo`
+are never cargo: a hull bought joins the fleet, and a hull built is docked at its berth until the
+fleet collects it (§1.2). The hold is `FleetHull.cargo`
 (`Data-Templates/fleet.interface`).
 
 **Six of the twenty-six categories can carry anything at all.** At tier 3:
@@ -288,26 +303,26 @@ be a one-off construction input and nothing else.
 Cargo hulls cannot defend themselves (§3), so cargo worth taking travels with warships. There
 are two ways to put them together, and they differ only in who owns the hulls.
 
-**One fleet.** A player puts haulers and warships in the same fleet. Nothing new applies: the
+**One fleet.** A player puts haulers and warships in their fleet. Nothing new applies: the
 fleet moves at its slowest hull (§1), every hull draws its own fuel (§2), and the slots are
 shared — every escort hull is a hold not carrying cargo. Two attack transports and three
 destroyers is a complete convoy for one player.
 
-**A convoy link.** Two or more fleets travel as one. This is how an escort flown by someone
-else — a union-mate, or a player hired with an escort contract
-(`economy_specification.md` §8.2) — stays with a hauler.
+**A convoy link.** Two or more players' fleets travel as one. A player has one fleet (§1.2), so
+a link always joins different players: an escort flown by a union-mate, or by a player hired
+with an escort contract (`economy_specification.md` §8.2), stays with a hauler this way.
 
 ### 8.1 The link
 
-`fleet.convoy` (phase 7, standing) names one of the player's fleets as a **follower** and
-another fleet as its **leader**. It resolves before any fleet moves. The link forms only when:
+`fleet.convoy` (phase 7, standing) names the player's fleet as a **follower** and another
+player's fleet as its **leader**. It resolves before any fleet moves. The link forms only when:
 
 * both fleets are in the same system and neither is in transit;
 * the leader is not itself a follower — a convoy is one leader and its followers, never a
   chain. Links submitted the same turn resolve in rank order (`turn_specification.md` §4);
   one naming a leader that is linked by then is rejected;
-* the leader's owner has agreed: the same player, a member of the same union, or the other
-  party to an accepted `ctr_escort` naming the two fleets.
+* the leader's owner has agreed: a member of the same union, or the other party to an accepted
+  `ctr_escort` naming the two fleets.
 
 Without the third rule anyone could attach a slow or loud hull to a stranger's fleet and drag
 it down to their pace, or into an interdictor's view.
@@ -334,9 +349,9 @@ The slowest hull sets the pace exactly as in §1, and nothing else changes: tran
 for the convoy as a whole (§1.1), and every member emerges at the same gate in the same
 phase 7. Three destroyers (12.5 ly/turn) escorting an attack transport T3 move at 7.5.
 
-Fuel stays per hull (§2). A convoy moves only if **every** hull can fuel the next transit
-and none is docked for a refit (`fitting_specification.md` §4.4); otherwise the whole convoy
-holds and the log names the hull that is short or docked. An oiler in any
+Fuel stays per hull (§2). A convoy moves only if **every** hull can fuel the next transit;
+otherwise the whole convoy holds and the log names the hull that is short. A docked hull is
+not in its fleet (§1.2), so it never holds a convoy. An oiler in any
 member may transfer fuel to any hull in the convoy, since they are always at the same location
 (§4). A link does not merge holds: `cargo.transfer` still moves goods only within one fleet or
 to a warehouse (§3).

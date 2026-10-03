@@ -37,7 +37,7 @@ export type LadderScale = 'richnessTier' | 'developmentTier';
 
 /**
  * `planet` and `orbital`. An `orbital` lease is a slot hosted by an orbital station
- * (`stations.ts`); the station pays upkeep in its place. Deep-space stations are deferred
+ * (`stations.ts`); it pays no rent, and the station no upkeep — the kit is the whole price. Deep-space stations are deferred
  * by the brief and will add `deep_space` without any other schema change.
  */
 export type SiteType = 'planet' | 'orbital';
@@ -164,6 +164,10 @@ export interface Lease {
   lane: ResourceLane | null;
   slotIndex: number;
   startedTurn: number;
+  /**
+   * Unpaid rent ends a planet lease at the end of phase 12. An `orbital` lease owes none:
+   * set to the turn its station was anchored and never advanced (`station_specification.md` §4).
+   */
   rentPaidThroughTurn: number;
   /** The new-player grant — 20 turns. */
   freeUntilTurn: number | null;

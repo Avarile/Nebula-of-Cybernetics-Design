@@ -112,13 +112,13 @@ who fought on which side, why it formed, the aggressors, the battle log and the 
 
 ### 4.1 Fleet operations
 
-No player commands more than five hulls
-(`progression_specification.md` §3). A **fleet operation** is several union members'
-fleets fighting as one force in one engagement, and it is the only way a battle
-exceeds five hulls per side. It needs no order: union-mates' fleets caught in one engagement
-are on one side, and union-mates cannot engage one another. The fleets of one convoy are a
-fleet operation the same way, union or not — that is how an escort hired by contract fights
-beside its client.
+A player has one fleet (`logistics_specification.md` §1.2), bounded by Formation Drill
+(`progression_specification.md` §3). A **fleet operation** is several union members' fleets
+fighting as one force in one engagement, and it is the only way a side fields more hulls than
+one player's fleet can hold. It needs no order: union-mates' fleets caught in one engagement are
+on one side, and union-mates cannot engage one another. The fleets of one convoy are a fleet
+operation the same way, union or not — that is how an escort hired by contract fights beside its
+client.
 
 This is what makes `Combat-logic/battle_log_veritas_vs_cinder.md` — thirteen hulls against
 seventeen — a reachable game state rather than a fiction: three or four union members each
@@ -199,7 +199,8 @@ the combat spec's disengagement check.
 A hull that does not break off and reaches zero is **destroyed and removed**. There is no
 wreck-to-repair path, no capture, no crippled state. The hull is gone, the fleet slot is
 free, and the player's Formation Drill level still permits the same number of ships — they
-simply have one fewer.
+simply have one fewer. Only a hull with its fleet can be lost: a hull docked at a yard is out of
+play, so it is never engaged, destroyed or wrecked (`logistics_specification.md` §1.2).
 
 ### 5.1 Wrecks and salvage
 
@@ -314,7 +315,8 @@ transfer, and no damage to the facility. The victim loses stock and keeps their 
 
 A station's warehouse is a warehouse lease (`station_specification.md` §6) and is raided on
 exactly these terms; the station itself — its slots, its berth, a hull docked there — is never
-touched, and no rule destroys a station.
+touched, and no rule destroys a station. No docked hull, at any yard, can be raided or engaged
+(`logistics_specification.md` §1.2).
 
 Raiding is barred in `core` and `mid` — those tiers have a response fleet, and a raid is
 aggression. So the only warehouses at risk are the ones out where the good ore is, which

@@ -28,13 +28,13 @@ PHASES = [
     (3,  'extraction',    'player',   'planetary slots and belt mining produce'),
     (4,  'refining',      'player',   'raw -> refined'),
     (5,  'manufacturing', 'player',   'refined -> manufactured'),
-    (6,  'construction',  'player',   'shipyard berths advance; finished hulls and parts delivered; refits complete'),
+    (6,  'construction',  'player',   'shipyard berths advance; finished hulls and parts delivered; refits complete; docked hulls rejoin the fleet'),
     (7,  'movement',      'player',   'fleets spend jump range; arrivals recorded'),
     (8,  'detection',     'player',   'sensor resolution, interdiction, engagement formation'),
     (9,  'combat',        'player',   'every engagement runs to conclusion'),
     (10, 'salvage',       'system',   'wrecks rolled, field holder loots'),
     (11, 'market',        'player',   'orders matched and cleared'),
-    (12, 'upkeep',        'player',   'lease rent, station upkeep, insurance premiums, fuel and ammo drawn, fleets restocked; stations anchored'),
+    (12, 'upkeep',        'player',   'lease rent, insurance premiums, fuel and ammo drawn, fleets restocked; stations anchored'),
     (13, 'settlement',    'player',   "contracts completed, bounties paid, standings moved with the authority of the region each act happened in"),
     (14, 'log',           'system',   'turn log written, turn N+1 opens'),
 ]
@@ -45,7 +45,6 @@ ORDER_TYPES = {
     'mine.assign':      [3],
     'facility.job':     [3, 4, 5, 6],
     'ship.refit':       [6],         # change one hull's fit at a yard. fitting 4
-    'fleet.organize':   [7],         # split or merge the player's own fleets, before convoys and moves. logistics 1.2
     'fleet.move':       [7],
     'fleet.convoy':     [7],         # link to / unlink from a leader fleet. logistics 8
     'fleet.posture':    [8],
@@ -54,7 +53,7 @@ ORDER_TYPES = {
     'cargo.transfer':   [7, 12],
     'market.order':     [11],
     'facility.lease':   [12],
-    'station.deploy':   [12],        # anchor a station kit in an orbit, or scrap a station. station 3
+    'station.deploy':   [12],        # anchor a station kit in an orbit, or decommission a station. station 3
     'fleet.restock':    [12],        # top up ammunition, fuel and craft. logistics 6
     'contract.accept':  [13],
     'contract.post':    [13],
@@ -283,14 +282,13 @@ NPC_YARD_FEE = 0.05          # of the reference price of each item moved
 # station_specification.md. An orbital station is a KIT built at a shipyard berth, hauled,
 # and anchored in a planet's orbit. It hosts its owner's own slots -- the planet slot
 # kinds less extraction, sized by the slot constants above, scaled by the planet's
-# developmentTier -- and pays upkeep instead of rent. The planet stays terrain.
+# developmentTier -- and pays nothing per turn: the kit is the whole price (station 4).
+# The planet stays terrain.
 ORBITS_PER_PLANET = 1                 # stations one planet's orbit holds. station 2
 STATION_TIERS = ['core', 'mid', 'rim']   # where a kit may be anchored; never deadspace. station 6
 STATION_YIELD_MODIFIER = 0.94         # a station refinery's yieldModifier: REPLACES the planet's, never multiplies it
 STATION_BERTH_RATE = 12.0             # manufactured units/turn per station berth, at developmentTier 1
 STATION_BERTH_TONNAGE = 4000.0        # maxHullTonnage of a station berth, at developmentTier 1
-STATION_UPKEEP_RATE = 1.00            # x the rent the station's slots would pay as leases there
-STATION_GRACE_TURNS = 20              # turns an unpaid station stays offline before it is scrapped
 STATION_DEPLOY_FACILITY = 'shipyard'  # anchoring a kit needs what leasing a berth needs (industry 3)
 
 # A kit's buildCost, in manufactured units per lane: the frame every station has, plus one
@@ -424,7 +422,6 @@ DRAINS = [
     ('consumable_markup',  'FUEL_PER_POWER_CORE', 'fleets operating away from their own industry'),
     ('forfeited_haul_collateral', 'PRICE_INDEX', 'NPC haul cargo lost or kept; collateral is the dearest NPC ask'),
     ('npc_yard_fee',       'NPC_YARD_FEE',        'refits done at NPC yards rather than a berth the player leases'),
-    ('station_upkeep',     'STATION_UPKEEP_RATE', 'stations anchored; never less than the rent their slots would pay as leases'),
 ]
 
 # ----------------------------------------------------------------- careers

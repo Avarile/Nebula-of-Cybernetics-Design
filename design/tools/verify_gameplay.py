@@ -172,10 +172,42 @@ check('no generator or table defines a fleet-cap constant', bad)
 bad = []
 for d in DOCS:
     for i, line in enumerate(open(os.path.join(GP, d)), 1):
-        if re.search(r'(?i)(max(imum)?\s+(of\s+)?5|5\s*(ship|hull)s?\s*(max|cap|limit))', line) \
+        if re.search(r'(?i)(max(imum)?\s+(of\s+)?5|5\s*(ship|hull)s?\s*(max|cap|limit)'
+                     r'|(more than|up to|at most|no more than)\s+(5|five)\s*(ship|hull)?s?\b(?!\s*(turns?|ly|units))'
+                     r'|\b(5|five)-(ship|hull)\s+(cap|limit|max))', line) \
                 and 'Formation Drill' not in line and '>' not in line:
             bad.append(f'{d}:{i}: {line.strip()[:70]}')
 check('no document asserts a numeric fleet cap in its own voice', bad)
+
+# One fleet per player (owner ruling, logistics 1.2): the player record names ONE fleet, the
+# fleet record carries the docked hulls the Formation Drill bound also covers, and no order,
+# schema, type or document brings back fleet splitting or several fleets per player.
+bad = []
+pbody = json.loads('\n'.join(l for l in open(os.path.join(ROOT, 'Data-Templates', 'player.interface'))
+                             if not l.lstrip().startswith('#')))
+if 'fleetId' not in pbody or 'fleetIds' in pbody:
+    bad.append(f'player.interface fleet field(s): {sorted(k for k in pbody if k.startswith("fleet"))}')
+player_ts = open(os.path.join(ROOT, 'Reference', 'gameplay.ts')).read()
+m = re.search(r'export interface Player \{(.*?)\n\}', player_ts, re.S)
+if not (m and re.search(r'^\s+fleetId: FleetId;', m.group(1), re.M)):
+    bad.append('Reference/gameplay.ts Player does not carry one fleetId: FleetId')
+fbody = json.loads('\n'.join(l for l in open(os.path.join(ROOT, 'Data-Templates', 'fleet.interface'))
+                             if not l.lstrip().startswith('#')))
+if 'docked' not in fbody.get('fleet', {}):
+    bad.append('fleet.interface fleet carries no docked hulls')
+fhead = open(os.path.join(ROOT, 'Data-Templates', 'fleet.interface')).read()
+if not re.search(r'len\(hulls\) \+ len\(docked\) <= 1 \+ Formation Drill', fhead):
+    bad.append('fleet.interface: the Formation Drill invariant does not bound hulls + docked')
+bad += [f'ORDER_TYPES: {k}' for k in T.ORDER_TYPES if re.search(r'organi[sz]e|split|merge', k)]
+several = re.compile(r'(?i)fleet\.organi[sz]e|FleetOrganize|(may|can) hold several fleets|several of (a|the) player.s fleets'
+                     r'|across all (of )?(a|the|one) player.s fleets|one of the (player|poster).s fleets')
+for folder, ext in (('GamePlay', '.md'), ('Data-Templates', '.interface'), ('Reference', '.ts')):
+    for f in sorted(os.listdir(os.path.join(ROOT, folder))):
+        if f.endswith(ext) and f != 'schema_coverage.md':     # the audit's history may name the old rule
+            for i, line in enumerate(open(os.path.join(ROOT, folder, f)), 1):
+                if several.search(line):
+                    bad.append(f'{folder}/{f}:{i}: {line.strip()[:70]}')
+check('a player has exactly one fleet: Player names one fleetId, docked hulls sit on it, nothing splits fleets', bad)
 
 print('\n--- 6.7  resolution is deterministic ---')
 check('the phase list is dense and ordered 1-14',

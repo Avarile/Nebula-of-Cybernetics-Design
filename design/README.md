@@ -26,7 +26,7 @@ output.
 | Planets | 180 | 10 archetypes × richness 1–3 × development 1–3 |
 | Tradeable goods | 1,043 | every weapon, module, hull and resource, priced from its `buildCost` |
 | Planet archetypes | 10 | × 3 development tiers = 30 rows of leasable industrial capacity |
-| Station types | 4 | × 3 development tiers = 12 rows: hosted slots, upkeep, kit cost |
+| Station types | 4 | × 3 development tiers = 12 rows: hosted slots, their lease-rent equivalent, kit cost |
 | Files on disk | 2,146 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 15 under `Resources/`, 83 under `Skills/`, 244 under `Systems_Planets/` |
 
 ## Layout
@@ -83,7 +83,7 @@ GamePlay/                    the rules layer: how a player spends a day
   economy_specification.md   credits, prices, markets, contracts, unions
   conflict_specification.md  PvE, PvP, destruction, insurance, raiding
   fitting_specification.md   the fitting rules, parts as goods, the refit order and its cost
-  station_specification.md   orbital stations: the kit, hosted slots, upkeep, where they anchor
+  station_specification.md   orbital stations: the kit, hosted slots, no upkeep and the payback, where they anchor
   lore_specification.md      the setting, factions, region authorities, manufacturer origins
   schema_coverage.md         every section of the specs -> the schemas it needs and the checks that hold it; the gaps
   Progression/ Market/ Facilities/ Stations/ NPC/     the generated half
@@ -115,7 +115,7 @@ lines and the remainder parses as JSON.
 | `progression` | the SP ladder in turns, 26 hull paths, 5 career costs |
 | `marketPrices` | a reference price for all 1,043 tradeable goods |
 | `facilityTypes` | 30 rows: leasable slots by archetype × development tier |
-| `stationTypes` | 12 rows: orbital station types by development tier — hosted slots, upkeep, kit cost |
+| `stationTypes` | 12 rows: orbital station types by development tier — hosted slots, their lease-rent equivalent, kit cost |
 | `npcSquadrons` | 5 hostile formations, composed of real hull ids |
 | `contractArchetypes` | 4 job types, who may post them, and their reward formulas |
 
@@ -420,9 +420,15 @@ pays the NPC spread; insurance still covers the bare hull and the wreck drops th
 hull actually carried. Every weapon and module is now a legal fit somewhere — before, 730
 weapons and 22 module lines sat in no fit at all.
 
+**One fleet per player.** A player has exactly one fleet. A hull under refit, or built and
+awaiting pickup, is **docked** at its yard — out of play, never engaged or raided — while the
+fleet sails on, and rejoins automatically at the end of phase 6 when the fleet is in its system.
+Formation Drill bounds every hull the player owns, docked included, so docking is never extra
+storage; there is no order that splits or merges fleets.
+
 **Hauling and escort.** Cargo hulls cannot fight, so cargo worth taking travels with
-warships: in one fleet, or as a **convoy** — fleets linked by `fleet.convoy` that move at the
-slowest hull's pace, are caught whole by an interdictor, and fight as one side. Inside the
+warships: in the player's fleet, or as a **convoy** — two or more players' fleets linked by
+`fleet.convoy` that move at the slowest hull's pace, are caught whole by an interdictor, and fight as one side. Inside the
 battle an escort breaks the locks that keep a hauler from withdrawing, or **covers** it,
 lending its point defence to the hauler's interception pool against missiles and craft. A `haul` contract pays freight
 plus a risk premium on the cargo's value, priced on the least secure system of its route;
@@ -446,9 +452,11 @@ in one planet's orbit — property, not territory; the planet stays terrain. It 
 `core`, `mid` or `rim`, one per planet. It hosts its owner's own refinery, manufactory, berth
 and warehouse slots — never extraction — sized by the planet slot constants and the orbited
 planet's development tier, as `orbital` leases, so `facility.job` and refits use them with no
-new rule. Upkeep replaces rent at `STATION_UPKEEP_RATE` × what those slots would rent for, so a
-station never undercuts the lease market; what the kit buys is capacity nobody can lease
-first, and kinds the planet lacks. `verify_stations.py` holds the rest against the live map:
+new rule. **It pays no upkeep and no rent**: the kit is the whole price, so it is never offline
+or scrapped, and a decommission waits until its warehouse is empty. That makes orbit cheaper
+than a lease over time — the kit pays itself back in what its slots would rent for in 95 to 556
+turns — bounded by one orbit per planet, the kit and its build time. `verify_stations.py`
+recomputes that payback table and holds the rest against the live map:
 refining stays lossy with the station's own `yieldModifier` (0.94) in place of the planet's;
 every orbit filled still holds less of each kind than the planets (the berth at 79 %); a
 station berth never out-tons an oceanic one, so the capital keel stays on forge worlds; and
@@ -467,7 +475,7 @@ the map generator:
   engagements and their battle logs, wrecks, turn logs. Created by play, never generated. Each
   has a `[+]` `.interface` in `Data-Templates/` and a twin type in `Reference/`, and
   `Reference/verify_reference.py` holds the two to the same fields, shape by shape — 12 schemas
-  with a runtime shape, 29 shapes, and all 19 order payloads.
+  with a runtime shape, 30 shapes, and all 18 order payloads.
 
 **Does every mechanic have its data?** `GamePlay/schema_coverage.md` answers it section by
 section: one row per numbered section of the ten GamePlay documents and the combat spec, naming
@@ -576,14 +584,14 @@ python3 tools/verify_progression.py   # 22 checks
 python3 tools/verify_market.py        # 25 checks -- incl. the economy 7 faucet/drain tables vs. FAUCETS/DRAINS, row for row
 python3 tools/verify_facilities.py    # 26 checks
 python3 tools/verify_npc.py           # 29 checks -- incl. every squadron's factionId
-python3 tools/verify_gameplay.py      # 61 checks -- the cross-cutting invariants, order lists, haul pricing; runs last
+python3 tools/verify_gameplay.py      # 62 checks -- the cross-cutting invariants, one fleet per player, order lists, haul pricing; runs last
 python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
 python3 tools/verify_combat.py        # 63 checks -- combat rulings, stat hooks, lock range, movement, strike craft, cover, granularity, the v2 worked example
 python3 tools/verify_naming.py        # 9 checks -- no current* in the catalogue or a runtime schema, no stray 'turn' name, stat clocks match their rules
 python3 tools/verify_fitting.py       # 17 checks -- the fitting rules vs. every default fit, no dead good, refit cost, no free money
-python3 tools/verify_stations.py      # 28 checks -- station capacity vs. the map, lossy refining, yard tonnage, upkeep vs. rent
+python3 tools/verify_stations.py      # 27 checks -- station capacity vs. the map, lossy refining, yard tonnage, the kit's payback
 python3 tools/verify_coverage.py      # 9 checks -- every spec section has a row in GamePlay/schema_coverage.md; every cited schema, check and gap exists
-python3 Reference/verify_reference.py # 103 checks -- TypeScript interface vs. the data, and every runtime .interface vs. its TS twin
+python3 Reference/verify_reference.py # 104 checks -- TypeScript interface vs. the data, and every runtime .interface vs. its TS twin
 ```
 
 All exit non-zero on failure. Between them they enforce: unique ids and names; field sets
@@ -616,8 +624,9 @@ catalogues rather than asserted against a literal:
   margin survives
 * **every hull is reachable** and training cost rises with tonnage
 * **every faucet has a drain**, each naming the constant that sets its rate
-* **the fleet cap has exactly one source** — Formation Drill's `fleet_slot` unlocks; no
-  generator, schema or document may state the number
+* **the fleet cap has exactly one source** — Formation Drill's `fleet_slot` unlocks, bounding
+  every hull of a player's one fleet, docked or not; no generator, schema or document may state
+  the number
 * **resolution is deterministic** — dense phase list, every contended resource carrying a
   total tie-break
 
@@ -641,7 +650,7 @@ Vanguard.
 | how hulls are derived and fitted | `tools/generate_ships.py` |
 | the fitting rules (size, slot, affinity, budgets) | `tools/fitting.py`; mounts and sizes in `tools/ship_tables.py` |
 | what a refit costs (labour share, NPC yard fee) | `tools/gameplay_tables.py` (then `Reference/constants.ts`) |
-| orbital stations: types, slots, kit cost, upkeep, orbits, tiers | `STATION_*` in `tools/gameplay_tables.py` (then `Reference/constants.ts`) |
+| orbital stations: types, slots, kit cost, orbits, tiers | `STATION_*` in `tools/gameplay_tables.py` (then `Reference/constants.ts`) |
 | skills: levels, effects, unlocks, prerequisites | `tools/skill_tables.py` |
 | the hull progression tree | `HULL_TREE` in `tools/skill_tables.py` |
 | regions, systems, gates, planet archetypes | `tools/system_tables.py` |

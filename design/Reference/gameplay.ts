@@ -66,7 +66,7 @@ export interface TurnPhase {
 // ---------------------------------------------------------------- orders
 
 export type OrderType =
-  | 'train.queue' | 'mine.assign' | 'facility.job' | 'ship.refit' | 'fleet.organize' | 'fleet.move'
+  | 'train.queue' | 'mine.assign' | 'facility.job' | 'ship.refit' | 'fleet.move'
   | 'fleet.convoy' | 'fleet.posture' | 'fleet.target' | 'fleet.raid' | 'cargo.transfer'
   | 'market.order' | 'facility.lease' | 'station.deploy' | 'fleet.restock' | 'contract.accept'
   | 'contract.post' | 'insurance.set' | 'union.action';
@@ -112,7 +112,6 @@ export interface OrderPayloads {
   'mine.assign': MineAssignPayload;
   'facility.job': FacilityJobPayload;
   'ship.refit': RefitOrderPayload;
-  'fleet.organize': FleetOrganizePayload;
   'fleet.move': FleetMovePayload;
   'fleet.convoy': ConvoyOrderPayload;
   'fleet.posture': FleetPosturePayload;
@@ -146,19 +145,6 @@ export interface FacilityJobPayload {
   operation: FacilityJob['operation'];
   input: string | null;
   quantity: number;
-}
-
-/**
- * [+] `fleet.organize` (phase 7, before convoys and movement, not standing). Moves hulls
- * between two of the player's fleets in one system, neither in transit nor a convoy member;
- * `toFleetId: null` forms a new fleet there, and a fleet left empty is dissolved. It is how a
- * docked hull stays at the yard while the rest sails (`logistics_specification.md` §1.2).
- * Formation Drill bounds the hulls across all the player's fleets, never the number of fleets.
- */
-export interface FleetOrganizePayload {
-  fromFleetId: FleetId;
-  hullIds: HullInstanceId[];
-  toFleetId: FleetId | null;
 }
 
 /** `fleet.move` (phase 7, standing until arrival). */
@@ -279,10 +265,11 @@ export interface UnionActionPayload {
 }
 
 /**
- * `fleet.convoy` (phase 7, before movement). `leaderFleetId: null` unlinks. The link
- * forms only when both fleets share a system, neither is in transit, the leader is not
- * itself a follower, and the leader's owner is the same player, a union-mate, or the
- * counterparty of an accepted `ctr_escort` naming both fleets.
+ * `fleet.convoy` (phase 7, before movement). `followerFleetId` is the submitting player's
+ * one fleet; `leaderFleetId` another player's, or `null` to unlink. The link forms only when
+ * both fleets share a system, neither is in transit, the leader is not itself a follower, and
+ * the leader's owner is a union-mate or the counterparty of an accepted `ctr_escort` naming
+ * both fleets. A player has one fleet, so a link is always between two players.
  */
 export interface ConvoyOrderPayload {
   followerFleetId: FleetId;
@@ -292,11 +279,12 @@ export interface ConvoyOrderPayload {
 /**
  * `ship.refit` (phase 6, not standing). Changes one hull's fit at a yard
  * (`GamePlay/fitting_specification.md` §4). Validated at intake and again in phase 6:
- * the hull is the player's, its fleet is in the site's system and not in transit, the
- * hull fits the site's `maxHullTonnage`, the target fit passes `tools/fitting.py`
+ * the hull is the player's, either with the fleet and the fleet in the site's system and not
+ * in transit, or already docked on the site's planet; the hull fits the site's `maxHullTonnage`, the target fit passes `tools/fitting.py`
  * `fit_is_valid`, the parts are in `partsLeaseId` (or, at an NPC yard, the credits cover
  * the asks and the fee), and the hull's cargo and ammunition fit the new capacities.
- * `fit: null` cancels the refit in progress.
+ * `fit: null` cancels the refit in progress. From the phase it passes, the hull is
+ * DOCKED (`Fleet.docked`) and the fleet is free to sail without it.
  */
 export interface RefitOrderPayload {
   fleetId: FleetId;
@@ -363,7 +351,8 @@ export interface AggressorFlag {
  * migration.
  *
  * The fleet cap is NOT a field. It is `1 + ` the count of `fleet_slot` unlocks
- * reached on `skl_flt_formation_drill`.
+ * reached on `skl_flt_formation_drill`, and it bounds every hull the player owns:
+ * `fleet.hulls` plus `fleet.docked`.
  */
 export interface Player {
   playerId: PlayerId;
@@ -376,8 +365,8 @@ export interface Player {
   /** Ordered. An entry whose prerequisites are unmet is held in place, not dropped. */
   trainingQueue: TrainingQueueEntry[];
   credits: number;
-  /** Any number of fleets; Formation Drill bounds the hulls across all of them. */
-  fleetIds: FleetId[];
+  /** [+] The player's ONE fleet, kept for the account's life even when it holds no hull. */
+  fleetId: FleetId;
   leaseIds: LeaseId[];
   /** [+] Stations the player owns; a union's are on the union. */
   stationIds: StationId[];
@@ -412,8 +401,8 @@ export interface HullFit {
 export type RefitSite = { leaseId: LeaseId } | { npcYardPlanetId: PlanetId };
 
 /**
- * [+] A refit in progress. While non-null the hull is DOCKED: its fleet cannot move, it
- * fights with its current fit, and `targetFit` replaces it in phase 6 of the turn
+ * [+] A refit in progress, only ever on a hull in `Fleet.docked`: the hull is out of play at
+ * the yard while its fleet sails on, and `targetFit` replaces its fit in phase 6 of the turn
  * `progress` reaches `labour`. Labour is
  * `REFIT_LABOUR_SHARE x` the buildCost units of every item installed or removed.
  */
@@ -452,7 +441,7 @@ export interface FleetHull {
   insured: boolean;
   /** [+] The hull's own fit. Starts as its catalogue default fit. The wreck drops this one. */
   fit: HullFit;
-  /** [+] Non-null while the hull is docked for a refit. */
+  /** [+] Non-null only while the hull is docked for a refit (`Fleet.docked`). */
   refit: RefitJob | null;
   /**
    * [+] Craft aboard, per kind (combat §2.6): inventory like the magazine, never above
@@ -462,11 +451,34 @@ export interface FleetHull {
   craftAboard: Partial<Record<CraftKind, number>>;
 }
 
+/**
+ * [+] A hull apart from the fleet, docked at a yard: under refit, or built and awaiting
+ * pickup (`logistics_specification.md` §1.2). Out of play — it cannot move, fight, trade,
+ * transfer cargo, restock or mine, and cannot be detected, engaged or raided. It rejoins the
+ * fleet automatically at the end of phase 6 of any turn the fleet is in its system and not in
+ * transit, once no refit is in progress on it.
+ */
+export interface DockedHull {
+  hull: FleetHull;
+  /** The yard's planet — a berth lease's or an NPC yard's; its system is the planet's. */
+  planetId: PlanetId;
+}
+
+/**
+ * A player's ONE fleet (`Player.fleetId`). It never splits or merges; a fleet with no hull
+ * is wherever its next hull is — in phase 6 it takes the system of its first docked hull free
+ * to rejoin (lowest `hullId`), which joins it.
+ */
 export interface Fleet {
   fleetId: FleetId;
   playerId: PlayerId;
-  /** Length bounded by Formation Drill's unlocks, never by a constant. */
+  /**
+   * The hulls with the fleet. With `docked`, every hull the player owns; the two together
+   * are bounded by Formation Drill's unlocks, never by a constant.
+   */
   hulls: FleetHull[];
+  /** [+] The player's hulls docked at yards, apart from the fleet. */
+  docked: DockedHull[];
   systemId: SystemId;
   posture: FleetPosture;
   /** Non-null while a gate transit is still accumulating range across turns. */
@@ -632,7 +644,7 @@ export interface Wreck {
   systemId: SystemId;
   diedTurn: number;
   expiresTurn: number;
-  /** [+] The dead hull's convoy when it died, its owner's fleets aside; none may ever loot it (conflict §5.1). */
+  /** [+] The dead hull's convoy when it died, its owner's own fleet aside; none may ever loot it (conflict §5.1). */
   lootBarredFleetIds: FleetId[];
   /**
    * Survived the per-item `SALVAGE_DROP` roll: each fitted part, and each kit or part in the

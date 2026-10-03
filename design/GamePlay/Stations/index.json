@@ -13,8 +13,6 @@
   "stationYieldModifier": 0.94,
   "stationBerthRate": 12.0,
   "stationBerthTonnage": 4000.0,
-  "upkeepRate": 1.0,
-  "upkeepGraceTurns": 20,
   "deployFacility": "shipyard",
   "frameCost": {
     "structural": 150.0,

@@ -92,7 +92,7 @@ export interface FleetDataset {
   marketPrices: MarketPrices;
   /** Leasable slots by archetype x development tier, with rent. */
   facilityTypes: FacilityType[];
-  /** Orbital station types by development tier: hosted slots, upkeep, kit cost. */
+  /** Orbital station types by development tier: hosted slots and their lease-rent equivalent, kit cost. */
   stationTypes: StationTypeRow[];
   /** Hostile formations, composed from real hull ids. */
   npcSquadrons: NpcSquadron[];

@@ -159,12 +159,14 @@ Orders are per system, per good — a limit price, a quantity, a side. They matc
 by price, then by the total order of `turn_specification.md` §4.
 
 **Where a fill lands.** Every order names a location in its system (`market.interface`
-`order.location`): a warehouse lease the poster holds there, or one of the poster's fleets
-there, not in transit. A buy is delivered into it and a sell taken from it, so goods never
+`order.location`): a warehouse lease the poster holds there, or the poster's fleet there, not
+in transit. A buy is delivered into it and a sell taken from it, so goods never
 move remotely (`logistics_specification.md` §3). A fleet's holds take a fill hull by hull, in
 fleet order, up to their free tons; what does not fit is not bought, and the shortfall is
-logged. A hull bought joins the named fleet — or a new fleet in the system, when the location is
-a warehouse — and counts against Formation Drill like any other.
+logged. A hull is bought into the fleet and sold from it, never a warehouse — an order for a
+hull naming a warehouse is rejected at intake — and it counts against Formation Drill like any
+other. A fleet with no hull aboard may be named in any system, and is then there
+(`logistics_specification.md` §1.2).
 
 ```
 MARKET_TAX   core 2.0 %   mid 1.5 %   rim 0.5 %   deadspace 0 %
@@ -232,13 +234,18 @@ drain — which is the correct price for a region where nothing else protects yo
 | Consumable markup | `× 1.25` on fuel and ammunition | fleets operating away from their own industry |
 | Forfeited haul collateral | cargo × the dearest NPC ask for it, §8.1 | NPC haul cargo lost to raiders or never delivered |
 | NPC yard fee | `0.05 ×` the reference value of every part moved, `fitting_specification.md` §4.3 | refits done at an NPC yard rather than a berth the player leases |
-| Station upkeep | `STATION_UPKEEP_RATE` (1.00) `×` the rent the station's slots would pay as leases, `station_specification.md` §4 | stations anchored — never less per unit than the cheapest lease, so moving capacity off-planet cannot shrink the rent drain |
 
 The structural property: **every faucet is tied to an action, every drain is tied to a
 holding.** Credits enter when someone produces or fights and leave continuously from
 everyone who holds capacity or hulls. A player who stops playing stops earning but keeps
 paying, so idle wealth erodes and the supply cannot ratchet upward from accumulated
 inactivity.
+
+**One holding pays no drain: an orbital station.** It costs its kit — material sunk once — and
+nothing per turn (`station_specification.md` §4). Capacity a player moves from a planet lease
+into orbit stops paying rent, so a station shrinks the rent drain by what its slots would have
+paid. That is bounded by one orbit per planet and by the kit itself: §4 there tables the payback
+period, 95 to 556 turns.
 
 `verify_market.py` asserts the list is closed against the code: the two tables name exactly the
 `FAUCETS` and `DRAINS` of `tools/gameplay_tables.py`, row for row in both directions, and
@@ -411,13 +418,14 @@ A union holds:
   credits. This is the mechanism behind `industry_specification.md` §4.1: four berths on one
   forge world build a battleship in 10 turns instead of 39, and four berths is a union.
 * **Warehouses.** Shared storage, with per-member withdrawal rights.
-* **Stations.** A union may own an orbital station, paid from union credits; members run its
-  slots under their own skills (`station_specification.md` §5).
+* **Stations.** A union may own an orbital station; it costs its kit and nothing after, so
+  union credits pay no upkeep for it. Members run its slots under their own skills
+  (`station_specification.md` §4–5).
 * **Credits.** A single balance, funding rent and contracts.
 * **Fleet operations.** Several members' fleets acting as one force in a single engagement
   (`conflict_specification.md` §4). This is how a 13-versus-17 action of the kind
-  `Combat-logic/battle_log_veritas_vs_cinder.md` narrates happens at all, given that no
-  player commands more than five hulls.
+  `Combat-logic/battle_log_veritas_vs_cinder.md` narrates happens at all, given that each
+  player has one fleet and Formation Drill bounds it.
 
 **Who runs it.** The founder administers: invites, expels, grants and revokes withdrawal
 rights on union warehouses, and withdraws union credits. Any member deposits, and runs the

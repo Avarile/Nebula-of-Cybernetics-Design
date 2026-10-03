@@ -346,6 +346,7 @@ RUNTIME_SHAPES = [
     ('player.interface', None, 'Player'),
     ('fleet.interface', 'fleet', 'Fleet'),
     ('fleet.interface', 'fleetHull', 'FleetHull'),
+    ('fleet.interface', 'dockedHull', 'DockedHull'),
     ('fleet.interface', 'hullFit', 'HullFit'),
     ('fleet.interface', 'refitJob', 'RefitJob'),
     ('facility.interface', 'lease', 'Lease'),

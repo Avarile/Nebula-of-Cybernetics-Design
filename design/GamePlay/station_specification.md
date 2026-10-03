@@ -4,8 +4,8 @@ What a player may anchor in a planet's orbit, what it holds and what it costs. W
 2026-10-03.
 
 Owned by this document: orbital stations — what one is, who owns it, the kit it is built
-as, the slots it hosts, its upkeep, where it may be anchored and what can happen to it, and
-the hook for deep-space stations. The slot model, rent formula and material chain are
+as, the slots it hosts, why it pays no upkeep, where it may be anchored and what can happen
+to it, and the hook for deep-space stations. The slot model, rent formula and material chain are
 `industry_specification.md`'s; this document reuses them and adds no second copy. The
 numbers live in `tools/gameplay_tables.py`, the catalogue is written by
 `tools/generate_stations.py`, and `tools/verify_stations.py` holds the two together.
@@ -38,8 +38,8 @@ on them.
 | where | in a planet's orbit, in a `core`, `mid` or `rim` system (§6) |
 | how many | `ORBITS_PER_PLANET` = **1** per planet, first come by rank |
 | holds | its owner's own slots: refinery, manufactory, shipyard berth, warehouse — never extraction |
-| costs | the kit once; then **upkeep** every turn instead of rent (§4) |
-| lost by | unpaid upkeep, or scrapping it; never by force (§6) |
+| costs | the kit, once. **No upkeep and no rent**, ever (§4) |
+| lost by | only by its owner's `decommission`; never by force, never for want of credits (§4, §6) |
 
 **One orbit per planet.** A station hosts slots outside the planet's pool, so the number of
 orbits sets how much the map's industrial capacity can grow. At one per planet the map
@@ -54,8 +54,8 @@ owner, with `siteType: orbital`, the planet's `planetId` and the station's `stat
 way: a `facility.job` runs a station refinery as it runs a planet one, a station
 warehouse is a warehouse "at the same location" for `cargo.transfer` (logistics §3) and for
 a refit's parts, and a station berth is a refit site with no rule added
-(`fitting_specification.md` §4.1). The difference is the bill: orbital leases pay no rent;
-the station pays upkeep for all of them (§4).
+(`fitting_specification.md` §4.1). The difference is the bill: an orbital lease pays no
+rent, and the station pays nothing in its place (§4).
 
 **No extraction.** The four lanes of a planet stay one slot each (industry §2). A station
 that extracted would multiply the map's raw supply, which the 1 : 1 rich-mining-world to
@@ -191,62 +191,72 @@ dropped with a logged reason unless:
 4. the kit is in the named source: a hull of a fleet in the planet's system and not in
    transit, or a warehouse lease on that planet held by the player or the union.
 
-On success the kit is consumed, the station and its orbital leases exist from that phase,
-the first upkeep is charged in the same phase 12, and its slots run from phase 3 of the next
-turn — the same first day a newly leased slot gets.
+On success the kit is consumed, the station and its orbital leases exist from that phase, and
+its slots run from phase 3 of the next turn — the same first day a newly leased slot gets.
+Nothing is charged then or later.
 
 Running a station's slot needs what leasing that kind of slot needs (industry §3): a refinery
 needs Science 5 and Material Refinement Management ≥ 1 of whoever submits the job. On a union
 station that is the member submitting it, under their own skills, as on a union lease.
 
-## 4. Upkeep
+## 4. No upkeep
 
-```
-upkeepPerTurn = STATION_UPKEEP_RATE x SUM over hosted slots ( slotCount x rentPerTurn )
-STATION_UPKEEP_RATE = 1.00
-```
+**A station costs its kit and nothing else.** No upkeep is charged, its orbital leases pay no
+rent, and nothing a station holds appears among the drains (`economy_specification.md` §7). An
+orbital lease's `rentPaidThroughTurn` (`Data-Templates/facility.interface`) is set to the turn
+the station was anchored and never advances; nothing reads it, since only rent unpaid in phase
+12 ends a lease, and an orbital lease owes none. It ends only when its station is decommissioned.
 
-`rentPerTurn` is what that slot would pay as a lease at the planet's development tier, by
-the one rent formula of industry §7 (`gameplay_common.slot_rent`, which the facility
-catalogue now calls too). Charged in phase 12 with lease rent, and destroyed: it is a
-**drain** (`economy_specification.md` §7).
+So a station never goes offline and is never scrapped for want of credits. A player or union
+whose credits run out keeps every station and every slot on it running; only planet leases are
+lost to unpaid rent (industry §7).
 
-| station | dev 1 | dev 2 | dev 3 |
-|---|---:|---:|---:|
-| Orbital Depot | 24.00 | 37.20 | 57.60 |
-| Orbital Refinery | 19.28 | 29.90 | 46.30 |
-| Orbital Foundry | 49.94 | 77.40 | 119.84 |
-| Orbital Yard | 70.16 | 108.75 | 168.39 |
+**What that does to the lease market.** A station is now the cheaper way to hold capacity over
+any horizon longer than its payback period: once the kit is paid for, its slots produce with no
+running cost, where the same capacity leased on the planet pays rent every turn. Rent, the
+largest drain in the game, can shrink by exactly the capacity players move into orbit. The
+payback period is the kit's reference price divided by the rent its slots would pay as leases at
+the orbited planet's development tier (the industry §7 formula, `gameplay_common.station_payback`):
 
-**A station never undercuts the lease market.** Per unit of capacity, upkeep is never below
-the cheapest lease of the same kind at the same development tier. So a station is never a
-cheaper way to hold capacity a planet would lease you; its price is the kit, and what the
-kit buys is capacity that is **uncontested** — no one can lease it first — and **where the
-planet has none of that kind**: a berth over a mining world, a foundry beside the ore. A
-player who moves capacity from a lease to a station moves the drain with it; rent, the
-largest drain in the game, cannot shrink that way. The verifier holds the rate at or above
-1.00.
+| station | kit price | rent dev 1 | dev 2 | dev 3 | payback dev 1 | dev 2 | dev 3 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Orbital Depot | 6,641 | 24.00 | 37.20 | 57.60 | 277 | 179 | 115 |
+| Orbital Refinery | 10,730 | 19.29 | 29.90 | 46.30 | 556 | 359 | 232 |
+| Orbital Foundry | 13,768 | 49.93 | 77.40 | 119.84 | 276 | 178 | 115 |
+| Orbital Yard | 15,940 | 70.16 | 108.75 | 168.39 | 227 | 147 | 95 |
 
-**Unpaid upkeep.** A station whose upkeep goes unpaid in phase 12 goes **offline** from the
-next turn: its slots run no job, its berth advances neither construction nor refit (a docked
-hull stays docked, and may cancel), and its warehouse takes no deposits but releases them —
-`cargo.transfer` out still works. No upkeep accrues while offline; the first phase 12 the
-owner can pay, it is charged and the station is back online. After
-`STATION_GRACE_TURNS` = **20** consecutive offline turns the station is **scrapped**: the
-orbit is free, the leases end, and whatever is still in its warehouse is destroyed — the
-owner has had twenty logged turns to move it out. A planet lease's unpaid rent leaves the
-material in a separate warehouse lease (industry §7); a station's warehouse is the station.
+Rent and kit price in credits, payback in turns. The fastest is an Orbital Yard over a
+development-3 planet, **95 turns** — about three months of play; a refinery over a development-1
+world takes a year and a half. Four things bound the effect, and none is a new cost:
 
-**Scrapping on purpose.** `decommission` scraps the station in phase 12. Its warehouse must
-be empty and no hull docked at its berth; a construct job in progress is lost. Nothing is
-refunded: a station is anchored for good, and its kit is a sink of the material that built
-it. Moving a station means building another.
+* **One orbit per planet** (`ORBITS_PER_PLANET` = 1). Even every orbit filled holds less of each
+  kind than the planets do (§2.1), so the planets' leases stay the larger half of the market.
+* **The kit.** 6,641 – 15,940 credits up front, and capacity bought for good: a station cannot be
+  sold or moved (§5), so the payback is only reached by an owner who keeps using it.
+* **Build time.** 6 – 31 turns on one berth (§3.1), and only at a planet that already has a yard.
+* **Security tiers.** `core`, `mid` and `rim` only (§6); a station in `rim` keeps a raidable
+  warehouse, and development — which shortens the payback — is highest in `core`, where orbits
+  are fewest and most contested.
+
+What the kit also buys, as before, is capacity that is **uncontested** — no one can lease it
+first — and **where the planet has none of that kind**: a berth over a mining world, a foundry
+beside the ore.
+
+**Decommissioning.** `decommission` removes the station in phase 12: the orbit is free and its
+leases end. It is accepted only when the station's warehouse is **empty** and no refit is in
+progress on its berth (`fitting_specification.md` §4.4); otherwise it is rejected with a logged
+reason, so the owner moves the contents out with `cargo.transfer` first. A construct job in
+progress is lost; a hull already built there stays docked on the planet until its fleet collects
+it (`logistics_specification.md` §1.2). Nothing is refunded: a station is anchored for good, and its kit is a sink of the material
+that built it. No rule destroys a station or its warehouse's contents — material is never
+destroyed by a station going away (industry §5). Moving a station means building another.
 
 ## 5. Ownership
 
 * **Player or union.** The owner is whoever the deploy names: the player, or the player's
-  union, paid from union credits (`economy_specification.md` §9). Union members run its
-  slots under their own skills, as on a union lease.
+  union (`economy_specification.md` §9). A station owes nothing per turn, so union credits pay
+  nothing for it after the kit. Union members run its slots under their own skills, as on a
+  union lease.
 * **No transfer.** A station cannot be sold, given or captured in this design. A transferable
   station is a tradeable claim on one of 143 orbits, and a market in orbits is a market in
   map capacity that nothing else in the game has; it is left for a later pass.
@@ -277,14 +287,14 @@ anchored in a tier where the map places no planet with berths.
 **Raided, never taken.** A station warehouse is a warehouse lease, so conflict §7 applies to it
 unchanged: in `rim`, a fleet with `TROOPS_PER_WAREHOUSE_UNIT` × the slot's capacity in troops
 — 300 for a 600-unit slot — takes the contents, up to its cargo, once per `RAID_COOLDOWN`
-turns per warehouse. The station, its slots, its berth and anything docked at it are not
+turns per warehouse. The station, its slots, its berth and any hull docked at it are not
 touched; a raid takes the contents, never the lease, and never the station.
 
 **Never destroyed.** No rule damages a station. The combat rules resolve hulls, and a station
 has no hull; a structure that one engagement could erase would make a 15,940-credit, two-week
 kit a bad bet in exactly the `rim` systems where it is most useful. Because nothing can destroy
 it, nothing insures it. A kit in a hold is cargo and, like all cargo, uninsured; a hull docked
-at a station berth fights as it is, as at any yard (fitting §4.4).
+at a station berth is out of play, as at any yard (`fitting_specification.md` §4.4).
 
 **What it changes on the map.** Every region with `rim` space can now hold yards it did not
 have: Obsidian Marches and The Pale Hollow, which have no NPC yard, gain refit sites wherever a
@@ -314,7 +324,7 @@ and the resource and skill catalogues:
 
 ```
 GamePlay/Stations/
-  station_types.json    4 station types x 3 development tiers: slots, upkeep, kit cost and price
+  station_types.json    4 station types x 3 development tiers: slots and their lease-rent equivalent, kit cost and price
   index.json            the station constants
 ```
 
@@ -341,9 +351,9 @@ Stations themselves — which planet, which owner — are runtime state and are 
   planet yard's at the same development tier, and never reaches the heaviest hull
 * **stations supplement, never supplant**: §2.1's build-out, recomputed over the live map, is
   below the planets' own capacity for every kind, and the table matches
-* **never undercuts the lease market**: upkeep per unit of capacity is at least the cheapest
-  lease of that kind at that tier in the live facility rows; upkeep is
-  `STATION_UPKEEP_RATE ×` the published slot rents, and `station_upkeep` is a listed drain
+* **no upkeep**: each slot's published rent is the industry §7 formula at its size, and no
+  drain names a station; §4's payback table — kit price over the rent its slots would pay —
+  recomputes from the live catalogues, its shortest period stated
 * every producing station has a warehouse
 * a kit's `buildCost` is its frame plus its slots, its price the economy §2 formula, and
   §3.1's and §4's tables recompute from the live catalogues

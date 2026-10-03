@@ -4,8 +4,9 @@
 An orbital station (GamePlay/station_specification.md) hosts its owner's own slots: the
 planet slot kinds less extraction, sized by the same slot constants a planet is
 subdivided by (gameplay_tables.py), scaled by the developmentTier of the planet it
-orbits. Upkeep is priced off the rent those slots would pay as leases there, with the
-one rent formula the facility catalogue uses (gameplay_common.slot_rent).
+orbits. A station pays no upkeep; each slot publishes the rent it WOULD pay as a lease
+there, by the one rent formula the facility catalogue uses (gameplay_common.slot_rent),
+which is what the kit's payback period is measured against (station 4).
 
 Stations themselves -- who owns which, where -- are runtime state and are not generated.
 This table keys only off (stationType, developmentTier).
@@ -62,12 +63,10 @@ def build(fleet):
                                    'capacity': round(per, 4), 'unit': 'units',
                                    'scalesWith': 'developmentTier',
                                    'rentPerTurn': round(C.slot_rent(kind, per, prices), 2)}
-            upkeep = T.STATION_UPKEEP_RATE * sum(s['slotCount'] * s['rentPerTurn'] for s in slots.values())
             rows.append({
                 'stationTypeId': sid, 'name': name, 'developmentTier': dev,
                 'securityTiers': list(T.STATION_TIERS),
                 'slots': slots,
-                'upkeepPerTurn': round(upkeep, 2),
                 'buildCost': {l: round(v, 4) for l, v in cost.items()},
                 'kitUnits': round(sum(cost.values()), 4),
                 'referencePrice': round(C.reference_price(cost, prices), 2),
@@ -84,10 +83,11 @@ def main():
     rows = build(fleet)
     print(f"station rows    : {len(rows)}  ({len(T.STATION_TYPES)} types x "
           f"{len(T.DEVELOPMENT_LADDER)} development tiers)")
+    payback = C.station_payback(fleet)
     for r in rows:
         if r['developmentTier'] == 1:
             print(f"  {r['name']:17} kit {r['kitUnits']:6.1f} units  {r['referencePrice']:>9,.2f} cr  "
-                  f"upkeep {[x['upkeepPerTurn'] for x in rows if x['stationTypeId'] == r['stationTypeId']]}")
+                  f"payback {[round(payback[(r['stationTypeId'], d)]['turns']) for d in sorted(T.DEVELOPMENT_LADDER)]} turns")
     for kind, b in C.station_buildout(fleet, rows).items():
         print(f"  full build-out, {kind:11}: {b['stations']:>11,.1f} vs planets {b['planets']:>11,.1f}"
               f"  ({100 * b['share']:.0f} %)")
@@ -102,7 +102,6 @@ def main():
         'siteTypes': T.STATION_SITE_TYPES,
         'stationYieldModifier': T.STATION_YIELD_MODIFIER,
         'stationBerthRate': T.STATION_BERTH_RATE, 'stationBerthTonnage': T.STATION_BERTH_TONNAGE,
-        'upkeepRate': T.STATION_UPKEEP_RATE, 'upkeepGraceTurns': T.STATION_GRACE_TURNS,
         'deployFacility': T.STATION_DEPLOY_FACILITY,
         'frameCost': T.STATION_FRAME_COST, 'slotCost': T.STATION_SLOT_COST,
         'developmentLadder': T.DEVELOPMENT_LADDER,

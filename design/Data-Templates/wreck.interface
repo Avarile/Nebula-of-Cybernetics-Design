@@ -19,9 +19,9 @@
 #
 # [+] ownerId -- the player who lost it, or null for an NPC hull. When the owner's side
 #     holds the field the salvage is theirs and loads into their surviving hulls.
-# [+] lootBarredFleetIds -- every fleet of the dead hull's convoy when it died that its owner
-#     does not own; none may ever loot it, linked or not by then, so an escort cannot profit
-#     from losing its client. The owner's own fleets recover their salvage as above.
+# [+] lootBarredFleetIds -- every fleet of the dead hull's convoy when it died other than its
+#     owner's one fleet; none may ever loot it, linked or not by then, so an escort cannot
+#     profit from losing its client. The owner's own fleet recovers its salvage as above.
 # [+] engagementId -- the engagement it died in (engagement.interface).
 # [+] hullId is null for an NPC hull, which is never a held hull.
 #
@@ -39,7 +39,7 @@
   "systemId": "systemId",
   "diedTurn": "integer",
   "expiresTurn": "integer -- diedTurn + WRECK_LIFETIME",
-  "lootBarredFleetIds": "[+] array of fleetId -- the dead hull's convoy, its owner's fleets aside; may never loot it",
+  "lootBarredFleetIds": "[+] array of fleetId -- the dead hull's convoy, its owner's own fleet aside; may never loot it",
   "contents": "object -- { weaponIds: [weaponId], moduleIds: [moduleId], cargo: { goodId -> quantity } }, rolled at death"
 }
 

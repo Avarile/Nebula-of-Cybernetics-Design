@@ -1,7 +1,8 @@
 # INTERFACE: Warehouse
 # Source of truth : runtime state -- no generated instances exist
 # Spec            : ../GamePlay/industry_specification.md 5, fitting_specification.md 3-4,
-#                   conflict_specification.md 7, station_specification.md 4, 6
+#                   conflict_specification.md 7, station_specification.md 4, 6,
+#                   logistics_specification.md 1.2
 # Reference       : ../Reference/facilities.ts -> WarehouseContents (Reference/verify_reference.py)
 #
 # [+] No upstream counterpart; new in full. Until now warehouse contents existed only in
@@ -13,7 +14,8 @@
 #
 # UNITS ARE TONS. A resource takes one unit a unit (unitMass 1.0); a part (weapon, module)
 # or a station kit takes its buildCost units (fitting_specification.md 3,
-# station_specification.md 3.1). Hulls are never stored: a finished hull joins a fleet.
+# station_specification.md 3.1). Hulls are never stored: a finished hull is docked at the
+# berth it was built at until its owner's fleet collects it (logistics_specification.md 1.2).
 #
 # [+] reserved -- parts held for a refit in progress (fitting 4.2). Counted in stored, not
 #     removable by the owner; a raid takes them like the rest and the refit is then held
@@ -29,7 +31,8 @@
 # INVARIANTS (rules of play)
 #   - sum of stored (in tons) <= capacity; reserved[g] <= stored[g]
 #   - capacity = the slot's capacity x the leaseholder's warehouseCapacity
-#   - a station warehouse is emptied before a decommission; a scrapped station's is destroyed
+#   - a station warehouse must be empty before its station is decommissioned (the order is
+#     rejected otherwise); no rule destroys a warehouse's contents
 
 {
   "leaseId": "leaseId -- a warehouse lease; one record per lease",

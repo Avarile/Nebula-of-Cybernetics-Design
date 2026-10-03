@@ -14,8 +14,8 @@
 # level). There is no other cap and no constant.
 #
 # WHAT IT HOLDS: ordinary leases held by the union and paid from union credits (four berths
-# on one forge world build a battleship in 10 turns instead of 39), orbital stations, and
-# one credit balance. Members' fleets caught in one engagement fight on one side -- a fleet
+# on one forge world build a battleship in 10 turns instead of 39), orbital stations (which
+# cost their kit and nothing after), and one credit balance. Members' fleets caught in one engagement fight on one side -- a fleet
 # operation needs no order (conflict_specification.md 4.1).
 #
 # [+] founderId administers: only the founder invites, expels, grants or revokes warehouse
@@ -37,7 +37,7 @@
   "name": "string",
   "founderId": "playerId -- administers the union",
   "memberIds": "array of playerId -- founder included",
-  "credits": "number >= 0 -- one balance; pays union rent, upkeep and contracts",
+  "credits": "number >= 0 -- one balance; pays union rent and contracts (a station owes nothing per turn)",
   "leaseIds": "array of leaseId -- ordinary leases held by the union (facility.interface playerId)",
   "stationIds": "[+] array of stationId -- stations the union owns",
   "withdrawRights": "[+] object: warehouse leaseId -> array of playerId; unlisted = every member",

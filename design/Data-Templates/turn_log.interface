@@ -63,4 +63,4 @@
 #       "credits": 604.85, "flow": "bounties", "detail": { "squadronId": "npc_mid_pirate_raiders" } } ],
 #   "engagementIds": ["eng_00398"],
 #   "rejections": [ { "orderId": "ord_00402", "playerId": "ply_0031", "phase": 7,
-#                     "reason": "fleet flt_0044 has a docked hull (hul_0102)" } ] }
+#                     "reason": "hull hul_0102 short of fuel for the next transit" } ] }

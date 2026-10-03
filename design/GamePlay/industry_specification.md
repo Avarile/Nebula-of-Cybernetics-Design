@@ -30,8 +30,8 @@ worth holding.
 The brief's *"planet based space station"* is the second half of the same answer
 (`station_specification.md`). A station is a structure a player or union owns in a planet's
 orbit; it hosts the owner's own refinery, manufactory, berth and warehouse slots — sized by
-this document's slot constants, never extraction — as `orbital` leases that pay upkeep
-instead of rent. The planet, its slots and the leases on them are untouched.
+this document's slot constants, never extraction — as `orbital` leases that pay no rent;
+the kit is the whole price. The planet, its slots and the leases on them are untouched.
 
 ## 2. Slots
 
@@ -164,6 +164,15 @@ subdivision preserves that spec's totals. The single-berth figure is new, and it
 strongest structural argument for unions in the game: capital ships are a *group*
 undertaking not because a rule says so, but because one player's berth takes five weeks.
 
+**Where a finished hull goes.** A hull finished in phase 6 belongs to the player who submitted
+the `construct` job — on a union berth, that member — and is **docked** on the berth's planet
+(`logistics_specification.md` §1.2). It rejoins that player's one fleet at the end of the same
+phase 6 if the fleet is in the system and not in transit, and otherwise waits there, out of
+play, until the fleet ends a turn in that system. A hull is never warehoused. A finished hull
+that would take its player past the Formation Drill bound — every hull they own, with the fleet
+or docked — is held complete at the berth and logged, not delivered; the berth takes no new job
+until it is, in the first phase 6 the player has a free slot.
+
 ## 5. Warehouses
 
 Material sits in a warehouse or it does not exist. Warehouses are leased per slot, per
@@ -235,7 +244,7 @@ Anyone may mine any belt.
 
 ```
 perHullPerTurn = (yieldPerCycle / cycleTurns) x miningYield x miningCycleSpeed
-fleetTotal     = sum over hulls carrying mining equipment            (up to 5)
+fleetTotal     = sum over hulls carrying mining equipment            (every hull of the fleet)
 ```
 
 Output goes straight into the hull's cargo hold — no warehouse, no lease, no rent, and the

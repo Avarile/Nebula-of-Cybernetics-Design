@@ -151,9 +151,10 @@ export type MarketSide = 'buy' | 'sell';
 
 /**
  * [+] Where a fill is delivered to (a buy) or taken from (a sell): a warehouse lease the
- * poster holds in the order's system, or one of the poster's fleets there, not in transit,
- * whose holds load or unload it (`economy_specification.md` §5). A hull is never in a hold:
- * a hull bought joins the named fleet, or a new fleet in the system when none is named.
+ * poster holds in the order's system, or the poster's fleet there, not in transit, whose
+ * holds load or unload it (`economy_specification.md` §5). A hull is never in a hold or a
+ * warehouse: a hull is bought into, and sold from, the fleet only — an empty fleet may be named
+ * in any system, and is then there.
  */
 export type MarketLocation = { leaseId: LeaseId } | { fleetId: FleetId };
 

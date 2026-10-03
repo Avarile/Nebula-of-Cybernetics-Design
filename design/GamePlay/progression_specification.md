@@ -64,7 +64,8 @@ enforces the "exactly two" property.
 
 **Fleet size** — `unlocks[].type == "fleet_slot"` on `skl_flt_formation_drill`, at levels
 5 / 7 / 8 / 10 for ships 2–5. The first hull needs no drill. This is the **only** source of
-the five-ship cap; per `gameplay_specification.md` §6.6 no other document may state it.
+the fleet cap; per `gameplay_specification.md` §6.6 no other document may state it. It bounds
+every hull the player owns — the one fleet's, docked or not (`logistics_specification.md` §1.2).
 
 **Industry access** — `skl_sta_science` appears in `prerequisites` on every station and
 mining skill: level 3 opens raw operations, 5 refining, 7 fabrication. A player cannot lease
