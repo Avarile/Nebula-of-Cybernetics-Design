@@ -16,6 +16,7 @@
  *   gameplay.ts   the 24h turn, orders, the player, the fleet, progression, conflict
  *   economy.ts    reference prices, NPC and player orders, contracts, unions
  *   facilities.ts leasable industrial slots and the leases on them
+ *   stations.ts   orbital stations: generated type rows, the runtime station, its order
  *   lore.ts       factions, region authorities, squadron and manufacturer origins
  *   dataset.ts    on-disk shapes: the one-file dataset, indexes, fitted hulls
  *   constants.ts  the tuning tables behind all of the above
@@ -39,6 +40,7 @@ export * from './combat';
 export * from './gameplay';
 export * from './economy';
 export * from './facilities';
+export * from './stations';
 export * from './lore';
 export * from './dataset';
 

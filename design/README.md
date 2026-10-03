@@ -26,6 +26,7 @@ output.
 | Planets | 180 | 10 archetypes × richness 1–3 × development 1–3 |
 | Tradeable goods | 1,043 | every weapon, module, hull and resource, priced from its `buildCost` |
 | Planet archetypes | 10 | × 3 development tiers = 30 rows of leasable industrial capacity |
+| Station types | 4 | × 3 development tiers = 12 rows: hosted slots, upkeep, kit cost |
 | Files on disk | 2,146 | 869 under `Ships/`, 799 under `Weapons/`, 136 under `Modules/`, 15 under `Resources/`, 83 under `Skills/`, 244 under `Systems_Planets/` |
 
 ## Layout
@@ -82,14 +83,15 @@ GamePlay/                    the rules layer: how a player spends a day
   economy_specification.md   credits, prices, markets, contracts, unions
   conflict_specification.md  PvE, PvP, destruction, insurance, raiding
   fitting_specification.md   the fitting rules, parts as goods, the refit order and its cost
+  station_specification.md   orbital stations: the kit, hosted slots, upkeep, where they anchor
   lore_specification.md      the setting, factions, region authorities, manufacturer origins
-  Progression/ Market/ Facilities/ NPC/     the generated half
+  Progression/ Market/ Facilities/ Stations/ NPC/     the generated half
 
 tools/                       generators, verifiers, and the tables that drive them
 
 Reference/                   TypeScript interface for all of the above, plus Combat-logic
   common.ts resources.ts weapons.ts modules.ts ships.ts skills.ts systems.ts combat.ts
-  gameplay.ts economy.ts facilities.ts lore.ts
+  gameplay.ts economy.ts facilities.ts stations.ts lore.ts
   dataset.ts constants.ts
 ```
 
@@ -112,6 +114,7 @@ lines and the remainder parses as JSON.
 | `progression` | the SP ladder in turns, 26 hull paths, 5 career costs |
 | `marketPrices` | a reference price for all 1,043 tradeable goods |
 | `facilityTypes` | 30 rows: leasable slots by archetype × development tier |
+| `stationTypes` | 12 rows: orbital station types by development tier — hosted slots, upkeep, kit cost |
 | `npcSquadrons` | 5 hostile formations, composed of real hull ids |
 | `contractArchetypes` | 4 job types, who may post them, and their reward formulas |
 
@@ -436,14 +439,29 @@ is one-to-one. `tools/lore_tables.py` holds the ids; `verify_lore.py` checks tha
 house's stated strength is still its best stat in `FAMILIES`, and that a region has an
 authority exactly when it holds policed space. No number changed.
 
+**Stations.** The brief's *"planet based space station"* is a structure a player or union owns
+in one planet's orbit — property, not territory; the planet stays terrain. It is built as a
+**kit** at any berth (270–550 manufactured units), hauled, and anchored by `station.deploy` in
+`core`, `mid` or `rim`, one per planet. It hosts its owner's own refinery, manufactory, berth
+and warehouse slots — never extraction — sized by the planet slot constants and the orbited
+planet's development tier, as `orbital` leases, so `facility.job` and refits use them with no
+new rule. Upkeep replaces rent at `STATION_UPKEEP_RATE` × what those slots would rent for, so a
+station never undercuts the lease market; what the kit buys is capacity nobody can lease
+first, and kinds the planet lacks. `verify_stations.py` holds the rest against the live map:
+refining stays lossy with the station's own `yieldModifier` (0.94) in place of the planet's;
+every orbit filled still holds less of each kind than the planets (the berth at 79 %); a
+station berth never out-tons an oceanic one, so the capital keel stays on forge worlds; and
+no yard reaches deadspace. Stations can be raided in `rim` like any warehouse and are never
+destroyed. Deep-space stations stay deferred; `siteType` reserves `deep_space`.
+
 ### Authored rules vs. runtime state
 
 The distinction that keeps the layer tractable, and the reason none of it had to wait on
 the map generator:
 
 * **Authored and generated** — the SP ladder in turns, reference prices, facility slot
-  counts and rent, NPC squadrons and contract archetypes. Pure functions of a table.
-* **Runtime, schema-pinned only** — players, fleets, leases, warehouse contents, market
+  counts and rent, station types, NPC squadrons and contract archetypes. Pure functions of a table.
+* **Runtime, schema-pinned only** — players, fleets, leases, stations, warehouse contents, market
   orders, contracts in flight, wrecks. Created by play; typed in `Reference/gameplay.ts`
   and `Data-Templates/`, never generated.
 
@@ -519,10 +537,11 @@ python3 tools/generate_systems.py     # 60 systems + 180 planets → Systems_Pla
 python3 tools/generate_progression.py # training in turns, hull paths, careers
 python3 tools/generate_market.py      # 1,043 reference prices
 python3 tools/generate_facilities.py  # 30 archetype x devTier slot rows
+python3 tools/generate_stations.py    # 12 station type x devTier rows
 python3 tools/generate_npc.py         # squadrons, response fleets, contracts
 ```
 
-The four GamePlay generators read the five catalogues and must run after them. They are
+The five GamePlay generators read the five catalogues and must run after them. They are
 independent of one another and may run in any order among themselves.
 
 Each accepts `--dry-run` to print the shape it would produce without writing. Stale output
@@ -542,11 +561,12 @@ python3 tools/verify_progression.py   # 22 checks
 python3 tools/verify_market.py        # 23 checks
 python3 tools/verify_facilities.py    # 26 checks
 python3 tools/verify_npc.py           # 28 checks
-python3 tools/verify_gameplay.py      # 58 checks -- the cross-cutting invariants, order lists, haul pricing; runs last
+python3 tools/verify_gameplay.py      # 59 checks -- the cross-cutting invariants, order lists, haul pricing; runs last
 python3 tools/verify_lore.py          # 37 checks -- factions, authorities and origins vs. the live catalogue
 python3 tools/verify_combat.py        # 62 checks -- combat rulings, stat hooks, lock range, movement, strike craft and cover vs. the catalogues and logs
 python3 tools/verify_naming.py        # 8 checks -- no current* in the catalogue, no stray 'turn' name, stat clocks match their rules
 python3 tools/verify_fitting.py       # 17 checks -- the fitting rules vs. every default fit, no dead good, refit cost, no free money
+python3 tools/verify_stations.py      # 28 checks -- station capacity vs. the map, lossy refining, yard tonnage, upkeep vs. rent
 python3 Reference/verify_reference.py # 67 checks -- TypeScript interface vs. the data
 ```
 
@@ -605,6 +625,7 @@ Vanguard.
 | how hulls are derived and fitted | `tools/generate_ships.py` |
 | the fitting rules (size, slot, affinity, budgets) | `tools/fitting.py`; mounts and sizes in `tools/ship_tables.py` |
 | what a refit costs (labour share, NPC yard fee) | `tools/gameplay_tables.py` (then `Reference/constants.ts`) |
+| orbital stations: types, slots, kit cost, upkeep, orbits, tiers | `STATION_*` in `tools/gameplay_tables.py` (then `Reference/constants.ts`) |
 | skills: levels, effects, unlocks, prerequisites | `tools/skill_tables.py` |
 | the hull progression tree | `HULL_TREE` in `tools/skill_tables.py` |
 | regions, systems, gates, planet archetypes | `tools/system_tables.py` |

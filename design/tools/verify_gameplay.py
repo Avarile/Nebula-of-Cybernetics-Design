@@ -20,7 +20,7 @@ fails = []
 DOCS = ['gameplay_specification.md', 'turn_specification.md', 'progression_specification.md',
         'industry_specification.md', 'logistics_specification.md',
         'economy_specification.md', 'conflict_specification.md', 'lore_specification.md',
-        'fitting_specification.md']
+        'fitting_specification.md', 'station_specification.md']
 
 
 def check(label, bad, show=6):
@@ -115,11 +115,22 @@ for r in FLEET['resources']:
         v = r['conversionYield'] * ym * mult
         if v > worst:
             worst, where = v, f'{r["lane"]} x {arch}'
-check(f'conversionYield x yieldModifier x refineryYield < 1 (worst {worst:.4f} on {where}, margin {1 - worst:.4f})',
+# A station refinery's yieldModifier stands in for the planet's (station_specification.md 2.2),
+# so it competes for the worst case on the same three-term product -- never a fourth term.
+for st in FLEET.get('stationTypes', []):
+    sy = st['slots'].get('refinery')
+    if not sy:
+        continue
+    for r in FLEET['resources']:
+        if r['tier'] == 'refined' and r['conversionYield'] * sy['yieldModifier'] * mult > worst:
+            worst, where = r['conversionYield'] * sy['yieldModifier'] * mult, f'{r["lane"]} x {st["stationTypeId"]}'
+check(f'conversionYield x yieldModifier x refineryYield < 1, planets and stations (worst {worst:.4f} on {where}, margin {1 - worst:.4f})',
       [] if worst < 1.0 else [f'{where} reaches {worst:.4f}'])
 check('GamePlay adds no fourth multiplier to yield',
       [f'{r["archetype"]} dev{r["developmentTier"]}' for r in FLEET.get('facilityTypes', [])
-       if 'refinery' in r['slots'] and r['slots']['refinery'].get('scalesWith') != 'developmentTier'])
+       if 'refinery' in r['slots'] and r['slots']['refinery'].get('scalesWith') != 'developmentTier']
+      + [f'{r["stationTypeId"]} dev{r["developmentTier"]}' for r in FLEET.get('stationTypes', [])
+         if 'refinery' in r['slots'] and r['slots']['refinery'].get('scalesWith') != 'developmentTier'])
 
 print('\n--- 6.4  every hull is reachable, difficulty monotonic ---')
 P = FLEET.get('progression')
@@ -324,7 +335,7 @@ check('the fuel and ammo resources exist',
        if r not in {x['resourceId'] for x in FLEET['resources']}])
 
 print('\n--- catalogue presence ---')
-for key in ('progression', 'marketPrices', 'facilityTypes', 'npcSquadrons', 'contractArchetypes'):
+for key in ('progression', 'marketPrices', 'facilityTypes', 'stationTypes', 'npcSquadrons', 'contractArchetypes'):
     check(f'fleet json carries "{key}"', [] if FLEET.get(key) else ['missing'])
 for meta in ('spPerTurn', 'turnLengthHours', 'tradeableGoodCount'):
     check(f'_meta carries "{meta}"', [] if meta in FLEET['_meta'] else ['missing'])

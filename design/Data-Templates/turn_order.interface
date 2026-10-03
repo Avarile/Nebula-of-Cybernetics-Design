@@ -32,6 +32,7 @@
 #   cargo.transfer       phases 7, 12
 #   market.order         phase 11
 #   facility.lease       phase 12
+#   station.deploy       phase 12
 #   contract.accept      phase 13
 #   contract.post        phase 13
 #   insurance.set        phase 12
@@ -53,6 +54,16 @@
 #     the site's maxHullTonnage, the target fit passes tools/fitting.py fit_is_valid, the
 #     parts are in partsLeaseId (or, at an NPC yard, credits cover the asks and the fee),
 #     and the hull's cargo and ammunition fit the new capacities.
+# [+] station.deploy -- anchors an orbital station kit in a planet's orbit, or scraps a
+#     station (GamePlay/station_specification.md 3.2). Resolves in phase 12, where
+#     facility.lease claims slots. Payload: { action: "deploy", stationTypeId, planetId,
+#     ownerId, kitSource: { fleetId, hullId } | { leaseId } } or { action: "decommission",
+#     stationId }. Not standing. A deploy is valid only when the submitter is the owner or
+#     in the owning union and holds the shipyard-lease gate (Science 7, Ship Construction
+#     Management >= 1), the planet's system is in STATION_TIERS, its orbit is free after
+#     earlier-ranked deployments, and the kit is in the named hold (a fleet in the system,
+#     not in transit) or warehouse (on that planet). A decommission needs an empty station
+#     warehouse and no hull docked.
 # [+] fleet.target payload -- per hull { hullIndex, targets: [shipRef...] } or
 #     { hullIndex, withdraw: true } (withdraw from round 1), and per pool weapon an
 #     optional { hullIndex, hardpointId, cover: hullRef } -- cover
@@ -108,3 +119,9 @@
 #   "rejection": null }
 #   -- a Destroyer Tier 2 trading its Search Radar for an ECM Suite at the Aurelia I yard:
 #   6.3 units of labour, done the same phase 6; fee 53.89 plus the suite at the NPC ask.
+#
+# { "orderId": "ord_00420", "turnNumber": 88, "playerId": "ply_0052",
+#   "orderType": "station.deploy", "phase": 12, "submissionSequence": 2210, "standing": false,
+#   "payload": { "action": "deploy", "stationTypeId": "stn_orbital_yard", "planetId": "pln_085",
+#                "ownerId": "uni_0007", "kitSource": { "fleetId": "flt_0090", "hullId": "hul_0311" } },
+#   "rejection": null }

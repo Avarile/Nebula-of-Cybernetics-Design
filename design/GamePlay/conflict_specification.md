@@ -209,6 +209,9 @@ it loads into the owner's surviving hulls with free cargo, and what does not fit
 wreck. No fleet that was in the convoy when the hull died may ever loot its wreck, linked or
 not by then, so an escort cannot profit from losing its client.
 
+A station kit in the hold is one item: it is rolled whole at `SALVAGE_DROP`, like a fitted
+part, not split like ore (`station_specification.md` §3.1).
+
 Salvage is the fit, never the hull — the fit the hull **carried when it died**, its own
 `FleetHull.fit`, not the catalogue's (`fitting_specification.md` §5.3). For a default fit
 `economy_specification.md` §2.1 shows how sharply that varies: a Motor Torpedo Boat is 84 %
@@ -286,6 +289,10 @@ happens only if the raider wins the engagement in phase 9 first.
 **A raid takes the contents, never the lease.** Planets remain terrain, per
 `Systems_Planets` §10 and `industry_specification.md` §1; there is no capture, no ownership
 transfer, and no damage to the facility. The victim loses stock and keeps their operation.
+
+A station's warehouse is a warehouse lease (`station_specification.md` §6) and is raided on
+exactly these terms; the station itself — its slots, its berth, a hull docked there — is never
+touched, and no rule destroys a station.
 
 Raiding is barred in `core` and `mid` — those tiers have a response fleet, and a raid is
 aggression. So the only warehouses at risk are the ones out where the good ore is, which

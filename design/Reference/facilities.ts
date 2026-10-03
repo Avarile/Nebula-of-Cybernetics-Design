@@ -16,6 +16,7 @@
 
 import type { ResourceLane } from './common';
 import type { SkillId } from './skills';
+import type { StationId } from './stations';
 import type {
   LeaseId, PhaseOrdinal, PlanetId, PlayerId, SecurityTier, UnionId,
 } from './gameplay';
@@ -38,8 +39,9 @@ export type DevelopmentTier = 1 | 2 | 3;
 export type LadderScale = 'richnessTier' | 'developmentTier';
 
 /**
- * `planet` and `orbital` today. Deep-space stations are deferred by the brief and
- * will add `deep_space` without any other schema change.
+ * `planet` and `orbital`. An `orbital` lease is a slot hosted by an orbital station
+ * (`stations.ts`); the station pays upkeep in its place. Deep-space stations are deferred
+ * by the brief and will add `deep_space` without any other schema change.
  */
 export type SiteType = 'planet' | 'orbital';
 
@@ -140,7 +142,7 @@ export interface ChainStep {
 
 export interface FacilityJob {
   operation: 'extract' | 'refine' | 'manufacture' | 'construct';
-  /** For `construct`: the hull, weapon or module to build. A berth with a refit in
+  /** For `construct`: the hull, weapon, module or station kit to build. A berth with a refit in
    *  progress advances the refit and pauses this job (fitting_specification.md 4.1). */
   input: string | null;
   quantity: number;
@@ -156,7 +158,10 @@ export interface Lease {
   /** Unions hold ordinary leases; four berths on one forge world is a union. */
   playerId: PlayerId | UnionId;
   siteType: SiteType;
+  /** For an `orbital` lease, the planet its station orbits. */
   planetId: PlanetId;
+  /** [+] The station hosting an `orbital` lease; null for a planet slot. */
+  stationId: StationId | null;
   facilityType: FacilityKind;
   /** Extraction leases only. */
   lane: ResourceLane | null;

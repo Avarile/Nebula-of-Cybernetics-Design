@@ -32,7 +32,6 @@ def slot_count(total, size):
 def build(fleet):
     prices = C.resource_prices(fleet)
     gates = C.science_gate_levels(fleet)
-    avg_mfg = sum(prices[l]['manufactured'] for l in LANES) / len(LANES)
 
     rows = []
     for arch, vals in T.PLANET_ARCHETYPES.items():
@@ -44,40 +43,34 @@ def build(fleet):
             for lane in LANES:
                 if a[lane] <= 0:
                     continue
-                out_value = a[lane] * prices[lane]['raw']
                 slots[f'extraction.{lane}'] = {
                     'facilityType': 'extraction', 'lane': lane,
                     'slotCount': T.EXTRACTION_SLOTS_PER_LANE,
                     'throughputPerTurn': round(float(a[lane]), 4),
                     'unit': 'raw units/turn at richnessTier 1',
                     'scalesWith': 'richnessTier',
-                    'rentPerTurn': round(T.LEASE_RATE['extraction'] * out_value, 2),
+                    'rentPerTurn': round(C.slot_rent('extraction', a[lane], prices, lane=lane), 2),
                 }
 
             # refinery -- development scales per-slot throughput, never slot count
             n = slot_count(a['refinery'], T.REFINERY_SLOT_SIZE)
             if n:
                 per = a['refinery'] / n * dev_mult
-                # one slot's worth of the cheapest lane, as the rent reference
-                in_v = per * prices['structural']['raw']
-                out_v = (per * 0.90 * a['yieldModifier']) * prices['structural']['refined']
                 slots['refinery'] = {
                     'facilityType': 'refinery', 'slotCount': n,
                     'throughputPerTurn': round(per, 4), 'unit': 'raw units/turn',
                     'yieldModifier': a['yieldModifier'], 'scalesWith': 'developmentTier',
-                    'rentPerTurn': round(T.LEASE_RATE['refinery'] * max(0.0, out_v - in_v), 2),
+                    'rentPerTurn': round(C.slot_rent('refinery', per, prices, a['yieldModifier']), 2),
                 }
 
             n = slot_count(a['manufactory'], T.MANUFACTORY_SLOT_SIZE)
             if n:
                 per = a['manufactory'] / n * dev_mult
-                out_v = per * avg_mfg
-                in_v = per / 0.85 * (sum(prices[l]['refined'] for l in LANES) / len(LANES))
                 slots['manufactory'] = {
                     'facilityType': 'manufactory', 'slotCount': n,
                     'throughputPerTurn': round(per, 4), 'unit': 'manufactured units/turn',
                     'scalesWith': 'developmentTier',
-                    'rentPerTurn': round(T.LEASE_RATE['manufactory'] * max(0.0, out_v - in_v), 2),
+                    'rentPerTurn': round(C.slot_rent('manufactory', per, prices), 2),
                 }
 
             if a['berths']:
@@ -87,7 +80,7 @@ def build(fleet):
                     'throughputPerTurn': round(per, 4), 'unit': 'manufactured units/turn',
                     'maxHullTonnage': round(a['maxHullTonnage'] * dev_mult, 1),
                     'scalesWith': 'developmentTier',
-                    'rentPerTurn': round(T.LEASE_RATE['shipyard'] * per * avg_mfg, 2),
+                    'rentPerTurn': round(C.slot_rent('shipyard', per, prices), 2),
                 }
 
             n = slot_count(a['warehouse'], T.WAREHOUSE_SLOT_SIZE)
@@ -97,7 +90,7 @@ def build(fleet):
                     'facilityType': 'warehouse', 'slotCount': n,
                     'capacity': round(per, 4), 'unit': 'units',
                     'scalesWith': 'developmentTier',
-                    'rentPerTurn': round(T.WAREHOUSE_RENT_PER_UNIT * per, 2),
+                    'rentPerTurn': round(C.slot_rent('warehouse', per, prices), 2),
                 }
 
             rows.append({

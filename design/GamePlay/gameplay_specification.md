@@ -2,7 +2,7 @@
 
 How a player spends a day. Written 2026-09-13.
 
-This is the spine document for `GamePlay/`. It fixes the vocabulary, names the eight
+This is the spine document for `GamePlay/`. It fixes the vocabulary, names the nine
 sub-specifications and states the rules that belong to no single one of them. Where a rule
 is owned by a sub-spec, this document says so and stops; where a rule is cross-cutting, it
 lives here.
@@ -35,6 +35,7 @@ has to remember:
 | free to mix 4 domains | no domain lock exists; the constraint is SP, not permission | `progression_specification.md` §2 |
 | specialists beat all-rounders | one career maxes in 103–582 turns; all 81 skills take 2,493 | `progression_specification.md` §4 |
 | industry on planets first | players lease facility slots; planets stay terrain | `industry_specification.md` §2 |
+| planet-based space stations | players and unions anchor station kits in a planet's orbit; the planet stays terrain | `station_specification.md` §2 |
 | deep-space stations later | out of scope, hook named | §9 below |
 
 ## 2. The core loop
@@ -65,7 +66,7 @@ moving it is what the conflict layer preys on.
 
 ## 3. Vocabulary
 
-Terms fixed here and used identically in all nine documents.
+Terms fixed here and used identically in all ten documents.
 
 | term | meaning |
 |---|---|
@@ -82,13 +83,14 @@ Terms fixed here and used identically in all nine documents.
 | **union** | a player organisation. |
 | **fit** | the weapons and modules on one hull. A catalogue hull's is its **default fit**; a hull a player holds carries its own. |
 | **refit** | changing one hull's fit at a yard — a berth the player leases, or an NPC yard. |
+| **station** | a structure a player or union owns in one planet's orbit, hosting its owner's own slots. Property, not territory. |
 
 **Turn is the universal denominator.** Every rate already written in
 `Systems_Planets/systems_planets_specification.md` §4 — extraction, refinery throughput,
 construction — is per turn and needs no reinterpretation. Every cooldown in
 `Combat-logic/` is per *round* and is renamed, not rescaled.
 
-## 4. The nine documents
+## 4. The ten documents
 
 | document | owns |
 |---|---|
@@ -100,10 +102,11 @@ construction — is per turn and needs no reinterpretation. Every cooldown in
 | `economy_specification.md` | credits, reference prices, NPC orders, markets, contracts, unions |
 | `conflict_specification.md` | PvE, PvP legality, engagement, destruction, insurance, salvage |
 | `fitting_specification.md` | the fitting rules, parts as goods, the refit order, where and what a refit costs |
+| `station_specification.md` | orbital stations: ownership, the kit, hosted slots, upkeep, where they may anchor, the deep-space hook |
 | `lore_specification.md` | the setting, factions, region authorities, squadron and manufacturer origins; no numbers |
 
-Each is hand-written and survives regeneration. Four generated catalogues sit beside them —
-`Progression/`, `Market/`, `Facilities/`, `NPC/` — and §8 lists them.
+Each is hand-written and survives regeneration. Five generated catalogues sit beside them —
+`Progression/`, `Market/`, `Facilities/`, `Stations/`, `NPC/` — and §8 lists them.
 
 ## 5. Authored rules vs. runtime state
 
@@ -115,13 +118,14 @@ the map generator:
 * the SP ladder (already in `skills[].training`)
 * reference prices for all 1,043 tradeable goods
 * facility slot counts and lease rates, keyed by `archetype × developmentTier`
+* station types — hosted slots, upkeep and kit cost, keyed by `stationType × developmentTier`
 * NPC squadron templates and contract archetypes
 
 **Runtime** — created by play, never generated, but schema-pinned:
 
 * players, their trained levels, credits, standings
 * fleets and the hulls in them
-* leases, warehouse contents, market orders, contracts in flight
+* leases, stations, warehouse contents, market orders, contracts in flight
 * wrecks, engagements, turn logs
 
 Facility rules key off planet *archetype and development tier*, both of which
@@ -140,7 +144,7 @@ invariant — by reading the data, not by restating a constant.
 ### 6.1 No dead skill
 
 Every stat in `tools/stat_vocabulary.py` — all 34 `SHIP_STATS` and all 20 `SKILL_STATS` —
-is consumed by a named, id'd rule in one of the nine documents. The verifier builds the
+is consumed by a named, id'd rule in one of the ten documents. The verifier builds the
 map and fails on either side being empty: a stat no rule reads, or a rule citing a stat that
 does not exist.
 
@@ -168,8 +172,10 @@ Checked across every good × every security tier. See `economy_specification.md`
 ```
 
 GamePlay introduces no fourth multiplier on that product. Facility leases scale
-*throughput*, never *yield*. The verifier recomputes the product including anything
-GamePlay adds and fails if it reaches 1.0.
+*throughput*, never *yield*. A station refinery brings its own `yieldModifier` (0.94) in
+**place** of the planet's, never on top of it (`station_specification.md` §2.2). The verifier
+recomputes the product including anything GamePlay adds, stations among it, and fails if it
+reaches 1.0.
 
 ### 6.4 Every hull is reachable, and difficulty is monotonic
 
@@ -237,11 +243,12 @@ any other name that says turn; its allowlist gives the reason for each that does
 
 ## 8. What GamePlay adds to the pipeline
 
-Schemas in `Data-Templates/` — six new `.interface` files, `[+]`-annotated like the rest:
+Schemas in `Data-Templates/` — seven new `.interface` files, `[+]`-annotated like the rest:
 
 ```
 player.interface          account: skills, SP, credits, standings, union
 facility.interface        a leasable slot and the lease on it
+station.interface         an orbital station type and an anchored station
 market.interface          a reference price and an order
 contract.interface        NPC and player contracts
 npc_squadron.interface    a hostile formation template
@@ -254,6 +261,7 @@ Generators, verifiers and shared code in `tools/`:
 python3 tools/generate_progression.py   # per-skill training table -> GamePlay/Progression/
 python3 tools/generate_market.py        # 1,043 reference prices  -> GamePlay/Market/
 python3 tools/generate_facilities.py    # archetype x devTier      -> GamePlay/Facilities/
+python3 tools/generate_stations.py      # stationType x devTier    -> GamePlay/Stations/
 python3 tools/generate_npc.py           # squadrons and contracts  -> GamePlay/NPC/
 ```
 
@@ -265,6 +273,7 @@ python3 tools/verify_npc.py
 python3 tools/verify_gameplay.py        # the seven §6 invariants; runs last
 python3 tools/verify_lore.py            # factions, authorities, origins vs. the live catalogue
 python3 tools/verify_fitting.py         # the fitting rules vs. every default fit; refit costs; no free money
+python3 tools/verify_stations.py        # station capacity vs. the map, lossy refining, upkeep vs. rent
 ```
 
 `tools/fitting.py` is the one implementation of the fitting rules. The ship generator checks
@@ -273,20 +282,22 @@ catalogue by it, and a `ship.refit` order is validated by it — so a catalogue 
 player's fit cannot be judged differently.
 
 New keys in `fleet_and_weapons.json`: `progression`, `marketPrices`, `facilityTypes`,
-`npcSquadrons`, `contractArchetypes`, plus `_meta` additions `spPerTurn`,
+`stationTypes`, `npcSquadrons`, `contractArchetypes`, plus `_meta` additions `spPerTurn`,
 `turnLengthHours`, `tradeableGoodCount`.
 
 TypeScript in `Reference/`: `gameplay.ts` (turn, orders, player, fleet), `economy.ts`
-(prices, orders, contracts), `facilities.ts` (slots and leases), `lore.ts` (factions,
+(prices, orders, contracts), `facilities.ts` (slots and leases), `stations.ts` (station
+types, the anchored station, `station.deploy`), `lore.ts` (factions,
 region authorities, squadron and manufacturer origins, the `Standings` key).
 
 ## 9. Out of scope
 
 Deliberately deferred, each with the reason:
 
-* **Deep-space stations.** The brief defers them explicitly. The hook is
-  `facility.interface`'s `siteType`, which admits `planet` and `orbital` today and gains
-  `deep_space` without a schema change.
+* **Deep-space stations.** The brief defers them explicitly. Planet-based (orbital) stations
+  are in scope — `station_specification.md`. The hook is `siteType`, on a lease and on a
+  station, which admits `planet` and `orbital` today and gains `deep_space` without a schema
+  change; station §7 names what else a deep-space station would reuse.
 * **Sovereignty and territory capture.** Planets stay terrain, per
   `Systems_Planets` §10. Conflict over industry is conflict over *leases and cargo*, not
   over ground.

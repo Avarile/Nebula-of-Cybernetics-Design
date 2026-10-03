@@ -1,0 +1,56 @@
+{
+  "stationTypes": 4,
+  "developmentTiers": 3,
+  "orbitsPerPlanet": 1,
+  "securityTiers": [
+    "core",
+    "mid",
+    "rim"
+  ],
+  "siteTypes": [
+    "orbital"
+  ],
+  "stationYieldModifier": 0.94,
+  "stationBerthRate": 12.0,
+  "stationBerthTonnage": 4000.0,
+  "upkeepRate": 1.0,
+  "upkeepGraceTurns": 20,
+  "deployFacility": "shipyard",
+  "frameCost": {
+    "structural": 150.0,
+    "energy": 30.0,
+    "ordnance": 0.0,
+    "precision": 10.0
+  },
+  "slotCost": {
+    "refinery": {
+      "structural": 60.0,
+      "energy": 20.0,
+      "ordnance": 0.0,
+      "precision": 5.0
+    },
+    "manufactory": {
+      "structural": 60.0,
+      "energy": 25.0,
+      "ordnance": 0.0,
+      "precision": 15.0
+    },
+    "shipyard": {
+      "structural": 250.0,
+      "energy": 40.0,
+      "ordnance": 0.0,
+      "precision": 30.0
+    },
+    "warehouse": {
+      "structural": 40.0,
+      "energy": 0.0,
+      "ordnance": 0.0,
+      "precision": 0.0
+    }
+  },
+  "developmentLadder": {
+    "1": 1.0,
+    "2": 1.55,
+    "3": 2.4
+  }
+}

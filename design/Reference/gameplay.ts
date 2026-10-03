@@ -16,6 +16,10 @@ import type { HardpointId, ModuleId, ModuleSlotId, ResourceId, ShipId, WeaponId 
 import type { ShipClass } from './ships';
 import type { SkillId, SkillLevel } from './skills';
 import type { Standings } from './lore';
+import type { StationTypeId } from './stations';
+
+/** [+] What a hold or a wreck carries: resources, and station kits (station spec §3.1). */
+export type CargoGoodId = ResourceId | StationTypeId;
 
 // ---------------------------------------------------------------- the clock
 
@@ -55,7 +59,7 @@ export interface TurnPhase {
 export type OrderType =
   | 'train.queue' | 'mine.assign' | 'facility.job' | 'ship.refit' | 'fleet.move' | 'fleet.convoy'
   | 'fleet.posture' | 'fleet.target' | 'cargo.transfer' | 'market.order' | 'facility.lease'
-  | 'contract.accept' | 'contract.post' | 'insurance.set' | 'union.action';
+  | 'station.deploy' | 'contract.accept' | 'contract.post' | 'insurance.set' | 'union.action';
 
 /**
  * `silent` costs −50% signature for −30% speed and cold weapons; it is the
@@ -247,7 +251,7 @@ export interface FleetHull {
   /** Drawn down by missile and mine weapons only. */
   ammo: number;
   fuel: number;
-  cargo: Partial<Record<ResourceId, number>>;
+  cargo: Partial<Record<CargoGoodId, number>>;
   insured: boolean;
   /** [+] The hull's own fit. Starts as its catalogue default fit. The wreck drops this one. */
   fit: HullFit;
@@ -418,5 +422,5 @@ export interface Wreck {
   diedTurn: number;
   expiresTurn: number;
   /** Survived the per-item `SALVAGE_DROP` roll. */
-  contents: { weaponIds: string[]; moduleIds: string[]; cargo: Partial<Record<ResourceId, number>> };
+  contents: { weaponIds: string[]; moduleIds: string[]; cargo: Partial<Record<CargoGoodId, number>> };
 }

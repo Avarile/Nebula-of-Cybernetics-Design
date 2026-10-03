@@ -41,6 +41,34 @@ def reference_price(build_cost, prices):
     return sum(build_cost.get(l, 0.0) * prices[l]['manufactured'] for l in LANES) * T.ITEM_MARGIN
 
 
+def slot_rent(kind, per, prices, yield_modifier=None, lane=None):
+    """industry_specification.md 7: a slot's rent per turn, unrounded, from its per-slot
+    throughput (capacity, for a warehouse) at richnessTier 1 and skill level 0.
+
+        rentPerTurn = LEASE_RATE x (outputValue - inputValue)
+
+    One formula for a planet slot and for the same slot on a station
+    (station_specification.md 4), so a station's upkeep is priced off what the lease
+    market charges rather than off a second table."""
+    if kind == 'extraction':
+        return T.LEASE_RATE['extraction'] * (per * prices[lane]['raw'])
+    if kind == 'refinery':
+        # one slot's worth of the cheapest lane, as the rent reference
+        in_v = per * prices['structural']['raw']
+        out_v = (per * 0.90 * yield_modifier) * prices['structural']['refined']
+        return T.LEASE_RATE['refinery'] * max(0.0, out_v - in_v)
+    avg_mfg = sum(prices[l]['manufactured'] for l in LANES) / len(LANES)
+    if kind == 'manufactory':
+        out_v = per * avg_mfg
+        in_v = per / 0.85 * (sum(prices[l]['refined'] for l in LANES) / len(LANES))
+        return T.LEASE_RATE['manufactory'] * max(0.0, out_v - in_v)
+    if kind == 'shipyard':
+        return T.LEASE_RATE['shipyard'] * per * avg_mfg
+    if kind == 'warehouse':
+        return T.WAREHOUSE_RENT_PER_UNIT * per
+    raise ValueError(kind)
+
+
 def catalogues(fleet):
     return ({w['weaponId']: w for w in fleet['weapons']},
             {m['moduleId']: m for m in fleet['modules']},
@@ -338,6 +366,68 @@ def refit_examples(fleet):
                      'yardTurns': turns_for(labour, yard), 'fee': fee,
                      'fitValue': fit_value(d, weapons, modules, prices)})
     return {'berthRate': berth, 'yardRate': yard, 'rows': rows}
+
+
+# ----------------------------------------------------------------- stations
+# station_specification.md. Recomputed from the station rows and the live map.
+
+STATION_CAPACITY_FIELD = {'refinery': 'throughputPerTurn', 'manufactory': 'throughputPerTurn',
+                          'shipyard': 'throughputPerTurn', 'warehouse': 'capacity'}
+
+
+def station_build_cost(hosted):
+    """A kit's buildCost: the frame plus one STATION_SLOT_COST entry per hosted slot."""
+    cost = dict(T.STATION_FRAME_COST)
+    for kind, n in hosted.items():
+        for l, v in T.STATION_SLOT_COST[kind].items():
+            cost[l] = cost.get(l, 0.0) + n * v
+    return {l: cost.get(l, 0.0) for l in LANES}
+
+
+def station_capacity(row, kind):
+    """What one station row holds of a kind: slotCount x per-slot throughput (or capacity)."""
+    s = row['slots'].get(kind)
+    return s['slotCount'] * s[STATION_CAPACITY_FIELD[kind]] if s else 0.0
+
+
+def planet_capacity(planet, kind):
+    return {'refinery': planet['refinery']['throughputPerTurn'],
+            'manufactory': planet['manufactory']['throughputPerTurn'],
+            'shipyard': planet['shipyard']['constructionRatePerTurn'],
+            'warehouse': planet['warehouse']['capacity']}[kind]
+
+
+def station_buildout(fleet, rows=None):
+    """station_specification.md 2.1: every orbit of every planet a station may be anchored
+    at, filled with the station holding the most of one kind, against what those planets
+    hold of that kind themselves. Per kind: {'stations', 'planets', 'share'}."""
+    rows = rows if rows is not None else fleet['stationTypes']
+    tiers = {s['systemId']: s['securityTier'] for s in fleet['systems']}
+    out = {}
+    for kind in STATION_CAPACITY_FIELD:
+        best = {}
+        for r in rows:
+            best[r['developmentTier']] = max(best.get(r['developmentTier'], 0.0), station_capacity(r, kind))
+        st = pl = 0.0
+        for p in fleet['planets']:
+            if tiers[p['systemId']] not in T.STATION_TIERS:
+                continue
+            st += T.ORBITS_PER_PLANET * best[p['developmentTier']]
+            pl += planet_capacity(p, kind)
+        out[kind] = {'stations': st, 'planets': pl, 'share': st / pl if pl else float('inf')}
+    return out
+
+
+STATION_KIT_YARDS = [('forge_world', 3), ('oceanic', 1)]   # the best and the poorest berth
+
+
+def station_kit_turns(fleet, rows=None):
+    """Turns one untrained berth takes to build each kit, at the best and the poorest berth
+    in the game. stationTypeId -> [turns at each STATION_KIT_YARDS entry]."""
+    rows = rows if rows is not None else fleet['stationTypes']
+    rates = [yard_rates(fleet, a, d)[0] for a, d in STATION_KIT_YARDS]
+    return {r['stationTypeId']: [turns_for(r['kitUnits'], rate) for rate in rates]
+            for r in rows if r['developmentTier'] == 1}, rates
 
 
 def contract_archetypes():

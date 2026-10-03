@@ -66,14 +66,15 @@ def is_live(name):
 # directory, a schema file, a Reference file, or one top-level array of the fleet json
 # ('fleet_and_weapons.json#ships'). A name is allowed only in the places listed for it.
 FLEET = 'fleet_and_weapons.json#'
-GAMEPLAY_DATA = tuple(FLEET + k for k in ('_meta', 'progression', 'marketPrices', 'facilityTypes',
+GAMEPLAY_DATA = tuple(FLEET + k for k in ('_meta', 'progression', 'marketPrices', 'facilityTypes', 'stationTypes',
                                           'npcSquadrons', 'contractArchetypes', 'systems',
                                           'planets')) + ('GamePlay/', 'Systems_Planets/')
 GAMEPLAY_SCHEMA = ('Data-Templates/contract.interface', 'Data-Templates/facility.interface',
                    'Data-Templates/market.interface', 'Data-Templates/npc_squadron.interface',
                    'Data-Templates/player.interface', 'Data-Templates/turn_order.interface',
-                   'Data-Templates/planet.interface', 'Data-Templates/system.interface')
-GAMEPLAY_TS = ('Reference/gameplay.ts', 'Reference/economy.ts', 'Reference/facilities.ts',
+                   'Data-Templates/planet.interface', 'Data-Templates/system.interface',
+                   'Data-Templates/station.interface')
+GAMEPLAY_TS = ('Reference/gameplay.ts', 'Reference/economy.ts', 'Reference/facilities.ts', 'Reference/stations.ts',
                'Reference/systems.ts', 'Reference/dataset.ts')
 HEADING = 'heading change (turning), not the clock -- data-template.json mobility.turnRate'
 TURN_ALLOWLIST = [
@@ -106,6 +107,11 @@ TURN_ALLOWLIST = [
     ('expiresTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn a contract or order expires'),
     ('rentPaidThroughTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the last turn a lease is paid for'),
     ('freeUntilTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the last rent-free turn of a lease'),
+    ('upkeepPerTurn', GAMEPLAY_DATA + GAMEPLAY_TS + GAMEPLAY_SCHEMA, 'station upkeep per 24-h turn'),
+    ('upkeepPaidThroughTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the last turn a station is paid for'),
+    ('offlineSinceTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn an unpaid station went offline'),
+    ('upkeepGraceTurns', GAMEPLAY_DATA + ('Reference/constants.ts',),
+     'offline 24-h turns before an unpaid station is scrapped'),
     ('diedTurn', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn a hull was lost'),
     ('turnNumber', GAMEPLAY_SCHEMA + GAMEPLAY_TS, 'the turn an order is for'),
     ('TurnPhase', GAMEPLAY_TS, 'one of the 14 phases of the 24-h turn'),
@@ -151,7 +157,7 @@ def turn_hits(names):
 GENERATED_DIRS = ['Ships', 'Weapons', 'Modules', 'Resources/raw', 'Resources/refined',
                   'Resources/manufactured', 'Skills/ship_command', 'Skills/station_management',
                   'Skills/deep_space_mining', 'Skills/interaction_trade', 'GamePlay/Progression',
-                  'GamePlay/Market', 'GamePlay/Facilities', 'GamePlay/NPC']
+                  'GamePlay/Market', 'GamePlay/Facilities', 'GamePlay/Stations', 'GamePlay/NPC']
 GENERATED_FILES = ['fleet_and_weapons.json', 'Ships/index.json', 'Weapons/index.json',
                    'Modules/index.json', 'Resources/index.json', 'Skills/index.json',
                    'Systems_Planets/index.json', 'Systems_Planets/links.json']

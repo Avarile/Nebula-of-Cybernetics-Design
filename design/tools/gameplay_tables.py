@@ -34,7 +34,7 @@ PHASES = [
     (9,  'combat',        'player',   'every engagement runs to conclusion'),
     (10, 'salvage',       'system',   'wrecks rolled, field holder loots'),
     (11, 'market',        'player',   'orders matched and cleared'),
-    (12, 'upkeep',        'player',   'lease rent, insurance premiums, fuel and ammo drawn'),
+    (12, 'upkeep',        'player',   'lease rent, station upkeep, insurance premiums, fuel and ammo drawn; stations anchored'),
     (13, 'settlement',    'player',   'contracts completed, standings adjusted, bounties paid'),
     (14, 'log',           'system',   'turn log written, turn N+1 opens'),
 ]
@@ -52,6 +52,7 @@ ORDER_TYPES = {
     'cargo.transfer':   [7, 12],
     'market.order':     [11],
     'facility.lease':   [12],
+    'station.deploy':   [12],        # anchor a station kit in an orbit, or scrap a station. station 3
     'contract.accept':  [13],
     'contract.post':    [13],
     'insurance.set':    [12],
@@ -68,6 +69,7 @@ CONTENDED = {
     'fleet.posture':    'rank, among interdictors on one gate',
     'fleet.convoy':     'rank; a link naming a leader that is itself linked by then is rejected',
     'ship.refit':       'rank, among refits naming one union berth; the berth takes one hull at a time',
+    'station.deploy':   'rank, among deployments naming one planet; its orbits fill in rank order',
 }
 
 # ----------------------------------------------------------------- security
@@ -273,6 +275,40 @@ REFIT_LABOUR_SHARE = 0.50    # berth labour per item moved, x the item's buildCo
 # or a skill, at the planet's whole construction rate, for a fee on the value moved.
 NPC_YARD_FEE = 0.05          # of the reference price of each item moved
 
+# ----------------------------------------------------------------- stations
+# station_specification.md. An orbital station is a KIT built at a shipyard berth, hauled,
+# and anchored in a planet's orbit. It hosts its owner's own slots -- the planet slot
+# kinds less extraction, sized by the slot constants above, scaled by the planet's
+# developmentTier -- and pays upkeep instead of rent. The planet stays terrain.
+ORBITS_PER_PLANET = 1                 # stations one planet's orbit holds. station 2
+STATION_TIERS = ['core', 'mid', 'rim']   # where a kit may be anchored; never deadspace. station 6
+STATION_YIELD_MODIFIER = 0.94         # a station refinery's yieldModifier: REPLACES the planet's, never multiplies it
+STATION_BERTH_RATE = 12.0             # manufactured units/turn per station berth, at developmentTier 1
+STATION_BERTH_TONNAGE = 4000.0        # maxHullTonnage of a station berth, at developmentTier 1
+STATION_UPKEEP_RATE = 1.00            # x the rent the station's slots would pay as leases there
+STATION_GRACE_TURNS = 20              # turns an unpaid station stays offline before it is scrapped
+STATION_DEPLOY_FACILITY = 'shipyard'  # anchoring a kit needs what leasing a berth needs (industry 3)
+
+# A kit's buildCost, in manufactured units per lane: the frame every station has, plus one
+# entry per slot it hosts. Priced, stored and carried like any item (economy 2).
+STATION_FRAME_COST = {'structural': 150.0, 'energy': 30.0, 'ordnance': 0.0, 'precision': 10.0}
+STATION_SLOT_COST = {
+    'refinery':    {'structural': 60.0,  'energy': 20.0, 'ordnance': 0.0, 'precision': 5.0},
+    'manufactory': {'structural': 60.0,  'energy': 25.0, 'ordnance': 0.0, 'precision': 15.0},
+    'shipyard':    {'structural': 250.0, 'energy': 40.0, 'ordnance': 0.0, 'precision': 30.0},
+    'warehouse':   {'structural': 40.0,  'energy': 0.0,  'ordnance': 0.0, 'precision': 0.0},
+}
+#   (stationTypeId, name, {facilityType: slotCount})
+STATION_TYPES = [
+    ('stn_orbital_depot',    'Orbital Depot',    {'warehouse': 2}),
+    ('stn_orbital_refinery', 'Orbital Refinery', {'refinery': 2, 'warehouse': 1}),
+    ('stn_orbital_foundry',  'Orbital Foundry',  {'manufactory': 2, 'warehouse': 1}),
+    ('stn_orbital_yard',     'Orbital Yard',     {'shipyard': 1, 'warehouse': 1}),
+]
+# siteType of a station. 'deep_space' is reserved for the deferred deep-space stations
+# (gameplay_specification.md 9) and joins this list without any other schema change.
+STATION_SITE_TYPES = ['orbital']
+
 # ----------------------------------------------------------------- new player
 # progression_specification.md 5.
 
@@ -384,6 +420,7 @@ DRAINS = [
     ('consumable_markup',  'FUEL_PER_POWER_CORE', 'fleets operating away from their own industry'),
     ('forfeited_haul_collateral', 'PRICE_INDEX', 'NPC haul cargo lost or kept; collateral is the dearest NPC ask'),
     ('npc_yard_fee',       'NPC_YARD_FEE',        'refits done at NPC yards rather than a berth the player leases'),
+    ('station_upkeep',     'STATION_UPKEEP_RATE', 'stations anchored; never less than the rent their slots would pay as leases'),
 ]
 
 # ----------------------------------------------------------------- careers
@@ -436,3 +473,8 @@ assert all(set(c[4]) <= {'npc', 'player'} and c[4] for c in CONTRACT_ARCHETYPES)
 assert 0 < ESCORT_SHARE < 1, 'an escort quote is a share of the premium, never all of it'
 assert 0 < REFIT_LABOUR_SHARE <= 1, 'installing a part is never more work than building it'
 assert 0 < NPC_YARD_FEE < 1, 'a yard fee is a share of the value moved'
+assert set(STATION_TIERS) <= set(SECURITY_TIERS), 'station tier unknown'
+assert set(STATION_SLOT_COST) == set(FACILITY_TYPES) - {'extraction'}, 'station slot costs cover the non-extraction kinds'
+assert all(set(k) <= set(STATION_SLOT_COST) and k for _, _, k in STATION_TYPES), 'station hosts an unknown slot kind'
+assert len({t[0] for t in STATION_TYPES}) == len(STATION_TYPES), 'station type ids must be unique'
+assert isinstance(ORBITS_PER_PLANET, int) and ORBITS_PER_PLANET >= 1, 'a planet has at least one orbit'

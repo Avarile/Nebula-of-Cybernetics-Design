@@ -218,6 +218,7 @@ drain — which is the correct price for a region where nothing else protects yo
 | NPC markup on consumables | `× 1.25` on fuel and ammunition | fleets operating away from their own industry |
 | Forfeited haul collateral | cargo × the dearest NPC ask for it, §8.1 | NPC haul cargo lost to raiders or never delivered |
 | NPC yard fee | `0.05 ×` the reference value of every part moved, `fitting_specification.md` §4.3 | refits done at an NPC yard rather than a berth the player leases |
+| Station upkeep | `STATION_UPKEEP_RATE` (1.00) `×` the rent the station's slots would pay as leases, `station_specification.md` §4 | stations anchored — never less per unit than the cheapest lease, so moving capacity off-planet cannot shrink the rent drain |
 
 The structural property: **every faucet is tied to an action, every drain is tied to a
 holding.** Credits enter when someone produces or fights and leave continuously from
@@ -389,6 +390,8 @@ A union holds:
   credits. This is the mechanism behind `industry_specification.md` §4.1: four berths on one
   forge world build a battleship in 10 turns instead of 39, and four berths is a union.
 * **Warehouses.** Shared storage, with per-member withdrawal rights.
+* **Stations.** A union may own an orbital station, paid from union credits; members run its
+  slots under their own skills (`station_specification.md` §5).
 * **Credits.** A single balance, funding rent and contracts.
 * **Fleet operations.** Several members' fleets acting as one force in a single engagement
   (`conflict_specification.md` §4). This is how a 13-versus-17 action of the kind

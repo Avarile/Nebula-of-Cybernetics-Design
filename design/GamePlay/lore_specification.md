@@ -77,6 +77,12 @@ registered in the same ledger: the Helm, not any faction, allocates a planet's s
 rent is the fee for holding the claim. That is the in-world reason planets have no owner
 field.
 
+A **station** is the one thing in orbit a player can own outright, the way they own a hull.
+The anchorage it holds is a claim in the same ledger, and an anchored structure keeps its
+orbit only where the Helm keeps the nebula calm — which is why no orbital station holds in
+deadspace (`station_specification.md` §6). Owning a station is not owning the planet below
+it, and no faction builds one.
+
 ## 3. History, briefly
 
 | era | what happened | what it left in the game |
@@ -316,4 +322,5 @@ region names.
   exactly what `gameplay_tables.py` already says. Differentiating them would be a mechanics
   change.
 * **Standing with hostile factions.** None. Hostile is a kind, not a relationship.
-* **Deep-space stations and sovereignty.** Unchanged from `gameplay_specification.md` §9.
+* **Deep-space stations and sovereignty.** Unchanged from `gameplay_specification.md` §9;
+  orbital stations are property, not sovereignty (`station_specification.md` §5).

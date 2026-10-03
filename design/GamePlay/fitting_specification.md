@@ -127,8 +127,10 @@ which has no yard of either kind (`Systems_Planets` §6.2). The heaviest hull ca
 refitted only where it can be built: a forge world at development 3.
 
 **The hooks.** A refit reads a *shipyard lease*, never a planet type, so an orbital
-station's berth — a lease with `siteType: orbital` — is a refit site the day stations
-exist, with no rule added. A refit in the field, by a repair tender, is deliberately not in
+station's berth — a lease with `siteType: orbital` — is a refit site with no rule added,
+up to the station berth's tonnage (`station_specification.md` §2.1). Stations may anchor in
+`rim`, so Obsidian Marches and The Pale Hollow gain refit sites wherever a player anchors an
+Orbital Yard; deadspace still has none. A refit in the field, by a repair tender, is deliberately not in
 this design: a fit is a commitment made in port, which is what makes scouting a fleet worth
 doing and a wreck's drop worth fighting over. If one is added, it is a third column in the
 table above.

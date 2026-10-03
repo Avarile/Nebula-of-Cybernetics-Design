@@ -45,6 +45,7 @@ import type {
   SkillDomain,
 } from './skills';
 import type { MassBand } from './common';
+import type { StationSlotKind, StationTypeId } from './stations';
 
 // ================================================================
 // VOCABULARIES  (runtime tuples, for validation and iteration)
@@ -436,6 +437,49 @@ export const FITTING_CONSTANTS = {
   refitLabourShare: 0.5,
   npcYardFee: 0.05,
 } as const;
+
+// ================================================================
+// STATIONS — station_specification.md
+// ================================================================
+
+/**
+ * Mirrors `tools/gameplay_tables.py`; `verify_stations.py` checks every value.
+ *
+ *   station slot  = planet slot size (or stationBerthRate / stationBerthTonnage) x development
+ *   refining      = conversionYield x stationYieldModifier x refineryYield   (replaces the planet's term)
+ *   upkeep        = upkeepRate x SUM(slotCount x the rent that slot would pay as a lease there)
+ *   kit buildCost = STATION_FRAME_COST + SUM over hosted slots (STATION_SLOT_COST[kind])
+ */
+export const STATION_CONSTANTS = {
+  orbitsPerPlanet: 1,
+  securityTiers: ['core', 'mid', 'rim'],
+  stationYieldModifier: 0.94,
+  stationBerthRate: 12.0,
+  stationBerthTonnage: 4000.0,
+  upkeepRate: 1.0,
+  upkeepGraceTurns: 20,
+  deployFacility: 'shipyard',
+  siteTypes: ['orbital'],
+} as const;
+
+export const STATION_FRAME_COST = {
+  structural: 150.0, energy: 30.0, ordnance: 0.0, precision: 10.0,
+} as const satisfies Record<ResourceLane, number>;
+
+export const STATION_SLOT_COST = {
+  refinery: { structural: 60.0, energy: 20.0, ordnance: 0.0, precision: 5.0 },
+  manufactory: { structural: 60.0, energy: 25.0, ordnance: 0.0, precision: 15.0 },
+  shipyard: { structural: 250.0, energy: 40.0, ordnance: 0.0, precision: 30.0 },
+  warehouse: { structural: 40.0, energy: 0.0, ordnance: 0.0, precision: 0.0 },
+} as const satisfies Record<StationSlotKind, Record<ResourceLane, number>>;
+
+/** What each station type hosts: slot kind -> count. */
+export const STATION_TYPE_SLOTS = {
+  stn_orbital_depot: { warehouse: 2 },
+  stn_orbital_refinery: { refinery: 2, warehouse: 1 },
+  stn_orbital_foundry: { manufactory: 2, warehouse: 1 },
+  stn_orbital_yard: { shipyard: 1, warehouse: 1 },
+} as const satisfies Record<StationTypeId, Partial<Record<StationSlotKind, number>>>;
 
 // ================================================================
 // COMBAT — round order, range bands, signature, evasion, criticals

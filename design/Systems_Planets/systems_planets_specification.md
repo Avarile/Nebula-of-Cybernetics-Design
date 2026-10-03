@@ -415,7 +415,10 @@ Deliberately not in this pass, to keep it one spec:
 
 * **Space stations.** The Skills domain is "Planetary *and Space Station* Management" and
   stations will want the same five capacity fields. They are a sibling catalogue with a
-  different placement model (player-built, not map-authored), not a planet variant.
+  different placement model (player-built, not map-authored), not a planet variant — now
+  specified in `GamePlay/station_specification.md`: four of the five fields (no extraction),
+  scaled by the orbited planet's `developmentTier`, one station per planet, never in
+  deadspace.
 * **Ownership, factions, sovereignty.** No `owner` field. Every planet here is terrain.
   Factions now exist (`GamePlay/lore_specification.md`): they police security tiers and
   own no planet, so this still holds.

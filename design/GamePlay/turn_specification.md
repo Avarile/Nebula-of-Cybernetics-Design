@@ -45,7 +45,7 @@ the same time; there is no interleaving by player.
 | 9 | **Combat** | every engagement runs to conclusion |
 | 10 | **Salvage** | wrecks rolled, field holder loots |
 | 11 | **Market** | orders matched and cleared |
-| 12 | **Upkeep** | lease rent, insurance premiums, fuel and ammo drawn |
+| 12 | **Upkeep** | lease rent, station upkeep, insurance premiums, fuel and ammo drawn; stations anchored |
 | 13 | **Settlement** | contracts completed, standings adjusted, bounties paid |
 | 14 | **Log** | turn log written, turn N+1 opens |
 
@@ -105,6 +105,7 @@ bucket without interpreting.
 | `cargo.transfer` | 7, 12 | between a fleet hold and a warehouse at the same location |
 | `market.order` | 11 | buy or sell, good, quantity, limit price, system |
 | `facility.lease` | 12 | claim or release a slot |
+| `station.deploy` | 12 | anchor a station kit in a planet's orbit, or scrap a station (`station_specification.md` §3.2) |
 | `contract.accept` · `contract.post` | 13 | a contract |
 | `insurance.set` | 12 | a hull and a cover level |
 | `union.action` | 13 | membership and shared-asset actions |
@@ -163,7 +164,8 @@ The contended claims are: facility leases, market order matching, belt mining as
 where a belt has limited concurrent capacity, interdiction when several fleets try to
 hold the same gate, convoy links submitted the same turn — resolved in rank order, a link
 naming a leader that is itself linked by then is rejected, so a convoy never becomes a chain —
-and refits naming one union berth in the same turn, of which the berth takes the first.
+refits naming one union berth in the same turn, of which the berth takes the first, and
+station kits naming one planet's orbit in the same turn, which fill it in rank order.
 
 ## 5. Determinism
 

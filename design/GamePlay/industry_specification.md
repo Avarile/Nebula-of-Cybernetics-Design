@@ -27,6 +27,12 @@ deadspace is dangerous to *work* — its output must be hauled out through the c
 — but it cannot be taken from you by force, only starved of the shipping that makes it
 worth holding.
 
+The brief's *"planet based space station"* is the second half of the same answer
+(`station_specification.md`). A station is a structure a player or union owns in a planet's
+orbit; it hosts the owner's own refinery, manufactory, berth and warehouse slots — sized by
+this document's slot constants, never extraction — as `orbital` leases that pay upkeep
+instead of rent. The planet, its slots and the leases on them are untouched.
+
 ## 2. Slots
 
 A slot is the unit of lease. Slot counts come from the archetype's capacity divided by a
@@ -125,9 +131,14 @@ All five `station_management` skills now have a base to multiply, which was the 
 | Manufactory Management | manufactory slot throughput | ×1.30 |
 | Ship Construction Management | berth construction rate | ×1.30 |
 
-A berth's `construct` job builds a weapon or a module as readily as a hull — each from its
-`buildCost` in manufactured units — and the same berth refits hulls
-(`fitting_specification.md` §3–4). A hull is always built with its default fit.
+A berth's `construct` job builds a weapon, a module or a station kit as readily as a hull —
+each from its `buildCost` in manufactured units — and the same berth refits hulls
+(`fitting_specification.md` §3–4, `station_specification.md` §3.1). A hull is always built
+with its default fit.
+
+A station's slots run the same chain under the same skills (`station_specification.md` §2.2):
+its refinery uses the station's `yieldModifier` in place of the planet's, which adds no term
+to §6's product.
 
 ### 4.1 Construction, and why unions exist
 

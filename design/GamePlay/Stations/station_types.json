@@ -1,0 +1,431 @@
+{
+  "count": 12,
+  "stationTypes": [
+    {
+      "stationTypeId": "stn_orbital_depot",
+      "name": "Orbital Depot",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      },
+      "upkeepPerTurn": 24.0,
+      "buildCost": {
+        "structural": 230.0,
+        "energy": 30.0,
+        "ordnance": 0.0,
+        "precision": 10.0
+      },
+      "kitUnits": 270.0,
+      "referencePrice": 6641.46
+    },
+    {
+      "stationTypeId": "stn_orbital_depot",
+      "name": "Orbital Depot",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      },
+      "upkeepPerTurn": 37.2,
+      "buildCost": {
+        "structural": 230.0,
+        "energy": 30.0,
+        "ordnance": 0.0,
+        "precision": 10.0
+      },
+      "kitUnits": 270.0,
+      "referencePrice": 6641.46
+    },
+    {
+      "stationTypeId": "stn_orbital_depot",
+      "name": "Orbital Depot",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 2,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      },
+      "upkeepPerTurn": 57.6,
+      "buildCost": {
+        "structural": 230.0,
+        "energy": 30.0,
+        "ordnance": 0.0,
+        "precision": 10.0
+      },
+      "kitUnits": 270.0,
+      "referencePrice": 6641.46
+    },
+    {
+      "stationTypeId": "stn_orbital_refinery",
+      "name": "Orbital Refinery",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 2,
+          "throughputPerTurn": 15.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.94,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 3.64
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      },
+      "upkeepPerTurn": 19.28,
+      "buildCost": {
+        "structural": 310.0,
+        "energy": 70.0,
+        "ordnance": 0.0,
+        "precision": 20.0
+      },
+      "kitUnits": 400.0,
+      "referencePrice": 10729.97
+    },
+    {
+      "stationTypeId": "stn_orbital_refinery",
+      "name": "Orbital Refinery",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 2,
+          "throughputPerTurn": 23.25,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.94,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 5.65
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      },
+      "upkeepPerTurn": 29.9,
+      "buildCost": {
+        "structural": 310.0,
+        "energy": 70.0,
+        "ordnance": 0.0,
+        "precision": 20.0
+      },
+      "kitUnits": 400.0,
+      "referencePrice": 10729.97
+    },
+    {
+      "stationTypeId": "stn_orbital_refinery",
+      "name": "Orbital Refinery",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "refinery": {
+          "facilityType": "refinery",
+          "slotCount": 2,
+          "throughputPerTurn": 36.0,
+          "unit": "raw units/turn",
+          "yieldModifier": 0.94,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 8.75
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      },
+      "upkeepPerTurn": 46.3,
+      "buildCost": {
+        "structural": 310.0,
+        "energy": 70.0,
+        "ordnance": 0.0,
+        "precision": 20.0
+      },
+      "kitUnits": 400.0,
+      "referencePrice": 10729.97
+    },
+    {
+      "stationTypeId": "stn_orbital_foundry",
+      "name": "Orbital Foundry",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 2,
+          "throughputPerTurn": 10.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.97
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      },
+      "upkeepPerTurn": 49.94,
+      "buildCost": {
+        "structural": 310.0,
+        "energy": 80.0,
+        "ordnance": 0.0,
+        "precision": 40.0
+      },
+      "kitUnits": 430.0,
+      "referencePrice": 13767.83
+    },
+    {
+      "stationTypeId": "stn_orbital_foundry",
+      "name": "Orbital Foundry",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 2,
+          "throughputPerTurn": 15.5,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 29.4
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      },
+      "upkeepPerTurn": 77.4,
+      "buildCost": {
+        "structural": 310.0,
+        "energy": 80.0,
+        "ordnance": 0.0,
+        "precision": 40.0
+      },
+      "kitUnits": 430.0,
+      "referencePrice": 13767.83
+    },
+    {
+      "stationTypeId": "stn_orbital_foundry",
+      "name": "Orbital Foundry",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "manufactory": {
+          "facilityType": "manufactory",
+          "slotCount": 2,
+          "throughputPerTurn": 24.0,
+          "unit": "manufactured units/turn",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 45.52
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      },
+      "upkeepPerTurn": 119.84,
+      "buildCost": {
+        "structural": 310.0,
+        "energy": 80.0,
+        "ordnance": 0.0,
+        "precision": 40.0
+      },
+      "kitUnits": 430.0,
+      "referencePrice": 13767.83
+    },
+    {
+      "stationTypeId": "stn_orbital_yard",
+      "name": "Orbital Yard",
+      "developmentTier": 1,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 1,
+          "throughputPerTurn": 12.0,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 4000.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 58.16
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 600.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 12.0
+        }
+      },
+      "upkeepPerTurn": 70.16,
+      "buildCost": {
+        "structural": 440.0,
+        "energy": 70.0,
+        "ordnance": 0.0,
+        "precision": 40.0
+      },
+      "kitUnits": 550.0,
+      "referencePrice": 15940.45
+    },
+    {
+      "stationTypeId": "stn_orbital_yard",
+      "name": "Orbital Yard",
+      "developmentTier": 2,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 1,
+          "throughputPerTurn": 18.6,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 6200.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 90.15
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 930.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 18.6
+        }
+      },
+      "upkeepPerTurn": 108.75,
+      "buildCost": {
+        "structural": 440.0,
+        "energy": 70.0,
+        "ordnance": 0.0,
+        "precision": 40.0
+      },
+      "kitUnits": 550.0,
+      "referencePrice": 15940.45
+    },
+    {
+      "stationTypeId": "stn_orbital_yard",
+      "name": "Orbital Yard",
+      "developmentTier": 3,
+      "securityTiers": [
+        "core",
+        "mid",
+        "rim"
+      ],
+      "slots": {
+        "shipyard": {
+          "facilityType": "shipyard",
+          "slotCount": 1,
+          "throughputPerTurn": 28.8,
+          "unit": "manufactured units/turn",
+          "maxHullTonnage": 9600.0,
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 139.59
+        },
+        "warehouse": {
+          "facilityType": "warehouse",
+          "slotCount": 1,
+          "capacity": 1440.0,
+          "unit": "units",
+          "scalesWith": "developmentTier",
+          "rentPerTurn": 28.8
+        }
+      },
+      "upkeepPerTurn": 168.39,
+      "buildCost": {
+        "structural": 440.0,
+        "energy": 70.0,
+        "ordnance": 0.0,
+        "precision": 40.0
+      },
+      "kitUnits": 550.0,
+      "referencePrice": 15940.45
+    }
+  ]
+}
